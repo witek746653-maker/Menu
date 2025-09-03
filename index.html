@@ -87,7 +87,7 @@
   .btn{ border:1px solid rgba(255,255,255,.25); color:var(--text); background:transparent; padding:8px 12px; border-radius:12px; font-size:14px; cursor:pointer; }
   .btn.primary{ border-color:var(--accent-2); background:linear-gradient(180deg,var(--accent),var(--accent-2)); color:#241a00; font-weight:700; }
   .btn:active{ transform: translateY(1px); }
-  .install-ios{ font-size:13px; opacity:.9; }
+  .install-ios { font-size: 11px; opacity: .9; }
   @keyframes slideUp{ from{ transform:translateY(12px); opacity:0; } to{ transform:translateY(0); opacity:1; } }
   @media (min-width:640px){ .install-banner{ left:20px; right:auto; bottom:20px; max-width:520px; } }
 
@@ -140,7 +140,7 @@
     overflow: visible; 
     display: block;
   }
-  .install-ios { font-size: 11px; opacity: .85; }
+  .install-ios { font-size: 11px; opacity: .9; }
   .install-actions .btn { font-size: clamp(10px, 2.6vw, 12px); padding: 6px 10px; border-radius: 10px; }
 
   @media (min-width: 641px) {
@@ -153,7 +153,7 @@
     overflow: visible; 
     display: block;
   }
-    .install-ios { font-size: 13px; }
+    .install-ios { font-size: 11px; opacity: .9; }
     .install-actions .btn { font-size: clamp(10px, 2.6vw, 12px); padding: 6px 10px; border-radius: 10px; }
   }
 
@@ -242,13 +242,14 @@
   <div class="install-banner" id="installBanner" role="dialog" aria-live="polite" aria-label="Установить приложение">
     <div class="install-icon" aria-hidden="true">⌂</div>
     <div class="install-text">Установи меню на телефон для быстрого доступа 😉
-      <div class="install-ios" id="iosHint" style="display:none;">В Safari: <b>Поделиться</b> → <b>На экран «Домой»</b>.</div>
+      <div class="install-ios" id="iosHint" style="display:none;">В Safari: <b>Поделиться</b> → <b>На экран «Домой»</b> → <b>Добавить</b></div>
     </div>
     <div class="install-actions">
       <button class="btn" id="dismissBtn">Не сейчас</button>
       <button class="btn primary" id="installBtn">Установить</button>
     </div>
   </div>
+
 
 
 
@@ -297,12 +298,12 @@
     hideBanner();
   });
 
-  // Android/Chromium: capture install event
   window.addEventListener('beforeinstallprompt', async (e) => {
     e.preventDefault();
     deferredPrompt = e;
     setFabVisible(true);
     setTimeout(() => showBanner(), 400);
+
     if (localStorage.getItem(ARM_KEY) === '1') {
       try {
         deferredPrompt.prompt();
@@ -319,7 +320,7 @@
     setFabVisible(false);
   });
 
-  async function promptAndroid() {
+  async function promptAndroidNow() {
     if (!deferredPrompt) return false;
     try {
       deferredPrompt.prompt();
@@ -336,37 +337,30 @@
     }
   }
 
-  async function triggerInstall() {
-    if (isIos) {
-      // iOS: open system Share Sheet; there будет "На экран «Домой»"
-      try {
-        if (navigator.share) {
-          await navigator.share({ title: document.title, url: location.href, text: 'Добавить на экран «Домой»' });
-          hideBanner();
-          return;
-        }
-      } catch (e) {
-        // ignore; fall through to hint
-      }
-      iosHint.style.display = 'block';
-      return;
-    }
-
-    // Android/Chromium:
-    if (await promptAndroid()) return;
-
-    // If not ready yet, arm and reload one time to capture event
+  function armAndReload() {
     localStorage.setItem(ARM_KEY, '1');
     location.reload();
   }
 
   fab.addEventListener('click', () => { showBanner(true); });
-  btnInstall.addEventListener('click', triggerInstall);
+
+  btnInstall.addEventListener('click', async () => {
+    if (isIos) {
+      // iOS: нет программного диалога установки — покажем шаги и аккуратно закроем баннер через 4с
+      iosHint.style.display = 'block';
+      setTimeout(hideBanner, 4000);
+      return;
+    }
+    // Android/Chromium
+    if (await promptAndroidNow()) return;
+    armAndReload();
+  });
 
   if (isStandalone) setFabVisible(false);
   else setTimeout(() => setFabVisible(true), 800);
   if (!isStandalone && isIos) setFabVisible(true);
 </script>
+
 
 
 
