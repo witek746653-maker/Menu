@@ -166,6 +166,31 @@
     overflow: visible; 
     display: block;
   }
+
+  /* Compact banner: grid layout, above FAB */
+  .install-banner {
+    z-index: 160;                 /* above FAB */
+    display: none;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    max-height: 10vh;             /* <= 10% of screen height */
+  }
+  .install-icon { width: 22px; height: 22px; font-size: 14px; border-radius: 6px; }
+  .install-text { 
+    flex: 1; 
+    font-size: clamp(10px, 2.8vw, 12px); 
+    line-height: 1.25; 
+    white-space: normal; 
+    word-break: break-word; 
+    overflow: visible; 
+    display: block;
+  }
+  .install-actions .btn { font-size: clamp(10px, 2.8vw, 12px); padding: 6px 10px; border-radius: 10px; }
+  @media (max-width: 380px) {
+    .install-text { font-size: 10px; }
+    .install-actions .btn { font-size: 10px; padding: 5px 8px; }
+  }
 </style>
 </head>
 <body>
@@ -230,6 +255,7 @@
 
 
 
+
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -249,9 +275,9 @@
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (window.navigator.standalone === true);
   const isIos = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
   let deferredPrompt = null;
+  let installReady = false;
 
   function setFabVisible(v) { if (v) fab.classList.remove('hidden'); else fab.classList.add('hidden'); }
-
   function showBanner(force = false) {
     if (isStandalone) return;
     if (!force) {
@@ -262,77 +288,76 @@
     banner.classList.add('show');
     banner.style.display = 'flex';
   }
-  function hideBanner() {
-    banner.classList.remove('show');
-    banner.style.display = 'none';
-  }
+  function hideBanner() { banner.classList.remove('show'); banner.style.display = 'none'; }
 
   btnDismiss.addEventListener('click', () => {
     localStorage.setItem(HIDE_KEY, String(Date.now() + HIDE_MS));
     hideBanner();
   });
 
+  // Capture install event for Android/Chromium
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
+    installReady = true;
     setFabVisible(true);
     setTimeout(() => showBanner(), 500);
   });
 
-  async function triggerInstall() {
-    if (deferredPrompt) {
-      try {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        if (outcome === 'dismissed') {
-          localStorage.setItem(HIDE_KEY, String(Date.now() + HIDE_MS));
-        }
-        hideBanner();
-        return;
-      } catch (err) {
-        console.error(err);
-        // fall through to other branches
-      }
-    }
-    if (isIos) {
-      iosHint.style.display = 'block';
-      // оставим баннер на месте, чтобы подсказка была видна
-      return;
-    }
-    // Android/desktop Chromium: wait once for event, then prompt immediately
-    let resolved = false;
-    const handler = (e) => {
-      if (resolved) return;
-      resolved = true;
-      e.preventDefault();
-      deferredPrompt = e;
+  async function doPrompt() {
+    try {
       deferredPrompt.prompt();
-      deferredPrompt.userChoice.finally(() => {
-        deferredPrompt = null;
-        hideBanner();
-      });
-    };
-    window.addEventListener('beforeinstallprompt', handler, { once: true });
-    // safety: if event doesn't arrive shortly, keep banner visible but don't freeze UI
-    setTimeout(() => {
-      if (!resolved) {
-        window.removeEventListener('beforeinstallprompt', handler);
-        // keep banner visible with the hint; user can try later via браузерное меню
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      hideBanner();
+      if (outcome === 'dismissed') {
+        localStorage.setItem(HIDE_KEY, String(Date.now() + HIDE_MS));
       }
-    }, 4000);
+    } catch (err) {
+      console.error(err);
+      hideBanner();
+    }
   }
 
-  fab.addEventListener('click', () => {
-    showBanner(true);
-  });
+  async function triggerInstall() {
+    if (isIos) {
+      iosHint.style.display = 'block';
+      // На iOS установка только вручную — оставляем подсказку видимой
+      return;
+    }
+    if (installReady && deferredPrompt) {
+      await doPrompt();
+      return;
+    }
+    // Not ready yet: arm a one-time wait for prompt and then show it
+    let armed = false;
+    const handler = async (e) => {
+      if (armed) return;
+      armed = true;
+      e.preventDefault();
+      deferredPrompt = e;
+      installReady = true;
+      await doPrompt();
+      window.removeEventListener('beforeinstallprompt', handler);
+    };
+    window.addEventListener('beforeinstallprompt', handler, { once: true });
+    // If nothing arrives shortly, keep banner (user can try from menu), don't freeze UI
+    setTimeout(() => {
+      if (!armed) {
+        window.removeEventListener('beforeinstallprompt', handler);
+        // Optionally, we could show Android manual hint here if нужно
+      }
+    }, 6000);
+  }
 
-  btnInstall.addEventListener('click', triggerInstall);
+  fab.addEventListener('click', () => { showBanner(true); });
+  btnInstall.addEventListener('click', () => { triggerInstall(); });
 
   if (isStandalone) setFabVisible(false);
   else setTimeout(() => setFabVisible(true), 800);
   if (!isStandalone && isIos) setFabVisible(true);
 </script>
+
 
 
 
