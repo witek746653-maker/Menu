@@ -257,8 +257,8 @@
 
 
 
+
 <script>
-  // Service worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch(console.error);
@@ -273,7 +273,7 @@
 
   const HIDE_KEY = 'sabor_install_hide_until';
   const HIDE_MS = 7 * 24 * 60 * 60 * 1000;
-  const ARM_KEY = 'sabor_arm_install';  // when set, auto-prompt on next beforeinstallprompt after reload
+  const ARM_KEY = 'sabor_arm_install';
 
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (window.navigator.standalone === true);
   const isIos = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
@@ -297,36 +297,29 @@
     hideBanner();
   });
 
-  // Listen for install readiness (Android/Chromium)
+  // Android/Chromium: capture install event
   window.addEventListener('beforeinstallprompt', async (e) => {
     e.preventDefault();
     deferredPrompt = e;
     setFabVisible(true);
     setTimeout(() => showBanner(), 400);
-
-    // If user previously clicked "Установить" and we reloaded to arm install,
-    // prompt immediately now and clear the flag.
     if (localStorage.getItem(ARM_KEY) === '1') {
       try {
         deferredPrompt.prompt();
         await deferredPrompt.userChoice;
-      } catch (err) {
-        console.warn(err);
-      } finally {
-        localStorage.removeItem(ARM_KEY);
-        deferredPrompt = null;
-        hideBanner();
-      }
+      } catch (err) {}
+      localStorage.removeItem(ARM_KEY);
+      deferredPrompt = null;
+      hideBanner();
     }
   });
 
-  // Hide banner when app gets installed
   window.addEventListener('appinstalled', () => {
     hideBanner();
     setFabVisible(false);
   });
 
-  async function tryPromptNow() {
+  async function promptAndroid() {
     if (!deferredPrompt) return false;
     try {
       deferredPrompt.prompt();
@@ -338,38 +331,43 @@
       hideBanner();
       return true;
     } catch (err) {
-      console.error(err);
       hideBanner();
       return false;
     }
   }
 
-  function armAndReloadForInstall() {
-    // Arm install to auto-prompt after reload when event arrives
+  async function triggerInstall() {
+    if (isIos) {
+      // iOS: open system Share Sheet; there будет "На экран «Домой»"
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: document.title, url: location.href, text: 'Добавить на экран «Домой»' });
+          hideBanner();
+          return;
+        }
+      } catch (e) {
+        // ignore; fall through to hint
+      }
+      iosHint.style.display = 'block';
+      return;
+    }
+
+    // Android/Chromium:
+    if (await promptAndroid()) return;
+
+    // If not ready yet, arm and reload one time to capture event
     localStorage.setItem(ARM_KEY, '1');
-    // Ensure a SW controls the page after reload, which is required for install prompt
     location.reload();
   }
 
   fab.addEventListener('click', () => { showBanner(true); });
-
-  btnInstall.addEventListener('click', async () => {
-    if (isIos) {
-      iosHint.style.display = 'block';
-      return; // iOS installs вручную через "На экран «Домой»"
-    }
-    // Try to prompt immediately if event already captured
-    const prompted = await tryPromptNow();
-    if (prompted) return;
-
-    // If not ready yet, arm and reload once to meet criteria and capture the event
-    armAndReloadForInstall();
-  });
+  btnInstall.addEventListener('click', triggerInstall);
 
   if (isStandalone) setFabVisible(false);
   else setTimeout(() => setFabVisible(true), 800);
   if (!isStandalone && isIos) setFabVisible(true);
 </script>
+
 
 
 
