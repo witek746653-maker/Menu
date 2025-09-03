@@ -1,5 +1,5 @@
 // Sabor PWA service worker
-const CACHE = 'sabor-pwa-v19';
+const CACHE = 'sabor-pwa-v20';
 const ASSETS = [
   './',
   './index.html',
