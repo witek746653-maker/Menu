@@ -256,7 +256,9 @@
 
 
 
+
 <script>
+  // Service worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch(console.error);
@@ -271,11 +273,11 @@
 
   const HIDE_KEY = 'sabor_install_hide_until';
   const HIDE_MS = 7 * 24 * 60 * 60 * 1000;
+  const ARM_KEY = 'sabor_arm_install';  // when set, auto-prompt on next beforeinstallprompt after reload
 
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (window.navigator.standalone === true);
   const isIos = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
   let deferredPrompt = null;
-  let installReady = false;
 
   function setFabVisible(v) { if (v) fab.classList.remove('hidden'); else fab.classList.add('hidden'); }
   function showBanner(force = false) {
@@ -295,68 +297,80 @@
     hideBanner();
   });
 
-  // Capture install event for Android/Chromium
-  window.addEventListener('beforeinstallprompt', (e) => {
+  // Listen for install readiness (Android/Chromium)
+  window.addEventListener('beforeinstallprompt', async (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    installReady = true;
     setFabVisible(true);
-    setTimeout(() => showBanner(), 500);
+    setTimeout(() => showBanner(), 400);
+
+    // If user previously clicked "Установить" and we reloaded to arm install,
+    // prompt immediately now and clear the flag.
+    if (localStorage.getItem(ARM_KEY) === '1') {
+      try {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+      } catch (err) {
+        console.warn(err);
+      } finally {
+        localStorage.removeItem(ARM_KEY);
+        deferredPrompt = null;
+        hideBanner();
+      }
+    }
   });
 
-  async function doPrompt() {
+  // Hide banner when app gets installed
+  window.addEventListener('appinstalled', () => {
+    hideBanner();
+    setFabVisible(false);
+  });
+
+  async function tryPromptNow() {
+    if (!deferredPrompt) return false;
     try {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       deferredPrompt = null;
-      hideBanner();
       if (outcome === 'dismissed') {
         localStorage.setItem(HIDE_KEY, String(Date.now() + HIDE_MS));
       }
+      hideBanner();
+      return true;
     } catch (err) {
       console.error(err);
       hideBanner();
+      return false;
     }
   }
 
-  async function triggerInstall() {
-    if (isIos) {
-      iosHint.style.display = 'block';
-      // На iOS установка только вручную — оставляем подсказку видимой
-      return;
-    }
-    if (installReady && deferredPrompt) {
-      await doPrompt();
-      return;
-    }
-    // Not ready yet: arm a one-time wait for prompt and then show it
-    let armed = false;
-    const handler = async (e) => {
-      if (armed) return;
-      armed = true;
-      e.preventDefault();
-      deferredPrompt = e;
-      installReady = true;
-      await doPrompt();
-      window.removeEventListener('beforeinstallprompt', handler);
-    };
-    window.addEventListener('beforeinstallprompt', handler, { once: true });
-    // If nothing arrives shortly, keep banner (user can try from menu), don't freeze UI
-    setTimeout(() => {
-      if (!armed) {
-        window.removeEventListener('beforeinstallprompt', handler);
-        // Optionally, we could show Android manual hint here if нужно
-      }
-    }, 6000);
+  function armAndReloadForInstall() {
+    // Arm install to auto-prompt after reload when event arrives
+    localStorage.setItem(ARM_KEY, '1');
+    // Ensure a SW controls the page after reload, which is required for install prompt
+    location.reload();
   }
 
   fab.addEventListener('click', () => { showBanner(true); });
-  btnInstall.addEventListener('click', () => { triggerInstall(); });
+
+  btnInstall.addEventListener('click', async () => {
+    if (isIos) {
+      iosHint.style.display = 'block';
+      return; // iOS installs вручную через "На экран «Домой»"
+    }
+    // Try to prompt immediately if event already captured
+    const prompted = await tryPromptNow();
+    if (prompted) return;
+
+    // If not ready yet, arm and reload once to meet criteria and capture the event
+    armAndReloadForInstall();
+  });
 
   if (isStandalone) setFabVisible(false);
   else setTimeout(() => setFabVisible(true), 800);
   if (!isStandalone && isIos) setFabVisible(true);
 </script>
+
 
 
 
