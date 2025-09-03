@@ -1,5 +1,5 @@
 // Sabor PWA service worker — offline precache for sections
-const CACHE = 'sabor-pwa-v26';
+const CACHE = 'sabor-pwa-v27';
 
 // Core assets must exist
 const CORE_ASSETS = [
@@ -43,20 +43,61 @@ self.addEventListener('activate', event => {
   })());
 });
 
+
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
-  const isSameOrigin = url.origin === location.origin;
-  const isHTML = event.request.mode === 'navigate' || url.pathname.endsWith('.html');
+  const sameOrigin = url.origin === location.origin;
 
-  // For HTML: network-first, fallback to cache, then to index.html
-  if (isSameOrigin && isHTML) {
+  // Robust HTML detection for Safari/older browsers
+  const accept = event.request.headers.get('accept') || '';
+  const isHTML = event.request.mode === 'navigate'
+    || event.request.destination === 'document'
+    || (accept.includes('text/html') && !url.pathname.match(/\.(js|css|json|png|jpg|jpeg|gif|svg|webp|ico|woff2?)$/i));
+
+  if (sameOrigin && isHTML) {
     event.respondWith((async () => {
       try {
         const resp = await fetch(event.request);
         const cache = await caches.open(CACHE);
         cache.put(event.request, resp.clone()).catch(() => {});
+        return resp;
+      } catch (err) {
+        // Try exact match first
+        const cached = await caches.match(event.request);
+        if (cached) return cached;
+        // Offline fallback
+        const offline = await caches.match('./offline.html');
+        if (offline) return offline;
+        // As last resort, try index.html
+        const index = await caches.match('./index.html');
+        if (index) return index;
+        // Always return a valid Response (avoid "nothing happens")
+        return new Response('<!DOCTYPE html><title>Offline</title><p>Вы офлайн.</p>', {
+          headers: { 'Content-Type': 'text/html; charset=utf-8' }
+        });
+      }
+    })());
+    return;
+  }
+
+  // Other assets: cache-first
+  event.respondWith((async () => {
+    const cached = await caches.match(event.request);
+    if (cached) return cached;
+    try {
+      const resp = await fetch(event.request);
+      const cache = await caches.open(CACHE);
+      cache.put(event.request, resp.clone()).catch(() => {});
+      return resp;
+    } catch (err) {
+      // Return a benign empty response for non-HTML assets
+      return new Response('', { status: 200 });
+    }
+  })());
+});
+
         return resp;
       } catch (err) {
         const cached = await caches.match(event.request);
