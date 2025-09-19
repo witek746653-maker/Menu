@@ -687,34 +687,46 @@ blockquote.quote-large {
 }
 	
 </style>
-<style id="modal-fit-styles">
+<style id="en-fit-styles">
+  /* Force no internal scroll for the EN modal block */
+  .en-backdrop {
+    overflow: hidden !important;
+    align-items: stretch !important;
+    padding: 2vh 2vw !important;
+  }
+  .en-panel {
+    height: 100% !important;
+    max-height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .en-head { flex: 0 0 auto !important; }
+  .en-sections {
+    flex: 1 1 auto !important;
+    overflow: hidden !important; /* no inner scrolling */
+    display: grid !important;
+    grid-auto-rows: auto;
+  }
+  .en-sec { overflow: hidden !important; }
+  /* Base font sizes (will be reduced by JS if needed) */
   :root {
-    --modal-pad: 20px;
-    --title-max: 28px;
-    --title-min: 18px;
-    --body-max: 18px;
-    --body-min: 12px;
+    --en-title-max: 28px;
+    --en-title-min: 18px;
+    --en-body-max: 18px;
+    --en-body-min: 12px;
   }
-  .modal {
-    position: fixed;
-    inset: 2vh 2vw;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.25);
-    display: none;
-    z-index: 1000;
+  .en-title {
+    font-size: var(--en-title-max) !important;
+    line-height: 1.2 !important;
   }
-  .modal.is-open { display: block; }
-  .modal__dialog { height: 100%; width: 100%; display: flex; flex-direction: column; padding: var(--modal-pad); box-sizing: border-box; }
-  .modal__header { flex: 0 0 auto; margin-bottom: 12px; }
-  .modal__title { margin: 0; line-height: 1.2; font-weight: 700; font-size: var(--title-max); letter-spacing: .2px; text-wrap: balance; }
-  .modal__body { flex: 1 1 auto; overflow: hidden; display: grid; grid-template-rows: 1fr; gap: 0; }
-  .modal__content { font-size: var(--body-max); line-height: 1.35; overflow: visible; }
-  .modal__content, .modal__content * { word-break: break-word; overflow-wrap: anywhere; }
-  .modal__content img { max-width: 100%; height: auto; }
-  .modal__content table { border-collapse: collapse; width: 100%; table-layout: fixed; }
-  .modal__content th, .modal__content td { border: 1px solid #ddd; padding: 6px 8px; vertical-align: top; }
-  @media (max-width: 480px) { .modal { inset: 1.5vh 2vw; } .modal__dialog { padding: 14px; } }
+  .en-sections, .en-sec, .en-text, .en-editor, .en-editor textarea, .en-editor input {
+    font-size: var(--en-body-max) !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+  .en-sec img { max-width: 100% !important; height: auto !important; }
+  .en-sec table { width: 100% !important; table-layout: fixed !important; }
 </style>
 
 </head><body><article class="page sans" id="22f33974-4d17-808b-9d7e-e6d06d2604bb"><header><img class="page-cover-image" src="images/IMG_8165.jpg" style="object-position:center 76.34%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="icons/ChatGPT_Image_14.png"/></div><h1 class="page-title"><img alt="chatgpt-image-14" src="icons/ChatGPT_Image_14.png" style="width:1em;height:1em"/> Основное меню (Sabor de la Vida)</h1><p class="page-description"></p></header><div class="page-body"><hr id="22f33974-4d17-81bc-a437-e136935dcfff"/><nav class="block-color-gray table_of_contents" id="22f33974-4d17-80f8-8683-f05bcc997912"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-812d-b1c1-f40d4c830ff1">🧊 <strong>Холодные закуски</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-807b-ab30-e8abfaeb89cc">Устрица Императорская (Залив Петра Великого. Владивосток.)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8099-b05e-cc32daeedb0c">Устрица Розовая Джоли (Намибия. Африка.)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80d6-a38b-c8651f12b401">Морской ёж с соусом Понзу, муссом из авокадо и перепелиным желтком </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8095-855b-e77f039c96ec">Хамон Serrano Gran Reserva (50 гр.)  </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80d9-8bf6-d6b49f1a0f2c">Брускетта с паштетом из куриной печени, сливочным сыром и трюфельным маслом</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8093-b36e-e8c05e5ba619">Брускетта с бурратой, томатами и соусом песто <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8061-a1df-e32f3f4f26b9">Брускетта с лесными грибами в сливочном соусе <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80d1-9588-de4708c3b6b7">Тартар из премиальной говяжьей вырезки с жаренным картофелем </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80a6-9c71-de0b16c6757e">Ассорти изысканных мясных деликатесов</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8068-a02a-e6e1f5bcf414">Томат и краб </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-809c-9fdc-d3caa52366da">Тартар из тунца с испанскими оливками, кедровыми орехами и зеленью </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80f6-b979-f0ba3a8892af">Карпаччо из креветки с кремом из баклажана, томатами и соусом манго-чиа </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80a2-b807-f27c0404c635">Севиче из сибаса с томатами, авокадо и перцем чили</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8041-847a-e0a89e492138">Карпаччо из запечённой свёклы со сливочным сыром, кедровыми орехами и копченым маслом <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80bd-b43e-fb2706c51ebe">Ассорти из шести благородных сыров <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-8155-8724-d9f38f92ad9d">🔥 <strong>Горячие закуски</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8006-b49b-f9cdb5a2553c">Эскалоп фуа-гра с грушей пакхам под ягодно-ромовом соусом</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-803e-9d7b-e824e9a4e8cd">Запеченные мидии со шпинатом под сырно-трюфельным фондю</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8053-8d11-fb621921e898">Устрицы запечённые под соусом Шабли с мускатным орехом и луком шалот </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80b3-b829-fae50d098bb5">Улитки по-бургундски</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8000-b102-e4da2f193717">Креветки в соусе васаби <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8022-bad1-f6993a89bfb5">Баклажан юдзу </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80d8-83b0-e2324036f0ec">Тартар из баклажан с томатами, зеленью и постным песто <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-8120-ba14-ffa145809d85">🥗 <strong>Салаты</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8037-b2a6-d01c5c04b270">Салат с запечённым ростбифом </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8051-a03c-f0169be1f7d0">Салат с сочной телятиной и ароматными грибами</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-802d-b3f8-ce3fc67a811d">Салат Кардини с перепелкой, томатами, перепелиным яйцом и чесночными гренками <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-803a-bce9-d0bf275ddc98">Теплый салат с Фуа-гра, перепелкой и карамелизированным яблоком <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80d3-b19d-dd00e8b54825">Теплый салат с жаренным осьминогом, овощами, оливками под горчичным соусом <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80d2-a35c-d65522e2a4db">Салат с мясом краба и опаленными овощами под медово-горчичной заправкой</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8009-bbd8-ecc8dcf70951">Салат с морепродуктами и мятым авокадо <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8093-8c36-f4bdadb65c72">Острова в океане (Салат с тунцом и сальсой из томатов и маслин) <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-80ba-962f-e3ca6bab5883">Овощной салат с авокадо, сыром Грана Падано, луковым крамблом под медово-горчичной заправкой <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23233974-4d17-8053-962b-ef9cac8c38e1">Буррата с оливками и тартаром из сладких томатов <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-81da-ad84-d1717464d157">🍲 <strong>Супы</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-8056-9580-fa44bf5831b2">Чечевичный суп с молодым ягненком, овощами и ароматными травами </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-8093-9e43-ccc14d47ed8f">Луковый суп с беконом, зирой под сырной корочкой Грюйер</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-80e7-b13a-cdcdedeb3095">Острый суп Том Ям с гребешком и креветками</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-80cc-97e0-e25a7d532ba4">Уха с подкопчённой красной рыбой, овощами и сливочным бульоном</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-80aa-9158-e6343b805962"> Шёлковый крем суп из каштанов с ароматными белыми грибами<strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-80b2-a40c-d8eaff40ab41">Овощной суп Минестроне на курином бульоне с кедровыми орехами и соусом песто </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-801b-8325-d4a09d8686e3">Постный минестроне на овощном бульоне с кедровыми орехами, чесночной чиабаттой и (постным) песто <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#23233974-4d17-803e-94ee-e5c09a22835e"> <img alt="ite-library-italian-cuisine-pizza" src="icons/99-997123_jpg-black-and-white-library-italian-cuisine-pizza.png" style="width:1em;height:1em"/> <strong>Паста</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23633974-4d17-8009-a9e7-d45490b3a789">Домашние равиоли с начинкой из фермерской курицы, ароматной зирой под сырно-трюфельным фондю</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23633974-4d17-80ca-aaf4-ceeed8104427">Паста птитим с морепродуктами и кремом из зеленого горошка </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23633974-4d17-80b3-9790-c0d66da871ea">Черные фетучини с мясом краба, фенхелем и луком порей</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23633974-4d17-80fd-af87-f1a3bc93595c">Аррабьята с креветками и гребешком </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23633974-4d17-8031-b5a4-cb8930d84e09">Ризотто с кроликом и грибами </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23633974-4d17-80b3-929e-e103c087337b">Зеленое ризотто <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-8110-986c-cf9757b1fa0e">🍖 <strong>Горячие блюда из мяса</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-8082-a5d5-faf147f52b97">Говяжье ребро под соусом из черного перца с картофелем, бататом и соусом чимичури </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-80bf-8ef7-c481bfbd6945">Бифштекс из мраморной говядины с жаренным картофелем, грибами и шпинатом, с муссом из горгонзолы и трюфельным кремом <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-807a-9c50-f547c58dd5d9">Томленые говяжьи щечки с рагу из белых грибов, картофелем пюре и солодовым соусом</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-8032-8b83-caa24e17b602">Филе миньон с Фуа-гра, жаренными белыми грибами и овощами на гриле <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-80df-9f33-df7b83412202">Чёрный бургер с котлетой из мраморной говядины, сыром камамбер, луком конфи и острым перцем халапеньо <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-80ab-8b1c-e3414c42e4e6">Томленая голяшка ягненка с печеным баклажаном и йогуртовым муссом <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-805b-92ca-fa8908f46e64">Фермерский цыпленок приготовленный на открытом огне <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-80c8-ba8b-ce0eb721f90f">Утиная ножка под апельсиновым соусом на подушке из жареного картофеля с беконом</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-802b-92a7-e5021a34c49d">Котлета из утиной грудки с фуа-гра и картофельным пюре с зеленью и соусом барбекю</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-8002-be1d-d6e70c6fb9ca"><img alt="2224196" src="icons/2224196.png" style="width:1em;height:1em"/> <strong>Горячие блюда из рыбы и морепродуктов</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-8060-bb08-e7ff93470b7b">Филе сибаса со шпинатом, картофельным пюре с зеленью и цитрусовым соусом </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-807c-b68c-f489a4b70e5e">Филе дорадо на подушке из жаренных овощей и грибов со сливочным соусом берблан</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-80a5-8a29-c027f3f6380d">Стейк из семги, запечённой в меде с картофельным пюре и томатной сальсой</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-805d-b89d-d15b13e5304a">Запеченная черная треска с маринованным имбирем и жаренными овощами под медово-апельсиновым соусом</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-800f-ba70-ef8c6cdc3811">Глазированный осьминог с жаренным картофелем, вялеными томатами и ростками подсолнуха </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#22f33974-4d17-8081-b4b3-f6c41824149a">Котлета из ассорти рыб с картофельным пюре и томленым шпинатом </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-81d1-9fff-d4fb1ea7ff2e">🥩 <strong>Мясо по весу (Josper/ Пар / Сковорода) </strong><img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-80ea-80b3-f05d85d3cb55">Денвер стейк (лопаточная часть) </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8091-a011-de9334187713">Филе прайм (Говяжья вырезка) </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-8041-bfdf-d0ee7c9184a9">Рибай стейк</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-80b0-b66e-c91d343629a5">Стриплойн стейк</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-804f-bb01-d16111d0e69b">Каре баранины  </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80d9-8ec1-f02791f955b2">Каре ягнёнка </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#23a33974-4d17-80be-9074-ec4adccb3e40">🐙 <strong>Рыба и морепродукты по весу (Josper/ Пар / Сковорода) </strong><img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80e4-bfb2-daa31f7faa16">Семга </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8059-b09e-c2720efaf290">Сибас</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8039-9099-f349bd416804">Дорадо</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80ec-b1a3-f125726ec0aa">Тунец </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80e5-9618-fbdb3c352a10">Кальмар</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80b9-94c7-fb920e224f4d">Осьминог </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8012-b5c2-e680f6834379">Королевские креветки </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8019-a742-dace442d0bdc">Морские гребешки</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-8105-b937-e42044a52ff7">🍚 <strong>Гарниры</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8093-91d4-e8880d894d64">Жаренный картофель с беконом   </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80c8-81e1-ee41491ff6b9">Жаренный картофель с грибами в сырно-сливочном соусе <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8083-b53a-f55943c6d660">Жаренный картофель с луком шалот и зеленью <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8096-b196-f6610c868a86">Картофель фри </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8041-b45a-ccc24d39fee7">Картофельное пюре с зеленью <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80fd-adb0-d7a49fbbaa01">Картофель по-домашнему на Хоспере <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-802d-a557-c89759951cb9">Рис отварной <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-802a-91a4-fee00b4b261b">Овощи микс <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80a7-91c7-ce638352a78d">Спаржа <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80a0-aedd-c46fd7b60180">Томленый шпинат с чесноком и сыром <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80e3-9287-f31e18a29ee7">Перец болгарский <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-803b-808c-c45d2c27ed68">Цукини <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8064-a849-c133023f6a3b">Томаты узбекские <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8064-a1fa-e024feaea58e">Томаты черри <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/> <img alt="fire-57" src="icons/fire-57.png" style="width:1em;height:1em"/> </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-8157-88ad-f3c61519eaf9">🍰 <strong>Десерты</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-80f7-ac5a-e905ac961b87">Мусс пряные травы</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-80bd-bc89-fd80ffe1794d">Дикие яблоки с душистым перцем</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-8077-94e6-e5716397a752">Анна Павлова</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-8064-bc74-fade348fd4b6">Черемуховый медовик с ромашковым мороженым</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-80a2-8176-d4242f319a88">Шоколадный фондан</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-807d-863d-d022d9236f28">Сигара Sabor de la Vida <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-80ee-95c3-fb6a6bd37488">Мороженое щавель-эстрагон </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-80b9-9edb-fedcf8b3d081">Домашнее мороженое </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23a33974-4d17-808b-beec-efef4c141ead">Фруктовый сорбет <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f33974-4d17-81b8-a5b8-d152d95aa02d">🧂 <strong>Соусы и хлеб</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80fb-b7e8-ca2b4a23927a">Перечный <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80ee-b932-fb89b2759a98">Горчичный </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80c0-83fb-e47a791bcdd2">Томатно-цитрусовый <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-808f-b0c5-f40b3085df35">Сливочно-грибной <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80f5-b68b-d2386a521a0a">Барбекю </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8098-a6c2-c7a08e8d43ef">Песто <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80dd-a142-e6a1f2742bfd">Клюквенный <img alt="13b01a3ed103ff17" src="icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp" style="width:1em;height:1em"/></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-80dc-80c4-d417fc08bd0b">Бер Блан </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23b33974-4d17-8095-bc4e-dd071467a056">Томатно-базиликовый соус (Соус Чили)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#24233974-4d17-803f-b188-feae502351d4">Хлебная корзина </a></div></nav><hr id="22f33974-4d17-8150-b707-fb277bf5dc0d"/><h2 class="" id="22f33974-4d17-812d-b1c1-f40d4c830ff1">🧊 <strong>Холодные закуски</strong></h2><hr id="25633974-4d17-8003-8153-cba0928ffa4a"/><figure class="block-color-teal_background callout" id="25633974-4d17-80a3-ac49-cd4599932ec7" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="25633974-4d17-80b6-8199-d469e3ab085c">Все виды устриц делятся <strong>диких </strong>и <strong>культивируемых.</strong> Диких двустворчатых моллюсков вылавливают в морях и океанах водолазным методом и поставляют к столу «как есть», без облагораживания. Поэтому их мякоть обычно более жесткая, соленая, с ярко выраженной йодистостью и изменчивым вкусом. Все это — последствия роста в глубоких водах в неконтролируемых условиях. За эту резкость и природную вариативность вкуса дикие устрицы и ценятся гурманами. Особенно ценны моллюски с плоской раковиной. Они требовательны к среде обитания, поэтому их выращивание на фермах — сложная задача. Почти все культивируемые виды устриц для еды — моллюски с глубокими раковинами чашеобразной формы. Контролируемый процесс выращивания убирает лишнюю соль, делает мясо моллюска более нежным, придает сладость. Кроме того, все виды устриц для еды вдальнейшем обладают более предсказуемым вкусом и безопаснее с точки зрения употребления в пищу сырыми. Поэтому шеф-повара ресторанов чаще выбирают для своих кулинарных шедевров именно выращенных моллюсков. Хороши они и для первых дегустаций этого морепродукта.</p></div></figure><hr id="25633974-4d17-8005-982a-f3e93e7594b9"/><h3 class="block-color-blue_background" id="23233974-4d17-807b-ab30-e8abfaeb89cc">Устрица Императорская (Залив Петра Великого. Владивосток.)</h3><div class="column-list" id="23233974-4d17-80cb-81e4-e94d935df1c6"><div class="column" id="23233974-4d17-8024-a2bb-ce84ec62cb06" style="width:125%"><p class="" id="23233974-4d17-80af-8e6a-f0ed235a1aaa"><strong>Дикая устрица с ярко выраженным морским вкусом, богатым йодистым характером и природной свежестью.</strong></p><hr id="23233974-4d17-80e2-b74f-efd2669ac2f3"/><p class="" id="23233974-4d17-8035-927f-f71dcbe3743b"><strong>Особенности:</strong></p><p class="" id="23233974-4d17-80ef-9b0b-d409f6763a68">🍋 цитрусы | <img alt="pngtree-raw-food-label-png-png-image_5940210" src="icons/pngtree-raw-food-label-png-png-image_5940210.png" style="width:1em;height:1em"/> сырой | <img alt="5346247" src="icons/5346247.png" style="width:1em;height:1em"/> лук </p><figure class="image" id="23233974-4d17-809d-8cb6-dca013549f9b"><a href="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="><img src="icons/image.png" style="width:1px"/></a></figure><p class="" id="25633974-4d17-8035-a79a-ee330c93430e">Устрицы отдаются с несрезанной ножкой (мускул, которым моллюск крепится к нижней створке раковины). </p><p class="" id="23233974-4d17-809f-9c72-d3edbf5a0248">Подаются с красным винным уксусом, <strong>луком шалот и лимоном.</strong></p><p class="" id="23233974-4d17-80cf-9195-f9fd69aecd60">Имеют сплюснутую, продолговатую (вытянутую) форму что отражает их природный характер. Т.к. они дикие, в раковине могут быть неравномерно распределены, а вкус изменчивый и зависит от условий обитания устрицы (по сути гость выбирает "кота в мешке"). Он колеблется от сладковатого до сильно соленого.</p><p class="" id="25633974-4d17-80d8-b352-c1203a3771d4">Наш ресторан гарантирует свежесть каждой устрицы. Перед подачей на стол гостю ее проверяют на этапе подготовки, а также су-шефом при отдаче официанту.</p><hr id="23233974-4d17-803d-bd68-f6dff996db9d"/></div><div class="column" id="23233974-4d17-8017-a1ba-f8e22e624a87" style="width:75%"><figure class="image" id="23233974-4d17-8047-833e-c94cc6892d8b"><a href="images/1715d5874004a3d661a55e24118d90f8_1000_1000_90.webp"><img src="images/1715d5874004a3d661a55e24118d90f8_1000_1000_90.webp" style="width:432.4921875px"/></a><figcaption>Устрица Императорская</figcaption></figure><p class="" id="26f33974-4d17-80f6-9c70-d89aa177ed58">
@@ -1320,92 +1332,74 @@ if ('serviceWorker' in navigator) {
 <!-- ===== End Audio Name Panel Injector v12 ===== -->
 
 
-<script id="modal-fit-script">
+<script id="en-fit-script">
 (function(){
   const root = document.documentElement;
-  function readVar(name, fallback){ const v = parseFloat(getComputedStyle(root).getPropertyValue(name)); return isNaN(v) ? fallback : v; }
-  const TITLE_MAX = readVar('--title-max',28);
-  const TITLE_MIN = readVar('--title-min',18);
-  const BODY_MAX  = readVar('--body-max',18);
-  const BODY_MIN  = readVar('--body-min',12);
+  function readPx(varName, fallback){
+    const v = parseFloat(getComputedStyle(root).getPropertyValue(varName));
+    return isNaN(v) ? fallback : v;
+  }
+  const TITLE_MAX = readPx('--en-title-max', 28);
+  const TITLE_MIN = readPx('--en-title-min', 18);
+  const BODY_MAX  = readPx('--en-body-max', 18);
+  const BODY_MIN  = readPx('--en-body-min', 12);
 
-  function fitModal(modal){
-    if(!modal) return;
-    const dialog   = modal.querySelector('.modal__dialog');
-    const header   = modal.querySelector('.modal__header');
-    const titleEl  = modal.querySelector('.modal__title');
-    const body     = modal.querySelector('.modal__body');
-    const content  = modal.querySelector('.modal__content');
-    if(!dialog || !header || !titleEl || !body || !content) return;
+  function fitEnModal(backdrop){
+    const panel   = backdrop && backdrop.querySelector('.en-panel');
+    if(!panel) return;
+    const head    = panel.querySelector('.en-head');
+    const titleEl = panel.querySelector('.en-title');
+    const sections= panel.querySelector('.en-sections');
+    if(!head || !titleEl || !sections) return;
 
+    // Reset to max before measuring
     titleEl.style.fontSize = TITLE_MAX + 'px';
-    content.style.fontSize = BODY_MAX + 'px';
+    sections.style.fontSize = BODY_MAX + 'px';
 
     requestAnimationFrame(()=>{
-      const availableHeight = dialog.clientHeight - header.offsetHeight;
-      if (content.scrollHeight <= availableHeight) return;
+      const avail = panel.clientHeight - head.offsetHeight;
+      // If already fits, done
+      if (sections.scrollHeight <= avail) return;
 
-      let bodySize  = BODY_MAX;
-      let titleSize = TITLE_MAX;
-      let guard = 0;
-
-      while ((content.scrollHeight > availableHeight) && guard < 80){
+      let body = BODY_MAX, title = TITLE_MAX, guard = 0;
+      while (sections.scrollHeight > avail && guard < 100){
         guard++;
-        if (bodySize > BODY_MIN){
-          bodySize -= 1;
-          content.style.fontSize = bodySize + 'px';
-        } else if (titleSize > TITLE_MIN){
-          titleSize -= 1;
-          titleEl.style.fontSize = titleSize + 'px';
+        if (body > BODY_MIN){
+          body -= 1;
+          sections.style.fontSize = body + 'px';
+        } else if (title > TITLE_MIN){
+          title -= 1;
+          titleEl.style.fontSize = title + 'px';
         } else {
-          break;
+          break; // can't shrink further
         }
       }
     });
   }
 
-  window.fitAllOpenModals = function(){
-    document.querySelectorAll('.modal.is-open').forEach(fitModal);
-  };
+  function fitAll(){
+    document.querySelectorAll('.en-backdrop').forEach(fitEnModal);
+  }
 
-  let resizeTimer = null;
-  window.addEventListener('resize', ()=>{
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(()=>window.fitAllOpenModals(), 120);
-  });
-
-  // Auto-detect modals that open by toggling classes
-  const observer = new MutationObserver((muts)=>{
+  // Observe DOM for opening the EN modal (backdrop insertion)
+  const obs = new MutationObserver((muts)=>{
     for (const m of muts){
-      if (m.type === 'attributes' && m.attributeName === 'class'){
-        const el = m.target;
-        if (el.classList && el.classList.contains('modal') && el.classList.contains('is-open')){
-          setTimeout(()=>fitModal(el), 0);
+      for (const n of m.addedNodes){
+        if (n.nodeType === 1 && n.classList && n.classList.contains('en-backdrop')){
+          setTimeout(()=>fitEnModal(n), 0);
         }
       }
     }
   });
-  observer.observe(document.body || document.documentElement, { subtree:true, attributes:true, attributeFilter:['class'] });
+  obs.observe(document.body || document.documentElement, {childList:true, subtree:true});
 
-  // Optional: map common existing markup to our structure if dev forgot classes
-  window.prepareModalScaffold = function(modalEl){
-    if(!modalEl) return;
-    // if developer passed a plain container, wrap innerHTML
-    if (!modalEl.querySelector('.modal__dialog')){
-      const inner = modalEl.innerHTML;
-      modalEl.innerHTML =
-        '<div class="modal__dialog">'+
-          '<div class="modal__header"><h3 class="modal__title"></h3></div>'+
-          '<div class="modal__body"><div class="modal__content"></div></div>'+
-        '</div>';
-      // try to recover title/content heuristically
-      const tmp = document.createElement('div'); tmp.innerHTML = inner;
-      const h = tmp.querySelector('h1,h2,h3,h4,h5,h6');
-      const t = modalEl.querySelector('.modal__title');
-      if (h && t){ t.textContent = h.textContent.trim(); h.remove(); }
-      modalEl.querySelector('.modal__content').append(...tmp.childNodes);
-    }
-  };
+  // Refit on resize/orientation
+  let t=null;
+  window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(fitAll, 120); });
+  window.addEventListener('orientationchange', ()=>{ setTimeout(fitAll, 60); });
+
+  // Expose manual trigger
+  window.enFitAll = fitAll;
 })();
 </script>
 
