@@ -1007,83 +1007,6 @@ if ('serviceWorker' in navigator) {
 
     backdrop.addEventListener('click',e=>{ if(e.target===backdrop) backdrop.remove(); });
     panel.querySelector('.en-close').addEventListener('click',()=>backdrop.remove());
-    // --- Mobile auto TTS fallback: if no mp3 or playback fails, read Name automatically ---
-    (function(){
-      if (!isMobile) return;
-      const header = panel.querySelector('.en-title');
-      const nameText = (header && header.textContent || '').trim();
-      const audio = panel.querySelector('audio');
-
-      function pickVoiceFor(text){
-        const voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
-        const hasCyr = /[\u0400-\u04FF]/.test(text);
-        const pref = hasCyr ? 'ru-RU' : 'en-US';
-        // Try exact, then base lang, then any
-        let v = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith(pref.toLowerCase()));
-        if (!v){
-          const base = pref.split('-')[0];
-          v = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith(base));
-        }
-        return v || voices[0] || null;
-      }
-
-      function speakNow(text){
-        if (!text) return;
-        try{
-          window.speechSynthesis.cancel();
-          // iOS warmup (silent utterance)
-          try{
-            const warm = new SpeechSynthesisUtterance(' ');
-            warm.volume = 0.0; warm.rate = 1.0; warm.pitch = 1.0; warm.lang = 'en-US';
-            window.speechSynthesis.speak(warm);
-          }catch(e){}
-          const u = new SpeechSynthesisUtterance(text);
-          const voice = pickVoiceFor(text);
-          if (voice) u.voice = voice;
-          u.lang = (voice && voice.lang) || (/[\u0400-\u04FF]/.test(text) ? 'ru-RU' : 'en-US');
-          u.rate = 1.0; u.pitch = 1.0; u.volume = 1.0;
-          if (window.speechSynthesis.paused) { try{ window.speechSynthesis.resume(); }catch(e){} }
-          window.speechSynthesis.speak(u);
-        }catch(e){ /* no-op */ }
-      }
-
-      async function tryPlayAudio(){
-        if (!audio || !audio.src) return false;
-        try{
-          await audio.play();
-          return true;
-        }catch(e){
-          return false;
-        }
-      }
-
-      (async ()=>{
-        const played = await tryPlayAudio();
-        if (played) return;
-        if (!('speechSynthesis' in window)) return;
-
-        const proceed = ()=> speakNow(nameText);
-        const voices = window.speechSynthesis.getVoices();
-        if (!voices || voices.length === 0){
-          // Wait for voices to load
-          const once = ()=>{ window.speechSynthesis.onvoiceschanged = null; proceed(); };
-          window.speechSynthesis.onvoiceschanged = once;
-          // Fallback in case event doesn't fire
-          setTimeout(proceed, 800);
-        } else {
-          proceed();
-        }
-      })();
-
-      // Stop audio/TTS on close
-      const stopAll = ()=>{
-        try{ if (audio){ audio.pause(); audio.currentTime = 0; } }catch(e){}
-        try{ if (window.speechSynthesis){ window.speechSynthesis.cancel(); } }catch(e){}
-      };
-      backdrop.addEventListener('click', e=>{ if (e.target===backdrop) stopAll(); });
-      panel.querySelector('.en-close').addEventListener('click', stopAll);
-    })();
-
     // Hide 'Name' field inside sections on mobile (header already shows it)
     if (isMobile) {
       panel.querySelectorAll('.en-sec').forEach(sec => {
@@ -1287,5 +1210,79 @@ if ('serviceWorker' in navigator) {
 })();
 </script>
 <!-- ===== End Audio Name Panel Injector v12 ===== -->
+
+<script id="dish-names" type="application/json">{"ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok": {"name": "Imperial Oyster (Russia)", "description": "", "features": "", "ingredients": ""}, "ustritsa-rozovaya-dzholi-namibiya-afrika": {"name": "Jolie Pink Oyster (Namibia, Africa)", "description": "", "features": "", "ingredients": ""}, "morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom": {"name": "Sea urchin with ponzu, avocado mousse, and quail yolk", "description": "", "features": "", "ingredients": ""}, "hamon-serrano-gran-reserva-50-gr": {"name": "Jamón Serrano Gran Reserva", "description": "", "features": "", "ingredients": ""}, "brusketta-s-pashtetom-iz-kurinoy-pecheni-slivochnym-syrom-i-tryufelnym-maslom": {"name": "Bruschetta with chicken liver pâté, cream cheese, and truffle oil", "description": "", "features": "", "ingredients": ""}, "brusketta-s-burratoy-tomatami-i-sousom-pesto": {"name": "Bruschetta with burrata, tomatoes, and pesto", "description": "", "features": "", "ingredients": ""}, "brusketta-s-lesnymi-gribami-v-slivochnom-souse": {"name": "Bruschetta with wild mushrooms in a creamy sauce", "description": "", "features": "", "ingredients": ""}, "tartar-iz-premialnoy-govyazhey-vyrezki-s-zharennym-kartofelem": {"name": "Prime beef tenderloin tartare with fried potatoes", "description": "", "features": "", "ingredients": ""}, "assorti-izyskannyh-myasnyh-delikatesov": {"name": "Selection of fine cured meats", "description": "", "features": "", "ingredients": ""}, "tomat-i-krab": {"name": "Tomato & Crab", "description": "", "features": "", "ingredients": ""}, "tartar-iz-tuntsa-s-ispanskimi-olivkami-kedrovymi-orehami-i-zelenyu": {"name": "Tuna tartare with Spanish olives, pine nuts, and herbs", "description": "", "features": "", "ingredients": ""}, "karpachcho-iz-krevetki-s-kremom-iz-baklazhana-tomatami-i-sousom-mango-chia": {"name": "Shrimp carpaccio with eggplant cream, tomatoes, and mango–chia sauce", "description": "", "features": "", "ingredients": ""}, "seviche-iz-sibasa-s-tomatami-avokado-i-pertsem-chili": {"name": "Sea bass ceviche with tomatoes, avocado, and chili", "description": "", "features": "", "ingredients": ""}, "karpachcho-iz-zapechennoy-svekly-so-slivochnym-syrom-kedrovymi-orehami-i-kopchenym-maslom": {"name": "Roasted beet carpaccio with cream cheese, pine nuts, and smoked oil", "description": "", "features": "", "ingredients": ""}, "assorti-iz-shesti-blagorodnyh-syrov": {"name": "Selection of six fine cheeses", "description": "", "features": "", "ingredients": ""}, "eskalop-fua-gra-s-grushey-pakham-pod-yagodno-romovom-sousom": {"name": "Foie gras escalope with Packham pear and berry–rum sauce", "description": "", "features": "", "ingredients": ""}, "zapechennye-midii-so-shpinatom-pod-syrno-tryufelnym-fondyu": {"name": "Baked mussels with spinach under cheese–truffle fondue", "description": "", "features": "", "ingredients": ""}, "ustritsy-zapechennye-pod-sousom-shabli-s-muskatnym-orehom-i-lukom-shalot": {"name": "Baked oysters with Chablis sauce, nutmeg, and shallot", "description": "", "features": "", "ingredients": ""}, "ulitki-po-burgundski": {"name": "Burgundy-style snails", "description": "", "features": "", "ingredients": ""}, "krevetki-v-souse-vasabi": {"name": "Shrimp in wasabi sauce", "description": "", "features": "", "ingredients": ""}, "baklazhan-yudzu": {"name": "Yuzu Eggplant", "description": "", "features": "", "ingredients": ""}, "tartar-iz-baklazhan-s-tomatami-zelenyu-i-postnym-pesto": {"name": "Eggplant tartare with tomatoes, herbs, and vegan pesto", "description": "", "features": "", "ingredients": ""}, "salat-s-zapechennym-rostbifom": {"name": "Roast beef salad", "description": "", "features": "", "ingredients": ""}, "salat-s-sochnoy-telyatinoy-i-aromatnymi-gribami": {"name": "Veal and mushroom salad", "description": "", "features": "", "ingredients": ""}, "salat-kardini-s-perepelkoy-tomatami-perepelinym-yaytsom-i-chesnochnymi-grenkami": {"name": "Cardini salad with quail, tomatoes, quail egg, and garlic croutons", "description": "", "features": "", "ingredients": ""}, "teplyy-salat-s-fua-gra-perepelkoy-i-karamelizirovannym-yablokom": {"name": "Warm salad with foie gras, quail, and caramelized apple", "description": "", "features": "", "ingredients": ""}, "teplyy-salat-s-zharennym-osminogom-ovoschami-olivkami-pod-gorchichnym-sousom": {"name": "Warm salad with fried octopus, vegetables, and olives, mustard dressing", "description": "", "features": "", "ingredients": ""}, "salat-s-myasom-kraba-i-opalennymi-ovoschami-pod-medovo-gorchichnoy-zapravkoy": {"name": "Crab salad with charred vegetables, honey–mustard dressing", "description": "", "features": "", "ingredients": ""}, "salat-s-moreproduktami-i-myatym-avokado": {"name": "Seafood salad with smashed avocado", "description": "", "features": "", "ingredients": ""}, "ostrova-v-okeane-salat-s-tuntsom-i-salsoy-iz-tomatov-i-maslin": {"name": "Islands in the Ocean (Tuna salad with tomato–olive salsa)", "description": "", "features": "", "ingredients": ""}, "ovoschnoy-salat-s-avokado-syrom-grana-padano-lukovym-kramblom-pod-medovo-gorchichnoy-zapravkoy": {"name": "Vegetable salad with avocado, Grana Padano, onion crumble, honey–mustard dressing", "description": "", "features": "", "ingredients": ""}, "burrata-s-olivkami-i-tartarom-iz-sladkih-tomatov": {"name": "Burrata with olives and sweet tomato tartare", "description": "", "features": "", "ingredients": ""}, "chechevichnyy-sup-s-molodym-yagnenkom-ovoschami-i-aromatnymi-travami": {"name": "Lentil soup with young lamb, vegetables, and herbs", "description": "", "features": "", "ingredients": ""}, "lukovyy-sup-s-bekonom-ziroy-pod-syrnoy-korochkoy-gryuyer": {"name": "Onion soup with bacon and cumin, Gruyère crust", "description": "", "features": "", "ingredients": ""}, "ostryy-sup-tom-yam-s-grebeshkom-i-krevetkami": {"name": "Spicy Tom Yum with scallops and shrimp", "description": "", "features": "", "ingredients": ""}, "uha-s-podkopchennoy-krasnoy-ryboy-ovoschami-i-slivochnym-bulonom": {"name": "Ukha fish soup with smoked red fish, vegetables, and creamy broth", "description": "", "features": "", "ingredients": ""}, "shelkovyy-krem-sup-iz-kashtanov-s-aromatnymi-belymi-gribami": {"name": "Silky chestnut cream soup with porcini mushrooms", "description": "", "features": "", "ingredients": ""}, "ovoschnoy-sup-minestrone-na-kurinom-bulone-s-kedrovymi-orehami-i-sousom-pesto": {"name": "Minestrone on chicken broth with pine nuts and pesto", "description": "", "features": "", "ingredients": ""}, "postnyy-minestrone-na-ovoschnom-bulone-s-kedrovymi-orehami-chesnochnoy-chiabattoy-i-postnym-pesto": {"name": "Vegan minestrone on vegetable broth with pine nuts, garlic ciabatta, and vegan pesto", "description": "", "features": "", "ingredients": ""}, "domashnie-ravioli-s-nachinkoy-iz-fermerskoy-kuritsy-aromatnoy-ziroy-pod-syrno-tryufelnym-fondyu": {"name": "House-made ravioli with farm chicken and cumin under cheese–truffle fondue", "description": "", "features": "", "ingredients": ""}, "pasta-ptitim-s-moreproduktami-i-kremom-iz-zelenogo-goroshka": {"name": "Ptitim (Israeli couscous) with seafood and green pea cream", "description": "", "features": "", "ingredients": ""}, "chernye-fetuchini-s-myasom-kraba-fenhelem-i-lukom-porey": {"name": "Black fettuccine with crab meat, fennel, and leek", "description": "", "features": "", "ingredients": ""}, "arrabyata-s-krevetkami-i-grebeshkom": {"name": "Arrabbiata with shrimp and scallops", "description": "", "features": "", "ingredients": ""}, "rizotto-s-krolikom-i-gribami": {"name": "Risotto with rabbit and mushrooms", "description": "", "features": "", "ingredients": ""}, "zelenoe-rizotto": {"name": "Green risotto", "description": "", "features": "", "ingredients": ""}, "govyazhe-rebro-pod-sousom-iz-chernogo-pertsa-s-kartofelem-batatom-i-sousom-chimichuri": {"name": "Beef rib with black pepper sauce, potatoes, sweet potato, and chimichurri", "description": "", "features": "", "ingredients": ""}, "bifshteks-iz-mramornoy-govyadiny-s-zharennym-kartofelem-gribami-i-shpinatom-s-mussom-iz-gorgonzoly-i-tryufelnym-kremom": {"name": "Beefsteak of marbled beef with fried potatoes, mushrooms and spinach, Gorgonzola mousse and truffle cream", "description": "", "features": "", "ingredients": ""}, "tomlenye-govyazhi-schechki-s-ragu-iz-belyh-gribov-kartofelem-pyure-i-solodovym-sousom": {"name": "Braised beef cheeks with porcini ragout, mashed potatoes, and malt sauce", "description": "", "features": "", "ingredients": ""}, "file-minon-s-fua-gra-zharennymi-belymi-gribami-i-ovoschami-na-grile": {"name": "Filet mignon with foie gras, fried porcini, and grilled vegetables", "description": "", "features": "", "ingredients": ""}, "chernyy-burger-s-kotletoy-iz-mramornoy-govyadiny-syrom-kamamber-lukom-konfi-i-ostrym-pertsem-halapeno": {"name": "Black burger with marbled beef patty, Camembert, onion confit, and spicy jalapeño", "description": "", "features": "", "ingredients": ""}, "tomlenaya-golyashka-yagnenka-s-pechenym-baklazhanom-i-yogurtovym-mussom": {"name": "Braised lamb shank with baked eggplant and yogurt mousse", "description": "", "features": "", "ingredients": ""}, "fermerskiy-tsyplenok-prigotovlennyy-na-otkrytom-ogne": {"name": "Farm chicken grilled over open fire", "description": "", "features": "", "ingredients": ""}, "utinaya-nozhka-pod-apelsinovym-sousom-na-podushke-iz-zharenogo-kartofelya-s-bekonom": {"name": "Duck leg with orange sauce on a bed of fried potatoes with bacon", "description": "", "features": "", "ingredients": ""}, "kotleta-iz-utinoy-grudki-s-fua-gra-i-kartofelnym-pyure-s-zelenyu-i-sousom-barbekyu": {"name": "Duck breast patty with foie gras, herb mashed potatoes, and barbecue sauce", "description": "", "features": "", "ingredients": ""}, "file-sibasa-so-shpinatom-kartofelnym-pyure-s-zelenyu-i-tsitrusovym-sousom": {"name": "Sea bass fillet with spinach, herb mashed potatoes, and citrus sauce", "description": "", "features": "", "ingredients": ""}, "file-dorado-na-podushke-iz-zharennyh-ovoschey-i-gribov-so-slivochnym-sousom-berblan": {"name": "Sea bream fillet on a bed of fried vegetables and mushrooms, beurre blanc", "description": "", "features": "", "ingredients": ""}, "steyk-iz-semgi-zapechennoy-v-mede-s-kartofelnym-pyure-i-tomatnoy-salsoy": {"name": "Salmon steak baked with honey, mashed potatoes, and tomato salsa", "description": "", "features": "", "ingredients": ""}, "zapechennaya-chernaya-treska-s-marinovannym-imbirem-i-zharennymi-ovoschami-pod-medovo-apelsinovym-sousom": {"name": "Baked black cod with pickled ginger and fried vegetables, honey–orange sauce", "description": "", "features": "", "ingredients": ""}, "glazirovannyy-osminog-s-zharennym-kartofelem-vyalenymi-tomatami-i-rostkami-podsolnuha": {"name": "Glazed octopus with fried potatoes, sun-dried tomatoes, and sunflower sprouts", "description": "", "features": "", "ingredients": ""}, "kotleta-iz-assorti-ryb-s-kartofelnym-pyure-i-tomlenym-shpinatom": {"name": "Assorted fish patty with mashed potatoes and stewed spinach", "description": "", "features": "", "ingredients": ""}, "denver-steyk-lopatochnaya-chast": {"name": "Denver steak (chuck)", "description": "", "features": "", "ingredients": ""}, "file-praym-govyazhya-vyrezka": {"name": "Prime filet (beef tenderloin)", "description": "", "features": "", "ingredients": ""}, "ribay-steyk": {"name": "Ribeye steak", "description": "", "features": "", "ingredients": ""}, "striployn-steyk": {"name": "Striploin steak", "description": "", "features": "", "ingredients": ""}, "kare-baraniny": {"name": "Rack of lamb", "description": "", "features": "", "ingredients": ""}, "kare-yagnenka": {"name": "Young lamb rack", "description": "", "features": "", "ingredients": ""}, "semga": {"name": "Salmon", "description": "", "features": "", "ingredients": ""}, "sibas": {"name": "Sea bass", "description": "", "features": "", "ingredients": ""}, "dorado": {"name": "Dorade (sea bream)", "description": "", "features": "", "ingredients": ""}, "tunets": {"name": "Tuna", "description": "", "features": "", "ingredients": ""}, "kalmar": {"name": "Squid", "description": "", "features": "", "ingredients": ""}, "osminog": {"name": "Octopus", "description": "", "features": "", "ingredients": ""}, "korolevskie-krevetki": {"name": "King prawns", "description": "", "features": "", "ingredients": ""}, "morskie-grebeshki": {"name": "Sea scallops", "description": "", "features": "", "ingredients": ""}, "zharennyy-kartofel-s-bekonom": {"name": "Fried potatoes with bacon", "description": "", "features": "", "ingredients": ""}, "zharennyy-kartofel-s-gribami-v-syrno-slivochnom-souse": {"name": "Fried potatoes with mushrooms in a creamy cheese sauce", "description": "", "features": "", "ingredients": ""}, "zharennyy-kartofel-s-lukom-shalot-i-zelenyu": {"name": "Fried potatoes with shallots and herbs", "description": "", "features": "", "ingredients": ""}, "kartofel-fri": {"name": "French fries", "description": "", "features": "", "ingredients": ""}, "kartofelnoe-pyure-s-zelenyu": {"name": "Herb mashed potatoes", "description": "", "features": "", "ingredients": ""}, "kartofel-po-domashnemu-na-hospere": {"name": "Home-style potatoes on the Josper", "description": "", "features": "", "ingredients": ""}, "ris-otvarnoy": {"name": "Boiled rice", "description": "", "features": "", "ingredients": ""}, "ovoschi-miks": {"name": "Mixed vegetables", "description": "", "features": "", "ingredients": ""}, "sparzha": {"name": "Asparagus", "description": "", "features": "", "ingredients": ""}, "tomlenyy-shpinat-s-chesnokom-i-syrom": {"name": "Stewed spinach with garlic and cheese", "description": "", "features": "", "ingredients": ""}, "perets-bolgarskiy": {"name": "Bell pepper", "description": "", "features": "", "ingredients": ""}, "tsukini": {"name": "Zucchini", "description": "", "features": "", "ingredients": ""}, "tomaty-uzbekskie": {"name": "Uzbek tomatoes", "description": "", "features": "", "ingredients": ""}, "tomaty-cherri": {"name": "Cherry tomatoes", "description": "", "features": "", "ingredients": ""}, "muss-pryanye-travy": {"name": "Herb mousse", "description": "", "features": "", "ingredients": ""}, "dikie-yabloki-s-dushistym-pertsem": {"name": "Wild apples with allspice", "description": "", "features": "", "ingredients": ""}, "anna-pavlova": {"name": "Anna Pavlova", "description": "", "features": "", "ingredients": ""}, "cheremuhovyy-medovik-s-romashkovym-morozhenym": {"name": "Bird cherry honey cake with chamomile ice cream", "description": "", "features": "", "ingredients": ""}, "shokoladnyy-fondan": {"name": "Chocolate fondant", "description": "", "features": "", "ingredients": ""}, "sigara-sabor-de-la-vida": {"name": "Sabor de la Vida Cigar", "description": "", "features": "", "ingredients": ""}, "morozhenoe-schavel-estragon": {"name": "Sorrel–tarragon ice cream", "description": "", "features": "", "ingredients": ""}, "domashnee-morozhenoe": {"name": "Homemade ice cream", "description": "", "features": "", "ingredients": ""}, "fruktovyy-sorbet": {"name": "Fruit sorbet", "description": "", "features": "", "ingredients": ""}, "perechnyy": {"name": "Peppercorn sauce", "description": "", "features": "", "ingredients": ""}, "gorchichnyy": {"name": "Mustard sauce", "description": "", "features": "", "ingredients": ""}, "tomatno-tsitrusovyy": {"name": "Tomato–citrus sauce", "description": "", "features": "", "ingredients": ""}, "slivochno-gribnoy": {"name": "Creamy mushroom sauce", "description": "", "features": "", "ingredients": ""}, "barbekyu": {"name": "Barbecue sauce", "description": "", "features": "", "ingredients": ""}, "pesto": {"name": "Pesto", "description": "", "features": "", "ingredients": ""}, "klyukvennyy": {"name": "Cranberry sauce", "description": "", "features": "", "ingredients": ""}, "ber-blan": {"name": "Beurre blanc", "description": "", "features": "", "ingredients": ""}, "tomatno-bazilikovyy-sous-sous-chili": {"name": "Tomato–basil sauce (chili sauce)", "description": "", "features": "", "ingredients": ""}, "hlebnaya-korzina": {"name": "Bread basket", "description": "", "features": "", "ingredients": ""}}</script>
+
+<script>
+(function(){
+  // parse embedded JSON once
+  const jsonTag = document.getElementById('dish-names');
+  let dishNames = {};
+  if (jsonTag) {
+    try { dishNames = JSON.parse(jsonTag.textContent || "{}"); } catch(e){ dishNames = {}; }
+  }
+
+  function basename(path) {
+    if (!path) return "";
+    const lastSlash = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\"));
+    let base = (lastSlash >= 0) ? path.slice(lastSlash+1) : path;
+    const dot = base.lastIndexOf(".");
+    if (dot > 0) base = base.slice(0, dot);
+    return base;
+  }
+
+  function findSlug(btn){
+    // Priority: data-slug -> data-audio basename -> data-key -> ""
+    const ds = btn.getAttribute("data-slug");
+    if (ds) return ds.trim();
+    const da = btn.getAttribute("data-audio");
+    if (da) return basename(da).trim();
+    const dk = btn.getAttribute("data-key");
+    if (dk) return dk.trim();
+    return "";
+  }
+
+  function speakText(text){
+    if (!text) return;
+    try { window.speechSynthesis.cancel(); } catch(e) {}
+    const u = new SpeechSynthesisUtterance(text);
+    // Optional tuning: slow a bit for clarity on mobile
+    u.rate = 0.95;
+    window.speechSynthesis.speak(u);
+  }
+
+  function onClick(e){
+    const btn = e.currentTarget;
+    const slug = findSlug(btn);
+    if (!slug) return;
+    const entry = dishNames[slug];
+    let name = (entry && entry.name) ? entry.name : null;
+    if (!name) {
+      // Fallback: data-name if present
+      name = btn.getAttribute("data-name");
+    }
+    if (name) {
+      e.preventDefault();
+      e.stopPropagation();
+      speakText(name);
+    }
+  }
+
+  function attach(){
+    document.querySelectorAll(".speak-btn").forEach(btn => {
+      // Avoid double-binding
+      if (btn.__ttsBound) return;
+      btn.addEventListener("click", onClick, true);
+      btn.__ttsBound = true;
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attach);
+  } else {
+    attach();
+  }
+})();
+</script>
 
 </body></html>
