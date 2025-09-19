@@ -1007,6 +1007,55 @@ if ('serviceWorker' in navigator) {
 
     backdrop.addEventListener('click',e=>{ if(e.target===backdrop) backdrop.remove(); });
     panel.querySelector('.en-close').addEventListener('click',()=>backdrop.remove());
+    // --- Mobile auto-voice fallback: if no mp3, speak the Name automatically ---
+    (function(){
+      if (!isMobile) return;
+      const header = panel.querySelector('.en-title');
+      const nameText = (header && header.textContent || '').trim();
+      const audio = panel.querySelector('audio');
+
+      function speakName(){
+        try{
+          if (!nameText) return;
+          if (window.speechSynthesis){
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(nameText);
+            // Prefer English for 'name' field; browsers will fallback if unavailable
+            u.lang = 'en-US';
+            // Slight pause & rate for clarity
+            u.rate = 1.0;
+            u.pitch = 1.0;
+            window.speechSynthesis.speak(u);
+          }
+        }catch(e){ /* no-op */ }
+      }
+
+      async function tryPlayAudio(){
+        if (!audio) return false;
+        try{
+          // if src is missing or empty, skip
+          if (!audio.src) return false;
+          await audio.play();
+          return true;
+        }catch(e){
+          return false;
+        }
+      }
+
+      (async ()=>{
+        const ok = await tryPlayAudio();
+        if (!ok) speakName();
+      })();
+
+      // Stop any voice/audio on close
+      const stopAll = ()=>{
+        try{ if (audio){ audio.pause(); audio.currentTime = 0; } }catch(e){}
+        try{ if (window.speechSynthesis){ window.speechSynthesis.cancel(); } }catch(e){}
+      };
+      backdrop.addEventListener('click', e=>{ if (e.target===backdrop) stopAll(); }, { once:false });
+      panel.querySelector('.en-close').addEventListener('click', stopAll, { once:false });
+    })();
+
     // Hide 'Name' field inside sections on mobile (header already shows it)
     if (isMobile) {
       panel.querySelectorAll('.en-sec').forEach(sec => {
