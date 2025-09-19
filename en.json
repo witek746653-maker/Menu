@@ -1,0 +1,643 @@
+{
+  "ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok": {
+    "name": "Imperial Oyster (Russia)",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "ustritsa-rozovaya-dzholi-namibiya-afrika": {
+    "name": "Jolie Pink Oyster (Namibia, Africa)",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom": {
+    "name": "Sea urchin with ponzu, avocado mousse, and quail yolk",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "hamon-serrano-gran-reserva-50-gr": {
+    "name": "Jamón Serrano Gran Reserva",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "brusketta-s-pashtetom-iz-kurinoy-pecheni-slivochnym-syrom-i-tryufelnym-maslom": {
+    "name": "Bruschetta with chicken liver pâté, cream cheese, and truffle oil",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "brusketta-s-burratoy-tomatami-i-sousom-pesto": {
+    "name": "Bruschetta with burrata, tomatoes, and pesto",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "brusketta-s-lesnymi-gribami-v-slivochnom-souse": {
+    "name": "Bruschetta with wild mushrooms in a creamy sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tartar-iz-premialnoy-govyazhey-vyrezki-s-zharennym-kartofelem": {
+    "name": "Prime beef tenderloin tartare with fried potatoes",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "assorti-izyskannyh-myasnyh-delikatesov": {
+    "name": "Selection of fine cured meats (Also, Meat Platter)",
+    "description": "The assortment includes:\n1. Jamón Serrano (Reserva)\n2. Spicy Chorizo\n3. Venison and Bear Sausages (оленина и медведь)\n4. Beef Sausage\n5. Cured Duck Breast (Cured = вяленый/выдержанный)\n6. Wild Boar belly (also, Fat = жир/сало).\n\nGarnished with Red Currants (красная смородина) and Bay Leaves (Bay Leaf = лавровый лист).",
+    "features": "",
+    "ingredients": ""
+  },
+  "tomat-i-krab": {
+    "name": "Tomato & Crab",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tartar-iz-tuntsa-s-ispanskimi-olivkami-kedrovymi-orehami-i-zelenyu": {
+    "name": "Tuna tartare with Spanish olives, pine nuts, and herbs",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "karpachcho-iz-krevetki-s-kremom-iz-baklazhana-tomatami-i-sousom-mango-chia": {
+    "name": "Shrimp carpaccio with eggplant cream, tomatoes, and mango–chia sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "seviche-iz-sibasa-s-tomatami-avokado-i-pertsem-chili": {
+    "name": "Sea bass ceviche with tomatoes, avocado, and chili",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "karpachcho-iz-zapechennoy-svekly-so-slivochnym-syrom-kedrovymi-orehami-i-kopchenym-maslom": {
+    "name": "Roasted beet carpaccio with cream cheese, pine nuts, and smoked oil",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "assorti-iz-shesti-blagorodnyh-syrov": {
+    "name": "Selection of six fine cheeses — served with natural honey, pear confiture, walnuts, and red currants (Also, Cheese Platter)",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "eskalop-fua-gra-s-grushey-pakham-pod-yagodno-romovom-sousom": {
+    "name": "Foie gras escalope with Packham pear and berry–rum sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "zapechennye-midii-so-shpinatom-pod-syrno-tryufelnym-fondyu": {
+    "name": "Baked mussels with spinach under cheese–truffle fondue",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "ustritsy-zapechennye-pod-sousom-shabli-s-muskatnym-orehom-i-lukom-shalot": {
+    "name": "Baked oysters with Chablis sauce, nutmeg, and shallot",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "ulitki-po-burgundski": {
+    "name": "Burgundy snails with garlic butter, fresh herbs and crispy ciabatta (also, Escargots)",
+    "description": "👉 В меню обычно пишут так: Escargots à la Bourguignonne.",
+    "features": "",
+    "ingredients": ""
+  },
+  "krevetki-v-souse-vasabi": {
+    "name": "Shrimp in wasabi sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "baklazhan-yudzu": {
+    "name": "Eggplant, glazed with Sweet Chili Sauce and Smoked Eel, paired with Tomatoes, Stratchatella, and Yudzu Sesame",
+    "description": "👉 Aubergine = баклажан (Британия, Европа)\n      Eggplant = баклажан (США, международное меню)",
+    "features": "",
+    "ingredients": ""
+  },
+  "tartar-iz-baklazhan-s-tomatami-zelenyu-i-postnym-pesto": {
+    "name": "Eggplant tartare with tomatoes, herbs, and vegan pesto",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "salat-s-zapechennym-rostbifom": {
+    "name": "Roast Beef Salad with Tomatoes, Cottage Cheese Mousse, and Honey Mustard Dressing",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "salat-s-sochnoy-telyatinoy-i-aromatnymi-gribami": {
+    "name": "Veal Salad with Tomatoes and Aromatic Mushrooms, served with Honey Mustard Dressing",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "salat-kardini-s-perepelkoy-tomatami-perepelinym-yaytsom-i-chesnochnymi-grenkami": {
+    "name": "Cardini salad with quail, tomatoes, quail egg, and garlic croutons",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "teplyy-salat-s-fua-gra-perepelkoy-i-karamelizirovannym-yablokom": {
+    "name": "Warm salad with foie gras, quail, and caramelized apple",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "teplyy-salat-s-zharennym-osminogom-ovoschami-olivkami-pod-gorchichnym-sousom": {
+    "name": "Warm salad with fried octopus, vegetables, olives and mustard dressing",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "salat-s-myasom-kraba-i-opalennymi-ovoschami-pod-medovo-gorchichnoy-zapravkoy": {
+    "name": "Crab salad with charred vegetables, honey–mustard dressing",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "salat-s-moreproduktami-i-myatym-avokado": {
+    "name": "Seafood Salad with Cream Sauce, Mashed Avocado, and Balsamic Dressing",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "ostrova-v-okeane-salat-s-tuntsom-i-salsoy-iz-tomatov-i-maslin": {
+    "name": "Islands in the Ocean — Salad with Seared Tuna, Sesame, and Tomato–Olive Salsa",
+    "description": "Seared = обжаренный. Это слово означает «быстро обжаренный снаружи, но сочный внутри».",
+    "features": "",
+    "ingredients": ""
+  },
+  "ovoschnoy-salat-s-avokado-syrom-grana-padano-lukovym-kramblom-pod-medovo-gorchichnoy-zapravkoy": {
+    "name": "Vegetable salad with avocado, Grana Padano, onion crumble, honey–mustard dressing",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "burrata-s-olivkami-i-tartarom-iz-sladkih-tomatov": {
+    "name": "Burrata with olives and sweet tomato tartare",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "chechevichnyy-sup-s-molodym-yagnenkom-ovoschami-i-aromatnymi-travami": {
+    "name": "Lentil soup with young lamb, vegetables, and herbs",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "lukovyy-sup-s-bekonom-ziroy-pod-syrnoy-korochkoy-gryuyer": {
+    "name": "Traditional french onion soup with tender bacon and fragrant cumin, topped with a gruyère cheese crust",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "ostryy-sup-tom-yam-s-grebeshkom-i-krevetkami": {
+    "name": "Spicy Tom Yum with scallops and shrimp",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "uha-s-podkopchennoy-krasnoy-ryboy-ovoschami-i-slivochnym-bulonom": {
+    "name": "Ukha - fish soup with smoked red fish, vegetables, and creamy broth",
+    "description": "Broth = бульон. Русский термин \"бульон\" имеет французское происхождение и происходит от глагола bouillir (кипеть).",
+    "features": "",
+    "ingredients": ""
+  },
+  "shelkovyy-krem-sup-iz-kashtanov-s-aromatnymi-belymi-gribami": {
+    "name": "Silky chestnut cream soup with porcini mushrooms",
+    "description": "Porcini = боровики, по-русски чаще всего называют «белые грибы». В меню «porcini mushrooms» = «белые грибы».",
+    "features": "",
+    "ingredients": ""
+  },
+  "ovoschnoy-sup-minestrone-na-kurinom-bulone-s-kedrovymi-orehami-i-sousom-pesto": {
+    "name": "Traditional Italian Minestrone Soup on Chicken Broth with Pesto, Pine Nuts, and Fresh Vegetables",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "postnyy-minestrone-na-ovoschnom-bulone-s-kedrovymi-orehami-chesnochnoy-chiabattoy-i-postnym-pesto": {
+    "name": "Vegan minestrone on vegetable broth with pine nuts, garlic ciabatta, and vegan pesto",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "domashnie-ravioli-s-nachinkoy-iz-fermerskoy-kuritsy-aromatnoy-ziroy-pod-syrno-tryufelnym-fondyu": {
+    "name": "House-made ravioli with farm chicken and cumin under cheese–truffle fondue",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "pasta-ptitim-s-moreproduktami-i-kremom-iz-zelenogo-goroshka": {
+    "name": "Black Fettuccine with Crab Meat in a Delicate Cream Sauce, paired with Fragrant Fennel, Leek, Fresh Herbs, and Grana Padano Cheese",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "chernye-fetuchini-s-myasom-kraba-fenhelem-i-lukom-porey": {
+    "name": "Black fettuccine with crab meat, fennel, and leek",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "arrabyata-s-krevetkami-i-grebeshkom": {
+    "name": "Spicy Spaghetti Arrabbiata with Sautéed Shrimps and Scallops, served in a Sauce of Uzbek Tomatoes with Chili Pepper and Fresh Herbs",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "rizotto-s-krolikom-i-gribami": {
+    "name": "Creamy Risotto with Tender Rabbit, Fragrant Porcini Mushrooms, and Pine Nuts",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "zelenoe-rizotto": {
+    "name": "Green Risotto with Tender Zucchini Purée, Young Green Peas, and Sweet Pepper Sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "govyazhe-rebro-pod-sousom-iz-chernogo-pertsa-s-kartofelem-batatom-i-sousom-chimichuri": {
+    "name": "Marbled Beef Rib (Boneless) with Black Pepper Sauce, Roasted Sweet Potatoes and Potatoes, served with Spicy Chimichurri Sauce",
+    "description": "Marbled beef = мраморная говядина.\nSweet potato = батат.",
+    "features": "",
+    "ingredients": ""
+  },
+  "bifshteks-iz-mramornoy-govyadiny-s-zharennym-kartofelem-gribami-i-shpinatom-s-mussom-iz-gorgonzoly-i-tryufelnym-kremom": {
+    "name": "Beefsteak of marbled beef with fried potatoes, mushrooms and spinach, Gorgonzola mousse and truffle cream",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tomlenye-govyazhi-schechki-s-ragu-iz-belyh-gribov-kartofelem-pyure-i-solodovym-sousom": {
+    "name": "Braised beef cheeks with porcini ragout, mashed potatoes, and malt sauce",
+    "description": "Mashed potato = картофельное пюре. В английском языке это блюдо также может называться \"mash\" (в британском варианте) или \"potato mash\".",
+    "features": "",
+    "ingredients": ""
+  },
+  "file-minon-s-fua-gra-zharennymi-belymi-gribami-i-ovoschami-na-grile": {
+    "name": "Filet mignon with foie gras, fried porcini, and grilled vegetables",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "chernyy-burger-s-kotletoy-iz-mramornoy-govyadiny-syrom-kamamber-lukom-konfi-i-ostrym-pertsem-halapeno": {
+    "name": "Black burger with marbled beef patty, Camembert, onion confit, and spicy jalapeño",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tomlenaya-golyashka-yagnenka-s-pechenym-baklazhanom-i-yogurtovym-mussom": {
+    "name": "Braised Lamb Shank with Roasted Eggplant and Yogurt Mousse flavored with Fragrant Tarragon",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "fermerskiy-tsyplenok-prigotovlennyy-na-otkrytom-ogne": {
+    "name": "Farm chicken grilled over open fire",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "utinaya-nozhka-pod-apelsinovym-sousom-na-podushke-iz-zharenogo-kartofelya-s-bekonom": {
+    "name": "Braised Duck Leg with Orange Sauce, served on a Bed of Fried Potatoes with Bacon, Onion, and Fresh Herbs",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "kotleta-iz-utinoy-grudki-s-fua-gra-i-kartofelnym-pyure-s-zelenyu-i-sousom-barbekyu": {
+    "name": "Tender Duck Breast Cutlet with Foie Gras, served with Herbed Mashed Potatoes and Barbecue Sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "file-sibasa-so-shpinatom-kartofelnym-pyure-s-zelenyu-i-tsitrusovym-sousom": {
+    "name": "Baked Sea Bass Fillet with Spinach, served with Fluffy Herb Mashed Potatoes and Citrus Sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "file-dorado-na-podushke-iz-zharennyh-ovoschey-i-gribov-so-slivochnym-sousom-berblan": {
+    "name": "Baked Dorado Fillet on a Bed of Glazed Vegetables and Mushrooms, served with Creamy Beurre Blanc Sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "steyk-iz-semgi-zapechennoy-v-mede-s-kartofelnym-pyure-i-tomatnoy-salsoy": {
+    "name": "Juicy Salmon Steak baked with Honey, served with Herbed Mashed Potatoes and a Vibrant Tomato–Olive Salsa",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "zapechennaya-chernaya-treska-s-marinovannym-imbirem-i-zharennymi-ovoschami-pod-medovo-apelsinovym-sousom": {
+    "name": "Baked Black Cod Fillet with Marinated Ginger and Sautéed Vegetables, served with Honey–Orange Sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "glazirovannyy-osminog-s-zharennym-kartofelem-vyalenymi-tomatami-i-rostkami-podsolnuha": {
+    "name": "Grilled Octopus Tentacles glazed with Sweet Chili Sauce, served with Golden Potatoes, Sun-Dried Tomatoes, Sunflower Sprouts, and Spicy Chimichurri",
+    "description": "Tentacles = щупальца.",
+    "features": "",
+    "ingredients": ""
+  },
+  "kotleta-iz-assorti-ryb-s-kartofelnym-pyure-i-tomlenym-shpinatom": {
+    "name": "Tender Fish Patty with Fluffy Mashed Potatoes and Braised Spinach",
+    "description": "Patty = котлета, пирожок или лепешка в зависимости от контекста. Также можно использовать:\nFish Cutlet — более буквальный вариант.\nFish Cake — часто встречается в Британии, но это больше похоже на оладушки из рыбы с картофелем.",
+    "features": "",
+    "ingredients": ""
+  },
+  "denver-steyk-lopatochnaya-chast": {
+    "name": "Denver steak (chuck cut)",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "file-praym-govyazhya-vyrezka": {
+    "name": "Prime Beef Tenderloin Fillet (Filet Mignon)",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "ribay-steyk": {
+    "name": "Ribeye steak",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "striployn-steyk": {
+    "name": "Striploin steak",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "kare-baraniny": {
+    "name": "Rack of lamb (also, Rack of Mutton)",
+    "description": "Rack of Mutton — технически верно (мясо взрослой овцы), но звучит гораздо реже в ресторанах. У многих гостей слово mutton ассоциируется с тяжёлым запахом и дешёвой едой, а не с деликатесом.",
+    "features": "",
+    "ingredients": ""
+  },
+  "kare-yagnenka": {
+    "name": "Rack of Young Lamb",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "semga": {
+    "name": "Salmon",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "sibas": {
+    "name": "Sea bass",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "dorado": {
+    "name": "Dorade (sea bream)",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tunets": {
+    "name": "Tuna",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "kalmar": {
+    "name": "Squid",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "osminog": {
+    "name": "Octopus",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "korolevskie-krevetki": {
+    "name": "King prawns (also, shrimps)",
+    "description": "👉 В UK чаще говорят prawns (особенно про большие). В US почти всегда используют shrimp (и для мелких, и для крупных).",
+    "features": "",
+    "ingredients": ""
+  },
+  "morskie-grebeshki": {
+    "name": "Sea scallops",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "zharennyy-kartofel-s-bekonom": {
+    "name": "Fried potatoes with bacon",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "zharennyy-kartofel-s-gribami-v-syrno-slivochnom-souse": {
+    "name": "Fried potatoes with mushrooms in a creamy cheese sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "zharennyy-kartofel-s-lukom-shalot-i-zelenyu": {
+    "name": "Fried potatoes with shallots and herbs",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "kartofel-fri": {
+    "name": "French fries",
+    "description": "Услышав от гостя словосочетание ”french fries” не спешите понимать его дословно, ведь такого блюда как “французская картошка” не существует. Также многие по ошибке, делая заказ на английском, говорят “potato free”, имея в виду картофель фри. Так вас точно не поймут, подумают, что вы хотите какую-то бесплатную картошку. По-английски это блюдо называется French fries.\n\nКак бы то ни было, сейчас словосочетание «French fries» стало общеизвестным и используется во всем мире… кроме России. По какой-то причине английское слово «фрайз» в России превратилось в слово «фри». Из-за этого можно подумать, что картошка называется «картошка свободы» (от анг. free — свобода). Возможно, кто-то неправильно произнес название, возможно, нашему уху так легче воспринимать, но, в любом случае, это никак не отражается на вкусовых качествах пусть и вредного, но очень вкусного блюда.",
+    "features": "",
+    "ingredients": ""
+  },
+  "kartofelnoe-pyure-s-zelenyu": {
+    "name": "Herb mashed potatoes",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "kartofel-po-domashnemu-na-hospere": {
+    "name": "Home-style potatoes on the Josper",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "ris-otvarnoy": {
+    "name": "Boiled rice",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "ovoschi-miks": {
+    "name": "Mixed vegetables: zucchini, baby corn, red and green bell peppers, cherry tomatoes, carrots.",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "sparzha": {
+    "name": "Asparagus",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tomlenyy-shpinat-s-chesnokom-i-syrom": {
+    "name": "Stewed spinach with garlic and cheese",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "perets-bolgarskiy": {
+    "name": "Bell pepper",
+    "description": "Bell Pepper = сладкий (болгарский) перец.",
+    "features": "",
+    "ingredients": ""
+  },
+  "tsukini": {
+    "name": "Zucchini",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tomaty-uzbekskie": {
+    "name": "Uzbek tomatoes",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tomaty-cherri": {
+    "name": "Cherry tomatoes",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "muss-pryanye-travy": {
+    "name": "Yogurt Mousse with Herb Cream, White Chocolate Glaze, and Lemon–Mint Gel",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "dikie-yabloki-s-dushistym-pertsem": {
+    "name": "Honey-Glazed Apples with Allspice, served with Crunchy Caramelized Walnuts and Pepper Mousse",
+    "description": "👉 Allspice — душистый перец.",
+    "features": "",
+    "ingredients": ""
+  },
+  "anna-pavlova": {
+    "name": "Anna Pavlova - the Legendary Russian Dessert. Crispy Meringue with a Vanilla Cream Center, served with Juicy Mango and Strawberry Pieces, and Raspberry–Basil Sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "cheremuhovyy-medovik-s-romashkovym-morozhenym": {
+    "name": "Bird cherry honey cake with chamomile ice cream",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "shokoladnyy-fondan": {
+    "name": "Chocolate fondant  — Warm Chocolate Cake with a White Chocolate and Pistachio Filling, served with Vanilla Ice Cream and Fresh Berrie",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "sigara-sabor-de-la-vida": {
+    "name": "Elegant “Cigar” filled with White Chocolate, Black Truffle, and Salted Caramel Cream, served on Almond and Cocoa Crumble",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "morozhenoe-schavel-estragon": {
+    "name": "Sorrel and Tarragon Ice Cream with Bitter Tonic Jelly",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "domashnee-morozhenoe": {
+    "name": "Homemade ice cream: vanilla, chocolate, pistachio, chamomile, banana–coconut–lime (vegan).",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "fruktovyy-sorbet": {
+    "name": "Fruit sorbet: lime–prosecco, pomegranate–port, orange–campari, grape, melon–mint, blood orange.",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "perechnyy": {
+    "name": "Black Pepper Sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "gorchichnyy": {
+    "name": "Mustard sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tomatno-tsitrusovyy": {
+    "name": "Tomato–citrus sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "slivochno-gribnoy": {
+    "name": "Creamy mushroom sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "barbekyu": {
+    "name": "Barbecue sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "pesto": {
+    "name": "Pesto",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "klyukvennyy": {
+    "name": "Cranberry sauce",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "ber-blan": {
+    "name": "Beurre blanc",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "tomatno-bazilikovyy-sous-sous-chili": {
+    "name": "Tomato–basil sauce (with chili)",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  },
+  "hlebnaya-korzina": {
+    "name": "Basket of House-Made Bread with Homemade Butter",
+    "description": "",
+    "features": "",
+    "ingredients": ""
+  }
