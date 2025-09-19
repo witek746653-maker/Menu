@@ -963,7 +963,7 @@ if ('serviceWorker' in navigator) {
       {key:'ingredients', label:'Ingredients', type:'textarea'}
     ];
     let html = '';
-    fields.forEach(f=>{ if (isMobile && f.key==="name") { return; }
+    fields.forEach(f=>{
       const val = data[f.key] || '';
       if (val.trim() || !isMobile){
         html += `
@@ -1007,6 +1007,16 @@ if ('serviceWorker' in navigator) {
 
     backdrop.addEventListener('click',e=>{ if(e.target===backdrop) backdrop.remove(); });
     panel.querySelector('.en-close').addEventListener('click',()=>backdrop.remove());
+    // Hide 'Name' field inside sections on mobile (header already shows it)
+    if (isMobile) {
+      panel.querySelectorAll('.en-sec').forEach(sec => {
+        const label = sec.querySelector('.en-label');
+        if (label && label.textContent && label.textContent.trim() === 'Name') {
+          sec.style.display = 'none';
+        }
+      });
+    }
+
     // --- Mobile compact 70% box without changing design ---
     (function(){
       if (!isMobile) return;
