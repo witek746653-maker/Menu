@@ -778,72 +778,211 @@ if ('serviceWorker' in navigator) {
   }
   .toc-fab.show{opacity:1; pointer-events:auto; transform:translateY(0);}
   .toc-fab:active{transform:translateY(1px);}
-</style><script>
+</style>
+<script>
 (function(){
-  const btn = document.getElementById('tocFab');
-  const TOC_SELECTORS = '.table_of_contents, #toc';
-  const HIDE_NEAR_TOP = 300;   // рядом с верхом/оглавлением кнопку не показываем
-  const HIDE_TIMEOUT_MS = 1000;
-  let hideTimer = null, muteUntil = 0;
-
-  function findTOC(){ return document.querySelector(TOC_SELECTORS); }
-  function scrollToTOC(){
-    const toc = findTOC();
-    if (!toc) { window.scrollTo({top:0, behavior:'smooth'}); return; }
-    toc.scrollIntoView({ behavior:'smooth', block:'start' });
-  }
-  function safeShow(){
-    const now = Date.now();
-    if (now < muteUntil) return;
-    if (window.scrollY < HIDE_NEAR_TOP) { btn.classList.remove('show'); return; }
-    btn.classList.add('show');
-    if (hideTimer) clearTimeout(hideTimer);
-    hideTimer = setTimeout(()=> btn.classList.remove('show'), HIDE_TIMEOUT_MS);
+  const jsonTag = document.getElementById('dish-names');
+  let dishNames = {};
+  if (jsonTag) {
+    try { dishNames = JSON.parse(jsonTag.textContent || "{}"); } catch(e){ dishNames = {}; }
   }
 
-  ['scroll','mousemove','touchmove','keydown'].forEach(ev =>
-    window.addEventListener(ev, safeShow, { passive:true })
-  );
-
-  const tocRoot = findTOC();
-  if (tocRoot){
-    tocRoot.addEventListener('click', (e)=>{
-      if (e.target.closest('a')){
-        btn.classList.remove('show');
-        muteUntil = Date.now() + 1200; // «глушим» всплытие на время прыжка по якорю
-        setTimeout(()=>{ muteUntil = 0; }, 1300);
-      }
-    }, true); // capture
+  function basename(path) {
+    if (!path) return "";
+    const lastSlash = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\"));
+    let base = (lastSlash >= 0) ? path.slice(lastSlash+1) : path;
+    const dot = base.lastIndexOf(".");
+    if (dot > 0) base = base.slice(0, dot);
+    return base;
   }
 
-  window.addEventListener('hashchange', ()=>{
-    btn.classList.remove('show');
-    muteUntil = Date.now() + 800;
-    setTimeout(()=>{ muteUntil = 0; }, 900);
-  });
+  function findSlug(el){
+    const ds = el.getAttribute("data-slug");
+    if (ds) return ds.trim();
+    const da = el.getAttribute("data-audio");
+    if (da) return basename(da).trim();
+    const dk = el.getAttribute("data-key");
+    if (dk) return dk.trim();
+    return "";
+  }
 
-  btn.addEventListener('click', scrollToTOC);
-})();
-</script><script>
-(function(){
-  const btn = document.getElementById('tocFab');
-  if (!btn) return;
-  function scaleVal(){ return (window.visualViewport && window.visualViewport.scale) || 1; }
-  function apply(){
-    const s = scaleVal();
-    btn.style.transformOrigin = "bottom right";
-    btn.style.transform = "translateZ(0) scale(" + (1/s) + ")";
-    btn.style.right = (40 / s) + "px";
-    btn.style.bottom = (40 / s) + "px";
+  function guessLang(text){
+    // Simple heuristic: if contains Latin, use English; otherwise Russian
+    return /[A-Za-z]/.test(text) ? "en-US" : "ru-RU";
   }
-  apply();
-  if (window.visualViewport){
-    window.visualViewport.addEventListener('resize', apply);
-    window.visualViewport.addEventListener('scroll', apply);
+
+  function loadVoices(){
+    return new Promise(resolve=>{
+      const v = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+      if (v && v.length) return resolve(v);
+      if (!window.speechSynthesis){ return resolve([]); }
+      const onVoices = ()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        window.speechSynthesis.removeEventListener("voiceschanged", onVoices);
+      };
+      window.speechSynthesis.addEventListener("voiceschanged", onVoices);
+      // Fallback timeout in case event never fires
+      setTimeout(()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        try{ window.speechSynthesis.removeEventListener("voiceschanged", onVoices);}catch(e){}
+      }, 1200);
+    });
   }
-  window.addEventListener('orientationchange', apply);
+
+  function speakText(text){
+    if (!text || !window.speechSynthesis) return;
+    try { window.speechSynthesis.cancel(); } catch(e) {}
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = guessLang(text);
+    u.rate = 0.95;
+    // Ensure voices are loaded on Safari/iOS
+    loadVoices().then(()=>{
+      try { window.speechSynthesis.speak(u); } catch(e){ /* noop */ }
+    });
+  }
+
+  function getNameFor(el){
+    const slug = findSlug(el);
+    if (slug && dishNames[slug] && dishNames[slug].name) return dishNames[slug].name;
+    return el.getAttribute("data-name")
+        || el.getAttribute("aria-label")
+        || el.getAttribute("title")
+        || "";
+  }
+
+  function onClick(e){
+    const el = e.currentTarget;
+    const name = getNameFor(el);
+    if (!name) return;
+    e.preventDefault();
+    // Don't stop propagation unless there is a competing audio player you want to disable.
+    speakText(name);
+  }
+
+  function attach(){
+    // Bind to common button patterns used for audio in the app
+    const candidates = document.querySelectorAll(
+      'button.speak-btn, button[data-audio], button[data-slug], button[data-key], .speak-btn[data-audio], .speak-btn[data-slug], .audio-btn, .play-audio'
+    );
+    candidates.forEach(btn=>{
+      if (btn.__ttsBound) return;
+      btn.addEventListener("click", onClick, true); // capture to survive stopPropagation in other handlers
+      btn.__ttsBound = true;
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attach);
+  } else {
+    attach();
+  }
 })();
 </script>
+
+<script>
+(function(){
+  const jsonTag = document.getElementById('dish-names');
+  let dishNames = {};
+  if (jsonTag) {
+    try { dishNames = JSON.parse(jsonTag.textContent || "{}"); } catch(e){ dishNames = {}; }
+  }
+
+  function basename(path) {
+    if (!path) return "";
+    const lastSlash = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\"));
+    let base = (lastSlash >= 0) ? path.slice(lastSlash+1) : path;
+    const dot = base.lastIndexOf(".");
+    if (dot > 0) base = base.slice(0, dot);
+    return base;
+  }
+
+  function findSlug(el){
+    const ds = el.getAttribute("data-slug");
+    if (ds) return ds.trim();
+    const da = el.getAttribute("data-audio");
+    if (da) return basename(da).trim();
+    const dk = el.getAttribute("data-key");
+    if (dk) return dk.trim();
+    return "";
+  }
+
+  function guessLang(text){
+    // Simple heuristic: if contains Latin, use English; otherwise Russian
+    return /[A-Za-z]/.test(text) ? "en-US" : "ru-RU";
+  }
+
+  function loadVoices(){
+    return new Promise(resolve=>{
+      const v = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+      if (v && v.length) return resolve(v);
+      if (!window.speechSynthesis){ return resolve([]); }
+      const onVoices = ()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        window.speechSynthesis.removeEventListener("voiceschanged", onVoices);
+      };
+      window.speechSynthesis.addEventListener("voiceschanged", onVoices);
+      // Fallback timeout in case event never fires
+      setTimeout(()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        try{ window.speechSynthesis.removeEventListener("voiceschanged", onVoices);}catch(e){}
+      }, 1200);
+    });
+  }
+
+  function speakText(text){
+    if (!text || !window.speechSynthesis) return;
+    try { window.speechSynthesis.cancel(); } catch(e) {}
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = guessLang(text);
+    u.rate = 0.95;
+    // Ensure voices are loaded on Safari/iOS
+    loadVoices().then(()=>{
+      try { window.speechSynthesis.speak(u); } catch(e){ /* noop */ }
+    });
+  }
+
+  function getNameFor(el){
+    const slug = findSlug(el);
+    if (slug && dishNames[slug] && dishNames[slug].name) return dishNames[slug].name;
+    return el.getAttribute("data-name")
+        || el.getAttribute("aria-label")
+        || el.getAttribute("title")
+        || "";
+  }
+
+  function onClick(e){
+    const el = e.currentTarget;
+    const name = getNameFor(el);
+    if (!name) return;
+    e.preventDefault();
+    // Don't stop propagation unless there is a competing audio player you want to disable.
+    speakText(name);
+  }
+
+  function attach(){
+    // Bind to common button patterns used for audio in the app
+    const candidates = document.querySelectorAll(
+      'button.speak-btn, button[data-audio], button[data-slug], button[data-key], .speak-btn[data-audio], .speak-btn[data-slug], .audio-btn, .play-audio'
+    );
+    candidates.forEach(btn=>{
+      if (btn.__ttsBound) return;
+      btn.addEventListener("click", onClick, true); // capture to survive stopPropagation in other handlers
+      btn.__ttsBound = true;
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attach);
+  } else {
+    attach();
+  }
+})();
+</script>
+
 
 <!-- EN modal block v3 (robust) -->
 <style>
@@ -902,320 +1041,9 @@ if ('serviceWorker' in navigator) {
   @media (max-width: 600px){ .en-panel { padding: 12px 14px; border-radius: 14px; } .en-sections { gap: 8px; } .en-editor textarea { min-height: 72px; } }
 </style>
 
-<script>
-(function(){
-  const isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-
-  function slugify(str){
-    const map={'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'e','ж':'zh','з':'z','и':'i','й':'y',
-      'к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h',
-      'ц':'ts','ч':'ch','ш':'sh','щ':'sch','ы':'y','э':'e','ю':'yu','я':'ya'};
-    return (str||'').toLowerCase().replace(/[ъь]/g,'')
-      .replace(/[\u0400-\u04FF]/g, ch => map[ch] ?? ch)
-      .replace(/[^a-z0-9]+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
-  }
-  const esc = s=>String(s??'').replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-
-  async function loadDict(){
-    const url = new URL('en.json', location.href);
-    url.searchParams.set('_', Date.now());
-    const res = await fetch(url.toString(), {cache:'no-store'});
-    if(!res.ok) throw new Error('Cannot load en.json');
-    return res.json();
-  }
-
-  function getRuTitleFromH3(h3){
-    // clone h3 and remove chip text to avoid capturing "EN"
-    const clone = h3.cloneNode(true);
-    clone.querySelectorAll('.en-chip').forEach(b=>b.remove());
-    return clone.textContent.trim();
-  }
-
-  function ensureChips(){
-    document.querySelectorAll('h3').forEach(h3=>{
-      if (!h3.querySelector('.en-chip')) {
-        const b=document.createElement('button');
-        b.className='en-chip'; b.type='button'; b.textContent='EN';
-        h3.appendChild(b);
-      }
-    });
-  }
-
-  function bindChips(){
-    document.querySelectorAll('h3 .en-chip').forEach(btn=>{
-      btn.onclick = async ()=>{
-        const h3 = btn.closest('h3');
-        const ruName = getRuTitleFromH3(h3);
-        const slug = slugify(ruName);
-        let dict = {};
-        try { dict = await loadDict(); } catch(e){ dict = {}; }
-        const tr = dict[slug] || {name:'',description:'',features:'',ingredients:''};
-        openPanel(slug, ruName, tr, dict);
-      };
-    });
-  }
-
-  function renderSectionsHTML(data){
-    const fields = [
-      {key:'name', label:'Name', type:'input'},
-      {key:'description', label:'Description', type:'textarea'},
-      {key:'features', label:'Features', type:'textarea'},
-      {key:'ingredients', label:'Ingredients', type:'textarea'}
-    ];
-    let html = '';
-    fields.forEach(f=>{
-      const val = data[f.key] || '';
-      if (val.trim() || !isMobile){
-        html += `
-          <div class="en-sec">
-            <div class="en-label">${f.label}</div>
-            <div class="en-text">${esc(val)}</div>
-            <div class="en-editor">
-              ${f.type==='input'
-                ? `<input class="en-${f.key}" value="${esc(val)}"/>`
-                : `<textarea class="en-${f.key}" rows="3">${esc(val)}</textarea>`}
-            </div>
-          </div>`;
-      }
-    });
-    return html;
-  }
-
-  function openPanel(slug, ruName, data, dict){
-    const backdrop = document.createElement('div');
-    backdrop.className='en-backdrop';
-    const panel = document.createElement('div');
-    panel.className='en-panel';
-
-    panel.innerHTML=`
-      <div class="en-head">
-        <div class="en-title">${esc(data.name||ruName)}</div>
-        <div class="en-actions">
-          ${isMobile ? '' : '<button class="en-btn en-edit" type="button">✎ Edit</button>'}
-          <button class="en-btn en-close" type="button">✕</button>
-        </div>
-      </div>
-      <div class="en-sections">${renderSectionsHTML(data)}</div>
-      <div class="en-foot">
-        <button class="en-btn en-save" type="button">Save</button>
-        <button class="en-btn en-cancel" type="button">Cancel</button>
-      </div>
-    `;
-
-    backdrop.appendChild(panel);
-    document.body.appendChild(backdrop);
-
-    backdrop.addEventListener('click',e=>{ if(e.target===backdrop) backdrop.remove(); });
-    panel.querySelector('.en-close').addEventListener('click',()=>backdrop.remove());
-    // Hide 'Name' field inside sections on mobile (header already shows it)
-    if (isMobile) {
-      panel.querySelectorAll('.en-sec').forEach(sec => {
-        const label = sec.querySelector('.en-label');
-        if (label && label.textContent && label.textContent.trim() === 'Name') {
-          sec.style.display = 'none';
-        }
-      });
-    }
-
-    // --- Mobile compact 70% box without changing design ---
-    (function(){
-      if (!isMobile) return;
-      const hasVV = !!window.visualViewport;
-      const vv = window.visualViewport;
-
-      function getVV(){
-        if (hasVV) return {
-          w: vv.width, h: vv.height, s: vv.scale||1, ox: vv.offsetLeft, oy: vv.offsetTop
-        };
-        return { w: window.innerWidth, h: window.innerHeight, s: 1, ox: 0, oy: 0 };
-      }
-
-      function fit(){
-        const V = getVV();
-        const targetW = Math.max(280, Math.floor(V.w * 0.70));
-        const targetH = Math.max(220, Math.floor(V.h * 0.70));
-
-        // Keep perceived size constant vs page zoom
-        panel.style.transformOrigin = 'top left';
-        panel.style.transform = 'scale(' + (1 / V.s) + ')';
-
-        // Exact compact size (border-box)
-        panel.style.boxSizing = 'border-box';
-        panel.style.width = Math.floor(targetW * V.s) + 'px';
-        panel.style.height = Math.floor(targetH * V.s) + 'px';
-        panel.style.maxWidth = 'none';
-        panel.style.maxHeight = 'none';
-        panel.style.overflow = 'hidden';
-        panel.style.position = 'fixed';
-
-        // Center in the visible viewport
-        panel.style.left = (V.ox + (V.w - targetW) / 2) + 'px';
-        panel.style.top  = (V.oy + (V.h - targetH) / 2) + 'px';
-
-        // Fit text if needed (no internal scroll)
-        const floor = 12;
-        let fs = parseFloat(getComputedStyle(panel).fontSize) || 14;
-        let guard = 0;
-        const tooTall = ()=>{
-          const r = panel.getBoundingClientRect();
-          return r.height > (targetH + 0.5) || panel.scrollHeight > panel.clientHeight;
-        };
-        while (tooTall() && fs > floor && guard < 20){
-          fs -= 1;
-          panel.style.fontSize = fs + 'px';
-          guard++;
-        }
-        if (tooTall()){
-          panel.querySelectorAll('.en-sec').forEach(el=>{
-            el.style.marginTop='6px'; el.style.marginBottom='6px';
-          });
-          panel.querySelectorAll('.en-text').forEach(el=>{
-            el.style.lineHeight='1.25';
-          });
-        }
-      }
-
-      const apply = ()=>{ fit(); requestAnimationFrame(fit); setTimeout(fit, 50); };
-
-      apply();
-      if (hasVV){
-        vv.addEventListener('resize', apply);
-        vv.addEventListener('scroll', apply);
-      }
-      window.addEventListener('orientationchange', apply);
-
-      // Cleanup listeners after close
-      const mo = new MutationObserver(()=>{
-        if (!document.body.contains(backdrop)){
-          try{
-            if (hasVV){ vv.removeEventListener('resize', apply); vv.removeEventListener('scroll', apply); }
-            window.removeEventListener('orientationchange', apply);
-          }catch(e){}
-          mo.disconnect();
-        }
-      });
-      mo.observe(document.body, {childList:true, subtree:true});
-    })();
-
-
-    if(!isMobile){
-      const editBtn=panel.querySelector('.en-edit');
-      const saveBtn=panel.querySelector('.en-save');
-      const cancelBtn=panel.querySelector('.en-cancel');
-
-      editBtn?.addEventListener('click',()=> panel.classList.add('en-editing'));
-      cancelBtn?.addEventListener('click',()=> panel.classList.remove('en-editing'));
-
-      saveBtn?.addEventListener('click', async ()=>{
-        const updated={
-          name: panel.querySelector('.en-name')?.value?.trim() || '',
-          description: panel.querySelector('.en-description')?.value?.trim() || '',
-          features: panel.querySelector('.en-features')?.value?.trim() || '',
-          ingredients: panel.querySelector('.en-ingredients')?.value?.trim() || '',
-        };
-        dict[slug]=updated;
-        try{
-          const res = await fetch('/save-json', {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body: JSON.stringify(dict)
-          });
-          if(!res.ok) throw new Error('save-json failed');
-          panel.classList.remove('en-editing');
-          panel.querySelector('.en-title').textContent = updated.name || ruName;
-          // Re-render sections to apply "hide empty" rule after save
-          panel.querySelector('.en-sections').innerHTML = renderSectionsHTML(updated);
-        }catch(e){
-          alert('Не удалось сохранить на сервер. Проверь, что запущен save_as_server.py');
-        }
-      });
-    }
-  }
-
-  // init
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', ()=>{ ensureChips(); bindChips(); });
-  } else {
-    ensureChips(); bindChips();
-  }
-})();
-</script>
-
-<!-- ===== Audio Name Panel Injector v12 (chip inside .en-title, below text) ===== -->
-<style>
-  .en-title{ /* ensure our inner row appears below title text */ }
-  .en-audio-under{display:block; margin-top:.4rem;}
-  .en-audio-chip{display:inline-flex; align-items:center; gap:.35rem;
-    padding:.2rem .55rem; border:1px solid rgba(0,0,0,.18); border-radius:999px; background:rgba(0,0,0,.06);
-    font-size:.85rem; line-height:1; white-space:nowrap;}
-  .en-audio-chip button{all:unset; cursor:pointer; padding:.1rem .4rem; border-radius:999px; border:1px solid rgba(0,0,0,.25); line-height:1;}
-  .en-audio-chip button:active{transform:scale(.95);}
-</style>
-<script>
-(function(){
-  let EN=null, rev=null;
-  const load=fetch('en.json').then(r=>r.json()).then(j=>{
-    EN=j||{}; rev={};
-    for(const k in EN){
-      const nm=(EN[k]?.name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/\s+/g,' ');
-      if(nm) rev[nm]=k;
-    }
-  }).catch(()=>{EN={}; rev={};});
-
-  function normEN(s){ return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/\s+/g,' '); }
-
-  function speak(text,key){
-    let played=false;
-    const src=key?`audio/${key}.mp3`:'';
-    if(src){
-      const a=new Audio(src);
-      a.addEventListener('error',()=>{
-        if(played) return; played=true;
-        if('speechSynthesis'in window){const u=new SpeechSynthesisUtterance(text);u.lang='en-US';speechSynthesis.speak(u);}
-      },{once:true});
-      a.play().then(()=>{played=true;}).catch(()=>{
-        if(played) return; played=true;
-        if('speechSynthesis'in window){const u=new SpeechSynthesisUtterance(text);u.lang='en-US';speechSynthesis.speak(u);}
-      });
-    }else{
-      if('speechSynthesis'in window){const u=new SpeechSynthesisUtterance(text);u.lang='en-US';speechSynthesis.speak(u);}
-    }
-  }
-
-  function attach(head){
-    if(!head) return;
-    const title=head.querySelector('.en-title');
-    if(!title || title.__enAudioChip) return;
-    const text=(title.childNodes[0]?.textContent || title.textContent || '').trim(); // the visible title text
-    const under=document.createElement('div');
-    under.className='en-audio-under';
-    const chip=document.createElement('span');
-    chip.className='en-audio-chip';
-    chip.innerHTML='<span>EN audio</span> <button type="button">🔊</button>';
-    under.appendChild(chip);
-    title.appendChild(under);
-
-    load.then(()=>{
-      const key=rev[normEN(text)]||'';
-      chip.querySelector('button').addEventListener('click',()=>speak(text,key));
-    });
-
-    title.__enAudioChip=chip;
-  }
-
-  function sweep(){ document.querySelectorAll('.en-head').forEach(attach); }
-  new MutationObserver(()=>sweep()).observe(document.documentElement,{subtree:true,childList:true});
-  window.addEventListener('DOMContentLoaded',()=>{ setTimeout(sweep,50); setTimeout(sweep,200); });
-  document.addEventListener('click',()=>{ setTimeout(sweep,50); });
-})();
-</script>
-<!-- ===== End Audio Name Panel Injector v12 ===== -->
-
-<script id="dish-names" type="application/json">{"ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok": {"name": "Imperial Oyster (Russia)", "description": "", "features": "", "ingredients": ""}, "ustritsa-rozovaya-dzholi-namibiya-afrika": {"name": "Jolie Pink Oyster (Namibia, Africa)", "description": "", "features": "", "ingredients": ""}, "morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom": {"name": "Sea urchin with ponzu, avocado mousse, and quail yolk", "description": "", "features": "", "ingredients": ""}, "hamon-serrano-gran-reserva-50-gr": {"name": "Jamón Serrano Gran Reserva", "description": "", "features": "", "ingredients": ""}, "brusketta-s-pashtetom-iz-kurinoy-pecheni-slivochnym-syrom-i-tryufelnym-maslom": {"name": "Bruschetta with chicken liver pâté, cream cheese, and truffle oil", "description": "", "features": "", "ingredients": ""}, "brusketta-s-burratoy-tomatami-i-sousom-pesto": {"name": "Bruschetta with burrata, tomatoes, and pesto", "description": "", "features": "", "ingredients": ""}, "brusketta-s-lesnymi-gribami-v-slivochnom-souse": {"name": "Bruschetta with wild mushrooms in a creamy sauce", "description": "", "features": "", "ingredients": ""}, "tartar-iz-premialnoy-govyazhey-vyrezki-s-zharennym-kartofelem": {"name": "Prime beef tenderloin tartare with fried potatoes", "description": "", "features": "", "ingredients": ""}, "assorti-izyskannyh-myasnyh-delikatesov": {"name": "Selection of fine cured meats", "description": "", "features": "", "ingredients": ""}, "tomat-i-krab": {"name": "Tomato & Crab", "description": "", "features": "", "ingredients": ""}, "tartar-iz-tuntsa-s-ispanskimi-olivkami-kedrovymi-orehami-i-zelenyu": {"name": "Tuna tartare with Spanish olives, pine nuts, and herbs", "description": "", "features": "", "ingredients": ""}, "karpachcho-iz-krevetki-s-kremom-iz-baklazhana-tomatami-i-sousom-mango-chia": {"name": "Shrimp carpaccio with eggplant cream, tomatoes, and mango–chia sauce", "description": "", "features": "", "ingredients": ""}, "seviche-iz-sibasa-s-tomatami-avokado-i-pertsem-chili": {"name": "Sea bass ceviche with tomatoes, avocado, and chili", "description": "", "features": "", "ingredients": ""}, "karpachcho-iz-zapechennoy-svekly-so-slivochnym-syrom-kedrovymi-orehami-i-kopchenym-maslom": {"name": "Roasted beet carpaccio with cream cheese, pine nuts, and smoked oil", "description": "", "features": "", "ingredients": ""}, "assorti-iz-shesti-blagorodnyh-syrov": {"name": "Selection of six fine cheeses", "description": "", "features": "", "ingredients": ""}, "eskalop-fua-gra-s-grushey-pakham-pod-yagodno-romovom-sousom": {"name": "Foie gras escalope with Packham pear and berry–rum sauce", "description": "", "features": "", "ingredients": ""}, "zapechennye-midii-so-shpinatom-pod-syrno-tryufelnym-fondyu": {"name": "Baked mussels with spinach under cheese–truffle fondue", "description": "", "features": "", "ingredients": ""}, "ustritsy-zapechennye-pod-sousom-shabli-s-muskatnym-orehom-i-lukom-shalot": {"name": "Baked oysters with Chablis sauce, nutmeg, and shallot", "description": "", "features": "", "ingredients": ""}, "ulitki-po-burgundski": {"name": "Burgundy-style snails", "description": "", "features": "", "ingredients": ""}, "krevetki-v-souse-vasabi": {"name": "Shrimp in wasabi sauce", "description": "", "features": "", "ingredients": ""}, "baklazhan-yudzu": {"name": "Yuzu Eggplant", "description": "", "features": "", "ingredients": ""}, "tartar-iz-baklazhan-s-tomatami-zelenyu-i-postnym-pesto": {"name": "Eggplant tartare with tomatoes, herbs, and vegan pesto", "description": "", "features": "", "ingredients": ""}, "salat-s-zapechennym-rostbifom": {"name": "Roast beef salad", "description": "", "features": "", "ingredients": ""}, "salat-s-sochnoy-telyatinoy-i-aromatnymi-gribami": {"name": "Veal and mushroom salad", "description": "", "features": "", "ingredients": ""}, "salat-kardini-s-perepelkoy-tomatami-perepelinym-yaytsom-i-chesnochnymi-grenkami": {"name": "Cardini salad with quail, tomatoes, quail egg, and garlic croutons", "description": "", "features": "", "ingredients": ""}, "teplyy-salat-s-fua-gra-perepelkoy-i-karamelizirovannym-yablokom": {"name": "Warm salad with foie gras, quail, and caramelized apple", "description": "", "features": "", "ingredients": ""}, "teplyy-salat-s-zharennym-osminogom-ovoschami-olivkami-pod-gorchichnym-sousom": {"name": "Warm salad with fried octopus, vegetables, and olives, mustard dressing", "description": "", "features": "", "ingredients": ""}, "salat-s-myasom-kraba-i-opalennymi-ovoschami-pod-medovo-gorchichnoy-zapravkoy": {"name": "Crab salad with charred vegetables, honey–mustard dressing", "description": "", "features": "", "ingredients": ""}, "salat-s-moreproduktami-i-myatym-avokado": {"name": "Seafood salad with smashed avocado", "description": "", "features": "", "ingredients": ""}, "ostrova-v-okeane-salat-s-tuntsom-i-salsoy-iz-tomatov-i-maslin": {"name": "Islands in the Ocean (Tuna salad with tomato–olive salsa)", "description": "", "features": "", "ingredients": ""}, "ovoschnoy-salat-s-avokado-syrom-grana-padano-lukovym-kramblom-pod-medovo-gorchichnoy-zapravkoy": {"name": "Vegetable salad with avocado, Grana Padano, onion crumble, honey–mustard dressing", "description": "", "features": "", "ingredients": ""}, "burrata-s-olivkami-i-tartarom-iz-sladkih-tomatov": {"name": "Burrata with olives and sweet tomato tartare", "description": "", "features": "", "ingredients": ""}, "chechevichnyy-sup-s-molodym-yagnenkom-ovoschami-i-aromatnymi-travami": {"name": "Lentil soup with young lamb, vegetables, and herbs", "description": "", "features": "", "ingredients": ""}, "lukovyy-sup-s-bekonom-ziroy-pod-syrnoy-korochkoy-gryuyer": {"name": "Onion soup with bacon and cumin, Gruyère crust", "description": "", "features": "", "ingredients": ""}, "ostryy-sup-tom-yam-s-grebeshkom-i-krevetkami": {"name": "Spicy Tom Yum with scallops and shrimp", "description": "", "features": "", "ingredients": ""}, "uha-s-podkopchennoy-krasnoy-ryboy-ovoschami-i-slivochnym-bulonom": {"name": "Ukha fish soup with smoked red fish, vegetables, and creamy broth", "description": "", "features": "", "ingredients": ""}, "shelkovyy-krem-sup-iz-kashtanov-s-aromatnymi-belymi-gribami": {"name": "Silky chestnut cream soup with porcini mushrooms", "description": "", "features": "", "ingredients": ""}, "ovoschnoy-sup-minestrone-na-kurinom-bulone-s-kedrovymi-orehami-i-sousom-pesto": {"name": "Minestrone on chicken broth with pine nuts and pesto", "description": "", "features": "", "ingredients": ""}, "postnyy-minestrone-na-ovoschnom-bulone-s-kedrovymi-orehami-chesnochnoy-chiabattoy-i-postnym-pesto": {"name": "Vegan minestrone on vegetable broth with pine nuts, garlic ciabatta, and vegan pesto", "description": "", "features": "", "ingredients": ""}, "domashnie-ravioli-s-nachinkoy-iz-fermerskoy-kuritsy-aromatnoy-ziroy-pod-syrno-tryufelnym-fondyu": {"name": "House-made ravioli with farm chicken and cumin under cheese–truffle fondue", "description": "", "features": "", "ingredients": ""}, "pasta-ptitim-s-moreproduktami-i-kremom-iz-zelenogo-goroshka": {"name": "Ptitim (Israeli couscous) with seafood and green pea cream", "description": "", "features": "", "ingredients": ""}, "chernye-fetuchini-s-myasom-kraba-fenhelem-i-lukom-porey": {"name": "Black fettuccine with crab meat, fennel, and leek", "description": "", "features": "", "ingredients": ""}, "arrabyata-s-krevetkami-i-grebeshkom": {"name": "Arrabbiata with shrimp and scallops", "description": "", "features": "", "ingredients": ""}, "rizotto-s-krolikom-i-gribami": {"name": "Risotto with rabbit and mushrooms", "description": "", "features": "", "ingredients": ""}, "zelenoe-rizotto": {"name": "Green risotto", "description": "", "features": "", "ingredients": ""}, "govyazhe-rebro-pod-sousom-iz-chernogo-pertsa-s-kartofelem-batatom-i-sousom-chimichuri": {"name": "Beef rib with black pepper sauce, potatoes, sweet potato, and chimichurri", "description": "", "features": "", "ingredients": ""}, "bifshteks-iz-mramornoy-govyadiny-s-zharennym-kartofelem-gribami-i-shpinatom-s-mussom-iz-gorgonzoly-i-tryufelnym-kremom": {"name": "Beefsteak of marbled beef with fried potatoes, mushrooms and spinach, Gorgonzola mousse and truffle cream", "description": "", "features": "", "ingredients": ""}, "tomlenye-govyazhi-schechki-s-ragu-iz-belyh-gribov-kartofelem-pyure-i-solodovym-sousom": {"name": "Braised beef cheeks with porcini ragout, mashed potatoes, and malt sauce", "description": "", "features": "", "ingredients": ""}, "file-minon-s-fua-gra-zharennymi-belymi-gribami-i-ovoschami-na-grile": {"name": "Filet mignon with foie gras, fried porcini, and grilled vegetables", "description": "", "features": "", "ingredients": ""}, "chernyy-burger-s-kotletoy-iz-mramornoy-govyadiny-syrom-kamamber-lukom-konfi-i-ostrym-pertsem-halapeno": {"name": "Black burger with marbled beef patty, Camembert, onion confit, and spicy jalapeño", "description": "", "features": "", "ingredients": ""}, "tomlenaya-golyashka-yagnenka-s-pechenym-baklazhanom-i-yogurtovym-mussom": {"name": "Braised lamb shank with baked eggplant and yogurt mousse", "description": "", "features": "", "ingredients": ""}, "fermerskiy-tsyplenok-prigotovlennyy-na-otkrytom-ogne": {"name": "Farm chicken grilled over open fire", "description": "", "features": "", "ingredients": ""}, "utinaya-nozhka-pod-apelsinovym-sousom-na-podushke-iz-zharenogo-kartofelya-s-bekonom": {"name": "Duck leg with orange sauce on a bed of fried potatoes with bacon", "description": "", "features": "", "ingredients": ""}, "kotleta-iz-utinoy-grudki-s-fua-gra-i-kartofelnym-pyure-s-zelenyu-i-sousom-barbekyu": {"name": "Duck breast patty with foie gras, herb mashed potatoes, and barbecue sauce", "description": "", "features": "", "ingredients": ""}, "file-sibasa-so-shpinatom-kartofelnym-pyure-s-zelenyu-i-tsitrusovym-sousom": {"name": "Sea bass fillet with spinach, herb mashed potatoes, and citrus sauce", "description": "", "features": "", "ingredients": ""}, "file-dorado-na-podushke-iz-zharennyh-ovoschey-i-gribov-so-slivochnym-sousom-berblan": {"name": "Sea bream fillet on a bed of fried vegetables and mushrooms, beurre blanc", "description": "", "features": "", "ingredients": ""}, "steyk-iz-semgi-zapechennoy-v-mede-s-kartofelnym-pyure-i-tomatnoy-salsoy": {"name": "Salmon steak baked with honey, mashed potatoes, and tomato salsa", "description": "", "features": "", "ingredients": ""}, "zapechennaya-chernaya-treska-s-marinovannym-imbirem-i-zharennymi-ovoschami-pod-medovo-apelsinovym-sousom": {"name": "Baked black cod with pickled ginger and fried vegetables, honey–orange sauce", "description": "", "features": "", "ingredients": ""}, "glazirovannyy-osminog-s-zharennym-kartofelem-vyalenymi-tomatami-i-rostkami-podsolnuha": {"name": "Glazed octopus with fried potatoes, sun-dried tomatoes, and sunflower sprouts", "description": "", "features": "", "ingredients": ""}, "kotleta-iz-assorti-ryb-s-kartofelnym-pyure-i-tomlenym-shpinatom": {"name": "Assorted fish patty with mashed potatoes and stewed spinach", "description": "", "features": "", "ingredients": ""}, "denver-steyk-lopatochnaya-chast": {"name": "Denver steak (chuck)", "description": "", "features": "", "ingredients": ""}, "file-praym-govyazhya-vyrezka": {"name": "Prime filet (beef tenderloin)", "description": "", "features": "", "ingredients": ""}, "ribay-steyk": {"name": "Ribeye steak", "description": "", "features": "", "ingredients": ""}, "striployn-steyk": {"name": "Striploin steak", "description": "", "features": "", "ingredients": ""}, "kare-baraniny": {"name": "Rack of lamb", "description": "", "features": "", "ingredients": ""}, "kare-yagnenka": {"name": "Young lamb rack", "description": "", "features": "", "ingredients": ""}, "semga": {"name": "Salmon", "description": "", "features": "", "ingredients": ""}, "sibas": {"name": "Sea bass", "description": "", "features": "", "ingredients": ""}, "dorado": {"name": "Dorade (sea bream)", "description": "", "features": "", "ingredients": ""}, "tunets": {"name": "Tuna", "description": "", "features": "", "ingredients": ""}, "kalmar": {"name": "Squid", "description": "", "features": "", "ingredients": ""}, "osminog": {"name": "Octopus", "description": "", "features": "", "ingredients": ""}, "korolevskie-krevetki": {"name": "King prawns", "description": "", "features": "", "ingredients": ""}, "morskie-grebeshki": {"name": "Sea scallops", "description": "", "features": "", "ingredients": ""}, "zharennyy-kartofel-s-bekonom": {"name": "Fried potatoes with bacon", "description": "", "features": "", "ingredients": ""}, "zharennyy-kartofel-s-gribami-v-syrno-slivochnom-souse": {"name": "Fried potatoes with mushrooms in a creamy cheese sauce", "description": "", "features": "", "ingredients": ""}, "zharennyy-kartofel-s-lukom-shalot-i-zelenyu": {"name": "Fried potatoes with shallots and herbs", "description": "", "features": "", "ingredients": ""}, "kartofel-fri": {"name": "French fries", "description": "", "features": "", "ingredients": ""}, "kartofelnoe-pyure-s-zelenyu": {"name": "Herb mashed potatoes", "description": "", "features": "", "ingredients": ""}, "kartofel-po-domashnemu-na-hospere": {"name": "Home-style potatoes on the Josper", "description": "", "features": "", "ingredients": ""}, "ris-otvarnoy": {"name": "Boiled rice", "description": "", "features": "", "ingredients": ""}, "ovoschi-miks": {"name": "Mixed vegetables", "description": "", "features": "", "ingredients": ""}, "sparzha": {"name": "Asparagus", "description": "", "features": "", "ingredients": ""}, "tomlenyy-shpinat-s-chesnokom-i-syrom": {"name": "Stewed spinach with garlic and cheese", "description": "", "features": "", "ingredients": ""}, "perets-bolgarskiy": {"name": "Bell pepper", "description": "", "features": "", "ingredients": ""}, "tsukini": {"name": "Zucchini", "description": "", "features": "", "ingredients": ""}, "tomaty-uzbekskie": {"name": "Uzbek tomatoes", "description": "", "features": "", "ingredients": ""}, "tomaty-cherri": {"name": "Cherry tomatoes", "description": "", "features": "", "ingredients": ""}, "muss-pryanye-travy": {"name": "Herb mousse", "description": "", "features": "", "ingredients": ""}, "dikie-yabloki-s-dushistym-pertsem": {"name": "Wild apples with allspice", "description": "", "features": "", "ingredients": ""}, "anna-pavlova": {"name": "Anna Pavlova", "description": "", "features": "", "ingredients": ""}, "cheremuhovyy-medovik-s-romashkovym-morozhenym": {"name": "Bird cherry honey cake with chamomile ice cream", "description": "", "features": "", "ingredients": ""}, "shokoladnyy-fondan": {"name": "Chocolate fondant", "description": "", "features": "", "ingredients": ""}, "sigara-sabor-de-la-vida": {"name": "Sabor de la Vida Cigar", "description": "", "features": "", "ingredients": ""}, "morozhenoe-schavel-estragon": {"name": "Sorrel–tarragon ice cream", "description": "", "features": "", "ingredients": ""}, "domashnee-morozhenoe": {"name": "Homemade ice cream", "description": "", "features": "", "ingredients": ""}, "fruktovyy-sorbet": {"name": "Fruit sorbet", "description": "", "features": "", "ingredients": ""}, "perechnyy": {"name": "Peppercorn sauce", "description": "", "features": "", "ingredients": ""}, "gorchichnyy": {"name": "Mustard sauce", "description": "", "features": "", "ingredients": ""}, "tomatno-tsitrusovyy": {"name": "Tomato–citrus sauce", "description": "", "features": "", "ingredients": ""}, "slivochno-gribnoy": {"name": "Creamy mushroom sauce", "description": "", "features": "", "ingredients": ""}, "barbekyu": {"name": "Barbecue sauce", "description": "", "features": "", "ingredients": ""}, "pesto": {"name": "Pesto", "description": "", "features": "", "ingredients": ""}, "klyukvennyy": {"name": "Cranberry sauce", "description": "", "features": "", "ingredients": ""}, "ber-blan": {"name": "Beurre blanc", "description": "", "features": "", "ingredients": ""}, "tomatno-bazilikovyy-sous-sous-chili": {"name": "Tomato–basil sauce (chili sauce)", "description": "", "features": "", "ingredients": ""}, "hlebnaya-korzina": {"name": "Bread basket", "description": "", "features": "", "ingredients": ""}}</script>
 
 <script>
 (function(){
-  // parse embedded JSON once
   const jsonTag = document.getElementById('dish-names');
   let dishNames = {};
   if (jsonTag) {
@@ -1231,48 +1059,79 @@ if ('serviceWorker' in navigator) {
     return base;
   }
 
-  function findSlug(btn){
-    // Priority: data-slug -> data-audio basename -> data-key -> ""
-    const ds = btn.getAttribute("data-slug");
+  function findSlug(el){
+    const ds = el.getAttribute("data-slug");
     if (ds) return ds.trim();
-    const da = btn.getAttribute("data-audio");
+    const da = el.getAttribute("data-audio");
     if (da) return basename(da).trim();
-    const dk = btn.getAttribute("data-key");
+    const dk = el.getAttribute("data-key");
     if (dk) return dk.trim();
     return "";
   }
 
+  function guessLang(text){
+    // Simple heuristic: if contains Latin, use English; otherwise Russian
+    return /[A-Za-z]/.test(text) ? "en-US" : "ru-RU";
+  }
+
+  function loadVoices(){
+    return new Promise(resolve=>{
+      const v = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+      if (v && v.length) return resolve(v);
+      if (!window.speechSynthesis){ return resolve([]); }
+      const onVoices = ()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        window.speechSynthesis.removeEventListener("voiceschanged", onVoices);
+      };
+      window.speechSynthesis.addEventListener("voiceschanged", onVoices);
+      // Fallback timeout in case event never fires
+      setTimeout(()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        try{ window.speechSynthesis.removeEventListener("voiceschanged", onVoices);}catch(e){}
+      }, 1200);
+    });
+  }
+
   function speakText(text){
-    if (!text) return;
+    if (!text || !window.speechSynthesis) return;
     try { window.speechSynthesis.cancel(); } catch(e) {}
     const u = new SpeechSynthesisUtterance(text);
-    // Optional tuning: slow a bit for clarity on mobile
+    u.lang = guessLang(text);
     u.rate = 0.95;
-    window.speechSynthesis.speak(u);
+    // Ensure voices are loaded on Safari/iOS
+    loadVoices().then(()=>{
+      try { window.speechSynthesis.speak(u); } catch(e){ /* noop */ }
+    });
+  }
+
+  function getNameFor(el){
+    const slug = findSlug(el);
+    if (slug && dishNames[slug] && dishNames[slug].name) return dishNames[slug].name;
+    return el.getAttribute("data-name")
+        || el.getAttribute("aria-label")
+        || el.getAttribute("title")
+        || "";
   }
 
   function onClick(e){
-    const btn = e.currentTarget;
-    const slug = findSlug(btn);
-    if (!slug) return;
-    const entry = dishNames[slug];
-    let name = (entry && entry.name) ? entry.name : null;
-    if (!name) {
-      // Fallback: data-name if present
-      name = btn.getAttribute("data-name");
-    }
-    if (name) {
-      e.preventDefault();
-      e.stopPropagation();
-      speakText(name);
-    }
+    const el = e.currentTarget;
+    const name = getNameFor(el);
+    if (!name) return;
+    e.preventDefault();
+    // Don't stop propagation unless there is a competing audio player you want to disable.
+    speakText(name);
   }
 
   function attach(){
-    document.querySelectorAll(".speak-btn").forEach(btn => {
-      // Avoid double-binding
+    // Bind to common button patterns used for audio in the app
+    const candidates = document.querySelectorAll(
+      'button.speak-btn, button[data-audio], button[data-slug], button[data-key], .speak-btn[data-audio], .speak-btn[data-slug], .audio-btn, .play-audio'
+    );
+    candidates.forEach(btn=>{
       if (btn.__ttsBound) return;
-      btn.addEventListener("click", onClick, true);
+      btn.addEventListener("click", onClick, true); // capture to survive stopPropagation in other handlers
       btn.__ttsBound = true;
     });
   }
@@ -1284,5 +1143,227 @@ if ('serviceWorker' in navigator) {
   }
 })();
 </script>
+
+
+<!-- ===== Audio Name Panel Injector v12 (chip inside .en-title, below text) ===== -->
+<style>
+  .en-title{ /* ensure our inner row appears below title text */ }
+  .en-audio-under{display:block; margin-top:.4rem;}
+  .en-audio-chip{display:inline-flex; align-items:center; gap:.35rem;
+    padding:.2rem .55rem; border:1px solid rgba(0,0,0,.18); border-radius:999px; background:rgba(0,0,0,.06);
+    font-size:.85rem; line-height:1; white-space:nowrap;}
+  .en-audio-chip button{all:unset; cursor:pointer; padding:.1rem .4rem; border-radius:999px; border:1px solid rgba(0,0,0,.25); line-height:1;}
+  .en-audio-chip button:active{transform:scale(.95);}
+</style>
+
+<script>
+(function(){
+  const jsonTag = document.getElementById('dish-names');
+  let dishNames = {};
+  if (jsonTag) {
+    try { dishNames = JSON.parse(jsonTag.textContent || "{}"); } catch(e){ dishNames = {}; }
+  }
+
+  function basename(path) {
+    if (!path) return "";
+    const lastSlash = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\"));
+    let base = (lastSlash >= 0) ? path.slice(lastSlash+1) : path;
+    const dot = base.lastIndexOf(".");
+    if (dot > 0) base = base.slice(0, dot);
+    return base;
+  }
+
+  function findSlug(el){
+    const ds = el.getAttribute("data-slug");
+    if (ds) return ds.trim();
+    const da = el.getAttribute("data-audio");
+    if (da) return basename(da).trim();
+    const dk = el.getAttribute("data-key");
+    if (dk) return dk.trim();
+    return "";
+  }
+
+  function guessLang(text){
+    // Simple heuristic: if contains Latin, use English; otherwise Russian
+    return /[A-Za-z]/.test(text) ? "en-US" : "ru-RU";
+  }
+
+  function loadVoices(){
+    return new Promise(resolve=>{
+      const v = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+      if (v && v.length) return resolve(v);
+      if (!window.speechSynthesis){ return resolve([]); }
+      const onVoices = ()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        window.speechSynthesis.removeEventListener("voiceschanged", onVoices);
+      };
+      window.speechSynthesis.addEventListener("voiceschanged", onVoices);
+      // Fallback timeout in case event never fires
+      setTimeout(()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        try{ window.speechSynthesis.removeEventListener("voiceschanged", onVoices);}catch(e){}
+      }, 1200);
+    });
+  }
+
+  function speakText(text){
+    if (!text || !window.speechSynthesis) return;
+    try { window.speechSynthesis.cancel(); } catch(e) {}
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = guessLang(text);
+    u.rate = 0.95;
+    // Ensure voices are loaded on Safari/iOS
+    loadVoices().then(()=>{
+      try { window.speechSynthesis.speak(u); } catch(e){ /* noop */ }
+    });
+  }
+
+  function getNameFor(el){
+    const slug = findSlug(el);
+    if (slug && dishNames[slug] && dishNames[slug].name) return dishNames[slug].name;
+    return el.getAttribute("data-name")
+        || el.getAttribute("aria-label")
+        || el.getAttribute("title")
+        || "";
+  }
+
+  function onClick(e){
+    const el = e.currentTarget;
+    const name = getNameFor(el);
+    if (!name) return;
+    e.preventDefault();
+    // Don't stop propagation unless there is a competing audio player you want to disable.
+    speakText(name);
+  }
+
+  function attach(){
+    // Bind to common button patterns used for audio in the app
+    const candidates = document.querySelectorAll(
+      'button.speak-btn, button[data-audio], button[data-slug], button[data-key], .speak-btn[data-audio], .speak-btn[data-slug], .audio-btn, .play-audio'
+    );
+    candidates.forEach(btn=>{
+      if (btn.__ttsBound) return;
+      btn.addEventListener("click", onClick, true); // capture to survive stopPropagation in other handlers
+      btn.__ttsBound = true;
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attach);
+  } else {
+    attach();
+  }
+})();
+</script>
+
+<!-- ===== End Audio Name Panel Injector v12 ===== -->
+
+<script id="dish-names" type="application/json">{"ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok": {"name": "Imperial Oyster (Russia)", "description": "", "features": "", "ingredients": ""}, "ustritsa-rozovaya-dzholi-namibiya-afrika": {"name": "Jolie Pink Oyster (Namibia, Africa)", "description": "", "features": "", "ingredients": ""}, "morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom": {"name": "Sea urchin with ponzu, avocado mousse, and quail yolk", "description": "", "features": "", "ingredients": ""}, "hamon-serrano-gran-reserva-50-gr": {"name": "Jamón Serrano Gran Reserva", "description": "", "features": "", "ingredients": ""}, "brusketta-s-pashtetom-iz-kurinoy-pecheni-slivochnym-syrom-i-tryufelnym-maslom": {"name": "Bruschetta with chicken liver pâté, cream cheese, and truffle oil", "description": "", "features": "", "ingredients": ""}, "brusketta-s-burratoy-tomatami-i-sousom-pesto": {"name": "Bruschetta with burrata, tomatoes, and pesto", "description": "", "features": "", "ingredients": ""}, "brusketta-s-lesnymi-gribami-v-slivochnom-souse": {"name": "Bruschetta with wild mushrooms in a creamy sauce", "description": "", "features": "", "ingredients": ""}, "tartar-iz-premialnoy-govyazhey-vyrezki-s-zharennym-kartofelem": {"name": "Prime beef tenderloin tartare with fried potatoes", "description": "", "features": "", "ingredients": ""}, "assorti-izyskannyh-myasnyh-delikatesov": {"name": "Selection of fine cured meats", "description": "", "features": "", "ingredients": ""}, "tomat-i-krab": {"name": "Tomato & Crab", "description": "", "features": "", "ingredients": ""}, "tartar-iz-tuntsa-s-ispanskimi-olivkami-kedrovymi-orehami-i-zelenyu": {"name": "Tuna tartare with Spanish olives, pine nuts, and herbs", "description": "", "features": "", "ingredients": ""}, "karpachcho-iz-krevetki-s-kremom-iz-baklazhana-tomatami-i-sousom-mango-chia": {"name": "Shrimp carpaccio with eggplant cream, tomatoes, and mango–chia sauce", "description": "", "features": "", "ingredients": ""}, "seviche-iz-sibasa-s-tomatami-avokado-i-pertsem-chili": {"name": "Sea bass ceviche with tomatoes, avocado, and chili", "description": "", "features": "", "ingredients": ""}, "karpachcho-iz-zapechennoy-svekly-so-slivochnym-syrom-kedrovymi-orehami-i-kopchenym-maslom": {"name": "Roasted beet carpaccio with cream cheese, pine nuts, and smoked oil", "description": "", "features": "", "ingredients": ""}, "assorti-iz-shesti-blagorodnyh-syrov": {"name": "Selection of six fine cheeses", "description": "", "features": "", "ingredients": ""}, "eskalop-fua-gra-s-grushey-pakham-pod-yagodno-romovom-sousom": {"name": "Foie gras escalope with Packham pear and berry–rum sauce", "description": "", "features": "", "ingredients": ""}, "zapechennye-midii-so-shpinatom-pod-syrno-tryufelnym-fondyu": {"name": "Baked mussels with spinach under cheese–truffle fondue", "description": "", "features": "", "ingredients": ""}, "ustritsy-zapechennye-pod-sousom-shabli-s-muskatnym-orehom-i-lukom-shalot": {"name": "Baked oysters with Chablis sauce, nutmeg, and shallot", "description": "", "features": "", "ingredients": ""}, "ulitki-po-burgundski": {"name": "Burgundy-style snails", "description": "", "features": "", "ingredients": ""}, "krevetki-v-souse-vasabi": {"name": "Shrimp in wasabi sauce", "description": "", "features": "", "ingredients": ""}, "baklazhan-yudzu": {"name": "Yuzu Eggplant", "description": "", "features": "", "ingredients": ""}, "tartar-iz-baklazhan-s-tomatami-zelenyu-i-postnym-pesto": {"name": "Eggplant tartare with tomatoes, herbs, and vegan pesto", "description": "", "features": "", "ingredients": ""}, "salat-s-zapechennym-rostbifom": {"name": "Roast beef salad", "description": "", "features": "", "ingredients": ""}, "salat-s-sochnoy-telyatinoy-i-aromatnymi-gribami": {"name": "Veal and mushroom salad", "description": "", "features": "", "ingredients": ""}, "salat-kardini-s-perepelkoy-tomatami-perepelinym-yaytsom-i-chesnochnymi-grenkami": {"name": "Cardini salad with quail, tomatoes, quail egg, and garlic croutons", "description": "", "features": "", "ingredients": ""}, "teplyy-salat-s-fua-gra-perepelkoy-i-karamelizirovannym-yablokom": {"name": "Warm salad with foie gras, quail, and caramelized apple", "description": "", "features": "", "ingredients": ""}, "teplyy-salat-s-zharennym-osminogom-ovoschami-olivkami-pod-gorchichnym-sousom": {"name": "Warm salad with fried octopus, vegetables, and olives, mustard dressing", "description": "", "features": "", "ingredients": ""}, "salat-s-myasom-kraba-i-opalennymi-ovoschami-pod-medovo-gorchichnoy-zapravkoy": {"name": "Crab salad with charred vegetables, honey–mustard dressing", "description": "", "features": "", "ingredients": ""}, "salat-s-moreproduktami-i-myatym-avokado": {"name": "Seafood salad with smashed avocado", "description": "", "features": "", "ingredients": ""}, "ostrova-v-okeane-salat-s-tuntsom-i-salsoy-iz-tomatov-i-maslin": {"name": "Islands in the Ocean (Tuna salad with tomato–olive salsa)", "description": "", "features": "", "ingredients": ""}, "ovoschnoy-salat-s-avokado-syrom-grana-padano-lukovym-kramblom-pod-medovo-gorchichnoy-zapravkoy": {"name": "Vegetable salad with avocado, Grana Padano, onion crumble, honey–mustard dressing", "description": "", "features": "", "ingredients": ""}, "burrata-s-olivkami-i-tartarom-iz-sladkih-tomatov": {"name": "Burrata with olives and sweet tomato tartare", "description": "", "features": "", "ingredients": ""}, "chechevichnyy-sup-s-molodym-yagnenkom-ovoschami-i-aromatnymi-travami": {"name": "Lentil soup with young lamb, vegetables, and herbs", "description": "", "features": "", "ingredients": ""}, "lukovyy-sup-s-bekonom-ziroy-pod-syrnoy-korochkoy-gryuyer": {"name": "Onion soup with bacon and cumin, Gruyère crust", "description": "", "features": "", "ingredients": ""}, "ostryy-sup-tom-yam-s-grebeshkom-i-krevetkami": {"name": "Spicy Tom Yum with scallops and shrimp", "description": "", "features": "", "ingredients": ""}, "uha-s-podkopchennoy-krasnoy-ryboy-ovoschami-i-slivochnym-bulonom": {"name": "Ukha fish soup with smoked red fish, vegetables, and creamy broth", "description": "", "features": "", "ingredients": ""}, "shelkovyy-krem-sup-iz-kashtanov-s-aromatnymi-belymi-gribami": {"name": "Silky chestnut cream soup with porcini mushrooms", "description": "", "features": "", "ingredients": ""}, "ovoschnoy-sup-minestrone-na-kurinom-bulone-s-kedrovymi-orehami-i-sousom-pesto": {"name": "Minestrone on chicken broth with pine nuts and pesto", "description": "", "features": "", "ingredients": ""}, "postnyy-minestrone-na-ovoschnom-bulone-s-kedrovymi-orehami-chesnochnoy-chiabattoy-i-postnym-pesto": {"name": "Vegan minestrone on vegetable broth with pine nuts, garlic ciabatta, and vegan pesto", "description": "", "features": "", "ingredients": ""}, "domashnie-ravioli-s-nachinkoy-iz-fermerskoy-kuritsy-aromatnoy-ziroy-pod-syrno-tryufelnym-fondyu": {"name": "House-made ravioli with farm chicken and cumin under cheese–truffle fondue", "description": "", "features": "", "ingredients": ""}, "pasta-ptitim-s-moreproduktami-i-kremom-iz-zelenogo-goroshka": {"name": "Ptitim (Israeli couscous) with seafood and green pea cream", "description": "", "features": "", "ingredients": ""}, "chernye-fetuchini-s-myasom-kraba-fenhelem-i-lukom-porey": {"name": "Black fettuccine with crab meat, fennel, and leek", "description": "", "features": "", "ingredients": ""}, "arrabyata-s-krevetkami-i-grebeshkom": {"name": "Arrabbiata with shrimp and scallops", "description": "", "features": "", "ingredients": ""}, "rizotto-s-krolikom-i-gribami": {"name": "Risotto with rabbit and mushrooms", "description": "", "features": "", "ingredients": ""}, "zelenoe-rizotto": {"name": "Green risotto", "description": "", "features": "", "ingredients": ""}, "govyazhe-rebro-pod-sousom-iz-chernogo-pertsa-s-kartofelem-batatom-i-sousom-chimichuri": {"name": "Beef rib with black pepper sauce, potatoes, sweet potato, and chimichurri", "description": "", "features": "", "ingredients": ""}, "bifshteks-iz-mramornoy-govyadiny-s-zharennym-kartofelem-gribami-i-shpinatom-s-mussom-iz-gorgonzoly-i-tryufelnym-kremom": {"name": "Beefsteak of marbled beef with fried potatoes, mushrooms and spinach, Gorgonzola mousse and truffle cream", "description": "", "features": "", "ingredients": ""}, "tomlenye-govyazhi-schechki-s-ragu-iz-belyh-gribov-kartofelem-pyure-i-solodovym-sousom": {"name": "Braised beef cheeks with porcini ragout, mashed potatoes, and malt sauce", "description": "", "features": "", "ingredients": ""}, "file-minon-s-fua-gra-zharennymi-belymi-gribami-i-ovoschami-na-grile": {"name": "Filet mignon with foie gras, fried porcini, and grilled vegetables", "description": "", "features": "", "ingredients": ""}, "chernyy-burger-s-kotletoy-iz-mramornoy-govyadiny-syrom-kamamber-lukom-konfi-i-ostrym-pertsem-halapeno": {"name": "Black burger with marbled beef patty, Camembert, onion confit, and spicy jalapeño", "description": "", "features": "", "ingredients": ""}, "tomlenaya-golyashka-yagnenka-s-pechenym-baklazhanom-i-yogurtovym-mussom": {"name": "Braised lamb shank with baked eggplant and yogurt mousse", "description": "", "features": "", "ingredients": ""}, "fermerskiy-tsyplenok-prigotovlennyy-na-otkrytom-ogne": {"name": "Farm chicken grilled over open fire", "description": "", "features": "", "ingredients": ""}, "utinaya-nozhka-pod-apelsinovym-sousom-na-podushke-iz-zharenogo-kartofelya-s-bekonom": {"name": "Duck leg with orange sauce on a bed of fried potatoes with bacon", "description": "", "features": "", "ingredients": ""}, "kotleta-iz-utinoy-grudki-s-fua-gra-i-kartofelnym-pyure-s-zelenyu-i-sousom-barbekyu": {"name": "Duck breast patty with foie gras, herb mashed potatoes, and barbecue sauce", "description": "", "features": "", "ingredients": ""}, "file-sibasa-so-shpinatom-kartofelnym-pyure-s-zelenyu-i-tsitrusovym-sousom": {"name": "Sea bass fillet with spinach, herb mashed potatoes, and citrus sauce", "description": "", "features": "", "ingredients": ""}, "file-dorado-na-podushke-iz-zharennyh-ovoschey-i-gribov-so-slivochnym-sousom-berblan": {"name": "Sea bream fillet on a bed of fried vegetables and mushrooms, beurre blanc", "description": "", "features": "", "ingredients": ""}, "steyk-iz-semgi-zapechennoy-v-mede-s-kartofelnym-pyure-i-tomatnoy-salsoy": {"name": "Salmon steak baked with honey, mashed potatoes, and tomato salsa", "description": "", "features": "", "ingredients": ""}, "zapechennaya-chernaya-treska-s-marinovannym-imbirem-i-zharennymi-ovoschami-pod-medovo-apelsinovym-sousom": {"name": "Baked black cod with pickled ginger and fried vegetables, honey–orange sauce", "description": "", "features": "", "ingredients": ""}, "glazirovannyy-osminog-s-zharennym-kartofelem-vyalenymi-tomatami-i-rostkami-podsolnuha": {"name": "Glazed octopus with fried potatoes, sun-dried tomatoes, and sunflower sprouts", "description": "", "features": "", "ingredients": ""}, "kotleta-iz-assorti-ryb-s-kartofelnym-pyure-i-tomlenym-shpinatom": {"name": "Assorted fish patty with mashed potatoes and stewed spinach", "description": "", "features": "", "ingredients": ""}, "denver-steyk-lopatochnaya-chast": {"name": "Denver steak (chuck)", "description": "", "features": "", "ingredients": ""}, "file-praym-govyazhya-vyrezka": {"name": "Prime filet (beef tenderloin)", "description": "", "features": "", "ingredients": ""}, "ribay-steyk": {"name": "Ribeye steak", "description": "", "features": "", "ingredients": ""}, "striployn-steyk": {"name": "Striploin steak", "description": "", "features": "", "ingredients": ""}, "kare-baraniny": {"name": "Rack of lamb", "description": "", "features": "", "ingredients": ""}, "kare-yagnenka": {"name": "Young lamb rack", "description": "", "features": "", "ingredients": ""}, "semga": {"name": "Salmon", "description": "", "features": "", "ingredients": ""}, "sibas": {"name": "Sea bass", "description": "", "features": "", "ingredients": ""}, "dorado": {"name": "Dorade (sea bream)", "description": "", "features": "", "ingredients": ""}, "tunets": {"name": "Tuna", "description": "", "features": "", "ingredients": ""}, "kalmar": {"name": "Squid", "description": "", "features": "", "ingredients": ""}, "osminog": {"name": "Octopus", "description": "", "features": "", "ingredients": ""}, "korolevskie-krevetki": {"name": "King prawns", "description": "", "features": "", "ingredients": ""}, "morskie-grebeshki": {"name": "Sea scallops", "description": "", "features": "", "ingredients": ""}, "zharennyy-kartofel-s-bekonom": {"name": "Fried potatoes with bacon", "description": "", "features": "", "ingredients": ""}, "zharennyy-kartofel-s-gribami-v-syrno-slivochnom-souse": {"name": "Fried potatoes with mushrooms in a creamy cheese sauce", "description": "", "features": "", "ingredients": ""}, "zharennyy-kartofel-s-lukom-shalot-i-zelenyu": {"name": "Fried potatoes with shallots and herbs", "description": "", "features": "", "ingredients": ""}, "kartofel-fri": {"name": "French fries", "description": "", "features": "", "ingredients": ""}, "kartofelnoe-pyure-s-zelenyu": {"name": "Herb mashed potatoes", "description": "", "features": "", "ingredients": ""}, "kartofel-po-domashnemu-na-hospere": {"name": "Home-style potatoes on the Josper", "description": "", "features": "", "ingredients": ""}, "ris-otvarnoy": {"name": "Boiled rice", "description": "", "features": "", "ingredients": ""}, "ovoschi-miks": {"name": "Mixed vegetables", "description": "", "features": "", "ingredients": ""}, "sparzha": {"name": "Asparagus", "description": "", "features": "", "ingredients": ""}, "tomlenyy-shpinat-s-chesnokom-i-syrom": {"name": "Stewed spinach with garlic and cheese", "description": "", "features": "", "ingredients": ""}, "perets-bolgarskiy": {"name": "Bell pepper", "description": "", "features": "", "ingredients": ""}, "tsukini": {"name": "Zucchini", "description": "", "features": "", "ingredients": ""}, "tomaty-uzbekskie": {"name": "Uzbek tomatoes", "description": "", "features": "", "ingredients": ""}, "tomaty-cherri": {"name": "Cherry tomatoes", "description": "", "features": "", "ingredients": ""}, "muss-pryanye-travy": {"name": "Herb mousse", "description": "", "features": "", "ingredients": ""}, "dikie-yabloki-s-dushistym-pertsem": {"name": "Wild apples with allspice", "description": "", "features": "", "ingredients": ""}, "anna-pavlova": {"name": "Anna Pavlova", "description": "", "features": "", "ingredients": ""}, "cheremuhovyy-medovik-s-romashkovym-morozhenym": {"name": "Bird cherry honey cake with chamomile ice cream", "description": "", "features": "", "ingredients": ""}, "shokoladnyy-fondan": {"name": "Chocolate fondant", "description": "", "features": "", "ingredients": ""}, "sigara-sabor-de-la-vida": {"name": "Sabor de la Vida Cigar", "description": "", "features": "", "ingredients": ""}, "morozhenoe-schavel-estragon": {"name": "Sorrel–tarragon ice cream", "description": "", "features": "", "ingredients": ""}, "domashnee-morozhenoe": {"name": "Homemade ice cream", "description": "", "features": "", "ingredients": ""}, "fruktovyy-sorbet": {"name": "Fruit sorbet", "description": "", "features": "", "ingredients": ""}, "perechnyy": {"name": "Peppercorn sauce", "description": "", "features": "", "ingredients": ""}, "gorchichnyy": {"name": "Mustard sauce", "description": "", "features": "", "ingredients": ""}, "tomatno-tsitrusovyy": {"name": "Tomato–citrus sauce", "description": "", "features": "", "ingredients": ""}, "slivochno-gribnoy": {"name": "Creamy mushroom sauce", "description": "", "features": "", "ingredients": ""}, "barbekyu": {"name": "Barbecue sauce", "description": "", "features": "", "ingredients": ""}, "pesto": {"name": "Pesto", "description": "", "features": "", "ingredients": ""}, "klyukvennyy": {"name": "Cranberry sauce", "description": "", "features": "", "ingredients": ""}, "ber-blan": {"name": "Beurre blanc", "description": "", "features": "", "ingredients": ""}, "tomatno-bazilikovyy-sous-sous-chili": {"name": "Tomato–basil sauce (chili sauce)", "description": "", "features": "", "ingredients": ""}, "hlebnaya-korzina": {"name": "Bread basket", "description": "", "features": "", "ingredients": ""}}</script>
+
+
+<script>
+(function(){
+  const jsonTag = document.getElementById('dish-names');
+  let dishNames = {};
+  if (jsonTag) {
+    try { dishNames = JSON.parse(jsonTag.textContent || "{}"); } catch(e){ dishNames = {}; }
+  }
+
+  function basename(path) {
+    if (!path) return "";
+    const lastSlash = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\"));
+    let base = (lastSlash >= 0) ? path.slice(lastSlash+1) : path;
+    const dot = base.lastIndexOf(".");
+    if (dot > 0) base = base.slice(0, dot);
+    return base;
+  }
+
+  function findSlug(el){
+    const ds = el.getAttribute("data-slug");
+    if (ds) return ds.trim();
+    const da = el.getAttribute("data-audio");
+    if (da) return basename(da).trim();
+    const dk = el.getAttribute("data-key");
+    if (dk) return dk.trim();
+    return "";
+  }
+
+  function guessLang(text){
+    // Simple heuristic: if contains Latin, use English; otherwise Russian
+    return /[A-Za-z]/.test(text) ? "en-US" : "ru-RU";
+  }
+
+  function loadVoices(){
+    return new Promise(resolve=>{
+      const v = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+      if (v && v.length) return resolve(v);
+      if (!window.speechSynthesis){ return resolve([]); }
+      const onVoices = ()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        window.speechSynthesis.removeEventListener("voiceschanged", onVoices);
+      };
+      window.speechSynthesis.addEventListener("voiceschanged", onVoices);
+      // Fallback timeout in case event never fires
+      setTimeout(()=>{
+        const vv = window.speechSynthesis.getVoices() || [];
+        resolve(vv);
+        try{ window.speechSynthesis.removeEventListener("voiceschanged", onVoices);}catch(e){}
+      }, 1200);
+    });
+  }
+
+  function speakText(text){
+    if (!text || !window.speechSynthesis) return;
+    try { window.speechSynthesis.cancel(); } catch(e) {}
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = guessLang(text);
+    u.rate = 0.95;
+    // Ensure voices are loaded on Safari/iOS
+    loadVoices().then(()=>{
+      try { window.speechSynthesis.speak(u); } catch(e){ /* noop */ }
+    });
+  }
+
+  function getNameFor(el){
+    const slug = findSlug(el);
+    if (slug && dishNames[slug] && dishNames[slug].name) return dishNames[slug].name;
+    return el.getAttribute("data-name")
+        || el.getAttribute("aria-label")
+        || el.getAttribute("title")
+        || "";
+  }
+
+  function onClick(e){
+    const el = e.currentTarget;
+    const name = getNameFor(el);
+    if (!name) return;
+    e.preventDefault();
+    // Don't stop propagation unless there is a competing audio player you want to disable.
+    speakText(name);
+  }
+
+  function attach(){
+    // Bind to common button patterns used for audio in the app
+    const candidates = document.querySelectorAll(
+      'button.speak-btn, button[data-audio], button[data-slug], button[data-key], .speak-btn[data-audio], .speak-btn[data-slug], .audio-btn, .play-audio'
+    );
+    candidates.forEach(btn=>{
+      if (btn.__ttsBound) return;
+      btn.addEventListener("click", onClick, true); // capture to survive stopPropagation in other handlers
+      btn.__ttsBound = true;
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attach);
+  } else {
+    attach();
+  }
+})();
+</script>
+
 
 </body></html>
