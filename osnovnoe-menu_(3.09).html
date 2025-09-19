@@ -963,7 +963,7 @@ if ('serviceWorker' in navigator) {
       {key:'ingredients', label:'Ingredients', type:'textarea'}
     ];
     let html = '';
-    fields.forEach(f=>{
+    fields.forEach(f=>{ if (isMobile && f.key==="name") { return; }
       const val = data[f.key] || '';
       if (val.trim() || !isMobile){
         html += `
