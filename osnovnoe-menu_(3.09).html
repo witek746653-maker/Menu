@@ -1007,6 +1007,83 @@ if ('serviceWorker' in navigator) {
 
     backdrop.addEventListener('click',e=>{ if(e.target===backdrop) backdrop.remove(); });
     panel.querySelector('.en-close').addEventListener('click',()=>backdrop.remove());
+    // --- Mobile auto TTS fallback: if no mp3 or playback fails, read Name automatically ---
+    (function(){
+      if (!isMobile) return;
+      const header = panel.querySelector('.en-title');
+      const nameText = (header && header.textContent || '').trim();
+      const audio = panel.querySelector('audio');
+
+      function pickVoiceFor(text){
+        const voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+        const hasCyr = /[\u0400-\u04FF]/.test(text);
+        const pref = hasCyr ? 'ru-RU' : 'en-US';
+        // Try exact, then base lang, then any
+        let v = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith(pref.toLowerCase()));
+        if (!v){
+          const base = pref.split('-')[0];
+          v = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith(base));
+        }
+        return v || voices[0] || null;
+      }
+
+      function speakNow(text){
+        if (!text) return;
+        try{
+          window.speechSynthesis.cancel();
+          // iOS warmup (silent utterance)
+          try{
+            const warm = new SpeechSynthesisUtterance(' ');
+            warm.volume = 0.0; warm.rate = 1.0; warm.pitch = 1.0; warm.lang = 'en-US';
+            window.speechSynthesis.speak(warm);
+          }catch(e){}
+          const u = new SpeechSynthesisUtterance(text);
+          const voice = pickVoiceFor(text);
+          if (voice) u.voice = voice;
+          u.lang = (voice && voice.lang) || (/[\u0400-\u04FF]/.test(text) ? 'ru-RU' : 'en-US');
+          u.rate = 1.0; u.pitch = 1.0; u.volume = 1.0;
+          if (window.speechSynthesis.paused) { try{ window.speechSynthesis.resume(); }catch(e){} }
+          window.speechSynthesis.speak(u);
+        }catch(e){ /* no-op */ }
+      }
+
+      async function tryPlayAudio(){
+        if (!audio || !audio.src) return false;
+        try{
+          await audio.play();
+          return true;
+        }catch(e){
+          return false;
+        }
+      }
+
+      (async ()=>{
+        const played = await tryPlayAudio();
+        if (played) return;
+        if (!('speechSynthesis' in window)) return;
+
+        const proceed = ()=> speakNow(nameText);
+        const voices = window.speechSynthesis.getVoices();
+        if (!voices || voices.length === 0){
+          // Wait for voices to load
+          const once = ()=>{ window.speechSynthesis.onvoiceschanged = null; proceed(); };
+          window.speechSynthesis.onvoiceschanged = once;
+          // Fallback in case event doesn't fire
+          setTimeout(proceed, 800);
+        } else {
+          proceed();
+        }
+      })();
+
+      // Stop audio/TTS on close
+      const stopAll = ()=>{
+        try{ if (audio){ audio.pause(); audio.currentTime = 0; } }catch(e){}
+        try{ if (window.speechSynthesis){ window.speechSynthesis.cancel(); } }catch(e){}
+      };
+      backdrop.addEventListener('click', e=>{ if (e.target===backdrop) stopAll(); });
+      panel.querySelector('.en-close').addEventListener('click', stopAll);
+    })();
+
     // Hide 'Name' field inside sections on mobile (header already shows it)
     if (isMobile) {
       panel.querySelectorAll('.en-sec').forEach(sec => {
@@ -1210,113 +1287,5 @@ if ('serviceWorker' in navigator) {
 })();
 </script>
 <!-- ===== End Audio Name Panel Injector v12 ===== -->
-
-
-<!-- TTS append: non-invasive -->
-<script>
-(function(){
-  function basename(path) {
-    if (!path) return "";
-    const lastSlash = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\"));
-    let base = (lastSlash >= 0) ? path.slice(lastSlash+1) : path;
-    const dot = base.lastIndexOf(".");
-    if (dot > 0) base = base.slice(0, dot);
-    return base;
-  }
-  function findSlug(el){
-    const ds = el.getAttribute("data-slug");
-    if (ds) return ds.trim();
-    const da = el.getAttribute("data-audio");
-    if (da) return basename(da).trim();
-    const dk = el.getAttribute("data-key");
-    if (dk) return dk.trim();
-    return "";
-  }
-  function guessLang(text){
-    return /[A-Za-z]/.test(text) ? "en-US" : "ru-RU";
-  }
-  function loadVoices(){
-    return new Promise(resolve=>{
-      if (!window.speechSynthesis){ return resolve([]); }
-      let v = window.speechSynthesis.getVoices();
-      if (v && v.length) return resolve(v);
-      const onVoices = ()=>{
-        v = window.speechSynthesis.getVoices() || [];
-        resolve(v);
-        window.speechSynthesis.removeEventListener("voiceschanged", onVoices);
-      };
-      window.speechSynthesis.addEventListener("voiceschanged", onVoices);
-      setTimeout(()=>{
-        v = window.speechSynthesis.getVoices() || [];
-        resolve(v);
-        try{ window.speechSynthesis.removeEventListener("voiceschanged", onVoices);}catch(e){}
-      }, 1200);
-    });
-  }
-  function speakText(text){
-    if (!text || !window.speechSynthesis) return;
-    try { window.speechSynthesis.cancel(); } catch(e) {}
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = guessLang(text);
-    u.rate = 0.95;
-    loadVoices().then(()=>{
-      try { window.speechSynthesis.speak(u); } catch(e){}
-    });
-  }
-  function attach(dishNames){
-    const getNameFor = (el)=>{
-      const slug = findSlug(el);
-      if (slug && dishNames && dishNames[slug] && dishNames[slug].name) return dishNames[slug].name;
-      return el.getAttribute("data-name")
-          || el.getAttribute("aria-label")
-          || el.getAttribute("title")
-          || "";
-    };
-    const handler = (e)=>{
-      const el = e.currentTarget;
-      const name = getNameFor(el);
-      if (!name) return;
-      e.preventDefault();
-      speakText(name);
-    };
-    const selectors = [
-      'button.speak-btn',
-      'button[data-audio]',
-      'button[data-slug]',
-      'button[data-key]',
-      '.audio-btn',
-      '.play-audio'
-    ];
-    document.querySelectorAll(selectors.join(',')).forEach(btn=>{
-      if (btn.__ttsBound) return;
-      btn.addEventListener("click", handler, true);
-      btn.__ttsBound = true;
-    });
-  }
-  function readEmbeddedJson(){
-    try {
-      const tag = document.getElementById('dish-names');
-      if (!tag) return null;
-      return JSON.parse(tag.textContent || "{}");
-    } catch(e){ return null; }
-  }
-  function fetchJsonFallback(){
-    return fetch("en.json").then(r=>r.json()).catch(()=>({}));
-  }
-  function getDishNames(){
-    if (window.__EN__ && typeof window.__EN__ === "object") return Promise.resolve(window.__EN__);
-    const emb = readEmbeddedJson();
-    if (emb) return Promise.resolve(emb);
-    return fetchJsonFallback();
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", ()=>{
-      getDishNames().then(attach);
-    });
-  } else {
-    getDishNames().then(attach);
-  }
-})();
-</script>
 
 </body></html>
