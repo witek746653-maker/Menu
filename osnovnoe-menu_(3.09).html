@@ -1007,34 +1007,49 @@ if ('serviceWorker' in navigator) {
 
     backdrop.addEventListener('click',e=>{ if(e.target===backdrop) backdrop.remove(); });
     panel.querySelector('.en-close').addEventListener('click',()=>backdrop.remove());
-    // --- Mobile auto-voice fallback: if no mp3, speak the Name automatically ---
+    // --- Mobile auto TTS fallback: if no mp3 or playback fails, read Name automatically ---
     (function(){
       if (!isMobile) return;
       const header = panel.querySelector('.en-title');
       const nameText = (header && header.textContent || '').trim();
       const audio = panel.querySelector('audio');
 
-      function speakName(){
+      function pickVoiceFor(text){
+        const voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+        const hasCyr = /[\u0400-\u04FF]/.test(text);
+        const pref = hasCyr ? 'ru-RU' : 'en-US';
+        // Try exact, then base lang, then any
+        let v = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith(pref.toLowerCase()));
+        if (!v){
+          const base = pref.split('-')[0];
+          v = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith(base));
+        }
+        return v || voices[0] || null;
+      }
+
+      function speakNow(text){
+        if (!text) return;
         try{
-          if (!nameText) return;
-          if (window.speechSynthesis){
-            window.speechSynthesis.cancel();
-            const u = new SpeechSynthesisUtterance(nameText);
-            // Prefer English for 'name' field; browsers will fallback if unavailable
-            u.lang = 'en-US';
-            // Slight pause & rate for clarity
-            u.rate = 1.0;
-            u.pitch = 1.0;
-            window.speechSynthesis.speak(u);
-          }
+          window.speechSynthesis.cancel();
+          // iOS warmup (silent utterance)
+          try{
+            const warm = new SpeechSynthesisUtterance(' ');
+            warm.volume = 0.0; warm.rate = 1.0; warm.pitch = 1.0; warm.lang = 'en-US';
+            window.speechSynthesis.speak(warm);
+          }catch(e){}
+          const u = new SpeechSynthesisUtterance(text);
+          const voice = pickVoiceFor(text);
+          if (voice) u.voice = voice;
+          u.lang = (voice && voice.lang) || (/[\u0400-\u04FF]/.test(text) ? 'ru-RU' : 'en-US');
+          u.rate = 1.0; u.pitch = 1.0; u.volume = 1.0;
+          if (window.speechSynthesis.paused) { try{ window.speechSynthesis.resume(); }catch(e){} }
+          window.speechSynthesis.speak(u);
         }catch(e){ /* no-op */ }
       }
 
       async function tryPlayAudio(){
-        if (!audio) return false;
+        if (!audio || !audio.src) return false;
         try{
-          // if src is missing or empty, skip
-          if (!audio.src) return false;
           await audio.play();
           return true;
         }catch(e){
@@ -1043,17 +1058,30 @@ if ('serviceWorker' in navigator) {
       }
 
       (async ()=>{
-        const ok = await tryPlayAudio();
-        if (!ok) speakName();
+        const played = await tryPlayAudio();
+        if (played) return;
+        if (!('speechSynthesis' in window)) return;
+
+        const proceed = ()=> speakNow(nameText);
+        const voices = window.speechSynthesis.getVoices();
+        if (!voices || voices.length === 0){
+          // Wait for voices to load
+          const once = ()=>{ window.speechSynthesis.onvoiceschanged = null; proceed(); };
+          window.speechSynthesis.onvoiceschanged = once;
+          // Fallback in case event doesn't fire
+          setTimeout(proceed, 800);
+        } else {
+          proceed();
+        }
       })();
 
-      // Stop any voice/audio on close
+      // Stop audio/TTS on close
       const stopAll = ()=>{
         try{ if (audio){ audio.pause(); audio.currentTime = 0; } }catch(e){}
         try{ if (window.speechSynthesis){ window.speechSynthesis.cancel(); } }catch(e){}
       };
-      backdrop.addEventListener('click', e=>{ if (e.target===backdrop) stopAll(); }, { once:false });
-      panel.querySelector('.en-close').addEventListener('click', stopAll, { once:false });
+      backdrop.addEventListener('click', e=>{ if (e.target===backdrop) stopAll(); });
+      panel.querySelector('.en-close').addEventListener('click', stopAll);
     })();
 
     // Hide 'Name' field inside sections on mobile (header already shows it)
