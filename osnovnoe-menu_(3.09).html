@@ -791,6 +791,11 @@ display: inline-flex;
 .en-mobile-locked .en-foot { display: none !important; }
 */
 
+
+/* Mobile: hide Name section in view mode (scoped to modal only) */
+@media (max-width: 600px){
+  .en-panel:not(.en-editing) .en-sec-name { display: none; }
+}
 </style><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
@@ -1748,10 +1753,9 @@ if ('serviceWorker' in navigator) {
       let html='';
       fields.forEach(f=>{
         const val = data[f.key] || '';
+        const secClass = 'en-sec' + (f.key === 'name' ? ' en-sec-name' : '');
         // On mobile, still hide empty sections for readability
         if (isMobile && !val) return;
-        const secClass = 'en-sec' + (f.key === 'name' ? ' en-sec-name' : '');
-
         html += '<div class="' + secClass + '">'
               + '<div class="en-label">' + esc(f.label) + '</div>'
               + '<div class="en-text">' + esc(val) + '</div>'
@@ -2171,11 +2175,6 @@ if ('serviceWorker' in navigator) {
       min-height: 70vh !important;
     }
   }
-
-/* NEW: On mobile, hide "Name" section in view mode (not editing) */
-@media (max-width: 600px){
-  .en-panel:not(.en-editing) .en-sec-name { display: none; }
-}
 </style>
 
 </body></html>
