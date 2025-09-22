@@ -1289,45 +1289,64 @@ if ('serviceWorker' in navigator) {
 <!-- ===== End Audio Name Panel Injector v12 ===== -->
 
 
-
 <!-- ==== AUTOFIT MODAL: BEGIN ==== -->
 <style>
   .knp-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
   .knp-modal[aria-hidden="false"] { display: block; }
-  .knp-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.4); }
+  .knp-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.45); }
+
+  /* FIXED-SIZE DIALOG (same visual size for all cards) */
   .knp-modal__dialog {
     position: absolute; left: 50%; top: 50%;
     transform: translate(-50%, -50%);
-    background: #fff; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    background: #fff; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.25);
     width: min(720px, 94vw);
-    padding: 16px 16px calc(20px + env(safe-area-inset-bottom));
-    max-height: none; /* never clamp; we will scale instead */
-    will-change: transform;
+    height: min(84vh, 640px);
+    padding: 16px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: visible;
   }
+
   .knp-modal__header {
-    display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 8px; margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
   }
   .knp-modal__title { margin: 0; line-height: 1.2; font-size: clamp(18px, 5vw, 26px); }
-  .knp-modal__audio { width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid #ddd; background: #fafafa; cursor: pointer; }
-  .knp-modal__close { border: none; background: transparent; font-size: 24px; line-height: 1; cursor: pointer; }
-  .knp-modal__body { display: grid; gap: 10px; }
-  .knp-field h4 { margin: 0 0 4px; font-size: 14px; opacity: .7; }
-  .knp-field p { margin: 0; }
-  .knp-modal__body img { max-width: 100%; height: auto; }
-  @media (max-width: 480px) {
-    .knp-modal__dialog { padding: 12px 12px calc(18px + env(safe-area-inset-bottom)); border-radius: 12px; }
-    .knp-modal__audio { width: 32px; height: 32px; }
+  .knp-modal__audio { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #ddd; background:#fafafa; cursor:pointer;}
+  .knp-modal__close { border: none; background: #f24c4c; color:#fff; width:32px; height:32px; border-radius: 999px; font-weight:700; cursor: pointer; }
+
+  /* BODY BOX with no scroll, fixed area */
+  .knp-modal__bodybox {
+    position: relative;
+    border-radius: 12px;
+    background: #f7f8fb;
+    padding: 12px;
+    overflow: hidden; /* no scrollbars */
   }
-  /* Tight mode: reduce vertical spacing */
-  .knp-modal--tight .knp-modal__title { letter-spacing: -0.2px }
-  .knp-modal--tight .knp-modal__body { gap: 6px }
-  .knp-modal--tight .knp-field h4 { margin-bottom: 2px }
-  .knp-modal--tight .knp-field p { line-height: 1.25 }
-  /* Tiny mode: also nudge font sizes down a bit for extreme cases */
-  .knp-modal--tiny .knp-modal__title { font-size: clamp(16px, 4.5vw, 22px); }
-  .knp-modal--tiny .knp-field h4 { font-size: 13px; }
-  .knp-modal--tiny .knp-field p { font-size: 14px; line-height: 1.22; }
+  /* SCALER that shrinks only the content, not the box */
+  .knp-modal__scaler {
+    transform-origin: top left;
+    display: grid;
+    gap: 10px;
+  }
+
+  .knp-field h4 { margin: 0 0 4px; font-size: 14px; color:#0f4aad; }
+  .knp-field p { margin: 0; line-height: 1.35; }
+  .knp-modal__bodybox img { max-width: 100%; height: auto; }
+
+  /* Tight mode when too long */
+  .knp-tight .knp-field p { line-height: 1.25; }
+  .knp-tight .knp-modal__scaler { gap: 6px; }
+
+  @media (max-width: 480px) {
+    .knp-modal__dialog { border-radius: 14px; padding: 12px; height: min(84vh, 560px); }
+    .knp-modal__audio { width: 32px; height: 32px; }
+    .knp-modal__bodybox { padding: 10px; }
+  }
 </style>
 
 <div id="knpDishModal" class="knp-modal" aria-hidden="true">
@@ -1335,13 +1354,15 @@ if ('serviceWorker' in navigator) {
   <div class="knp-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="knpDishTitle">
     <header class="knp-modal__header">
       <h3 id="knpDishTitle" class="knp-modal__title">Dish</h3>
-      <button id="knpAudioBtn" class="knp-modal__audio" aria-label="Play pronunciation">🔊</button>
+      <button id="knpAudioBtn" class="knp-modal__audio" aria-label="Play pronunciation">EN audio</button>
       <button class="knp-modal__close" data-close aria-label="Close">×</button>
     </header>
-    <div class="knp-modal__body" id="knpDishBody">
-      <section class="knp-field"><h4>Описание</h4><p></p></section>
-      <section class="knp-field"><h4>Особенности</h4><p></p></section>
-      <section class="knp-field"><h4>Состав</h4><p></p></section>
+    <div class="knp-modal__bodybox" id="knpBodyBox">
+      <div class="knp-modal__scaler" id="knpScaler">
+        <section class="knp-field"><h4>Description</h4><p id="knpDesc"></p></section>
+        <section class="knp-field"><h4>Features</h4><p id="knpFeat"></p></section>
+        <section class="knp-field"><h4>Ingredients</h4><p id="knpIngr"></p></section>
+      </div>
     </div>
   </div>
 </div>
@@ -1352,8 +1373,12 @@ if ('serviceWorker' in navigator) {
   const modal = document.getElementById('knpDishModal');
   const dialog = modal.querySelector('.knp-modal__dialog');
   const titleEl = document.getElementById('knpDishTitle');
-  const bodyEl = document.getElementById('knpDishBody');
   const audioBtn = document.getElementById('knpAudioBtn');
+  const bodyBox = document.getElementById('knpBodyBox');
+  const scaler = document.getElementById('knpScaler');
+  const desc = document.getElementById('knpDesc');
+  const feat = document.getElementById('knpFeat');
+  const ingr = document.getElementById('knpIngr');
 
   audioBtn.addEventListener('click', () => {
     if (!audio.src) return;
@@ -1361,88 +1386,12 @@ if ('serviceWorker' in navigator) {
     audio.play().catch(()=>{});
   });
 
-  function closeModal(){
-    modal.setAttribute('aria-hidden', 'true');
-    dialog.style.transform = 'translate(-50%, -50%) scale(1)';
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
+  function isEnTrigger(el){
+    if (!el) return false;
+    if (el.dataset && (el.dataset.en !== undefined || el.dataset.enModal !== undefined)) return true;
+    const txt = (el.innerText || el.textContent || '').trim().toLowerCase();
+    return txt === 'en' || txt === 'english';
   }
-  modal.addEventListener('click', (e) => { if (e.target.matches('[data-close]')) closeModal(); });
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.getAttribute('aria-hidden')==='false') closeModal(); });
-
-  function openModal({title, audioSrc, sections}){
-    titleEl.textContent = title || '';
-    audio.src = audioSrc || '';
-    const map = {
-      'Описание': (sections && sections.description) || '',
-      'Особенности': (sections && sections.features) || '',
-      'Состав': (sections && sections.ingredients) || ''
-    };
-    [...bodyEl.querySelectorAll('.knp-field')].forEach(sec => {
-      const h = sec.querySelector('h4')?.textContent?.trim();
-      const p = sec.querySelector('p');
-      if (h && p) p.innerHTML = map[h] || '';
-    });
-
-    modal.setAttribute('aria-hidden', 'false');
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-
-    // Fit now, after fonts, and after images load
-    const refit = ()=>fitToViewport(dialog);
-    requestAnimationFrame(refit);
-    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(refit).catch(()=>{}); }
-    bodyEl.querySelectorAll('img').forEach(img => {
-      if (!img.complete) img.addEventListener('load', refit, {once:true});
-    });
-    // Also re-fit after content render settles
-    setTimeout(refit, 120);
-    setTimeout(refit, 300);
-  }
-
-  function fitToViewport(el){
-    el.classList.remove('knp-modal--tight','knp-modal--tiny');
-    el.style.transform = 'translate(-50%, -50%) scale(1)';
-
-    const vw = window.innerWidth, vh = window.innerHeight;
-    const safe = Math.max(16, Math.round(Math.min(vw, vh) * 0.03)); // more generous padding
-
-    // Use scroll sizes to capture overflow content
-    const rect1 = el.getBoundingClientRect();
-    let contentW = Math.max(el.scrollWidth, rect1.width);
-    let contentH = Math.max(el.scrollHeight, rect1.height);
-
-    let maxW = vw - safe*2;
-    let maxH = vh - safe*2;
-    let scale = Math.min(1, maxW/contentW, maxH/contentH);
-
-    // Pass 2: tighten spacing if needed
-    if (scale < 0.92) {
-      el.classList.add('knp-modal--tight');
-      // force reflow and recompute
-      void el.offsetHeight;
-      const rect2 = el.getBoundingClientRect();
-      contentW = Math.max(el.scrollWidth, rect2.width);
-      contentH = Math.max(el.scrollHeight, rect2.height);
-      scale = Math.min(1, maxW/contentW, maxH/contentH);
-    }
-    // Pass 3: tiny type if still not fitting
-    if (scale < 0.72) {
-      el.classList.add('knp-modal--tiny');
-      void el.offsetHeight;
-      const rect3 = el.getBoundingClientRect();
-      contentW = Math.max(el.scrollWidth, rect3.width);
-      contentH = Math.max(el.scrollHeight, rect3.height);
-      scale = Math.min(1, maxW/contentW, maxH/contentH);
-    }
-
-    // FINAL: no minimum — guarantee full fit
-    if (!isFinite(scale) || scale <= 0) scale = 1;
-    el.style.transform = `translate(-50%, -50%) scale(${scale})`;
-  }
-
-  window.addEventListener('resize', ()=>{ if (modal.getAttribute('aria-hidden')==='false') fitToViewport(dialog); });
-  window.addEventListener('orientationchange', ()=>{ setTimeout(()=>{ if (modal.getAttribute('aria-hidden')==='false') fitToViewport(dialog); }, 200); });
 
   function findDishScope(fromEl){
     let node = fromEl;
@@ -1478,13 +1427,13 @@ if ('serviceWorker' in navigator) {
     const container = document.createElement('div');
     nodes.forEach(n => container.appendChild(n.cloneNode(true)));
     const getText = (el)=> (el.innerText ?? el.textContent ?? '').trim();
-    const section = (labelList)=>{
-      const labels = labelList.map(s => s.toLowerCase());
+
+    const section = (labels)=>{
       const all = Array.from(container.querySelectorAll('*'));
       let startIdx = -1;
-      for (let i=0;i<all.length;i++){
+      for (let i=0; i<all.length; i++){
         const t = getText(all[i]).toLowerCase();
-        if (labels.some(l => t.startsWith(l))) { startIdx = i; break; }
+        if (labels.some(l => t.startsWith(l.toLowerCase()))) { startIdx = i; break; }
       }
       if (startIdx < 0) return '';
       const out = [];
@@ -1492,39 +1441,112 @@ if ('serviceWorker' in navigator) {
         const el = all[j];
         const tag = (el.tagName||'').toLowerCase();
         const t = getText(el);
-        const looksHeading = /^h[1-6]$/.test(tag);
-        const isNextStart = labels.concat(['красочное описание','особенности','состав']).some(l => t.toLowerCase().startsWith(l));
-        if (looksHeading || isNextStart) break;
+        const isHeading = /^h[1-6]$/.test(tag);
+        const isNext = ['красочное описание','описание','особенности','состав','ингредиенты'].some(k => t.toLowerCase().startsWith(k));
+        if (isHeading || isNext) break;
         out.push(el.outerHTML || el.textContent);
       }
       return out.join('');
     };
+
     const description = section(['Красочное описание','Описание']);
     const features    = section(['Особенности','Особенности блюда','Особенности и аллергены']);
     const ingredients = section(['Состав','Ингредиенты']);
     return { description, features, ingredients };
   }
 
-  function isEnTrigger(el){
-    if (!el) return false;
-    if (el.dataset && (el.dataset.en !== undefined || el.dataset.enModal !== undefined)) return true;
-    const txt = (el.innerText || el.textContent || '').trim().toLowerCase();
-    return txt === 'en' || txt === 'english';
+  function closeModal(){
+    modal.setAttribute('aria-hidden','true');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+  modal.addEventListener('click', (e)=>{ if (e.target.matches('[data-close]')) closeModal(); });
+  document.addEventListener('keydown', (e)=>{ if (e.key==='Escape' && modal.getAttribute('aria-hidden')==='false') closeModal(); });
+
+  function openModal({title, audioSrc, sections}){
+    titleEl.textContent = title || '';
+    audio.src = audioSrc || '';
+    desc.innerHTML = sections.description || '';
+    feat.innerHTML = sections.features || '';
+    ingr.innerHTML = sections.ingredients || '';
+
+    modal.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    // fit content to bodyBox with scale (header unaffected)
+    fitBody();
+    // Refit after fonts/images
+    const refit = ()=>fitBody();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit).catch(()=>{});
+    scaler.querySelectorAll('img').forEach(img=>{
+      if (!img.complete) img.addEventListener('load', refit, {once:true});
+    });
+    setTimeout(refit, 120);
+    setTimeout(refit, 300);
   }
 
-  document.addEventListener('click', function(e){
+  function fitBody(){
+    // Reset styles
+    dialog.classList.remove('knp-tight');
+    scaler.style.transform = 'scale(1)';
+    // available size (inner box)
+    const availW = bodyBox.clientWidth;
+    const availH = bodyBox.clientHeight;
+
+    // measure content size
+    // to capture natural size, ensure no transforms first
+    const contentW = Math.max(scaler.scrollWidth, scaler.getBoundingClientRect().width);
+    const contentH = Math.max(scaler.scrollHeight, scaler.getBoundingClientRect().height);
+
+    let scale = Math.min(1, availW / contentW, availH / contentH);
+
+    // If still too big after first scale, try tight mode to reduce gaps then recalc
+    if (scale < 0.96) {
+      dialog.classList.add('knp-tight');
+      // force reflow
+      void scaler.offsetHeight;
+      const cW2 = Math.max(scaler.scrollWidth, scaler.getBoundingClientRect().width);
+      const cH2 = Math.max(scaler.scrollHeight, scaler.getBoundingClientRect().height);
+      scale = Math.min(1, availW / cW2, availH / cH2);
+    }
+
+    // Apply
+    scaler.style.transform = `scale(${scale})`;
+
+    // Center the scaled content inside the bodyBox
+    const newW = contentW * scale;
+    const newH = contentH * scale;
+    const offX = Math.max(0, (availW - newW)/2);
+    const offY = Math.max(0, (availH - newH)/2);
+    scaler.style.position = 'absolute';
+    scaler.style.left = offX + 'px';
+    scaler.style.top  = offY + 'px';
+  }
+
+  // Bind EN buttons
+  document.addEventListener('click', (e)=>{
     const el = e.target.closest('button, a, span, div');
     if (!el || !isEnTrigger(el)) return;
     if (el.tagName.toLowerCase()==='a' && el.getAttribute('href')==='#') e.preventDefault();
+
     const scope = findDishScope(el);
     if (!scope) return;
     const sections = extractSections(scope.nodes);
+
     let audioSrc = '';
     if (el.dataset && el.dataset.audio) audioSrc = el.dataset.audio;
+
     openModal({ title: scope.title, audioSrc, sections });
   }, true);
 
-})();</script>
+  window.addEventListener('resize', ()=>{
+    if (modal.getAttribute('aria-hidden')==='false') fitBody();
+  });
+  window.addEventListener('orientationchange', ()=>{
+    setTimeout(()=>{ if (modal.getAttribute('aria-hidden')==='false') fitBody(); }, 200);
+  });
+})();
+</script>
 <!-- ==== AUTOFIT MODAL: END ==== -->
-
 </body></html>
