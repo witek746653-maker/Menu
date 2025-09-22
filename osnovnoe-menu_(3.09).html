@@ -751,6 +751,8 @@ display: inline-flex;
     
     /* Hide Name field in mobile view mode (view-only) */
     .en-mobile-locked .en-sec[data-key="name"] { display: none; }
+/* Also hide Name in ANY view mode (desktop or mobile) */
+.en-panel:not(.en-editing) .en-sec[data-key="name"] { display: none; }
 .en-editor textarea, .en-editor input {
       width: 100%; resize: vertical; border: 1px solid rgba(0,0,0,.2);
       border-radius: 8px; padding: 6px 8px; font: inherit; background: #fff;
