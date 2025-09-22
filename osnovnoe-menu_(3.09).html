@@ -791,11 +791,6 @@ display: inline-flex;
 .en-mobile-locked .en-foot { display: none !important; }
 */
 
-
-/* Mobile: hide Name section in view mode (scoped to modal only) */
-@media (max-width: 600px){
-  .en-panel:not(.en-editing) .en-sec-name { display: none; }
-}
 </style><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
@@ -1745,7 +1740,6 @@ if ('serviceWorker' in navigator) {
     
     function renderSectionsHTML(data){
       const fields=[
-        {key:'name', label:'Name', single:true},
         {key:'description', label:'Description'},
         {key:'features', label:'Features'},
         {key:'ingredients', label:'Ingredients'}
@@ -1753,10 +1747,9 @@ if ('serviceWorker' in navigator) {
       let html='';
       fields.forEach(f=>{
         const val = data[f.key] || '';
-        const secClass = 'en-sec' + (f.key === 'name' ? ' en-sec-name' : '');
         // On mobile, still hide empty sections for readability
         if (isMobile && !val) return;
-        html += '<div class="' + secClass + '">'
+        html += '<div class="en-sec">'
               + '<div class="en-label">' + esc(f.label) + '</div>'
               + '<div class="en-text">' + esc(val) + '</div>'
               + '<div class="en-editor">'
@@ -2000,181 +1993,4 @@ if ('serviceWorker' in navigator) {
       ensureChips(); bindChips();
     }
   })();
-  </script>
-<style>
-  /* На всякий случай: если вдруг примените класс вместо inline-стилей */
-  .en-lock-scroll { overflow: hidden !important; }
-</style>
-
-<script>
-(function () {
-  let _scrollY = 0;
-
-  function lockScroll() {
-    _scrollY = window.scrollY || document.documentElement.scrollTop || 0;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${_scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overscrollBehavior = 'none';
-  }
-
-  function unlockScroll() {
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    document.body.style.overflow = '';
-    document.documentElement.style.overscrollBehavior = '';
-    window.scrollTo({ top: _scrollY, left: 0, behavior: 'auto' });
-  }
-
-  document.addEventListener('click', function (e) {
-    const chip = e.target.closest('.en-chip');
-    if (chip) {
-      setTimeout(() => {
-        if (document.querySelector('.en-backdrop')) lockScroll();
-      }, 0);
-    }
-  }, { passive: true });
-
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('.en-close') || e.target.classList.contains('en-close')) {
-      setTimeout(() => {
-        if (!document.querySelector('.en-backdrop')) unlockScroll();
-      }, 0);
-    }
-  });
-
-  document.addEventListener('mousedown', function (e) {
-    const backdrop = e.target.closest('.en-backdrop');
-    if (backdrop && e.target === backdrop) {
-      setTimeout(() => {
-        if (!document.querySelector('.en-backdrop')) unlockScroll();
-      }, 0);
-    }
-  });
-
-  const mo = new MutationObserver(() => {
-    if (!document.querySelector('.en-backdrop')) unlockScroll();
-  });
-  mo.observe(document.documentElement, { childList: true, subtree: true });
-})();
-</script>
-
-
-<style>
-  :root{
-    --en-modal-w: 360px;
-    --en-modal-h: 560px;
-  }
-  /* Базовая страховка на всех размерах экрана */
-  .en-backdrop {
-    position: fixed !important;
-    inset: 0 !important;
-  }
-  .en-panel {
-    /* пусть на десктопе работает как у вас было */
-    max-width: 90vw;
-    max-height: 90dvh;
-  }
-  /* Мобильная фиксация: строго по центру и одного размера */
-  @media (max-width: 768px) {
-    .en-backdrop {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-    }
-    .en-panel {
-      position: fixed !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      width: clamp(320px, 92vw, var(--en-modal-w)) !important;
-      height: clamp(480px, 78dvh, var(--en-modal-h)) !important;
-      max-width: var(--en-modal-w) !important;
-      max-height: var(--en-modal-h) !important;
-      min-width: 320px !important;
-      min-height: 480px !important;
-      border-radius: 16px !important;
-      overflow: hidden !important; /* чтобы внутренности не вылезали за края */
-      box-sizing: border-box !important;
-    }
-    /* Контент модалки должен скроллиться внутри фиксированного контейнера */
-    .en-panel *[data-scroll], 
-    .en-panel .en-content, 
-    .en-panel .en-sections {
-      max-height: calc(100% - 0px) !important;
-      overflow: auto !important;
-      -webkit-overflow-scrolling: touch !important;
-    }
-  }
-</style>
-
-
-<script>
-(function(){
-  // Добавим/обновим meta viewport, чтобы на мобилке не «масштабировалось» и размер модалки оставался постоянным
-  var vp = document.querySelector('meta[name="viewport"]');
-  var desired = 'width=device-width, initial-scale=1';
-  if (!vp) {
-    vp = document.createElement('meta');
-    vp.setAttribute('name', 'viewport');
-    vp.setAttribute('content', desired);
-    document.head.appendChild(vp);
-  } else {
-    // не затираем чужие параметры, но если явно просили фиксированный размер — устанавливаем
-    vp.setAttribute('content', desired);
-  }
-})();
-</script>
-
-
-<style>
-  /* --- EN modal: всегда 70% экрана и по центру, независимо от зума --- */
-  .en-backdrop {
-    position: fixed !important;
-    inset: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  .en-panel {
-    position: relative !important;
-    /* 70% ширины и высоты видимого вьюпорта */
-    width: 70vw !important;
-    height: 70dvh !important; /* dvh = динамический viewport-height, корректно на мобилках */
-    max-width: 70vw !important;
-    max-height: 70dvh !important;
-    min-width: 70vw !important;
-    min-height: 70dvh !important;
-    transform: none !important; /* на всякий случай, если раньше центрировали через translate */
-    box-sizing: border-box !important;
-    overflow: hidden !important; /* внутренности не вылезают */
-    border-radius: 16px; /* чуть скруглим, можно убрать */
-  }
-  /* контент внутри панели скроллится, модалка остаётся фиксированного размера (70%) */
-  .en-panel .en-content,
-  .en-panel .en-sections,
-  .en-panel [data-scroll] {
-    height: 100% !important;
-    max-height: 100% !important;
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-
-  /* На очень узких экранах позволим чуть «расправиться», но сохраняем долю экрана */
-  @supports not (height: 70dvh) {
-    /* fallback для старых браузеров без dvh */
-    .en-panel {
-      height: 70vh !important;
-      max-height: 70vh !important;
-      min-height: 70vh !important;
-    }
-  }
-</style>
-
-</body></html>
+  </script></body></html>
