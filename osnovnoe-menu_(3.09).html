@@ -748,7 +748,10 @@ display: inline-flex;
     .en-editor { display: none; }
     .en-editing .en-text { display: none; }
     .en-editing .en-editor { display: block; }
-    .en-editor textarea, .en-editor input {
+    
+    /* Hide Name field in mobile view mode (view-only) */
+    .en-mobile-locked .en-sec[data-key="name"] { display: none; }
+.en-editor textarea, .en-editor input {
       width: 100%; resize: vertical; border: 1px solid rgba(0,0,0,.2);
       border-radius: 8px; padding: 6px 8px; font: inherit; background: #fff;
     }
@@ -1750,7 +1753,7 @@ if ('serviceWorker' in navigator) {
         const val = data[f.key] || '';
         // On mobile, still hide empty sections for readability
         if (isMobile && !val) return;
-        html += '<div class="en-sec">'
+        html += '<div class="en-sec" data-key=""+f.key+"">'
               + '<div class="en-label">' + esc(f.label) + '</div>'
               + '<div class="en-text">' + esc(val) + '</div>'
               + '<div class="en-editor">'
@@ -1904,6 +1907,7 @@ if ('serviceWorker' in navigator) {
 
       cancelBtn?.addEventListener('click',()=>{
         panel.classList.remove('en-editing');
+        if (isMobile) panel.classList.add('en-mobile-locked');
         relayoutOnly();
         setTimeout(relayoutOnly, 0);
       });
@@ -1919,6 +1923,7 @@ if ('serviceWorker' in navigator) {
         panel.classList.remove('en-editing');
         panel.querySelector('.en-title').textContent = updated.name || ruName;
         panel.querySelector('.en-sections').innerHTML = renderSectionsHTML(updated);
+        if (isMobile) panel.classList.add('en-mobile-locked');
         relayoutOnly();
         setTimeout(relayoutOnly, 0);
       });
