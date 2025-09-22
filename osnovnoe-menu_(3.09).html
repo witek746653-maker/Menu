@@ -90,6 +90,11 @@
 .en-backdrop { overscroll-behavior: contain; }
 .en-sections { -webkit-overflow-scrolling: touch; }
 
+
+/* Mobile edit lock */
+.en-mobile-locked .en-editor { display: none !important; }
+.en-mobile-locked .en-foot { display: none !important; }
+
 </style>
 </head>
 <body>
@@ -130,9 +135,10 @@
       }
     };
 
+    
     function renderSectionsHTML(data){
       const fields=[
-        {key:'name', label:'Name'},
+        {key:'name', label:'Name', single:true},
         {key:'description', label:'Description'},
         {key:'features', label:'Features'},
         {key:'ingredients', label:'Ingredients'}
@@ -140,22 +146,24 @@
       let html='';
       fields.forEach(f=>{
         const val = data[f.key] || '';
-        if (isMobile) {
-          if (!val) return; // hide empty on mobile
-        }
+        // On mobile, still hide empty sections for readability
+        if (isMobile && !val) return;
         html += '<div class="en-sec">'
               + '<div class="en-label">' + esc(f.label) + '</div>'
               + '<div class="en-text">' + esc(val) + '</div>'
-              + (!isMobile ? '<div class="en-editor">'
-                           + (f.key==='name'
-                              ? '<input class="en-'+f.key+'" value="'+esc(val)+'"/>'
-                              : '<textarea class="en-'+f.key+'" rows="3">'+esc(val)+'</textarea>')
-                           + '</div>' : '')
+              + '<div class="en-editor">'
+              +   (f.single
+                    ? '<input class="en-'+f.key+'" value="'+esc(val)+'"/>'
+                    : '<textarea class="en-'+f.key+'" rows="3">'+esc(val)+'</textarea>')
+              + '</div>'
               + '</div>';
       });
       return html;
     }
+    
 
+    
+    
     
     
     function openPanel(slug, ruName, data, dict){
@@ -164,11 +172,12 @@
       const panel = document.createElement('div');
       panel.className='en-panel';
 
+      // Header actions: always show Edit button (desktop + mobile)
       panel.innerHTML=`
         <div class="en-head">
           <div class="en-title">${esc(data.name||ruName)}</div>
           <div class="en-actions">
-            ${isMobile ? '' : '<button class="en-btn en-edit" type="button">✎ Edit</button>'}
+            <button class="en-btn en-edit" type="button">✎ Edit</button>
             <button class="en-btn en-close" type="button">✕</button>
           </div>
         </div>
@@ -186,7 +195,10 @@
       const bodyEl = panel.querySelector('.en-sections');
       const footEl = panel.querySelector('.en-foot');
 
-      // Prevent background scrolling while modal open
+      // If mobile, lock editing initially
+      if (isMobile) panel.classList.add('en-mobile-locked');
+
+      // Prevent background scroll
       const prevHtmlOverflow = document.documentElement.style.overflow;
       const prevBodyOverflow = document.body.style.overflow;
       document.documentElement.style.overflow = 'hidden';
@@ -233,7 +245,6 @@
         const avail = Math.max(80, ph - headH - footH - 24);
         bodyEl.style.maxHeight = Math.floor(avail) + 'px';
 
-        // shrink a bit if needed, then scroll
         const floor = 12;
         let fs = parseFloat(getComputedStyle(panel).fontSize) || 14;
         let guard = 0;
@@ -245,7 +256,6 @@
       }
 
       function layoutContentMobile(){
-        // No font shrinking on mobile — keep size stable
         const headH = headEl ? headEl.getBoundingClientRect().height : 0;
         const footH = (panel.classList.contains('en-editing') && footEl) ? footEl.getBoundingClientRect().height : 0;
         const ph = panel.getBoundingClientRect().height;
@@ -274,28 +284,39 @@
       backdrop.addEventListener('click',e=>{ if(e.target===backdrop) backdrop.remove(); });
       panel.querySelector('.en-close').addEventListener('click',()=>backdrop.remove());
 
-      if(!isMobile){
-        const editBtn=panel.querySelector('.en-edit');
-        const saveBtn=panel.querySelector('.en-save');
-        const cancelBtn=panel.querySelector('.en-cancel');
+      const editBtn=panel.querySelector('.en-edit');
+      const saveBtn=panel.querySelector('.en-save');
+      const cancelBtn=panel.querySelector('.en-cancel');
 
-        editBtn?.addEventListener('click',()=>{ panel.classList.add('en-editing'); relayoutOnly(); });
-        cancelBtn?.addEventListener('click',()=>{ panel.classList.remove('en-editing'); relayoutOnly(); });
+      // Password gate for mobile: only 'roma' unlocks editing
+      editBtn?.addEventListener('click',()=>{
+        if (isMobile && panel.classList.contains('en-mobile-locked')){
+          const pass = (window.prompt('Enter editor code') || '').trim().toLowerCase();
+          if (pass !== 'roma'){ alert('Wrong code'); return; }
+          panel.classList.remove('en-mobile-locked');
+        }
+        panel.classList.add('en-editing');
+        relayoutOnly();
+      });
 
-        saveBtn?.addEventListener('click', async ()=>{
-          const updated={
-            name: panel.querySelector('.en-name')?.value?.trim() || '',
-            description: panel.querySelector('.en-description')?.value?.trim() || '',
-            features: panel.querySelector('.en-features')?.value?.trim() || '',
-            ingredients: panel.querySelector('.en-ingredients')?.value?.trim() || '',
-          };
-          dict[slug]=updated;
-          panel.classList.remove('en-editing');
-          panel.querySelector('.en-title').textContent = updated.name || ruName;
-          panel.querySelector('.en-sections').innerHTML = renderSectionsHTML(updated);
-          relayoutOnly();
-        });
-      }
+      cancelBtn?.addEventListener('click',()=>{
+        panel.classList.remove('en-editing');
+        relayoutOnly();
+      });
+
+      saveBtn?.addEventListener('click', async ()=>{
+        const updated={
+          name: panel.querySelector('.en-name')?.value?.trim() || '',
+          description: panel.querySelector('.en-description')?.value?.trim() || '',
+          features: panel.querySelector('.en-features')?.value?.trim() || '',
+          ingredients: panel.querySelector('.en-ingredients')?.value?.trim() || '',
+        };
+        dict[slug]=updated;
+        panel.classList.remove('en-editing');
+        panel.querySelector('.en-title').textContent = updated.name || ruName;
+        panel.querySelector('.en-sections').innerHTML = renderSectionsHTML(updated);
+        relayoutOnly();
+      });
 
       // Inject audio chip under title (TTS for demo)
       (function attach(head){
