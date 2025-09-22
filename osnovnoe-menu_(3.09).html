@@ -1750,7 +1750,9 @@ if ('serviceWorker' in navigator) {
         const val = data[f.key] || '';
         // On mobile, still hide empty sections for readability
         if (isMobile && !val) return;
-        html += '<div class="en-sec">'
+        const secClass = 'en-sec' + (f.key === 'name' ? ' en-sec-name' : '');
+
+        html += '<div class="' + secClass + '">'
               + '<div class="en-label">' + esc(f.label) + '</div>'
               + '<div class="en-text">' + esc(val) + '</div>'
               + '<div class="en-editor">'
@@ -2169,6 +2171,11 @@ if ('serviceWorker' in navigator) {
       min-height: 70vh !important;
     }
   }
+
+/* NEW: On mobile, hide "Name" section in view mode (not editing) */
+@media (max-width: 600px){
+  .en-panel:not(.en-editing) .en-sec-name { display: none; }
+}
 </style>
 
 </body></html>
