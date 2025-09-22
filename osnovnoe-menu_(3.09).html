@@ -38,7 +38,7 @@
     .en-panel {
       display:flex; flex-direction:column;
       /* Reserve space for iOS home indicator and avoid footer cut-off */
-      padding-bottom: calc(16px + env(safe-area-inset-bottom));
+      padding-bottom: calc(40px + env(safe-area-inset-bottom));
       background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
       border: 1px solid rgba(0, 86, 179, 0.12);
       border-radius: 16px;
@@ -54,7 +54,7 @@
     .en-close { background: #e74c3c; color: #fff; border: none; }
     .en-save { background: #2ecc71; color:#fff; border: none; }
     .en-cancel { background: #bdc3c7; border: none; }
-    .en-sections { display: grid; gap: 10px; margin-top: 12px; flex:1 1 auto; overflow:auto; padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+    .en-sections { display: grid; gap: 10px; margin-top: 12px; flex:1 1 auto; overflow:auto;  }
     .en-sec { background: #ffffff; border: 1px solid rgba(0, 86, 179, 0.10); border-radius: 10px; padding: 8px 10px; }
     .en-label { font-weight: 650; color: #0f3c7d; margin-bottom: 4px; }
     .en-text { white-space: pre-wrap; }
@@ -71,7 +71,7 @@
       .en-panel {
       display:flex; flex-direction:column;
       /* Reserve space for iOS home indicator and avoid footer cut-off */
-      padding-bottom: calc(16px + env(safe-area-inset-bottom)); padding: 12px 14px; border-radius: 14px; }
+      padding-bottom: calc(40px + env(safe-area-inset-bottom)); padding: 12px 14px; border-radius: 14px; }
       .en-sections { gap: 8px; }
       .en-editor textarea { min-height: 72px; }
     }
