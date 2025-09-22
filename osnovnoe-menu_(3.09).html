@@ -1194,37 +1194,41 @@ async function loadDict(){
 
     if(!isMobile){
       const editBtn=panel.querySelector('.en-edit');
-      const saveBtn=panel.querySelector('.en-save');
-      const cancelBtn=panel.querySelector('.en-cancel');
+const saveBtn=panel.querySelector('.en-save');
+const cancelBtn=panel.querySelector('.en-cancel');
 
-      editBtn?.addEventListener('click',()=> panel.classList.add('en-editing'));
-      cancelBtn?.addEventListener('click',()=> panel.classList.remove('en-editing'));
+editBtn?.addEventListener('click',()=> panel.classList.add('en-editing'));
+cancelBtn?.addEventListener('click',()=> panel.classList.remove('en-editing'));
 
-      saveBtn?.addEventListener('click', async ()=>{
-        const updated={
-          name: panel.querySelector('.en-name')?.value?.trim() || '',
-          description: panel.querySelector('.en-description')?.value?.trim() || '',
-          features: panel.querySelector('.en-features')?.value?.trim() || '',
-          ingredients: panel.querySelector('.en-ingredients')?.value?.trim() || '',
-        };
-        dict[slug]=updated;
-        try{
-          const res = await fetch('/save-json', {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body: JSON.stringify(dict)
-          });
-          if(!res.ok) throw new Error('save-json failed');
-          panel.classList.remove('en-editing');
-          panel.querySelector('.en-title').textContent = updated.name || ruName;
-          // Re-render sections to apply "hide empty" rule after save
-          panel.querySelector('.en-sections').innerHTML = renderSectionsHTML(updated);
-        }catch(e){
-          alert('Не удалось сохранить на сервер. Проверь, что запущен save_as_server.py');
-        }
+saveBtn?.addEventListener('click', async ()=>{
+  const updated={
+    name: panel.querySelector('.en-name')?.value?.trim() || '',
+    description: panel.querySelector('.en-description')?.value?.trim() || '',
+    features: panel.querySelector('.en-features')?.value?.trim() || '',
+    ingredients: panel.querySelector('.en-ingredients')?.value?.trim() || '',
+  };
+  dict[slug]=updated;
+
+  // Пытаемся сохранять на локальном сервере; на GitHub Pages просто обновим UI
+  const canServerSave = /localhost|127\.0\.0\.1/.test(location.host);
+  if (canServerSave){
+    try{
+      const res = await fetch('/save-json', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(dict)
       });
+      if(!res.ok) throw new Error('save-json failed');
+    }catch(e){
+      console.warn('Local save failed:', e);
     }
   }
+
+  panel.classList.remove('en-editing');
+  panel.querySelector('.en-title').textContent = updated.name || ruName;
+  panel.querySelector('.en-sections').innerHTML = renderSectionsHTML(updated);
+});
+
 
   // init
   if (document.readyState === 'loading'){
