@@ -748,12 +748,7 @@ display: inline-flex;
     .en-editor { display: none; }
     .en-editing .en-text { display: none; }
     .en-editing .en-editor { display: block; }
-    
-    /* Hide Name field in mobile view mode (view-only) */
-    .en-mobile-locked .en-sec[data-key="name"] { display: none; }
-/* Also hide Name in ANY view mode (desktop or mobile) */
-.en-panel:not(.en-editing) .en-sec[data-key="name"] { display: none; }
-.en-editor textarea, .en-editor input {
+    .en-editor textarea, .en-editor input {
       width: 100%; resize: vertical; border: 1px solid rgba(0,0,0,.2);
       border-radius: 8px; padding: 6px 8px; font: inherit; background: #fff;
     }
@@ -1755,7 +1750,7 @@ if ('serviceWorker' in navigator) {
         const val = data[f.key] || '';
         // On mobile, still hide empty sections for readability
         if (isMobile && !val) return;
-        html += '<div class="en-sec" data-key=""+f.key+"">'
+        html += '<div class="en-sec">'
               + '<div class="en-label">' + esc(f.label) + '</div>'
               + '<div class="en-text">' + esc(val) + '</div>'
               + '<div class="en-editor">'
@@ -1909,7 +1904,6 @@ if ('serviceWorker' in navigator) {
 
       cancelBtn?.addEventListener('click',()=>{
         panel.classList.remove('en-editing');
-        if (isMobile) panel.classList.add('en-mobile-locked');
         relayoutOnly();
         setTimeout(relayoutOnly, 0);
       });
@@ -1925,7 +1919,6 @@ if ('serviceWorker' in navigator) {
         panel.classList.remove('en-editing');
         panel.querySelector('.en-title').textContent = updated.name || ruName;
         panel.querySelector('.en-sections').innerHTML = renderSectionsHTML(updated);
-        if (isMobile) panel.classList.add('en-mobile-locked');
         relayoutOnly();
         setTimeout(relayoutOnly, 0);
       });
@@ -2001,4 +1994,69 @@ if ('serviceWorker' in navigator) {
       ensureChips(); bindChips();
     }
   })();
-  </script></body></html>
+  </script>
+<style>
+  /* На всякий случай: если вдруг примените класс вместо inline-стилей */
+  .en-lock-scroll { overflow: hidden !important; }
+</style>
+
+<script>
+(function () {
+  let _scrollY = 0;
+
+  function lockScroll() {
+    _scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${_scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overscrollBehavior = 'none';
+  }
+
+  function unlockScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    document.documentElement.style.overscrollBehavior = '';
+    window.scrollTo({ top: _scrollY, left: 0, behavior: 'auto' });
+  }
+
+  document.addEventListener('click', function (e) {
+    const chip = e.target.closest('.en-chip');
+    if (chip) {
+      setTimeout(() => {
+        if (document.querySelector('.en-backdrop')) lockScroll();
+      }, 0);
+    }
+  }, { passive: true });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.en-close') || e.target.classList.contains('en-close')) {
+      setTimeout(() => {
+        if (!document.querySelector('.en-backdrop')) unlockScroll();
+      }, 0);
+    }
+  });
+
+  document.addEventListener('mousedown', function (e) {
+    const backdrop = e.target.closest('.en-backdrop');
+    if (backdrop && e.target === backdrop) {
+      setTimeout(() => {
+        if (!document.querySelector('.en-backdrop')) unlockScroll();
+      }, 0);
+    }
+  });
+
+  const mo = new MutationObserver(() => {
+    if (!document.querySelector('.en-backdrop')) unlockScroll();
+  });
+  mo.observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+
+</body></html>
