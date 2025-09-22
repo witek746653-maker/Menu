@@ -33,7 +33,7 @@
       position: fixed; inset: 0;
       background: rgba(0,0,0,0.55); backdrop-filter: blur(2px);
       z-index: 9999; display: flex; align-items: flex-start; justify-content: center;
-      overflow-y: auto; padding: 40px 16px; padding-bottom: calc(40px + env(safe-area-inset-bottom));
+      overflow-y: auto; padding: 40px 16px;
     }
     .en-panel {
       display:flex; flex-direction:column;
@@ -220,7 +220,6 @@
         panel.style.maxWidth = 'none';
         panel.style.maxHeight = 'none';
         panel.style.overflow = 'hidden';
-        panel.style.webkitOverflowScrolling = 'touch';
       }
 
       function lockInitialSizeMobile(){
@@ -229,7 +228,7 @@
         const w = vv ? vv.width : window.innerWidth;
         const h = vv ? vv.height : window.innerHeight;
         const targetW = Math.max(280, Math.floor(w * 0.70));
-        const targetH = Math.max(220, Math.floor(h * 0.66) - 24);
+        const targetH = Math.max(220, Math.floor(h * 0.70));
         panel.style.transformOrigin = 'top left';
         panel.style.transform = 'scale(' + (1 / scale) + ')';
         panel.style.boxSizing = 'border-box';
@@ -238,7 +237,6 @@
         panel.style.maxWidth = 'none';
         panel.style.maxHeight = 'none';
         panel.style.overflow = 'hidden';
-        panel.style.webkitOverflowScrolling = 'touch';
         const ox = vv ? vv.offsetLeft : 0;
         const oy = vv ? vv.offsetTop : 0;
         panel.style.position = 'fixed';
@@ -305,7 +303,7 @@
         }
         panel.classList.add('en-editing');
         relayoutOnly();
-        setTimeout(()=>{ relayoutOnly(); try{ panel.scrollTop = 0; }catch(e){} }, 0);
+        setTimeout(relayoutOnly, 0);
       });
 
       cancelBtn?.addEventListener('click',()=>{
