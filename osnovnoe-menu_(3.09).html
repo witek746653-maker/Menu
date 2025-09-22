@@ -1289,6 +1289,7 @@ if ('serviceWorker' in navigator) {
 <!-- ===== End Audio Name Panel Injector v12 ===== -->
 
 
+
 <!-- ==== AUTOFIT MODAL: BEGIN ==== -->
 <style>
   .knp-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
@@ -1298,7 +1299,10 @@ if ('serviceWorker' in navigator) {
     position: absolute; left: 50%; top: 50%;
     transform: translate(-50%, -50%);
     background: #fff; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.2);
-    width: min(720px, 94vw); padding: 16px 16px 20px;
+    width: min(720px, 94vw);
+    padding: 16px 16px calc(20px + env(safe-area-inset-bottom));
+    max-height: none; /* never clamp; we will scale instead */
+    will-change: transform;
   }
   .knp-modal__header {
     display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 8px; margin-bottom: 10px;
@@ -1310,15 +1314,20 @@ if ('serviceWorker' in navigator) {
   .knp-modal__body { display: grid; gap: 10px; }
   .knp-field h4 { margin: 0 0 4px; font-size: 14px; opacity: .7; }
   .knp-field p { margin: 0; }
+  .knp-modal__body img { max-width: 100%; height: auto; }
   @media (max-width: 480px) {
-    .knp-modal__dialog { padding: 12px 12px 16px; border-radius: 12px; }
+    .knp-modal__dialog { padding: 12px 12px calc(18px + env(safe-area-inset-bottom)); border-radius: 12px; }
     .knp-modal__audio { width: 32px; height: 32px; }
   }
-  /* Tight mode for extreme content */
+  /* Tight mode: reduce vertical spacing */
   .knp-modal--tight .knp-modal__title { letter-spacing: -0.2px }
   .knp-modal--tight .knp-modal__body { gap: 6px }
   .knp-modal--tight .knp-field h4 { margin-bottom: 2px }
   .knp-modal--tight .knp-field p { line-height: 1.25 }
+  /* Tiny mode: also nudge font sizes down a bit for extreme cases */
+  .knp-modal--tiny .knp-modal__title { font-size: clamp(16px, 4.5vw, 22px); }
+  .knp-modal--tiny .knp-field h4 { font-size: 13px; }
+  .knp-modal--tiny .knp-field p { font-size: 14px; line-height: 1.22; }
 </style>
 
 <div id="knpDishModal" class="knp-modal" aria-hidden="true">
@@ -1339,7 +1348,6 @@ if ('serviceWorker' in navigator) {
 
 <script>
 (function(){
-  // Single shared audio instance
   const audio = new Audio();
   const modal = document.getElementById('knpDishModal');
   const dialog = modal.querySelector('.knp-modal__dialog');
@@ -1355,8 +1363,9 @@ if ('serviceWorker' in navigator) {
 
   function closeModal(){
     modal.setAttribute('aria-hidden', 'true');
-    dialog.style.transform = 'translate(-50%, -50%)';
+    dialog.style.transform = 'translate(-50%, -50%) scale(1)';
     document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
   }
   modal.addEventListener('click', (e) => { if (e.target.matches('[data-close]')) closeModal(); });
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.getAttribute('aria-hidden')==='false') closeModal(); });
@@ -1364,7 +1373,6 @@ if ('serviceWorker' in navigator) {
   function openModal({title, audioSrc, sections}){
     titleEl.textContent = title || '';
     audio.src = audioSrc || '';
-    // Fill sections
     const map = {
       'Описание': (sections && sections.description) || '',
       'Особенности': (sections && sections.features) || '',
@@ -1378,30 +1386,65 @@ if ('serviceWorker' in navigator) {
 
     modal.setAttribute('aria-hidden', 'false');
     document.documentElement.style.overflow = 'hidden';
-    requestAnimationFrame(()=>fitToViewport(dialog));
+    document.body.style.overflow = 'hidden';
+
+    // Fit now, after fonts, and after images load
+    const refit = ()=>fitToViewport(dialog);
+    requestAnimationFrame(refit);
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(refit).catch(()=>{}); }
+    bodyEl.querySelectorAll('img').forEach(img => {
+      if (!img.complete) img.addEventListener('load', refit, {once:true});
+    });
+    // Also re-fit after content render settles
+    setTimeout(refit, 120);
+    setTimeout(refit, 300);
   }
 
   function fitToViewport(el){
-    el.classList.remove('knp-modal--tight');
-    el.style.transform = 'translate(-50%, -50%)';
+    el.classList.remove('knp-modal--tight','knp-modal--tiny');
+    el.style.transform = 'translate(-50%, -50%) scale(1)';
+
     const vw = window.innerWidth, vh = window.innerHeight;
-    const safe = Math.max(10, Math.round(Math.min(vw, vh) * 0.02));
-    const rect = el.getBoundingClientRect();
-    const maxW = vw - safe*2, maxH = vh - safe*2;
-    let scale = Math.min(1, maxW/rect.width, maxH/rect.height);
-    const MIN_SCALE = 0.72;
-    if (scale < MIN_SCALE) {
-      scale = MIN_SCALE;
+    const safe = Math.max(16, Math.round(Math.min(vw, vh) * 0.03)); // more generous padding
+
+    // Use scroll sizes to capture overflow content
+    const rect1 = el.getBoundingClientRect();
+    let contentW = Math.max(el.scrollWidth, rect1.width);
+    let contentH = Math.max(el.scrollHeight, rect1.height);
+
+    let maxW = vw - safe*2;
+    let maxH = vh - safe*2;
+    let scale = Math.min(1, maxW/contentW, maxH/contentH);
+
+    // Pass 2: tighten spacing if needed
+    if (scale < 0.92) {
       el.classList.add('knp-modal--tight');
+      // force reflow and recompute
+      void el.offsetHeight;
+      const rect2 = el.getBoundingClientRect();
+      contentW = Math.max(el.scrollWidth, rect2.width);
+      contentH = Math.max(el.scrollHeight, rect2.height);
+      scale = Math.min(1, maxW/contentW, maxH/contentH);
     }
+    // Pass 3: tiny type if still not fitting
+    if (scale < 0.72) {
+      el.classList.add('knp-modal--tiny');
+      void el.offsetHeight;
+      const rect3 = el.getBoundingClientRect();
+      contentW = Math.max(el.scrollWidth, rect3.width);
+      contentH = Math.max(el.scrollHeight, rect3.height);
+      scale = Math.min(1, maxW/contentW, maxH/contentH);
+    }
+
+    // FINAL: no minimum — guarantee full fit
+    if (!isFinite(scale) || scale <= 0) scale = 1;
     el.style.transform = `translate(-50%, -50%) scale(${scale})`;
   }
+
   window.addEventListener('resize', ()=>{ if (modal.getAttribute('aria-hidden')==='false') fitToViewport(dialog); });
   window.addEventListener('orientationchange', ()=>{ setTimeout(()=>{ if (modal.getAttribute('aria-hidden')==='false') fitToViewport(dialog); }, 200); });
 
-  // Helper: find closest preceding H3 for title and content scope
   function findDishScope(fromEl){
-    // Find the closest H3 above the clicked element
     let node = fromEl;
     const root = document.body;
     let h3 = null;
@@ -1410,7 +1453,6 @@ if ('serviceWorker' in navigator) {
       node = node.previousElementSibling || node.parentElement;
     }
     if (!h3) {
-      // second attempt: scan backwards from the clicked element's parent until find h3
       node = fromEl;
       while (node && node !== root) {
         let prev = node.previousElementSibling;
@@ -1423,7 +1465,6 @@ if ('serviceWorker' in navigator) {
       }
     }
     if (!h3) return null;
-    // Collect nodes until next H3
     const block = [];
     let sib = h3.nextElementSibling;
     while (sib && !(sib.tagName && sib.tagName.toLowerCase()==='h3')) {
@@ -1433,77 +1474,37 @@ if ('serviceWorker' in navigator) {
     return {title: h3.textContent.trim(), nodes: block};
   }
 
-  // Parse sections inside nodes
   function extractSections(nodes){
-    // Join as HTML text to search labeled sections
     const container = document.createElement('div');
     nodes.forEach(n => container.appendChild(n.cloneNode(true)));
-    const text = (el)=>el.innerText ? el.innerText.trim() : el.textContent.trim();
-
-    // Try to find headings that include the keywords
-    const result = {description:'', features:'', ingredients:''};
-
-    function pickByHeader(keyword){
-      // find element (any tag) whose text starts with the keyword (case-insensitive)
-      const all = container.querySelectorAll('*');
-      let start = null, collected = [];
-      const kw = keyword.toLowerCase();
-      for (const el of all) {
-        const t = text(el).toLowerCase();
-        if (!start && t.startswith ? t.startswith(kw) : t.indexOf(kw)===0) {
-          start = el;
-          continue;
-        }
-        if (start){
-          // stop if we reach another obvious section start or a heading-like element
-          const tag = el.tagName.toLowerCase();
-          const isHeading = /^h[1-6]$/.test(tag);
-          const looksLikeStart = ['красочное описание','особенности','состав'].some(k=>text(el).strip?.().lower?.().startswith?.(k) or text(el).lower().startswith(k) if hasattr else text(el).lower().startswith(k)) if false else ['Красочное описание','Особенности','Состав'].some(k=>text(el).startsWith(k));
-          if (isHeading || looksLikeStart) break;
-          collected.push(el.outerHTML || el.textContent);
-        }
+    const getText = (el)=> (el.innerText ?? el.textContent ?? '').trim();
+    const section = (labelList)=>{
+      const labels = labelList.map(s => s.toLowerCase());
+      const all = Array.from(container.querySelectorAll('*'));
+      let startIdx = -1;
+      for (let i=0;i<all.length;i++){
+        const t = getText(all[i]).toLowerCase();
+        if (labels.some(l => t.startsWith(l))) { startIdx = i; break; }
       }
-      if (!start) return '';
-      # Python placeholder (ignored in JS)
-      return collected.join('');
-    }
-
-    // Because we are inserting as raw JS string, implement JS version:
-
-    return (function(container){
-      const getText = (el)=> (el.innerText ?? el.textContent ?? '').trim();
-      const section = (labelList)=>{
-        // Find the first element whose text starts with any of labels
-        const labels = labelList.map(s => s.toLowerCase());
-        const all = Array.from(container.querySelectorAll('*'));
-        let startIdx = -1;
-        for (let i=0;i<all.length;i++){
-          const t = getText(all[i]).toLowerCase();
-          if (labels.some(l => t.startsWith(l))) { startIdx = i; break; }
-        }
-        if (startIdx < 0) return '';
-        const out = [];
-        for (let j=startIdx+1; j<all.length; j++){
-          const el = all[j];
-          const tag = (el.tagName||'').toLowerCase();
-          const t = getText(el);
-          const looksHeading = /^h[1-6]$/.test(tag);
-          const isNextStart = labels.concat(['красочное описание','особенности','состав']).some(l => t.toLowerCase().startsWith(l));
-          if (looksHeading || isNextStart) break;
-          out.push(el.outerHTML || el.textContent);
-        }
-        return out.join('');
-      };
-
-      const description = section(['Красочное описание','Описание']);
-      const features    = section(['Особенности','Особенности блюда','Особенности и аллергены']);
-      const ingredients = section(['Состав','Ингредиенты']);
-
-      return { description, features, ingredients };
-    })(container);
+      if (startIdx < 0) return '';
+      const out = [];
+      for (let j=startIdx+1; j<all.length; j++){
+        const el = all[j];
+        const tag = (el.tagName||'').toLowerCase();
+        const t = getText(el);
+        const looksHeading = /^h[1-6]$/.test(tag);
+        const isNextStart = labels.concat(['красочное описание','особенности','состав']).some(l => t.toLowerCase().startsWith(l));
+        if (looksHeading || isNextStart) break;
+        out.push(el.outerHTML || el.textContent);
+      }
+      return out.join('');
+    };
+    const description = section(['Красочное описание','Описание']);
+    const features    = section(['Особенности','Особенности блюда','Особенности и аллергены']);
+    const ingredients = section(['Состав','Ингредиенты']);
+    return { description, features, ingredients };
   }
 
-  // Click handler binding without changing button appearance
   function isEnTrigger(el){
     if (!el) return false;
     if (el.dataset && (el.dataset.en !== undefined || el.dataset.enModal !== undefined)) return true;
@@ -1514,31 +1515,16 @@ if ('serviceWorker' in navigator) {
   document.addEventListener('click', function(e){
     const el = e.target.closest('button, a, span, div');
     if (!el || !isEnTrigger(el)) return;
-
-    // prevent default if it was a link to '#'
     if (el.tagName.toLowerCase()==='a' && el.getAttribute('href')==='#') e.preventDefault();
-
     const scope = findDishScope(el);
     if (!scope) return;
-
     const sections = extractSections(scope.nodes);
-
-    // audio source: prefer data-audio on the trigger; else try to derive slug from title
     let audioSrc = '';
-    if (el.dataset && el.dataset.audio) {
-      audioSrc = el.dataset.audio;
-    } else {
-      // simple slug attempt: transliterate Cyrillic to Latin? For now, leave empty.
-      audioSrc = '';
-    }
-
-    openModal({
-      title: scope.title,
-      audioSrc,
-      sections
-    });
+    if (el.dataset && el.dataset.audio) audioSrc = el.dataset.audio;
+    openModal({ title: scope.title, audioSrc, sections });
   }, true);
 
 })();</script>
 <!-- ==== AUTOFIT MODAL: END ==== -->
+
 </body></html>
