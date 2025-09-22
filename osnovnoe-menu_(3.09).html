@@ -1008,7 +1008,7 @@ async function loadDict(){
       <div class="en-head">
         <div class="en-title">${esc(data.name||ruName)}</div>
         <div class="en-actions">
-          <button class="en-btn en-edit" type="button">✎ Edit</button>
+          ${isMobile ? '' : '<button class="en-btn en-edit" type="button">✎ Edit</button>'}
           <button class="en-btn en-close" type="button">✕</button>
         </div>
       </div>
@@ -1192,37 +1192,37 @@ async function loadDict(){
     })();
 
 
-    if(!isMobile){
+    
       const editBtn=panel.querySelector('.en-edit');
-const saveBtn=panel.querySelector('.en-save');
-const cancelBtn=panel.querySelector('.en-cancel');
+      const saveBtn=panel.querySelector('.en-save');
+      const cancelBtn=panel.querySelector('.en-cancel');
 
-editBtn?.addEventListener('click',()=> panel.classList.add('en-editing'));
-cancelBtn?.addEventListener('click',()=> panel.classList.remove('en-editing'));
+      editBtn?.addEventListener('click',()=> panel.classList.add('en-editing'));
+      cancelBtn?.addEventListener('click',()=> panel.classList.remove('en-editing'));
 
-saveBtn?.addEventListener('click', async ()=>{
-  const updated={
-    name: panel.querySelector('.en-name')?.value?.trim() || '',
-    description: panel.querySelector('.en-description')?.value?.trim() || '',
-    features: panel.querySelector('.en-features')?.value?.trim() || '',
-    ingredients: panel.querySelector('.en-ingredients')?.value?.trim() || '',
-  };
-  dict[slug]=updated;
+      saveBtn?.addEventListener('click', async ()=>{
+        const updated={
+          name: panel.querySelector('.en-name')?.value?.trim() || '',
+          description: panel.querySelector('.en-description')?.value?.trim() || '',
+          features: panel.querySelector('.en-features')?.value?.trim() || '',
+          ingredients: panel.querySelector('.en-ingredients')?.value?.trim() || '',
+        };
+        dict[slug]=updated;
 
-  // Пытаемся сохранять на локальном сервере; на GitHub Pages просто обновим UI
-  const canServerSave = /localhost|127\.0\.0\.1/.test(location.host);
-  if (canServerSave){
-    try{
-      const res = await fetch('/save-json', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(dict)
-      });
-      if(!res.ok) throw new Error('save-json failed');
-    }catch(e){
-      console.warn('Local save failed:', e);
-    }
-  }
+        // Пытаемся сохранять на локальном сервере; на GitHub Pages просто обновим UI
+        const canServerSave = /localhost|127\.0\.0\.1/.test(location.host);
+        if (canServerSave){
+          try{
+            const res = await fetch('/save-json', {
+              method:'POST',
+              headers:{'Content-Type':'application/json'},
+              body: JSON.stringify(dict)
+            });
+            if(!res.ok) throw new Error('save-json failed');
+          }catch(e){
+            console.warn('Local save failed:', e);
+          }
+        }
 
   panel.classList.remove('en-editing');
   panel.querySelector('.en-title').textContent = updated.name || ruName;
