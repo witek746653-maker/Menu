@@ -916,13 +916,31 @@ if ('serviceWorker' in navigator) {
   }
   const esc = s=>String(s??'').replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-  async function loadDict(){
-    const url = new URL('en.json', location.href);
-    url.searchParams.set('_', Date.now());
-    const res = await fetch(url.toString(), {cache:'no-store'});
-    if(!res.ok) throw new Error('Cannot load en.json');
-    return res.json();
+  // === loadDict оптимизированная версия ===
+async function loadDict(){
+  if (window.__EN_DICT__) return window.__EN_DICT__;
+
+  // Определяем базовую папку (учитывает GitHub Pages с /repo/)
+  const baseDir = location.origin + location.pathname.replace(/\/[^/]*$/, '/');
+
+  // Версия JSON — меняй цифру, когда обновляешь en.json в репозитории
+  const VERSION = '2';
+
+  const url = new URL(baseDir + 'en.json');
+  url.searchParams.set('v', VERSION);
+
+  try {
+    const res = await fetch(url.toString(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('EN dict load failed: ' + res.status + ' ' + url);
+
+    window.__EN_DICT__ = await res.json();
+    return window.__EN_DICT__;
+  } catch (e) {
+    console.error('[EN modal] Ошибка загрузки словаря:', e);
+    throw e;
   }
+}
+
 
   function getRuTitleFromH3(h3){
     // clone h3 and remove chip text to avoid capturing "EN"
