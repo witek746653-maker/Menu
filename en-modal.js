@@ -12,6 +12,8 @@
 .en-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
 .en-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px calc(40px + var(--safe-bottom)) 16px;overscroll-behavior:contain;touch-action:none}
 .en-panel{display:flex;flex-direction:column;padding-bottom:calc(56px + var(--safe-bottom));background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid rgba(0,86,179,.12);border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.25),0 0 0 1px rgba(0,86,179,.04) inset;padding:16px 20px;max-width:720px;width:min(720px,90vw);color:#0b234a;position:relative;overflow:hidden}
+.en-inner{transform-origin:center center; touch-action:pinch-zoom;}
+
 .en-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .en-title{font:700 18px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#082a63;word-wrap:break-word;overflow-wrap:anywhere;white-space:pre-wrap}
 .en-actions{display:inline-flex;gap:6px;align-items:center}
@@ -120,6 +122,7 @@
     panel.setAttribute('aria-modal','true');
 
     panel.innerHTML = `
+      <div class="en-inner">
       <div class="en-head">
         <div class="en-title">${esc(data.name || ruName)}</div>
         <div class="en-actions">
@@ -131,6 +134,7 @@
       <div class="en-foot">
         <button class="en-btn en-save" type="button">Save</button>
         <button class="en-btn en-cancel" type="button">Cancel</button>
+      </div>
       </div>
     `;
 
@@ -151,22 +155,80 @@
 
     function layout(){
       const vv = window.visualViewport;
-      const W = vv ? Math.floor(vv.width) : window.innerWidth;
-      const H = vv ? Math.floor(vv.height) : window.innerHeight;
-      const headH = headEl.getBoundingClientRect().height;
-      const footH = panel.classList.contains('en-editing') ? footEl.getBoundingClientRect().height : 0;
-      const targetH = Math.min(720, Math.max(300, Math.floor(isMobile ? H*0.85 : H*0.7)));
-      panel.style.height = targetH + 'px';
-      panel.style.maxHeight = '90vh';
-      panel.style.width = Math.min(720, Math.floor(W*0.9)) + 'px';
-      const avail = Math.max(80, targetH - headH - footH - 24);
-      bodyEl.style.maxHeight = Math.floor(avail) + 'px';
+      const scale = vv ? vv.scale || 1 : 1;
+      const W = vv ? vv.width : window.innerWidth;
+      const H = vv ? vv.height : window.innerHeight;
+      // target size = 70% of viewport (physical)
+      const targetW = Math.max(280, Math.floor(W * 0.70));
+      const targetH = Math.max(240, Math.floor(H * 0.70));
+      // counter-scale to keep physical size stable under page zoom
+      panel.style.transformOrigin = 'top left';
+      panel.style.transform = 'scale(' + (1/scale) + ')';
+      panel.style.width  = Math.floor(targetW * scale) + 'px';
+      panel.style.height = Math.floor(targetH * scale) + 'px';
+      panel.style.maxWidth = 'none'; panel.style.maxHeight = 'none';
+      // center using visualViewport offsets
+      const ox = vv ? vv.offsetLeft : 0;
+      const oy = vv ? vv.offsetTop : 0;
+      panel.style.position = 'fixed';
+      panel.style.left = (ox + (W - targetW)/2) + 'px';
+      panel.style.top  = (oy + (H - targetH)/2) + 'px';
+      // compute inner sections layout
+      const headH = headEl.getBoundingClientRect().height / scale; // correct for transform
+      const footH = panel.classList.contains('en-editing') ? (footEl.getBoundingClientRect().height / scale) : 0;
+      const avail = Math.max(80, Math.floor(targetH - headH - footH - 24));
+      bodyEl.style.maxHeight = avail + 'px';
       bodyEl.style.overflow = (bodyEl.scrollHeight > bodyEl.clientHeight + 1) ? 'auto' : 'hidden';
     }
     layout(); setTimeout(layout, 50);
     const vv = window.visualViewport;
     if (vv){ vv.addEventListener('resize', layout); vv.addEventListener('scroll', layout); }
     window.addEventListener('resize', layout);
+
+    // ---- Inner zoom (pinch / ctrl+wheel) ----
+    const inner = panel.querySelector('.en-inner');
+    let z = 1, zMin = 0.75, zMax = 2.5;
+
+    function applyZoom(cx, cy){
+      inner.style.transform = `scale(${z})`;
+    }
+    function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+
+    // Ctrl+wheel (desktop / trackpad pinch)
+    panel.addEventListener('wheel', (e)=>{
+      if (!e.ctrlKey) return;
+      e.preventDefault();
+      const dz = -e.deltaY * 0.0015;
+      z = clamp(z + dz, zMin, zMax);
+      applyZoom(e.clientX, e.clientY);
+    }, {passive:false});
+
+    // Two-finger pinch (pointer events)
+    let p1=null, p2=null, baseDist=0, baseZ=1;
+    function dist(a,b){ const dx=a.clientX-b.clientX, dy=a.clientY-b.clientY; return Math.hypot(dx,dy); }
+
+    panel.addEventListener('pointerdown', (e)=>{
+      if (e.pointerType !== 'touch') return;
+      panel.setPointerCapture(e.pointerId);
+      if (!p1) p1 = e;
+      else if (!p2) { p2 = e; baseDist = dist(p1,p2); baseZ = z; }
+    });
+    panel.addEventListener('pointermove', (e)=>{
+      if (e.pointerType !== 'touch') return;
+      if (p1 && p1.pointerId === e.pointerId) p1 = e;
+      if (p2 && p2.pointerId === e.pointerId) p2 = e;
+      if (p1 && p2){ const d = dist(p1,p2); z = clamp(baseZ * (d/baseDist), zMin, zMax); applyZoom((p1.clientX+p2.clientX)/2, (p1.clientY+p2.clientY)/2); }
+    });
+    function up(e){ if (p1 && p1.pointerId===e.pointerId) p1=null; if (p2 && p2.pointerId===e.pointerId) p2=null; }
+    panel.addEventListener('pointerup', up); panel.addEventListener('pointercancel', up); panel.addEventListener('pointerleave', up);
+
+    // Double-tap to reset
+    let lastTap = 0;
+    panel.addEventListener('touchend', (e)=>{
+      const t = Date.now();
+      if (t - lastTap < 300) { z = 1; applyZoom(); }
+      lastTap = t;
+    });
 
     // Блокируем скролл на фоне при тачах по подложке
     backdrop.addEventListener('touchmove', (e)=>{ if(e.target===backdrop) e.preventDefault(); }, {passive:false});
