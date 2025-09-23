@@ -10,8 +10,8 @@
 :root{--safe-bottom:env(safe-area-inset-bottom,0px)}
 .en-chip{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;padding:4px 8px;border-radius:999px;border:1px solid rgba(0,0,0,.15);background:#fff;cursor:pointer;margin-left:.5rem;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,.06);transition:transform .12s,box-shadow .12s,background .12s}
 .en-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
-.en-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px calc(40px + var(--safe-bottom)) 16px}
-.en-panel{display:flex;flex-direction:column;padding-bottom:calc(56px + var(--safe-bottom));background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid rgba(0,86,179,.12);border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.25),0 0 0 1px rgba(0,86,179,.04) inset;padding:16px 20px;max-width:720px;width:100%;color:#0b234a;position:relative;overflow:hidden}
+.en-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px calc(40px + var(--safe-bottom)) 16px;overscroll-behavior:contain;touch-action:none}
+.en-panel{display:flex;flex-direction:column;padding-bottom:calc(56px + var(--safe-bottom));background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid rgba(0,86,179,.12);border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.25),0 0 0 1px rgba(0,86,179,.04) inset;padding:16px 20px;max-width:720px;width:min(720px,90vw);color:#0b234a;position:relative;overflow:hidden}
 .en-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .en-title{font:700 18px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#082a63;word-wrap:break-word;overflow-wrap:anywhere;white-space:pre-wrap}
 .en-actions{display:inline-flex;gap:6px;align-items:center}
@@ -20,7 +20,7 @@
 .en-close{background:#e74c3c;color:#fff;border:none}
 .en-save{background:#2ecc71;color:#fff;border:none}
 .en-cancel{background:#bdc3c7;border:none}
-.en-sections{display:grid;gap:10px;margin-top:12px;flex:1 1 auto;overflow:auto}
+.en-sections{display:grid;gap:10px;margin-top:12px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .en-sec{background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:10px;padding:8px 10px}
 .en-label{font-weight:650;color:#0f3c7d;margin-bottom:4px}
 .en-text{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
@@ -46,7 +46,7 @@
       'к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h',
       'ц':'ts','ч':'ch','ш':'sh','щ':'sch','ы':'y','э':'e','ю':'yu','я':'ya'};
     return (str||'').toLowerCase().replace(/[ъь]/g,'')
-      .replace(/[\u0400-\u04FF]/g, ch => map[ch] ?? ch)
+      .replace(/[\\u0400-\\u04FF]/g, ch => map[ch] ?? ch)
       .replace(/[^a-z0-9]+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
   };
   const getRuTitleFromH3 = (h3) => {
@@ -141,22 +141,35 @@
     const bodyEl = panel.querySelector('.en-sections');
     const footEl = panel.querySelector('.en-foot');
 
-    // запрет фонового скролла
+    // запрет фонового скролла (надёжный фикс, сохраняем позицию)
     const prevHtmlOverflow = document.documentElement.style.overflow;
     const prevBodyOverflow = document.body.style.overflow;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'relative';
 
     function layout(){
+      const vv = window.visualViewport;
+      const W = vv ? Math.floor(vv.width) : window.innerWidth;
+      const H = vv ? Math.floor(vv.height) : window.innerHeight;
       const headH = headEl.getBoundingClientRect().height;
       const footH = panel.classList.contains('en-editing') ? footEl.getBoundingClientRect().height : 0;
-      const ph = Math.min(720, Math.max(300, Math.floor((isMobile? window.innerHeight : window.innerHeight*0.7))));
-      panel.style.height = ph + 'px';
-      const avail = Math.max(80, ph - headH - footH - 24);
+      const targetH = Math.min(720, Math.max(300, Math.floor(isMobile ? H*0.85 : H*0.7)));
+      panel.style.height = targetH + 'px';
+      panel.style.maxHeight = '90vh';
+      panel.style.width = Math.min(720, Math.floor(W*0.9)) + 'px';
+      const avail = Math.max(80, targetH - headH - footH - 24);
       bodyEl.style.maxHeight = Math.floor(avail) + 'px';
       bodyEl.style.overflow = (bodyEl.scrollHeight > bodyEl.clientHeight + 1) ? 'auto' : 'hidden';
     }
-    layout(); setTimeout(layout, 50); window.addEventListener('resize', layout);
+    layout(); setTimeout(layout, 50);
+    const vv = window.visualViewport;
+    if (vv){ vv.addEventListener('resize', layout); vv.addEventListener('scroll', layout); }
+    window.addEventListener('resize', layout);
+
+    // Блокируем скролл на фоне при тачах по подложке
+    backdrop.addEventListener('touchmove', (e)=>{ if(e.target===backdrop) e.preventDefault(); }, {passive:false});
 
     backdrop.addEventListener('click', e => { if (e.target === backdrop) close(); });
     panel.querySelector('.en-close').addEventListener('click', close);
@@ -165,6 +178,9 @@
       backdrop.remove();
       document.documentElement.style.overflow = prevHtmlOverflow;
       document.body.style.overflow = prevBodyOverflow;
+      document.body.style.position = '';
+      window.scrollTo(0, scrollY);
+      const vv = window.visualViewport; if (vv){ vv.removeEventListener('resize', layout); vv.removeEventListener('scroll', layout); }
       window.removeEventListener('resize', layout);
     }
 
@@ -199,7 +215,7 @@
         ingredients: panel.querySelector('.en-ingredients')?.value?.trim() || '',
       };
       dict[slug] = updated;
-      saveDict(dict);
+      try { localStorage.setItem(LS_KEY, JSON.stringify(dict)); } catch {}
       panel.classList.remove('en-editing');
       panel.querySelector('.en-title').textContent = updated.name || ruName;
       bodyEl.innerHTML = renderSectionsHTML(updated,false);
