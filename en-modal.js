@@ -29,7 +29,7 @@
 .en-editor{display:none}
 .en-editing .en-text{display:none}
 .en-editing .en-editor{display:block}
-.en-editor textarea,.en-editor input{width:100%;resize:vertical;border:1px solid rgba(0,0,0,.2);border-radius:8px;padding:6px 8px;font:inherit;background:#fff}
+.en-editor textarea,.en-editor input{width:100%;resize:vertical;border:1px solid rgba(0,0,0,.2);border-radius:8px;padding:12px 12px;font:inherit;background:#fff;min-height:6em}
 .en-foot{display:none;justify-content:flex-end;gap:8px;margin-top:12px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(249,251,255,0),#f9fbff 40%);padding:12px 0 calc(18px + var(--safe-bottom));border-top:1px solid rgba(0,86,179,.08)}
 .en-editing .en-foot{display:flex}
 .en-audio-under{display:block;margin-top:.4rem}
@@ -97,14 +97,13 @@
     fields.forEach(f=>{
       const val = data[f.key] || '';
       if (f.key==='name' && !isEditing) return;              // Name только в режиме редактирования
-      if (isMobile && !val && f.key!=='name') return;        // на мобиле пустые поля прячем
-      html += `<div class="en-sec" data-key="${f.key}">
+            html += `<div class="en-sec" data-key="${f.key}">
         <div class="en-label">${esc(f.label)}</div>
         <div class="en-text">${esc(val)}</div>
         <div class="en-editor">${
            f.single
             ? `<input class="en-${f.key}" value="${esc(val)}">`
-            : `<textarea class="en-${f.key}" rows="3">${esc(val)}</textarea>`
+            : `<textarea class="en-${f.key}" rows="9">${esc(val)}</textarea>`
         }</div>
       </div>`;
     });
@@ -159,8 +158,8 @@
       const W = vv ? vv.width : window.innerWidth;
       const H = vv ? vv.height : window.innerHeight;
       // target size = 70% of viewport (physical)
-      const targetW = Math.max(280, Math.floor(W * 0.70));
-      const targetH = Math.max(240, Math.floor(H * 0.70));
+      const targetW = Math.max(280, Math.floor(W * 0.80));
+      const targetH = Math.max(240, Math.floor(H * 0.80));
       // counter-scale to keep physical size stable under page zoom
       panel.style.transformOrigin = 'top left';
       panel.style.transform = 'scale(' + (1/scale) + ')';
