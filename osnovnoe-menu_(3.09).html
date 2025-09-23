@@ -837,4 +837,74 @@ blockquote.quote-large {
   }
   window.addEventListener('orientationchange', apply);
 })();
-</script></body></html>
+</script>
+
+
+<script>
+(function robustImageFixV2(){
+  const isHttp = s => /^https?:/i.test(s) || s.startsWith('data:');
+  const parseWidthPct = el => {
+    const w = (el.getAttribute('style')||'').match(/width\s*:\s*([\d.]+)%/i);
+    return w ? parseFloat(w[1]) : null;
+  };
+  function trySwap(img, candidates){
+    if (!candidates.length) { 
+      (window.__missingImages = window.__missingImages || []).push(img.getAttribute('data-original-src') || img.src);
+      img.style.display = 'none';
+      return;
+    }
+    const next = candidates.shift();
+    if (!next || next === img.src) return trySwap(img, candidates);
+    const probe = new Image();
+    probe.onload = () => { img.src = next; };
+    probe.onerror = () => trySwap(img, candidates);
+    probe.src = next;
+  }
+  function candidatesFor(src, img){
+    // если уже абсолютный путь — не трогаем
+    if (isHttp(src)) return [];
+    const parts = src.split('/');
+    const file = parts.pop();
+    const folder = parts.join('/');
+    const name = file;
+    const hasImages = folder === 'images';
+    const hasIcons  = folder === 'icons';
+    const bigish = (parseWidthPct(img) || 0) >= 40; // большие фото в меню
+    const isUUID = /^[0-9a-f-]{32,}\.(png|jpg|jpeg|gif)$/i.test(name);
+    const ext = name.split('.').pop().toLowerCase();
+
+    const opts = [];
+    // 1) сначала сохраняем текущий
+    if (src) opts.push(src);
+    // 2) если это PNG/GIF и, вероятно, большое фото → попробуем images/
+    if ((ext === 'png' || ext === 'gif') && (bigish || isUUID)) {
+      opts.push('images/' + name);
+      opts.push('./images/' + name);
+    }
+    // 3) всегда пробуем icons/ и images/ как fallback
+    if (!hasIcons) { opts.push('icons/' + name); opts.push('./icons/' + name); }
+    if (!hasImages){ opts.push('images/' + name); opts.push('./images/' + name); }
+    // 4) на всякий случай — корень
+    opts.push(name);
+    // Уберём дубликаты
+    return Array.from(new Set(opts));
+  }
+
+  const imgs = Array.from(document.querySelectorAll('img[src]')).filter(i => !isHttp(i.getAttribute('src')));
+  imgs.forEach(img => {
+    const src = img.getAttribute('src');
+    img.setAttribute('data-original-src', src);
+    img.addEventListener('error', function handler(){
+      img.removeEventListener('error', handler);
+      trySwap(img, candidatesFor(src, img));
+    });
+  });
+
+  window.addEventListener('load', () => {
+    if (window.__missingImages && window.__missingImages.length) {
+      console.warn('Не найдены изображения:', window.__missingImages);
+    }
+  });
+})();
+</script>
+</body></html>
