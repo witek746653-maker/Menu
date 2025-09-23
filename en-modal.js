@@ -336,3 +336,57 @@ try {
     bind();
   }
 })();
+
+/* === EN-MODAL FIX PATCH v2025-09-23 === */
+(function(){
+  try {
+    // 1) Inject CSS: raise z-index and hide floating TOC button(s) while modal is open
+    var css = `
+      /* put modal above any floating UI */
+      .en-backdrop{ z-index:2147483000 !important; }
+      /* when any EN modal is open, hide/block floating TOC/back-to-top buttons */
+      .en-modal-open [data-toc],
+      .en-modal-open [data-toc-button],
+      .en-modal-open .toc-button,
+      .en-modal-open .btn-toc,
+      .en-modal-open .to-top,
+      .en-modal-open .back-to-top,
+      .en-modal-open .back-to-toc,
+      .en-modal-open [aria-label="Оглавление"],
+      .en-modal-open :is(button,a,div)[style*="position: fixed"]{
+        pointer-events: none !important;
+      }
+      .en-modal-open .toc-button,
+      .en-modal-open .btn-toc,
+      .en-modal-open .back-to-toc,
+      .en-modal-open [data-toc],
+      .en-modal-open [data-toc-button],
+      .en-modal-open [aria-label="Оглавление"]{
+        opacity:0 !important; visibility:hidden !important;
+      }
+    `;
+    var style = document.createElement('style');
+    style.setAttribute('data-en-modal-fix','true');
+    style.textContent = css;
+    document.head.appendChild(style);
+
+    // 2) MutationObserver: toggle .en-modal-open on <html> when backdrop exists
+    function updateFlag(){
+      var hasModal = !!document.querySelector('.en-backdrop, .en-modal, [data-en-modal-backdrop]');
+      var root = document.documentElement;
+      if(hasModal) root.classList.add('en-modal-open');
+      else root.classList.remove('en-modal-open');
+    }
+    // run once now and on DOM changes
+    updateFlag();
+    var mo = new MutationObserver(function(){
+      updateFlag();
+    });
+    mo.observe(document.body || document.documentElement, {childList:true, subtree:true});
+    // also clean up flag on unload just in case
+    window.addEventListener('beforeunload', function(){ 
+      document.documentElement.classList.remove('en-modal-open');
+    });
+  } catch(e){ /* silent */ }
+})();
+/* === /EN-MODAL FIX PATCH === */
