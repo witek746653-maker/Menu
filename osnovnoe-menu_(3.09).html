@@ -838,73 +838,95 @@ blockquote.quote-large {
   window.addEventListener('orientationchange', apply);
 })();
 </script>
-
-
 <script>
-(function robustImageFixV2(){
+(function imageDiagnostics(){
   const isHttp = s => /^https?:/i.test(s) || s.startsWith('data:');
-  const parseWidthPct = el => {
-    const w = (el.getAttribute('style')||'').match(/width\s*:\s*([\d.]+)%/i);
-    return w ? parseFloat(w[1]) : null;
-  };
-  function trySwap(img, candidates){
-    if (!candidates.length) { 
-      (window.__missingImages = window.__missingImages || []).push(img.getAttribute('data-original-src') || img.src);
-      img.style.display = 'none';
-      return;
-    }
-    const next = candidates.shift();
-    if (!next || next === img.src) return trySwap(img, candidates);
-    const probe = new Image();
-    probe.onload = () => { img.src = next; };
-    probe.onerror = () => trySwap(img, candidates);
-    probe.src = next;
-  }
-  function candidatesFor(src, img){
-    // если уже абсолютный путь — не трогаем
+  function uniq(arr){ return Array.from(new Set(arr)); }
+  function candidates(src){
     if (isHttp(src)) return [];
-    const parts = src.split('/');
-    const file = parts.pop();
-    const folder = parts.join('/');
-    const name = file;
-    const hasImages = folder === 'images';
-    const hasIcons  = folder === 'icons';
-    const bigish = (parseWidthPct(img) || 0) >= 40; // большие фото в меню
-    const isUUID = /^[0-9a-f-]{32,}\.(png|jpg|jpeg|gif)$/i.test(name);
-    const ext = name.split('.').pop().toLowerCase();
-
-    const opts = [];
-    // 1) сначала сохраняем текущий
-    if (src) opts.push(src);
-    // 2) если это PNG/GIF и, вероятно, большое фото → попробуем images/
-    if ((ext === 'png' || ext === 'gif') && (bigish || isUUID)) {
-      opts.push('images/' + name);
-      opts.push('./images/' + name);
+    const parts = src.split('/'); const file = parts.pop(); const dir = parts.join('/');
+    const list = [];
+    // current as-is
+    list.push(src);
+    // try images/ and icons/ and root
+    list.push('images/' + file); list.push('./images/' + file);
+    list.push('icons/' + file);  list.push('./icons/' + file);
+    list.push(file);
+    // try case variants of extension
+    const dot = file.lastIndexOf('.');
+    if (dot>0){
+      const name = file.slice(0,dot), ext = file.slice(dot+1);
+      const variants = uniq([ext.toLowerCase(), ext.toUpperCase(), ext[0].toUpperCase()+ext.slice(1).toLowerCase()]);
+      variants.forEach(v => {
+        list.push((dir?dir+'/':'') + name + '.' + v);
+        list.push('images/' + name + '.' + v);
+        list.push('icons/'  + name + '.' + v);
+        list.push('./images/' + name + '.' + v);
+        list.push('./icons/'  + name + '.' + v);
+      });
     }
-    // 3) всегда пробуем icons/ и images/ как fallback
-    if (!hasIcons) { opts.push('icons/' + name); opts.push('./icons/' + name); }
-    if (!hasImages){ opts.push('images/' + name); opts.push('./images/' + name); }
-    // 4) на всякий случай — корень
-    opts.push(name);
-    // Уберём дубликаты
-    return Array.from(new Set(opts));
+    return uniq(list);
   }
-
-  const imgs = Array.from(document.querySelectorAll('img[src]')).filter(i => !isHttp(i.getAttribute('src')));
-  imgs.forEach(img => {
-    const src = img.getAttribute('src');
-    img.setAttribute('data-original-src', src);
-    img.addEventListener('error', function handler(){
-      img.removeEventListener('error', handler);
-      trySwap(img, candidatesFor(src, img));
-    });
-  });
-
-  window.addEventListener('load', () => {
-    if (window.__missingImages && window.__missingImages.length) {
-      console.warn('Не найдены изображения:', window.__missingImages);
+  async function head(url){
+    try{
+      const r = await fetch(url, { method:'HEAD', cache:'no-store' });
+      return r.ok;
+    }catch(e){ return false; }
+  }
+  async function run(){
+    const imgs = Array.from(document.querySelectorAll('img[src]')).filter(i => !isHttp(i.getAttribute('src')));
+    const report = [];
+    for (const img of imgs){
+      const src = img.getAttribute('src');
+      const tries = candidates(src);
+      let okUrl = null;
+      for (const u of tries){
+        // eslint-disable-next-line no-await-in-loop
+        const ok = await head(u);
+        if (ok){ okUrl = u; break; }
+      }
+      if (!okUrl){
+        report.push({original: src, tried: tries});
+      } else {
+        // Подменим на рабочий
+        img.src = okUrl;
+      }
     }
-  });
+    // UI панель
+    const panel = document.createElement('div');
+    panel.style.cssText = 'position:fixed;right:12px;bottom:12px;left:12px;max-height:40vh;overflow:auto;background:#111;color:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.35);font:14px/1.4 system-ui,Segoe UI,Arial';
+    const h = document.createElement('div');
+    h.textContent = 'Отчёт по изображениям';
+    h.style.cssText = 'font-weight:700;margin-bottom:8px';
+    panel.appendChild(h);
+    if (report.length === 0){
+      panel.appendChild(Object.assign(document.createElement('div'), {textContent:'Все изображения найдены.'}));
+    } else {
+      const tip = document.createElement('div');
+      tip.textContent = 'Не найдены следующие файлы. Сравни с репо и приведи точные имена/расположение:';
+      tip.style.marginBottom = '6px';
+      panel.appendChild(tip);
+      report.forEach(item => {
+        const wrap = document.createElement('div');
+        wrap.style.cssText = 'border-top:1px solid rgba(255,255,255,.15);padding-top:6px;margin-top:6px';
+        const a = document.createElement('div');
+        a.innerHTML = '<b>original:</b> ' + item.original;
+        const b = document.createElement('div');
+        b.innerHTML = '<b>tried:</b> ' + item.tried.join(', ');
+        wrap.appendChild(a); wrap.appendChild(b);
+        panel.appendChild(wrap);
+      });
+    }
+    const btn = document.createElement('button');
+    btn.textContent = 'Скрыть отчёт';
+    btn.style.cssText = 'margin-top:8px;padding:6px 10px;border-radius:8px;border:0;background:#2d72d2;color:#fff;cursor:pointer';
+    btn.onclick = () => panel.remove();
+    panel.appendChild(btn);
+    document.body.appendChild(panel);
+    console.warn('Image diagnostics report:', report);
+    window.__imageDiagnosticsReport = report;
+  }
+  run();
 })();
 </script>
 </body></html>
