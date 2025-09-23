@@ -3,11 +3,11 @@
 
 // --- version & debug ---
 try {
-  window.EN_MODAL_VERSION = "EN-Modal v2025.09.23-ultraCompactHead-actionsOverlay";
-  console.log("%cEN-Modal v2025.09.23-ultraCompactHead-actionsOverlay loaded","padding:2px 6px;border-radius:6px;background:#0b234a;color:#fff");
+  window.EN_MODAL_VERSION = "EN-Modal v2025.09.23-ultraCompactHead-actionsOverlay+mobileHideEmpty";
+  console.log("%cEN-Modal v2025.09.23-ultraCompactHead-actionsOverlay+mobileHideEmpty loaded","padding:2px 6px;border-radius:6px;background:#0b234a;color:#fff");
   if (location.hash.includes('enmodaldebug')) {
     const b=document.createElement('div');
-    b.textContent="EN-Modal v2025.09.23-ultraCompactHead-actionsOverlay";
+    b.textContent="EN-Modal v2025.09.23-ultraCompactHead-actionsOverlay+mobileHideEmpty";
     b.style.cssText="position:fixed;right:8px;bottom:8px;z-index:100000;font:600 11px system-ui;padding:6px 8px;border-radius:8px;background:#0b234a;color:#fff;opacity:.85";
     document.addEventListener('DOMContentLoaded',()=>document.body.appendChild(b),{once:true});
   }
@@ -78,10 +78,12 @@ try {
 .en-audio-chip button{all:unset;cursor:pointer;padding:.1rem .3rem;border-radius:999px;border:1px solid rgba(0,0,0,.25);line-height:1}
 .en-audio-chip button:active{transform:scale(.95)}
 
+/* Скрывать пустые секции на телефоне в режиме просмотра — даже если JS не сработал */
 @media (max-width:768px){
   .en-panel{border-radius:12px;padding:6px 8px 8px}
   .en-title{font-size:11px}
   .en-actions{top:2px;right:4px}
+  .en-panel:not(.en-editing) .en-sec:has(.en-text:empty){ display:none !important; }
 }
 .en-panel:not(.en-editing) .en-sec[data-key="name"]{display:none !important}
 `;
@@ -133,6 +135,10 @@ try {
     fields.forEach(f=>{
       const val = data[f.key] || '';
       if (f.key==='name' && !isEditing) return;
+
+      // JS-логика: на телефоне и в просмотре пустые поля не рендерим
+      if (isMobile && !isEditing && !String(val).trim()) return;
+
       html += `<div class="en-sec" data-key="${f.key}">
         <div class="en-label">${esc(f.label)}</div>
         <div class="en-text">${esc(val)}</div>
@@ -202,13 +208,12 @@ try {
       panel.style.left = (ox + (W - targetW)/2) + 'px';
       panel.style.top  = (oy + (H - targetH)/2) + 'px';
       const headH = headEl.getBoundingClientRect().height / scale;
-const footH = panel.classList.contains('en-editing') ? (footEl.getBoundingClientRect().height / scale) : 0;
-// 5% bottom padding for the modal content area
-const pb = Math.floor(targetH * 0.05);
-const avail = Math.max(80, Math.floor(targetH - headH - footH - 14 - pb));
-bodyEl.style.maxHeight = avail + 'px';
-bodyEl.style.overflow = 'auto';
-bodyEl.style.paddingBottom = pb + 'px';
+      const footH = panel.classList.contains('en-editing') ? (footEl.getBoundingClientRect().height / scale) : 0;
+      const pb = Math.floor(targetH * 0.05);
+      const avail = Math.max(80, Math.floor(targetH - headH - footH - 14 - pb));
+      bodyEl.style.maxHeight = avail + 'px';
+      bodyEl.style.overflow = 'auto';
+      bodyEl.style.paddingBottom = pb + 'px';
     }
     layout(); setTimeout(layout, 50);
     const vv = window.visualViewport;
