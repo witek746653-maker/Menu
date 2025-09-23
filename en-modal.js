@@ -371,11 +371,40 @@ try {
     document.head.appendChild(style);
 
     // 2) MutationObserver: toggle .en-modal-open on <html> when backdrop exists
+    
+    // hard-hide floating fixed elements (e.g., TOC button) while modal is open
+    function toggleFixedHiding(enable){
+      try{
+        var backdrop = document.querySelector('.en-backdrop, .en-modal, [data-en-modal-backdrop]');
+        var nodes = document.querySelectorAll('body *');
+        for(var i=0;i<nodes.length;i++){
+          var el = nodes[i];
+          if(!el || !el.ownerDocument) continue;
+          if(backdrop && backdrop.contains(el)) continue; // keep modal internals
+          var cs = getComputedStyle(el);
+          if(cs.position === 'fixed'){
+            if(enable){
+              if(!el.dataset.enFixedHidden){
+                el.dataset.enFixedHidden = '1';
+                el.dataset.enPrevDisplay = el.style.display || '';
+                el.style.setProperty('display','none','important');
+              }
+            }else{
+              if(el.dataset.enFixedHidden){
+                el.style.display = el.dataset.enPrevDisplay || '';
+                delete el.dataset.enPrevDisplay;
+                delete el.dataset.enFixedHidden;
+              }
+            }
+          }
+        }
+      }catch(e){ /* silent */ }
+    }
+
     function updateFlag(){
       var hasModal = !!document.querySelector('.en-backdrop, .en-modal, [data-en-modal-backdrop]');
       var root = document.documentElement;
-      if(hasModal) root.classList.add('en-modal-open');
-      else root.classList.remove('en-modal-open');
+      if(hasModal) { root.classList.add('en-modal-open'); toggleFixedHiding(true);} else { root.classList.remove('en-modal-open'); toggleFixedHiding(false);}
     }
     // run once now and on DOM changes
     updateFlag();
