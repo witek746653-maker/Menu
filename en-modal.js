@@ -3,11 +3,11 @@
 
 // --- version & debug ---
 try {
-  window.EN_MODAL_VERSION = "EN-Modal v2025.09.23-80p-rows9-mobileFields-syncName+viewParity";
-  console.log("%cEN-Modal v2025.09.23-80p-rows9-mobileFields-syncName+viewParity loaded", "padding:2px 6px;border-radius:6px;background:#0b234a;color:#fff");
+  window.EN_MODAL_VERSION = "EN-Modal v2025.09.23-80p-rows9-mobileFields-syncName+mobileBottomFix";
+  console.log("%cEN-Modal v2025.09.23-80p-rows9-mobileFields-syncName+mobileBottomFix loaded", "padding:2px 6px;border-radius:6px;background:#0b234a;color:#fff");
   if (location.hash.includes('enmodaldebug')) {
     const b=document.createElement('div');
-    b.textContent="EN-Modal v2025.09.23-80p-rows9-mobileFields-syncName+viewParity";
+    b.textContent="EN-Modal v2025.09.23-80p-rows9-mobileFields-syncName+mobileBottomFix";
     b.style.cssText="position:fixed;right:8px;bottom:8px;z-index:100000;font:600 11px system-ui;padding:6px 8px;border-radius:8px;background:#0b234a;color:#fff;opacity:.85";
     document.addEventListener('DOMContentLoaded',()=>document.body.appendChild(b),{once:true});
   }
@@ -24,7 +24,7 @@ try {
 .en-chip{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;padding:4px 8px;border-radius:999px;border:1px solid rgba(0,0,0,.15);background:#fff;cursor:pointer;margin-left:.5rem;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,.06);transition:transform .12s,box-shadow .12s,background .12s}
 .en-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
 .en-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px calc(40px + var(--safe-bottom)) 16px;overscroll-behavior:contain;touch-action:none}
-.en-panel{display:flex;flex-direction:column;padding-bottom:calc(56px + var(--safe-bottom));background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid rgba(0,86,179,.12);border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.25),0 0 0 1px rgba(0,86,179,.04) inset;padding:16px 20px;max-width:720px;width:min(720px,90vw);color:#0b234a;position:relative;overflow:hidden}
+.en-panel{display:flex;flex-direction:column;padding-bottom:calc(72px + var(--safe-bottom));background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid rgba(0,86,179,.12);border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.25),0 0 0 1px rgba(0,86,179,.04) inset;padding:16px 20px;max-width:720px;width:min(720px,90vw);color:#0b234a;position:relative;overflow:hidden}
 .en-inner{transform-origin:center center; touch-action:pinch-zoom;}
 
 .en-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -35,8 +35,8 @@ try {
 .en-close{background:#e74c3c;color:#fff;border:none}
 .en-save{background:#2ecc71;color:#fff;border:none}
 .en-cancel{background:#bdc3c7;border:none}
-.en-sections{display:grid;gap:8px;margin-top:6px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;padding-bottom:calc(28px + var(--safe-bottom));min-height:0}
-.en-sections::after{content:"";display:block;height:96px;}
+.en-sections{display:grid;gap:8px;margin-top:6px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;padding-bottom:calc(120px + var(--safe-bottom));min-height:0}
+.en-sections::after{content:"";display:block;height:max(90px,calc(24px + var(--safe-bottom)));}
 .en-sec{position:relative;background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:10px;padding:14px 10px 8px}
 .en-label{position:absolute;top:4px;left:10px;margin:0;font-size:11px;line-height:1.2;font-weight:600;color:#0f3c7d;opacity:.9;background:#fff;padding:0 6px;border-radius:6px}
 .en-text{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
@@ -53,7 +53,6 @@ try {
 @media (max-width:768px){.en-panel{border-radius:14px;padding:12px 14px}}
 /* скрыть поле Name в режиме просмотра */
 .en-panel:not(.en-editing) .en-sec[data-key="name"]{display:none !important}
-.en-sec{scroll-margin-bottom:18px}
 `;
 
   /* ——— helpers ——— */
@@ -189,18 +188,11 @@ try {
       panel.style.top  = (oy + (H - targetH)/2) + 'px';
       // compute inner sections layout
       const headH = headEl.getBoundingClientRect().height / scale; // correct for transform
-      const realFootH = panel.classList.contains('en-editing') ? (footEl.getBoundingClientRect().height / scale) : 0;
-      const virtualFootH = panel.classList.contains('en-editing') ? realFootH : (window.innerWidth < 768 ? 110 : 40);
-      const footH = Math.max(realFootH, virtualFootH);
+      const footH = panel.classList.contains('en-editing') ? (footEl.getBoundingClientRect().height / scale) : 0;
       const avail = Math.max(80, Math.floor(targetH - headH - footH - 24));
       bodyEl.style.maxHeight = avail + 'px';
       bodyEl.style.overflow = 'auto';
-      try {
-        const root = getComputedStyle(document.documentElement);
-        const sb = parseFloat(root.getPropertyValue('--safe-bottom')) || 0;
-        const extra = (window.innerWidth < 768 ? 110 : 40) + sb;
-        bodyEl.style.paddingBottom = extra + 'px';
-      } catch(e){ bodyEl.style.paddingBottom = (window.innerWidth < 768 ? 110 : 40) + 'px'; }
+      bodyEl.style.paddingBottom = '24px';
     }
     layout(); setTimeout(layout, 50);
     const vv = window.visualViewport;
