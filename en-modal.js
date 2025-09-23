@@ -20,6 +20,12 @@ try {
 
   /* ——— CSS ——— */
   const CSS = `
+
+.en-modal-open .toc-button,
+.en-modal-open .floating-toc,
+.en-modal-open [data-toc],
+.en-modal-open [data-role="toc"]{ display:none !important; }
+
 :root{--safe-bottom:env(safe-area-inset-bottom,0px)}
 .en-chip{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;padding:4px 8px;border-radius:999px;border:1px solid rgba(0,0,0,.15);background:#fff;cursor:pointer;margin-left:.5rem;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,.06);transition:transform .12s,box-shadow .12s,background .12s}
 .en-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
@@ -100,6 +106,14 @@ try {
     return clone.textContent.trim();
   };
 
+
+  function findTocBtn(){
+    let el = document.querySelector('.toc-button, .floating-toc, [data-toc], [data-role="toc"]');
+    if (el) return el;
+    const candidates = Array.from(document.querySelectorAll('button, a, .chip, .fab, [role="button"]'));
+    return candidates.find(n => (n.textContent||'').trim().includes('Оглавление'));
+  }
+
   /* ——— storage ——— */
   const loadDict = () => { try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch { return {}; } };
   const saveDict = (d) => { try { localStorage.setItem(LS_KEY, JSON.stringify(d)); } catch {} };
@@ -178,6 +192,11 @@ try {
 
     backdrop.appendChild(panel);
     document.body.appendChild(backdrop);
+    document.documentElement.classList.add('en-modal-open');
+    const tocBtn = findTocBtn();
+    var prevTocDisplay = tocBtn ? tocBtn.style.display : null;
+    if (tocBtn) tocBtn.style.display = 'none';
+
 
     const headEl = panel.querySelector('.en-head');
     const bodyEl = panel.querySelector('.en-sections');
@@ -241,6 +260,10 @@ try {
     panel.querySelector('.en-close').addEventListener('click', close);
 
     function close(){
+      
+      if (tocBtn) tocBtn.style.display = prevTocDisplay ?? '';
+      document.documentElement.classList.remove('en-modal-open');
+
       backdrop.remove();
       document.documentElement.style.overflow = prevHtmlOverflow;
       document.body.style.overflow = prevBodyOverflow;
