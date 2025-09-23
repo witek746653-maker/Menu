@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Case Checker — icons/ & images/</title>
+<style>
+  :root { --ok: #1a7f37; --bad: #d1242f; --warn: #b78103; --muted: #667085; }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+  h1 { margin: 0 0 12px; }
+  .hint { color: var(--muted); margin-bottom: 18px; }
+  .controls { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0 18px; align-items: center; }
+  button { padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; background: #f8f8f8; cursor: pointer; }
+  button:focus { outline: 2px solid #8ab4f8; outline-offset: 2px; }
+  input[type="search"] { padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; min-width: 260px; }
+  .stat { font-weight: 600; }
+  .stat.ok { color: var(--ok); }
+  .stat.bad { color: var(--bad); }
+  .grid { display: grid; grid-template-columns: 140px 1fr; gap: 12px; }
+  .row { display: contents; }
+  .thumb { width: 140px; height: 90px; object-fit: contain; border: 1px solid #eee; background: #fafafa; }
+  .path { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; word-break: break-all; }
+  .tag { display: inline-block; font-size: 12px; padding: 2px 6px; border-radius: 999px; border: 1px solid #ddd; background:#fff; margin-left: 6px; }
+  .tag.ok { border-color: var(--ok); color: var(--ok); }
+  .tag.bad { border-color: var(--bad); color: var(--bad); }
+  .tag.warn { border-color: var(--warn); color: var(--warn); }
+  .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+</style>
+</head>
+<body>
+  <h1>Проверка регистра путей</h1>
+  <div class="hint">Положи этот файл в корень репозитория (рядом с папками <code>icons/</code> и <code>images/</code>) и открой в браузере. 
+  Если статус <span class="stat ok">OK</span> — путь совпадает по регистру. <span class="stat bad">NOT FOUND</span> — файла нет по точному регистру (возможна ошибка регистра).</div>
+
+  <div class="controls">
+    <button id="showAll">Все</button>
+    <button id="showBad">Только NOT FOUND</button>
+    <input id="q" type="search" placeholder="Фильтр по пути…" />
+    <span id="counters" class="stat"></span>
+  </div>
+
+  <div id="list" class="grid" role="table" aria-label="Список файлов"></div>
+
+<script>
+const DATA = ["images/IMG_8165.jpg", "icons/ChatGPT_Image_14.png", "icons/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.webp", "icons/fire-57.png", "icons/99-997123_jpg-black-and-white-library-italian-cuisine-pizza.png", "icons/2224196.png", "icons/pngtree-raw-food-label-png-png-image_5940210.png", "icons/5346247.png", "icons/image.png", "icons/1715d5874004a3d661a55e24118d90f8_1000_1000_90.webp", "icons/2025-07-05_13-05-35.png", "icons/7013845.png", "icons/3944096.png", "icons/6692378.png", "icons/2025-06-30_23-18-59.png", "icons/9410695.png", "icons/2025-07-08_15-35-44.png", "icons/6773707.png", "icons/2025-07-01_01-17-03.png", "icons/2435673.png", "icons/dc6a1317-5381-4633-85d7-9ac4e1e64a9e.png", "images/images_(21).jpeg", "icons/2025-07-01_01-15-21.png", "icons/2bfe793a-a68e-4790-b707-44395f411174.png", "icons/kunz.png", "icons/2025-07-01_00-59-32.png", "icons/12242716.png", "icons/2025-07-01_01-05-58.png", "icons/2025-07-01_01-13-58.png", "icons/1256449.png", "icons/398e5cfa-3101-4d5a-b68b-8597f74c84b7.png", "icons/2025-07-01_01-14-26.png", "icons/2025-07-04_22-50-40.png", "images/_.jpg", "images/____2.jpg", "icons/wine.png", "icons/5036926.png", "icons/13850681.png", "images/5.jpg", "images/4.jpg", "icons/2025-07-01_00-07-18.png", "images/2.jpg", "images/3.jpg", "icons/12367886.png", "images/1.jpg", "icons/2025-07-08_14-58-48.png", "images/steak-doneness-chart-differently-cooked-pieces-vector-9416721.jpg", "images/_DSC7043.jpg", "images/_1_(1).jpg", "icons/12344194.png", "icons/299-2997107_pere-magloire-vs-calvados-calvados-pere-magloire.png", "icons/2198d8f8-2d7f-46cd-93c6-0a6826476ce8.png", "icons/2025-07-08_13-56-58.png", "images/Photo0100.jpg", "images/Photo0108.jpg", "icons/2025-07-08_13-40-17.png", "icons/2025-07-08_14-42-43.png", "icons/2025-07-08_14-55-05.png", "icons/6786878.png", "icons/2025-07-05_10-25-40.png", "icons/2025-07-05_10-26-25.png", "icons/2025-07-05_10-28-20.png", "icons/2025-07-05_10-27-39.png", "icons/2025-07-05_10-27-10.png", "icons/2025-07-05_10-24-52.png", "icons/2435673%201.png", "images/1______210__880_.jpg", "images/___1.jpg", "images/Fetuchini.jpg", "images/Photo0076.jpg", "images/41______320___1480_.jpg", "images/Rizotto.jpg", "icons/image%201.png", "icons/dd9177e7-bf85-4104-887c-310f25d062d2.png", "images/_____8.jpg", "icons/image%202.png", "icons/image%203.png", "images/noroot.jpg", "images/99290880.jpg", "icons/5821504.png", "images/25822262.jpg", "icons/bfa7bb30-a2e9-4049-b0b1-8140a941e133.png", "images/33451393.jpg", "images/60662643.jpg", "images/92245071.jpg", "images/2______375__1380_.jpg", "images/68935022.jpg", "images/29265842.jpg", "images/92033367.jpg", "icons/155cc1dd-f91e-4fee-8526-1ebfed98c1b3.png", "images/10683956.jpg", "images/53___770__2.jpg", "images/8_-_2320_.jpg", "images/7___1880_.jpg", "icons/c440d179-7120-4ddf-8d23-1b75ca85a8d8.png", "images/WhatsApp_Image_2022-.jpeg", "images/41___1770_.jpg", "images/6_100____990_.jpg", "images/33___100____1440_.jpg", "images/42__100____2550_.jpg", "images/12__100____490_.jpg", "images/82__100___1200_.jpg", "images/53__100____920_.jpg", "images/72__100____870_.jpg", "images/2_1__100____770_.jpg", "images/__-_7.jpg", "images/_DSC7314.jpg", "images/Sabor_De_La_Vida_280.jpg", "images/_DSC7365.jpg", "images/__7.jpg", "images/_DSC7359.jpg", "images/Sabor_De_La_Vida_280_(3).jpg", "images/Sabor_De_La_Vida_280_(5).jpg", "images/_DSC7330.jpg", "images/Sabor_De_La_Vida_280_(1).jpg", "images/Sabor_De_La_Vida_280_(2).jpg", "images/Sabor_De_La_Vida_280_(4).jpg", "images/__4_2.jpg", "images/IMG_7444.jpg", "images/DSC09344.jpg", "images/Photo0125.jpg", "icons/bcb59dbc-d346-4c84-83b6-0a6de2961dad.png", "icons/0b2acab1-fea9-4d6f-99e7-f711b3f492bd.png", "images/Photo0116.jpg", "images/DSC09469.jpg", "icons/noroot.png", "images/_2.jpg", "images/_1600x1200_(6).jpg", "images/_1600x1200_(5).jpg", "images/_1600x1200_(4).jpg", "images/_1600x1200_(3).jpg", "images/_1600x1200_(1).jpg", "images/_1600x1200_(2).jpg", "images/_%201.jpg", "images/_DSC7445.jpg", "icons/f751fe1f-ef60-4a98-a028-be3113d84654.png"];
+
+const list = document.getElementById('list');
+const counters = document.getElementById('counters');
+const q = document.getElementById('q');
+let filterMode = 'all'; // 'all' | 'bad'
+let query = '';
+
+function render(items) {
+  list.innerHTML = '';
+  let ok = 0, bad = 0;
+  items.forEach((p, i) => {
+    const rid = 'r' + i;
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.setAttribute('role', 'row');
+    row.dataset.path = p;
+
+    const img = document.createElement('img');
+    img.src = p + (p.includes('?') ? '' : '?_=' + Date.now()); // bust cache
+    img.alt = '';
+    img.className = 'thumb';
+    img.loading = 'lazy';
+
+    const meta = document.createElement('div');
+    const path = document.createElement('div');
+    path.className = 'path';
+    path.textContent = p;
+
+    const tag = document.createElement('span');
+    tag.className = 'tag warn';
+    tag.textContent = 'CHECKING…';
+
+    const ext = p.split('.').pop().toLowerCase();
+    const warn = (/[А-ЯЁа-яё]/.test(p) || /\s/.test(p)) ? ' ⚠︎' : '';
+
+    meta.appendChild(path);
+    meta.appendChild(tag);
+    if (warn) {
+      const t = document.createElement('span');
+      t.className = 'tag warn';
+      t.textContent = 'Подозрительно' + warn;
+      meta.appendChild(t);
+    }
+
+    row.appendChild(img);
+    row.appendChild(meta);
+    list.appendChild(row);
+
+    img.onload = () => {
+      tag.textContent = 'OK';
+      tag.className = 'tag ok';
+      ok++;
+      updateCounters(ok, bad, items.length);
+      applyFilters();
+    };
+    img.onerror = () => {
+      tag.textContent = 'NOT FOUND';
+      tag.className = 'tag bad';
+      bad++;
+      updateCounters(ok, bad, items.length);
+      applyFilters();
+    };
+  });
+  updateCounters(ok, bad, items.length);
+}
+
+function updateCounters(ok, bad, total) {
+  counters.innerHTML = `Всего: <span class="stat">{total}</span> · 
+    <span class="stat ok">OK: ${ok}</span> · 
+    <span class="stat bad">NOT FOUND: ${bad}</span>`;
+}
+
+function applyFilters() {
+  const rows = Array.from(document.querySelectorAll('.row'));
+  rows.forEach(row => {
+    const path = row.dataset.path || '';
+    const status = row.querySelector('.tag').textContent;
+    const matchesQuery = !query || path.toLowerCase().includes(query.toLowerCase());
+    const matchesMode = (filterMode === 'all') || (filterMode === 'bad' && status === 'NOT FOUND');
+    row.style.display = matchesQuery && matchesMode ? 'contents' : 'none';
+  });
+}
+
+document.getElementById('showAll').onclick = () => { filterMode = 'all'; applyFilters(); };
+document.getElementById('showBad').onclick = () => { filterMode = 'bad'; applyFilters(); };
+q.oninput = (e) => { query = e.target.value; applyFilters(); };
+
+render(DATA);
+</script>
+</body>
+</html>
