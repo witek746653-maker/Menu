@@ -25,6 +25,9 @@ try {
 .en-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
 .en-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px calc(40px + var(--safe-bottom)) 16px;overscroll-behavior:contain;touch-action:none}
 .en-panel{display:flex;flex-direction:column;padding-bottom:calc(56px + var(--safe-bottom));background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid rgba(0,86,179,.12);border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.25),0 0 0 1px rgba(0,86,179,.04) inset;padding:16px 20px;max-width:720px;width:min(720px,90vw);color:#0b234a;position:relative;overflow:hidden}
+.en-panel:not(.en-editing){padding-bottom:calc(12px + var(--safe-bottom))}
+.en-tail{height:120px}
+@media (max-width:768px){.en-tail{height:140px}}
 .en-inner{transform-origin:center center; touch-action:pinch-zoom;}
 
 .en-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -35,8 +38,9 @@ try {
 .en-close{background:#e74c3c;color:#fff;border:none}
 .en-save{background:#2ecc71;color:#fff;border:none}
 .en-cancel{background:#bdc3c7;border:none}
-.en-sections{display:grid;gap:8px;margin-top:6px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;padding-bottom:calc(28px + var(--safe-bottom));min-height:0}
+.en-sections{display:grid;gap:8px;margin-top:6px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;padding-bottom:calc(48px + var(--safe-bottom));scroll-padding-bottom:calc(48px + var(--safe-bottom));min-height:0}
 .en-sec{position:relative;background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:10px;padding:14px 10px 8px}
+.en-sec:last-child{margin-bottom:8px}
 .en-label{position:absolute;top:4px;left:10px;margin:0;font-size:11px;line-height:1.2;font-weight:600;color:#0f3c7d;opacity:.9;background:#fff;padding:0 6px;border-radius:6px}
 .en-text{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
 .en-editor{display:none}
@@ -142,7 +146,7 @@ try {
           <button class="en-btn en-close" type="button">✕</button>
         </div>
       </div>
-      <div class="en-sections">${renderSectionsHTML(data,false)}</div>
+      <div class="en-sections">${renderSectionsHTML(data,false)}<div class="en-tail" aria-hidden="true"></div></div>
       <div class="en-foot">
         <button class="en-btn en-save" type="button">Save</button>
         <button class="en-btn en-cancel" type="button">Cancel</button>
@@ -191,7 +195,8 @@ try {
       const avail = Math.max(80, Math.floor(targetH - headH - footH - 24));
       bodyEl.style.maxHeight = avail + 'px';
       bodyEl.style.overflow = 'auto';
-      bodyEl.style.paddingBottom = '24px';
+      bodyEl.style.paddingBottom = '0px';
+      bodyEl.style.scrollPaddingBottom = '0px';
     }
     layout(); setTimeout(layout, 50);
     const vv = window.visualViewport;
@@ -272,7 +277,7 @@ try {
         panel.classList.remove('en-mobile-locked');
       }
       panel.classList.add('en-editing');
-      bodyEl.innerHTML = renderSectionsHTML(data,true);
+      bodyEl.innerHTML = renderSectionsHTML(data,true) + '<div class="en-tail" aria-hidden="true"></div>';
       (function(){
         const nameInput = panel.querySelector('.en-name');
         const titleEl = panel.querySelector('.en-title');
@@ -289,7 +294,7 @@ try {
 
     cancelBtn.addEventListener('click', () => {
       panel.classList.remove('en-editing');
-      bodyEl.innerHTML = renderSectionsHTML(data,false);
+      bodyEl.innerHTML = renderSectionsHTML(data,false) + '<div class="en-tail" aria-hidden="true"></div>';
       layout();
     });
 
@@ -304,7 +309,7 @@ try {
       try { localStorage.setItem(LS_KEY, JSON.stringify(dict)); } catch {}
       panel.classList.remove('en-editing');
       panel.querySelector('.en-title').textContent = updated.name || ruName;
-      bodyEl.innerHTML = renderSectionsHTML(updated,false);
+      bodyEl.innerHTML = renderSectionsHTML(updated,false) + '<div class="en-tail" aria-hidden="true"></div>';
       layout();
     });
 
