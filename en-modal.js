@@ -1,5 +1,18 @@
 /* en-modal.js — drop-in для Notion export */
 (() => {
+
+// --- version & debug ---
+try {
+  window.EN_MODAL_VERSION = "EN-Modal v2025.09.23-80p-rows9-mobileFields-syncName";
+  console.log("%cEN-Modal v2025.09.23-80p-rows9-mobileFields-syncName loaded", "padding:2px 6px;border-radius:6px;background:#0b234a;color:#fff");
+  if (location.hash.includes('enmodaldebug')) {
+    const b=document.createElement('div');
+    b.textContent="EN-Modal v2025.09.23-80p-rows9-mobileFields-syncName";
+    b.style.cssText="position:fixed;right:8px;bottom:8px;z-index:100000;font:600 11px system-ui;padding:6px 8px;border-radius:8px;background:#0b234a;color:#fff;opacity:.85";
+    document.addEventListener('DOMContentLoaded',()=>document.body.appendChild(b),{once:true});
+  }
+} catch(e) {}
+
   const EDIT_CODE = 'roma'; // код для редактирования на мобиле
   const STYLE_ID = 'en-modal-style';
   const LS_KEY = 'enModalDict:v1';
@@ -22,9 +35,9 @@
 .en-close{background:#e74c3c;color:#fff;border:none}
 .en-save{background:#2ecc71;color:#fff;border:none}
 .en-cancel{background:#bdc3c7;border:none}
-.en-sections{display:grid;gap:10px;margin-top:12px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;padding-bottom:calc(28px + var(--safe-bottom));min-height:0}
-.en-sec{background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:10px;padding:6px 8px}
-.en-label{font-weight:600;color:#0f3c7d;margin-bottom:2px;font-size:12px;opacity:.9}
+.en-sections{display:grid;gap:8px;margin-top:6px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;padding-bottom:calc(28px + var(--safe-bottom));min-height:0}
+.en-sec{position:relative;background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:10px;padding:14px 10px 8px}
+.en-label{position:absolute;top:4px;left:10px;margin:0;font-size:11px;line-height:1.2;font-weight:600;color:#0f3c7d;opacity:.9;background:#fff;padding:0 6px;border-radius:6px}
 .en-text{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
 .en-editor{display:none}
 .en-editing .en-text{display:none}
@@ -263,6 +276,8 @@
       (function(){
         const nameInput = panel.querySelector('.en-name');
         const titleEl = panel.querySelector('.en-title');
+        const currentTitle = ((titleEl && (titleEl.childNodes[0]?.textContent || titleEl.textContent)) || ruName).trim();
+        if (nameInput){ if (!nameInput.value) nameInput.value = currentTitle; }
         if (nameInput && titleEl){
           const upd = ()=>{ const v=(nameInput.value||'').trim(); titleEl.childNodes[0].textContent = v || ruName; };
           nameInput.addEventListener('input', upd);
