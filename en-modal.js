@@ -22,9 +22,9 @@
 .en-close{background:#e74c3c;color:#fff;border:none}
 .en-save{background:#2ecc71;color:#fff;border:none}
 .en-cancel{background:#bdc3c7;border:none}
-.en-sections{display:grid;gap:10px;margin-top:12px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
-.en-sec{background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:10px;padding:8px 10px}
-.en-label{font-weight:650;color:#0f3c7d;margin-bottom:4px}
+.en-sections{display:grid;gap:10px;margin-top:12px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;padding-bottom:calc(28px + var(--safe-bottom));min-height:0}
+.en-sec{background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:10px;padding:6px 8px}
+.en-label{font-weight:600;color:#0f3c7d;margin-bottom:2px;font-size:12px;opacity:.9}
 .en-text{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
 .en-editor{display:none}
 .en-editing .en-text{display:none}
@@ -177,7 +177,8 @@
       const footH = panel.classList.contains('en-editing') ? (footEl.getBoundingClientRect().height / scale) : 0;
       const avail = Math.max(80, Math.floor(targetH - headH - footH - 24));
       bodyEl.style.maxHeight = avail + 'px';
-      bodyEl.style.overflow = (bodyEl.scrollHeight > bodyEl.clientHeight + 1) ? 'auto' : 'hidden';
+      bodyEl.style.overflow = 'auto';
+      bodyEl.style.paddingBottom = '24px';
     }
     layout(); setTimeout(layout, 50);
     const vv = window.visualViewport;
@@ -259,6 +260,15 @@
       }
       panel.classList.add('en-editing');
       bodyEl.innerHTML = renderSectionsHTML(data,true);
+      (function(){
+        const nameInput = panel.querySelector('.en-name');
+        const titleEl = panel.querySelector('.en-title');
+        if (nameInput && titleEl){
+          const upd = ()=>{ const v=(nameInput.value||'').trim(); titleEl.childNodes[0].textContent = v || ruName; };
+          nameInput.addEventListener('input', upd);
+          upd();
+        }
+      })();
       layout();
     });
 
