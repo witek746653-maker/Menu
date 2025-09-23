@@ -119,6 +119,7 @@ try {
         const b = document.createElement('button');
         b.className = 'en-chip'; b.type = 'button'; b.textContent = 'EN';
         h3.appendChild(b);
+        h3.setAttribute('data-en-chip-initialized','1');
       }
     });
   };
@@ -319,16 +320,33 @@ try {
     ensureStyle();
     ensureChips();
     const dict = loadDict();
-    document.querySelectorAll('h3 .en-chip').forEach(btn=>{
-      btn.onclick = () => {
-        const h3 = btn.closest('h3');
-        const ruName = getRuTitleFromH3(h3);
-        const slug = slugify(ruName);
-        const data = dict[slug] || {name:'',description:'',features:'',ingredients:''};
-        openPanel(slug, ruName, data, dict);
-      };
+
+    // Re-inject chips if the DOM changes (Notion exports can reflow on image loads)
+    let enChipRebindTimer = null;
+    const rebind = () => {
+      ensureChips();
+      const dict2 = loadDict();
+      document.querySelectorAll('h3 .en-chip').forEach(btn=>{
+        if (btn.dataset.bound) return;
+        btn.dataset.bound = '1';
+        btn.onclick = () => {
+          const h3 = btn.closest('h3');
+          const ruName = getRuTitleFromH3(h3);
+          const slug = slugify(ruName);
+          const data = dict2[slug] || {name:'',description:'',features:'',ingredients:''};
+          openPanel(slug, ruName, data, dict2);
+        };
+      });
+    };
+    const mo = new MutationObserver(() => {
+      clearTimeout(enChipRebindTimer);
+      enChipRebindTimer = setTimeout(rebind, 50);
     });
-  }
+    mo.observe(document.documentElement || document.body, {subtree:true, childList:true});
+    // initial bind
+    rebind();
+
+}
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bind, {once:true});
