@@ -1,8 +1,8 @@
 {
   "ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok": {
     "name": "Imperial Oyster (Russia)",
-    "description": "",
-    "features": "",
+    "description": "Фраза для быстрой презентации гостю: \n“These are Imperial oysters from Vladivostok, served raw with lemon, shallots, red wine vinegar, butter, and croutons. \nThey have a fresh, pronounced sea flavor — please note they contain onion and citrus.”",
+    "features": "Allergens & Notes:\n🍋 Citrus | 🦪 Raw | 🧅 Onion\n\nOysters are served with:\n\nRed wine vinegar\nShallots\nLemon\nCroutons",
     "ingredients": ""
   },
   "ustritsa-rozovaya-dzholi-namibiya-afrika": {
@@ -13,8 +13,8 @@
   },
   "morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom": {
     "name": "Sea urchin with ponzu, avocado mousse, and quail yolk",
-    "description": "",
-    "features": "",
+    "description": "Фраза для презентации гостю:\n\n“This is a fresh sea urchin with ponzu sauce, delicate avocado mousse, and a quail yolk. \nPlease note it is served raw, with citrus, garlic, cilantro, and chili accents.”",
+    "features": "Allergens & Notes:\n🌶️ Spicy | 🌿 Cilantro | 🍋 Citrus | 🦪 Raw | 🧄 Garlic | 🌱 Herbs\n\n“By our style, all ingredients are served inside the shell, but they can be placed separately if you prefer.”\n“We serve everything inside the shell, but can place it separately if you wish.”",
     "ingredients": ""
   },
   "hamon-serrano-gran-reserva-50-gr": {
@@ -60,8 +60,8 @@
     "ingredients": ""
   },
   "tartar-iz-tuntsa-s-ispanskimi-olivkami-kedrovymi-orehami-i-zelenyu": {
-    "name": "Tuna tartare with Spanish olives, pine nuts, and herbs",
-    "description": "",
+    "name": "",
+    "description": "ggg",
     "features": "",
     "ingredients": ""
   },
