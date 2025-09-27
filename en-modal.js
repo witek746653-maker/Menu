@@ -112,7 +112,7 @@ try {
 .en-text,
   .en-editor textarea,
   .en-editor input {
-    font-size: 0.33em !important;
+    font-size: 0.5em !important;
     line-height: 1.2;
   }
 .en-panel:not(.en-editing) .en-sec[data-key="name"]{display:none !important}
