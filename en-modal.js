@@ -88,7 +88,7 @@ try {
 .en-sections::after{content:"";display:block;height:max(60px,calc(12px + var(--safe-bottom)));}
 .en-sec{position:relative;background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:8px;padding:4px 6px 4px}
 .en-label{position:absolute;top:2px;left:8px;margin:0;font-size:10px;line-height:1.1;font-weight:600;color:#0f3c7d;opacity:.9;background:#fff;padding:0 4px;border-radius:6px}
-.en-text{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywheremargin:2px 0;}
+.en-text{margin:2px 0;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
 .en-editor{display:none}
 .en-editing .en-text{display:none}
 .en-editing .en-editor{display:block}
