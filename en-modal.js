@@ -58,7 +58,7 @@ try {
 .en-title{
   display:block;
   margin:0;
-  font:700 12px/1.1 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  font:700 20px/1.1 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   color:#082a63;
   word-wrap:break-word;overflow-wrap:anywhere;white-space:pre-wrap;
   padding-right:36px;
