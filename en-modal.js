@@ -94,6 +94,7 @@ try {
   padding-bottom:calc(96px + var(--safe-bottom)); /* больше запаса под футер/безопасную зону */
   min-height:0;
   scrollbar-gutter: stable both-edges; /* не дёргает контент при появлении скроллбара */
+  touch-action: pan-y pinch-zoom;
 }
 .en-sections::after{content:"";display:block;height:max(96px,calc(32px + var(--safe-bottom)));} 
 .en-sec{display: flex;flex-direction: column;justify-content: center;position:relative;background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:8px;padding:15px 10px 6px}
@@ -233,6 +234,10 @@ try {
     const bodyEl = panel.querySelector('.en-sections');
     const footEl = panel.querySelector('.en-foot');
 
+    // внутри скролл-контейнера не даём событиям улетать вверх
+    bodyEl.addEventListener('wheel', (e)=>{ e.stopPropagation(); }, {passive:false});
+    bodyEl.addEventListener('touchmove', (e)=>{ e.stopPropagation(); }, {passive:false});
+
     // --- разрешаем скролл только внутри .en-sections ---
 const isInsideScrollable = (el) => {
   while (el && el !== panel) {
@@ -297,6 +302,7 @@ panel.addEventListener('wheel', (e) => {
       const pb = Math.max(96, Math.floor(targetH * 0.08)); // было ~5%, стало 8% и минимум 96
       const avail = Math.max(80, Math.floor(targetH - headH - footH - 14 - pb));
       bodyEl.style.maxHeight = avail + 'px';
+      bodyEl.style.height = avail + 'px';        // <— добавили
       bodyEl.style.overflow = 'auto';
       bodyEl.style.paddingBottom = pb + 'px';
     }
