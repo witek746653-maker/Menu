@@ -263,39 +263,29 @@
   <button id="resetAppBtn">Сброс</button>
 
 <script>
-  document.getElementById('resetAppBtn').addEventListener('click', async () => {
-    if (!confirm("Очистить всё и перезапустить приложение?")) return;
-
-    // Удаляем Service Worker
-    if ('serviceWorker' in navigator) {
-      const regs = await navigator.serviceWorker.getRegistrations();
-      for (let reg of regs) {
-        await reg.unregister();
+  // Unified hard-reset via modal: do not duplicate wiping logic here.
+  // We only open the existing confirmation modal, which calls __hardResetNow().
+  (function(){
+    const btn = document.getElementById('resetAppBtn');
+    if (!btn) return;
+    btn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      if (typeof window.__openHardResetModal === 'function') {
+        window.__openHardResetModal();
+      } else if (typeof window.__hardResetApp === 'function') {
+        // Fallback: run hard reset immediately if modal script hasn't loaded yet.
+        if (confirm("Очистить все локальные данные и перезапустить? Действие необратимо.")) {
+          window.__hardResetApp();
+        }
+      } else {
+        // Last resort fallback (very unlikely)
+        if (confirm("Очистить всё и перезапустить приложение?")) {
+          location.reload();
+        }
       }
-    }
-
-    // Чистим кэши
-    if ('caches' in window) {
-      const keys = await caches.keys();
-      for (let key of keys) {
-        await caches.delete(key);
-      }
-    }
-
-    // Чистим localStorage
-    localStorage.clear();
-
-    // Чистим IndexedDB
-    if ('indexedDB' in window && indexedDB.databases) {
-      const dbs = await indexedDB.databases();
-      for (let db of dbs) {
-        indexedDB.deleteDatabase(db.name);
-      }
-    }
-
-    alert("Приложение очищено. Перезапускаем…");
-    location.reload(true);
-  });
+    }, { passive: false });
+  })();
 </script>
 
   <div class="bg" aria-hidden="true"></div>
