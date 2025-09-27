@@ -14,7 +14,7 @@ try {
 } catch(e) {}
 
   const EDIT_CODE = 'roma';
-  const STYLE_ID = 'en-modal-style';
+  const STYLE_ID = 'en-modal-style-v2';
   const LS_KEY = 'enModalDict:v1';
   const JSON_URL = 'en.json';
 
@@ -47,12 +47,11 @@ try {
 :root{--safe-bottom:env(safe-area-inset-bottom,0px)}
 .en-chip{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;padding:4px 8px;border-radius:999px;border:1px solid rgba(0,0,0,.15);background:#fff;cursor:pointer;margin-left:.5rem;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,.06);transition:transform .12s,box-shadow .12s,background .12s}
 .en-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
-.en-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:16px 8px calc(20px + var(--safe-bottom)) 8px;overscroll-behavior:contain;touch-action:none}
-.en-panel{display:flex;flex-direction:column;background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid rgba(0,86,179,.12);border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.25),0 0 0 1px rgba(0,86,179,.04) inset;padding:6px 8px 10px;max-width:720px;width:min(720px,90vw);color:#0b234a;position:relative;overflow:hidden}
+.en-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:8px 6px calc(8px + var(--safe-bottom)) 6px;overscroll-behavior:contain;touch-action:none}
+.en-panel{display:flex;flex-direction:column;background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid rgba(0,86,179,.12);border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.25),0 0 0 1px rgba(0,86,179,.04) inset;padding:0px 10px 0px;max-width:720px;width:min(720px,90vw);color:#0b234a;position:relative;overflow:hidden}
 .en-inner{transform-origin:center center;touch-action:pinch-zoom;}
 
 .en-head{
-  position:relative;
   padding-top:2px;
   margin-bottom:2px;
 }
@@ -66,7 +65,7 @@ try {
 }
 .en-actions{
   position:absolute;
-  top:2px;
+  top:6px;
   right:4px;
   display:inline-flex;
   gap:4px;
@@ -86,36 +85,35 @@ try {
 
 .en-sections{display:grid;gap:6px;margin-top:2px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;padding-bottom:calc(60px + var(--safe-bottom));min-height:0}
 .en-sections::after{content:"";display:block;height:max(60px,calc(12px + var(--safe-bottom)));}
-.en-sec{position:relative;background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:8px;padding:4px 6px 4px}
+.en-sec{display: flex;flex-direction: column;justify-content: center;position:relative;background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:8px;padding:15px 10px 6px}
 .en-label{position:absolute;top:2px;left:8px;margin:0;font-size:10px;line-height:1.1;font-weight:600;color:#0f3c7d;opacity:.9;background:#fff;padding:0 4px;border-radius:6px}
-.en-text{margin:2px 0;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
+.en-text{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
 .en-editor{display:none}
 .en-editing .en-text{display:none}
 .en-editing .en-editor{display:block}
-.en-editor textarea,.en-editor input{width:100%;resize:vertical;border:1px solid rgba(0,0,0,.2);border-radius:6px;padding:4px 6px;font:inherit;background:#fff;min-height:5em; box-sizing:border-box;}
+.en-editor textarea,.en-editor input{width:100%;resize:vertical;border:1px solid rgba(0,0,0,.2);border-radius:6px;padding:8px 10px;font:inherit;background:#fff;min-height:5em; box-sizing:border-box;}
 
 .en-foot{display:none;justify-content:flex-end;gap:6px;margin-top:4px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(249,251,255,0),#f9fbff 40%);padding:6px 0 calc(10px + var(--safe-bottom));border-top:1px solid rgba(0,86,179,.08)}
 .en-editing .en-foot{display:flex}
 
-.en-audio-under{display:block;margin-top:.2rem}
+.en-audio-under{margin:8px 0 0;}
 .en-audio-chip{display:inline-flex;align-items:center;gap:.3rem;padding:.15rem .45rem;border:1px solid rgba(0,0,0,.18);border-radius:999px;background:rgba(0,0,0,.06);font-size:.8rem;line-height:1;white-space:nowrap}
 .en-audio-chip button{all:unset;cursor:pointer;padding:.1rem .3rem;border-radius:999px;border:1px solid rgba(0,0,0,.25);line-height:1}
 .en-audio-chip button:active{transform:scale(.95)}
 
 /* Скрывать пустые секции на телефоне в режиме просмотра — даже если JS не сработал */
 @media (max-width:768px){
-  .en-panel{border-radius:12px;padding:6px 8px 8px
-  .en-text,
-  .en-editor textarea,
-  .en-editor input {
-    font-size: 0.5em !important;
-    line-height: 1.25;
-  }
-}
-  .en-title{font-size:11px}
-  .en-actions{top:2px;right:4px}
+  .en-panel{border-radius:12px;padding:4px 8px 4px}
+  .en-title{font-size:18px}
+  .en-actions{top:2px;right:2px}
   .en-panel:not(.en-editing) .en-sec:has(.en-text:empty){ display:none !important; }
 }
+.en-text,
+  .en-editor textarea,
+  .en-editor input {
+    font-size: 1em !important;
+    line-height: 1.2;
+  }
 .en-panel:not(.en-editing) .en-sec[data-key="name"]{display:none !important}
 `;
 
@@ -393,7 +391,7 @@ try {
   chip.className = 'en-audio-chip';
   chip.innerHTML = '<span>EN audio</span> <button type="button">🔊</button>';
   under.appendChild(chip);
-  title.appendChild(under);
+  headEl.appendChild(under);
 
   const btn = chip.querySelector('button');
   btn.addEventListener('click', () => {
