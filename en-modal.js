@@ -1,13 +1,14 @@
 /* en-modal.js — drop-in для Notion export (ultra-compact header, actions over title) */
+/* Абсолютно статичный фон при открытой модалке: запрет скролла/зумов/горячих клавиш */
 (() => {
 
 // --- version & debug ---
 try {
-  window.EN_MODAL_VERSION = "EN-Modal v2025.09.23-ultraCompactHead-actionsOverlay+mobileHideEmpty";
-  console.log("%cEN-Modal v2025.09.23-ultraCompactHead-actionsOverlay+mobileHideEmpty loaded","padding:2px 6px;border-radius:6px;background:#0b234a;color:#fff");
+  window.EN_MODAL_VERSION = "EN-Modal v2025.09.27-staticBackdrop-hardLock";
+  console.log("%cEN-Modal v2025.09.27-staticBackdrop-hardLock loaded","padding:2px 6px;border-radius:6px;background:#0b234a;color:#fff");
   if (location.hash.includes('enmodaldebug')) {
     const b=document.createElement('div');
-    b.textContent="EN-Modal v2025.09.23-ultraCompactHead-actionsOverlay+mobileHideEmpty";
+    b.textContent="EN-Modal v2025.09.27-staticBackdrop-hardLock";
     b.style.cssText="position:fixed;right:8px;bottom:8px;z-index:100000;font:600 11px system-ui;padding:6px 8px;border-radius:8px;background:#0b234a;color:#fff;opacity:.85";
     document.addEventListener('DOMContentLoaded',()=>document.body.appendChild(b),{once:true});
   }
@@ -44,12 +45,22 @@ try {
 .en-modal-open [data-toc],
 .en-modal-open [data-role="toc"]{ display:none !important; }
 
+/* NEW: тотальный запрет жестов/скролла за пределами модалки */
+.en-modal-open {
+  touch-action: none; /* блокируем pinch/double-tap zoom и свайпы по фону */
+}
+
+/* Разрешаем вертикальный скролл только внутри секций модалки */
+.en-modal-open .en-sections {
+  touch-action: pan-y; /* CHG: убрали pinch-zoom */
+}
+
 :root{--safe-bottom:env(safe-area-inset-bottom,0px)}
 .en-chip{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;padding:4px 8px;border-radius:999px;border:1px solid rgba(0,0,0,.15);background:#fff;cursor:pointer;margin-left:.5rem;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,.06);transition:transform .12s,box-shadow .12s,background .12s}
 .en-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
 .en-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:8px 6px calc(8px + var(--safe-bottom)) 6px;overscroll-behavior:contain;touch-action:none}
 .en-panel{display:flex;flex-direction:column;background:linear-gradient(180deg,#fff 0%,#f9fbff 100%);border:1px solid rgba(0,86,179,.12);border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.25),0 0 0 1px rgba(0,86,179,.04) inset;padding:0px 10px 0px;max-width:720px;width:min(720px,90vw);color:#0b234a;position:relative;overflow:hidden}
-.en-inner{transform-origin:center center;touch-action:pinch-zoom;}
+.en-inner{transform-origin:center center;touch-action:none;} /* CHG: запрещаем зум/пан внутри контейнера */
 
 .en-head{
   display:flex;
@@ -91,10 +102,10 @@ try {
   display:grid;gap:6px;margin-top:2px;flex:1 1 auto;
   overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
   box-sizing:border-box;
-  padding-bottom:calc(96px + var(--safe-bottom)); /* больше запаса под футер/безопасную зону */
+  padding-bottom:calc(96px + var(--safe-bottom));
   min-height:0;
-  scrollbar-gutter: stable both-edges; /* не дёргает контент при появлении скроллбара */
-  touch-action: pan-y pinch-zoom;
+  scrollbar-gutter: stable both-edges;
+  touch-action: pan-y; /* CHG */
 }
 .en-sections::after{content:"";display:block;height:max(96px,calc(32px + var(--safe-bottom)));} 
 .en-sec{display: flex;flex-direction: column;justify-content: center;position:relative;background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:8px;padding:15px 10px 6px}
@@ -141,7 +152,6 @@ try {
     return clone.textContent.trim();
   };
 
-
   function findTocBtn(){
     let el = document.querySelector('.toc-button, .floating-toc, [data-toc], [data-role="toc"]');
     if (el) return el;
@@ -185,10 +195,7 @@ try {
     fields.forEach(f=>{
       const val = data[f.key] || '';
       if (f.key==='name' && !isEditing) return;
-
-      // JS-логика: на телефоне и в просмотре пустые поля не рендерим
       if (isMobile && !isEditing && !String(val).trim()) return;
-
       html += `<div class="en-sec" data-key="${f.key}">
         <div class="en-label">${esc(f.label)}</div>
         <div class="en-text">${esc(val)}</div>
@@ -200,6 +207,66 @@ try {
       </div>`;
     });
     return html;
+  }
+
+  /* NEW: Хард-лок зума и горячих клавиш */
+  let viewportMetaPrev = null;
+  let viewportMetaNode = null;
+  const preventZoomWheel = (e) => {
+    if (e.ctrlKey) { e.preventDefault(); }
+  };
+  const preventZoomKeys = (e) => {
+    const isMac = navigator.platform.toUpperCase().includes('MAC');
+    const cmd = isMac ? e.metaKey : e.ctrlKey;
+    if (!cmd) return;
+    const k = e.key;
+    if (k === '+' || k === '-' || k === '=' || k === '_' || k === '0' || e.code === 'NumpadAdd' || e.code === 'NumpadSubtract') {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+  const preventSafariGestures = (e) => { e.preventDefault(); };
+  function lockViewportZoom(){
+    // save/replace meta viewport to disable user scaling
+    viewportMetaNode = document.querySelector('meta[name="viewport"]');
+    viewportMetaPrev = viewportMetaNode ? viewportMetaNode.getAttribute('content') : null;
+    const content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no';
+    if (!viewportMetaNode){
+      viewportMetaNode = document.createElement('meta');
+      viewportMetaNode.setAttribute('name','viewport');
+      document.head.appendChild(viewportMetaNode);
+    }
+    viewportMetaNode.setAttribute('content', content);
+    // block browser zooms
+    window.addEventListener('wheel', preventZoomWheel, {passive:false, capture:true});
+    window.addEventListener('keydown', preventZoomKeys, true);
+    window.addEventListener('gesturestart', preventSafariGestures, {passive:false});
+    window.addEventListener('gesturechange', preventSafariGestures, {passive:false});
+    window.addEventListener('gestureend', preventSafariGestures, {passive:false});
+    // блок двойного тапа
+    let lastTouch=0;
+    window.__enModalDblTapBlock = (e)=>{
+      const now = Date.now();
+      if (now - lastTouch < 300){ e.preventDefault(); }
+      lastTouch = now;
+    };
+    window.addEventListener('touchend', window.__enModalDblTapBlock, {passive:false, capture:true});
+  }
+  function releaseViewportZoom(){
+    // restore meta
+    if (viewportMetaNode){
+      if (viewportMetaPrev!=null) viewportMetaNode.setAttribute('content', viewportMetaPrev);
+      else viewportMetaNode.parentNode && viewportMetaNode.parentNode.removeChild(viewportMetaNode);
+    }
+    window.removeEventListener('wheel', preventZoomWheel, {capture:true});
+    window.removeEventListener('keydown', preventZoomKeys, true);
+    window.removeEventListener('gesturestart', preventSafariGestures);
+    window.removeEventListener('gesturechange', preventSafariGestures);
+    window.removeEventListener('gestureend', preventSafariGestures);
+    if (window.__enModalDblTapBlock){
+      window.removeEventListener('touchend', window.__enModalDblTapBlock, {capture:true});
+      delete window.__enModalDblTapBlock;
+    }
   }
 
   /* ——— modal ——— */
@@ -229,7 +296,6 @@ try {
     var prevTocDisplay = tocBtn ? tocBtn.style.display : null;
     if (tocBtn) tocBtn.style.display = 'none';
 
-
     const headEl = panel.querySelector('.en-head');
     const bodyEl = panel.querySelector('.en-sections');
     const footEl = panel.querySelector('.en-foot');
@@ -239,70 +305,71 @@ try {
     bodyEl.addEventListener('touchmove', (e)=>{ e.stopPropagation(); }, {passive:false});
 
     // --- разрешаем скролл только внутри .en-sections ---
-const isInsideScrollable = (el) => {
-  while (el && el !== panel) {
-    if (el === bodyEl) return true;
-    el = el.parentElement;
-  }
-  return false;
-};
+    const isInsideScrollable = (el) => {
+      while (el && el !== panel) {
+        if (el === bodyEl) return true;
+        el = el.parentElement;
+      }
+      return false;
+    };
 
-const stopBgScroll = (e) => {
-  if (!isInsideScrollable(e.target)) {
-    e.preventDefault();
-  }
-};
+    const stopBgScroll = (e) => {
+      if (!isInsideScrollable(e.target)) {
+        e.preventDefault();
+      }
+    };
 
-backdrop.addEventListener('wheel', stopBgScroll, {passive:false});
-backdrop.addEventListener('touchmove', stopBgScroll, {passive:false});
+    backdrop.addEventListener('wheel', stopBgScroll, {passive:false});
+    backdrop.addEventListener('touchmove', stopBgScroll, {passive:false});
 
-// на всякий случай внутри panel
-panel.addEventListener('wheel', (e) => {
-  if (!isInsideScrollable(e.target)) e.preventDefault();
-}, {passive:false});
+    // на всякий случай внутри panel
+    panel.addEventListener('wheel', (e) => {
+      if (!isInsideScrollable(e.target)) e.preventDefault();
+    }, {passive:false});
 
-
-    // блокируем фон
+    // блокируем фон (позиция/скролл)
     const prevHtmlOverflow = document.documentElement.style.overflow;
-      const prevBodyOverflow = document.body.style.overflow;
-      const prevBodyPos = document.body.style.position;
-      const prevBodyTop = document.body.style.top;
-      const prevBodyLeft = document.body.style.left;
-      const prevBodyRight = document.body.style.right;
-      const prevBodyWidth = document.body.style.width;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevBodyPos = document.body.style.position;
+    const prevBodyTop = document.body.style.top;
+    const prevBodyLeft = document.body.style.left;
+    const prevBodyRight = document.body.style.right;
+    const prevBodyWidth = document.body.style.width;
 
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = '0';
-      document.body.style.right = '0';
-      document.body.style.width = '100%';
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+
+    // NEW: жёстко блокируем все виды зума на время модалки
+    lockViewportZoom();
 
     function layout(){
       const vv = window.visualViewport;
-      const scale = vv ? vv.scale || 1 : 1;
+      const scale = 1; /* CHG: принудительно без учета масштабирования вьюпорта */
       const W = vv ? vv.width : window.innerWidth;
       const H = vv ? vv.height : window.innerHeight;
       const targetW = Math.max(280, Math.floor(W * 0.94));
       const targetH = Math.max(240, Math.floor(H * 0.92));
       panel.style.transformOrigin = 'top left';
-      panel.style.transform = 'scale(' + (1/scale) + ')';
-      panel.style.width  = Math.floor(targetW * scale) + 'px';
-      panel.style.height = Math.floor(targetH * scale) + 'px';
-      panel.style.maxWidth = 'none'; panel.style.maxHeight = 'none';
+      panel.style.transform = 'none'; /* CHG: никаких автоскейлов панели */
+      panel.style.width  = Math.floor(targetW) + 'px';
+      panel.style.height = Math.floor(targetH) + 'px';
       const ox = vv ? vv.offsetLeft : 0;
       const oy = vv ? vv.offsetTop : 0;
       panel.style.position = 'fixed';
       panel.style.left = (ox + (W - targetW)/2) + 'px';
       panel.style.top  = (oy + (H - targetH)/2) + 'px';
-      const headH = headEl.getBoundingClientRect().height / scale;
-      const footH = panel.classList.contains('en-editing') ? (footEl.getBoundingClientRect().height / scale) : 0;
-      const pb = Math.max(96, Math.floor(targetH * 0.08)); // было ~5%, стало 8% и минимум 96
+      const headH = headEl.getBoundingClientRect().height;
+      const footH = panel.classList.contains('en-editing') ? (footEl.getBoundingClientRect().height) : 0;
+      const pb = Math.max(96, Math.floor(targetH * 0.08));
       const avail = Math.max(80, Math.floor(targetH - headH - footH - 14 - pb));
       bodyEl.style.maxHeight = avail + 'px';
-      bodyEl.style.height = avail + 'px';        // <— добавили
+      bodyEl.style.height = avail + 'px';
       bodyEl.style.overflow = 'auto';
       bodyEl.style.paddingBottom = pb + 'px';
     }
@@ -311,43 +378,35 @@ panel.addEventListener('wheel', (e) => {
     if (vv){ vv.addEventListener('resize', layout); vv.addEventListener('scroll', layout); }
     window.addEventListener('resize', layout);
 
-    // zoom
-    const inner = panel.querySelector('.en-inner');
-    let z = 1, zMin = 0.75, zMax = 2.5;
-    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-    const applyZoom=()=>{ inner.style.transform = `scale(${z})`; };
+    // CHG: Убрали всю логику зума панели (ctrl+wheel, pinch, double-tap)
+    // (оставлено намеренно пусто)
 
-    panel.addEventListener('wheel',(e)=>{ if(!e.ctrlKey) return; e.preventDefault(); z = clamp(z - e.deltaY*0.0015, zMin, zMax); applyZoom(); },{passive:false});
-    let p1=null,p2=null,baseDist=0,baseZ=1;
-    const dist=(a,b)=>Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
-    panel.addEventListener('pointerdown',(e)=>{ if(e.pointerType!=='touch')return; panel.setPointerCapture(e.pointerId); if(!p1)p1=e; else if(!p2){p2=e;baseDist=dist(p1,p2);baseZ=z;}});
-    panel.addEventListener('pointermove',(e)=>{ if(e.pointerType!=='touch')return; if(p1&&p1.pointerId===e.pointerId)p1=e; if(p2&&p2.pointerId===e.pointerId)p2=e; if(p1&&p2){ z=clamp(baseZ*(dist(p1,p2)/baseDist),zMin,zMax); applyZoom(); }});
-    const up=e=>{ if(p1&&p1.pointerId===e.pointerId)p1=null; if(p2&&p2.pointerId===e.pointerId)p2=null; };
-    panel.addEventListener('pointerup',up); panel.addEventListener('pointercancel',up); panel.addEventListener('pointerleave',up);
-    let lastTap=0; panel.addEventListener('touchend',()=>{ const t=Date.now(); if(t-lastTap<300){z=1;applyZoom();} lastTap=t; });
-
-    backdrop.addEventListener('touchmove',(e)=>{ if(e.target===backdrop) e.preventDefault(); },{passive:false});
+    // блок клика по фону закрывает модалку — оставляем как было
+    backdrop.addEventListener('touchmove',(e)=>{ if (e.target===backdrop) e.preventDefault(); },{passive:false});
     backdrop.addEventListener('click', e => { if (e.target === backdrop) close(); });
     panel.querySelector('.en-close').addEventListener('click', close);
 
     function close(){
-        if (tocBtn) tocBtn.style.display = prevTocDisplay ?? '';
-        document.documentElement.classList.remove('en-modal-open');
+      if (tocBtn) tocBtn.style.display = prevTocDisplay ?? '';
+      document.documentElement.classList.remove('en-modal-open');
 
-        backdrop.remove();
-        document.documentElement.style.overflow = prevHtmlOverflow;
-        document.body.style.overflow = prevBodyOverflow;
-        document.body.style.position = prevBodyPos;
-        document.body.style.top = prevBodyTop;
-        document.body.style.left = prevBodyLeft;
-        document.body.style.right = prevBodyRight;
-        document.body.style.width = prevBodyWidth;
+      backdrop.remove();
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+      document.body.style.position = prevBodyPos;
+      document.body.style.top = prevBodyTop;
+      document.body.style.left = prevBodyLeft;
+      document.body.style.right = prevBodyRight;
+      document.body.style.width = prevBodyWidth;
 
-  window.scrollTo(0, scrollY);
-  const vv = window.visualViewport;
-  if (vv){ vv.removeEventListener('resize', layout); vv.removeEventListener('scroll', layout); }
-  window.removeEventListener('resize', layout);
-}
+      // NEW: снимаем хард-лок зума
+      releaseViewportZoom();
+
+      window.scrollTo(0, scrollY);
+      const vv = window.visualViewport;
+      if (vv){ vv.removeEventListener('resize', layout); vv.removeEventListener('scroll', layout); }
+      window.removeEventListener('resize', layout);
+    }
 
     const editBtn = panel.querySelector('.en-edit');
     const exportBtn = panel.querySelector('.en-export');
@@ -356,7 +415,6 @@ panel.addEventListener('wheel', (e) => {
     // Export: downloads merged dict as en.json
     exportBtn.addEventListener('click', () => {
       const merged = {};
-      // take current dict snapshot
       for (const k in dict) merged[k] = dict[k];
       const blob = new Blob([JSON.stringify(merged, null, 2)], {type:'application/json'});
       const a = document.createElement('a');
@@ -438,24 +496,24 @@ panel.addEventListener('wheel', (e) => {
     });
 
     // аудио-чип под заголовком
-(function attachAudio(){
-  const title = headEl.querySelector('.en-title');
-  if (!title) return;
-  const under = document.createElement('div');
-  under.className = 'en-audio-under';
-  const chip = document.createElement('span');
-  chip.className = 'en-audio-chip';
-  chip.innerHTML = '<span>EN audio</span> <button type="button">🔊</button>';
-  under.appendChild(chip);
-  headEl.appendChild(under);
+    (function attachAudio(){
+      const title = headEl.querySelector('.en-title');
+      if (!title) return;
+      const under = document.createElement('div');
+      under.className = 'en-audio-under';
+      const chip = document.createElement('span');
+      chip.className = 'en-audio-chip';
+      chip.innerHTML = '<span>EN audio</span> <button type="button">🔊</button>';
+      under.appendChild(chip);
+      headEl.appendChild(under);
 
-  const btn = chip.querySelector('button');
-  btn.addEventListener('click', () => {
-    const fileName = slug + '.mp3';
-    const audio = new Audio('audio/' + fileName);
-    audio.play().catch(err => console.error('Audio play error:', err));
-  });
-})();
+      const btn = chip.querySelector('button');
+      btn.addEventListener('click', () => {
+        const fileName = slug + '.mp3';
+        const audio = new Audio('audio/' + fileName);
+        audio.play().catch(err => console.error('Audio play error:', err));
+      });
+    })();
   }
 
   /* ——— binding ——— */
@@ -465,32 +523,30 @@ panel.addEventListener('wheel', (e) => {
     loadRemote().then((remote)=>{
       const local = loadDict();
       const baseDict = mergeDicts(remote, local);
-// Re-inject chips if the DOM changes (Notion exports can reflow on image loads)
-    let enChipRebindTimer = null;
-    const rebind = () => {
-      ensureChips();
-      const dict2 = mergeDicts({}, baseDict);
-      document.querySelectorAll('h3 .en-chip').forEach(btn=>{
-        if (btn.dataset.bound) return;
-        btn.dataset.bound = '1';
-        btn.onclick = () => {
-          const h3 = btn.closest('h3');
-          const ruName = getRuTitleFromH3(h3);
-          const slug = slugify(ruName);
-          const data = dict2[slug] || {name:'',description:'',features:'',ingredients:''};
-          openPanel(slug, ruName, data, dict2);
-        };
+      let enChipRebindTimer = null;
+      const rebind = () => {
+        ensureChips();
+        const dict2 = mergeDicts({}, baseDict);
+        document.querySelectorAll('h3 .en-chip').forEach(btn=>{
+          if (btn.dataset.bound) return;
+          btn.dataset.bound = '1';
+          btn.onclick = () => {
+            const h3 = btn.closest('h3');
+            const ruName = getRuTitleFromH3(h3);
+            const slug = slugify(ruName);
+            const data = dict2[slug] || {name:'',description:'',features:'',ingredients:''};
+            openPanel(slug, ruName, data, dict2);
+          };
+        });
+      };
+      const mo = new MutationObserver(() => {
+        clearTimeout(enChipRebindTimer);
+        enChipRebindTimer = setTimeout(rebind, 50);
       });
-    };
-    const mo = new MutationObserver(() => {
-      clearTimeout(enChipRebindTimer);
-      enChipRebindTimer = setTimeout(rebind, 50);
+      mo.observe(document.documentElement || document.body, {subtree:true, childList:true});
+      rebind();
     });
-    mo.observe(document.documentElement || document.body, {subtree:true, childList:true});
-    // initial bind
-    rebind();
-  });
-}
+  }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bind, {once:true});
@@ -498,3 +554,5 @@ panel.addEventListener('wheel', (e) => {
     bind();
   }
 })();
+
+ 
