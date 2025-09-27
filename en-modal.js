@@ -87,8 +87,15 @@ try {
 .en-save{background:#2ecc71;color:#fff;border:none}
 .en-cancel{background:#bdc3c7;border:none}
 
-.en-sections{display:grid;gap:6px;margin-top:2px;flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;padding-bottom:calc(60px + var(--safe-bottom));min-height:0}
-.en-sections::after{content:"";display:block;height:max(60px,calc(12px + var(--safe-bottom)));}
+.en-sections{
+  display:grid;gap:6px;margin-top:2px;flex:1 1 auto;
+  overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  box-sizing:border-box;
+  padding-bottom:calc(96px + var(--safe-bottom)); /* больше запаса под футер/безопасную зону */
+  min-height:0;
+  scrollbar-gutter: stable both-edges; /* не дёргает контент при появлении скроллбара */
+}
+.en-sections::after{content:"";display:block;height:max(96px,calc(32px + var(--safe-bottom)));} 
 .en-sec{display: flex;flex-direction: column;justify-content: center;position:relative;background:#fff;border:1px solid rgba(0,86,179,.10);border-radius:8px;padding:15px 10px 6px}
 .en-label{position:absolute;top:2px;left:8px;margin:0;font-size:10px;line-height:1.1;font-weight:600;color:#0f3c7d;opacity:.9;background:#fff;padding:0 4px;border-radius:6px}
 .en-text{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
@@ -226,13 +233,47 @@ try {
     const bodyEl = panel.querySelector('.en-sections');
     const footEl = panel.querySelector('.en-foot');
 
+    // --- разрешаем скролл только внутри .en-sections ---
+const isInsideScrollable = (el) => {
+  while (el && el !== panel) {
+    if (el === bodyEl) return true;
+    el = el.parentElement;
+  }
+  return false;
+};
+
+const stopBgScroll = (e) => {
+  if (!isInsideScrollable(e.target)) {
+    e.preventDefault();
+  }
+};
+
+backdrop.addEventListener('wheel', stopBgScroll, {passive:false});
+backdrop.addEventListener('touchmove', stopBgScroll, {passive:false});
+
+// на всякий случай внутри panel
+panel.addEventListener('wheel', (e) => {
+  if (!isInsideScrollable(e.target)) e.preventDefault();
+}, {passive:false});
+
+
     // блокируем фон
     const prevHtmlOverflow = document.documentElement.style.overflow;
-    const prevBodyOverflow = document.body.style.overflow;
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'relative';
+      const prevBodyOverflow = document.body.style.overflow;
+      const prevBodyPos = document.body.style.position;
+      const prevBodyTop = document.body.style.top;
+      const prevBodyLeft = document.body.style.left;
+      const prevBodyRight = document.body.style.right;
+      const prevBodyWidth = document.body.style.width;
+
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
 
     function layout(){
       const vv = window.visualViewport;
@@ -253,7 +294,7 @@ try {
       panel.style.top  = (oy + (H - targetH)/2) + 'px';
       const headH = headEl.getBoundingClientRect().height / scale;
       const footH = panel.classList.contains('en-editing') ? (footEl.getBoundingClientRect().height / scale) : 0;
-      const pb = Math.floor(targetH * 0.05);
+      const pb = Math.max(96, Math.floor(targetH * 0.08)); // было ~5%, стало 8% и минимум 96
       const avail = Math.max(80, Math.floor(targetH - headH - footH - 14 - pb));
       bodyEl.style.maxHeight = avail + 'px';
       bodyEl.style.overflow = 'auto';
@@ -284,18 +325,23 @@ try {
     panel.querySelector('.en-close').addEventListener('click', close);
 
     function close(){
-      
-      if (tocBtn) tocBtn.style.display = prevTocDisplay ?? '';
-      document.documentElement.classList.remove('en-modal-open');
+        if (tocBtn) tocBtn.style.display = prevTocDisplay ?? '';
+        document.documentElement.classList.remove('en-modal-open');
 
-      backdrop.remove();
-      document.documentElement.style.overflow = prevHtmlOverflow;
-      document.body.style.overflow = prevBodyOverflow;
-      document.body.style.position = '';
-      window.scrollTo(0, scrollY);
-      const vv = window.visualViewport; if (vv){ vv.removeEventListener('resize', layout); vv.removeEventListener('scroll', layout); }
-      window.removeEventListener('resize', layout);
-    }
+        backdrop.remove();
+        document.documentElement.style.overflow = prevHtmlOverflow;
+        document.body.style.overflow = prevBodyOverflow;
+        document.body.style.position = prevBodyPos;
+        document.body.style.top = prevBodyTop;
+        document.body.style.left = prevBodyLeft;
+        document.body.style.right = prevBodyRight;
+        document.body.style.width = prevBodyWidth;
+
+  window.scrollTo(0, scrollY);
+  const vv = window.visualViewport;
+  if (vv){ vv.removeEventListener('resize', layout); vv.removeEventListener('scroll', layout); }
+  window.removeEventListener('resize', layout);
+}
 
     const editBtn = panel.querySelector('.en-edit');
     const exportBtn = panel.querySelector('.en-export');
