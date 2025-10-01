@@ -145,7 +145,7 @@ html.en-modal-open { -webkit-text-size-adjust: 100%; }
       {key:'name', label:'Name', single:true},
       {key:'description', label:'Description'},
       {key:'features', label:'Features'},
-      {key:'ingredients', label:'Ingredients'}
+      {key:'ingredients', label:'Useful words, phrases & facts'}
     ];
     let html = '';
     fields.forEach(f=>{
