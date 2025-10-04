@@ -190,6 +190,13 @@
         <select id="menuSelect"></select>
         <!-- После выбора меню появляется выбор раздела -->
         <select id="sectionSelect" style="display:none;"></select>
+        <!-- Выбор специализации: описание, особенности или состав -->
+        <select id="specializationSelect" style="display:none;">
+            <option value="">Без специализации</option>
+            <option value="description">Красочное описание</option>
+            <option value="features">Особенности</option>
+            <option value="composition">Состав</option>
+        </select>
         <button id="startBtn" style="display:none;">Начать тренировку</button>
     </div>
     <div id="cardContainer">
@@ -215,6 +222,7 @@
 
         const menuSelect = document.getElementById('menuSelect');
         const sectionSelect = document.getElementById('sectionSelect');
+        const specializationSelect = document.getElementById('specializationSelect');
         const startBtn = document.getElementById('startBtn');
         const cardDiv = document.getElementById('card');
         const questionDiv = document.getElementById('question');
@@ -301,11 +309,14 @@
             if (selected === ALL_MENUS_VALUE) {
                 sectionSelect.style.display = 'none';
                 startBtn.style.display = 'inline';
+                // Показываем выбор специализации
+                specializationSelect.style.display = 'inline';
                 return;
             }
             if (!selected) {
                 sectionSelect.style.display = 'none';
                 startBtn.style.display = 'none';
+                specializationSelect.style.display = 'none';
                 return;
             }
             // Загрузка выбранного файла
@@ -345,6 +356,8 @@
                     });
                     sectionSelect.style.display = 'inline';
                     startBtn.style.display = 'inline';
+                    // Показываем выбор специализации для отдельных меню
+                    specializationSelect.style.display = 'inline';
                     messageDiv.textContent = '';
                 })
                 .catch(err => {
@@ -392,8 +405,10 @@
                             answerParts.push(cleanText(sibling.textContent || ''));
                             sibling = sibling.nextElementSibling;
                         }
-                        const answer = answerParts.filter(Boolean).join('\n');
-                        cards.push({ question, answer });
+                        // Build both joined answer and an array of individual parts. Each sibling element becomes a separate part.
+                        const cleanedParts = answerParts.filter(Boolean);
+                        const answer = cleanedParts.join('\n');
+                        cards.push({ question, answer, answerParts: cleanedParts });
                     });
                 }
                 elem = elem.nextElementSibling;
@@ -457,8 +472,9 @@
                                 answerParts.push(cleanText(sibling.textContent || ''));
                                 sibling = sibling.nextElementSibling;
                             }
-                            const answer = answerParts.filter(Boolean).join('\n');
-                            cards.push({ question, answer });
+                            const cleanedParts = answerParts.filter(Boolean);
+                            const answer = cleanedParts.join('\n');
+                            cards.push({ question, answer, answerParts: cleanedParts });
                         });
                     }
                     elem = elem.nextElementSibling;
@@ -555,7 +571,29 @@
             }
             const card = currentCards[currentIndex];
             questionDiv.textContent = card.question;
-            answerDiv.textContent = card.answer;
+            // Determine which part of the answer to show based on selected specialization
+            const spec = specializationSelect.value;
+            let answerText;
+            if (!spec) {
+                // no specialization – show the full answer
+                answerText = card.answer;
+            } else {
+                // choose part based on specialization index
+                // 0: description, 1: features, 2: composition
+                const indexMap = {
+                    'description': 0,
+                    'features': 1,
+                    'composition': 2
+                };
+                const idx = indexMap[spec];
+                if (card.answerParts && card.answerParts.length > idx) {
+                    answerText = card.answerParts[idx];
+                } else {
+                    // fallback to the last available part or full answer
+                    answerText = card.answerParts && card.answerParts.length ? card.answerParts[card.answerParts.length - 1] : card.answer;
+                }
+            }
+            answerDiv.textContent = answerText;
             answerDiv.style.display = 'none';
             showAnswerBtn.style.display = 'inline';
             knowBtn.style.display = 'none';
