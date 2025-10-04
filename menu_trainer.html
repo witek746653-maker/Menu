@@ -137,6 +137,38 @@
             color: var(--accent);
         }
 
+        /* Modal overlay for enlarged images */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 14px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        }
+        #closeModal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         #message {
             text-align: center;
             font-size: 1.2em;
@@ -202,6 +234,9 @@
     <div id="cardContainer">
         <div id="card">
             <div id="question"></div>
+            <!-- Image of the dish -->
+            <img id="cardImage" style="display:none; max-width:100%; border-radius:12px; margin-top:12px; cursor:pointer;"/>
+            <div id="noImageMsg" style="display:none; margin-top:12px; font-style:italic; color: var(--accent-2);">Фото не добавлено</div>
             <div id="answer" style="display:none;"></div>
         </div>
         <div id="cardButtons" style="display:none;">
@@ -211,6 +246,12 @@
         </div>
         <div id="progress"></div>
         <div id="message"></div>
+    </div>
+
+    <!-- Modal for enlarged dish images -->
+    <div id="imageModal" class="modal">
+        <span id="closeModal">&times;</span>
+        <img id="modalImage" src="" alt="Enlarged dish image" />
     </div>
 
     <script>
@@ -233,6 +274,32 @@
         const dontKnowBtn = document.getElementById('dontKnowBtn');
         const progressDiv = document.getElementById('progress');
         const messageDiv = document.getElementById('message');
+
+        // Elements for images and modal
+        const cardImage = document.getElementById('cardImage');
+        const noImageMsg = document.getElementById('noImageMsg');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        // Image click handler to show modal
+        cardImage.addEventListener('click', () => {
+            const src = cardImage.getAttribute('src');
+            if (src) {
+                modalImage.src = src;
+                imageModal.classList.add('show');
+            }
+        });
+        // Close modal when clicking on the close button
+        closeModalBtn.addEventListener('click', () => {
+            imageModal.classList.remove('show');
+        });
+        // Also close modal when clicking outside the image
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                imageModal.classList.remove('show');
+            }
+        });
 
         /**
          * Список HTML‑файлов меню, находящихся рядом с этим тренажёром.
@@ -408,7 +475,35 @@
                         // Build both joined answer and an array of individual parts. Each sibling element becomes a separate part.
                         const cleanedParts = answerParts.filter(Boolean);
                         const answer = cleanedParts.join('\n');
-                        cards.push({ question, answer, answerParts: cleanedParts });
+                        // Gather images inside the card (between this h3 and the next h3/h2)
+                        const candidateImgs = [];
+                        let imgCollectElem = h3.nextElementSibling;
+                        while (imgCollectElem) {
+                            const tagName = imgCollectElem.tagName ? imgCollectElem.tagName.toLowerCase() : '';
+                            if (tagName === 'h3' || tagName === 'h2') {
+                                break;
+                            }
+                            if (tagName === 'img') {
+                                candidateImgs.push(imgCollectElem);
+                            }
+                            if (imgCollectElem.querySelectorAll) {
+                                imgCollectElem.querySelectorAll('img').forEach(img => candidateImgs.push(img));
+                            }
+                            imgCollectElem = imgCollectElem.nextElementSibling;
+                        }
+                        // Filter candidate images: skip obvious icons (small width attr or file names containing 'icon', 'allergen', 'ico')
+                        let mainImg = null;
+                        candidateImgs.some(img => {
+                            const src = img.getAttribute('src') || '';
+                            const widthAttr = img.getAttribute('width');
+                            // if width attribute exists and is numeric and <= 60, skip
+                            if (widthAttr && !isNaN(parseInt(widthAttr)) && parseInt(widthAttr) <= 60) return false;
+                            const lowerSrc = src.toLowerCase();
+                            if (lowerSrc.includes('icon') || lowerSrc.includes('allergen') || lowerSrc.includes('ico')) return false;
+                            mainImg = src;
+                            return true;
+                        });
+                        cards.push({ question, answer, answerParts: cleanedParts, imageSrc: mainImg });
                     });
                 }
                 elem = elem.nextElementSibling;
@@ -474,7 +569,33 @@
                             }
                             const cleanedParts = answerParts.filter(Boolean);
                             const answer = cleanedParts.join('\n');
-                            cards.push({ question, answer, answerParts: cleanedParts });
+                            // Gather images inside this card region (between this h3 and the next h3/h2)
+                            const candidateImgs = [];
+                            let imgCollectElem2 = h3.nextElementSibling;
+                            while (imgCollectElem2) {
+                                const tagName2 = imgCollectElem2.tagName ? imgCollectElem2.tagName.toLowerCase() : '';
+                                if (tagName2 === 'h3' || tagName2 === 'h2') {
+                                    break;
+                                }
+                                if (tagName2 === 'img') {
+                                    candidateImgs.push(imgCollectElem2);
+                                }
+                                if (imgCollectElem2.querySelectorAll) {
+                                    imgCollectElem2.querySelectorAll('img').forEach(img => candidateImgs.push(img));
+                                }
+                                imgCollectElem2 = imgCollectElem2.nextElementSibling;
+                            }
+                            let mainImg2 = null;
+                            candidateImgs.some(img => {
+                                const src = img.getAttribute('src') || '';
+                                const widthAttr = img.getAttribute('width');
+                                if (widthAttr && !isNaN(parseInt(widthAttr)) && parseInt(widthAttr) <= 60) return false;
+                                const lowerSrc = src.toLowerCase();
+                                if (lowerSrc.includes('icon') || lowerSrc.includes('allergen') || lowerSrc.includes('ico')) return false;
+                                mainImg2 = src;
+                                return true;
+                            });
+                            cards.push({ question, answer, answerParts: cleanedParts, imageSrc: mainImg2 });
                         });
                     }
                     elem = elem.nextElementSibling;
@@ -571,6 +692,15 @@
             }
             const card = currentCards[currentIndex];
             questionDiv.textContent = card.question;
+            // Set image or placeholder
+            if (card.imageSrc) {
+                cardImage.src = card.imageSrc;
+                cardImage.style.display = 'block';
+                noImageMsg.style.display = 'none';
+            } else {
+                cardImage.style.display = 'none';
+                noImageMsg.style.display = 'block';
+            }
             // Determine which part of the answer to show based on selected specialization
             const spec = specializationSelect.value;
             let answerText;
