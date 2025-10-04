@@ -4,61 +4,181 @@
     <meta charset="UTF-8">
     <title>Menu Trainer</title>
     <style>
-        /* Basic page styling */
+        /* Основные цветовые переменные для тем оформления ресторана */
+        :root {
+            /* Цвета темы ресторана с использованием мягких градиентов */
+            --bg-color-start: #fefdf7; /* верхний цвет фона: очень светлый кремовый */
+            --bg-color-end: #fefdf7;   /* нижний цвет фона: тот же цвет для однородного фона */
+            --card-bg-start: rgba(255, 235, 210, 0.15); /* начало градиента карты: теплый беж */
+            --card-bg-end: rgba(255, 224, 196, 0.08);  /* конец градиента карты */
+            --text-color: #3d2a1a; /* тёмный текст для светлого фона */
+            --accent: #e4b36d;      /* мягкий золотистый акцент */
+            --accent-2: #d9a055;    /* приглушенный оранжевый */
+            --button-bg-start: #e5b682; /* начало градиента кнопки: карамель */
+            --button-bg-end: #d89c5e;  /* конец градиента кнопки */
+            --button-bg-hover-start: #f0c78a; /* нажатие/hover */
+            --button-bg-hover-end: #e6ad71;
+            --button-text: #4a2f1b; /* тёмный текст на кнопке */
+        }
+
+        /* Базовые стили */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #fafafa;
-            color: #333;
+            padding: 0;
+            background-image: linear-gradient(to bottom right, var(--bg-color-start), var(--bg-color-end));
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
         h1 {
-            text-align: center;
-            margin-bottom: 1em;
+            margin: 1.2em 0 0.5em;
+            font-size: 2.2em;
+            color: var(--accent);
         }
+
         #controls {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
             margin-bottom: 20px;
         }
-        select, button, input[type="file"] {
-            padding: 0.5em;
+
+        label {
             font-size: 1em;
+            margin-right: 0.4em;
         }
+
+        select, button {
+            background-image: linear-gradient(to bottom right, var(--button-bg-start), var(--button-bg-end));
+            color: var(--button-text);
+            border: 1px solid var(--accent-2);
+            border-radius: 10px;
+            padding: 0.6em 1em;
+            font-size: 1.1em;
+            outline: none;
+            cursor: pointer;
+            transition: background-image 0.2s ease, transform 0.1s ease;
+        }
+
+        select:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        select option {
+            /* Настройка цвета элементов списка */
+            background-color: var(--bg-color);
+            color: var(--accent);
+        }
+
+        button:hover {
+            background-image: linear-gradient(to bottom right, var(--button-bg-hover-start), var(--button-bg-hover-end));
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+
         #cardContainer {
-            max-width: 800px;
+            width: 100%;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
+            padding: 0 20px;
         }
+
         #card {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 10px;
-            min-height: 120px;
+            border: 1px solid var(--accent-2);
+            border-radius: 16px;
+            background-image: linear-gradient(to bottom right, var(--card-bg-start), var(--card-bg-end));
+            padding: 26px;
+            margin-bottom: 18px;
+            min-height: 160px;
             display: none;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.5);
         }
+
+        /* Класс для анимации появления карточки */
+        .fade-in {
+            animation: fadeInUp 0.5s ease both;
+        }
+
         #question {
             font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 10px;
+            font-size: 1.5em;
+            margin-bottom: 12px;
         }
+
         #answer {
-            margin-top: 10px;
+            margin-top: 12px;
+            font-size: 1.2em;
+            line-height: 1.4;
             white-space: pre-wrap;
         }
+
+        #cardButtons {
+            display: none;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        #cardButtons button {
+            min-width: 120px;
+        }
+
         #progress {
             margin-top: 10px;
-            font-size: 0.9em;
-            color: #555;
+            font-size: 1em;
+            color: var(--accent);
         }
+
         #message {
             text-align: center;
-            font-size: 1.1em;
+            font-size: 1.2em;
             margin-top: 20px;
+            color: var(--accent);
+        }
+
+        /* Анимация плавного появления карточки */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 20px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6em;
+            }
+            #question {
+                font-size: 1.3em;
+            }
+            #answer {
+                font-size: 1em;
+            }
+            select, button {
+                font-size: 1em;
+                width: 100%;
+                max-width: none;
+            }
+            #controls {
+                width: 100%;
+                padding: 0 15px;
+            }
+            #card {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -119,8 +239,30 @@
             'vino_(11.09).html',
             'Stuff.html'
         ];
+        // Специальное значение для варианта "Все меню"
+        const ALL_MENUS_VALUE = '__all__';
+        // Специальное значение для варианта "Все разделы"
+        const ALL_SECTIONS_VALUE = '__all_sections__';
 
-        // Populate the menu select on load
+        /**
+         * Словарь соответствия файлов меню их пользовательским названиям.
+         * Если необходимо добавить новые файлы, расширьте этот объект.
+         */
+        const menuDisplayNames = {
+            'avtorskie-zavtraki_(3.09).html': 'Авторские завтраки',
+            'detskoe-menu_(3.09).html': 'Детское меню',
+            'festivaly_(3.09).html': 'Фестивали',
+            'osnovnoe-menu_(3.09).html': 'Основное меню',
+            'sezonnoe-menu_(3.09).html': 'Сезонное меню',
+            'vino_(11.09).html': 'Вино',
+            'Stuff.html': 'Прочее'
+        };
+
+        /**
+         * Заполнение списка меню. Использует словарь menuDisplayNames для
+         * человеко‑понятных названий. Если в словаре нет соответствия, имя
+         * файла будет использовано без изменения.
+         */
         function populateMenuList() {
             menuSelect.innerHTML = '';
             const placeholder = document.createElement('option');
@@ -129,14 +271,20 @@
             placeholder.disabled = true;
             placeholder.selected = true;
             menuSelect.appendChild(placeholder);
+            // Добавляем пункт для тренировки сразу по всем меню
+            const allOpt = document.createElement('option');
+            allOpt.value = ALL_MENUS_VALUE;
+            allOpt.textContent = 'Все меню';
+            menuSelect.appendChild(allOpt);
             menuFiles.forEach(filename => {
                 const option = document.createElement('option');
                 option.value = filename;
-                option.textContent = filename;
+                option.textContent = menuDisplayNames[filename] || filename;
                 menuSelect.appendChild(option);
             });
         }
 
+        // Заполняем список меню сразу после определения элементов
         populateMenuList();
 
         // Utility function to strip excessive whitespace from strings
@@ -146,23 +294,35 @@
 
         // Fetch and parse the selected menu file to populate sections
         menuSelect.addEventListener('change', () => {
-            const fileName = menuSelect.value;
-            if (!fileName) return;
-            // Reset UI
+            const selected = menuSelect.value;
+            // Очистим сообщение
+            messageDiv.textContent = '';
+            // Если выбран вариант "Все меню", скрываем выбор разделов и сразу разрешаем начать
+            if (selected === ALL_MENUS_VALUE) {
+                sectionSelect.style.display = 'none';
+                startBtn.style.display = 'inline';
+                return;
+            }
+            if (!selected) {
+                sectionSelect.style.display = 'none';
+                startBtn.style.display = 'none';
+                return;
+            }
+            // Загрузка выбранного файла
             sectionSelect.style.display = 'none';
             startBtn.style.display = 'none';
             messageDiv.textContent = 'Загружаем меню…';
-            fetch(fileName)
+            fetch(encodeURI(selected))
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Не удалось загрузить файл меню: ' + fileName);
+                        throw new Error('Не удалось загрузить файл меню: ' + selected);
                     }
                     return response.text();
                 })
                 .then(htmlString => {
                     const parser = new DOMParser();
                     currentDoc = parser.parseFromString(htmlString, 'text/html');
-                    // Find all h2 elements which denote sections
+                    // Собираем разделы
                     const h2s = Array.from(currentDoc.querySelectorAll('h2'));
                     const sections = h2s.map(h2 => cleanText(h2.textContent)).filter(Boolean);
                     sectionSelect.innerHTML = '';
@@ -172,6 +332,11 @@
                         messageDiv.textContent = 'Разделы не найдены в выбранном меню.';
                         return;
                     }
+                    // Добавляем вариант для всех разделов
+                    const allSectionsOption = document.createElement('option');
+                    allSectionsOption.value = ALL_SECTIONS_VALUE;
+                    allSectionsOption.textContent = 'Все разделы';
+                    sectionSelect.appendChild(allSectionsOption);
                     sections.forEach(sectionName => {
                         const option = document.createElement('option');
                         option.value = sectionName;
@@ -245,19 +410,131 @@
             return array;
         }
 
+        /**
+         * Собрать все карточки из текущего выбранного меню (все разделы).
+         * Использует глобальный currentDoc.
+         */
+        function getAllCardsInCurrentMenu() {
+            if (!currentDoc) return [];
+            const h2s = Array.from(currentDoc.querySelectorAll('h2'));
+            let cards = [];
+            h2s.forEach((h2, index) => {
+                const sectionName = cleanText(h2.textContent);
+                const sectionCards = getCardsForSection(sectionName);
+                if (sectionCards && sectionCards.length) {
+                    cards.push(...sectionCards);
+                }
+            });
+            return cards;
+        }
+
+        /**
+         * Извлекает все карточки из объекта Document. Используется для режима "Все меню".
+         */
+        function extractAllCardsFromDoc(doc) {
+            const cards = [];
+            const h2s = Array.from(doc.querySelectorAll('h2'));
+            h2s.forEach((h2, index) => {
+                const nextH2 = h2s[index + 1] || null;
+                let elem = h2.nextElementSibling;
+                while (elem && elem !== nextH2) {
+                    const h3s = [];
+                    if (elem.tagName && elem.tagName.toLowerCase() === 'h3') {
+                        h3s.push(elem);
+                    } else {
+                        elem.querySelectorAll && elem.querySelectorAll('h3').forEach(h => h3s.push(h));
+                    }
+                    if (h3s.length > 0) {
+                        h3s.forEach(h3 => {
+                            const question = cleanText(h3.textContent);
+                            let answerParts = [];
+                            let sibling = h3.nextElementSibling;
+                            while (sibling) {
+                                const tag = sibling.tagName ? sibling.tagName.toLowerCase() : '';
+                                if (tag === 'h3' || tag === 'h2') {
+                                    break;
+                                }
+                                answerParts.push(cleanText(sibling.textContent || ''));
+                                sibling = sibling.nextElementSibling;
+                            }
+                            const answer = answerParts.filter(Boolean).join('\n');
+                            cards.push({ question, answer });
+                        });
+                    }
+                    elem = elem.nextElementSibling;
+                }
+            });
+            return cards;
+        }
+
+        /**
+         * Загружает все файлы меню и собирает карточки из каждого. Используется при выборе "Все меню".
+         */
+        async function getCardsForAllMenus() {
+            const allCards = [];
+            for (const file of menuFiles) {
+                try {
+                    const response = await fetch(encodeURI(file));
+                    if (!response.ok) continue;
+                    const htmlString = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(htmlString, 'text/html');
+                    const cards = extractAllCardsFromDoc(doc);
+                    if (cards && cards.length) {
+                        allCards.push(...cards);
+                    }
+                } catch (e) {
+                    // Игнорируем ошибки загрузки отдельных меню
+                    continue;
+                }
+            }
+            return allCards;
+        }
+
         // Start training when button clicked
         startBtn.addEventListener('click', () => {
+            const selectedMenu = menuSelect.value;
+            // Если пользователь выбрал "Все меню"
+            if (selectedMenu === ALL_MENUS_VALUE) {
+                messageDiv.textContent = 'Загружаем все меню…';
+                getCardsForAllMenus().then(cards => {
+                    if (!cards.length) {
+                        messageDiv.textContent = 'Не удалось найти карточки для тренировок.';
+                        return;
+                    }
+                    currentCards = shuffle(cards);
+                    currentIndex = 0;
+                    prepareTrainingUI();
+                }).catch(err => {
+                    messageDiv.textContent = err.message;
+                });
+                return;
+            }
+            // Иначе используем текущий документ (selectedMenu) для тренировки
             const sectionName = sectionSelect.value;
-            currentCards = getCardsForSection(sectionName);
-            if (currentCards.length === 0) {
-                messageDiv.textContent = 'Карточки в выбранном разделе не найдены.';
+            let cards = [];
+            if (sectionName === ALL_SECTIONS_VALUE) {
+                // Собрать все карточки во всех разделах текущего меню
+                cards = getAllCardsInCurrentMenu();
+            } else {
+                cards = getCardsForSection(sectionName);
+            }
+            if (cards.length === 0) {
+                messageDiv.textContent = 'Карточки не найдены.';
                 cardDiv.style.display = 'none';
                 cardButtons.style.display = 'none';
                 return;
             }
-            messageDiv.textContent = '';
-            shuffle(currentCards);
+            currentCards = shuffle(cards);
             currentIndex = 0;
+            prepareTrainingUI();
+        });
+
+        /**
+         * Подготавливает интерфейс для отображения карточек после загрузки карточек
+         */
+        function prepareTrainingUI() {
+            // Спрятать выбор меню/разделов, показать панель карточек
             sectionSelect.style.display = 'none';
             startBtn.style.display = 'none';
             menuSelect.style.display = 'none';
@@ -266,8 +543,9 @@
             knowBtn.style.display = 'none';
             dontKnowBtn.style.display = 'none';
             cardDiv.style.display = 'block';
+            messageDiv.textContent = '';
             showCurrentCard();
-        });
+        }
 
         // Display the current card front
         function showCurrentCard() {
@@ -283,6 +561,11 @@
             knowBtn.style.display = 'none';
             dontKnowBtn.style.display = 'none';
             progressDiv.textContent = `Карточка ${currentIndex + 1} из ${currentCards.length}`;
+            // Запускаем анимацию появления каждой карточки
+            cardDiv.classList.remove('fade-in');
+            // force reflow to restart animation
+            void cardDiv.offsetWidth;
+            cardDiv.classList.add('fade-in');
         }
 
         // Reveal answer
