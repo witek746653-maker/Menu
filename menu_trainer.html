@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Trainer</title>
+    <style>
+        /* Basic page styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fafafa;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        #controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        select, button, input[type="file"] {
+            padding: 0.5em;
+            font-size: 1em;
+        }
+        #cardContainer {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 10px;
+            min-height: 120px;
+            display: none;
+        }
+        #question {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        #answer {
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+        #progress {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        #message {
+            text-align: center;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тренажёр меню</h1>
+    <div id="controls">
+        <!-- Выбор файла меню. Файлы должны находиться в той же директории, что и этот тренажёр -->
+        <label for="menuSelect">Выберите меню:</label>
+        <select id="menuSelect"></select>
+        <!-- После выбора меню появляется выбор раздела -->
+        <select id="sectionSelect" style="display:none;"></select>
+        <button id="startBtn" style="display:none;">Начать тренировку</button>
+    </div>
+    <div id="cardContainer">
+        <div id="card">
+            <div id="question"></div>
+            <div id="answer" style="display:none;"></div>
+        </div>
+        <div id="cardButtons" style="display:none;">
+            <button id="showAnswerBtn">Показать ответ</button>
+            <button id="knowBtn" style="display:none;">Я знаю</button>
+            <button id="dontKnowBtn" style="display:none;">Не помню</button>
+        </div>
+        <div id="progress"></div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+    (() => {
+        // Global variables to hold parsed document and cards
+        let currentDoc = null;
+        let currentCards = [];
+        let currentIndex = 0;
+
+        const menuSelect = document.getElementById('menuSelect');
+        const sectionSelect = document.getElementById('sectionSelect');
+        const startBtn = document.getElementById('startBtn');
+        const cardDiv = document.getElementById('card');
+        const questionDiv = document.getElementById('question');
+        const answerDiv = document.getElementById('answer');
+        const cardButtons = document.getElementById('cardButtons');
+        const showAnswerBtn = document.getElementById('showAnswerBtn');
+        const knowBtn = document.getElementById('knowBtn');
+        const dontKnowBtn = document.getElementById('dontKnowBtn');
+        const progressDiv = document.getElementById('progress');
+        const messageDiv = document.getElementById('message');
+
+        /**
+         * Список HTML‑файлов меню, находящихся рядом с этим тренажёром.
+         * Добавляйте сюда имена новых файлов меню по мере их появления.
+         */
+        const menuFiles = [
+            'avtorskie-zavtraki_(3.09).html',
+            'detskoe-menu_(3.09).html',
+            'festivaly_(3.09).html',
+            'osnovnoe-menu_(3.09).html',
+            'sezonnoe-menu_(3.09).html',
+            'vino_(11.09).html',
+            'Stuff.html'
+        ];
+
+        // Populate the menu select on load
+        function populateMenuList() {
+            menuSelect.innerHTML = '';
+            const placeholder = document.createElement('option');
+            placeholder.textContent = 'Выберите меню';
+            placeholder.value = '';
+            placeholder.disabled = true;
+            placeholder.selected = true;
+            menuSelect.appendChild(placeholder);
+            menuFiles.forEach(filename => {
+                const option = document.createElement('option');
+                option.value = filename;
+                option.textContent = filename;
+                menuSelect.appendChild(option);
+            });
+        }
+
+        populateMenuList();
+
+        // Utility function to strip excessive whitespace from strings
+        function cleanText(text) {
+            return text.replace(/\s+/g, ' ').trim();
+        }
+
+        // Fetch and parse the selected menu file to populate sections
+        menuSelect.addEventListener('change', () => {
+            const fileName = menuSelect.value;
+            if (!fileName) return;
+            // Reset UI
+            sectionSelect.style.display = 'none';
+            startBtn.style.display = 'none';
+            messageDiv.textContent = 'Загружаем меню…';
+            fetch(fileName)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Не удалось загрузить файл меню: ' + fileName);
+                    }
+                    return response.text();
+                })
+                .then(htmlString => {
+                    const parser = new DOMParser();
+                    currentDoc = parser.parseFromString(htmlString, 'text/html');
+                    // Find all h2 elements which denote sections
+                    const h2s = Array.from(currentDoc.querySelectorAll('h2'));
+                    const sections = h2s.map(h2 => cleanText(h2.textContent)).filter(Boolean);
+                    sectionSelect.innerHTML = '';
+                    if (sections.length === 0) {
+                        sectionSelect.style.display = 'none';
+                        startBtn.style.display = 'none';
+                        messageDiv.textContent = 'Разделы не найдены в выбранном меню.';
+                        return;
+                    }
+                    sections.forEach(sectionName => {
+                        const option = document.createElement('option');
+                        option.value = sectionName;
+                        option.textContent = sectionName;
+                        sectionSelect.appendChild(option);
+                    });
+                    sectionSelect.style.display = 'inline';
+                    startBtn.style.display = 'inline';
+                    messageDiv.textContent = '';
+                })
+                .catch(err => {
+                    messageDiv.textContent = err.message;
+                });
+        });
+
+        // Extract cards for the given section name from the parsed document
+        function getCardsForSection(sectionName) {
+            if (!currentDoc) return [];
+            // Find all h2 elements again
+            const h2s = Array.from(currentDoc.querySelectorAll('h2'));
+            let startH2 = null;
+            let nextH2 = null;
+            for (let i = 0; i < h2s.length; i++) {
+                const title = cleanText(h2s[i].textContent);
+                if (title === cleanText(sectionName)) {
+                    startH2 = h2s[i];
+                    nextH2 = h2s[i + 1] || null;
+                    break;
+                }
+            }
+            if (!startH2) return [];
+            const cards = [];
+            // Iterate through siblings until next section
+            let elem = startH2.nextElementSibling;
+            while (elem && elem !== nextH2) {
+                // Collect h3s either directly on this element or nested within it
+                const h3s = [];
+                if (elem.tagName && elem.tagName.toLowerCase() === 'h3') {
+                    h3s.push(elem);
+                } else {
+                    elem.querySelectorAll && elem.querySelectorAll('h3').forEach(h => h3s.push(h));
+                }
+                if (h3s.length > 0) {
+                    h3s.forEach(h3 => {
+                        const question = cleanText(h3.textContent);
+                        let answerParts = [];
+                        let sibling = h3.nextElementSibling;
+                        while (sibling) {
+                            const tag = sibling.tagName ? sibling.tagName.toLowerCase() : '';
+                            if (tag === 'h3' || tag === 'h2') {
+                                break;
+                            }
+                            answerParts.push(cleanText(sibling.textContent || ''));
+                            sibling = sibling.nextElementSibling;
+                        }
+                        const answer = answerParts.filter(Boolean).join('\n');
+                        cards.push({ question, answer });
+                    });
+                }
+                elem = elem.nextElementSibling;
+            }
+            return cards;
+        }
+
+        // Shuffle cards for random order (Fisher–Yates shuffle)
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Start training when button clicked
+        startBtn.addEventListener('click', () => {
+            const sectionName = sectionSelect.value;
+            currentCards = getCardsForSection(sectionName);
+            if (currentCards.length === 0) {
+                messageDiv.textContent = 'Карточки в выбранном разделе не найдены.';
+                cardDiv.style.display = 'none';
+                cardButtons.style.display = 'none';
+                return;
+            }
+            messageDiv.textContent = '';
+            shuffle(currentCards);
+            currentIndex = 0;
+            sectionSelect.style.display = 'none';
+            startBtn.style.display = 'none';
+            menuSelect.style.display = 'none';
+            cardButtons.style.display = 'block';
+            showAnswerBtn.style.display = 'inline';
+            knowBtn.style.display = 'none';
+            dontKnowBtn.style.display = 'none';
+            cardDiv.style.display = 'block';
+            showCurrentCard();
+        });
+
+        // Display the current card front
+        function showCurrentCard() {
+            if (currentCards.length === 0) {
+                finishTraining();
+                return;
+            }
+            const card = currentCards[currentIndex];
+            questionDiv.textContent = card.question;
+            answerDiv.textContent = card.answer;
+            answerDiv.style.display = 'none';
+            showAnswerBtn.style.display = 'inline';
+            knowBtn.style.display = 'none';
+            dontKnowBtn.style.display = 'none';
+            progressDiv.textContent = `Карточка ${currentIndex + 1} из ${currentCards.length}`;
+        }
+
+        // Reveal answer
+        showAnswerBtn.addEventListener('click', () => {
+            answerDiv.style.display = 'block';
+            showAnswerBtn.style.display = 'none';
+            knowBtn.style.display = 'inline';
+            dontKnowBtn.style.display = 'inline';
+        });
+
+        // User knows the card: remove it
+        knowBtn.addEventListener('click', () => {
+            currentCards.splice(currentIndex, 1);
+            if (currentIndex >= currentCards.length) {
+                currentIndex = 0;
+            }
+            if (currentCards.length === 0) {
+                finishTraining();
+            } else {
+                showCurrentCard();
+            }
+        });
+
+        // User doesn't know the card: move it to the end
+        dontKnowBtn.addEventListener('click', () => {
+            const card = currentCards.splice(currentIndex, 1)[0];
+            currentCards.push(card);
+            if (currentIndex >= currentCards.length) {
+                currentIndex = 0;
+            }
+            showCurrentCard();
+        });
+
+        // Finish training session
+        function finishTraining() {
+            cardDiv.style.display = 'none';
+            cardButtons.style.display = 'none';
+            progressDiv.textContent = '';
+            messageDiv.textContent = 'Тренировка завершена! Отличная работа!';
+        }
+    })();
+    </script>
+</body>
+</html>
