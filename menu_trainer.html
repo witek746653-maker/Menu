@@ -1,780 +1,823 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Menu Trainer</title>
-    <style>
-        /* Основные цветовые переменные для тем оформления ресторана */
-        :root {
-            /* Цвета темы ресторана с использованием мягких градиентов */
-            --bg-color-start: #fefdf7; /* верхний цвет фона: очень светлый кремовый */
-            --bg-color-end: #fefdf7;   /* нижний цвет фона: тот же цвет для однородного фона */
-            --card-bg-start: rgba(255, 235, 210, 0.15); /* начало градиента карты: теплый беж */
-            --card-bg-end: rgba(255, 224, 196, 0.08);  /* конец градиента карты */
-            --text-color: #3d2a1a; /* тёмный текст для светлого фона */
-            --accent: #e4b36d;      /* мягкий золотистый акцент */
-            --accent-2: #d9a055;    /* приглушенный оранжевый */
-            --button-bg-start: #e5b682; /* начало градиента кнопки: карамель */
-            --button-bg-end: #d89c5e;  /* конец градиента кнопки */
-            --button-bg-hover-start: #f0c78a; /* нажатие/hover */
-            --button-bg-hover-end: #e6ad71;
-            --button-text: #4a2f1b; /* тёмный текст на кнопке */
-        }
+  <meta charset="UTF-8" />
+  <title>Menu Trainer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg-color-start:#fefdf7;
+      --bg-color-end:#fefdf7;
+      --card-bg-start:rgba(255,235,210,.15);
+      --card-bg-end:rgba(255,224,196,.08);
+      --text-color:#3d2a1a;
+      --accent:#e4b36d;
+      --accent-2:#d9a055;
+      --button-bg-start:#e5b682;
+      --button-bg-end:#d89c5e;
+      --button-bg-hover-start:#f0c78a;
+      --button-bg-hover-end:#e6ad71;
+      --button-text:#4a2f1b;
+    }
+    body{
+      font-family: "Segoe UI", Roboto, system-ui, -apple-system, Arial, sans-serif;
+      margin:0; padding:0;
+      background-image: linear-gradient(to bottom right,var(--bg-color-start),var(--bg-color-end));
+      color:var(--text-color);
+      min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    }
+    h1{ margin:1.2em 0 .5em; font-size:2.2em; color:var(--accent); }
+    #controls{ display:flex; flex-direction:column; align-items:center; gap:12px; margin-bottom:20px; }
+    label{ font-size:1em; }
+    select,button{
+      background-image: linear-gradient(to bottom right,var(--button-bg-start),var(--button-bg-end));
+      color:var(--button-text);
+      border:1px solid var(--accent-2);
+      border-radius:10px; padding:.6em 1em; font-size:1.1em; outline:none; cursor:pointer;
+      transition: background-image .2s ease, transform .1s ease;
+    }
+    select:disabled{ opacity:.6; cursor:not-allowed; }
+    select option{ background:#fefdf7; color:#7a552d; }
+    button:hover{ background-image: linear-gradient(to bottom right,var(--button-bg-hover-start),var(--button-bg-hover-end)); }
+    button:active{ transform:scale(.98); }
 
-        /* Базовые стили */
-        body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: linear-gradient(to bottom right, var(--bg-color-start), var(--bg-color-end));
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    #cardContainer{ width:100%; max-width:900px; margin:0 auto; text-align:center; padding:0 20px; }
+    #card{
+      border:1px solid var(--accent-2); border-radius:16px;
+      background-image: linear-gradient(to bottom right,var(--card-bg-start),var(--card-bg-end));
+      padding:26px; margin-bottom:18px; min-height:160px; display:none;
+      box-shadow:0 10px 24px rgba(0,0,0,.5);
+    }
+    .fade-in{ animation:fadeInUp .5s ease both; }
+    #question{ font-weight:700; font-size:1.5em; margin-bottom:12px; }
+    #answer{ margin-top:12px; font-size:1.2em; line-height:1.4; white-space:pre-wrap; }
+    #cardButtons{ display:none; gap:10px; justify-content:center; margin-top:10px; }
+    #cardButtons button{ min-width:120px; }
+    #progress{ margin-top:10px; font-size:1em; color:var(--accent); }
+    #message{ text-align:center; font-size:1.2em; margin-top:20px; color:var(--accent); }
 
-        h1 {
-            margin: 1.2em 0 0.5em;
-            font-size: 2.2em;
-            color: var(--accent);
-        }
+    @keyframes fadeInUp{ from{opacity:0; transform:translate3d(0,20px,0)} to{opacity:1; transform:translate3d(0,0,0)} }
 
-        #controls {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
+    /* Модалка */
+    .modal{ display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.7); backdrop-filter:blur(4px); }
+    .modal.show{ display:flex; align-items:center; justify-content:center; }
+    #modalImage{ max-width:92vw; max-height:92vh; border-radius:14px; box-shadow:0 10px 40px rgba(0,0,0,.6); }
+    #closeModal{ position:absolute; top:16px; right:20px; font-size:28px; color:#fff; cursor:pointer; }
 
-        label {
-            font-size: 1em;
-            margin-right: 0.4em;
-        }
-
-        select, button {
-            background-image: linear-gradient(to bottom right, var(--button-bg-start), var(--button-bg-end));
-            color: var(--button-text);
-            border: 1px solid var(--accent-2);
-            border-radius: 10px;
-            padding: 0.6em 1em;
-            font-size: 1.1em;
-            outline: none;
-            cursor: pointer;
-            transition: background-image 0.2s ease, transform 0.1s ease;
-        }
-
-        select:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        select option {
-            /* Настройка цвета элементов списка */
-            background-color: var(--bg-color);
-            color: var(--accent);
-        }
-
-        button:hover {
-            background-image: linear-gradient(to bottom right, var(--button-bg-hover-start), var(--button-bg-hover-end));
-        }
-        button:active {
-            transform: scale(0.98);
-        }
-
-        #cardContainer {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        #card {
-            border: 1px solid var(--accent-2);
-            border-radius: 16px;
-            background-image: linear-gradient(to bottom right, var(--card-bg-start), var(--card-bg-end));
-            padding: 26px;
-            margin-bottom: 18px;
-            min-height: 160px;
-            display: none;
-            box-shadow: 0 10px 24px rgba(0,0,0,0.5);
-        }
-
-        /* Класс для анимации появления карточки */
-        .fade-in {
-            animation: fadeInUp 0.5s ease both;
-        }
-
-        #question {
-            font-weight: bold;
-            font-size: 1.5em;
-            margin-bottom: 12px;
-        }
-
-        #answer {
-            margin-top: 12px;
-            font-size: 1.2em;
-            line-height: 1.4;
-            white-space: pre-wrap;
-        }
-
-        #cardButtons {
-            display: none;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        #cardButtons button {
-            min-width: 120px;
-        }
-
-        #progress {
-            margin-top: 10px;
-            font-size: 1em;
-            color: var(--accent);
-        }
-
-        /* Modal overlay for enlarged images */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            align-items: center;
-            justify-content: center;
-        }
-        .modal.show {
-            display: flex;
-        }
-        .modal img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 14px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.6);
-        }
-        #closeModal {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        #message {
-            text-align: center;
-            font-size: 1.2em;
-            margin-top: 20px;
-            color: var(--accent);
-        }
-
-        /* Анимация плавного появления карточки */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 20px, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
-        }
-
-        /* Адаптивность для мобильных устройств */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.6em;
-            }
-            #question {
-                font-size: 1.3em;
-            }
-            #answer {
-                font-size: 1em;
-            }
-            select, button {
-                font-size: 1em;
-                width: 100%;
-                max-width: none;
-            }
-            #controls {
-                width: 100%;
-                padding: 0 15px;
-            }
-            #card {
-                padding: 20px;
-            }
-        }
-    </style>
+    @media (max-width:600px){
+      h1{ font-size:1.6em; }
+      #question{ font-size:1.3em; }
+      #answer{ font-size:1em; }
+      select,button{ font-size:1em; width:100%; }
+      #controls{ width:100%; padding:0 15px; }
+      #card{ padding:20px; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Тренажёр меню</h1>
-    <div id="controls">
-        <!-- Выбор файла меню. Файлы должны находиться в той же директории, что и этот тренажёр -->
-        <label for="menuSelect">Выберите меню:</label>
-        <select id="menuSelect"></select>
-        <!-- После выбора меню появляется выбор раздела -->
-        <select id="sectionSelect" style="display:none;"></select>
-        <!-- Выбор специализации: описание, особенности или состав -->
-        <select id="specializationSelect" style="display:none;">
-            <option value="">Без специализации</option>
-            <option value="description">Красочное описание</option>
-            <option value="features">Особенности</option>
-            <option value="composition">Состав</option>
-        </select>
-        <button id="startBtn" style="display:none;">Начать тренировку</button>
-    </div>
-    <div id="cardContainer">
-        <div id="card">
-            <div id="question"></div>
-            <!-- Image of the dish -->
-            <img id="cardImage" style="display:none; max-width:100%; border-radius:12px; margin-top:12px; cursor:pointer;"/>
-            <div id="noImageMsg" style="display:none; margin-top:12px; font-style:italic; color: var(--accent-2);">Фото не добавлено</div>
-            <div id="answer" style="display:none;"></div>
-        </div>
-        <div id="cardButtons" style="display:none;">
-            <button id="showAnswerBtn">Показать ответ</button>
-            <button id="knowBtn" style="display:none;">Я знаю</button>
-            <button id="dontKnowBtn" style="display:none;">Не помню</button>
-        </div>
-        <div id="progress"></div>
-        <div id="message"></div>
+  <h1>Тренажёр меню</h1>
+
+  <div id="controls">
+    <label for="menuSelect">Выберите меню:</label>
+    <select id="menuSelect"></select>
+
+    <select id="sectionSelect" style="display:none;"></select>
+
+    <select id="specializationSelect" style="display:none;">
+      <option value="">Без специализации</option>
+      <option value="description">Красочное описание</option>
+      <option value="features">Особенности</option>
+      <option value="composition">Состав</option>
+    </select>
+
+    <button id="startBtn" style="display:none;">Начать тренировку</button>
+  </div>
+
+  <div id="cardContainer">
+    <div id="card">
+      <div id="question"></div>
+      <img id="cardImage" style="display:none;max-width:100%;border-radius:12px;margin-top:12px;cursor:pointer" />
+      <div id="noImageMsg" style="display:none;margin-top:10px;opacity:.85">Фото не добавлено</div>
+      <div id="answer" style="display:none;"></div>
     </div>
 
-    <!-- Modal for enlarged dish images -->
-    <div id="imageModal" class="modal">
-        <span id="closeModal">&times;</span>
-        <img id="modalImage" src="" alt="Enlarged dish image" />
+    <div id="cardButtons" style="display:none;">
+      <button id="showAnswerBtn">Показать ответ</button>
+      <button id="knowBtn" style="display:none;">Я знаю</button>
+      <button id="dontKnowBtn" style="display:none;">Не помню</button>
     </div>
 
-    <script>
-    (() => {
-        // Global variables to hold parsed document and cards
-        let currentDoc = null;
-        let currentCards = [];
-        let currentIndex = 0;
+    <div id="progress"></div>
+    <div id="message"></div>
+  </div>
 
-        const menuSelect = document.getElementById('menuSelect');
-        const sectionSelect = document.getElementById('sectionSelect');
-        const specializationSelect = document.getElementById('specializationSelect');
-        const startBtn = document.getElementById('startBtn');
-        const cardDiv = document.getElementById('card');
-        const questionDiv = document.getElementById('question');
-        const answerDiv = document.getElementById('answer');
-        const cardButtons = document.getElementById('cardButtons');
-        const showAnswerBtn = document.getElementById('showAnswerBtn');
-        const knowBtn = document.getElementById('knowBtn');
-        const dontKnowBtn = document.getElementById('dontKnowBtn');
-        const progressDiv = document.getElementById('progress');
-        const messageDiv = document.getElementById('message');
+  <div id="imageModal" class="modal">
+    <span id="closeModal">×</span>
+    <img id="modalImage" src="" alt="Dish"/>
+  </div>
 
-        // Elements for images and modal
-        const cardImage = document.getElementById('cardImage');
-        const noImageMsg = document.getElementById('noImageMsg');
-        const imageModal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const closeModalBtn = document.getElementById('closeModal');
+  <script>
+  (()=>{
 
-        // Image click handler to show modal
-        cardImage.addEventListener('click', () => {
-            const src = cardImage.getAttribute('src');
-            if (src) {
-                modalImage.src = src;
-                imageModal.classList.add('show');
+    // Делает относительные src/href/srcset абсолютными
+    function rewriteRelativeUrls(htmlString, fileUrl){
+      try{
+        const baseDir = fileUrl.slice(0, fileUrl.lastIndexOf('/') + 1);
+        const absolutize = (path) => {
+          if (!path) return path;
+          let p = String(path).trim();
+          if (/^(https?:|data:|mailto:|tel:)/i.test(p)) return p;
+          if (p.startsWith('/')) p = p.slice(1);
+          if (!p.includes('/')) p = 'images/' + p; // одиночные имена — в images/
+          return baseDir + p;
+        };
+        htmlString = htmlString.replace(/(src|href)=["']([^"']+)["']/gi, (m, attr, url) => {
+          return `${attr}="${absolutize(url)}"`;
+        });
+        htmlString = htmlString.replace(/srcset=["']([^"']+)["']/gi, (m, val) => {
+          const parts = val.split(',').map(s => s.trim()).filter(Boolean).map(part => {
+            const segs = part.split(/\s+/);
+            const url = segs.shift();
+            const abs = absolutize(url);
+            return [abs].concat(segs).join(' ');
+          });
+          return `srcset="${parts.join(', ')}"`;
+        });
+        return htmlString;
+      }catch(e){ return htmlString; }
+    }
+
+    // Полное скрытие callout
+    function stripCallouts(root){
+      if(!root) return;
+      const nodes = root.querySelectorAll(
+        '[data-callout], [class*="callout"], figure.callout, div.callout, table.callout, blockquote.callout, aside.callout'
+      );
+      nodes.forEach(el=>el.remove());
+    }
+    const isCalloutNode = (el)=>{
+      if(!el || !el.tagName) return false;
+      if(el.hasAttribute && el.hasAttribute('data-callout')) return true;
+      const cls = (el.className||'').toString().toLowerCase();
+      return /callout/.test(cls) || (el.matches && el.matches('figure.callout, div.callout, table.callout, blockquote.callout, aside.callout'));
+    };
+
+    let currentDoc=null, currentCards=[], currentIndex=0;
+
+    const menuSelect=document.getElementById('menuSelect');
+    const sectionSelect=document.getElementById('sectionSelect');
+    const specializationSelect=document.getElementById('specializationSelect');
+    const startBtn=document.getElementById('startBtn');
+
+    const cardDiv=document.getElementById('card');
+    const questionDiv=document.getElementById('question');
+    const answerDiv=document.getElementById('answer');
+    const cardImage=document.getElementById('cardImage');
+    const noImageMsg=document.getElementById('noImageMsg');
+
+    const cardButtons=document.getElementById('cardButtons');
+    const showAnswerBtn=document.getElementById('showAnswerBtn');
+    const knowBtn=document.getElementById('knowBtn');
+    const dontKnowBtn=document.getElementById('dontKnowBtn');
+
+    const progressDiv=document.getElementById('progress');
+    const messageDiv=document.getElementById('message');
+
+    const imageModal=document.getElementById('imageModal');
+    const modalImage=document.getElementById('modalImage');
+    const closeModalBtn=document.getElementById('closeModal');
+
+    const menuFiles=[
+      'avtorskie-zavtraki_(3.09).html',
+      'detskoe-menu_(3.09).html',
+      'festivaly_(3.09).html',
+      'osnovnoe-menu_(3.09).html',
+      'sezonnoe-menu_(3.09).html',
+      'vino_(11.09).html',
+      'Stuff.html'
+    ];
+    const ALL_MENUS_VALUE='__all__';
+    const ALL_SECTIONS_VALUE='__all_sections__';
+
+    const menuDisplayNames={
+      'avtorskie-zavtraki_(3.09).html':'Авторские завтраки',
+      'detskoe-menu_(3.09).html':'Детское меню',
+      'festivaly_(3.09).html':'Фестивали',
+      'osnovnoe-menu_(3.09).html':'Основное меню',
+      'sezonnoe-menu_(3.09).html':'Сезонное меню',
+      'vino_(11.09).html':'Вино',
+      'Stuff.html':'Прочее'
+    };
+
+    function populateMenuList(){
+      menuSelect.innerHTML='';
+      const ph=document.createElement('option');
+      ph.textContent='Выберите меню';
+      ph.value=''; ph.disabled=true; ph.selected=true;
+      menuSelect.appendChild(ph);
+
+      const allOpt=document.createElement('option');
+      allOpt.value=ALL_MENUS_VALUE; allOpt.textContent='Все меню';
+      menuSelect.appendChild(allOpt);
+
+      menuFiles.forEach(fn=>{
+        const o=document.createElement('option');
+        o.value=fn; o.textContent=menuDisplayNames[fn]||fn;
+        menuSelect.appendChild(o);
+      });
+    }
+    populateMenuList();
+
+    const cleanText=t=>(t||'').replace(/\s+/g,' ').trim();
+
+    // Режем текст на блоки: Описание / Особенности / Состав
+    function splitSections(raw){
+      const txt = (raw||'').replace(/\u00A0/g,' ').trim();
+
+      // 1) Насильно переносим метки на новую строку (двоеточие/дефисы), схлопываем лишние \n
+      const normalized = txt
+        .replace(/\r?\n?\s*(Особенности|Состав)\s*[:—-]/gi, '\n$1:')
+        .replace(/\n{2,}/g, '\n');
+
+      // 2) Берём текст между метками
+      const takeBetween = (label) => {
+        const re = new RegExp(
+          '(?:^|[\\r\\n])\\s*' + label + '\\s*[:—-]\\s*' +
+          '([\\s\\S]*?)' +
+          '(?=(?:[\\r\\n]\\s*(?:Особенности|Состав)\\s*[:—-])|$)', 'i'
+        );
+        const m = normalized.match(re);
+        return m ? m[1].trim() : '';
+      };
+
+      // 3) Секции
+      let featuresRaw    = takeBetween('Особенности');
+      const composition  = takeBetween('Состав');
+
+      // 4) Подрезаем случайно попавший «Состав: …» в блоке особенностей
+      const features = featuresRaw.replace(/\n?\s*Состав\s*[:—-][\s\S]*$/i, '').trim();
+
+      // 5) Описание = исходный текст без блоков «Особенности/Состав»
+      let description = normalized;
+      if (features)    description = description.replace(/(^|[\r\n])\s*Особенности\s*[:—-][\s\S]*/i,'').trim();
+      if (!features && composition)
+                       description = description.replace(/(^|[\r\n])\s*Состав\s*[:—-][\s\S]*/i,'').trim();
+
+      // 6) Флажки наличия явных меток
+      const hasFeaturesLabel    = /(^|\n)\s*Особенности\s*[:—-]/i.test(normalized);
+      const hasCompositionLabel = /(^|\n)\s*Состав\s*[:—-]/i.test(normalized);
+
+      return { description, features, composition, hasFeaturesLabel, hasCompositionLabel };
+    }
+
+    function findNextHeading(el){
+      let s=el.nextElementSibling;
+      while(s){
+        const tag=s.tagName? s.tagName.toLowerCase():'';
+        if(tag==='h2'||tag==='h3') return s;
+        s=s.nextElementSibling;
+      }
+      return null;
+    }
+
+    /* ----------- ВЫБОР ФОТО ----------- */
+    function pickDishPhotoInRange(h3El, nextHeadingEl, dishTitle) {
+      const titleNorm = (dishTitle || '').trim().replace(/\s+/g, ' ').toLowerCase();
+
+      const findPrevHeading = (el) => {
+        let s = el.previousElementSibling;
+        while (s) {
+          const tag = s.tagName ? s.tagName.toLowerCase() : '';
+          if (tag === 'h2' || tag === 'h3') return s;
+          s = s.previousElementSibling;
+        }
+        return null;
+      };
+
+      const figures = [];
+
+      // назад до пред. заголовка
+      let node = h3El.previousElementSibling;
+      const prevHeading = findPrevHeading(h3El);
+      while (node && node !== prevHeading) {
+        if (node.tagName && node.tagName.toLowerCase() === 'figure' && node.classList.contains('image')) {
+          figures.push(node);
+        }
+        node.querySelectorAll && node.querySelectorAll('figure.image').forEach(f => figures.push(f));
+        node = node.previousElementSibling;
+      }
+
+      // вперёд до след. заголовка
+      node = h3El.nextElementSibling;
+      while (node && node !== nextHeadingEl) {
+        if (node.tagName && node.tagName.toLowerCase() === 'figure' && node.classList.contains('image')) {
+          figures.push(node);
+        }
+        node.querySelectorAll && node.querySelectorAll('figure.image').forEach(f => figures.push(f));
+        node = node.nextElementSibling;
+      }
+
+      const IMG_EXT = /\.(png|jpe?g|webp)(\?.*)?$/i;
+      const candidates = figures.map(fig => {
+        const img = fig.querySelector('img'); if (!img) return null;
+        const src = (img.getAttribute('src') || '').trim();
+        const a = fig.querySelector('a[href]');
+        const href = a ? (a.getAttribute('href') || '').trim() : '';
+        let url = href || src;
+
+        if (/\/icons\//i.test(url)) return null;
+        if (!IMG_EXT.test(url) && !/\/images\//i.test(url)) return null;
+
+        const styleW = (img.getAttribute('style') || '').match(/width:\s*([\d.]+)px/i);
+        const w = styleW ? parseFloat(styleW[1]) : (parseInt(img.getAttribute('width')) || 0);
+        const h = parseInt(img.getAttribute('height')) || w || 0;
+        const score = (w*h)||1;
+
+        const caption = (fig.querySelector('figcaption')?.textContent || '')
+          .trim().replace(/\s+/g,' ').toLowerCase();
+
+        return { url, score, caption };
+      }).filter(Boolean);
+
+      if (!candidates.length) return null;
+
+      const byCaption = candidates.find(c => c.caption && c.caption === titleNorm);
+      if (byCaption) return byCaption.url;
+
+      let best = candidates[0];
+      for (const c of candidates) if (c.score > best.score) best = c;
+
+      if (best.score <= 4) return null;
+      return best.url;
+    }
+    /* ---------------------------------- */
+
+    // Плейсхолдер и onerror
+    const PLACEHOLDER = 'placeholder_light_gray_block.png';
+    cardImage.addEventListener('error', () => {
+      if (!cardImage.src.includes(PLACEHOLDER)) cardImage.src = PLACEHOLDER;
+    });
+
+    menuSelect.addEventListener('change',()=>{
+      const selected=menuSelect.value;
+      messageDiv.textContent='';
+
+      if(selected===ALL_MENUS_VALUE){
+        sectionSelect.style.display='none';
+        startBtn.style.display='inline';
+        specializationSelect.style.display='inline';
+        return;
+      }
+      if(!selected){
+        sectionSelect.style.display='none';
+        startBtn.style.display='none';
+        specializationSelect.style.display='none';
+        return;
+      }
+
+      sectionSelect.style.display='none';
+      startBtn.style.display='none';
+      messageDiv.textContent='Загружаем меню…';
+
+      fetch(encodeURI(selected))
+        .then(r=>{ if(!r.ok) throw new Error('Не удалось загрузить файл меню: '+selected); return r.text(); })
+        .then(html=>{
+          const fixedHtml = rewriteRelativeUrls(html, selected);
+          const p=new DOMParser();
+          currentDoc=p.parseFromString(fixedHtml,'text/html');
+
+          // вырезаем callout из документа
+          stripCallouts(currentDoc.body);
+
+          const h2s=Array.from(currentDoc.querySelectorAll('h2'));
+          const sections=h2s.map(h2=>cleanText(h2.textContent)).filter(Boolean);
+
+          sectionSelect.innerHTML='';
+          if(!sections.length){
+            sectionSelect.style.display='none';
+            startBtn.style.display='none';
+            messageDiv.textContent='Разделы не найдены в выбранном меню.';
+            return;
+          }
+          const allSec=document.createElement('option');
+          allSec.value=ALL_SECTIONS_VALUE; allSec.textContent='Все разделы';
+          sectionSelect.appendChild(allSec);
+
+          sections.forEach(s=>{
+            const o=document.createElement('option');
+            o.value=s; o.textContent=s;
+            sectionSelect.appendChild(o);
+          });
+
+          sectionSelect.style.display='inline';
+          startBtn.style.display='inline';
+          specializationSelect.style.display='inline';
+          messageDiv.textContent='';
+        })
+        .catch(err=> messageDiv.textContent=err.message);
+    });
+
+    function buildCardsFromRange(startH3,boundary){
+      const cards=[];
+      let h3=startH3;
+      while(h3 && h3!==boundary){
+        if(!(h3.tagName && h3.tagName.toLowerCase()==='h3')) break;
+
+        const title=cleanText(h3.textContent);
+        const next=findNextHeading(h3);
+
+        // --- Собираем текст ответа (без callout) ---
+        const parts=[];
+        const htmlParts=[];
+        let sib=h3.nextSibling;
+        while(sib && sib!==next){
+          // пропуск callout
+          if(sib.nodeType===1 && isCalloutNode(sib)){ sib=sib.nextSibling; continue; }
+          const tag = (sib.nodeType===1 && sib.tagName) ? sib.tagName.toLowerCase() : '';
+          if(tag==='h2'||tag==='h3') break;
+
+          // текстовая часть
+          if(sib.nodeType===3){
+            const txt=(sib.textContent||'').replace(/\s+/g,' ').trim();
+            if(txt) parts.push(txt);
+            if(txt) htmlParts.push(txt);
+          } else if(sib.nodeType===1){
+            // пропускаем крупные фотографии (figure.image) в ответе, фото и подписи отображаются отдельно
+            const tagName = sib.tagName ? sib.tagName.toLowerCase() : '';
+            if(tagName==='figure' && sib.classList.contains('image')){
+              sib = sib.nextSibling;
+              continue;
             }
-        });
-        // Close modal when clicking on the close button
-        closeModalBtn.addEventListener('click', () => {
-            imageModal.classList.remove('show');
-        });
-        // Also close modal when clicking outside the image
-        imageModal.addEventListener('click', (e) => {
-            if (e.target === imageModal) {
-                imageModal.classList.remove('show');
+            // элемент
+            const txt=cleanText(sib.textContent||'');
+            if(txt) parts.push(txt);
+            // копия элемента для удаления больших изображений и колонок
+            const clone = sib.cloneNode(true);
+            // удаляем большие изображения (оставляем только иконки)
+            clone.querySelectorAll('img').forEach(imgEl => {
+              const src=(imgEl.getAttribute('src')||'').trim();
+              if(/\/icons\//i.test(src)) return;
+              if(/\.(png|jpe?g|webp)(\?.*)?$/i.test(src)) imgEl.remove();
+            });
+            // удаляем стили колонок и классы, связанные с колонками
+            const stripColumns = (el) => {
+              // обработка корневого элемента
+              const processNode = node => {
+                if(!node) return;
+                const st=node.getAttribute && node.getAttribute('style');
+                if(st && /column/i.test(st)){
+                  // удаляем свойства столбцов
+                  let newSt = st.replace(/column[^:]*?:[^;]*?;?/gi, '');
+                  newSt = newSt.trim();
+                  if(newSt) node.setAttribute('style', newSt);
+                  else node.removeAttribute('style');
+                }
+                if(node.classList && node.classList.length){
+                  [...node.classList].forEach(cls=>{
+                    if(/column/i.test(cls)) node.classList.remove(cls);
+                  });
+                }
+              };
+              processNode(el);
+              el.querySelectorAll('*').forEach(processNode);
+            };
+            stripColumns(clone);
+            htmlParts.push(clone.outerHTML);
+          }
+          sib=sib.nextSibling;
+        }
+        const answerParts=parts.filter(Boolean);
+        const answer=answerParts.join('\n');
+        const answerHTML=htmlParts.join('\n');
+
+        const {description, features, composition, hasFeaturesLabel, hasCompositionLabel} = splitSections(answer);
+
+        // главное фото
+        const imageSrc=pickDishPhotoInRange(h3,next,title);
+
+        cards.push({question:title, answer, answerParts, answerHTML, imageSrc, description, features, composition, hasFeaturesLabel, hasCompositionLabel});
+
+        h3=next;
+      }
+      return cards;
+    }
+
+    function getCardsForSection(sectionName){
+      if(!currentDoc) return [];
+      const h2s=Array.from(currentDoc.querySelectorAll('h2'));
+      let startH2=null, nextH2=null;
+      for(let i=0;i<h2s.length;i++){
+        const t=cleanText(h2s[i].textContent);
+        if(t===cleanText(sectionName)){ startH2=h2s[i]; nextH2=h2s[i+1]||null; break; }
+      }
+      if(!startH2) return [];
+      let node=startH2.nextElementSibling;
+      while(node && !(node.tagName && node.tagName.toLowerCase()==='h3')) node=node.nextElementSibling;
+      if(!node) return [];
+      return buildCardsFromRange(node,nextH2);
+    }
+
+    function getAllCardsInCurrentMenu(){
+      if(!currentDoc) return [];
+      const h2s=Array.from(currentDoc.querySelectorAll('h2'));
+      let all=[];
+      h2s.forEach((h2,i)=>{
+        const next=h2s[i+1]||null;
+        let node=h2.nextElementSibling;
+        while(node && !(node.tagName && node.tagName.toLowerCase()==='h3')) node=node.nextElementSibling;
+        if(node) all=all.concat(buildCardsFromRange(node,next));
+      });
+      return all;
+    }
+
+    function extractAllCardsFromDoc(doc){
+      stripCallouts(doc.body);
+
+      let all=[];
+      const h2s=Array.from(doc.querySelectorAll('h2'));
+      h2s.forEach((h2,i)=>{
+        const next=h2s[i+1]||null;
+        let node=h2.nextElementSibling;
+        while(node && !(node.tagName && node.tagName.toLowerCase()==='h3')) node=node.nextElementSibling;
+        if(!node) return;
+
+        const build=(start,boundary)=>{
+          const cards=[];
+          let h3=start;
+
+          const clean=t=>(t||'').replace(/\s+/g,' ').trim();
+          const nextHeading=(el)=>{ let s=el.nextElementSibling; while(s){ const tg=s.tagName? s.tagName.toLowerCase():''; if(tg==='h2'||tg==='h3') return s; s=s.nextElementSibling; } return null; };
+          const pick=(from,boundary2,title)=>{
+            const titleNorm=clean(title).toLowerCase();
+            let cur=from.previousElementSibling;
+            const prev=(()=>{ let p=from.previousElementSibling; while(p){ const tg=p.tagName? p.tagName.toLowerCase():''; if(tg==='h2'||tg==='h3') return p; p=p.previousElementSibling; } return null; })();
+            const figs=[];
+            while(cur && cur!==prev){
+              if(cur.tagName && cur.tagName.toLowerCase()==='figure' && cur.classList.contains('image')) figs.push(cur);
+              cur.querySelectorAll && cur.querySelectorAll('figure.image').forEach(f=>figs.push(f));
+              cur=cur.previousElementSibling;
             }
-        });
+            cur=from.nextElementSibling;
+            while(cur && cur!==boundary2){
+              if(cur.tagName && cur.tagName.toLowerCase()==='figure' && cur.classList.contains('image')) figs.push(cur);
+              cur.querySelectorAll && cur.querySelectorAll('figure.image').forEach(f=>figs.push(f));
+              cur=cur.nextElementSibling;
+            }
+            const IMG_EXT=/\.(png|jpe?g|webp)(\?.*)?$/i;
+            const cands=figs.map(fig=>{
+              const img=fig.querySelector('img'); if(!img) return null;
+              const src=(img.getAttribute('src')||'').trim();
+              const a=fig.querySelector('a[href]'); const href=a?(a.getAttribute('href')||'').trim():'';
+              let url=href||src;
+              if(/\/icons\//i.test(url)) return null;
+              if(!IMG_EXT.test(url) && !/\/images\//i.test(url)) return null;
+              const w=parseInt(img.getAttribute('width'))||0;
+              const h=parseInt(img.getAttribute('height'))||w||0;
+              const score=(w*h)||1;
+              const caption=clean(fig.querySelector('figcaption')?.textContent||'');
+              return {url,score,caption};
+            }).filter(Boolean);
+            if(!cands.length) return null;
+            const byCap=cands.find(c=>c.caption && c.caption===titleNorm);
+            if(byCap) return byCap.url;
+            let best=cands[0]; for(const c of cands) if(c.score>best.score) best=c;
+            if(best.score<=4) return null;
+            return best.url;
+          };
 
-        /**
-         * Список HTML‑файлов меню, находящихся рядом с этим тренажёром.
-         * Добавляйте сюда имена новых файлов меню по мере их появления.
-         */
-        const menuFiles = [
-            'avtorskie-zavtraki_(3.09).html',
-            'detskoe-menu_(3.09).html',
-            'festivaly_(3.09).html',
-            'osnovnoe-menu_(3.09).html',
-            'sezonnoe-menu_(3.09).html',
-            'vino_(11.09).html',
-            'Stuff.html'
-        ];
-        // Специальное значение для варианта "Все меню"
-        const ALL_MENUS_VALUE = '__all__';
-        // Специальное значение для варианта "Все разделы"
-        const ALL_SECTIONS_VALUE = '__all_sections__';
+          while(h3 && h3!==boundary){
+            if(!(h3.tagName && h3.tagName.toLowerCase()==='h3')) break;
+            const title=clean(h3.textContent);
+            const n=nextHeading(h3);
 
-        /**
-         * Словарь соответствия файлов меню их пользовательским названиям.
-         * Если необходимо добавить новые файлы, расширьте этот объект.
-         */
-        const menuDisplayNames = {
-            'avtorskie-zavtraki_(3.09).html': 'Авторские завтраки',
-            'detskoe-menu_(3.09).html': 'Детское меню',
-            'festivaly_(3.09).html': 'Фестивали',
-            'osnovnoe-menu_(3.09).html': 'Основное меню',
-            'sezonnoe-menu_(3.09).html': 'Сезонное меню',
-            'vino_(11.09).html': 'Вино',
-            'Stuff.html': 'Прочее'
+            const parts=[]; const htmlParts=[];
+            let sib=h3.nextSibling;
+            while(sib && sib!==n){
+              const tg=(sib.nodeType===1 && sib.tagName)? sib.tagName.toLowerCase():'';
+              if(tg==='h2'||tg==='h3') break;
+              if(sib.nodeType===1 && isCalloutNode(sib)){ sib=sib.nextSibling; continue; }
+              if(sib.nodeType===3){
+                const txt=(sib.textContent||'').replace(/\s+/g,' ').trim();
+                if(txt) parts.push(txt);
+                if(txt) htmlParts.push(txt);
+              } else if(sib.nodeType===1){
+                const tagName = sib.tagName ? sib.tagName.toLowerCase() : '';
+                if(tagName==='figure' && sib.classList.contains('image')){
+                  sib = sib.nextSibling;
+                  continue;
+                }
+                const txt=clean(sib.textContent||'');
+                if(txt) parts.push(txt);
+                const clone=sib.cloneNode(true);
+                // удаляем большие изображения (оставляем только иконки)
+                clone.querySelectorAll('img').forEach(imgEl=>{
+                  const src=(imgEl.getAttribute('src')||'').trim();
+                  if(/\/icons\//i.test(src)) return;
+                  if(/\.(png|jpe?g|webp)(\?.*)?$/i.test(src)) imgEl.remove();
+                });
+                // удаляем стили колонок и классы, связанные с колонками
+                const stripColumns=(el)=>{
+                  const processNode=node=>{
+                    if(!node) return;
+                    const st=node.getAttribute && node.getAttribute('style');
+                    if(st && /column/i.test(st)){
+                      let newSt=st.replace(/column[^:]*?:[^;]*?;?/gi,'');
+                      newSt=newSt.trim();
+                      if(newSt) node.setAttribute('style',newSt);
+                      else node.removeAttribute('style');
+                    }
+                    if(node.classList && node.classList.length){
+                      [...node.classList].forEach(cls=>{ if(/column/i.test(cls)) node.classList.remove(cls); });
+                    }
+                  };
+                  processNode(el);
+                  el.querySelectorAll('*').forEach(processNode);
+                };
+                stripColumns(clone);
+                htmlParts.push(clone.outerHTML);
+              }
+              sib=sib.nextSibling;
+            }
+            const answerParts=parts.filter(Boolean);
+            const answer=answerParts.join('\n');
+            const answerHTML=htmlParts.join('\n');
+
+            const {description, features, composition, hasFeaturesLabel, hasCompositionLabel} = splitSections(answer);
+            const imageSrc=pick(h3,n,title);
+            cards.push({question:title, answer, answerParts, answerHTML, imageSrc, description, features, composition, hasFeaturesLabel, hasCompositionLabel});
+            h3=n;
+          }
+          return cards;
         };
 
-        /**
-         * Заполнение списка меню. Использует словарь menuDisplayNames для
-         * человеко‑понятных названий. Если в словаре нет соответствия, имя
-         * файла будет использовано без изменения.
-         */
-        function populateMenuList() {
-            menuSelect.innerHTML = '';
-            const placeholder = document.createElement('option');
-            placeholder.textContent = 'Выберите меню';
-            placeholder.value = '';
-            placeholder.disabled = true;
-            placeholder.selected = true;
-            menuSelect.appendChild(placeholder);
-            // Добавляем пункт для тренировки сразу по всем меню
-            const allOpt = document.createElement('option');
-            allOpt.value = ALL_MENUS_VALUE;
-            allOpt.textContent = 'Все меню';
-            menuSelect.appendChild(allOpt);
-            menuFiles.forEach(filename => {
-                const option = document.createElement('option');
-                option.value = filename;
-                option.textContent = menuDisplayNames[filename] || filename;
-                menuSelect.appendChild(option);
-            });
-        }
+        all=all.concat(build(node,next));
+      });
+      return all;
+    }
 
-        // Заполняем список меню сразу после определения элементов
-        populateMenuList();
+    async function getCardsForAllMenus(){
+      const all=[];
+      for(const f of menuFiles){
+        try{
+          const r=await fetch(encodeURI(f));
+          if(!r.ok) continue;
+          const html=await r.text();
+          const fixedHtml = rewriteRelativeUrls(html, f);
+          const p=new DOMParser();
+          const doc=p.parseFromString(fixedHtml,'text/html');
+          stripCallouts(doc.body);
+          const cards=extractAllCardsFromDoc(doc);
+          if(cards?.length) all.push(...cards);
+        }catch(e){/* ignore */ }
+      }
+      return all;
+    }
 
-        // Utility function to strip excessive whitespace from strings
-        function cleanText(text) {
-            return text.replace(/\s+/g, ' ').trim();
-        }
+    startBtn.addEventListener('click',()=>{
+      const selected=menuSelect.value;
 
-        // Fetch and parse the selected menu file to populate sections
-        menuSelect.addEventListener('change', () => {
-            const selected = menuSelect.value;
-            // Очистим сообщение
-            messageDiv.textContent = '';
-            // Если выбран вариант "Все меню", скрываем выбор разделов и сразу разрешаем начать
-            if (selected === ALL_MENUS_VALUE) {
-                sectionSelect.style.display = 'none';
-                startBtn.style.display = 'inline';
-                // Показываем выбор специализации
-                specializationSelect.style.display = 'inline';
-                return;
-            }
-            if (!selected) {
-                sectionSelect.style.display = 'none';
-                startBtn.style.display = 'none';
-                specializationSelect.style.display = 'none';
-                return;
-            }
-            // Загрузка выбранного файла
-            sectionSelect.style.display = 'none';
-            startBtn.style.display = 'none';
-            messageDiv.textContent = 'Загружаем меню…';
-            fetch(encodeURI(selected))
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Не удалось загрузить файл меню: ' + selected);
-                    }
-                    return response.text();
-                })
-                .then(htmlString => {
-                    const parser = new DOMParser();
-                    currentDoc = parser.parseFromString(htmlString, 'text/html');
-                    // Собираем разделы
-                    const h2s = Array.from(currentDoc.querySelectorAll('h2'));
-                    const sections = h2s.map(h2 => cleanText(h2.textContent)).filter(Boolean);
-                    sectionSelect.innerHTML = '';
-                    if (sections.length === 0) {
-                        sectionSelect.style.display = 'none';
-                        startBtn.style.display = 'none';
-                        messageDiv.textContent = 'Разделы не найдены в выбранном меню.';
-                        return;
-                    }
-                    // Добавляем вариант для всех разделов
-                    const allSectionsOption = document.createElement('option');
-                    allSectionsOption.value = ALL_SECTIONS_VALUE;
-                    allSectionsOption.textContent = 'Все разделы';
-                    sectionSelect.appendChild(allSectionsOption);
-                    sections.forEach(sectionName => {
-                        const option = document.createElement('option');
-                        option.value = sectionName;
-                        option.textContent = sectionName;
-                        sectionSelect.appendChild(option);
-                    });
-                    sectionSelect.style.display = 'inline';
-                    startBtn.style.display = 'inline';
-                    // Показываем выбор специализации для отдельных меню
-                    specializationSelect.style.display = 'inline';
-                    messageDiv.textContent = '';
-                })
-                .catch(err => {
-                    messageDiv.textContent = err.message;
-                });
-        });
-
-        // Extract cards for the given section name from the parsed document
-        function getCardsForSection(sectionName) {
-            if (!currentDoc) return [];
-            // Find all h2 elements again
-            const h2s = Array.from(currentDoc.querySelectorAll('h2'));
-            let startH2 = null;
-            let nextH2 = null;
-            for (let i = 0; i < h2s.length; i++) {
-                const title = cleanText(h2s[i].textContent);
-                if (title === cleanText(sectionName)) {
-                    startH2 = h2s[i];
-                    nextH2 = h2s[i + 1] || null;
-                    break;
-                }
-            }
-            if (!startH2) return [];
-            const cards = [];
-            // Iterate through siblings until next section
-            let elem = startH2.nextElementSibling;
-            while (elem && elem !== nextH2) {
-                // Collect h3s either directly on this element or nested within it
-                const h3s = [];
-                if (elem.tagName && elem.tagName.toLowerCase() === 'h3') {
-                    h3s.push(elem);
-                } else {
-                    elem.querySelectorAll && elem.querySelectorAll('h3').forEach(h => h3s.push(h));
-                }
-                if (h3s.length > 0) {
-                    h3s.forEach(h3 => {
-                        const question = cleanText(h3.textContent);
-                        let answerParts = [];
-                        let sibling = h3.nextElementSibling;
-                        while (sibling) {
-                            const tag = sibling.tagName ? sibling.tagName.toLowerCase() : '';
-                            if (tag === 'h3' || tag === 'h2') {
-                                break;
-                            }
-                            answerParts.push(cleanText(sibling.textContent || ''));
-                            sibling = sibling.nextElementSibling;
-                        }
-                        // Build both joined answer and an array of individual parts. Each sibling element becomes a separate part.
-                        const cleanedParts = answerParts.filter(Boolean);
-                        const answer = cleanedParts.join('\n');
-                        // Gather images inside the card (between this h3 and the next h3/h2)
-                        const candidateImgs = [];
-                        let imgCollectElem = h3.nextElementSibling;
-                        while (imgCollectElem) {
-                            const tagName = imgCollectElem.tagName ? imgCollectElem.tagName.toLowerCase() : '';
-                            if (tagName === 'h3' || tagName === 'h2') {
-                                break;
-                            }
-                            if (tagName === 'img') {
-                                candidateImgs.push(imgCollectElem);
-                            }
-                            if (imgCollectElem.querySelectorAll) {
-                                imgCollectElem.querySelectorAll('img').forEach(img => candidateImgs.push(img));
-                            }
-                            imgCollectElem = imgCollectElem.nextElementSibling;
-                        }
-                        // Filter candidate images: skip obvious icons (small width attr or file names containing 'icon', 'allergen', 'ico')
-                        let mainImg = null;
-                        candidateImgs.some(img => {
-                            const src = img.getAttribute('src') || '';
-                            const widthAttr = img.getAttribute('width');
-                            // if width attribute exists and is numeric and <= 60, skip
-                            if (widthAttr && !isNaN(parseInt(widthAttr)) && parseInt(widthAttr) <= 60) return false;
-                            const lowerSrc = src.toLowerCase();
-                            if (lowerSrc.includes('icon') || lowerSrc.includes('allergen') || lowerSrc.includes('ico')) return false;
-                            mainImg = src;
-                            return true;
-                        });
-                        cards.push({ question, answer, answerParts: cleanedParts, imageSrc: mainImg });
-                    });
-                }
-                elem = elem.nextElementSibling;
-            }
-            return cards;
-        }
-
-        // Shuffle cards for random order (Fisher–Yates shuffle)
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        /**
-         * Собрать все карточки из текущего выбранного меню (все разделы).
-         * Использует глобальный currentDoc.
-         */
-        function getAllCardsInCurrentMenu() {
-            if (!currentDoc) return [];
-            const h2s = Array.from(currentDoc.querySelectorAll('h2'));
-            let cards = [];
-            h2s.forEach((h2, index) => {
-                const sectionName = cleanText(h2.textContent);
-                const sectionCards = getCardsForSection(sectionName);
-                if (sectionCards && sectionCards.length) {
-                    cards.push(...sectionCards);
-                }
-            });
-            return cards;
-        }
-
-        /**
-         * Извлекает все карточки из объекта Document. Используется для режима "Все меню".
-         */
-        function extractAllCardsFromDoc(doc) {
-            const cards = [];
-            const h2s = Array.from(doc.querySelectorAll('h2'));
-            h2s.forEach((h2, index) => {
-                const nextH2 = h2s[index + 1] || null;
-                let elem = h2.nextElementSibling;
-                while (elem && elem !== nextH2) {
-                    const h3s = [];
-                    if (elem.tagName && elem.tagName.toLowerCase() === 'h3') {
-                        h3s.push(elem);
-                    } else {
-                        elem.querySelectorAll && elem.querySelectorAll('h3').forEach(h => h3s.push(h));
-                    }
-                    if (h3s.length > 0) {
-                        h3s.forEach(h3 => {
-                            const question = cleanText(h3.textContent);
-                            let answerParts = [];
-                            let sibling = h3.nextElementSibling;
-                            while (sibling) {
-                                const tag = sibling.tagName ? sibling.tagName.toLowerCase() : '';
-                                if (tag === 'h3' || tag === 'h2') {
-                                    break;
-                                }
-                                answerParts.push(cleanText(sibling.textContent || ''));
-                                sibling = sibling.nextElementSibling;
-                            }
-                            const cleanedParts = answerParts.filter(Boolean);
-                            const answer = cleanedParts.join('\n');
-                            // Gather images inside this card region (between this h3 and the next h3/h2)
-                            const candidateImgs = [];
-                            let imgCollectElem2 = h3.nextElementSibling;
-                            while (imgCollectElem2) {
-                                const tagName2 = imgCollectElem2.tagName ? imgCollectElem2.tagName.toLowerCase() : '';
-                                if (tagName2 === 'h3' || tagName2 === 'h2') {
-                                    break;
-                                }
-                                if (tagName2 === 'img') {
-                                    candidateImgs.push(imgCollectElem2);
-                                }
-                                if (imgCollectElem2.querySelectorAll) {
-                                    imgCollectElem2.querySelectorAll('img').forEach(img => candidateImgs.push(img));
-                                }
-                                imgCollectElem2 = imgCollectElem2.nextElementSibling;
-                            }
-                            let mainImg2 = null;
-                            candidateImgs.some(img => {
-                                const src = img.getAttribute('src') || '';
-                                const widthAttr = img.getAttribute('width');
-                                if (widthAttr && !isNaN(parseInt(widthAttr)) && parseInt(widthAttr) <= 60) return false;
-                                const lowerSrc = src.toLowerCase();
-                                if (lowerSrc.includes('icon') || lowerSrc.includes('allergen') || lowerSrc.includes('ico')) return false;
-                                mainImg2 = src;
-                                return true;
-                            });
-                            cards.push({ question, answer, answerParts: cleanedParts, imageSrc: mainImg2 });
-                        });
-                    }
-                    elem = elem.nextElementSibling;
-                }
-            });
-            return cards;
-        }
-
-        /**
-         * Загружает все файлы меню и собирает карточки из каждого. Используется при выборе "Все меню".
-         */
-        async function getCardsForAllMenus() {
-            const allCards = [];
-            for (const file of menuFiles) {
-                try {
-                    const response = await fetch(encodeURI(file));
-                    if (!response.ok) continue;
-                    const htmlString = await response.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(htmlString, 'text/html');
-                    const cards = extractAllCardsFromDoc(doc);
-                    if (cards && cards.length) {
-                        allCards.push(...cards);
-                    }
-                } catch (e) {
-                    // Игнорируем ошибки загрузки отдельных меню
-                    continue;
-                }
-            }
-            return allCards;
-        }
-
-        // Start training when button clicked
-        startBtn.addEventListener('click', () => {
-            const selectedMenu = menuSelect.value;
-            // Если пользователь выбрал "Все меню"
-            if (selectedMenu === ALL_MENUS_VALUE) {
-                messageDiv.textContent = 'Загружаем все меню…';
-                getCardsForAllMenus().then(cards => {
-                    if (!cards.length) {
-                        messageDiv.textContent = 'Не удалось найти карточки для тренировок.';
-                        return;
-                    }
-                    currentCards = shuffle(cards);
-                    currentIndex = 0;
-                    prepareTrainingUI();
-                }).catch(err => {
-                    messageDiv.textContent = err.message;
-                });
-                return;
-            }
-            // Иначе используем текущий документ (selectedMenu) для тренировки
-            const sectionName = sectionSelect.value;
-            let cards = [];
-            if (sectionName === ALL_SECTIONS_VALUE) {
-                // Собрать все карточки во всех разделах текущего меню
-                cards = getAllCardsInCurrentMenu();
-            } else {
-                cards = getCardsForSection(sectionName);
-            }
-            if (cards.length === 0) {
-                messageDiv.textContent = 'Карточки не найдены.';
-                cardDiv.style.display = 'none';
-                cardButtons.style.display = 'none';
-                return;
-            }
-            currentCards = shuffle(cards);
-            currentIndex = 0;
-            prepareTrainingUI();
-        });
-
-        /**
-         * Подготавливает интерфейс для отображения карточек после загрузки карточек
-         */
-        function prepareTrainingUI() {
-            // Спрятать выбор меню/разделов, показать панель карточек
-            sectionSelect.style.display = 'none';
-            startBtn.style.display = 'none';
-            menuSelect.style.display = 'none';
-            cardButtons.style.display = 'block';
-            showAnswerBtn.style.display = 'inline';
-            knowBtn.style.display = 'none';
-            dontKnowBtn.style.display = 'none';
-            cardDiv.style.display = 'block';
-            messageDiv.textContent = '';
-            showCurrentCard();
-        }
-
-        // Display the current card front
-        function showCurrentCard() {
-            if (currentCards.length === 0) {
-                finishTraining();
-                return;
-            }
-            const card = currentCards[currentIndex];
-            questionDiv.textContent = card.question;
-            // Set image or placeholder
-            if (card.imageSrc) {
-                cardImage.src = card.imageSrc;
-                cardImage.style.display = 'block';
-                noImageMsg.style.display = 'none';
-            } else {
-                cardImage.style.display = 'none';
-                noImageMsg.style.display = 'block';
-            }
-            // Determine which part of the answer to show based on selected specialization
+      if(selected===ALL_MENUS_VALUE){
+        messageDiv.textContent='Загружаем все меню…';
+        getCardsForAllMenus()
+          .then(cards=>{
             const spec = specializationSelect.value;
-            let answerText;
-            if (!spec) {
-                // no specialization – show the full answer
-                answerText = card.answer;
-            } else {
-                // choose part based on specialization index
-                // 0: description, 1: features, 2: composition
-                const indexMap = {
-                    'description': 0,
-                    'features': 1,
-                    'composition': 2
-                };
-                const idx = indexMap[spec];
-                if (card.answerParts && card.answerParts.length > idx) {
-                    answerText = card.answerParts[idx];
-                } else {
-                    // fallback to the last available part or full answer
-                    answerText = card.answerParts && card.answerParts.length ? card.answerParts[card.answerParts.length - 1] : card.answer;
-                }
+            if (spec === 'features') {
+              cards = cards.filter(c => c.hasFeaturesLabel && (c.features||'').trim());
+            } else if (spec === 'composition') {
+              cards = cards.filter(c => c.hasCompositionLabel && (c.composition||'').trim());
             }
-            answerDiv.textContent = answerText;
-            answerDiv.style.display = 'none';
-            showAnswerBtn.style.display = 'inline';
-            knowBtn.style.display = 'none';
-            dontKnowBtn.style.display = 'none';
-            progressDiv.textContent = `Карточка ${currentIndex + 1} из ${currentCards.length}`;
-            // Запускаем анимацию появления каждой карточки
-            cardDiv.classList.remove('fade-in');
-            // force reflow to restart animation
-            void cardDiv.offsetWidth;
-            cardDiv.classList.add('fade-in');
-        }
+            if(!cards.length){ messageDiv.textContent='Не удалось найти карточки для тренировок.'; return; }
+            currentCards=shuffle(cards); currentIndex=0; prepareTrainingUI();
+          })
+          .catch(err=> messageDiv.textContent=err.message);
+        return;
+      }
 
-        // Reveal answer
-        showAnswerBtn.addEventListener('click', () => {
-            answerDiv.style.display = 'block';
-            showAnswerBtn.style.display = 'none';
-            knowBtn.style.display = 'inline';
-            dontKnowBtn.style.display = 'inline';
-        });
+      const sectionName=sectionSelect.value;
+      let cards=[];
+      if(sectionName===ALL_SECTIONS_VALUE) cards=getAllCardsInCurrentMenu();
+      else cards=getCardsForSection(sectionName);
 
-        // User knows the card: remove it
-        knowBtn.addEventListener('click', () => {
-            currentCards.splice(currentIndex, 1);
-            if (currentIndex >= currentCards.length) {
-                currentIndex = 0;
-            }
-            if (currentCards.length === 0) {
-                finishTraining();
-            } else {
-                showCurrentCard();
-            }
-        });
+      // Фильтрация по специализации
+      const spec = specializationSelect.value;
+      if (spec === 'features') {
+        cards = cards.filter(c => c.hasFeaturesLabel && (c.features||'').trim());
+      } else if (spec === 'composition') {
+        cards = cards.filter(c => c.hasCompositionLabel && (c.composition||'').trim());
+      }
 
-        // User doesn't know the card: move it to the end
-        dontKnowBtn.addEventListener('click', () => {
-            const card = currentCards.splice(currentIndex, 1)[0];
-            currentCards.push(card);
-            if (currentIndex >= currentCards.length) {
-                currentIndex = 0;
-            }
-            showCurrentCard();
-        });
+      if(!cards.length){
+        messageDiv.textContent='Карточки не найдены.';
+        cardDiv.style.display='none'; cardButtons.style.display='none';
+        return;
+      }
+      currentCards=shuffle(cards); currentIndex=0; prepareTrainingUI();
+    });
 
-        // Finish training session
-        function finishTraining() {
-            cardDiv.style.display = 'none';
-            cardButtons.style.display = 'none';
-            progressDiv.textContent = '';
-            messageDiv.textContent = 'Тренировка завершена! Отличная работа!';
-        }
-    })();
-    </script>
+    function prepareTrainingUI(){
+      sectionSelect.style.display='none';
+      startBtn.style.display='none';
+      menuSelect.style.display='none';
+      cardButtons.style.display='block';
+      showAnswerBtn.style.display='inline';
+      knowBtn.style.display='none';
+      dontKnowBtn.style.display='none';
+      cardDiv.style.display='block';
+      messageDiv.textContent='';
+      showCurrentCard();
+    }
+
+    function showCurrentCard(){
+      if(!currentCards.length){ finishTraining(); return; }
+      const card=currentCards[currentIndex];
+
+      questionDiv.textContent=card.question;
+
+      if(card.imageSrc){
+        cardImage.src = card.imageSrc;
+        cardImage.style.display='block';
+        noImageMsg.style.display='none';
+      }else{
+        cardImage.src = PLACEHOLDER;       // всегда заглушка
+        cardImage.style.display='block';
+        noImageMsg.style.display='none';
+      }
+
+      const spec=specializationSelect.value;
+      let htmlToUse='';
+      if (!spec){
+        // без специализации: сохраняем форматирование из меню
+        htmlToUse = card.answerHTML || escapeHtml(card.answer || '');
+      } else if (spec==='description'){
+        const desc = card.description || card.answerParts?.[0] || '';
+        htmlToUse = desc ? `<p>${escapeHtml(desc)}</p>` : '';
+      } else if (spec==='features'){
+        const feat = card.features || '';
+        htmlToUse = feat ? `<p><strong>Особенности:</strong> ${escapeHtml(feat)}</p>` : '';
+      } else if (spec==='composition'){
+        const comp = card.composition || '';
+        htmlToUse = comp ? `<p><strong>Состав:</strong> ${escapeHtml(comp)}</p>` : '';
+      }
+
+      answerDiv.innerHTML = htmlToUse;
+      answerDiv.style.display='none';
+      showAnswerBtn.style.display='inline';
+      knowBtn.style.display='none';
+      dontKnowBtn.style.display='none';
+      progressDiv.textContent=`Карточка ${currentIndex+1} из ${currentCards.length}`;
+
+      cardDiv.classList.remove('fade-in'); void cardDiv.offsetWidth; cardDiv.classList.add('fade-in');
+    }
+
+    showAnswerBtn.addEventListener('click',()=>{
+      answerDiv.style.display='block';
+      showAnswerBtn.style.display='none';
+      knowBtn.style.display='inline';
+      dontKnowBtn.style.display='inline';
+    });
+
+    knowBtn.addEventListener('click',()=>{
+      currentCards.splice(currentIndex,1);
+      if(currentIndex>=currentCards.length) currentIndex=0;
+      if(!currentCards.length) finishTraining(); else showCurrentCard();
+    });
+
+    dontKnowBtn.addEventListener('click',()=>{
+      const c=currentCards.splice(currentIndex,1)[0];
+      currentCards.push(c);
+      if(currentIndex>=currentCards.length) currentIndex=0;
+      showCurrentCard();
+    });
+
+    function finishTraining(){
+      cardDiv.style.display='none';
+      cardButtons.style.display='none';
+      progressDiv.textContent='';
+      messageDiv.textContent='Тренировка завершена! Отличная работа!';
+    }
+
+    // modal (не открываем на плейсхолдере)
+    cardImage.addEventListener('click',()=>{
+      const src=cardImage.getAttribute('src');
+      if(src && !src.includes(PLACEHOLDER)){
+        modalImage.src=src;
+        imageModal.classList.add('show');
+      }
+    });
+    closeModalBtn.addEventListener('click',()=> imageModal.classList.remove('show'));
+    imageModal.addEventListener('click',e=>{ if(e.target===imageModal) imageModal.classList.remove('show'); });
+
+    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]] } return a; }
+
+    // Экранирует спецсимволы для HTML
+    function escapeHtml(str){
+      return String(str||'').replace(/[&<>]/g, ch => {
+        return { '&':'&amp;', '<':'&lt;', '>':'&gt;' }[ch] || ch;
+      });
+    }
+
+  })();
+  </script>
 </body>
 </html>
+
