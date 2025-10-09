@@ -136,6 +136,16 @@ button:disabled { opacity: .55; cursor: not-allowed }
   transition: transform .12s ease;
 }
 .media img:hover { transform: scale(1.01) }
+.media-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.media-actions button {
+  padding: 8px 12px;
+  font-size: 13px;
+}
 
 details {
   background: var(--panel);
@@ -331,6 +341,11 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
       <div class="body">
         <p class="desc"></p>
         <figure class="media hidden"><img alt=""></figure>
+        <div class="media-actions">
+          <button type="button" class="ghost add-image">Добавить изображение</button>
+          <button type="button" class="ghost remove-image hidden">Удалить</button>
+          <input type="file" accept="image/*" class="image-input" hidden>
+        </div>
         <details class="qa">
           <summary>Показать ответ</summary>
           <div class="answer"></div>
@@ -413,6 +428,18 @@ function extractQA(html){
   const answerHTML = `${featuresHTML}${compositionHTML}`.trim();
   return {description, featuresHTML, compositionHTML, answerHTML};
 }
+function extractImage(html){
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html || '';
+  const img = tmp.querySelector('img');
+  if(!img) return null;
+  return img.getAttribute('src')
+    || img.getAttribute('data-src')
+    || img.getAttribute('data-image')
+    || img.getAttribute('data-lazy-src')
+    || img.getAttribute('data-original')
+    || null;
+}
 function idFromTitle(t){ return 'id_' + t.toLowerCase().replace(/\s+/g,'_'); }
 
 async function buildTitleToH2Map(){
@@ -452,11 +479,12 @@ async function loadCards(){
     const title = c.title || 'Без названия';
     const menu = 'Основное меню'; // в этом наборе карточек
     const section = titleToH2[title] || c.section || '—';
+    const imageSrc = c.imageSrc || extractImage(c.html);
     return {
       id: c.id || idFromTitle(title),
       title,
       html: c.html || '',
-      imageSrc: c.imageSrc || null,
+      imageSrc,
       menu,
       section,
       desc: description,
@@ -589,10 +617,59 @@ function renderCard(c){
   }
   const media = node.querySelector('.media');
   const img = media.querySelector('img');
-  if(c.imageSrc){
-    img.src = c.imageSrc;
+  const addBtn = node.querySelector('.add-image');
+  const removeBtn = node.querySelector('.remove-image');
+  const fileInput = node.querySelector('.image-input');
+  const customImage = st.customImage || null;
+  const imageSrc = customImage || c.imageSrc || null;
+
+  if(imageSrc){
+    img.src = imageSrc;
+    img.alt = c.title;
     media.classList.remove('hidden');
+    addBtn.textContent = 'Заменить изображение';
+    if(customImage){
+      removeBtn.classList.remove('hidden');
+    }else{
+      removeBtn.classList.add('hidden');
+    }
+  } else {
+    media.classList.add('hidden');
+    img.removeAttribute('src');
+    img.alt = '';
+    addBtn.textContent = 'Добавить изображение';
+    removeBtn.classList.add('hidden');
   }
+
+  addBtn.addEventListener('click', ()=>fileInput.click());
+  fileInput.addEventListener('change', ()=>{
+    const [file] = fileInput.files;
+    if(!file) return;
+    if(file.size > 2 * 1024 * 1024){
+      alert('Изображение должно быть меньше 2 МБ. Попробуйте уменьшить файл.');
+      fileInput.value = '';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      if(!db.cards[c.id]){
+        db.cards[c.id] = {n:0, ef:2.5, interval:0, due:today(), lapses:0, last:null, deck:c.section, lastGrade:2};
+      }
+      db.cards[c.id].customImage = reader.result;
+      save();
+      fileInput.value = '';
+      render();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  removeBtn.addEventListener('click', ()=>{
+    if(db.cards[c.id] && db.cards[c.id].customImage){
+      delete db.cards[c.id].customImage;
+      save();
+      render();
+    }
+  });
 
   // Если включён авто-показ ответа, открываем детали
   if(localStorage.getItem('sdlv_autoFlip') === '1'){
