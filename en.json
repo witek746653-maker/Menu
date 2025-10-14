@@ -576,8 +576,8 @@
     "ingredients": ""
   },
   "fruktovyy-sorbet": {
-    "name": "Fruit sorbet: lime–prosecco, pomegranate–port, orange–campari, grape, melon–mint, blood orange.",
-    "description": "Фраза для быстрой презентации гостю:\n\"Light and refreshing fruit sorbet — dairy-free, with pure fruit flavor such as Lime–Prosecco, Pomegranate–Port, Orange–Campari, Grape, Melon–Mint, Watermelon–Cucumber, and Blood Orange.\"",
+    "name": "Fruit sorbet: lime–prosecco, orange–campari, melon–mint, blood orange.",
+    "description": "Фраза для быстрой презентации гостю:\n\"Light and refreshing fruit sorbet — dairy-free, with pure fruit flavor such as Lime–Prosecco, Orange–Campari, Melon–Mint, and Blood Orange.\"",
     "features": "Allergens & Notes:\n🚫 Dairy-free | 🚫 Egg-free | 100% fruit\n\nGuest note:\n\"This dessert contains fruit only, no dairy or eggs.\"",
     "ingredients": "fruit sorbet — фруктовый сорбет\ndairy-free — без молочных продуктов\nrefreshing — освежающий\nlight dessert — лёгкий десерт\n\n👉 Более лёгкий и освежающий, чем мороженое. \"Lighter and more refreshing than ice cream.\"\n👉 Можно рекомендовать как промежуточное блюдо для «очищения вкуса» (\"a palate cleanser between courses)\"."
   },
@@ -640,5 +640,77 @@
     "description": "Фраза для быстрой презентации гостю:\n\"Our signature bread basket features wheat ciabatta with a crispy crust, malt bread with grains, aromatic onion bread, and bread with sun-dried tomatoes. Served with two flavored butters: tomato–basil and mushroom–truffle\"",
     "features": "Allergens & Notes:\n🌾 Gluten | 🥛 Dairy (butter) | 🍄 Mushroom | 🍅 Tomato\n\nGuest note:\n\"This dish contains gluten, dairy, mushrooms, and tomatoes.\"",
     "ingredients": "bread basket — хлебная корзина\nwheat ciabatta — пшеничная чиабатта\nmalt bread with grains — солодовый хлеб с зернами\nonion bread — хлеб с жареным луком\nsun-dried tomato bread — хлеб с вялеными томатами\nflavored butter — масло со вкусами\ntomato–basil butter — масло с томатами и базиликом\nmushroom–truffle butter — масло с грибами и трюфелем\n\n👉 Часто корзина подаётся как комплемент (complimentary bread basket) — можно подчеркнуть гостеприимство ресторана.\n👉 Два вида масла контрастны по вкусу: одно яркое и свежее (\"bright and fresh\"), другое насыщенное и землистое (\"rich and earthy\")."
+  },
+  "ustritsa-fine-de-claire-3-frantsiya": {
+    "name": "Oyster “Fine de Claire No.3” (France)",
+    "description": "Фраза для быстрой презентации гостю:\n“Classic French oysters with a delicate creamy and nutty taste, perfectly balanced between sweetness and salinity.”",
+    "features": "Allergens & Notes:\n🍋 Citrus | 🧅 Onion | 🌾 Gluten (croutons) | 🦪 Raw | 🥛 Dairy (butter) \n\nGuest note:\n“These oysters are served raw with shallot vinaigrette, lemon, croutons, and butter. They contain dairy, gluten, onion, and citrus.”",
+    "ingredients": "reamy — сливочный\nnutty — ореховый (тонкий вкус, как у жареных орехов)\nbalanced flavor — сбалансированный вкус\nrefined — утончённый\nliquor — “жидкость устрицы” (её естественный морской сок)\nto pair with — сочетать с (например, с шампанским или сухим белым вином)\n\n👉 Интересный факт:\nФранцузы считают сок внутри устрицы (“liquor”) её «душой» и никогда не выливают его."
+  },
+  "tapas-s-hamonom-i-myagkim-syrom": {
+    "name": "Tapas with Jamón and Soft Cheese",
+    "description": "Фраза для быстрой презентации гостю:\n“This is a Spanish-style tapas — crispy ciabatta topped with creamy burrata, jamón, and basil pesto, finished with molecular olives and arugula.”",
+    "features": "Allergens & Notes:\n🥛 Dairy | 🌰 Nuts (pine nuts) | 🦪 Raw ingredients | 🌿 Herbs | 🐷 Pork\n\nServed on toasted ciabatta with burrata, jamón, pesto sauce, molecular olives, and arugula.",
+    "ingredients": "tapas — тапас (испанская закуска к вину или пиву)\njamón — хамон (вяленый свиной окорок)\ntoasted ciabatta — запечённая чиабатта\nto garnish with — украшать чем-то"
+  },
+  "tapas-s-kremovym-grebeshkom-i-tvorozhnym-syrom": {
+    "name": "Tapas with Scallop and Creamy Sauce",
+    "description": "Фраза для быстрой презентации гостю:\n“Elegant tapas with seared scallop on toasted ciabatta, creamy sauce, and delicate citrus notes.”",
+    "features": "Allergens & Notes:\n🥛 Dairy | 🌾 Gluten | 🦪 Shellfish | 🍋 Citrus\n\nGuest note:\n“This tapas contains shellfish, dairy, gluten, and citrus.”",
+    "ingredients": "scallop — морской гребешок\nseared — обжаренный (до золотистой корочки)\ntoasted ciabatta — поджаренная чиабатта\ncreamy sauce — сливочный соус\ncitrus notes — цитрусовые ноты\ndelicate flavor — нежный вкус\nto garnish — украшать\n\n👉 Факт:\n1. Слово scallop также означает ракушку — символ святого Иакова, покровителя паломников в Испании.\n2. Гребешки лучше обжаривать чтобы снаружи появилась золотая корочка (golden crust)."
+  },
+  "tartar-iz-ustrits-i-semgi": {
+    "name": "Salmon and Oyster Tartare",
+    "description": "Фраза для быстрой презентации гостю:\n“Fresh tartare of salmon and oysters with creamy avocado, citrus dressing, and a touch of sea flavor.”",
+    "features": "Allergens & Notes:\n🌶️ Pepper (chili) | 🌿 Cilantro | 🍋 Citrus | 🧅 Onion (shallot & green onion) | 🦪 Shellfish | 🐟 Fish | 🧄 Garlic\n\nGuest note:\n“This tartare contains raw salmon and oysters, citrus, chili, cilantro, and both shallot and green onion.”",
+    "ingredients": "Useful words & phrases:\nsalmon — семга\noyster — устрица\ncilantro — кинза\ncitrus dressing — цитрусовая заправка\nfresh and spicy — свежий и острый\nto garnish with — украшать\nserved in the shell - подают в раковине"
+  },
+  "tomaty-cherri-kimchi-so-slivochnoy-strachatelloy": {
+    "name": "Cherry Tomato Kimchi with Creamy Stracciatella",
+    "description": "Фраза для быстрой презентации гостю:\n“This is cherry tomatoes gently simmered in a spicy kimchi sauce, served with creamy stracciatella, crispy potato straw, unagi sauce, and herb oil.”",
+    "features": "Allergens & Notes:\n🌶️ Chili | 🥛 Dairy (stracciatella) | 🌾 Gluten (soy sauce in unagi) | 🌱 Soy (soy sauce) | 🍶 Alcohol (mirin/sake in unagi)\n\nGuest note:\n“This dish includes chili, dairy, soy, and ingredients containing gluten and alcohol (from the unagi sauce).”",
+    "ingredients": "cherry tomatoes — томаты черри\ncrispy potato straw — хрустящий картофельный пай\nherb oil — зелёное масло (масло с травами)\nto simmer — томить\nsweet-salty — сладко-солёный\ntangy — ярко-кислый\n\n👉 Факт:\n1. В описании корректно писать “simmered in kimchi sauce” для томатов черри: звучит мягче, чем “marinated”, и отражает тёплую обработку.\n2. Stracciatella — это «сливочное сердце» бурраты; на английском можно оставить без перевода, добавив creamy для ясности.\n3. Herb oil — нейтральный термин для «зелёного масла»;\n4. Вкусовой профиль такого блюда удобно описывать триадой tangy, creamy, sweet-salty: кимчи даёт кислоту и остроту, сыр — сливочность, унаги — сладко-солёный акцент.\n5. Crispy potato straw международно понятнее, чем «пай»; Отличие от чипсов и фри: chips/crisps — тонкие круглые ломтики; Fries — бруски; Straw/shoestring — тонкая соломка (1–2 мм)."
+  },
+  "paelya": {
+    "name": "Seafood Paella",
+    "description": "Фраза для быстрой презентации гостю:\n“A classic saffron seafood paella with shrimp, scallops, squid, and mussels, finished with sweet peppers, lime, and a touch of chili.”\nPortion: serves 2, approx. 800 g.",
+    "features": "Allergens & Notes:\n🦐 Shellfish (shrimp, mussels, squid) | 🌶️ Pepper (chili) | 🍋 Citrus (lime) | 🧄 Garlic | 🧅 Onion (shallot) | 🌿 Herbs | 🍷 Alcohol (white wine)\n\nGuest note:\n“This dish contains shellfish and fish. It also includes garlic, onion, herbs, white wine, lime, and chili.”",
+    "ingredients": "paella — паэлья\nsaffron broth — шафрановый бульон\nshrimps — креветки\nmussels — мидии\nsquid — кальмар\nsweet peppers — сладкие перцы\nto finish with lime and chili — завершать подачу лаймом и чили\n\n👉 Факт:\nДля паэльи корректно говорить “cooked in a saffron broth” или “saffron seafood paella” — гости понимают аромат шафрана и морской профиль без лишней поэзии."
+  },
+  "syrnoe-sufle": {
+    "name": "Cheese Soufflé",
+    "description": "Фраза для быстрой презентации гостю:\n“Fluffy baked cheese soufflé with a soft caramel center, pitahaya jelly, and pistachio cream.”",
+    "features": "Allergens & Notes:\n🥛 Dairy | 🥚 Eggs | 🌰 Nuts (pistachios)\n\nGuest note:\n“This dessert contains dairy, eggs, and nuts (pistachios).”",
+    "ingredients": "soufflé — суфле\nbaked cheese — запечённый сыр\ncaramel center — карамельная начинка\npitahaya jelly — желе из питахайи\npistachio cream — фисташковый крем\nlight and airy — лёгкий и воздушный\nserve immediately — подавать сразу\n\n👉 Факт: В английском меню слово soufflé всегда пишут без перевода — это международный кулинарный термин французского происхождения.\n👉 Факт: Pitahaya (или dragon fruit) ценится за нежный сладкий вкус и декоративный цвет в десертах.\n👉 Факт: Комбинация тёплого суфле и прохладного желе создаёт любимый для шефов контраст температур (warm-and-cold contrast).\n👉 Факт: Pitahaya (dragon fruit) даёт нежный фруктовый оттенок и яркий цвет в jelly-слое; в международном меню слово pitahaya узнаваемо, можно добавить “dragon fruit” в скобках для ясности гостю.\n👉 Факт: В меню корректно писать baked cheese soufflé, чтобы гость не путал с муссом или чизкейком."
+  },
+  "assorti-makarons": {
+    "name": "Macaron Assortment",
+    "description": "Фраза для быстрой презентации гостю:\n“An elegant assortment of classic French macarons with delicate flavors and light almond texture.”",
+    "features": "",
+    "ingredients": "macaron — макарон (миндальное пирожное с начинкой)\nalmond flour — миндальная мука\nganache — ганаш (крем на основе сливок и шоколада)\nfilling — начинка\nshell — оболочка (корпус макарона)\ncrisp outside, soft inside — хрустящий снаружи, мягкий внутри\nto pair with coffee or tea — сочетать с кофе или чаем\n\n👉 Факт: В английском языке macaron — миндальное пирожное, а macaroon — другое, кокосовое печенье; их часто путают.\n👉 Факт: Традиционно макароны делают с начинками ganache, buttercream или fruit confit.\n👉 Факт: Цвета оболочек не всегда совпадают со вкусом, поэтому в меню стоит уточнять вкусы — например, pistachio, raspberry, salted caramel.\n👉 Факт: В fine dining описании удобно добавлять выражение “handcrafted macarons” — подчёркивает ручную работу и свежесть десерта."
+  },
+  "konfety-i-marmelad-ruchnoy-raboty": {
+    "name": "Assorted Candies and Fruit Jellies",
+    "description": "Фраза для быстрой презентации гостю:\n“Handcrafted candies and fruit jellies — a delicate sweet selection served at the end of the meal.”",
+    "features": "",
+    "ingredients": "candies — конфеты\nfruit jellies — фруктовый мармелад\npraline — пралине (ореховая начинка)\nganache — ганаш (сливочно-шоколадная начинка)\npâte de fruits — французский мармелад (буквально «паста из фруктов»)\nsoft center — мягкая начинка\ncoated in chocolate — покрытый шоколадом\nhandcrafted — ручной работы\nselection — подборка, ассорти\n\n👉 Факт: Pâte de fruits — традиционный французский мармелад из фруктового пюре и сахара, без желатина, с плотной текстурой и натуральным вкусом.\n👉 Факт: Конфеты с начинкой ganache или praline часто называют bonbons — это слово в английском меню также не переводится.\n👉 Факт: Английские выражения “sweet selection” и “after-dinner treats” часто используют в описании подобных ассорти."
+  },
+  "chaynyy-nabor": {
+    "name": "Tea Set",
+    "description": "Фраза для быстрой презентации гостю:\n“A refined tea set with a selection of premium loose-leaf teas, served with homemade sweets.”",
+    "features": "",
+    "ingredients": "tea set — чайный набор\n\n👉 Факт: Англичане традиционно подают чай с молоком, а французы — с лимоном; можно уточнить опцию “milk on request”."
+  },
+  "caf-gourmet": {
+    "name": "Café gourmet",
+    "description": "Фраза для быстрой презентации гостю:\n“A classic French-style café gourmand — espresso served with an assortment of miniature desserts.”",
+    "features": "",
+    "ingredients": "assortment — ассорти\nminiature desserts — мини-десерты\npetit fours — мини-пирожные, подаются с кофе\nto pair with coffee — сочетать с кофе\nsweet bite — маленькое лакомство\nserved together — подаётся вместе\ngourmand — гурман, любитель вкусного\n\n👉 Факт: На английском слово gourmand используется без перевода — оно означает «любитель еды» и звучит утончённо.\n👉 Факт: Уместно описывать блюдо как “a perfect finish to the meal” или “an elegant way to end dinner”.\n👉 Факт: Кофе в этом формате почти всегда — espresso; добавление macchiato или americano допустимо только по запросу гостя."
+  },
+  "hamon-serrano-iberico-50-gr": {
+    "name": "Jamón (Traditional Spanish dry-cured ham)",
+    "description": "Фраза для быстрой презентации гостю:\n“Traditional Spanish dry-cured ham — Jamón Serrano aged for 15 months or Jamón Ibérico aged 18–24 months, served as thin slices.”",
+    "features": "Allergens & Notes:\n🐷 Pork\n\nGuest note:\n“This product contains pork only.”",
+    "ingredients": "jamón — хамон (вяленый свиной окорок)\ndry-cured — вяленый\naged — выдержанный\nthinly sliced — тонко нарезанный\ncured meat — вяленое мясо\nto serve at room temperature — подавать при комнатной температуре\n\n👉 Факт: Хамон подают при комнатной температуре, чтобы жир стал мягким и полностью раскрыл аромат."
   }
 }
