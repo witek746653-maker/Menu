@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f9f8f2">
+  <title>SdLV — Тренажер официанта</title>
+  <style>
+  /* ===== SdLV SRS — тёплая светлая тема (мягкие жёлтые/коричневые/оранжевые) ===== */
+:root {
+  --bg: #f9f8f2;          /* тёплый светлый фон (как на скрине) */
+  --panel: #fff9ef;       /* панели/контролы — топлёное молоко */
+  --card: #f6efe3;        /* карточки — песочный */
+  --border: #eadbc8;      /* мягкая грань без контрастного серого */
+  --text: #3b2b1f;        /* тёплый коричневый текст */
+  --muted: #7a6a58;       /* приглушённый текст */
+  --accent: #ff8a1f;      /* апельсиновый акцент */
+  --accent-2: #ffb347;    /* янтарный акцент */
+  --accent-3: #8c5a3c;    /* коричный для вторич. элементов */
+  --ok:#2e7d32; --warn:#b26a00; --bad:#b71c1c;
+  --radius: 14px;
+  --shadow-md: 0 6px 18px rgba(140, 90, 60, .12), 0 1px 3px rgba(60,40,20,.08);
+  --shadow-lg: 0 14px 34px rgba(140, 90, 60, .18), 0 4px 10px rgba(60,40,20,.10);
+}
+
+/* Ночной режим — аккуратный, без неона */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#1a120b; --panel:#22160f; --card:#2b190f; --border:#3a2316;
+    --text:#fff9ef; --muted:#c9bca8; --accent:#ff8a1f; --accent-2:#ffd166; --accent-3:#8c5a3c;
+    --shadow-md: 0 6px 18px rgba(0,0,0,.25);
+    --shadow-lg: 0 12px 28px rgba(0,0,0,.35);
+  }
+}
+
+* { box-sizing: border-box }
+html, body {
+  margin: 0; height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+
+a { color: var(--accent); text-decoration: none }
+a:hover { text-decoration: underline }
+
+.wrap { max-width: 960px; margin: 20px auto; padding: 12px }
+
+header { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 12px }
+h1 { margin: 0; font-size: 26px; letter-spacing: .2px; color: var(--accent-3) }
+
+/* Контейнер для заголовка и иконки */
+.title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Стилизуем иконку солнца */
+.sun-icon {
+  width: 48px;
+  height: auto;
+  margin-top: 4px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  padding-bottom: 4px;
+}
+.toolbar > * {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 12px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+
+button, select, input[type="file"] { cursor: pointer }
+button {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 700;
+  transition: transform .12s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+}
+button.primary {
+  background: linear-gradient(180deg, #ffd79a, #ffb347);
+  border-color: #f0c78d;
+  color: #5a3a1e;
+  box-shadow: var(--shadow-md);
+}
+button.ghost { background: var(--panel) }
+button:hover { transform: translateY(-1px) }
+button:active { transform: translateY(0) }
+button:disabled { opacity: .55; cursor: not-allowed }
+
+.counter { color: var(--muted); font-size: 13px }
+
+.grid { display: grid; grid-template-columns: 1fr; gap: 16px }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.card header {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(90deg, rgba(255,179,71,.12), transparent);
+}
+.title { font-weight: 800; letter-spacing: .2px; font-size: 18px; color: #5a3a1e }
+.body { padding: 16px; display: grid; gap: 14px }
+.desc { color: var(--text); opacity: .98 }
+
+.media {
+  display: flex; justify-content: center; align-items: center;
+  margin: 0; max-height: 280px; overflow: hidden;
+  background: #fffdf7;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+}
+.media img {
+  max-height: 280px; width: auto; display: block; object-fit: contain;
+  border-radius: 10px;
+  transition: transform .12s ease;
+}
+.media img:hover { transform: scale(1.01) }
+
+details {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: none }
+.answer h4 { margin: 10px 0 6px 0; font-size: 14px; color: var(--accent-3) }
+
+.actions {
+  display: grid;
+  /* Теперь три колонки для трёх оценок */
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px;
+}
+.actions button {
+  padding: 12px; border-radius: 12px; border: 1px solid var(--border); text-shadow: none
+}
+.g0 { background:#ffeaea; color:#7a1e1e }
+.g1 { background:#fff0e0; color:#7a4a1e }
+.g2 { background:#eef7ea; color:#285a2e }
+.g3 { background:#eaf1ff; color:#27405b }
+.g4 { background:#f2eaff; color:#4a3566 }
+
+.kbd {
+  font: 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  background: #fffdf7; border: 1px solid var(--border);
+  padding: 1px 6px; border-radius: 6px; color: var(--text)
+}
+
+.empty {
+  padding: 48px; text-align: center; color: var(--muted);
+  border: 1px dashed var(--border); border-radius: 16px; background: var(--panel)
+}
+
+/* Скрываем информацию о следующей дате показа карточки */
+.due {
+  display: none;
+}
+
+.footer { margin-top: 12px; color: var(--muted); font-size: 13px }
+
+.hidden { display: none }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap }
+.pill {
+  padding: 4px 8px; border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fffdf7;
+  color: #8c5a3c; font-size: 12px;
+  box-shadow: var(--shadow-md)
+}
+
+/* Стартовое окно */
+.backdrop {
+  position: fixed; inset: 0;
+  background: rgba(60,40,20,.25);
+  display: flex; align-items: center; justify-content: center; padding: 16px
+}
+.modal {
+  width: min(680px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-lg)
+}
+.modal header { padding: 14px 16px; border-bottom: 1px solid var(--border); background: linear-gradient(90deg, rgba(255,209,102,.20), transparent) }
+.modal .content { padding: 16px; display: grid; gap: 12px }
+.modal .row { display: grid; gap: 8px }
+.modal label { font-size: 13px; color: var(--accent-3) }
+
+/* Мобильные улучшения */
+@media (max-width: 480px) {
+  h1 { font-size: 22px }
+  .title { font-size: 17px }
+  .body { padding: 14px; gap: 12px }
+  .actions { grid-template-columns: repeat(3, minmax(0,1fr)) }
+  /* На маленьких экранах элементы тулбара располагаем по строкам */
+  .toolbar > * {
+    flex: 1 1 100%;
+    margin-bottom: 8px;
+  }
+}
+
+/* Меньше анимаций по запросу */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important }
+}
+  /* ---- Custom adjustments for compact header and larger icon ---- */
+  .wrap {
+    max-width: 960px;
+    margin: 10px auto !important;
+    padding: 8px !important;
+  }
+  /* Reduce space below the main header */
+  .wrap > header {
+    margin-bottom: 8px !important;
+  }
+  /* Align title block in a row */
+  .title-block {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  /* Enlarge the sun icon */
+  .sun-icon {
+    width: 90px !important;
+    height: auto !important;
+    margin-top: 0 !important;
+  }
+  /* Make toolbar elements closer together */
+  .toolbar {
+    /* Reduce space between header buttons */
+    gap: 2px !important;
+    padding-bottom: 0 !important;
+  }
+  .toolbar > * {
+    /* Make buttons more compact */
+    padding: 6px 10px !important;
+  }
+  </style>
+</head>
+<body>
+  <div class="backdrop" id="startBackdrop">
+    <div class="modal">
+      <header><h1>Выбери меню и раздел</h1></header>
+  <div class="content">
+        <div class="row">
+          <label for="menuSelect">Меню</label>
+          <select id="menuSelect">
+            <option value="" disabled selected>— выбрать —</option>
+            <option>Основное меню</option>
+            <option>Авторские завтраки</option>
+            <option>Сезонное меню</option>
+            <option>Фестивали</option>
+            <option>Детское меню</option>
+            <option>Винная карта</option>
+            <option>Общие вопросы</option>
+            <option>Всё меню</option>
+          </select>
+        </div>
+        <div class="row" id="sectionRow" style="display:none">
+          <label for="sectionSelect">Раздел (h2)</label>
+          <select id="sectionSelect">
+            <option value="" disabled selected>— выбрать —</option>
+          </select>
+        </div>
+        <!-- Новый выбор направления тренировки -->
+        <div class="row">
+          <label for="typeSelect">Направление</label>
+          <select id="typeSelect">
+            <option value="desc" selected>Красочное описание</option>
+            <option value="feat">Особенности</option>
+            <option value="comp">Состав</option>
+          </select>
+        </div>
+        <div class="row">
+          <button id="startBtn" class="primary" disabled>Начать тренировки</button>
+          <span class="muted" id="startHint"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="title-block">
+        <!-- Оставляем только иконку для заголовка -->
+        <img src="trainer_icon_final.png" alt="Sun Icon" class="sun-icon" />
+      </div>
+      <div class="toolbar">
+        <span id="currentInfo" class="pill" style="display:none;"></span>
+        <!-- Кнопка «Начать тренировку» скрыта, так как запуск теперь происходит автоматически после выбора профиля -->
+        <button id="btnStartTraining" class="primary" style="display:none;">Начать тренировку</button>
+        <button id="btnFinish" class="ghost">Закончить</button>
+        <button id="btnReset" class="ghost">Начать заново</button>
+        <span class="counter" id="stats">—</span>
+      </div>
+    </header>
+
+    <!-- Контейнер для карточек скрыт до запуска тренировки -->
+    <div id="stage" class="grid" style="display:none;"></div>
+
+    <!-- Удаляем подсказки о горячих клавишах и сохранении прогресса -->
+  </div>
+
+  <template id="cardTpl">
+    <div class="card">
+      <header class="row">
+        <div class="title"></div>
+        <span class="pill muted"></span>
+        <span class="pill muted due"></span>
+      </header>
+      <div class="body">
+        <p class="desc"></p>
+        <figure class="media hidden"><img alt=""></figure>
+        <details class="qa">
+          <summary>Показать ответ</summary>
+          <div class="answer"></div>
+        </details>
+        <div class="actions">
+          <!-- Упрощённая шкала оценок: оставлены только три кнопки -->
+          <button data-grade="2" class="g1">Трудно</button>
+          <button data-grade="3" class="g2">Норм</button>
+          <button data-grade="5" class="g3">Легко</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+<script>
+const CARDS_URL = 'cards.json'; // должен лежать рядом
+const MAIN_HTML = 'osnovnoe-menu_(3.09).html'; // экспорт Notion для разделов h2
+const STORAGE_KEY = 'sdlv_srs_v3';
+
+// --------- Util
+const today = () => new Date().toISOString().slice(0,10);
+const inDays = d => { const dt = new Date(); dt.setDate(dt.getDate()+d); return dt.toISOString().slice(0,10); };
+const clamp = (x,min,max)=>Math.max(min,Math.min(max,x));
+
+// --------- Persistence
+let db = {version:3, cards:{}, lastProfile:null};
+function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(db)); }
+function load(){ try{ const raw = localStorage.getItem(STORAGE_KEY); if(raw){ db = JSON.parse(raw);} }catch(e){ console.warn('Progress load failed', e); }}
+
+// --------- Schedule (SM-2 light)
+function schedule(cardId, grade){
+  const st = db.cards[cardId] || {n:0, ef:2.5, interval:0, due:today(), lapses:0, last:null, deck:'all'};
+  const q = Number(grade);
+  if(st.n===0){
+    // При низкой оценке переносим повтор на следующий день, чтобы дать возможность перейти к другой карточке
+    if(q<=2){ st.interval = 0; st.due = inDays(1); }
+    else if(q===3){ st.interval = 1; st.due = inDays(1); }
+    else if(q===4){ st.interval = 3; st.due = inDays(3); }
+    else { st.interval = 5; st.due = inDays(5); }
+    st.n = 1;
+    st.lastGrade = q;
+  }else{
+    if(q<=2){ st.lapses += 1; st.interval = 0; st.n = Math.max(1, st.n-1); st.due = inDays(1); }
+    else{ st.ef = clamp(st.ef + (0.1 - (5-q)*(0.08 + (5-q)*0.02)), 1.3, 2.8);
+      if(st.interval===0) st.interval = 1;
+      else if(st.interval===1) st.interval = 6;
+      else st.interval = Math.round(st.interval * st.ef);
+      st.due = inDays(st.interval); st.n += 1; }
+    // Обновляем последнюю оценку для нормальной классификации
+    st.lastGrade = q;
+  }
+  st.last = today(); db.cards[cardId] = st; save(); return st;
+  // Nothing below this line in schedule will run due to early return
+}
+
+// --------- App state
+let allCards = []; // {id,title,html,imageSrc,menu,section,desc,answer}
+let queue = [];
+let showDueOnly = false;
+let profile = {menu:null, section:null, trainingType:'desc'}; // chosen at start and includes training type
+// Флаг, показывающий, что тренировка началась. Пока она не начата, карточки не отображаются
+let trainingStarted = false;
+
+// --------- Parse helpers
+function extractQA(html){
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html || '';
+  const description = tmp.querySelector('.description')?.innerHTML?.trim() || '';
+  // Собираем блок особенностей
+  const featuresBlock = [...tmp.querySelectorAll('.features-text, .features-list')]
+    .map(p => p.outerHTML)
+    .join('') || '';
+  // Собираем блок состава
+  const compositionTitle = tmp.querySelector('.composition-title')?.textContent || '';
+  const compositionBlock = tmp.querySelector('.composition')?.innerHTML?.trim() || '';
+  // Формируем HTML для особенностей и состава по отдельности
+  const featuresHTML = featuresBlock ? `<h4>Особенности</h4>${featuresBlock}` : '';
+  const compositionHTML = compositionBlock ? `<h4>${compositionTitle || 'Состав'}</h4>${compositionBlock}` : '';
+  // Старый вариант полного ответа для обратной совместимости
+  const answerHTML = `${featuresHTML}${compositionHTML}`.trim();
+  return {description, featuresHTML, compositionHTML, answerHTML};
+}
+function idFromTitle(t){ return 'id_' + t.toLowerCase().replace(/\s+/g,'_'); }
+
+async function buildTitleToH2Map(){
+  // Только для Основного меню
+  try{
+    const resp = await fetch(MAIN_HTML);
+    if(!resp.ok) throw new Error('HTML не найден');
+    const text = await resp.text();
+    const doc = new DOMParser().parseFromString(text, 'text/html');
+    const map = {}; // title -> h2 text
+    let currentH2 = null;
+    const container = doc.querySelector('.page-body') || doc.body;
+    container.querySelectorAll('h2, h3').forEach(el=>{
+      if(el.tagName==='H2'){ currentH2 = el.textContent.trim(); }
+      if(el.tagName==='H3' && currentH2){
+        const t = el.textContent.trim();
+        map[t] = currentH2;
+      }
+    });
+    const h2List = [...new Set(Object.values(map))];
+    return {map, h2List};
+  }catch(e){
+    console.warn('Не удалось разобрать osnovnoe-menu html:', e);
+    return {map:{}, h2List:[]};
+  }
+}
+
+async function loadCards(){
+  const resp = await fetch(CARDS_URL);
+  if(!resp.ok) throw new Error('Не удалось загрузить cards.json');
+  const raw = await resp.json();
+  const {map: titleToH2, h2List} = await buildTitleToH2Map();
+  window.__MAIN_H2 = h2List; // для модалки
+  allCards = raw.map(c=>{
+    // Извлекаем описание, особенности и состав по отдельности
+    const { description, featuresHTML, compositionHTML, answerHTML } = extractQA(c.html);
+    const title = c.title || 'Без названия';
+    const menu = 'Основное меню'; // в этом наборе карточек
+    const section = titleToH2[title] || c.section || '—';
+    return {
+      id: c.id || idFromTitle(title),
+      title,
+      html: c.html || '',
+      imageSrc: c.imageSrc || null,
+      menu,
+      section,
+      desc: description,
+      answer: answerHTML,
+      feat: featuresHTML,
+      comp: compositionHTML
+    };
+  });
+  // init progress
+  for(const c of allCards){
+    if(!db.cards[c.id]) db.cards[c.id] = {n:0, ef:2.5, interval:0, due:today(), lapses:0, last:null, deck:c.section, lastGrade:2};
+  }
+  save();
+}
+
+function buildFilter(){
+  const sel = document.getElementById('deckFilter');
+  sel.innerHTML = '<option value="all">Все разделы</option>';
+  const sections = Array.from(new Set(allCards
+    .filter(c=>profile.menu==='Всё меню' || c.menu===profile.menu)
+    .map(c=>c.section || '—'))).sort();
+  for(const s of sections){
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    sel.appendChild(opt);
+  }
+  sel.addEventListener('change', refresh);
+  if(profile.section){ sel.value = profile.section; }
+}
+
+function computeQueue(){
+  const t = today();
+  const due = [];
+  const newer = [];
+  for(const c of allCards){
+    // Применяем выбранные меню и раздел
+    if(profile.menu && profile.menu!=='Всё меню' && c.menu!==profile.menu) continue;
+    if(profile.section && c.section!==profile.section) continue;
+    const st = db.cards[c.id];
+    if(!st || st.n===0) {
+      newer.push(c.id);
+    } else if(st.due <= t) {
+      due.push(c.id);
+    }
+  }
+  // Всегда возвращаем просроченные сначала, затем новые
+  queue = [...due, ...newer];
+}
+
+function render(){
+  const stage = document.getElementById('stage');
+  // Если тренировка не началась, ничего не показываем
+  if(!trainingStarted){
+    return;
+  }
+  stage.innerHTML = '';
+  computeQueue();
+  document.getElementById('stats').textContent = statLine();
+  if(queue.length === 0){
+    const div = document.createElement('div');
+    div.className = 'empty';
+    div.innerHTML = 'Нет карточек в очереди. Добавьте карточки или завершите тренировку.';
+    stage.appendChild(div);
+    return;
+  }
+  const id = queue[0];
+  const c = allCards.find(x=>x.id === id);
+  stage.appendChild(renderCard(c));
+}
+
+function statLine(){
+  // Статистика: всего карточек, трудных, нормальных и лёгких
+  let total = 0;
+  let hard = 0;
+  let norm = 0;
+  let easy = 0;
+  for(const c of allCards){
+    // Применяем выбранные фильтры меню и раздела
+    if(profile.menu && profile.menu !== 'Всё меню' && c.menu !== profile.menu) continue;
+    if(profile.section && c.section !== profile.section) continue;
+    total++;
+    const st = db.cards[c.id];
+    // Если данных о карточке нет или она новая, считаем её трудной
+    if(!st || st.n === 0){ hard++; continue; }
+    // Используем последнюю оценку для классификации
+    const g = st.lastGrade;
+    if(g <= 2){ hard++; }
+    else if(g === 3){ norm++; }
+    else { easy++; }
+  }
+  return `Общее: ${total} • Трудно: ${hard} • Норм: ${norm} • Легко: ${easy}`;
+}
+
+function renderCard(c){
+  const tpl = document.getElementById('cardTpl');
+  const node = tpl.content.cloneNode(true);
+  const st = db.cards[c.id] || {};
+  node.querySelector('.title').textContent = c.title;
+  node.querySelector('.row .pill').textContent = c.section || 'Раздел';
+  node.querySelector('.due').textContent = st.due ? `следующая: ${st.due}` : 'новая';
+  const descEl = node.querySelector('.desc');
+  const details = node.querySelector('details.qa');
+  const answerDiv = node.querySelector('.answer');
+
+  // В зависимости от выбранного направления тренировки показываем разные блоки.
+  // Мы всегда скрываем элемент описания и используем блок ответа в details для показа выбранного контента.
+  // Summary "Показать ответ" остаётся неизменной.
+  descEl.style.display = 'none';
+  details.style.display = '';
+  if(profile.trainingType === 'desc'){
+    // Красочное описание
+    answerDiv.innerHTML = c.desc || '<em>Нет описания</em>';
+  } else if(profile.trainingType === 'feat'){
+    // Особенности
+    answerDiv.innerHTML = c.feat || '<em>Нет особенностей</em>';
+  } else if(profile.trainingType === 'comp'){
+    // Состав
+    answerDiv.innerHTML = c.comp || '<em>Нет информации о составе</em>';
+  } else {
+    // По умолчанию показываем полную информацию (особенности и состав)
+    answerDiv.innerHTML = c.answer || '<em>Нет данных</em>';
+  }
+  const media = node.querySelector('.media');
+  const img = media.querySelector('img');
+  if(c.imageSrc){
+    img.src = c.imageSrc;
+    media.classList.remove('hidden');
+  }
+
+  // Если включён авто-показ ответа, открываем детали
+  if(localStorage.getItem('sdlv_autoFlip') === '1'){
+    setTimeout(() => details.open = true, 200);
+  }
+
+  node.querySelectorAll('.actions button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ schedule(c.id, btn.dataset.grade); render(); });
+  });
+  return node;
+}
+
+// Controls
+function wire(){
+  // Обработчики для новых кнопок управления
+  const btnStartTraining = document.getElementById('btnStartTraining');
+  const btnFinish = document.getElementById('btnFinish');
+  const btnReset = document.getElementById('btnReset');
+  // Кнопка «Начать тренировку» в шапке. Запускает показ карточек
+  btnStartTraining.addEventListener('click', () => {
+    // Фиксируем факт начала тренировки
+    trainingStarted = true;
+    // скрываем кнопку запуска
+    btnStartTraining.style.display = 'none';
+    // отображаем сцену с карточками
+    const stageEl = document.getElementById('stage');
+    stageEl.style.display = '';
+    // обновляем статистику и формируем очередь
+    document.getElementById('stats').textContent = statLine();
+    computeQueue();
+    render();
+  });
+
+  // Кнопка «Закончить» завершает тренировку и возвращает пользователя на индексную страницу
+  btnFinish.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // Кнопка «Начать заново» сбрасывает весь прогресс и возвращает состояние до старта тренировки
+  btnReset.addEventListener('click', () => {
+    if(!confirm('Сбросить прогресс и начать заново?')) return;
+    // Очищаем данные по каждой карточке
+    db.cards = {};
+    for(const c of allCards){
+      db.cards[c.id] = {n:0, ef:2.5, interval:0, due:today(), lapses:0, last:null, deck:c.section, lastGrade:2};
+    }
+    save();
+    // Снова показываем кнопку запуска и скрываем сцену
+    trainingStarted = false;
+    const stageEl = document.getElementById('stage');
+    stageEl.style.display = 'none';
+    // Не показываем кнопку запуска в шапке после сброса — запуск происходит из модального окна
+    btnStartTraining.style.display = 'none';
+    // Скрываем текущую информацию о выбранном меню/разделе
+    const infoEl = document.getElementById('currentInfo');
+    if(infoEl){ infoEl.style.display = 'none'; }
+    // Обновляем статистику (отображаем общее количество карточек, распределённых по сложности)
+    document.getElementById('stats').textContent = statLine();
+
+    // После сброса прогресса вновь показываем окно выбора профиля.
+    // Это позволяет пользователю выбрать меню, раздел и направление ещё раз.
+    const backdrop = document.getElementById('startBackdrop');
+    if(backdrop){
+      backdrop.style.display = '';
+    }
+    // Если ранее был выбран профиль, попробуем восстановить его в форме.
+    // Это также обновит состояние кнопки запуска тренировки.
+    const menuSelectReset = document.getElementById('menuSelect');
+    const sectionSelectReset = document.getElementById('sectionSelect');
+    const startBtnModal = document.getElementById('startBtn');
+    const typeSelectReset = document.getElementById('typeSelect');
+    if(profile && profile.menu){
+      menuSelectReset.value = profile.menu;
+      menuSelectReset.dispatchEvent(new Event('change'));
+      if(profile.menu === 'Основное меню'){
+        // При необходимости заполнить список разделов перед установкой значения
+        if(typeof fillSections === 'function'){
+          fillSections();
+        }
+        if(profile.section === null){
+          sectionSelectReset.value = '__ALL__';
+        } else if(profile.section){
+          sectionSelectReset.value = profile.section;
+        }
+        sectionSelectReset.dispatchEvent(new Event('change'));
+      } else {
+        // Для других меню сразу активируем кнопку
+        startBtnModal.disabled = false;
+      }
+    } else {
+      // Если профиля нет, сбрасываем выбор и блокируем кнопку запуска
+      menuSelectReset.value = '';
+      if(sectionSelectReset){ sectionSelectReset.value = ''; }
+      startBtnModal.disabled = true;
+    }
+    // Восстанавливаем выбранное направление тренировки, если оно есть
+    if(profile && profile.trainingType && typeSelectReset){
+      typeSelectReset.value = profile.trainingType;
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    // пробел раскрывает/скрывает ответ
+    if(e.code === 'Space'){
+      const det = document.querySelector('details.qa');
+      if(det){
+        det.open = !det.open;
+        e.preventDefault();
+      }
+    }
+    // клавиши 1, 2, 3 ставят оценки «трудно», «норм», «легко»
+    const map = {Digit1:'2', Digit2:'3', Digit3:'5'};
+    const key = map[e.code];
+    if(key){
+      const btn = document.querySelector(`.actions button[data-grade="${key}"]`);
+      if(btn){ btn.click(); }
+    }
+  });
+
+  // Start modal logic
+  const menuSelect = document.getElementById('menuSelect');
+  const sectionRow = document.getElementById('sectionRow');
+  const sectionSelect = document.getElementById('sectionSelect');
+  const startBtn = document.getElementById('startBtn');
+  const hint = document.getElementById('startHint');
+
+  function fillSections(){
+    sectionSelect.innerHTML = '<option value="" disabled selected>— выбрать —</option>';
+    // Добавляем "Все разделы"
+    const allOpt = document.createElement('option');
+    allOpt.value = '__ALL__'; allOpt.textContent = 'Все разделы';
+    sectionSelect.appendChild(allOpt);
+    if(window.__MAIN_H2 && window.__MAIN_H2.length){
+      window.__MAIN_H2.forEach(h2=>{
+        const opt = document.createElement('option'); opt.value = h2; opt.textContent = h2; sectionSelect.appendChild(opt);
+      });
+    }
+  }
+
+  menuSelect.addEventListener('change', ()=>{
+    const v = menuSelect.value;
+    profile.menu = v;
+    if(v==='Всё меню'){
+      sectionRow.style.display='none'; profile.section=null; startBtn.disabled=false;
+      hint.textContent='Будут карточки из всех доступных меню.';
+    } else if(v==='Основное меню'){
+      sectionRow.style.display='block'; fillSections(); startBtn.disabled = (sectionSelect.value==='');
+      hint.textContent='Выбери раздел или «Все разделы».';
+    } else {
+      sectionRow.style.display='none'; profile.section=null; startBtn.disabled=false;
+      hint.textContent='Пока подключены карточки только из «Основное меню» (если другие файлы не добавлены).';
+    }
+  });
+
+  sectionSelect.addEventListener('change', ()=>{
+    if(sectionSelect.value==='__ALL__'){ profile.section = null; startBtn.disabled = false; }
+    else { profile.section = sectionSelect.value || null; startBtn.disabled = !profile.section; }
+  });
+
+  startBtn.addEventListener('click', ()=>{
+    // Запоминаем выбранное направление тренировки
+    const typeSelect = document.getElementById('typeSelect');
+    profile.trainingType = typeSelect.value || 'desc';
+    // Сохраняем последний выбранный профиль (меню, раздел и направление)
+    db.lastProfile = profile;
+    save();
+    // Закрываем модальное окно выбора
+    document.getElementById('startBackdrop').style.display = 'none';
+    // Отображаем информацию о выбранном меню, разделе и направлении в шапке
+    const infoEl = document.getElementById('currentInfo');
+    const parts = [];
+    // Меню
+    if(profile.menu){
+      parts.push(profile.menu);
+    }
+    // Раздел
+    if(profile.menu === 'Основное меню'){
+      if(profile.section){
+        parts.push(profile.section);
+      } else {
+        parts.push('Все разделы');
+      }
+    }
+    // Направление
+    const typeMap = { desc:'Красочное описание', feat:'Особенности', comp:'Состав' };
+    if(profile.trainingType && typeMap[profile.trainingType]){
+      parts.push(typeMap[profile.trainingType]);
+    }
+    const infoText = parts.join(' • ');
+    infoEl.textContent = infoText;
+    infoEl.style.display = infoText ? '' : 'none';
+    // Автоматически запускаем тренировку после выбора профиля
+    // Фиксируем факт начала тренировки
+    trainingStarted = true;
+    // Скрываем кнопку запуска в шапке (она теперь не нужна)
+    const btnStartTraining = document.getElementById('btnStartTraining');
+    if(btnStartTraining){ btnStartTraining.style.display = 'none'; }
+    // Отображаем сцену с карточками
+    const stageEl = document.getElementById('stage');
+    stageEl.style.display = '';
+    // Обновляем статистику и формируем очередь
+    document.getElementById('stats').textContent = statLine();
+    computeQueue();
+    render();
+  });
+
+  // Restore profile if exists
+  if(db.lastProfile){
+    profile = db.lastProfile;
+    // Восстанавливаем выбранное меню
+    if(profile.menu){
+      menuSelect.value = profile.menu;
+      menuSelect.dispatchEvent(new Event('change'));
+    }
+    // Восстанавливаем раздел в случае основного меню
+    if(profile.section === null && profile.menu === 'Основное меню'){
+      // выбрать "Все разделы"
+      setTimeout(() => {
+        fillSections();
+        sectionSelect.value = '__ALL__';
+        startBtn.disabled = false;
+      }, 200);
+    } else if(profile.section){
+      setTimeout(() => {
+        fillSections();
+        sectionSelect.value = profile.section;
+        startBtn.disabled = false;
+      }, 200);
+    }
+    // Восстанавливаем направление тренировки
+    const typeSelect = document.getElementById('typeSelect');
+    if(profile.trainingType && typeSelect){
+      typeSelect.value = profile.trainingType;
+    }
+  }
+}
+
+// Bootstrap
+(async function(){
+  load();
+  try{
+    await loadCards();
+    wire();
+  }catch(e){
+    document.querySelector('#stage')?.insertAdjacentHTML('beforeend', `<div class="empty">Не удалось загрузить карточки: ${e.message}. Положите рядом файлы <code>cards.json</code> и <code>${MAIN_HTML}</code> (для разделов).</div>`);
+    wire();
+  }
+})();
+</script>
+</body>
+</html>
