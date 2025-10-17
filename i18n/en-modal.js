@@ -20,7 +20,7 @@ try {
   const EDIT_CODE = 'roma';
   const STYLE_ID = 'en-modal-style-v2';
   const LS_KEY = 'enModalDict:v1';
-  const JSON_URL = 'en.json';
+  const JSON_URL = '../i18n/en.json';
 
   const loadRemote = () => fetch(JSON_URL, {cache:'no-store'})
     .then(r => r.ok ? r.json() : ({}))
@@ -345,7 +345,7 @@ html.en-modal-open { -webkit-text-size-adjust: 100%; }
       const blob = new Blob([JSON.stringify(merged, null, 2)], {type:'application/json'});
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'en.json';
+      a.download = '../i18n/en.json';
       document.body.appendChild(a);
       a.click();
       setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();}, 0);
