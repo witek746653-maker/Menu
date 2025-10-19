@@ -2,7 +2,7 @@
   {
     "title": "Креветки в соусе васаби",
     "html": "<p class=\"description\"><strong>Сочные креветки</strong>, фламбированные коньяком, с миксом из свежих листьев салата и пикантным соусом васаби.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-list\">🌶 острый | 🍋 цитрусы | зелень | коньяк</p><p class=\"features-text\">Креветки обжариваются на оливковом масле с добавлением зелени, лимонного фреша и коньяка. Соус васаби содержит сок лимона. 5 креветок в порции.</p><hr class=\"divider\" /><p class=\"composition-title\">Состав:</p><div class=\"composition\"><p>Тигровые креветки обжариваются на оливковом масле с добавлением петрушки, сливочного масла, лимонного фреша и коньяка.</p><p>Подаются с миксом салата, заправленным соусом васаби (порошок васаби, домашний майонез и сок лимона).</p></div><hr class=\"divider\" />",
-    "imageSrc": "../images/krevettki.png"
+    "imageSrc": "images/krevettki.png"
   },
   {
     "title": "Салат с мясом краба и опалёнными овощами",
@@ -126,7 +126,7 @@
   {
     "title": "Салат Кардини с перепелкой, томатами, перепелиным яйцом и чесночными гренками",
     "html": "<p class=\"description\">Авторская вариация знаменитого салата Цезарь с золотистой перепелкой, лепестками Грана Падано, спелыми томатами черри и чесночными гренками.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">🥛 лактоза | 🌶️ острый | 🍋 цитрусы | чеснок | зелень | анчоусы</p><p class=\"features-text\">Обязательно предупреждаем, что соус достаточно солоноват за счет большого количества анчоусов.</p><p class=\"features-text\">Салат подаем с чесночными гренками .</p><p class=\"features-text\">Соус на основе анчоусов:</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Теплый салат с Фуа-гра, перепелкой и карамелизированным яблоком",
@@ -136,12 +136,12 @@
   {
     "title": "Теплый салат с жаренным осьминогом, овощами, оливками под горчичным соусом",
     "html": "<p class=\"description\">Теплый салат с жаренным осьминогом, свежими овощами, оливками, перцем чили под пряным горчичным соусом.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">🌶️ острый | кинза | 🍋 цитрусы | чеснок | лук | зелень</p><p class=\"features-text\">Украшается перцем чили, кинзой и сухим луком (можно без них). Подается с горчичным соусом (на тарелке отдельно).</p><p class=\"features-text\">С добавлением маслин по тажарски и чесночного масла и фреша лимона.</p><p class=\"features-text\">Осьминог –Марокко.</p><p class=\"features-text\">Соус горчичный:</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Салат с мясом краба и опаленными овощами под медово-горчичной заправкой",
     "html": "<p class=\"description\">Салат с нежным мясом краба, опаленными овощами, хрустящим фенхелем под медово-горчичной заправкой и сыром Грана Подано.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">🥛 лактоза | кинза | зелень | мёд</p><p class=\"features-text\">Соус с добавлением горчицы зернистой и меда.</p><p class=\"features-text\">Укроп и кинза и базиликовое масло.</p><p class=\"features-text\">Краб - Дальний Восток.</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Салат с морепродуктами и мятым авокадо",
@@ -156,12 +156,12 @@
   {
     "title": "Овощной салат с авокадо, сыром Грана Падано, луковым крамблом под медово-горчичной заправкой",
     "html": "<p class=\"description\">Овощной салат со спелыми томатами, хрустящими огурцами, авокадо, в сочетании с сыром Грана Падано и луковым крамблом под медово-горчичной заправкой.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">⛔ без мяса |🥛 лактоза | чеснок | лук | зелень | мёд</p><p class=\"features-text\">Медово-горчичная заправка ( мед, горчица ).</p><p class=\"features-text\">Луковый крамбл ( лук, сливки, чеснок ).</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Буррата с оливками и тартаром из сладких томатов",
     "html": "<p class=\"description\">Сливочный сыр буррата с тартаром из сладких томатов, нежных оливок, лука шалот в сочетании с ароматной зеленью и маслом орегано.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">⛔ без мяса |🥛 лактоза | кинза | лук | зелень</p><p class=\"features-text\">Томаты с луком шалот, кинзой и зеленым луком заправлены маслом орегано.</p><p class=\"features-text\">Украшается молекулярными оливками.</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Чечевичный суп с молодым ягненком, овощами и ароматными травами",
@@ -196,7 +196,7 @@
   {
     "title": "Постный минестроне на овощном бульоне с кедровыми орехами, чесночной чиабаттой и (постным) песто",
     "html": "<p class=\"description\">Постный минестроне на овощном бульоне с кедровыми орехами в сопровождении хрустящей чиабатты и чесночного масла.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">⛔ без мяса | орехи | чеснок | лук | зелень</p><p class=\"features-text\">Подается с чиабаттой с чесночным маслом.</p><p class=\"features-text\">Постный песто: базилик, кедровые орехи, чеснок, оливковое масло.</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Домашние равиоли с начинкой из фермерской курицы, ароматной зирой под сырно-трюфельным фондю",
@@ -301,22 +301,22 @@
   {
     "title": "Котлета из ассорти рыб с картофельным пюре и томленым шпинатом",
     "html": "<p class=\"description\">Нежная котлета из рыбного ассорти с воздушным картофельным пюре и томленым шпинатом.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">🥛 лактоза | 🍋 цитрусы | лук | зелень</p><p class=\"features-text\">В котлету и пюре добавляется лимонный фреш.</p><p class=\"features-text\">Пюре подается со шпинатом.</p><p class=\"features-text\">В составе котлеты лук шалот, кинза, сливки .</p><p class=\"features-text\">Связующим звеном в котлете выступает гребешок. Хлеб не добавляем.</p><hr class=\"divider\" /><p class=\"composition-title\">Состав:</p><div class=\"composition\"><p>Связующим звеном в котлете выступает гребешок. Хлеб не добавляем.</p><p>Состав:</p><p>Котлета:</p><p>Сочный мраморный кусок говядины из верхней части лопатки, с ярко выраженным мясным вкусом, насыщенной текстурой и деликатной прожаркой, которая раскрывает сладковатые ноты и богатый аромат жареного мяса.</p></div><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Денвер стейк (лопаточная часть)",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/53___770__2.jpg"
+    "imageSrc": "images/53___770__2.jpg"
   },
   {
     "title": "Филе прайм (Говяжья вырезка)",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/8_-_2320_.jpg"
+    "imageSrc": "images/8_-_2320_.jpg"
   },
   {
     "title": "Рибай стейк",
     "html": "<p class=\"description\">Сочный премиальный стейк Рибай из бычков зернового откорма, с нежной и мраморной структурой, лёгкой дымной нотой и насыщенным мясным вкусом.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">Вес от 250 гр.</p><p class=\"features-text\">Соль, перец.</p><p class=\"features-text\">Самый жирный из классических стейков. Равномерное распределение жировых прослоек, насыщенный вкус и аромат, сочная и нежная структура мяса.</p><p class=\"features-text\">Рекомендуемая прожарка medium.</p><p class=\"features-text\">Предлагаем гарнир и соус.</p><p class=\"features-text\">Говядина - Россия. Поставщик Прайм Биф. Кукурузный откорм, сухое вызревание.</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Стриплойн стейк",
@@ -326,12 +326,12 @@
   {
     "title": "Каре баранины",
     "html": "<hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">Соль, перец.</p><p class=\"features-text\">Возраст от 1-1,5 года.</p><p class=\"features-text\">Мясо сочное за счет жировых прослоек, нежное, но жестче, чем ягненок.</p><p class=\"features-text\">Имеет яркий аромат.</p><p class=\"features-text\">Предлагаем гарнир и соус.</p><p class=\"features-text\">Каре баранины - Россия, Северный Дагестан.</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Каре ягнёнка",
     "html": "<p class=\"description\">Срез нежнейшего мяса молодого ягненка на изящных рёбрышках, приготовленный на открытом огне.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">Соль, перец.</p><p class=\"features-text\">Возраст до 6-8 месяцев, травяной откорм.</p><p class=\"features-text\">Мясо очень нежное.</p><p class=\"features-text\">Не имеет специфического запаха баранины.</p><p class=\"features-text\">Минимальная жировая прослойка.</p><p class=\"features-text\">Предлагаем гарнир и соус.</p><p class=\"features-text\">Каре ягнёнка - Россия , Калмыкия.</p><p class=\"features-text\">Есть ли кровь в \"стейке с кровью?\" Спойлер: нет! Кровь из туши выпускают сразу после забоя. Крови не должно быть в мясе в принципе. А что есть? Мясной сок есть розового цвета, который не успел поменять цвет под действием температуры. Если жарить дольше, то мясо изменит цвет по всей толщине куска. Красный цвет мяса - не от гемоглобина (который в крови), а от похожего на него миоглобина (который в мясе). Поэтому это скорее эффектный термин, обозначающий неполную прожарку мяса, при которой внутри сохраняется розовый сок.</p><p class=\"features-text\">Вес от 190 гр.</p><p class=\"features-text\">Уточняем у гостя:</p><p class=\"features-text\">Вес от 130 гр.</p><p class=\"features-text\">Уточняем у гостя:</p><p class=\"features-text\">Вес от 130 гр.</p><p class=\"features-text\">Уточняем у гостя:</p><p class=\"features-text\">Вес от 100 гр.</p><p class=\"features-text\">Уточняем у гостя:</p><p class=\"features-text\">Вес от 100 гр.</p><p class=\"features-text\">Уточняем у гостя:</p><p class=\"features-text\">Вес одного щупальца примерно 80-100 гр.</p><p class=\"features-text\">Уточняем у гостя:</p><p class=\"features-text\">Креветки от 1 шт.</p><p class=\"features-text\">Уточняем у гостя:</p><p class=\"features-text\">Вес от 100 гр.</p><p class=\"features-text\">Уточняем у гостя:</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Семга",
@@ -381,7 +381,7 @@
   {
     "title": "Жаренный картофель с грибами в сырно-сливочном соусе",
     "html": "<hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">⛔ без мяса | 🥛 лактоза | чеснок | лук</p><hr class=\"divider\" /><p class=\"composition-title\">Состав:</p><div class=\"composition\"><p>Картофель, обжаривается на оливковом масле с добавлением лука шалот , посыпается кинзой и петрушкой.</p><p>Картофельное пюре с добавлением молока, сливочного масла, укропа и петрушки.</p><p>Готовим на josper или на пару.</p><p>Состав:</p><p>Украшается тимьяном.</p><p>Готовим на josper или на пару.</p><p>Состав:</p><p>Шпинат тушится на сливочном масле с добавлением чеснока, подается с тертым сыром.</p><p>Готовим на josper или на пару.</p><p>Готовим на josper или на пару.</p><p>Готовим на josper или на пару.</p><p>Готовим на josper или на пару.</p></div><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Жаренный картофель с луком шалот и зеленью",
@@ -406,42 +406,42 @@
   {
     "title": "Рис отварной",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/_DSC7359.jpg"
+    "imageSrc": "images/_DSC7359.jpg"
   },
   {
     "title": "Овощи микс",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/Sabor_De_La_Vida_280_(3).jpg"
+    "imageSrc": "images/Sabor_De_La_Vida_280_(3).jpg"
   },
   {
     "title": "Спаржа",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/Sabor_De_La_Vida_280_(5).jpg"
+    "imageSrc": "images/Sabor_De_La_Vida_280_(5).jpg"
   },
   {
     "title": "Томленый шпинат с чесноком и сыром",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/_DSC7330.jpg"
+    "imageSrc": "images/_DSC7330.jpg"
   },
   {
     "title": "Перец болгарский",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/Sabor_De_La_Vida_280_(1).jpg"
+    "imageSrc": "images/Sabor_De_La_Vida_280_(1).jpg"
   },
   {
     "title": "Цукини",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/Sabor_De_La_Vida_280_(2).jpg"
+    "imageSrc": "images/Sabor_De_La_Vida_280_(2).jpg"
   },
   {
     "title": "Томаты узбекские",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/Sabor_De_La_Vida_280_(4).jpg"
+    "imageSrc": "images/Sabor_De_La_Vida_280_(4).jpg"
   },
   {
     "title": "Томаты черри",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/__4_2.jpg"
+    "imageSrc": "images/__4_2.jpg"
   },
   {
     "title": "Мусс пряные травы",
@@ -461,7 +461,7 @@
   {
     "title": "Черемуховый медовик с ромашковым мороженым",
     "html": "<p class=\"description\">Нежный черемуховый медовик с бархатным сливочным кремом, ромашковым мороженым, с солёной фисташкой и кислой карамелью.</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">🥛 лактоза |🍋 цитрусы | орехи | мёд</p><p class=\"features-text\">Коржи готовятся с добавлением мёда и черемуховой муки.</p><p class=\"features-text\">Мороженое сливочное с добавлением ромашки. Сверху мороженое поливается медом.</p><p class=\"features-text\">Украшается фисташками с цедрой апельсина и кислой карамелью с соком лимона.</p><p class=\"features-text\">Коржи:</p><p class=\"features-text\">Крем:</p><p class=\"features-text\">Мороженое:</p><p class=\"features-text\">Украшение:</p><p class=\"features-text\">Кислая карамель:</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Шоколадный фондан",
@@ -476,17 +476,17 @@
   {
     "title": "Мороженое щавель-эстрагон",
     "html": "<p class=\"description\">🥛 лактоза | зелень | эстрагон</p><hr class=\"divider\" /><p class=\"features-title\">Особенности:</p><p class=\"features-text\">⛔ без мяса |🥛 лактоза | 🌶️ острый | лук | коньяк</p><p class=\"features-text\">Сливочная основа.</p><p class=\"features-text\">Острый.</p><p class=\"features-text\">С добавлением сливочного масла, лука шалот и коньяка.</p><hr class=\"divider\" /><p class=\"composition-title\">Состав:</p><div class=\"composition\"><p>Перец горошек (зеленый, черный, розовый), лук шалот, масло сливочное и оливковое, сливки, конъяк.</p></div><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Домашнее мороженое",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/noroot.png"
+    "imageSrc": "images/noroot.png"
   },
   {
     "title": "Фруктовый сорбет",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../images/_2.jpg"
+    "imageSrc": "images/_2.jpg"
   },
   {
     "title": "Перечный",
@@ -531,11 +531,11 @@
   {
     "title": "Томатно-базиликовый соус (Соус Чили)",
     "html": "<hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   },
   {
     "title": "Хлебная корзина",
     "html": "<p class=\"description\">Хлеб:</p><hr class=\"divider\" />",
-    "imageSrc": "../icons/image.png"
+    "imageSrc": "icons/image.png"
   }
 ]
