@@ -4,25 +4,55 @@ const TEMPLATE_ID = 'card-editor-template';
 const STYLE_CONTENT = `
 #cardEditorBackdrop { position: fixed; inset: 0; background: rgba(60,40,20,.45); display: none; align-items: center; justify-content: center; padding: 16px; z-index: 999 }
 #cardEditorBackdrop.show { display: flex }
-#cardEditorBackdrop .modal { width: min(760px, 100%); max-height: min(90vh, 760px); display: flex; flex-direction: column; box-shadow: var(--shadow-lg) }
+#cardEditorBackdrop .modal { width: min(960px, 100%); max-height: min(92vh, 860px); display: flex; flex-direction: column; box-shadow: var(--shadow-lg) }
 #cardEditorBackdrop .modal header { display: flex; align-items: center; justify-content: space-between; gap: 12px }
 #cardEditorBackdrop .modal .content { flex: 1 1 auto; overflow: auto; display: flex; flex-direction: column; gap: 16px }
-#cardEditorBackdrop .modal .content::-webkit-scrollbar { width: 8px }
-#cardEditorBackdrop .modal .content::-webkit-scrollbar-thumb { background: rgba(0,0,0,.25); border-radius: 999px }
-.card-editor-fields { display: grid; gap: 12px }
-.card-editor-fields .row { display: flex; flex-direction: column; gap: 6px }
-.card-editor-multi { display: flex; flex-direction: column; gap: 6px }
-.card-editor-multi select { min-height: 120px; padding: 8px; border-radius: 10px; border: 1px solid var(--border); background: #fffdf7 }
-.card-editor-multi .multi-add { display: flex; gap: 6px }
-.card-editor-status { font-size: 13px; min-height: 18px; color: var(--muted) }
-.card-editor-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px }
-.card-editor-actions .card-editor-status { margin-right: auto; padding-right: 12px }
-.card-editor-actions button { min-width: 120px }
-@media (max-width: 600px) {
+
+/* === Compact grid === */
+.card-editor-fields{
+  display:grid;
+  gap:12px 14px;
+  grid-template-columns: repeat(3, minmax(220px,1fr)); /* 3 колонки на широких экранах */
+  align-items:start;
+}
+@media (max-width: 1200px){
+  .card-editor-fields{ grid-template-columns: repeat(2, minmax(220px,1fr)); } /* 2 колонки */
+}
+@media (max-width: 680px){
+  .card-editor-fields{ grid-template-columns: 1fr; } /* 1 колонка на мобилке */
+}
+
+/* Элементы поля остаются вертикальными, но занимают ячейку сетки */
+.card-editor-fields .row{ display:flex; flex-direction:column; gap:6px }
+
+/* Компактные контролы */
+.card-editor-fields input[type="text"],
+.card-editor-fields input[type="password"],
+.card-editor-fields textarea,
+.card-editor-fields select{ padding:8px 10px; border-radius:10px; border:1px solid var(--border); background:#fffdf7 }
+
+/* Высота мультиселектов чуть меньше */
+.card-editor-multi select{ min-height:100px }
+
+/* Растягиваем «большие» поля на всю ширину гридов */
+.card-editor-fields .row:has(#ce-contains),
+.card-editor-fields .row:has(#ce-features),
+.card-editor-fields .row:has(#ce-ru-desc),
+.card-editor-fields .row:has(#ce-en-desc),
+.card-editor-fields .row:has(#ce-raw-html),
+.card-editor-fields .row:has(#ce-html){ grid-column: 1 / -1; }
+
+/* Панель действий прилипает к низу */
+.card-editor-actions{ display:flex; align-items:center; justify-content:flex-end; gap:8px }
+.card-editor-actions .card-editor-status{ margin-right:auto; padding-right:12px; font-size:13px; color:var(--muted) }
+
+/* Узкие экраны */
+@media (max-width: 600px){
   #cardEditorBackdrop { padding: 12px }
   #cardEditorBackdrop .modal { width: min(360px, 100%); max-height: 96vh }
 }
 `;
+
 
 const TEMPLATE_CONTENT = `
 <div class="backdrop" id="cardEditorBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
@@ -33,7 +63,14 @@ const TEMPLATE_CONTENT = `
     </header>
     <div class="content">
       <div class="row">
-        <label for="cardEditorSelect">Карточка</label>
+        <label for="cardEditorMode">Режим</label>
+        <select id="cardEditorMode">
+          <option value="new" selected>Создать новую карточку</option>
+          <option value="edit">Редактировать существующую</option>
+        </select>
+      </div>
+      <div class="row" id="cardEditorSelectRow" style="display:none;">
+        <label for="cardEditorSelect">Выберите карточку</label>
         <select id="cardEditorSelect"></select>
       </div>
       <div class="row" id="cardEditorTokenRow">
@@ -109,6 +146,22 @@ function initCardEditor(){
   const branchInput = document.getElementById('cardEditorBranch');
   const tokenInput = document.getElementById('cardEditorToken');
   const titleEl = document.getElementById('cardEditorTitle');
+
+  const modeSelect = document.getElementById('cardEditorMode');
+  const selectRow = document.getElementById('cardEditorSelectRow');
+
+  if (modeSelect) {
+    modeSelect.addEventListener('change', () => {
+      const mode = modeSelect.value;
+      if (mode === 'edit') {
+        selectRow.style.display = '';
+        populateSelect();
+      } else {
+        selectRow.style.display = 'none';
+        loadCardById('__new__');
+      }
+    });
+  }
 
   if (!openBtn || !backdrop || !select || !fieldsContainer || !saveBtn) return;
 
@@ -540,7 +593,9 @@ function initCardEditor(){
     }
     renderFields();
     loadSettings();
-    populateSelect(preferredId);
+    if (document.getElementById('cardEditorMode')?.value === 'edit') {
+  populateSelect(preferredId);
+}
     backdrop.classList.add('show');
     backdrop.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
