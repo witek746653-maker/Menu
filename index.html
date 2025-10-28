@@ -7,8 +7,9 @@
 
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#111111">
-<link rel="apple-touch-icon" href="icons/rrrrr-180.png">
+<link rel="apple-touch-icon" href="icons/Sabor_icon_180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sabor Menu">
 
@@ -396,21 +397,12 @@
     </div>
   </div>
 
-
-
-
-
-
-
-
-
-
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch(console.error);
-    });
-  }
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(console.error);
+  });
+}
 
   const banner = document.getElementById('installBanner');
   const btnInstall = document.getElementById('installBtn');
