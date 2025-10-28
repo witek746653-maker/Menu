@@ -117,7 +117,7 @@ function initCardEditor(){
   const DEFAULT_OWNER = 'witek746653-maker';
   const DEFAULT_REPO = 'Menu';
   const DEFAULT_BRANCH = 'main';
-  const FILE_PATH = 'cards.json';
+  const FILE_PATH = 'trainer/cards.json';
   const LS_KEYS = {
     selection: 'cardEditor:lastSelection',
     owner: 'cardEditor:owner',
