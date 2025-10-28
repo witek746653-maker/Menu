@@ -274,6 +274,7 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
       console.error('Не загрузил карточки:', e);
     }
   })();
+  <script type="module" src="./cards-modal.js"></script>
 </script>
 
 </head>
@@ -318,7 +319,7 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
           <span class="muted" id="startHint"></span>
         </div>
       </div>
-    </div>
+  </div>
   </div>
 
   <div class="wrap">
@@ -331,6 +332,7 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
         <span id="currentInfo" class="pill" style="display:none;"></span>
         <!-- Кнопка «Начать тренировку» скрыта, так как запуск теперь происходит автоматически после выбора профиля -->
         <button id="btnStartTraining" class="primary" style="display:none;">Начать тренировку</button>
+        <button id="btnCardEditor" class="ghost">Создать/Редактировать</button>
         <button id="btnFinish" class="ghost">Закончить</button>
         <button id="btnReset" class="ghost">Начать заново</button>
         <span class="counter" id="stats">—</span>
@@ -511,6 +513,239 @@ function extractQA(html){
 
 function idFromTitle(t){ return 'id_' + t.toLowerCase().replace(/\s+/g,'_'); }
 
+function createEmptyCard(){
+  return {
+    id: '',
+    menu: '',
+    section: '',
+    section_icon: { type: '', src: '', alt: '' },
+    title: '',
+    description: '',
+    contains: '',
+    fitures: '',
+    allergens: [],
+    tags: [],
+    pairings: { wines: [], add_ingrid: [], upsell: [] },
+    image: { src: '', alt: '' },
+    imageSrc: '',
+    i18n: {
+      ru: { title: '', description: '' },
+      en: { title: '', description: '' }
+    },
+    status: '',
+    source_file: '',
+    raw_html: '',
+    html: '',
+    mdFile: '',
+    __extra: {}
+  };
+}
+
+function toArrayValue(value){
+  if (!value) return [];
+  if (Array.isArray(value)) return value.map(v => String(v).trim()).filter(Boolean);
+  return String(value).split(/[,\n;]/).map(v => v.trim()).filter(Boolean);
+}
+
+function normalizeCardData(card){
+  const base = createEmptyCard();
+  if (!card || typeof card !== 'object') return base;
+  const known = new Set(['id','menu','section','section_icon','title','description','contains','fitures','allergens','tags','pairings','image','i18n','status','source_file','raw_html','html','mdFile','imageSrc']);
+  const extra = {};
+  for (const key of Object.keys(card)){
+    if (!known.has(key)) extra[key] = card[key];
+  }
+  base.id = card.id || (card.title ? idFromTitle(card.title) : '');
+  base.menu = card.menu || '';
+  base.section = card.section || '';
+  base.section_icon = Object.assign({}, base.section_icon, card.section_icon || {});
+  base.title = card.title || '';
+  base.description = card.description || '';
+  base.contains = card.contains || '';
+  base.fitures = card.fitures || '';
+  base.allergens = toArrayValue(card.allergens);
+  base.tags = toArrayValue(card.tags);
+  const pairings = card.pairings || {};
+  base.pairings = {
+    wines: toArrayValue(pairings.wines),
+    add_ingrid: toArrayValue(pairings.add_ingrid),
+    upsell: toArrayValue(pairings.upsell)
+  };
+  base.image = Object.assign({}, base.image, card.image || {});
+  base.imageSrc = card.imageSrc || base.image.src || '';
+  if (!base.image.src && base.imageSrc) base.image.src = base.imageSrc;
+  base.i18n = {
+    ru: Object.assign({}, base.i18n.ru, (card.i18n && card.i18n.ru) || {}),
+    en: Object.assign({}, base.i18n.en, (card.i18n && card.i18n.en) || {})
+  };
+  base.status = card.status || '';
+  base.source_file = card.source_file || '';
+  base.raw_html = card.raw_html || '';
+  base.html = card.html || card.raw_html || '';
+  base.mdFile = card.mdFile || '';
+  base.__extra = extra;
+  return base;
+}
+
+function cloneCardData(card){
+  return JSON.parse(JSON.stringify(card || createEmptyCard()));
+}
+
+function serializeCardData(card){
+  const c = card || {};
+  const out = {};
+  const ensureArray = (arr) => Array.isArray(arr) ? arr.map(v => String(v).trim()).filter(Boolean) : [];
+  out.id = c.id || '';
+  out.menu = c.menu || '';
+  out.section = c.section || '';
+  out.section_icon = {
+    type: c.section_icon?.type || '',
+    src: c.section_icon?.src || '',
+    alt: c.section_icon?.alt || ''
+  };
+  out.title = c.title || '';
+  out.description = c.description || '';
+  out.contains = c.contains || '';
+  out.fitures = c.fitures || '';
+  out.allergens = ensureArray(c.allergens);
+  out.tags = ensureArray(c.tags);
+  out.pairings = {
+    wines: ensureArray(c.pairings?.wines),
+    add_ingrid: ensureArray(c.pairings?.add_ingrid),
+    upsell: ensureArray(c.pairings?.upsell)
+  };
+  out.image = {
+    src: c.image?.src || c.imageSrc || '',
+    alt: c.image?.alt || ''
+  };
+  if (c.imageSrc && !out.image.src) out.image.src = c.imageSrc;
+  out.imageSrc = out.image.src || '';
+  out.i18n = {
+    ru: {
+      title: c.i18n?.ru?.title || '',
+      description: c.i18n?.ru?.description || ''
+    },
+    en: {
+      title: c.i18n?.en?.title || '',
+      description: c.i18n?.en?.description || ''
+    }
+  };
+  out.status = c.status || '';
+  out.source_file = c.source_file || '';
+  out.raw_html = c.raw_html || '';
+  out.html = c.html || c.raw_html || '';
+  if (c.mdFile) out.mdFile = c.mdFile;
+  const extra = c.__extra || {};
+  for (const key of Object.keys(extra)){
+    if (!(key in out)) out[key] = extra[key];
+  }
+  return out;
+}
+
+function getValueByPath(obj, path){
+  return (path || []).reduce((acc, key) => (acc && acc[key] !== undefined) ? acc[key] : undefined, obj);
+}
+
+function setValueByPath(obj, path, value){
+  if (!path || !path.length) return;
+  let target = obj;
+  for (let i = 0; i < path.length - 1; i++){
+    const key = path[i];
+    if (typeof target[key] !== 'object' || target[key] === null){
+      target[key] = {};
+    }
+    target = target[key];
+  }
+  target[path[path.length - 1]] = value;
+}
+
+function collectOptionValues(cards, path){
+  const values = new Set();
+  const parts = typeof path === 'string' ? path.split('.') : path;
+  (cards || []).forEach(card => {
+    const value = getValueByPath(card, parts);
+    if (Array.isArray(value)){
+      value.forEach(v => { const val = String(v).trim(); if (val) values.add(val); });
+    } else if (value){
+      const val = String(value).trim();
+      if (val) values.add(val);
+    }
+  });
+  return Array.from(values).sort((a, b) => a.localeCompare(b, 'ru'));
+}
+
+function ensureCardState(){
+  const knownIds = new Set(allCards.map(c => c.id));
+  Object.keys(db.cards || {}).forEach(id => {
+    if (!knownIds.has(id)) delete db.cards[id];
+  });
+  for (const c of allCards){
+    if(!db.cards[c.id]){
+      db.cards[c.id] = {n:0, ef:2.5, interval:0, due:today(), lapses:0, last:null, deck:c.section, lastGrade:2};
+    } else {
+      db.cards[c.id].deck = c.section;
+    }
+  }
+  save();
+}
+
+async function rebuildCardsFromEditorData(){
+  const source = window.__cardEditorCards || [];
+  const withHtml = await Promise.all(source.map(async (card) => {
+    const clone = cloneCardData(card);
+    let html = clone.html || clone.raw_html || '';
+    if (!html && clone.mdFile){
+      try {
+        const mdResp = await fetch(clone.mdFile);
+        if (mdResp.ok){
+          const mdText = await mdResp.text();
+          html = (window.marked ? marked.parse(mdText) : mdText.replace(/\n/g,'<br>'));
+        }
+      } catch(e) {
+        console.warn('MD fetch failed:', e);
+      }
+    }
+    clone.html = html || '';
+    return clone;
+  }));
+  const {map: titleToH2, h2List} = await buildTitleToH2Map();
+  window.__MAIN_H2 = h2List;
+  allCards = withHtml.map(c => {
+    const title = c.title || 'Без названия';
+    const html = c.html || '';
+    const { description, featuresHTML, compositionHTML, answerHTML } = extractQA(html);
+    const menu = c.menu || 'Основное меню';
+    const section = c.section || titleToH2[title] || '—';
+    return {
+      id: c.id || idFromTitle(title),
+      title,
+      html,
+      imageSrc: c.image?.src || c.imageSrc || null,
+      menu,
+      section,
+      desc: description,
+      feat: featuresHTML,
+      comp: compositionHTML,
+      answer: answerHTML
+    };
+  });
+  ensureCardState();
+}
+
+const __cardEditorUtils = window.__cardEditorUtils || {};
+Object.assign(__cardEditorUtils, {
+  createEmptyCard,
+  normalizeCardData,
+  serializeCardData,
+  getValueByPath,
+  setValueByPath,
+  collectOptionValues,
+  cloneCardData,
+  rebuildCardsFromEditorData
+});
+window.__cardEditorUtils = __cardEditorUtils;
+
+
 async function buildTitleToH2Map(){
   // Только для Основного меню
   try{
@@ -537,53 +772,13 @@ async function buildTitleToH2Map(){
 }
 
 async function loadCards(){
-  // 1) грузим JSON
+  
   const resp = await fetch(CARDS_URL);
   if(!resp.ok) throw new Error('Не удалось загрузить cards.json');
-  const raw = await resp.json();
-
-  // 2) если есть mdFile — читаем .md и превращаем в HTML
-  const withHtml = await Promise.all(raw.map(async (c) => {
-    let html = c.html || '';
-    if (!html && c.mdFile) {
-      const md = await fetch(c.mdFile).then(r => {
-        if(!r.ok) throw new Error('Не найден md: ' + c.mdFile);
-        return r.text();
-      });
-      html = (window.marked ? marked.parse(md) : md.replace(/\n/g,'<br>'));
-    }
-    return { ...c, html };
-  }));
-
-  // 3) карта h2 из основного html (как раньше)
-  const {map: titleToH2, h2List} = await buildTitleToH2Map();
-  window.__MAIN_H2 = h2List;
-
-  // 4) разбор блоков
-  allCards = withHtml.map(c=>{
-    const { description, featuresHTML, compositionHTML, answerHTML } = extractQA(c.html);
-    const title = c.title || 'Без названия';
-    const menu = 'Основное меню';
-    const section = titleToH2[title] || c.section || '—';
-    return {
-      id: c.id || idFromTitle(title),
-      title,
-      html: c.html || '',
-      imageSrc: c.imageSrc || null,
-      menu,
-      section,
-      desc: description,
-      feat: featuresHTML,
-      comp: compositionHTML,
-      answer: answerHTML
-    };
-  });
-
-  // 5) инициализация прогресса
-  for(const c of allCards){
-    if(!db.cards[c.id]) db.cards[c.id] = {n:0, ef:2.5, interval:0, due:today(), lapses:0, last:null, deck:c.section, lastGrade:2};
-  }
-  save();
+  const raw = await resp.json().catch(()=>[]);
+  const list = Array.isArray(raw) ? raw : (Array.isArray(raw?.cards) ? raw.cards : []);
+  window.__cardEditorCards = list.map(normalizeCardData);
+  await rebuildCardsFromEditorData();
 }
 
 
@@ -762,10 +957,7 @@ function wire(){
     if(!confirm('Сбросить прогресс и начать заново?')) return;
     // Очищаем данные по каждой карточке
     db.cards = {};
-    for(const c of allCards){
-      db.cards[c.id] = {n:0, ef:2.5, interval:0, due:today(), lapses:0, last:null, deck:c.section, lastGrade:2};
-    }
-    save();
+    ensureCardState();
     // Снова показываем кнопку запуска и скрываем сцену
     trainingStarted = false;
     const stageEl = document.getElementById('stage');
@@ -968,6 +1160,8 @@ function wire(){
   }
 })();
 </script>
+
+<script type="module" src="./cards-modal.js"></script>
 
 <script>
 // === Auto-fill imageSrc for cards without images using GitHub images dir ===
