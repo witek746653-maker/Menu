@@ -1,0 +1,25 @@
+[
+  {
+    "id": "id_блюдо",
+    "title": "Блюдо",
+    "menu": "Авторское",
+    "section": "Салаты",
+    "description": "вцЙВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВВ",
+    "contains": "ЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙ",
+    "fitures": "ЙЙЙЙЙЙ",
+    "allergens": [
+      "WWWWDFDF",
+      "STHTYRHY",
+      "KKJGJMGB",
+      "KLGIKGTKTH",
+      "GKSGBJBMKMЕКРНКР",
+      "МЕД",
+      "ОРЕХИ",
+      "КУНЖУТ"
+    ],
+    "image": {
+      "src": "Akvarium_Morskoy_yozh_s_sousom.jpg"
+    },
+    "imageSrc": "Akvarium_Morskoy_yozh_s_sousom.jpg"
+  }
+]
