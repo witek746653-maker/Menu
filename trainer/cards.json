@@ -1,0 +1,21 @@
+[
+  {
+    "id": "id_креветка",
+    "title": "креветка",
+    "menu": "менююююю",
+    "section": "горячие",
+    "description": "ааааааааааааааааааааааааа",
+    "contains": "ааавввввввввввввввввввввввввввввв",
+    "fitures": "ыыыыыыыыыыыыыыыыыыыыыыыыы",
+    "allergens": [
+      "ыыыыыыыы",
+      "пые",
+      "прльыеьпщо",
+      "бдрн"
+    ],
+    "image": {
+      "src": "Deserty_Anna_Pavlova.jpg"
+    },
+    "imageSrc": "Deserty_Anna_Pavlova.jpg"
+  }
+]
