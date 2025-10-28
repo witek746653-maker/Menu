@@ -259,7 +259,7 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <script>
-  window.CARDS_URL = '../cards.json';
+  window.CARDS_URL = './cards.json';
   (async () => {
     try {
       if (typeof window.loadCards === 'function') {
@@ -369,7 +369,7 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
   </template>
 
 <script>
-const CARDS_URL = 'cards.json'; // должен лежать рядом
+const CARDS_URL = './cards.json'; // должен лежать рядом
 const MAIN_HTML = '../menus/osnovnoe-menu.html'; // экспорт Notion для разделов h2
 const STORAGE_KEY = 'sdlv_srs_v3';
 
