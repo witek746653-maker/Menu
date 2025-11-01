@@ -350,7 +350,10 @@ function initCardEditor(){
       if (key === 'title') titleControl = control;
       if (key === 'id') idControl = control;
       if (field.type === 'multi' && field.optionsPath){
-        const options = collectOptionValues(window.__cardEditorCards || [], field.optionsPath || []);
+        const pathArr = Array.isArray(field.optionsPath)
+          ? field.optionsPath
+          : String(field.optionsPath).split('.').filter(Boolean);
+        const options = collectOptionValues(window.__cardEditorCards || [], pathArr);
         options.forEach(opt => addOption(control.input, opt, false));
       }
     });
@@ -496,7 +499,9 @@ function initCardEditor(){
       throw new Error(`Не удалось загрузить cards.json: ${text || res.statusText}`);
     }
     const json = await res.json();
-    const decoded = atob(json.content.replace(/\n/g,''));
+    const decoded = new TextDecoder('utf-8').decode(
+      Uint8Array.from(atob(json.content.replace(/\n/g, '')), c => c.charCodeAt(0))
+    );
     let data = JSON.parse(decoded);
 
     // на вход ожидается массив
