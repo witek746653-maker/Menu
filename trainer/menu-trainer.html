@@ -255,26 +255,14 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
     /* Make buttons more compact */
     padding: 6px 10px !important;
   }
+  .allergens{display:grid;gap:6px}
+  .allergens-title{font-weight:700;color:var(--accent-3);font-size:13px}
+  .allergens-list{display:flex;flex-wrap:wrap;gap:8px 10px}
+  .allergen{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid var(--border);
+    border-radius:999px;background:#fffdf7;box-shadow:var(--shadow-md);font-size:13px;color:var(--text)}
+
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-  <script>
-  window.CARDS_URL = './cards.json';
-  (async () => {
-    try {
-      if (typeof window.loadCards === 'function') {
-        await window.loadCards();
-      } else {
-        const r = await fetch(window.CARDS_URL);
-        window.allCards = await r.json();
-      }
-      // если у тебя есть отрисовка
-      window.render?.();
-    } catch (e) {
-      console.error('Не загрузил карточки:', e);
-    }
-  })();
-</script>
 
 </head>
 <body>
@@ -369,6 +357,23 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
   </template>
 
 <script>
+
+const ALLERGEN_EMOJI = {
+  "глютен":"🌾","лактоза":"🥛","орехи":"🥜","арахис":"🥜","соевые продукты":"🌱","яйца":"🍳",
+  "рыба":"🐟","моллюски":"🦪","ракообразные":"🦐","устрицы":"🦪","цитрус":"🍋","лук":"🧅","чеснок":"🧄",
+  "перец":"🌶️","кинза":"🌿","сельдерей":"🥬","горчица":"🌰","кунжут":"⚪","мед":"🍯","алкоголь":"🍷","свинина":"🐖",
+  "без мяса":"🚫🥩","сырой продукт":"🧊","эстрагон":"🪴","зелень":"🌱","трюфель":"⚫",
+  "вегетарианское":"🥦","веганское":"🍀","постное":"🍃"
+};
+
+function normalizeAllergensEmoji(arr){
+  if (!Array.isArray(arr)) return [];
+  return arr
+    .map(x => typeof x === 'string' ? x.trim() : (x?.name || '').trim())
+    .filter(Boolean)
+    .map(name => ({ name, emoji: ALLERGEN_EMOJI[name.toLowerCase()] || "🔸" }));
+}
+
 const CARDS_URL = './cards.json'; // должен лежать рядом
 const MAIN_HTML = '../menus/osnovnoe-menu.html'; // экспорт Notion для разделов h2
 const STORAGE_KEY = 'sdlv_srs_v3';
@@ -576,7 +581,8 @@ async function loadCards(){
       desc: description,
       feat: featuresHTML,
       comp: compositionHTML,
-      answer: answerHTML
+      answer: answerHTML,
+      allergens: Array.isArray(c.allergens) ? c.allergens : []
     };
   });
 
@@ -696,6 +702,28 @@ function renderCard(c){
   } else if(profile.trainingType === 'feat'){
     // Особенности
     answerDiv.innerHTML = c.feat || '<em>Нет особенностей</em>';
+  // ← ДОБАВЬ: чипы аллергенов только в режиме "Особенности"
+  const allergens = normalizeAllergensEmoji(c.allergens || []);
+  if (allergens.length){
+    const wrap = document.createElement('div');
+    wrap.className = 'allergens';
+    const title = document.createElement('div');
+    title.className = 'allergens-title';
+    title.textContent = 'Аллергены:';
+    const list = document.createElement('div');
+    list.className = 'allergens-list';
+    allergens.forEach(({name, emoji}) => {
+      const item = document.createElement('div');
+      item.className = 'allergen';
+      const mark = document.createElement('span'); mark.textContent = emoji;
+      const label = document.createElement('span'); label.textContent = name;
+      item.append(mark, label);
+      list.appendChild(item);
+    });
+    wrap.append(title, list);
+    // ключевое: внутрь ответа, а не в .body
+    answerDiv.appendChild(wrap);
+  }
   } else if(profile.trainingType === 'comp'){
     // Состав
     answerDiv.innerHTML = c.comp || '<em>Нет информации о составе</em>';
@@ -725,7 +753,7 @@ function renderCard(c){
   if(localStorage.getItem('sdlv_autoFlip') === '1'){
     setTimeout(() => details.open = true, 200);
   }
-
+  
   node.querySelectorAll('.actions button').forEach(btn=>{
     btn.addEventListener('click', ()=>{ schedule(c.id, btn.dataset.grade); render(); });
   });
