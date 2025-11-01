@@ -5,7 +5,7 @@
     "section": "Аквариум",
     "section_icon": {
       "type": "icon",
-      "src": "./icons/fishbowl_icon.png",
+      "src": "/icons/fishbowl_icon.png",
       "alt": "akvarium_icon"
     },
     "title": "Устрица “Императорская” (Залив Петра Великого. Владивосток.)",
