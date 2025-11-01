@@ -479,6 +479,82 @@ function initCardEditor(){
     return btoa(unescape(encodeURIComponent(text)));
   }
 
+    // 1) ДОБАВЬ это рядом с saveToGitHub (в той же области видимости)
+  async function loadCards(){
+    const owner = (ownerInput?.value || DEFAULT_OWNER).trim() || DEFAULT_OWNER;
+    const repo = (repoInput?.value || DEFAULT_REPO).trim() || DEFAULT_REPO;
+    const branch = (branchInput?.value || DEFAULT_BRANCH).trim() || DEFAULT_BRANCH;
+    const token = (tokenInput?.value || '').trim();
+    const baseHeaders = { 'Accept': 'application/vnd.github+json' };
+    if (token) baseHeaders['Authorization'] = `Bearer ${token}`;
+
+    // ВАЖНО: проверь путь. Сейчас стоит trainer/cards.json
+    const apiUrl = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${FILE_PATH}?ref=${encodeURIComponent(branch)}`;
+    const res = await fetch(apiUrl, { headers: baseHeaders });
+    if (!res.ok){
+      const text = await res.text();
+      throw new Error(`Не удалось загрузить cards.json: ${text || res.statusText}`);
+    }
+    const json = await res.json();
+    const decoded = atob(json.content.replace(/\n/g,''));
+    let data = JSON.parse(decoded);
+
+    // на вход ожидается массив
+    if (!Array.isArray(data)) throw new Error('cards.json должен быть массивом объектов');
+
+    // нормализуем через утилиту, если есть
+    const norm = (window.__cardEditorUtils?.normalizeCardData) || (x => x);
+    window.__cardEditorCards = data.map(norm);
+    return window.__cardEditorCards;
+  }
+
+  // 2) ПРАВКА openModal: гарантируем загрузку и первичную инициализацию списка
+  async function openModal(preferredId){
+    if (isOpen) return;
+    try {
+      if (!Array.isArray(window.__cardEditorCards) || window.__cardEditorCards.length === 0){
+        await loadCards();
+      }
+    } catch(e){
+      console.error('Card load error', e);
+      setStatus('Не удалось загрузить cards.json', 'error');
+      return;
+    }
+    renderFields();
+    loadSettings();
+
+    // если уже выбран режим Редактировать — сразу наполняем селект
+    if (document.getElementById('cardEditorMode')?.value === 'edit') {
+      populateSelect(preferredId);
+    } else {
+      loadCardById('__new__');
+    }
+
+    backdrop.classList.add('show');
+    backdrop.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    isOpen = true;
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  // 3) ПРАВКА обработчика смены режима: сначала грузим, потом populateSelect
+  if (modeSelect) {
+    modeSelect.addEventListener('change', async () => {
+      const mode = modeSelect.value;
+      if (mode === 'edit') {
+        selectRow.style.display = '';
+        if (!Array.isArray(window.__cardEditorCards) || window.__cardEditorCards.length === 0){
+          try { await loadCards(); } catch(e){ setStatus(e.message, 'error'); return; }
+        }
+        populateSelect();
+      } else {
+        selectRow.style.display = 'none';
+        loadCardById('__new__');
+      }
+    });
+  }
+
+
   async function saveToGitHub(cards, focusId){
     if (!tokenInput) throw new Error('Нет поля для токена');
     const owner = (ownerInput?.value || DEFAULT_OWNER).trim() || DEFAULT_OWNER;
