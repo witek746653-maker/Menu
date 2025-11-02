@@ -275,7 +275,7 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
         <div class="row">
           <label for="menuSelect">Меню</label>
           <select id="menuSelect">
-            <option value="" disabled selected>— выбрать —</option>
+            <option value="" disabled selected>— выбрать меню —</option>
             <option>Основное меню</option>
             <option>Авторские завтраки</option>
             <option>Сезонное меню</option>
@@ -287,9 +287,9 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
           </select>
         </div>
         <div class="row" id="sectionRow" style="display:none">
-          <label for="sectionSelect">Раздел (h2)</label>
+          <label for="sectionSelect">Раздел</label>
           <select id="sectionSelect">
-            <option value="" disabled selected>— выбрать —</option>
+            <option value="" disabled selected>— выбрать раздел —</option>
           </select>
         </div>
         <!-- Новый выбор направления тренировки -->
@@ -297,12 +297,12 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
           <label for="typeSelect">Направление</label>
           <select id="typeSelect">
             <option value="desc" selected>Красочное описание</option>
-            <option value="feat">Особенности</option>
+            <option value="feat">Особенности и аллергены</option>
             <option value="comp">Состав</option>
           </select>
         </div>
         <div class="row">
-          <button id="startBtn" class="primary" disabled>Начать тренировки</button>
+          <button id="startBtn" class="primary" disabled>Начать тренировку</button>
           <span class="muted" id="startHint"></span>
         </div>
       </div>
@@ -360,10 +360,10 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
 
 const ALLERGEN_EMOJI = {
   "глютен":"🌾","лактоза":"🥛","орехи":"🥜","арахис":"🥜","соевые продукты":"🌱","яйца":"🍳",
-  "рыба":"🐟","моллюски":"🦪","ракообразные":"🦐","устрицы":"🦪","цитрус":"🍋","лук":"🧅","чеснок":"🧄",
-  "перец":"🌶️","кинза":"🌿","сельдерей":"🥬","горчица":"🌰","кунжут":"⚪","мед":"🍯","алкоголь":"🍷","свинина":"🐖",
+  "рыба":"🐟","моллюски":"🦪","ракообразные":"🦐","устрицы":"🦪","цитрусы":"🍋","лук":"🧅","чеснок":"🧄",
+  "перец":"🌶️","кинза":"🌿","сельдерей":"🥬","горчица":"🌰","кунжут":"⚪","мёд":"🍯","алкоголь":"🍷","свинина":"🐖",
   "без мяса":"🚫🥩","сырой продукт":"🧊","эстрагон":"🪴","зелень":"🌱","трюфель":"⚫",
-  "вегетарианское":"🥦","веганское":"🍀","постное":"🍃"
+  "вегетарианское":"🥦","веганское":"🍀","постное":"🍃", "грибы":"🍄", "medium":"🔥", "Минимальный вес 250 г.": "⚖️", "На хоспере приготовить нельзя.":"🚫"
 };
 
 function normalizeAllergensEmoji(arr){
@@ -723,7 +723,7 @@ function renderCard(c){
     wrap.className = 'allergens';
     const title = document.createElement('div');
     title.className = 'allergens-title';
-    title.textContent = 'Аллергены:';
+    title.textContent = 'Обратить внимание на:';
     const list = document.createElement('div');
     list.className = 'allergens-list';
     allergens.forEach(({name, emoji}) => {
@@ -797,7 +797,7 @@ function wire(){
 
   // Кнопка «Закончить» завершает тренировку и возвращает пользователя на индексную страницу
   btnFinish.addEventListener('click', () => {
-    window.location.href = 'index.html';
+    window.location.href = '../index.html';
   });
 
   // Кнопка «Начать заново» сбрасывает весь прогресс и возвращает состояние до старта тренировки

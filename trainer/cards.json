@@ -136,8 +136,8 @@
     },
     "title": "Морской ёж с соусом Понзу, муссом из авокадо и перепелиным желтком",
     "description": "Дикий морской ёж с пряным соусом Понзу, нежным муссом из авокадо и перепелиным желтком.",
-    "contains": "<div class=\"column\" id=\"23233974-4d17-8070-b917-e4a3f2504ea7\" style=\"width:33.333333333333336%\"><ol class=\"numbered-list\" id=\"23233974-4d17-80d4-b6e1-df6297aa98e9\" start=\"1\" type=\"1\"><li>Морской Еж.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-808b-a689-fd40813a2ba2\" start=\"2\" type=\"1\"><li>Соус Понзу.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8040-91ab-e765a19e6168\" start=\"3\" type=\"1\"><li>Мусс из авокадо.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-806f-9651-ed108ece4324\" start=\"4\" type=\"1\"><li>Желток перепелиного яйца.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-800b-a05d-d351aff89f7e\" start=\"5\" type=\"1\"><li><strong>Ростки имбиря.</strong></li></ol></div><div class=\"column\" id=\"23233974-4d17-802d-978f-d04d50d0ed3f\" style=\"width:33.333333333333336%\"><p class=\"\" id=\"23233974-4d17-8043-a1af-fa88b180adba\"><strong>Соус Понзу:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-80be-9e2b-c8c65c47ef9e\" start=\"1\" type=\"1\"><li>Соевый соус, мирин, <strong>соус сладкий чили.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80b4-bd22-f23ad570b9e6\" start=\"2\" type=\"1\"><li><strong>Корень имбиря, перец чили, чеснок.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80ad-8881-edf0f7b0787e\" start=\"3\" type=\"1\"><li><strong>Лемонграсс, кинза,</strong> мята.</li></ol></div><div class=\"column\" id=\"23233974-4d17-8050-be8c-c45211034697\" style=\"width:33.33333333333333%\"><p class=\"\" id=\"23233974-4d17-80a6-8be5-dd8daac95638\"><strong>Мусс из авокадо:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-80c9-b77c-d7498463d5da\" start=\"1\" type=\"1\"><li>Авокадо, огурцы малосольные.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8053-9a8f-d8c4a60ad402\" start=\"2\" type=\"1\"><li><strong>Фреш лайма, </strong>подсолнечное масло.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80ae-933e-f5f4e2c9e5ba\" start=\"3\" type=\"1\"><li><strong>Чеснок, перец чили.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-808d-9ff4-c3517d7a2510\" start=\"4\" type=\"1\"><li><strong>Кинза,</strong> мята.</li></ol></div>",
-    "allergens": [],
+    "contains": "1. Морской еж.\n2. Соус понзу.\n3. Мусс из авокадо.\n4. Желток перепелиного яйца.\n5. **Ростки имбиря.**\n\n**Соус понзу:**\n1. Соевый соус, мирин, **соус сладкий чили.**\n2. **Корень имбиря, перец чили, чеснок.**\n3. **Лемонграсс, кинза,** мята.\n\n**Мусс из авокадо:**\n1. Авокадо, огурцы малосольные.\n2. **Фреш лайма,** подсолнечное масло.\n3. **Чеснок, перец чили.**\n4. **Кинза,** мята.",
+    "allergens": ["перец", "кинза", "чеснок", "цитрусы", "сырой продукт", "зелень"],
     "tags": [],
     "pairings": {
       "wines": [],
@@ -161,7 +161,7 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<div class=\"column-list\" id=\"23233974-4d17-8031-b7d6-cfe1be09920f\"><div class=\"column\" id=\"23233974-4d17-807a-b257-cd530382be13\" style=\"width:100%\"><p class=\"\" id=\"23233974-4d17-8094-9bdb-ec837d3fd95b\"><strong>Дикий морской ёж с пряным соусом Понзу, нежным муссом из авокадо и перепелиным желтком.</strong></p><hr id=\"23233974-4d17-8063-b950-dbec2e495ce0\"/><p class=\"\" id=\"23233974-4d17-8019-9088-d89454a44dd5\"><strong>Особенности:</strong> 🌶️ перец | <img alt=\"kinza_icon\" src=\"../icons/parsley_icon.png\" style=\"width:1em;height:1em\"/> кинза | 🍋 цитрусы | <img alt=\"raw_food_icon\" src=\"../icons/rawfood_icon.png\" style=\"width:1em;height:1em\"/> сырой | <img alt=\"garlick_icon\" src=\"../icons/garlic_icon.png\" style=\"width:1em;height:1em\"/> чеснок | <img alt=\"greens_icon\" src=\"../icons/herbs_icon.png\" style=\"width:1em;height:1em\"/> зелень</p><figure class=\"image\" id=\"23233974-4d17-8030-89d2-e1b6c6c6498d\"><a href=\"image.png\"><img src=\"../images/image.png\" style=\"width:1px\"/></a></figure><p class=\"\" id=\"23233974-4d17-8003-a892-cac45e067b72\">Проговариваем, что по нашей авторской подаче, все ингредиенты (соуса, желток и имбирь) идут внутрь ежа. <strong>Можно сделать отдельно.</strong></p><p class=\"\" id=\"23233974-4d17-8000-93d7-f6f4eb77e845\">Проросток имбиря рекомендуется съедать после ежа, чтобы обновить рецепторы.</p><p class=\"\" id=\"23233974-4d17-809d-b62a-f0712d81d997\">Соус Понзу, а также мусс из авокадо содержат <strong>перец чили и чеснок.</strong></p><p class=\"\" id=\"23233974-4d17-801c-bc55-d809bf0f2100\"><strong>Морской Ёж - г. Мурманск.</strong></p></div><div class=\"column\" id=\"23233974-4d17-80c4-a8c1-df4bbeb3d36a\" style=\"width:100%\"><figure class=\"image\" id=\"23233974-4d17-80e3-bded-d8bdaf945080\"><a href=\"Akvarium_Morskoy_yozh_s_sousom.jpg\"><img src=\"../images/Akvarium_Morskoy_yozh_s_sousom.jpg\" style=\"width:431.4921875px\"/></a><figcaption>Морской ёж с соусом Понзу, муссом из авокадо и перепелиным желтком<strong> </strong></figcaption></figure></div></div><hr id=\"23233974-4d17-803f-bb65-e19dad30cd31\"/><p class=\"\" id=\"23233974-4d17-803c-8abc-f060aea2dd41\"><strong>Состав:</strong></p><div class=\"column-list\" id=\"23233974-4d17-8013-a6c8-ebc513475772\"><div class=\"column\" id=\"23233974-4d17-8070-b917-e4a3f2504ea7\" style=\"width:33.333333333333336%\"><ol class=\"numbered-list\" id=\"23233974-4d17-80d4-b6e1-df6297aa98e9\" start=\"1\" type=\"1\"><li>Морской Еж.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-808b-a689-fd40813a2ba2\" start=\"2\" type=\"1\"><li>Соус Понзу.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8040-91ab-e765a19e6168\" start=\"3\" type=\"1\"><li>Мусс из авокадо.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-806f-9651-ed108ece4324\" start=\"4\" type=\"1\"><li>Желток перепелиного яйца.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-800b-a05d-d351aff89f7e\" start=\"5\" type=\"1\"><li><strong>Ростки имбиря.</strong></li></ol></div><div class=\"column\" id=\"23233974-4d17-802d-978f-d04d50d0ed3f\" style=\"width:33.333333333333336%\"><p class=\"\" id=\"23233974-4d17-8043-a1af-fa88b180adba\"><strong>Соус Понзу:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-80be-9e2b-c8c65c47ef9e\" start=\"1\" type=\"1\"><li>Соевый соус, мирин, <strong>соус сладкий чили.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80b4-bd22-f23ad570b9e6\" start=\"2\" type=\"1\"><li><strong>Корень имбиря, перец чили, чеснок.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80ad-8881-edf0f7b0787e\" start=\"3\" type=\"1\"><li><strong>Лемонграсс, кинза,</strong> мята.</li></ol></div><div class=\"column\" id=\"23233974-4d17-8050-be8c-c45211034697\" style=\"width:33.33333333333333%\"><p class=\"\" id=\"23233974-4d17-80a6-8be5-dd8daac95638\"><strong>Мусс из авокадо:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-80c9-b77c-d7498463d5da\" start=\"1\" type=\"1\"><li>Авокадо, огурцы малосольные.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8053-9a8f-d8c4a60ad402\" start=\"2\" type=\"1\"><li><strong>Фреш лайма, </strong>подсолнечное масло.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80ae-933e-f5f4e2c9e5ba\" start=\"3\" type=\"1\"><li><strong>Чеснок, перец чили.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-808d-9ff4-c3517d7a2510\" start=\"4\" type=\"1\"><li><strong>Кинза,</strong> мята.</li></ol></div></div><hr id=\"23233974-4d17-80ef-bbfa-da43716a040b\"/><figure class=\"block-color-teal_background callout\" id=\"25633974-4d17-802b-8531-f889bc8ca227\" style=\"white-space:pre-wrap;display:flex\"><div style=\"font-size:1.5em\"><span class=\"icon\">💡</span></div><div style=\"width:100%\"><p class=\"\" id=\"25633974-4d17-80d1-8bb4-d44d7870aeca\"><strong>Морской ёж</strong> — это экзотический деликатес, популярный в средиземноморской и азиатской кухнях, особенно в Японии и Италии, который употребляют в пищу благодаря его нежной, кремовой икре с солёным вкусом моря, напоминающим орехи и сливочный крем. В пищу используют не всё тело животного, а съедобные органы, икру и молоки, которые обладают<strong> </strong>удивительным набором самых полезных минералов и витаминов, среди которых: йод, полиненасыщенные жирные аминокислоты, представленные Омегой- 3 и - 6, лецитин, железо, витамины А, В и Е.</p></div></figure><hr id=\"25633974-4d17-80a0-863f-c5b268bc3749\"/>",
-    "features": ""
+    "features": "Проговариваем, что по нашей авторской подаче все ингредиенты (соус, желток и имбирь) идут внутрь ежа. **Можно сделать отдельно.**\n\nПроросток имбиря рекомендуется съедать после ежа, чтобы обновить рецепторы.\n\nСоус понзу, а также мусс из авокадо содержат перец чили и чеснок.\n\n**Морской ёж — г. Мурманск.**"
   },
   {
     "id": "0005",
@@ -256,7 +256,7 @@
       "alt": ""
     },
     "title": "Брускетта с лесными грибами в сливочном соусе",
-    "description": "",
+    "description": "Ароматные лесные грибы в сливочном соусе на ломтике хрустящей чиабатты",
     "contains": "<ol class=\"numbered-list\" id=\"23233974-4d17-8042-8710-ca5825790337\" start=\"1\" type=\"1\"><li>Чиабатту обжаривают на саламандре.</li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-8045-8083-e61555f1aebe\" start=\"2\" type=\"1\"><li>На хлеб выкладываем жареные шампиньоны в <strong>сливках </strong>с добавлением тимьяна, а сверху жареные белые грибы/</li></ol>",
     "allergens": [
       "без мяса",
@@ -270,7 +270,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "../images/Kholodnye_zakuski_Brusketta_s_lesnymi_gribami.jpg",
       "alt": "Брускетта с лесными грибами в сливочном соусе"
     },
     "i18n": {
@@ -385,14 +385,17 @@
     },
     "title": "Тартар из премиальной говяжьей вырезки с жаренным картофелем",
     "description": "Тартар",
-    "contains": "<div class=\"column\" id=\"23233974-4d17-80d6-91ed-c891c5a38847\" style=\"width:50%\"><ol class=\"numbered-list\" id=\"23233974-4d17-8026-a762-da6e071206fa\" start=\"1\" type=\"1\"><li>Премиальная говяжья вырезка.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80c3-85f2-ed804fdf3a9a\" start=\"2\" type=\"1\"><li>Желток куриного яйца, горчица.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8085-9761-d33b3080f278\" start=\"3\" type=\"1\"><li>Оливковое масло.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-809a-9088-d0095e3c10ca\" start=\"4\" type=\"1\"><li>Кетчуп.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80d9-87a8-dc636dc7d791\" start=\"5\" type=\"1\"><li><strong>Ворчестер, табаско.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80a5-a5d2-e67d2825f2b5\" start=\"6\" type=\"1\"><li>Соль, перец (свежемолотый).</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-805d-8ed6-e3da0c193664\" start=\"7\" type=\"1\"><li>Каперсы, корнишоны.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80b2-a140-e2c98f06fc4a\" start=\"8\" type=\"1\"><li><strong>Лук шалот.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-806a-bddc-d77d0ab35f2e\" start=\"9\" type=\"1\"><li>Кинза, петрушка.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8093-99b4-dbd5be8c27c3\" start=\"10\" type=\"1\"><li>Картофель фри (отварной, а потом обжаренный во фритюре).</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8054-9c69-d58c3e0a70e5\" start=\"11\" type=\"1\"><li>Кунжут, розмарин (украшение).</li></ol></div><div class=\"column\" id=\"23233974-4d17-80a7-897c-c198d952a990\" style=\"width:50%\"><figure class=\"block-color-teal_background callout\" id=\"23233974-4d17-800a-a66f-c1039d6e0fc8\" style=\"white-space:pre-wrap;display:flex\"><div style=\"font-size:1.5em\"><span class=\"icon\">💡</span></div><div style=\"width:100%\"><p class=\"\" id=\"23233974-4d17-80f6-a53a-cf7b0268c30c\"><strong>Тартар </strong>- это блюдо французской кухни, которое может быть как из сырого мяса, так и из рыбы или овощей, порезанных на мелкие кубики. Чаще всего тартар ассоциируется с сырой говядиной, смешанной с различными ингредиентами, такими как лук, каперсы, маринованные огурцы, горчица, яичный желток и соусы. Подается с гренками, брускеттами, картофелем фри или в качестве дополнения к салатам. </p><p class=\"\" id=\"24f33974-4d17-8067-bade-c99e0bc77e29\">Мало кто знает, но тартар - это не только блюдо французской кухни (а также соус), но еще и <strong>способ нарезки продуктов,</strong> который подразумевает их измельчение на очень мелкие кубики, примерно 5х5 мм.</p></div></figure></div>",
-    "allergens": [
+    "contains": "1. Премиальная говяжья вырезка.\n2. Желток куриного яйца, горчица.\n3. Оливковое масло.\n4. Кетчуп.\n5. **Ворчестер, табаско.**\n6. Соль, перец (свежемолотый).\n7. Каперсы, корнишоны.\n8. **Лук шалот.**\n9. Кинза, петрушка.\n10. Картофель фри (отварной, затем обжаренный во фритюре).\n11. Кунжут, розмарин (украшение).\n\n",
+    "allergens": [ 
       "перец",
       "кинза",
-      "сырой",
+      "сырой продукт",
       "лук",
       "зелень",
-      "кунжут"
+      "кунжут",
+      "яйца",
+      "горчица",
+      "рыба", 
     ],
     "tags": [],
     "pairings": {
@@ -603,7 +606,7 @@
     },
     "title": "Карпаччо из креветки с кремом из баклажана, томатами и соусом манго-чиа",
     "description": "Нежное филе свежих королевских креветок в сочетании с кремом из баклажана, сегментами апельсина и ярким соусом манго-чиа.",
-    "contains": "<div class=\"column\" id=\"23233974-4d17-8017-97de-c0e6242a88db\" style=\"width:62.5%\"><ol class=\"numbered-list\" id=\"23233974-4d17-8062-b667-d5fd1b9cdcb1\" start=\"1\" type=\"1\"><li>В глубокую тарелку выкладываем крем из баклажанов (баклажаны, <strong>сливки</strong>).</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80ae-a0db-c47f898d230b\" start=\"2\" type=\"1\"><li>Сверху креветки (сырые, маринованные в оливковом масле, с солью и перцем). Слегка обжигаем горелкой и приправляем <strong>кунжутным маслом.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8084-9604-debf263d2603\" start=\"3\" type=\"1\"><li>Сверху томатное пюре (пюре из томатов, <strong>апельсиновый джем</strong>).</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8027-85d7-f00f2834989c\" start=\"4\" type=\"1\"><li>Далее сегменты<strong> обоженного апельсина</strong> и лук резанец.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-800a-b824-e5cfda369eb2\" start=\"5\" type=\"1\"><li>Края тарелки украшаем соусом манго-чиа.</li></ol><p class=\"\" id=\"26233974-4d17-80bf-83bc-e7da1588131f\">\n</p></div><div class=\"column\" id=\"23233974-4d17-807a-890f-de9a3bac9873\" style=\"width:37.49999999999999%\"><p class=\"\" id=\"23233974-4d17-80d3-9282-eb02abd06bc9\"><strong>Соус манго-чиа:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-80d3-9932-cee04c7aeb6d\" start=\"1\" type=\"1\"><li>Пюре манго, <strong>семена чиа.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-808f-bb6d-c12fb8d334b0\" start=\"2\" type=\"1\"><li>Устричный соус.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80a3-867a-fd1a8e4941bd\" start=\"3\" type=\"1\"><li><strong>Лук шалот.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-804b-83d3-d23ebae61995\" start=\"4\" type=\"1\"><li><strong>Мед.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80d8-95fb-d3b7452fc094\" start=\"5\" type=\"1\"><li><strong>Лайм.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8023-b022-eb323ddfa916\" start=\"6\" type=\"1\"><li><strong>Кинза.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8041-9b9a-e879409e07b0\" start=\"7\" type=\"1\"><li><strong>Чили перец.</strong></li></ol></div>",
+    "contains": "1. В глубокую тарелку выкладываем крем из баклажанов (баклажаны, **сливки**).\n2. Сверху креветки (сырые, маринованные в оливковом масле, с солью и перцем). Слегка обжигаем горелкой и приправляем **кунжутным маслом**.\n3. Сверху томатное пюре (пюре из томатов, **апельсиновый джем**).\n4. Далее сегменты **обоженного апельсина** и лук резанец.\n5. Края тарелки украшаем соусом манго-чиа.",
     "allergens": [
       "лактоза",
       "перец",
@@ -741,7 +744,7 @@
     },
     "title": "Томаты черри кимчи со сливочной страчателлой",
     "description": "Спелые томаты черри, томлённые в остром соусе кимчи, в сочетании со сливочной страчателлой, хрустящим картофельным пайем в сопровождении соуса унаги и зеленого масла.",
-    "contains": "<div class=\"column\" id=\"28c33974-4d17-803b-bd11-feebe6bf976c\" style=\"width:50%\"><ol class=\"numbered-list\" id=\"28633974-4d17-8089-b3d6-d50f4c0a77c5\" start=\"1\" type=\"1\"><li>Томаты черри (красные и желтые).</li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-802a-95d2-f2f14dbe213f\" start=\"2\" type=\"1\"><li>Сыр страчателла.</li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-8023-96b4-ef7be86ae90e\" start=\"3\" type=\"1\"><li>Картофельный пай.</li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-80fe-8658-e4b88e0bf11c\" start=\"4\" type=\"1\"><li><strong>Кунжут Ким Чи.</strong></li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-80e2-9559-c27c9e16bb5f\" start=\"5\" type=\"1\"><li><strong>Соус Ким Чи.</strong></li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-80e2-acee-fe90ebc5f182\" start=\"6\" type=\"1\"><li>Соус Унаги.</li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-8064-83f6-fae0a74fcc1d\" start=\"7\" type=\"1\"><li>Глазурь баклажан (сладкий чили, устричный соус).</li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-802f-840f-df5e57630aee\" start=\"8\" type=\"1\"><li>Лук резанец, микрозелень.</li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-8021-b599-d0cece008c20\" start=\"9\" type=\"1\"><li>Масло зеленое.</li></ol></div><div class=\"column\" id=\"28c33974-4d17-8067-9582-f3586a7509fc\" style=\"width:50%\"><p class=\"\" id=\"28c33974-4d17-803f-a108-cb5467dfbe0a\"><strong>Соус Ким Чи:</strong></p><ol class=\"numbered-list\" id=\"28c33974-4d17-8020-ae83-cd121c98f185\" start=\"1\" type=\"1\"><li><strong>Паста Ким Чи.</strong></li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-80ab-bb57-f192f0011620\" start=\"2\" type=\"1\"><li><strong>Фреш апельсиновый.</strong></li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-8000-84ec-d70975c307dd\" start=\"3\" type=\"1\"><li><strong>Бульон куриный.</strong></li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-80c5-b1ff-c45d15df8692\" start=\"4\" type=\"1\"><li>Уксус рисовый Мицукан.</li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-8076-bc81-e5a79995f098\" start=\"5\" type=\"1\"><li>Соус соевый.</li></ol><ol class=\"numbered-list\" id=\"28c33974-4d17-8067-8d66-c7845c8d4be9\" start=\"6\" type=\"1\"><li>Сахар.</li></ol></div>",
+    "contains": "1. Томаты черри (красные и жёлтые).\n2. Сыр страчателла.\n3. Картофельный пай.\n4. **Кунжут Ким Чи.**\n5. **Соус Ким Чи.**\n6. Соус Унаги.\n7. Глазурь баклажан (сладкий чили, устричный соус).\n8. Лук резанец, микрозелень.\n9. Масло зелёное.\n\n**Соус Ким Чи:**\n1. **Паста Ким Чи.**\n2. **Фреш апельсиновый.**\n3. **Бульон куриный.**\n4. Уксус рисовый Мицукан.\n5. Соус соевый.\n6. Сахар.",
     "allergens": [
       "лактоза",
       "цитрусы",
@@ -872,7 +875,7 @@
     },
     "title": "Запеченные мидии со шпинатом под сырно-трюфельным фондю",
     "description": "Запеченные мидии с томленым шпинатом под сырно-трюфельным фондю.",
-    "contains": "<div class=\"column\" id=\"23233974-4d17-802a-83fb-f790b0d360fd\" style=\"width:37.5%\"><ol class=\"numbered-list\" id=\"23233974-4d17-80bc-9037-e7b50c255f94\" start=\"1\" type=\"1\"><li>Бланшируем (ошпариваем) мидии.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-801a-8298-e99c90ccaff3\" start=\"2\" type=\"1\"><li>Выкладываем (в мидии) томленый шпинат с луком шалот и чесноком.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-807d-b9be-e6dec598299f\" start=\"3\" type=\"1\"><li>Выкладываем фондю.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80a5-a481-c1dc4e1b9b99\" start=\"4\" type=\"1\"><li>Запекаем под саламандром.</li></ol><p class=\"\" id=\"23233974-4d17-80c1-b7bc-edc57831d4c0\">\n</p></div><div class=\"column\" id=\"23233974-4d17-80e8-ac4c-e9694399d46e\" style=\"width:33.33333333333333%\"><p class=\"\" id=\"23233974-4d17-80ec-bfb6-e10f28abf404\"><strong>Фондю: </strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-806d-a16b-d3567c334e9b\" start=\"1\" type=\"1\"><li>Грана падано. </li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8089-80ca-ccc3689efab1\" start=\"2\" type=\"1\"><li><strong>Сливки.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80cd-b8d5-ec169114f8fb\" start=\"3\" type=\"1\"><li>Желток. </li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80c5-88b8-d519e5745224\" start=\"4\" type=\"1\"><li><strong>Паста трюфельная, масло трюфельное.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80f6-9f19-ce2e72fa4c5a\" start=\"5\" type=\"1\"><li> Крахмал.</li></ol></div><div class=\"column\" id=\"23233974-4d17-8038-a2c4-eb175e52586a\" style=\"width:29.166666666666668%\"><p class=\"\" id=\"23233974-4d17-80f5-af98-dec3853b2474\"><strong>Томленый шпинат:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-805b-9c1f-fb83c852f2bb\" start=\"1\" type=\"1\"><li><strong>Шпинат.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-804b-bd33-cde63b1c063a\" start=\"2\" type=\"1\"><li><strong>Лук шалот, чеснок.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8014-8681-e579cb3891ca\" start=\"3\" type=\"1\"><li>Оливковое масло.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80b0-9a5d-e8593ec30dd9\" start=\"4\" type=\"1\"><li><strong>Вино белое.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80c0-bca6-db99bbf1a742\" start=\"5\" type=\"1\"><li>Тимьян.</li></ol></div>",
+    "contains": "1. Бланшируем (ошпариваем) мидии.\n2. Выкладываем в мидии томлёный шпинат с луком шалот и чесноком.\n3. Выкладываем фондю.\n4. Запекаем под саламандром.\n\n**Фондю:**\n1. Грана Падано.\n2. **Сливки.**\n3. Желток.\n4. **Паста трюфельная, масло трюфельное.**\n5. Крахмал.\n\n**Томлёный шпинат:**\n1. **Шпинат.**\n2. **Лук шалот, чеснок.**\n3. Оливковое масло.\n4. **Вино белое.**\n5. Тимьян.",
     "allergens": [
       "лактоза",
       "чеснок",
@@ -1044,14 +1047,15 @@
     },
     "title": "Баклажан юдзу",
     "description": "Баклажан, глазированный соусом свит чили с копченым угрем Унаги, в сочетании со спелыми томатами, сливочной страчателлой и кунжутом юдзу.",
-    "contains": "<div class=\"column\" id=\"23233974-4d17-8037-834b-cecd53872471\" style=\"width:68.75%\"><ol class=\"numbered-list\" id=\"23233974-4d17-80fd-aa1e-fab05bf4f45f\" start=\"1\" type=\"1\"><li>Угорь в соусе унаги подготавливается под саламандром.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-803a-96fa-ccba9f0b4c2a\" start=\"2\" type=\"1\"><li>Помидоры черри бланшируем.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80ce-9d1d-fc4c795e73e7\" start=\"3\" type=\"1\"><li>Баклажаны обваливаем в кукурузном крахмале и обжариваем во фритюре. Глазируем соусом свит чили, с добавлением устричного соуса.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8092-909f-e4de7a51bd32\" start=\"4\" type=\"1\"><li>Выкладываем на тарелку. Сверху страчателла, <strong>листья кинзы и </strong>шисо, томаты черри, <strong>кунжут юдзу.</strong></li></ol></div><div class=\"column\" id=\"23233974-4d17-80f3-a08d-ebf8c7f52ecf\" style=\"width:31.25%\"><p class=\"\" id=\"23233974-4d17-80e8-99ff-cdbe55f77999\"><strong>Соус унаги:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-8021-b902-c0145767190a\" start=\"1\" type=\"1\"><li>Мирин, соевый соус, соус угря.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80cd-a08c-cf3b657b9254\" start=\"2\" type=\"1\"><li><strong>Фреш лайма, лимон.</strong> </li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-801f-9eb0-f0a19dd9ad76\" start=\"3\" type=\"1\"><li>Корень имбиря.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80f1-92a0-d3c8d07c4bbb\" start=\"4\" type=\"1\"><li>Сахар. </li></ol></div>",
+    "contains": "1. Угорь в соусе унаги подготавливается под саламандром.\n2. Помидоры черри бланшируем.\n3. Баклажаны обваливаем в кукурузном крахмале и обжариваем во фритюре. Глазируем соусом свит чили с добавлением устричного соуса.\n4. Выкладываем на тарелку. Сверху страчателла, **листья кинзы и шисо**, томаты черри, **кунжут юдзу.**\n\n**Соус унаги:**\n1. Мирин, соевый соус, соус угря.\n2. **Фреш лайма, лимон.**\n3. Корень имбиря.\n4. Сахар.",
     "allergens": [
       "лактоза",
       "перец",
       "кинза",
       "цитрусы",
       "зелень",
-      "кунжут"
+      "кунжут",
+      "рыба"
     ],
     "tags": [],
     "pairings": {
@@ -1310,13 +1314,14 @@
     },
     "title": "Теплый салат с жаренным осьминогом, овощами, оливками под горчичным соусом",
     "description": "Теплый салат с жаренным осьминогом, свежими овощами, оливками, перцем чили под пряным горчичным соусом.",
-    "contains": "<div class=\"column\" id=\"23233974-4d17-80a9-a624-f3c25ce45bf1\" style=\"width:68.75%\"><ol class=\"numbered-list\" id=\"23233974-4d17-8035-aae9-d5a180713328\" start=\"1\" type=\"1\"><li>Микс салата, лук зеленый.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8078-b463-cecd09818c77\" start=\"2\" type=\"1\"><li>Сверху выкладывается сельдерей, томаты, маслины по тажарски, заправляется <strong>лимонным фрешем,</strong> <strong>чесночным маслом</strong> и специя хазанут.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-801e-becd-c91551b69eba\" start=\"3\" type=\"1\"><li>Сверху выкладывается осьминог обжаренный на оливковом и <strong>чесночным масле.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8044-a692-f0b110d08e9f\" start=\"4\" type=\"1\"><li>Соус горчичный (отдельно). </li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80ad-8887-da0edd4d0db4\" start=\"5\" type=\"1\"><li>Украшается <strong>перцем чили, кинзой и сухим луком.</strong></li></ol></div><div class=\"column\" id=\"23233974-4d17-80bb-81fc-ca6c946189bb\" style=\"width:31.25%\"><p class=\"\" id=\"23233974-4d17-80ca-b009-e2a36b0a101a\"><strong>Соус горчичный: </strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-80a2-a1ea-e4f279194747\" start=\"1\" type=\"1\"><li><strong>Дижонская горчица. </strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-805d-88d1-c0b2a11e6d6b\" start=\"2\" type=\"1\"><li>Уксус винный, уксус бальзамический. </li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-806b-85b8-cc564703f036\" start=\"3\" type=\"1\"><li>Масло оливковое.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8005-94b7-d7bccc320b84\" start=\"4\" type=\"1\"><li><strong>Сок лимона.</strong></li></ol></div>",
+    "contains": "1. Микс салата, лук зелёный.\n2. Сверху выкладывается сельдерей, томаты, маслины по тажарски, заправляется **лимонным фрешем**, **чесночным маслом** и специями хазанут.\n3. Сверху выкладывается осьминог, обжаренный на оливковом и **чесночном масле.**\n4. Соус горчичный (отдельно).\n5. Украшается **перцем чили, кинзой и сухим луком.**\n\n**Соус горчичный:**\n1. **Дижонская горчица.**\n2. Уксус винный, уксус бальзамический.\n3. Масло оливковое.\n4. **Сок лимона.**",
     "allergens": [
       "перец",
       "кинза",
       "цитрусы",
       "чеснок",
       "лук",
+      "горчица",
       "зелень"
     ],
     "tags": [],
@@ -1664,7 +1669,7 @@
     },
     "title": "Овощной суп Минестроне на курином бульоне с кедровыми орехами и соусом песто",
     "description": "Авторская интерпретация традиционного итальянского овощного супа Минестроне на курином бульоне с добавлением соуса песто, кедровых орехов и свежих овощей.",
-    "contains": "<div class=\"column\" id=\"23233974-4d17-806b-b99d-f982ce9dc04f\" style=\"width:50%\"><ol class=\"numbered-list\" id=\"22f33974-4d17-80ec-9f72-d78473206bd5\" start=\"1\" type=\"1\"><li><strong>Куриный бульон.</strong></li></ol><ol class=\"numbered-list\" id=\"22f33974-4d17-80a3-9a23-cb709b778cc7\" start=\"2\" type=\"1\"><li>Картофель, морковь.</li></ol><ol class=\"numbered-list\" id=\"22f33974-4d17-80ca-bd14-dab0244e0ff9\" start=\"3\" type=\"1\"><li>Цукини, сельдерей.</li></ol><ol class=\"numbered-list\" id=\"22f33974-4d17-8031-9e61-c784557f554b\" start=\"4\" type=\"1\"><li>Брокколи, горошек зеленый.</li></ol><ol class=\"numbered-list\" id=\"22f33974-4d17-80c9-afea-f173d0bc8dc7\" start=\"5\" type=\"1\"><li>Фенхель, <strong>красный лук.</strong></li></ol><ol class=\"numbered-list\" id=\"22f33974-4d17-801c-adca-d662639da10e\" start=\"6\" type=\"1\"><li><strong>Соус песто, </strong>масло оливковое.</li></ol></div><div class=\"column\" id=\"23233974-4d17-800e-b31b-f3acc7c01b5a\" style=\"width:50%\"><p class=\"\" id=\"22f33974-4d17-8083-9026-f635059c0dc9\">К супу подаются гренки Пети Пан, их смазывают пастой из маслин (маслины, <strong>чеснок</strong>, оливковое масло). </p><p class=\"\" id=\"22f33974-4d17-809c-a05e-f2dcf319eb5c\">Украшается томатами черри.</p><p class=\"\" id=\"22f33974-4d17-80cb-a2fb-c803ed1cf826\">Суп и гренки украшаются <strong>кедровыми орехами</strong>.</p></div>",
+    "contains": "1. **Куриный бульон.**\n2. Картофель, морковь.\n3. Цукини, сельдерей.\n4. Брокколи, горошек зелёный.\n5. Фенхель, **красный лук.**\n6. **Соус песто**, масло оливковое.\n\nК супу подаются гренки Пети Пан, их смазывают пастой из маслин (*маслины, чеснок, оливковое масло*). Украшается томатами черри. Суп и гренки украшаются **кедровыми орехами.**",
     "allergens": [
       "орехи",
       "чеснок",
@@ -2825,7 +2830,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "../images/Ryba_i_moreprodukty_po_vesu_kalmari.jpg",
       "alt": "Кальмар"
     },
     "i18n": {
@@ -2841,7 +2846,7 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<p class=\"\" id=\"23b33974-4d17-80a6-a283-c4b76ef4c395\">Вес от 100 гр.</p><p class=\"\" id=\"23b33974-4d17-804b-bf31-fba471d3ed29\"><strong>Уточняем у гостя:</strong></p><ol class=\"numbered-list\" id=\"23b33974-4d17-801e-b34d-e43035672ad8\" start=\"1\" type=\"1\"><li>Вес.</li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-804a-a85c-e3dbccbbc9e1\" start=\"2\" type=\"1\"><li>Способ приготовления: Josper/ Пар / Сковорода.</li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-8041-a909-fb7225e9083b\" start=\"3\" type=\"1\"><li>С добавлением соуса (или без): <ul class=\"bulleted-list\" id=\"23b33974-4d17-803c-a3bb-f2456b992960\"><li style=\"list-style-type:disc\">коньячно-чесночный (<strong>коньяк, чеснок, лимонный фреш, </strong>оливковое масло).</li></ul><ul class=\"bulleted-list\" id=\"23b33974-4d17-8083-a1ec-ca2ec6f215b0\"><li style=\"list-style-type:disc\">чесночный (чеснок, сливочное масло, зелень).</li></ul></li></ol>",
-    "features": ""
+    "features": "**Вес от 100 гр.**\n\n**Уточняем у гостя:**\n1. Вес.\n2. Способ приготовления: Josper / Пар / Сковорода.\n3. С добавлением соуса (или без):\n - коньячно-чесночный (*коньяк, чеснок, лимонный фреш, оливковое масло*);\n - чесночный (*чеснок, сливочное масло, зелень*)."
   },
   {
     "id": "0067",
@@ -2863,7 +2868,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "../images/Ryba_i_moreprodukty_po_vesu_Osminog.jpg",
       "alt": "Осьминог"
     },
     "i18n": {
@@ -2879,7 +2884,7 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<p class=\"\" id=\"23b33974-4d17-80e7-bb93-fbff240ea2ed\">Вес одного щупальца примерно 80-100 гр. </p><p class=\"\" id=\"23b33974-4d17-8068-acf3-e7f90cfc81d0\"><strong>Уточняем у гостя:</strong></p><ol class=\"numbered-list\" id=\"23b33974-4d17-80f6-93ab-f9bb753cc303\" start=\"1\" type=\"1\"><li>Вес.</li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-807a-8e68-c2a96dfbaa41\" start=\"2\" type=\"1\"><li>Способ приготовления: Josper/ Пар / Сковорода.</li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-8039-aebc-dd8cfcbc9b18\" start=\"3\" type=\"1\"><li>С добавлением соуса (или без): <ul class=\"bulleted-list\" id=\"23b33974-4d17-801f-b83f-d5e659feb8b2\"><li style=\"list-style-type:disc\">коньячно-чесночный (<strong>коньяк, чеснок, лимонный фреш, </strong>оливковое масло).</li></ul><ul class=\"bulleted-list\" id=\"23b33974-4d17-804c-adbe-caf2e37bd998\"><li style=\"list-style-type:disc\">чесночный (чеснок, сливочное масло, зелень).</li></ul></li></ol>",
-    "features": ""
+    "features": "**Вес одного щупальца примерно 80–100 гр.**\n\n**Уточняем у гостя:**\n1. Вес.\n2. Способ приготовления: Josper / Пар / Сковорода.\n3. С добавлением соуса (или без):\n   - коньячно-чесночный (*коньяк, чеснок, лимонный фреш, оливковое масло*);\n   - чесночный (*чеснок, сливочное масло, зелень*)."
   },
   {
     "id": "0068",
@@ -2929,9 +2934,9 @@
       "alt": "fire_black_icon"
     },
     "title": "Морские гребешки",
-    "description": "",
+    "description": "Можем приготовить на гриле, на пару или на сковороде.",
     "contains": "",
-    "allergens": [],
+    "allergens": ["На хоспере приготовить нельзя."],
     "tags": [],
     "pairings": {
       "wines": [],
@@ -2939,8 +2944,8 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Ryba_i_moreprodukty_po_vesu_Semga.jpg",
-      "alt": "Семга"
+      "src": "../images/Ryba_i_moreprodukty_po_vesu_Morskie_grebeshki.jpg",
+      "alt": "Морские гребешки"
     },
     "i18n": {
       "ru": {
@@ -2955,7 +2960,7 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<p class=\"\" id=\"23b33974-4d17-80a4-bf12-ccd19d2561ea\">Вес от 100 гр.</p><p class=\"\" id=\"23b33974-4d17-80d6-aaab-d48d6ce1b892\"><strong>Уточняем у гостя:</strong></p><ol class=\"numbered-list\" id=\"23b33974-4d17-8044-a5be-de74c97719c3\" start=\"1\" type=\"1\"><li>Вес.</li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-8047-b5ed-f1832395d5a2\" start=\"2\" type=\"1\"><li>Способ приготовления: Сковорода. <strong>На хоспере приготовить нельзя.</strong></li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-807c-874b-fa4119c6dd6e\" start=\"3\" type=\"1\"><li>С добавлением соуса (или без): <ul class=\"bulleted-list\" id=\"23b33974-4d17-80ba-b7ed-ccf75ce9db47\"><li style=\"list-style-type:disc\">коньячно-чесночный (<strong>коньяк, чеснок, лимонный фреш, </strong>оливковое масло).</li></ul><ul class=\"bulleted-list\" id=\"23b33974-4d17-80a1-87ba-c84ffe6eff73\"><li style=\"list-style-type:disc\">чесночный (чеснок, сливочное масло, зелень).</li></ul></li></ol><hr id=\"23b33974-4d17-80a5-b971-dd33f1fd4536\"/><p class=\"\" id=\"24f33974-4d17-804a-a82a-e5a5117b0489\"><strong>Сибас нельзя приготовить целиком, так как рыбу сразу разделывают и режут на филе стандартного размера.</strong></p><div class=\"column-list\" id=\"23b33974-4d17-8026-bf64-e2ceb5c3440d\"><div class=\"column\" id=\"23b33974-4d17-80e1-9245-c71e2ff4f52f\" style=\"width:43.75%\"><figure class=\"image\" id=\"23b33974-4d17-80cd-a1ff-f35c776337d8\"><a href=\"Ryba_i_moreprodukty_po_vesu_Semga.jpg\"><img src=\"../images/Ryba_i_moreprodukty_po_vesu_Semga.jpg\" style=\"width:439.4921875px\"/></a><figcaption>Семга</figcaption></figure><figure class=\"image\" id=\"23b33974-4d17-807c-91ba-f95749881ae5\"><a href=\"Ryba_i_moreprodukty_po_vesu_Morskie_grebeshki.jpg\"><img src=\"../images/Ryba_i_moreprodukty_po_vesu_Morskie_grebeshki.jpg\" style=\"width:410.8125px\"/></a><figcaption>Морские гребешки</figcaption></figure><figure class=\"image\" id=\"23b33974-4d17-8075-ac0f-d381ca7a1189\"><a href=\"Ryba_i_moreprodukty_po_vesu_Osminog.jpg\"><img src=\"../images/Ryba_i_moreprodukty_po_vesu_Osminog.jpg\" style=\"width:410.8125px\"/></a><figcaption>Осьминог</figcaption></figure><figure class=\"image\" id=\"23b33974-4d17-8092-836c-e8b3b0cd4707\"><a href=\"Ryba_i_moreprodukty_po_vesu_Josper_Par_Skovoroda_Morskie_grebeshki.jpg\"><img src=\"../images/Ryba_i_moreprodukty_po_vesu_Josper_Par_Skovoroda_Morskie_grebeshki.jpg\" style=\"width:410.8125px\"/></a><figcaption>Кальмар</figcaption></figure></div><div class=\"column\" id=\"23b33974-4d17-80e1-b57b-ff668b09c6e5\" style=\"width:56.25%\"><figure class=\"image\" id=\"23b33974-4d17-80b3-9e8e-efeb81dfd340\"><a href=\"Ryba_i_moreprodukty_po_vesu_Sibas.jpg\"><img src=\"../images/Ryba_i_moreprodukty_po_vesu_Sibas.jpg\" style=\"width:439.5px\"/></a><figcaption>Сибас</figcaption></figure><figure class=\"image\" id=\"23b33974-4d17-8095-aa39-d76400fa3ca5\"><a href=\"Ryba_i_moreprodukty_po_vesu_Tunets.jpg\"><img src=\"../images/Ryba_i_moreprodukty_po_vesu_Tunets.jpg\" style=\"width:527.0625px\"/></a><figcaption>Тунец</figcaption></figure><figure class=\"image\" id=\"23b33974-4d17-806a-87d7-e14b424eb632\"><a href=\"Ryba_i_moreprodukty_po_vesu_Krevetki.jpg\"><img src=\"../images/Ryba_i_moreprodukty_po_vesu_Krevetki.jpg\" style=\"width:527.0546875px\"/></a><figcaption>Королевские креветки</figcaption></figure></div></div><figure class=\"image\" id=\"23b33974-4d17-80e5-9e18-f668453b52cb\"><a href=\"image.png\"><img src=\"../images/image.png\" style=\"width:1px\"/></a></figure><hr id=\"23b33974-4d17-8079-880a-e1b2993b50b0\"/>",
-    "features": ""
+    "features":"**Вес от 100 гр.**\n\n**Уточняем у гостя:**\n\n1. Вес.\n2. Способ приготовления: *Сковорода.* **На хоспере приготовить нельзя.**\n3. С добавлением соуса (или без):\n   - коньячно-чесночный (*коньяк, чеснок, лимонный фреш, оливковое масло*);\n   - чесночный (*чеснок, сливочное масло, зелень*)."
   },
   {
     "id": "0070",
@@ -3055,8 +3060,8 @@
     },
     "title": "Жаренный картофель с луком шалот и зеленью",
     "description": "",
-    "contains": "",
-    "allergens": [],
+    "contains": "Картофель обжаривается на оливковом масле с добавлением **лука шалот**, посыпается **кинзой и петрушкой.**",
+    "allergens": ["без мяса", "лук", "зелень", "кинза"],
     "tags": [],
     "pairings": {
       "wines": [],
@@ -3064,7 +3069,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "",
       "alt": "Жаренный картофель с луком шалот и зеленью"
     },
     "i18n": {
@@ -3807,8 +3812,8 @@
     },
     "title": "Домашнее мороженое",
     "description": "",
-    "contains": "",
-    "allergens": [],
+    "contains": "1. Ванильное. 🥛 лактоза\n2. Шоколадное. 🥛 лактоза\n3. Фисташковое. 🥛 лактоза | 🌰 орехи\n4. Ромашковое. 🥛 лактоза\n5. Банан-кокос-лайм (веганское). 🌿",
+    "allergens": ["лактоза", "орехи", "веганское"],
     "tags": [],
     "pairings": {
       "wines": [],
@@ -3816,7 +3821,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "../images/dessert_morozhenoe.jpg",
       "alt": "Домашнее мороженое"
     },
     "i18n": {
@@ -3845,8 +3850,8 @@
     },
     "title": "Фруктовый сорбет",
     "description": "",
-    "contains": "",
-    "allergens": [],
+    "contains": "1. Лайм-проcекко. 🍾 вино | 🍋 цитрусы\n2. Апельсин-кампари. 🍾 вино | 🍋 цитрусы\n3. Дыня-мята.\n4. Красный апельсин. 🍾 вино | 🍋 цитрусы.",
+    "allergens": ["алкоголь", "цитрусы"],
     "tags": [],
     "pairings": {
       "wines": [],
@@ -3854,7 +3859,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "../images/dessert_fruktovyy_sorbet.jpg",
       "alt": "Фруктовый сорбет"
     },
     "i18n": {
@@ -3920,9 +3925,15 @@
       "alt": ""
     },
     "title": "Ассорти макаронс",
-    "description": "",
+    "description": "Классический французский десерт. Изящное сочетание хрустящей миндальной оболочки и нежнейшей начинки. Каждый макарон — это маленький взрыв вкуса и цвета: от свежих ягодных нот и цитрусовой искристости до насыщенного шоколада.",
     "contains": "<strong>Тесто на макарони:</strong>\n\n<ol class=\"numbered-list\" id=\"28f33974-4d17-8058-b065-d161d4e5a5ca\" start=\"1\" type=\"1\"><li> Мука миндальная. <strong><img alt=\"nut_icon\" src=\"../icons/nut_icon.png\" style=\"width:1em;height:1em\"/></strong><strong> </strong>орехи </li></ol>\n\n<ol class=\"numbered-list\" id=\"28f33974-4d17-8081-9304-d18dd70e1339\" start=\"2\" type=\"1\"><li>Яйцо куриное (белки).</li></ol>\n\n<ol class=\"numbered-list\" id=\"28f33974-4d17-80c7-b430-c9d240650637\" start=\"3\" type=\"1\"><li>Сахар.</li></ol>\n\n<ol class=\"numbered-list\" id=\"28f33974-4d17-80ea-a00a-dc57d3038e2e\" start=\"4\" type=\"1\"><li>Какао порошок (только для шоколадных).</li></ol>\n\n<strong>Ганаш на макарони: </strong>\n\n<ol class=\"numbered-list\" id=\"28f33974-4d17-80e7-8283-e400945eec27\" start=\"1\" type=\"1\"><li><strong>Лимонный: </strong>1. Белый шоколад. 2. Сливки. 3. <strong>Лимоны (цедра и сок). </strong> <strong>🍋  </strong>цитрусы<strong> </strong></li></ol>\n\n<ol class=\"numbered-list\" id=\"28f33974-4d17-80d2-ab81-eb44bf9b62b4\" start=\"2\" type=\"1\"><li><strong>Малиновый:</strong> 1. Белый шоколад. 2. Сливки. 3. Малина и земляника (пюре)<strong>. </strong></li></ol>\n\n<ol class=\"numbered-list\" id=\"28f33974-4d17-8071-add3-f3cca246d774\" start=\"3\" type=\"1\"><li><strong>Фисташковый:</strong> 1. Белый шоколад. 2. Сливки. 3. <strong>Фисташковая паста.  </strong><strong><img alt=\"nut_icon\" src=\"../icons/nut_icon.png\" style=\"width:1em;height:1em\"/></strong><strong> </strong>орехи</li></ol>\n\n<ol class=\"numbered-list\" id=\"28f33974-4d17-809a-89b8-cdd586770dd0\" start=\"4\" type=\"1\"><li><strong>Шоколадный:</strong> 1. Молочный шоколад. 2. Сливки. </li></ol>",
-    "allergens": [],
+    "allergens": [
+      "цитрусы", 
+      "орехи", 
+      "лактоза", 
+      "глютен", 
+      "яйца"
+    ],
     "tags": [],
     "pairings": {
       "wines": [],
@@ -3930,7 +3941,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "../images/Deserty_macarons.jpg",
       "alt": "Ассорти макаронс"
     },
     "i18n": {
@@ -4090,7 +4101,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "../images/sousy_i_khleb_gorchichny.jpg",
       "alt": "Горчичный"
     },
     "i18n": {
@@ -4254,7 +4265,8 @@
       "без мяса",
       "лактоза",
       "орехи",
-      "чеснок"
+      "чеснок",
+      "зелень"
     ],
     "tags": [],
     "pairings": {
@@ -4263,7 +4275,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "../images/Sousy_i_khleb_pesto.jpg",
       "alt": "Песто"
     },
     "i18n": {
@@ -4303,7 +4315,7 @@
       "upsell": []
     },
     "image": {
-      "src": "../images/Akvarium_Ustritsa_Imperatorskaya_Zaliv_Petra.jpg",
+      "src": "../images/Sousy_i_khleb_klukveny.jpg",
       "alt": "Клюквенный"
     },
     "i18n": {
