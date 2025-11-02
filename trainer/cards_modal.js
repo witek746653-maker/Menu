@@ -8,25 +8,32 @@ const STYLE_CONTENT = `
 #cardEditorBackdrop .modal header { display: flex; align-items: center; justify-content: space-between; gap: 12px }
 #cardEditorBackdrop .modal .content { flex: 1 1 auto; overflow: auto; display: flex; flex-direction: column; gap: 16px }
 
-/* === Compact grid === */
+/* Плавность визуально */
+.card-editor-fields input[type="text"]{ transition: width .15s ease; }
+.card-editor-fields textarea{ overflow:hidden; resize:none; }
+
 .card-editor-fields{
   display:grid;
   gap:12px 14px;
-  grid-template-columns: repeat(2, minmax(320px,1fr));
-  grid-auto-flow: row dense;
-  align-items:start;
+  grid-template-columns: repeat(3, minmax(260px,1fr));
 }
-.card-editor-fields .row{ min-width:0; }
+@media (max-width: 1400px){
+  .card-editor-fields{ grid-template-columns: repeat(2, minmax(260px,1fr)); }
+}
+@media (max-width: 680px){
+  .card-editor-fields{ grid-template-columns: 1fr; }
+}
 
-/* базовые контролы */
+
+/* Элементы поля остаются вертикальными, но занимают ячейку сетки */
+.card-editor-fields .row{ display:flex; flex-direction:column; gap:6px }
+
+/* Компактные контролы */
 .card-editor-fields input[type="text"],
-.card-editor-fields textarea{
-  box-sizing: border-box;
-  max-width:100%;
-  transition: width .15s ease, height .15s ease;
-}
-.card-editor-fields textarea{ overflow:hidden; resize:none; }
-.card-editor-fields select{ width:100%; }
+.card-editor-fields input[type="password"],
+.card-editor-fields textarea,
+.card-editor-fields select{ padding:8px 10px; border-radius:10px; border:1px solid var(--border); background:#fffdf7 }
+
 
 /* Высота мультиселектов чуть меньше */
 .card-editor-multi select{ min-height:100px }
@@ -48,6 +55,14 @@ const STYLE_CONTENT = `
   #cardEditorBackdrop { padding: 12px }
   #cardEditorBackdrop .modal { width: min(360px, 100%); max-height: 96vh }
 }
+#cardEditorBackdrop .card-editor-fields textarea,
+#cardEditorBackdrop .card-editor-fields input[type="text"] {
+  width: 100% !important;
+  white-space: pre-wrap !important;   /* пробелы сохраняются */
+  overflow-wrap: anywhere !important; /* длинные слова переносятся при нужде */
+  word-break: normal !important;      /* не лезем внутрь слов без причины */
+}
+
 `;
 
 
@@ -129,6 +144,60 @@ function initCardEditor(){
   } = utils;
 
   if (!createEmptyCard || !cloneCardData) return;
+
+  function measureTextWidth(el, text){
+  const span = document.createElement('span');
+  const cs = getComputedStyle(el);
+  span.style.visibility = 'hidden';
+  span.style.position = 'absolute';
+  span.style.whiteSpace = 'pre-wrap';
+  span.style.font = `${cs.fontStyle} ${cs.fontVariant} ${cs.fontWeight} ${cs.fontSize}/${cs.lineHeight} ${cs.fontFamily}`;
+  span.textContent = text || el.placeholder || '';
+  const raw = (text ?? el.placeholder ?? '');
+  const probe = /\s$/.test(raw) ? raw + '\u00A0' : raw; // добавляем NBSP, если строка оканчивается пробелом
+  span.textContent = probe;
+  document.body.appendChild(span);
+  const w = span.offsetWidth;
+  document.body.removeChild(span);
+  return w;
+}
+
+function fitWidthInColumn(el, wrapper, needPx){
+  // ширина ТЕКУЩЕЙ колонки — предел
+  const max = Math.floor(wrapper.getBoundingClientRect().width || 600);
+  el.style.width = Math.min(max, Math.ceil(needPx)) + 'px';
+}
+
+function autosizeTextLikeInput(el) {
+  el.style.width = '100%';
+  el.style.whiteSpace = 'pre-wrap';
+  el.style.overflowWrap = 'anywhere';
+  el.style.wordBreak = 'normal';
+  el.style.height = 'auto';
+  el.style.height = el.scrollHeight + 'px';
+}
+
+function autosizeTextarea(el, wrapper){
+  const cs = getComputedStyle(el);
+  const box = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)
+            + parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+  const extra = 28;
+  const lines = (el.value || '').split('\n');
+  const longest = lines.reduce((m,l)=> Math.max(m, measureTextWidth(el, l)), 0);
+  const need = longest + box + extra;
+  fitWidthInColumn(el, wrapper, need);
+  el.style.height = 'auto';
+  el.style.height = el.scrollHeight + 'px';
+}
+
+function bindAutosize(el, wrapper, kind){
+  const fn = () => {
+    if (kind === 'input-like') autosizeTextLikeInput(el, wrapper);
+    else autosizeTextarea(el, wrapper);
+  };
+  el.addEventListener('input', fn);
+  requestAnimationFrame(fn);
+}
 
   const openBtn = document.getElementById('btnCardEditor');
   const backdrop = document.getElementById('cardEditorBackdrop');
@@ -254,85 +323,123 @@ function initCardEditor(){
   }
 
   function createControl(field){
-    const wrapper = document.createElement('div');
-    wrapper.className = 'row';
-    const label = document.createElement('label');
-    label.htmlFor = field.id;
-    label.textContent = field.label;
-    wrapper.appendChild(label);
-    const control = { field, path: field.path, wrapper, input: null, setValue: () => {}, getValue: () => '' };
-    let input;
-    if (field.type === 'text'){
-      input = document.createElement('input');
-      input.type = 'text';
-      input.id = field.id;
-      if (field.placeholder) input.placeholder = field.placeholder;
-      control.setValue = (value) => { input.value = value ?? ''; };
-      control.getValue = () => input.value.trim();
-      control.input = input;
-      wrapper.appendChild(input);
-    } else if (field.type === 'textarea'){
-      input = document.createElement('textarea');
-      input.id = field.id;
-      input.rows = field.rows || 4;
-      if (field.placeholder) input.placeholder = field.placeholder;
-      control.setValue = (value) => { input.value = value ?? ''; };
-      control.getValue = () => input.value;
-      control.input = input;
-      wrapper.appendChild(input);
-    } else if (field.type === 'list'){
-      input = document.createElement('textarea');
-      input.id = field.id;
-      input.rows = field.rows || 4;
-      input.placeholder = field.placeholder || 'Каждое значение с новой строки';
-      control.setValue = (value) => { input.value = Array.isArray(value) ? value.join('\n') : (value || ''); };
-      control.getValue = () => input.value.split(/\n+/).map(v => v.trim()).filter(Boolean);
-      control.input = input;
-      wrapper.appendChild(input);
-    } else if (field.type === 'multi'){
-      const container = document.createElement('div');
-      container.className = 'card-editor-multi';
-      input = document.createElement('select');
-      input.id = field.id;
-      input.multiple = true;
-      container.appendChild(input);
-      const addWrap = document.createElement('div');
-      addWrap.className = 'multi-add';
-      const addInput = document.createElement('input');
-      addInput.type = 'text';
-      addInput.placeholder = 'Новое значение';
-      const addBtn = document.createElement('button');
-      addBtn.type = 'button';
-      addBtn.className = 'ghost';
-      addBtn.textContent = 'Добавить';
-      addBtn.addEventListener('click', () => {
-        const val = addInput.value.trim();
-        if (!val) return;
-        addOption(input, val, true);
-        addInput.value = '';
-      });
-      addWrap.append(addInput, addBtn);
-      container.appendChild(addWrap);
-      control.setValue = (value) => {
-        const values = Array.isArray(value) ? value.filter(Boolean) : [];
-        values.forEach(v => addOption(input, v, false));
-        Array.from(input.options).forEach(opt => { opt.selected = values.includes(opt.value); });
-      };
-      control.getValue = () => Array.from(input.selectedOptions).map(opt => opt.value).filter(Boolean);
-      control.input = input;
-      wrapper.appendChild(container);
-    } else if (field.type === 'select'){
-      input = document.createElement('select');
-      input.id = field.id;
-      input.innerHTML = '<option value="">— выбрать —</option>';
-      (field.options || []).forEach(opt => addOption(input, opt, false));
-      control.setValue = (value) => { input.value = value ?? ''; };
-      control.getValue = () => input.value;
-      control.input = input;
-      wrapper.appendChild(input);
-    }
-    return control;
-  }
+  const wrapper = document.createElement('div');
+  wrapper.className = 'row';
+
+  const label = document.createElement('label');
+  label.htmlFor = field.id;
+  label.textContent = field.label;
+  wrapper.appendChild(label);
+
+  const control = { field, path: field.path, wrapper, input: null, setValue: () => {}, getValue: () => '' };
+  let input;
+
+  // text → псевдо-input на textarea (автоширина+автовысота)
+  // text → псевдо-input на textarea (автоширина+автовысота)
+  if (field.type === 'text') {
+  input = document.createElement('textarea');
+  input.id = field.id;
+  input.rows = 1;
+  input.setAttribute('wrap', 'soft');
+  input.style.whiteSpace = 'pre-wrap';
+  input.style.overflowWrap = 'anywhere';
+  input.style.wordBreak = 'normal';
+  if (field.placeholder) input.placeholder = field.placeholder;
+
+  bindAutosize(input, wrapper, 'input-like');
+
+  control.setValue = (value) => { input.value = value ?? ''; input.dispatchEvent(new Event('input')); };
+  control.getValue  = () => input.value; // без trim(), пробелы сохраняются
+  control.input = input;
+  wrapper.appendChild(input);
+
+} else if (field.type === 'textarea') {
+  input = document.createElement('textarea');
+  input.id = field.id;
+  input.setAttribute('wrap', 'soft');
+  input.style.whiteSpace = 'pre-wrap';
+  input.style.overflowWrap = 'anywhere';
+  input.style.wordBreak = 'normal';
+  input.rows = field.rows || 4;
+  if (field.placeholder) input.placeholder = field.placeholder;
+
+  bindAutosize(input, wrapper, 'textarea');
+
+  control.setValue = (value) => { input.value = value ?? ''; input.dispatchEvent(new Event('input')); };
+  control.getValue  = () => input.value;
+  control.input = input;
+  wrapper.appendChild(input);
+
+} else if (field.type === 'list') {
+  input = document.createElement('textarea');
+  input.style.whiteSpace = 'pre-wrap';
+  input.id = field.id;
+  input.rows = field.rows || 4;
+  input.placeholder = field.placeholder || 'Каждое значение с новой строки';
+
+  bindAutosize(input, wrapper, 'textarea');
+
+  control.setValue = (value) => {
+    input.value = Array.isArray(value) ? value.join('\n') : (value || '');
+    input.dispatchEvent(new Event('input'));
+  };
+  control.getValue = () => input.value.split(/\n+/).map(v => v.trim()).filter(Boolean);
+  control.input = input;
+  wrapper.appendChild(input);
+
+} else if (field.type === 'multi') {
+  const container = document.createElement('div');
+  container.className = 'card-editor-multi';
+
+  input = document.createElement('select');
+  input.id = field.id;
+  input.multiple = true;
+  container.appendChild(input);
+
+  const addWrap = document.createElement('div');
+  addWrap.className = 'multi-add';
+  const addInput = document.createElement('input');
+  addInput.type = 'text';
+  addInput.placeholder = 'Новое значение';
+  bindAutosize(addInput, addWrap, 'input-like');
+
+  const addBtn = document.createElement('button');
+  addBtn.type = 'button';
+  addBtn.className = 'ghost';
+  addBtn.textContent = 'Добавить';
+  addBtn.addEventListener('click', () => {
+    const val = addInput.value.trim();
+    if (!val) return;
+    addOption(input, val, true);
+    addInput.value = '';
+  });
+
+  addWrap.append(addInput, addBtn);
+  container.appendChild(addWrap);
+
+  control.setValue = (value) => {
+    const values = Array.isArray(value) ? value.filter(Boolean) : [];
+    values.forEach(v => addOption(input, v, false));
+    Array.from(input.options).forEach(opt => { opt.selected = values.includes(opt.value); });
+  };
+  control.getValue = () => Array.from(input.selectedOptions).map(opt => opt.value).filter(Boolean);
+  control.input = input;
+  wrapper.appendChild(container);
+
+} else if (field.type === 'select') {
+  input = document.createElement('select');
+  input.id = field.id;
+  input.innerHTML = '<option value="">— выбрать —</option>';
+  (field.options || []).forEach(opt => addOption(input, opt, false));
+  control.setValue = (value) => { input.value = value ?? ''; };
+  control.getValue = () => input.value;
+  control.input = input;
+  wrapper.appendChild(input);
+}                         // ← конец ветки select
+
+return control;           // ← единый возврат для всех веток
+}                         // ← КОНЕЦ функции createControl
+
 
   function renderFields(){
     fieldsContainer.innerHTML = '';
@@ -721,4 +828,3 @@ ready(() => {
   initCardEditor();
 });
 
-export {};

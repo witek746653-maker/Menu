@@ -850,22 +850,32 @@ function wire(){
   });
 
   document.addEventListener('keydown', (e) => {
-    // пробел раскрывает/скрывает ответ
-    if(e.code === 'Space'){
-      const det = document.querySelector('details.qa');
-      if(det){
-        det.open = !det.open;
-        e.preventDefault();
-      }
+  const t = e.target;
+  if (!(t instanceof HTMLElement)) return;
+
+  // Не перехватывать, когда курсор в любых полях/редакторах или в модалке редактора
+  if (t.isContentEditable) return;
+  if (t.closest('input, textarea, select, button, [contenteditable="true"], .card-editor-modal')) return;
+
+  // Пробел раскрывает/скрывает ответ
+  if (e.code === 'Space') {
+    const det = document.querySelector('details.qa');
+    if (det) {
+      det.open = !det.open;
+      e.preventDefault();
     }
-    // клавиши 1, 2, 3 ставят оценки «трудно», «норм», «легко»
-    const map = {Digit1:'2', Digit2:'3', Digit3:'5'};
-    const key = map[e.code];
-    if(key){
-      const btn = document.querySelector(`.actions button[data-grade="${key}"]`);
-      if(btn){ btn.click(); }
-    }
-  });
+    return;
+  }
+
+  // 1,2,3 = оценки
+  const map = { Digit1: '2', Digit2: '3', Digit3: '5' };
+  const key = map[e.code];
+  if (key) {
+    const btn = document.querySelector(`.actions button[data-grade="${key}"]`);
+    if (btn) btn.click();
+  }
+});
+
 
   // Start modal logic
   const menuSelect = document.getElementById('menuSelect');
