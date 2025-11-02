@@ -12,24 +12,21 @@ const STYLE_CONTENT = `
 .card-editor-fields{
   display:grid;
   gap:12px 14px;
-  grid-template-columns: repeat(3, minmax(220px,1fr)); /* 3 колонки на широких экранах */
+  grid-template-columns: repeat(2, minmax(320px,1fr));
+  grid-auto-flow: row dense;
   align-items:start;
 }
-@media (max-width: 1200px){
-  .card-editor-fields{ grid-template-columns: repeat(2, minmax(220px,1fr)); } /* 2 колонки */
-}
-@media (max-width: 680px){
-  .card-editor-fields{ grid-template-columns: 1fr; } /* 1 колонка на мобилке */
-}
+.card-editor-fields .row{ min-width:0; }
 
-/* Элементы поля остаются вертикальными, но занимают ячейку сетки */
-.card-editor-fields .row{ display:flex; flex-direction:column; gap:6px }
-
-/* Компактные контролы */
+/* базовые контролы */
 .card-editor-fields input[type="text"],
-.card-editor-fields input[type="password"],
-.card-editor-fields textarea,
-.card-editor-fields select{ padding:8px 10px; border-radius:10px; border:1px solid var(--border); background:#fffdf7 }
+.card-editor-fields textarea{
+  box-sizing: border-box;
+  max-width:100%;
+  transition: width .15s ease, height .15s ease;
+}
+.card-editor-fields textarea{ overflow:hidden; resize:none; }
+.card-editor-fields select{ width:100%; }
 
 /* Высота мультиселектов чуть меньше */
 .card-editor-multi select{ min-height:100px }
