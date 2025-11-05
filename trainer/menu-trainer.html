@@ -306,6 +306,14 @@ details.qa {
 .btn-audio:active{ transform:translateY(1px); }
 .btn-audio.playing{ background:#eef2ff; border-color:#6366f1; }
 .en-answer audio{ display:none; }
+.card .body {
+  padding-bottom: 24px !important; /* добавляем место снизу */
+}
+
+.actions {
+  margin-top: 12px !important;
+  margin-bottom: 8px !important; /* отступ от нижнего края */
+}
 
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -1256,7 +1264,7 @@ function wire(){
       feat:'Особенности',
       comp:'Состав',
       blindphoto:'Слепой тест: по фото',
-      mode_en:'Photo → EN title+desc'
+      mode_en:'English cards'
     };
     if(profile.trainingType && typeMap[profile.trainingType]){
       parts.push(typeMap[profile.trainingType]);
