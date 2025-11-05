@@ -164,6 +164,7 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
   /* Теперь три колонки для трёх оценок */
   grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 10px;
+  margin-bottom: 20px; /* добавляет отступ снизу карточки */
 }
 .actions button {
   padding: 12px; border-radius: 12px; border: 1px solid var(--border); text-shadow: none
@@ -295,27 +296,57 @@ details.qa {
   height: auto !important;
   object-fit: contain !important;
 }
-.btn-audio{
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:.5rem .75rem; border:1px solid #e2e8f0; border-radius:.75rem;
-  background:#fff; cursor:pointer; transition:transform .05s, background .2s, border-color .2s;
-  box-shadow:0 1px 2px rgba(0,0,0,.05);
-  font-weight:600;
-}
-.btn-audio:hover{ background:#f8fafc; border-color:#cbd5e1; }
-.btn-audio:active{ transform:translateY(1px); }
-.btn-audio.playing{ background:#eef2ff; border-color:#6366f1; }
-.en-answer audio{ display:none; }
-.card .body {
-  padding-bottom: 24px !important; /* добавляем место снизу */
+/* Кнопка аудио в общем стиле тренажёра */
+/* Кнопка аудио: выделенная и прижатая вправо */
+.en-answer .audio-control{
+  display:flex;
+  justify-content:flex-end;   /* прижать к правому краю */
+  margin-top:12px;
 }
 
-.actions {
-  margin-top: 12px !important;
-  margin-bottom: 8px !important; /* отступ от нижнего края */
+.btn-audio{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--panel);
+  color:var(--text);
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:var(--shadow-lg);   /* добавляем сильную тень */
+  transition:transform .12s ease, box-shadow .2s ease,
+             background .2s ease, border-color .2s ease, opacity .2s ease;
 }
-.en-answer .audio-control{ margin-top:12px; display:flex; flex-direction:column; gap:.5rem; }
-.en-answer .audio-note{ font-size:13px; color:var(--muted); }
+
+.btn-audio:hover{
+  transform:translateY(-1px);
+}
+
+.btn-audio:active{
+  transform:translateY(0);
+}
+
+/* Активное состояние — выделяем как primary */
+.btn-audio.playing{
+  background:linear-gradient(180deg, #ffd79a, #ffb347);
+  border-color:#f0c78d;
+  color:#5a3a1e;
+  box-shadow:0 8px 20px rgba(140, 90, 60, .25); /* усиливаем светлую тень */
+}
+
+.btn-audio svg{
+  width:18px;
+  height:18px;
+  fill:currentColor;
+  display:block;
+}
+
+/* Убираем подпись под кнопкой */
+.audio-note{ display:none !important; }
+
+
 
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -1062,8 +1093,7 @@ function renderCard(c){
           <span class="btn-audio__text">Listen</span>
         </button>
         <audio preload="none" src="${EN_AUDIO_BASE}${slug}.mp3" data-role="card-audio"></audio>
-        <span class="audio-note">Tap to listen to pronunciation.</span>
-      </div>
+        </div>
     `);
     const audio = answerDiv.querySelector('audio[data-role="card-audio"]');
     const control = answerDiv.querySelector('[data-role="audio-control"]');
