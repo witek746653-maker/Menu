@@ -334,6 +334,7 @@ details.qa {
             <option value="desc" selected>Красочное описание</option>
             <option value="feat">Особенности и аллергены</option>
             <option value="comp">Состав</option>
+            <option value="blindphoto">Слепой тест: по фото</option>
           </select>
         </div>
         <div class="row">
@@ -698,14 +699,39 @@ const normContains = v =>
 
 // пропуск карточек без нужных полей в JSON
 function isMissingInJSON(c){
-  const m = profile.trainingType; // 'desc' | 'feat' | 'comp' | 'answer'
+  const m = profile.trainingType; // 'desc' | 'feat' | 'comp' | 'answer' | 'blindphoto'
   const h = c.jsonHas || {};
+  const nonEmpty = s => typeof s === 'string' && s.trim().length > 0;
+
   if (m === 'desc')   return !h.desc;
   if (m === 'feat')   return !h.feat;
   if (m === 'comp')   return !h.comp;
   if (m === 'answer') return !h.answer;
+
+  // Режим "Слепой тест: по фото"
+  if (m === 'blindphoto') {
+    // 1) Есть ли реальное изображение (не важно, вручную задано или авто-подставлено)
+    const hasRealImage = !!c.imageSrc;
+
+    // 2) Есть ли ХОТЬ КАКИЕ-ТО данные для ответа
+    //    — берем как уже подготовленные поля карточки, так и то, что можно вытащить из raw_html
+    const qa = extractQA(c.html);
+    const hasAnyAnswer =
+      nonEmpty(c.desc) ||
+      nonEmpty(c.feat) ||
+      nonEmpty(c.comp) ||
+      nonEmpty(c.answer) ||
+      nonEmpty(qa?.answerHTML) ||
+      nonEmpty(qa?.compositionHTML) ||
+      nonEmpty(qa?.featuresHTML);
+
+    // Карточка НЕ подходит, если нет фото или нет вообще никакого контента
+    return !(hasRealImage && hasAnyAnswer);
+  }
+
   return false;
 }
+
 
 
 function computeQueue(force = false){
@@ -865,6 +891,38 @@ function renderCard(c){
     // ключевое: внутрь ответа, а не в .body
     answerDiv.appendChild(wrap);
   }
+  } else if (profile.trainingType === 'blindphoto') {
+  // До клика: только фото, шапку скрываем
+  descEl.style.display = 'none';
+  details.style.display = '';
+  const cardHeaderEl = node.querySelector('.card > header');
+  if (cardHeaderEl) cardHeaderEl.style.display = 'none';
+
+  const sum = details.querySelector('summary');
+  if (sum) sum.textContent = 'Показать название, описание, особенности и состав';
+
+  const parts = [];
+
+  if (c.title && c.title.trim()) parts.push(`<h3 style="margin:0 0 8px 0">${c.title}</h3>`);
+  if (c.section && c.section.trim())
+    parts.push(`<div class="pill" style="display:inline-block;margin-bottom:8px">${c.section}</div>`);
+  if (c.desc && c.desc.trim()) parts.push(`<h4>Описание</h4>${c.desc}`);
+  if (c.feat && c.feat.trim()) parts.push(`<h4>Особенности</h4>${c.feat}`);
+
+  const allergens = normalizeAllergensEmoji(c.allergens || []);
+  if (allergens.length){
+    parts.push(`<div class="allergens">
+      <div class="allergens-title">Обратить внимание на:</div>
+      <div class="allergens-list">
+        ${allergens.map(a=>`<div class="allergen"><span>${a.emoji}</span><span>${a.name}</span></div>`).join('')}
+      </div></div>`);
+  }
+
+  const compHTML = firstNonEmpty(c.comp, extractQA(c.html).compositionHTML, '');
+  if (compHTML) parts.push(`<h4>Состав</h4>${compHTML}`);
+
+  answerDiv.innerHTML = parts.join('') || '<em>Нет данных для ответа</em>';
+
   } else if (profile.trainingType === 'comp') {
     answerDiv.innerHTML = firstNonEmpty(c.comp, extractQA(c.html).compositionHTML, '<em>Нет информации о составе</em>');
   } else {
@@ -1082,7 +1140,12 @@ function wire(){
       }
     }
     // Направление
-    const typeMap = { desc:'Красочное описание', feat:'Особенности', comp:'Состав' };
+    const typeMap = {
+      desc:'Красочное описание',
+      feat:'Особенности',
+      comp:'Состав',
+      blindphoto:'Слепой тест: по фото'
+    };
     if(profile.trainingType && typeMap[profile.trainingType]){
       parts.push(typeMap[profile.trainingType]);
     }
