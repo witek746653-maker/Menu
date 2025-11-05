@@ -335,6 +335,9 @@ details.qa {
             <option value="feat">Особенности и аллергены</option>
             <option value="comp">Состав</option>
             <option value="blindphoto">Слепой тест: по фото</option>
+            <option value="mode_en">English cards</option>
+          </select>
+
           </select>
         </div>
         <div class="row">
@@ -655,6 +658,12 @@ allCards = withHtml.map(c => {
     : ((feat || comp)
         ? `${feat ? `<h4>Особенности</h4>${feat}` : ''}${comp ? `<h4>Состав</h4>${comp}` : ''}`
         : (qa.answerHTML || ''));
+  const enTitle = (c?.i18n?.en && typeof c.i18n.en.title === 'string')
+  ? c.i18n.en.title.trim()
+  : '';
+  const enDesc  = (c?.i18n?.en && typeof c.i18n.en.description === 'string')
+    ? mdOrHtml(c.i18n.en.description)
+    : '';
 
   return {
     id: c.id || idFromTitle(title),
@@ -662,6 +671,7 @@ allCards = withHtml.map(c => {
     imageSrc: (c.image && c.image.src) ? c.image.src : (c.imageSrc || null),
     menu, section,
     desc, feat, comp, answer,
+    enTitle, enDesc,
     allergens: Array.isArray(c.allergens) ? c.allergens : [],
     jsonHas: { desc: hasJsonDesc, feat: hasJsonFeat, comp: hasJsonComp, answer: hasJsonAnswer }
   };
@@ -728,7 +738,12 @@ function isMissingInJSON(c){
     // Карточка НЕ подходит, если нет фото или нет вообще никакого контента
     return !(hasRealImage && hasAnyAnswer);
   }
-
+  if (m === 'mode_en') {
+    const hasRealImage = !!c.imageSrc;
+    const hasAnyEN = (typeof c.enTitle === 'string' && c.enTitle.trim().length > 0) ||
+                  (typeof c.enDesc  === 'string' && c.enDesc.trim().length  > 0);
+    return !(hasRealImage && hasAnyEN);
+  }
   return false;
 }
 
@@ -922,6 +937,26 @@ function renderCard(c){
   if (compHTML) parts.push(`<h4>Состав</h4>${compHTML}`);
 
   answerDiv.innerHTML = parts.join('') || '<em>Нет данных для ответа</em>';
+  } else if (profile.trainingType === 'mode_en') {
+  // До клика: только фото. Скрываем шапку карточки и любые тексты.
+  descEl.style.display = 'none';
+  details.style.display = '';
+
+  const cardHeaderEl = node.querySelector('.card > header');
+  if (cardHeaderEl) cardHeaderEl.style.display = 'none';
+
+  const sum = details.querySelector('summary');
+  if (sum) sum.textContent = 'Show English title and description';
+
+  const parts = [];
+  if (c.enTitle && c.enTitle.trim()) {
+    parts.push(`<h3 style="margin:0 0 8px 0">${c.enTitle}</h3>`);
+  }
+  if (c.enDesc && c.enDesc.trim()) {
+    parts.push(`<h4>Description (EN)</h4>${c.enDesc}`);
+  }
+  // В этом режиме ничего кроме EN-title и EN-description не показываем
+  answerDiv.innerHTML = parts.join('') || '<em>No English data</em>';
 
   } else if (profile.trainingType === 'comp') {
     answerDiv.innerHTML = firstNonEmpty(c.comp, extractQA(c.html).compositionHTML, '<em>Нет информации о составе</em>');
@@ -1144,7 +1179,8 @@ function wire(){
       desc:'Красочное описание',
       feat:'Особенности',
       comp:'Состав',
-      blindphoto:'Слепой тест: по фото'
+      blindphoto:'Слепой тест: по фото',
+      mode_en:'Photo → EN title+desc'
     };
     if(profile.trainingType && typeMap[profile.trainingType]){
       parts.push(typeMap[profile.trainingType]);
