@@ -295,6 +295,18 @@ details.qa {
   height: auto !important;
   object-fit: contain !important;
 }
+.btn-audio{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.5rem .75rem; border:1px solid #e2e8f0; border-radius:.75rem;
+  background:#fff; cursor:pointer; transition:transform .05s, background .2s, border-color .2s;
+  box-shadow:0 1px 2px rgba(0,0,0,.05);
+  font-weight:600;
+}
+.btn-audio:hover{ background:#f8fafc; border-color:#cbd5e1; }
+.btn-audio:active{ transform:translateY(1px); }
+.btn-audio.playing{ background:#eef2ff; border-color:#6366f1; }
+.en-answer audio{ display:none; }
+
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
@@ -480,6 +492,38 @@ function pickDesc(rec){
   // только верхний description → потом подстраховка из raw_html
   return t(rec.description) || (extractQA(rec.raw_html || '')?.description || '');
 }
+
+let EN_MAP = {};
+async function loadEn(){
+  try {
+    const res = await fetch('./en.json');
+    EN_MAP = await res.json(); // { [slug]: { name, description, ... } }
+  } catch(e){
+    console.warn('en.json load failed', e); EN_MAP = {};
+  }
+}
+function norm(s){ return (s||'').toLowerCase().replace(/\s+/g,' ').trim(); }
+function guessSlugForCard(card){
+  if (card.slug_en) return card.slug_en;
+  if (card.i18n?.en?.slug) return card.i18n.en.slug;
+  const enTitle = card.i18n?.en?.name || card.enTitle || '';
+  const t = norm(enTitle);
+  // точное совпадение по EN_MAP.name
+  for (const [slug, obj] of Object.entries(EN_MAP)){ if (norm(obj?.name) === t) return slug; }
+  // startsWith как запасной
+  for (const [slug, obj] of Object.entries(EN_MAP)){ if (norm(obj?.name).startsWith(t)) return slug; }
+  return null;
+}
+// делегируем клик по кнопке проигрывания
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.btn-audio'); if(!btn) return;
+  const wrap = btn.closest('.en-answer');
+  const audio = wrap?.querySelector('audio[data-role="card-audio"]');
+  if(!audio) return;
+  if(audio.paused){ audio.play(); btn.classList.add('playing'); }
+  else { audio.pause(); btn.classList.remove('playing'); }
+});
+
 
 // --------- Parse helpers
 function extractQA(html){
@@ -957,6 +1001,38 @@ function renderCard(c){
   }
   // В этом режиме ничего кроме EN-title и EN-description не показываем
   answerDiv.innerHTML = parts.join('') || '<em>No English data</em>';
+    // + аудио-кнопка по слагу из en.json
+  const slug = guessSlugForCard(c);
+  if(slug){
+    const audioSrc = `../audio/en/${slug}.mp3`;
+    answerDiv.classList.add('en-answer');
+    answerDiv.insertAdjacentHTML('beforeend', `
+      <div class="mt-3">
+        <button class="btn-audio" type="button" aria-label="Play pronunciation">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M3 9v6h4l5 4V5L7 9H3zM16 12a4 4 0 0 0-2-3.46v6.92A4 4 0 0 0 16 12zm0-7v2a9 9 0 0 1 0 10v2a11 11 0 0 0 0-14z"></path>
+          </svg>
+          <span class="btn-audio__text">Listen</span>
+        </button>
+        <audio preload="none" src="${audioSrc}" data-role="card-audio"></audio>
+      </div>
+    `);
+    const audio = answerDiv.querySelector('audio[data-role="card-audio"]');
+    if(audio){
+      audio.addEventListener('error', () => {
+        const t = answerDiv.querySelector('.btn-audio__text');
+        if(t) t.textContent = 'Audio not found';
+        answerDiv.querySelector('.btn-audio')?.setAttribute('disabled','disabled');
+      });
+      audio.addEventListener('ended', () => {
+        answerDiv.querySelector('.btn-audio')?.classList.remove('playing');
+      });
+      audio.addEventListener('pause', () => {
+        answerDiv.querySelector('.btn-audio')?.classList.remove('playing');
+      });
+    }
+  }
+
 
   } else if (profile.trainingType === 'comp') {
     answerDiv.innerHTML = firstNonEmpty(c.comp, extractQA(c.html).compositionHTML, '<em>Нет информации о составе</em>');
@@ -1237,11 +1313,11 @@ function wire(){
 (async function(){
   load();
   try{
+    await loadEn();     
     await loadCards();
     wire();
-  }catch(e){
-    document.querySelector('#stage')?.insertAdjacentHTML('beforeend', `<div class="empty">Не удалось загрузить карточки: ${e.message}. Положите рядом файлы <code>cards.json</code> и <code>${MAIN_HTML}</code> (для разделов).</div>`);
-    wire();
+  } catch (e) {
+    console.error('Bootstrap failed', e);
   }
 })();
 </script>
