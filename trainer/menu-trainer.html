@@ -45,7 +45,12 @@ html, body {
 a { color: var(--accent); text-decoration: none }
 a:hover { text-decoration: underline }
 
-.wrap { max-width: 960px; margin: 20px auto; padding: 12px }
+.wrap {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 20px !important;
+}
 
 header { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 12px }
 h1 { margin: 0; font-size: 26px; letter-spacing: .2px; color: var(--accent-3) }
@@ -104,15 +109,19 @@ button:disabled { opacity: .55; cursor: not-allowed }
 
 .counter { color: var(--muted); font-size: 13px }
 
-.grid { display: grid; grid-template-columns: 1fr; gap: 16px }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) !important; gap: 16px }
 
 .card {
+  width: 100% !important;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
 }
+
+.body, .answer, .desc, .media { max-width: none !important; }
+
 .card header {
   padding: 12px 14px;
   border-bottom: 1px solid var(--border);
@@ -146,7 +155,10 @@ details {
 }
 details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: none }
 .answer h4 { margin: 10px 0 6px 0; font-size: 14px; color: var(--accent-3) }
-
+.answer .column-list { display: block !important; }
+.answer .column-list .column { width: 100% !important; display: block; }
+.answer .column-list .column > * { max-width: 100%; }
+.answer figure.image, .answer figure.image img { max-width: 100% !important; height: auto !important; }
 .actions {
   display: grid;
   /* Теперь три колонки для трёх оценок */
@@ -224,12 +236,7 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important }
 }
-  /* ---- Custom adjustments for compact header and larger icon ---- */
-  .wrap {
-    max-width: 960px;
-    margin: 10px auto !important;
-    padding: 8px !important;
-  }
+  
   /* Reduce space below the main header */
   .wrap > header {
     margin-bottom: 8px !important;
@@ -261,10 +268,38 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
   .allergen{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid var(--border);
     border-radius:999px;background:#fffdf7;box-shadow:var(--shadow-md);font-size:13px;color:var(--text)}
 
+  .card {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.body {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 20px !important;
+}
+
+.desc, .answer {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+details.qa {
+  width: 100% !important;
+}
+
+.media img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 </head>
+
 <body>
   
 
@@ -363,7 +398,10 @@ const ALLERGEN_EMOJI = {
   "рыба":"🐟","моллюски":"🦪","ракообразные":"🦐","устрицы":"🦪","цитрусы":"🍋","лук":"🧅","чеснок":"🧄",
   "перец":"🌶️","кинза":"🌿","сельдерей":"🥬","горчица":"🌰","кунжут":"⚪","мёд":"🍯","алкоголь":"🍷","свинина":"🐖",
   "без мяса":"🚫🥩","сырой продукт":"🧊","эстрагон":"🪴","зелень":"🌱","трюфель":"⚫",
-  "вегетарианское":"🥦","веганское":"🍀","постное":"🍃", "грибы":"🍄", "medium":"🔥", "Минимальный вес 250 г.": "⚖️", "На хоспере приготовить нельзя.":"🚫"
+  "вегетарианское":"🥦","веганское":"🍀","постное":"🍃", "грибы":"🍄", "medium":"🔥", "вес от 250 г.": "⚖️", "На хоспере приготовить нельзя.":"⚠️",
+  "сладкий соус":"🍯", "на кости":"🍖", "долгое ожидание":"⚠️", "сладость":"🍬", "вес от 130 г.": "⚖️",
+  "копченое масло":"🧈", "без лактозы":"🚫🥛", "морепродукты":"🦐", "пюре с лимонным фрешем":"🍋", "менее острые и не острые приготовить нельзя":"⚠️",
+  "с добавлением моркови и сельдерея":"⚠️", "головы при подаче не отделяются":"⚠️"
 };
 
 function normalizeAllergensEmoji(arr){
@@ -577,28 +615,54 @@ async function loadCards(){
   const {map: titleToH2, h2List} = await buildTitleToH2Map();
   window.__MAIN_H2 = h2List;
 
-  // 4) разбор блоков
+  // конвертируем Markdown → HTML, иначе просто <br>
+  const mdOrHtml = (v) => {
+    const s = (typeof v === 'string' ? v.trim() : '');
+    if (!s) return '';
+    if (/<[a-z][\s\S]*>/i.test(s)) return s; // уже HTML
+    return (window.marked ? marked.parse(s) : s.replace(/\n/g, '<br>'));
+  };
+  // хелперы
+  const textOrEmpty = v => (typeof v === 'string' ? v.trim() : '');
+  const htmlOrEmpty = v => textOrEmpty(v);
+  const normalizeContains = v =>
+    Array.isArray(v) ? v.map(x => String(x).trim()).filter(Boolean).join(', ')
+                    : textOrEmpty(v);
+
+// 4) Разбор и сборка карточек
 allCards = withHtml.map(c => {
-  const { description, featuresHTML, compositionHTML, answerHTML } = extractQA(c.html);
-  const title = c.title || 'Без названия';
-  const menu  = c.menu || 'Основное меню';
-  const section = titleToH2[title] || c.section || '—';
+  const qa = extractQA(c.html);
+  const title   = c.title || 'Без названия';
+  const menu    = c.menu  || 'Основное меню';
+  const section = (titleToH2[title] || c.section || '—');
+
+  const hasJsonDesc = !!(c.description && c.description.trim());
+  const hasJsonFeat = !!(c.features && c.features.trim());
+  const hasJsonComp = !!(c.contains && c.contains.trim?.() || Array.isArray(c.contains) && c.contains.length);
+  const hasJsonAnswer = !!(c.answer && c.answer.trim()) || hasJsonFeat || hasJsonComp;
+
+  const desc = hasJsonDesc ? mdOrHtml(c.description) : (qa.description || '');
+  const feat = hasJsonFeat ? mdOrHtml(c.features)     : (qa.featuresHTML || '');
+  const comp = hasJsonComp
+    ? (Array.isArray(c.contains) ? c.contains.map(x=>String(x).trim()).filter(Boolean).join(', ') : mdOrHtml(c.contains))
+    : (qa.compositionHTML || '');
+
+  const answer = (c.answer && c.answer.trim())
+    ? mdOrHtml(c.answer)
+    : ((feat || comp)
+        ? `${feat ? `<h4>Особенности</h4>${feat}` : ''}${comp ? `<h4>Состав</h4>${comp}` : ''}`
+        : (qa.answerHTML || ''));
+
   return {
     id: c.id || idFromTitle(title),
-    title,
-    html: c.html,
+    title, html: c.html,
     imageSrc: (c.image && c.image.src) ? c.image.src : (c.imageSrc || null),
-    menu,
-    section,
-    // сначала верхний description из JSON, потом из HTML
-    desc: (typeof c.description === 'string' && c.description.trim()) ? c.description.trim() : (description || ''),
-    feat: featuresHTML,
-    comp: compositionHTML,
-    answer: answerHTML,
-    allergens: Array.isArray(c.allergens) ? c.allergens : []
+    menu, section,
+    desc, feat, comp, answer,
+    allergens: Array.isArray(c.allergens) ? c.allergens : [],
+    jsonHas: { desc: hasJsonDesc, feat: hasJsonFeat, comp: hasJsonComp, answer: hasJsonAnswer }
   };
-}); 
-
+});
 
   // 5) инициализация прогресса
   for(const c of allCards){
@@ -623,21 +687,37 @@ function buildFilter(){
   sel.addEventListener('change', refresh);
   if(profile.section){ sel.value = profile.section; }
 }
+// === ХЕЛПЕРЫ ДЛЯ ПРОПУСКА ПУСТЫХ КАРТОЧЕК ===
+const text = v => (typeof v === 'string' ? v.trim() : '');
+const normContains = v =>
+  Array.isArray(v) ? v.map(x => String(x).trim()).filter(Boolean).join(', ')
+  : text(v);
+
+// пропуск карточек без нужных полей в JSON
+function isMissingInJSON(c){
+  const m = profile.trainingType; // 'desc' | 'feat' | 'comp' | 'answer'
+  const h = c.jsonHas || {};
+  if (m === 'desc')   return !h.desc;
+  if (m === 'feat')   return !h.feat;
+  if (m === 'comp')   return !h.comp;
+  if (m === 'answer') return !h.answer;
+  return false;
+}
+
 
 function computeQueue(){
   const t = today();
-  const due = [];
-  const newer = [];
-  for(const c of allCards){
-    // Применяем выбранные меню и раздел
+  const due = [], newer = [];
+  for (const c of allCards){
     if(!menuMatches(c.menu, profile.menu)) continue;
-    if(profile.section && c.section!==profile.section) continue;
+    if(profile.section && c.section !== profile.section) continue;
+
+    // ключевая строка: пропустить, если поле пусто в JSON
+    if (isMissingInJSON(c)) continue;
+
     const st = db.cards[c.id];
-    if(!st || st.n===0) {
-      newer.push(c.id);
-    } else if(st.due <= t) {
-      due.push(c.id);
-    }
+    if(!st || st.n === 0) newer.push(c.id);
+    else if (st.due <= t) due.push(c.id);
   }
   // Всегда возвращаем просроченные и новые
   queue = [...due, ...newer];
@@ -672,27 +752,33 @@ function render(){
 }
 
 function statLine(){
-  // Статистика: всего карточек, трудных, нормальных и лёгких
-  let total = 0;
-  let hard = 0;
-  let norm = 0;
-  let easy = 0;
-  for(const c of allCards){
-    // Применяем выбранные фильтры меню и раздела
+  const labelByMode = {
+    desc:   'описания',
+    feat:   'особенностей',
+    comp:   'состава',
+    answer: 'ответа'
+  };
+  let total = 0, hard = 0, norm = 0, easy = 0, skipped = 0;
+
+  for (const c of allCards){
     if(!menuMatches(c.menu, profile.menu)) continue;
     if(profile.section && c.section !== profile.section) continue;
+
+    if (isMissingInJSON(c)) { skipped++; continue; }
+
     total++;
     const st = db.cards[c.id];
-    // Если данных о карточке нет или она новая, считаем её трудной
-    if(!st || st.n === 0){ hard++; continue; }
-    // Используем последнюю оценку для классификации
+    if(!st || st.n === 0) { hard++; continue; }
     const g = st.lastGrade;
-    if(g <= 2){ hard++; }
-    else if(g === 3){ norm++; }
-    else { easy++; }
+    if (g <= 2) hard++;
+    else if (g === 3) norm++;
+    else easy++;
   }
-  return `Общее: ${total} • Трудно: ${hard} • Норм: ${norm} • Легко: ${easy}`;
+
+  const missLabel = labelByMode[profile.trainingType] || 'данных';
+  return `Общее: ${total} • Трудно: ${hard} • Норм: ${norm} • Легко: ${easy} • Без ${missLabel}: ${skipped}`;
 }
+
 
 function renderCard(c){
   const tpl = document.getElementById('cardTpl');
@@ -710,6 +796,9 @@ function renderCard(c){
   // Summary "Показать ответ" остаётся неизменной.
   descEl.style.display = 'none';
   details.style.display = '';
+  function firstNonEmpty(...vals) {
+  return vals.find(v => typeof v === 'string' && v.trim());
+}
   if(profile.trainingType === 'desc'){
     // Красочное описание
     answerDiv.innerHTML = c.desc || '<em>Нет описания</em>';
@@ -738,12 +827,10 @@ function renderCard(c){
     // ключевое: внутрь ответа, а не в .body
     answerDiv.appendChild(wrap);
   }
-  } else if(profile.trainingType === 'comp'){
-    // Состав
-    answerDiv.innerHTML = c.comp || '<em>Нет информации о составе</em>';
+  } else if (profile.trainingType === 'comp') {
+    answerDiv.innerHTML = firstNonEmpty(c.comp, extractQA(c.html).compositionHTML, '<em>Нет информации о составе</em>');
   } else {
-    // По умолчанию показываем полную информацию (особенности и состав)
-    answerDiv.innerHTML = c.answer || '<em>Нет данных</em>';
+    answerDiv.innerHTML = firstNonEmpty(c.answer, extractQA(c.html).answerHTML, '<em>Нет данных</em>');
   }
   const media = node.querySelector('.media');
   const img = media.querySelector('img');
