@@ -205,20 +205,72 @@ details summary { cursor: pointer; color: #8c5a3c; font-weight: 700; outline: no
 
 /* Стартовое окно */
 .backdrop {
-  position: fixed; inset: 0;
-  background: rgba(60,40,20,.25);
-  display: flex; align-items: center; justify-content: center; padding: 16px
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  background: none;
+  z-index: 1000;
 }
 .modal {
   width: min(680px, 100%);
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-lg)
+  border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-lg);
 }
 .modal header { padding: 14px 16px; border-bottom: 1px solid var(--border); background: linear-gradient(90deg, rgba(255,209,102,.20), transparent) }
-.modal .content { padding: 16px; display: grid; gap: 12px }
-.modal .row { display: grid; gap: 8px }
-.modal label { font-size: 13px; color: var(--accent-3) }
+.modal .content { padding: 16px 20px !important; }
+.modal .row { 
+  display: flex;
+  flex-direction: column;
+  gap: 6px; 
+}
+.modal label { 
+  font-size: 13px;
+  color: var(--accent-3);
+  font-weight: 600;
+  margin-left: 2px; 
+}
+.modal button {
+  width: 100%;
+  box-sizing: border-box;
+}
+.modal select,
+.modal input[type="text"],
+.modal input[type="number"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+  appearance: none;       /* ровные селекты */
+}
+/* Хинт под кнопкой — мелкий и спокойный */
+.modal .muted {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Кнопка запуска: как просили — оставить стиль, но опустить ниже от полей */
+.modal .start-row {
+  margin-top: 8px;        /* отступ от полей */
+}
+
+.modal .start-row #startBtn {
+  width: 100%;
+  margin-top: 6px;         /* микро-воздух между полями и кнопкой */
+}
+
+/* На очень узких экранах слегка уменьшим отступы */
+@media (max-width: 380px) {
+  .modal { width: 94vw; }
+  .modal .content { padding: 14px !important; }
+}
 
 /* Мобильные улучшения */
 @media (max-width: 480px) {
@@ -391,7 +443,8 @@ details.qa {
             <option value="mode_en">English cards</option>
           </select>
         </div>
-        <div class="row">
+        
+        <div class="row start-row">
           <button id="startBtn" class="primary" disabled>Начать тренировку</button>
           <span class="muted" id="startHint"></span>
         </div>
