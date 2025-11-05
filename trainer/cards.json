@@ -57,8 +57,9 @@
     "contains": "Устрицы подаются с:\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-8072-8281-fd2feb574188\" start=\"1\" type=\"1\"><li>Красным винным уксусом.</li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-80a6-b608-c4c022d875cf\" start=\"2\" type=\"1\"><li><strong>Луком шалот.</strong></li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-8049-8425-dff6ee45f380\" start=\"3\" type=\"1\"><li><strong>Лимоном.</strong></li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-80af-a4fc-ee2863489982\" start=\"4\" type=\"1\"><li>Гренками.</li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-808d-b07e-f189c53a252b\" start=\"5\" type=\"1\"><li>Сливочным маслом.</li></ol>",
     "allergens": [
       "цитрусы",
-      "сырой",
-      "лук"
+      "сырой продукт",
+      "лук",
+      "глютен"
     ],
     "tags": [],
     "pairings": {
@@ -99,8 +100,8 @@
     "contains": "Устрицы подаются с:\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-80d0-a7c7-de0e3fe81b85\" start=\"1\" type=\"1\"><li>Красным винным уксусом.</li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-80ac-8b67-c4a7b4fb635e\" start=\"2\" type=\"1\"><li><strong>Луком шалот.</strong></li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-8052-b7f1-f206bc7d389d\" start=\"3\" type=\"1\"><li><strong>Лимоном.</strong></li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-8031-a3cd-e31fa2185e46\" start=\"4\" type=\"1\"><li>Гренками.</li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-80ee-9f34-cdfbcf7b325a\" start=\"5\" type=\"1\"><li>Сливочным маслом.</li></ol>",
     "allergens": [
       "цитрусы",
-      "сырой",
-      "лук"
+      "сырой продукт",
+      "лук", "глютен"
     ],
     "tags": [],
     "pairings": {
@@ -221,7 +222,8 @@
       "без мяса",
       "лактоза",
       "орехи",
-      "зелень"
+      "зелень",
+      "глютен"
     ],
     "tags": [],
     "pairings": {
@@ -263,7 +265,8 @@
     "allergens": [
       "без мяса",
       "лактоза",
-      "грибы"
+      "грибы",
+      "глютен"
     ],
     "tags": [],
     "pairings": {
@@ -307,7 +310,8 @@
       "орехи",
       "сырой продукт",
       "зелень",
-      "свинина"
+      "свинина",
+      "глютен"
     ],
     "tags": [],
     "pairings": {
@@ -349,7 +353,8 @@
     "allergens": [
       "лактоза",
       "зелень",
-      "эстрагон"
+      "эстрагон",
+      "глютен"
     ],
     "tags": [],
     "pairings": {
@@ -506,7 +511,7 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<div class=\"column-list\" id=\"23233974-4d17-8075-8070-dace4a85daed\"><div class=\"column\" id=\"23233974-4d17-80dc-a205-e9e0360fb3e5\" style=\"width:100%\"><p class=\"\" id=\"23233974-4d17-80e0-8fbc-de568f33821b\"><strong>Сочный томат фаршированный нежным крабовым мясом, спелым авокадо и сливочной страчателлой в сочетании с листьями шпината и ароматным базиликовым маслом.</strong></p><hr id=\"23233974-4d17-80ba-88ad-cade80dc1271\"/><p class=\"\" id=\"23233974-4d17-8016-a53a-cb817b58ce74\"><strong>Особенности:</strong></p><p class=\"\" id=\"23233974-4d17-80bf-8092-dedd49e34611\"> 🌶️ перец |<img alt=\"garlick_icon\" src=\"../icons/garlic_icon.png\" style=\"width:1em;height:1em\"/> чеснок | <img alt=\"greens_icon\" src=\"../icons/herbs_icon.png\" style=\"width:1em;height:1em\"/> зелень | <img alt=\"estragon_icon\" src=\"../icons/estragon_icon.png\" style=\"width:1em;height:1em\"/> эстрагон </p><figure class=\"image\" id=\"23233974-4d17-800c-a98c-d8ca9a899947\"><a href=\"image.png\"><img src=\"../images/image.png\" style=\"width:1px\"/></a></figure><p class=\"\" id=\"23233974-4d17-8096-9276-f7aa9c8d53b5\"><strong>Пикантное блюдо.</strong></p><p class=\"\" id=\"23233974-4d17-80ff-81da-eced77f13d80\">В начинку добавляют немного эстрагона и кокосового молока.</p><p class=\"\" id=\"23233974-4d17-807e-86cd-f4aaf688a323\"><strong>Маринад Ким Чи: </strong>фреш имбирный, перец Чили.</p><p class=\"\" id=\"23233974-4d17-8070-97fc-df79f4bf7654\"><strong>Крабовый соус: </strong>перец чили.</p><p class=\"\" id=\"23233974-4d17-8061-833f-c1937ec32adc\"><strong>Домашний кетчуп: </strong>чеснок, ворчестер.</p><p class=\"\" id=\"23233974-4d17-80b5-b6d6-e06964518cec\"><strong>Краб - Дальний Восток.</strong></p></div><div class=\"column\" id=\"23233974-4d17-801e-8c2b-d16a2633f60b\" style=\"width:100%\"><figure class=\"image\" id=\"23233974-4d17-804d-8df9-e654a4556966\"><a href=\"Kholodnye_zakuski_Tomat_i_krab.jpg\"><img src=\"../images/Kholodnye_zakuski_Tomat_i_krab.jpg\" style=\"width:467.4921875px\"/></a><figcaption>Томат и краб </figcaption></figure></div></div><hr id=\"23233974-4d17-804a-9363-da66ef70a182\"/><p class=\"\" id=\"23233974-4d17-8002-b7bf-f5751a9abea0\"><strong>Состав:</strong></p><div class=\"column-list\" id=\"23233974-4d17-8092-84df-e9a0d88d5377\"><div class=\"column\" id=\"23233974-4d17-8073-bba4-f8ce718aeb2b\" style=\"width:50%\"><ol class=\"numbered-list\" id=\"23233974-4d17-80cd-8c55-f66d54c159ed\" start=\"1\" type=\"1\"><li>Из помидора (узбекские) вынимаем середину.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-805d-b12f-dfc429c494d6\" start=\"2\" type=\"1\"><li>Помидор в течении часа маринуем в Ким Чи маринаде.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80b5-ba7f-e40742bd0f84\" start=\"3\" type=\"1\"><li>Фаршируем авокадо, страчателлой, мясом краба, с добавлением эстрагона и крабового соуса.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8045-8b38-f0c0267ad82b\" start=\"4\" type=\"1\"><li>Помидор смазываем домашним кетчупом.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-802b-ac4b-f0094df68cdd\" start=\"5\" type=\"1\"><li>На дно тарелки наливаем немного кетчупа на него выкладываем помидор, оформляем листьями шпината.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8088-b2ae-fdba00f21569\" start=\"6\" type=\"1\"><li>Отдельно томатная вода с базиликовым маслом.</li></ol></div><div class=\"column\" id=\"23233974-4d17-8053-b25f-e632262028ef\" style=\"width:50%\"><p class=\"\" id=\"23233974-4d17-800a-87c9-f54b68434a29\"><strong>Маринад Ким Чи:</strong> уксус винный, паста овощная Ким Чи, соус устричный, крахмал кукурузный, <strong>фреш имбирный, перец чили.</strong></p><p class=\"\" id=\"23233974-4d17-8093-ab3d-f77d012d4b07\"><strong>Крабовый соус:</strong> молоко кокосовое, биск краб/креветка, томаты, масло подсолнечное, соус устричный, <strong>перец чили.</strong></p><p class=\"\" id=\"23233974-4d17-805a-b058-daa8cb0d73d9\"><strong>Домашний кетчуп:</strong> помидоры, <strong>чеснок,</strong> масло оливк, тимьян, базилик, ворчестер.</p><p class=\"\" id=\"23233974-4d17-80db-96b8-ec9d7c4ccabf\"><strong>Томатная вода: </strong>базиликовое масло,<strong> </strong>помидоры узбекские, соль, сахар, тимьян.</p></div></div><hr id=\"23233974-4d17-80bd-adfe-efcf57f9b14c\"/>",
-    "features": "<strong>Пикантное блюдо.</strong>\n\nВ начинку добавляют немного эстрагона и кокосового молока.\n\n<strong>Маринад Ким Чи: </strong>фреш имбирный, перец Чили.\n\n<strong>Крабовый соус: </strong>перец чили.\n\n<strong>Домашний кетчуп: </strong>чеснок, ворчестер.\n\n<strong>Краб - Дальний Восток.</strong>"
+    "features": "<strong>Пикантное блюдо.</strong>\n\nВ начинку добавляют немного эстрагона и кокосового молока.\n\n<strong>Маринад Ким Чи: </strong>фреш имбирный, перец Чили.\n\n<strong>Крабовый соус: </strong>перец чили.\n\n<strong>Домашний кетчуп: </strong>чеснок, ворчестер.\n\n<strong>Краб - Дальний Восток.</strong>"
   },
   {
     "id": "0013",
@@ -524,8 +529,9 @@
       "кинза",
       "цитрусы",
       "орехи",
-      "сырой",
-      "зелень"
+      "сырой продукт",
+      "зелень",
+      "глютен"
     ],
     "tags": [],
     "pairings": {
@@ -841,9 +847,8 @@
     "contains": "<ol class=\"numbered-list\" id=\"23233974-4d17-80f5-aa07-dd6d1868640b\" start=\"1\" type=\"1\"><li>Груша обжаривается на <strong>сливочном масле, </strong>фламбируется <strong>ромом,</strong> добавляется немного гренадина.</li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-800e-86b2-db7fbc658ee7\" start=\"2\" type=\"1\"><li>Тушится с добавлением куриного бульона.</li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-80f1-8b36-faadb26165cc\" start=\"3\" type=\"1\"><li>Фуа-гра (эскалоп - цельный кусок) предварительно маринуется с использованием <strong>порто и коньяка.</strong></li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-8090-a447-c62fe8b923e6\" start=\"4\" type=\"1\"><li>Фуа-гра выкладывается на грушу, поливается соусом, в котором томилась груша, с добавлением небольшого количества сливочного масла.</li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-802b-abd4-cb7965ecb8ed\" start=\"5\" type=\"1\"><li>Украшается: мятой, ягодами</li></ol>",
     "allergens": [
       "лактоза",
-      "алкоголь",
-      "коньяк",
-      "ром"
+      "алкоголь", 
+      "сладость"
     ],
     "tags": [],
     "pairings": {
@@ -868,7 +873,7 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<div class=\"column-list\" id=\"23233974-4d17-803b-98e4-d13e0dc23908\"><div class=\"column\" id=\"23233974-4d17-80ac-b30f-ccf9b2088bb7\" style=\"width:100.00000000000003%\"><figure class=\"image\" id=\"23233974-4d17-812d-b03f-d6ea201881b6\"><a href=\"Goryachie_zakuski_Eskalop_fua_gra_s.jpg\"><img src=\"../images/Goryachie_zakuski_Eskalop_fua_gra_s.jpg\" style=\"width:431.4921875px\"/></a><figcaption>Эскалоп фуа-гра с грушей пакхам под ягодно-ромовом соусом</figcaption></figure></div><div class=\"column\" id=\"23233974-4d17-816e-86ac-e3b8773a26d8\" style=\"width:200.00000000000009%\"><p class=\"\" id=\"23233974-4d17-816d-889e-e54be817f420\"><strong>Изысканный эскалоп фуа-гра с томленой грушей пакхам под ягодно-ромовом соусом.</strong></p><hr id=\"23233974-4d17-81a7-b845-f47be457e756\"/><p class=\"\" id=\"23233974-4d17-8132-959b-ebcdb654da42\"><strong>Особенности:</strong></p><p class=\"\" id=\"23233974-4d17-8189-a516-c1a9c6f3c8a7\"> 🥛 лактоза |<img alt=\"wine_icon\" src=\"../icons/wine_icon.png\" style=\"width:1em;height:1em\"/> вино | <img alt=\"conyak_icon\" src=\"../icons/conyak_icon.png\" style=\"width:1em;height:1em\"/> коньяк  | <img alt=\"rum_icon\" src=\"../icons/rum_icon.png\" style=\"width:1em;height:1em\"/> ром</p><figure class=\"image\" id=\"23233974-4d17-8174-beff-dc410281d0a2\"><a href=\"image.png\"><img src=\"../images/image.png\" style=\"width:1px\"/></a></figure><p class=\"\" id=\"23233974-4d17-812f-9776-f22da898dc24\">Груша обжаривается на <strong>сливочном масле, </strong>фламбируется <strong>ромом. </strong></p><p class=\"\" id=\"23233974-4d17-8048-9cdb-fc27bf215082\">Фуа-гра маринуется с использованием <strong>порто и коньяка.</strong></p><hr id=\"23233974-4d17-8058-87ca-cd792b3a98fa\"/><p class=\"\" id=\"23233974-4d17-8029-b61e-cb7456ecd8c4\"><strong>Состав:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-80f5-aa07-dd6d1868640b\" start=\"1\" type=\"1\"><li>Груша обжаривается на <strong>сливочном масле, </strong>фламбируется <strong>ромом,</strong> добавляется немного гренадина.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-800e-86b2-db7fbc658ee7\" start=\"2\" type=\"1\"><li>Тушится с добавлением куриного бульона.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80f1-8b36-faadb26165cc\" start=\"3\" type=\"1\"><li>Фуа-гра (эскалоп - цельный кусок) предварительно маринуется с использованием <strong>порто и коньяка.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8090-a447-c62fe8b923e6\" start=\"4\" type=\"1\"><li>Фуа-гра выкладывается на грушу, поливается соусом, в котором томилась груша, с добавлением небольшого количества сливочного масла.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-802b-abd4-cb7965ecb8ed\" start=\"5\" type=\"1\"><li>Украшается: мятой, ягодами</li></ol><p class=\"\" id=\"23233974-4d17-8082-8dc3-fbd02cf1eafa\">\n</p></div></div><hr id=\"23233974-4d17-80dd-88c8-e2ebb4497e03\"/><div class=\"column-list\" id=\"23233974-4d17-80a1-a6ec-dad6987212ca\"><div class=\"column\" id=\"23233974-4d17-80f6-982e-da8bd0546023\" style=\"width:62.5%\"></div><div class=\"column\" id=\"23233974-4d17-8046-b650-d71ada6d0420\" style=\"width:37.49999999999999%\"></div></div><hr id=\"23233974-4d17-8015-8ac4-c6748a480eef\"/>",
-    "features": "Груша обжаривается на <strong>сливочном масле, </strong>фламбируется <strong>ромом. </strong>\n\nФуа-гра маринуется с использованием <strong>порто и коньяка.</strong>"
+    "features": "Груша обжаривается на <strong>сливочном масле, </strong>фламбируется <strong>ромом. </strong>\n\nФуа-гра маринуется с использованием <strong>порто и коньяка.</strong>"
   },
   {
     "id": "0021",
@@ -1016,7 +1021,7 @@
       "цитрусы",
       "зелень",
       "алкоголь",
-      "головы при подаче не отделяются"
+      "головы при подаче не отделяют"
     ],
     "tags": [],
     "pairings": {
@@ -1102,11 +1107,12 @@
     "description": "Карамелизованные баклажаны, со спелыми томатами, ароматной зеленью и постным песто.",
     "contains": "<ol class=\"numbered-list\" id=\"23233974-4d17-809e-8068-d9ab1293d540\" start=\"1\" type=\"1\"><li>Помидоры режем кубиком и соединяем с зеленью (<strong>кинза, лук шалот, </strong>лук зеленый).</li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-809a-81c5-efffe10c679f\" start=\"2\" type=\"1\"><li>Добавляем постный песто (без грана падано).</li></ol>\n\n<ol class=\"numbered-list\" id=\"23233974-4d17-803e-90be-dc254717ad9e\" start=\"3\" type=\"1\"><li>Баклажаны очищаем, обваливаем в кукурузном крахмале и обжариваем во фритюре.</li></ol>",
     "allergens": [
+      "без мяса", 
+      "без лактозы"
       "кинза",
       "орехи",
       "лук",
-      "зелень",
-      "постный"
+      "зелень"
     ],
     "tags": [],
     "pairings": {
@@ -1245,7 +1251,7 @@
       "цитрусы",
       "чеснок",
       "зелень",
-      "анчоусы"
+      "рыба"
     ],
     "tags": [],
     "pairings": {
@@ -1270,7 +1276,7 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<div class=\"column-list\" id=\"23233974-4d17-8023-999e-d36da1503725\"><div class=\"column\" id=\"23233974-4d17-8015-9042-da822c852e39\" style=\"width:43.75%\"><figure class=\"image\" id=\"23233974-4d17-80bc-9e60-db334fa02608\"><a href=\"Salaty_Salat_Kardini_s_perepelkoy.jpg\"><img src=\"../images/Salaty_Salat_Kardini_s_perepelkoy.jpg\" style=\"width:353.9921875px\"/></a><figcaption>Салат Кардини с перепелкой, томатами, перепелиным яйцом и чесночными гренками</figcaption></figure></div><div class=\"column\" id=\"23233974-4d17-8074-927c-fbc209610006\" style=\"width:56.25%\"><p class=\"\" id=\"23233974-4d17-80d5-ad03-e3c92e991df1\"><strong>Авторская вариация знаменитого салата Цезарь с золотистой перепелкой, лепестками Грана Падано, спелыми томатами черри и чесночными гренками.</strong></p><hr id=\"23233974-4d17-80b1-b3b4-e9c5bb2e084c\"/><p class=\"\" id=\"23233974-4d17-806d-8c6c-f3deeec207ec\"><strong>Особенности:</strong></p><p class=\"\" id=\"23233974-4d17-801d-a4b0-eff24b3dd299\"> 🥛 лактоза | 🌶️ перец | 🍋 цитрусы |<img alt=\"garlick_icon\" src=\"../icons/garlic_icon.png\" style=\"width:1em;height:1em\"/> чеснок | <img alt=\"greens_icon\" src=\"../icons/herbs_icon.png\" style=\"width:1em;height:1em\"/> зелень | <img alt=\"anchous_icon\" src=\"../icons/Anchous_icon.png\" style=\"width:1em;height:1em\"/> анчоусы </p><p class=\"\" id=\"23233974-4d17-8021-8276-df74455e6d2d\">Обязательно предупреждаем, что соус достаточно солоноват за счет большого количества анчоусов. </p><p class=\"\" id=\"23233974-4d17-8053-be3b-dfc8703725ad\">Салат подаем с <strong>чесночными гренками</strong>.</p><p class=\"\" id=\"23a33974-4d17-80d4-98d1-d3ac186adc1d\"><img alt=\"anchous_icon\" src=\"../icons/Anchous_icon.png\" style=\"width:1em;height:1em\"/></p></div></div><figure class=\"image\" id=\"23233974-4d17-80f5-ac22-df7a08874071\"><a href=\"image.png\"><img src=\"../images/image.png\" style=\"width:1px\"/></a></figure><hr id=\"23233974-4d17-80e1-bac7-f55e83f5616e\"/><p class=\"\" id=\"23233974-4d17-8099-b9bd-e3a947975d4d\"><strong>Состав:</strong></p><div class=\"column-list\" id=\"23233974-4d17-80bb-b440-c8173379ec05\"><div class=\"column\" id=\"23233974-4d17-80f7-8e1d-faf9709f8b84\" style=\"width:50%\"><ol class=\"numbered-list\" id=\"23233974-4d17-8048-a439-de95c46ae67e\" start=\"1\" type=\"1\"><li>На грифельную доску выкладывается микс салата.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-806b-beba-e0e592bc22ac\" start=\"2\" type=\"1\"><li>Добавляем томаты черри, перепелиные яйца, гренки обжаренные с<strong> чесноком.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8006-b378-f53fd4320fc8\" start=\"3\" type=\"1\"><li>По бокам доски и на микс салата добавляется <strong>соус на основе анчоусов.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-8088-9f75-f76254ced736\" start=\"4\" type=\"1\"><li>Добавляется перепелка (обжаренная на оливковом масле) и сыр Грана падано. </li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-803c-a17f-d6e478444052\" start=\"5\" type=\"1\"><li>Посыпается луком резанец.</li></ol></div><div class=\"column\" id=\"23233974-4d17-80ea-9f5b-ffcf2652c030\" style=\"width:50%\"><p class=\"\" id=\"23233974-4d17-8015-9c3e-ef3be9b5c881\"><strong>Соус на основе анчоусов:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-803c-bcb7-ce19cf5bd53a\" start=\"1\" type=\"1\"><li>Домашний майонез.</li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80f3-b4be-e1d6a9bee7f0\" start=\"2\" type=\"1\"><li><strong>Лимонный сок.</strong></li></ol><ol class=\"numbered-list\" id=\"23233974-4d17-80c5-bc31-d186eb79a0a2\" start=\"3\" type=\"1\"><li><strong>Анчоусы.</strong></li></ol></div></div><hr id=\"23233974-4d17-8019-8bc6-ea6427543892\"/><hr id=\"23233974-4d17-803b-aafe-fe35e6478612\"/>",
-    "features": "Обязательно предупреждаем, что соус достаточно солоноват за счет большого количества анчоусов.\n\nСалат подаем с <strong>чесночными гренками</strong>.\n\n<img alt=\"anchous_icon\" src=\"../icons/Anchous_icon.png\" style=\"width:1em;height:1em\"/>"
+    "features": "Обязательно предупреждаем, что соус достаточно солоноват за счет большого количества анчоусов.\n\nСалат подаем с <strong>чесночными гренками</strong>.\n\n
   },
   {
     "id": "0030",
@@ -1820,7 +1826,8 @@
       "кинза",
       "лук",
       "зелень",
-      "коньяк"
+      "алкоголь", 
+      "глютен"
     ],
     "tags": [],
     "pairings": {
@@ -1950,7 +1957,8 @@
       "чеснок",
       "лук",
       "зелень",
-      "алкоголь"
+      "алкоголь", 
+      "шафран"
     ],
     "tags": [],
     "pairings": {
@@ -2395,7 +2403,8 @@
       "лук",
       "зелень",
       "мёд",
-      "medium"
+      "medium", 
+      "пюре с лимонным фрешем и зеленью"
     ],
     "tags": [],
     "pairings": {
@@ -2569,7 +2578,7 @@
     "description": "Утончённый стейк из самой нежной части говяжьей вырезки, обладающий бархатистой текстурой, выраженной сочностью, со слегка сладковатым сливочным вкусом.",
     "contains": "",
     "allergens": [
-      "вес от 250 гр"
+      "вес от 250 г."
     ],
     "tags": [],
     "pairings": {
@@ -2689,7 +2698,6 @@
     "description": "Срез нежнейшего мяса молодого ягненка на изящных рёбрышках, приготовленный на открытом огне.",
     "contains": "",
     "allergens": [
-      "соль",
       "перец"
     ],
     "tags": [],
@@ -2729,7 +2737,9 @@
     "title": "Семга",
     "description": "",
     "contains": "",
-    "allergens": [],
+    "allergens": [
+      "вес от 190 г."
+    ],
     "tags": [],
     "pairings": {
       "wines": [],
@@ -2921,7 +2931,9 @@
     "title": "Королевские креветки",
     "description": "",
     "contains": "",
-    "allergens": [],
+    "allergens": [
+      "головы при подаче не отделяют"
+    ],
     "tags": [],
     "pairings": {
       "wines": [],
@@ -2959,7 +2971,9 @@
     "title": "Морские гребешки",
     "description": "",
     "contains": "",
-    "allergens": ["На хоспере приготовить нельзя."],
+    "allergens": [
+      "На хоспере приготовить нельзя."
+    ],
     "tags": [],
     "pairings": {
       "wines": [],
@@ -3310,7 +3324,7 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<p class=\"\" id=\"23b33974-4d17-80f9-add4-db8470c938bc\">Готовим на josper или на пару.</p><hr id=\"23b33974-4d17-802e-a816-c6147533dcf6\"/><p class=\"\" id=\"23b33974-4d17-80a1-aadc-c15650128894\"><strong>Состав:</strong></p><ol class=\"numbered-list\" id=\"23b33974-4d17-80f5-a9d4-e59bec54d8bd\" start=\"1\" type=\"1\"><li>Цукини</li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-802b-a158-d17b45e88043\" start=\"2\" type=\"1\"><li>Мини кукуруза</li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-80a2-b937-ec94877e0406\" start=\"3\" type=\"1\"><li>Перец красный и зеленый</li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-8066-9605-fee13ab2db05\" start=\"4\" type=\"1\"><li>Помидоры черри</li></ol><ol class=\"numbered-list\" id=\"23b33974-4d17-8015-8641-c82f57e2549b\" start=\"5\" type=\"1\"><li>Морковь.</li></ol><p class=\"\" id=\"23b33974-4d17-80e5-b3b7-c8e09b0affb5\">Украшается тимьяном.</p><hr id=\"23b33974-4d17-80d8-8583-dd593096070c\"/><figure class=\"image\" id=\"23b33974-4d17-8066-9efa-e82e2a7095ec\"><a href=\"Garniry_Ovoshchi_miks.jpg\"><img src=\"../images/Garniry_Ovoshchi_miks.jpg\" style=\"width:223.25px\"/></a><figcaption>Овощи микс</figcaption></figure>",
-    "features": "Уточняем у гостя как приготовить гарнир: на josper или на пару."
+    "features": ""
   },
   {
     "id": "0078",
@@ -3466,7 +3480,7 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<p class=\"\" id=\"23b33974-4d17-80ee-91be-c2e4f1a0a42f\">Готовим на josper или на пару.</p><hr id=\"23b33974-4d17-80d0-9e44-fdae86794fbd\"/><figure class=\"image\" id=\"23b33974-4d17-801d-9ee5-c3b5d5fda360\"><a href=\"Garniry_Tsukini.jpg\"><img src=\"../images/Garniry_Tsukini.jpg\" style=\"width:297.6640625px\"/></a><figcaption>Цукини</figcaption></figure>",
-    "features": "Уточняем у гостя как приготовить гарнир: на josper или на пару."
+    "features": ""
   },
   {
     "id": "0082",
@@ -3688,7 +3702,8 @@
       "лактоза",
       "цитрусы",
       "орехи",
-      "мёд"
+      "мёд", 
+      "глютен"
     ],
     "tags": [],
     "pairings": {
@@ -4175,7 +4190,7 @@
     "contains": "<strong>Лимон, лайм, </strong>масло зеленое, <strong>кинза, лук зеленый, </strong>помидоры.",
     "allergens": [
       "без мяса",
-      "постный",
+      "без лактозы",
       "кинза",
       "цитрусы",
       "зелень"
@@ -4435,7 +4450,9 @@
     "allergens": [
       "зелень",
       "грибы",
-      "трюфель"
+      "трюфель", 
+      "глютен",
+      "лактоза"
     ],
     "tags": [],
     "pairings": {
