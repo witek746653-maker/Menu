@@ -706,54 +706,106 @@ blockquote.quote-large {
     scroll-behavior: smooth;
   }
 
+#searchContainer {
+    margin: 24px 0 16px;
+    position: relative;
+  }
+
+  #searchContainer .search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 248, 255, 0.95));
+    box-shadow: 0 12px 30px rgba(15, 20, 35, 0.12);
+    border: 1px solid rgba(99, 110, 146, 0.15);
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+
+  #searchContainer .search-box::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='16.65' y1='16.65' x2='21' y2='21'/%3E%3C/svg%3E") center/contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='16.65' y1='16.65' x2='21' y2='21'/%3E%3C/svg%3E") center/contain;
+    background-color: rgba(55, 65, 81, 0.75);
+    opacity: 0.8;
+    transition: opacity 200ms ease;
+  }
+
+  #searchContainer .search-box:focus-within {
+    box-shadow: 0 18px 36px rgba(15, 20, 35, 0.16);
+    transform: translateY(-1px);
+  }
+
+  #searchContainer .search-box:focus-within::before {
+    opacity: 1;
+    background-color: rgba(37, 99, 235, 0.9);
+  }
+
+  #searchInput {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    color: rgba(17, 24, 39, 0.9);
+    outline: none;
+    padding: 0;
+  }
+
+  #searchInput::placeholder {
+    color: rgba(99, 110, 146, 0.7);
+  }
+
+
   #searchResults {
     list-style: none;
     padding-left: 0;
-    margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    max-width: 100%;
-    background: #fff;
+    margin: 12px 0 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.12);
+    border: 1px solid rgba(99, 110, 146, 0.12);
+    display: none;
   }
 
-  #searchResults li {
-    padding: 6px 10px;
-    border-bottom: 1px solid #eee;
-  }
-
-  #searchResults li:last-child {
-    border-bottom: none;
+  #searchResults li + li {
+    border-top: 1px solid rgba(229, 231, 235, 0.8);
   }
 
   #searchResults li a {
     text-decoration: none;
-    color: #0077cc;
+	color: rgba(31, 41, 55, 0.92);
     display: block;
+	padding: 12px 20px;
+    transition: background-color 160ms ease, padding-left 160ms ease;
   }
 
   #searchResults li a:hover {
-    background-color: #f0f0f0;
+    background-color: rgba(59, 130, 246, 0.08);
+    padding-left: 24px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #searchContainer .search-box,
+    #searchResults li a {
+      transition: none;
+    }
   }
 </style>
 <script src="../scripts/fuse.min.js" defer></script>
 <script src="../scripts/indexData.js" defer></script>
 <script src="../scripts/search.js" defer></script>
-<style>
-      html { scroll-behavior: smooth; }
-      #searchResults li { padding: 4px 0; }
-      #searchResults li a {
-        text-decoration: none;
-        color: #0077cc;
-        display: block;
-      }
-      #searchResults li a:hover {
-        background-color: #f0f0f0;
-      }
-    </style>
+
 </head><body><article class="page sans" id="28233974-4d17-80e3-916a-d3b7ec190c70"><header><img class="page-cover-image" src="../images/spravochnik/spravochnik_head.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="../icons/Sabor_icon_small.png"/></div><h1 class="page-title">Справочник официанта</h1><p class="page-description"></p></header><div class="page-body">
 <div id="searchContainer">
-<input id="searchInput" placeholder="Поиск по справочнику..." style="width: 100%; padding: 8px; margin: 16px 0;" type="search"/>
-<ul id="searchResults" style="list-style: none; padding-left: 0; display: none;"></ul>
+<div class="search-box">
+<input id="searchInput" placeholder="Поиск по справочнику..." type="search"/>
+</div>
+<ul id="searchResults"></ul>
 </div>
 <nav class="block-color-gray table_of_contents" id="28233974-4d17-81ec-aedd-e36f72a2f020"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28333974-4d17-8068-8581-fc12e1f4d6db">Устрицы: дикая страсть и фермерское искусство</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28333974-4d17-8050-988e-deff7ee0c40c">Икра, ради которой ныряют</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28333974-4d17-8088-8a2c-cfbdbb83ef9a">Брускетта - от крестьянского костра до аперитива</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28333974-4d17-8074-9202-cf2fb309f095">Тартар - от степей к ресторану: история дикого блюда</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#28333974-4d17-803d-8bef-eca1d4acfbb0">Мясные деликатесы - от римских солдат до тапас-бара</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-802e-ac14-d8cf6e35a400">Оливки и маслины — один плод, два названия</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-806e-84ee-d06e167209ad">Без огня: перуанское искусство севиче</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-8063-bfb4-ea8d98a21e32">Камамбер — символ вкуса и культуры Франции</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80da-811f-d1abc42f17d7">Фуа-гра — деликатес с историей, вкусом и противоречиями  </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80b7-a21f-f077e464c742">Запечённые устрицы — американская классика с французскими корнями</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80cc-b50b-ff619ab9225d">Как улитка покорила французский ресторан</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-8043-9a2d-fe220a9a752f">Морская аристократия: всё о креветках</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-8096-bdb9-d73b73c42a90">Кардини — человек, подаривший миру салат Цезарь   </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-8076-b80a-e8db4d489b25">Огонь на тарелке: история фламбирования</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-808a-85f3-c9469e7a78a3">Осьминог — вкус моря и мудрость глубин</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80a7-8bf4-d9f97d479dad">Буррата: свежесть, созданная вручную</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80f6-ab2e-d5934c932537">Французский луковый суп: вкус, рожденный из скромности</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-8090-8374-cd8534b451a1">Минестроне — итальянский суп без правил</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-8004-91bd-e6bc471867b1">Суп из каштанов — забытая классика Европы</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-8060-9759-ff52c23a06b9">Уха со сливками: русская классика с изюминкой</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-805d-824f-e54db92ecf04">Том Ям — искусство баланса кислого и острого</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80e9-a79e-c89413416982">Ризотто - блюдо, рожденное из ошибки</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-801f-ab30-ecec2e7041e3">Чёрная треска — деликатес глубин</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-808e-a010-f9f3cedd092e">Стейки — анатомия идеального куска мяса</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-8073-9098-fee295ad8e61">Что такое вызревание мяса: Dry Aged и Wet Aged</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80c3-9002-f63fccd1bc83">Хоспер — жар, вкус и аромат угля</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80b2-9cf2-cd6f4d9fe5b2">Шоколадный Фондан — сладкая случайность, ставшая легендой</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-806c-90cb-e6d7abee0312">Макарон и Макарун — сладкие тёзки с разным характером</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80d8-98cb-e2e202f136db">Медовик — любимый десерт императорского двора</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-80aa-a194-e99979d1bdcc">Тирамису — сладкое «подними меня» из Италии</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#29933974-4d17-802e-a69f-f6a079e9dcd2">Баскский чизкейк: нежность внутри, огонь снаружи</a></div></nav><h3 class="block-color-brown_background" id="28333974-4d17-8068-8581-fc12e1f4d6db">Устрицы: дикая страсть и фермерское искусство</h3><div class="column-list" id="28333974-4d17-80f4-9c25-d4a21f7c0383"><div class="column" id="28333974-4d17-8027-ae5b-d9bcaeef9234" style="width:50%"><p class="" id="28333974-4d17-8025-a9c9-ecfb6024477a"><strong>Все виды устриц делятся диких и культивируемых.</strong></p><p class="" id="28333974-4d17-80eb-8aa7-cc70281f950e"><strong>Диких</strong> двустворчатых моллюсков вылавливают в морях и океанах водолазным методом и поставляют к столу «как есть», без облагораживания. Поэтому их мякоть обычно более жесткая, соленая, с ярко выраженной йодистостью и изменчивым вкусом. Все это — последствия роста в глубоких водах в неконтролируемых условиях.За эту резкость и природную вариативность вкуса дикие устрицы и ценятся гурманами. Особенно ценны моллюски с плоской раковиной. Они требовательны к среде обитания, поэтому их выращивание на фермах — сложная задача. </p><p class="" id="28333974-4d17-8077-920c-e0b7535e6077">Почти все <strong>культивируемые</strong> виды устриц для еды — моллюски с глубокими раковинами чашеобразной формы. На устричных фермах их растят в два этапа. Сначала устричных мальков (спат) помещают в специальные клети и погружают в воды заливов. В этих клетях, защищенные от хищников и других стрессов, они растут 2-4 года. На втором этапе моллюсков вылавливают и перевозят в другое место обитания — пресноводный водоем. Там они проводят от одной недели до года. Этот процесс называется <strong>аффинированием. </strong>Его можно сравнить с декантированием вина: аффинаж проявляет тонкие нотки вкуса, убирает лишнюю соль, делает мясо моллюска более нежным, придает сладость. Кроме того, все виды устриц для еды после аффинажа обладают более предсказуемым вкусом и безопаснее с точки зрения употребления в пищу сырыми. Поэтому шеф-повара ресторанов чаще выбирают для своих кулинарных шедевров именно аффинированных моллюсков. Хороши они и для первых дегустаций этого морепродукта.</p><figure class="image" id="28333974-4d17-801d-a5b8-e5dcee3927f4"><a href="spravochnik-oficianta_growing_oysters.jpg"><img src="../images/spravochnik/spravochnik-oficianta_growing_oysters.jpg" style="width:541.1328125px"/></a><figcaption>Ферма по выращиванию устриц</figcaption></figure></div><div class="column" id="28333974-4d17-8090-9c52-cb95d59949bd" style="width:50%"><figure class="image" id="28333974-4d17-80e8-9d81-e15df2611fa1"><a href="spravochnik-oficianta_growing_oysters_sadki.jpg"><img src="../images/spravochnik/spravochnik-oficianta_growing_oysters_sadki.jpg" style="width:878.9921875px"/></a><figcaption>Садки для выращивания устриц</figcaption></figure><p class="" id="28333974-4d17-80f3-861f-c1337858f8c0"><strong>Императорская</strong><br/>Изящный крупный моллюск из залива Петра Великого с изменчивым вкусом, который колеблется от сладковатого до сильно соленого. Из-за мясистости и размеров Императорская устрица может использоваться для приготовления горячих блюд.<br/></p><p class="" id="28333974-4d17-8075-a2f1-fca1fa49c223"><strong>Специаль Касабланка</strong><br/>Один из самых популярных устричных видов. У моллюска мясистая мякоть, насыщенный йодисто-сладкий вкус и молочные, иногда ореховые аккорды в послевкусии. Их выращиваются в двух известных устричных районах Марокко — Дахла и Уалидия в специальных садах-клерах с морской водой и специальными водорослями, именно они и придают зеленоватый оттенок раковине моллюска<br/></p><p class="" id="2a333974-4d17-8096-b47d-d9da290ec909">
 </p></div></div><div class="column-list" id="2a333974-4d17-8086-a02e-d05a5ad28587"><div class="column" id="2a333974-4d17-80fd-ae07-ec47052d2bc2" style="width:50%"><figure class="block-color-teal_background callout" id="28333974-4d17-80e1-a71e-d51a13081f3b" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="block-color-teal_background" id="28333974-4d17-807d-ab1c-f60af53e3914">Многие ошибочно считают, что лимон к устрицам подается для проверки их  свежести. Якобы при попадании нескольких капель лимонного сока тело моллюска отреагирует сокращением, значит устрица жива. На самом деле эта традиция возникла вовсе не из-за необходимости тестировать устрицы. Преследовалась другая, не менее практическая, цель. </p><p class="" id="28333974-4d17-8053-8fc8-d84014117b2c">В те времена, когда транспортировка и хранение морепродуктов были задачей не из лёгких, устрицы часто портились в пути и становились действительно опасным для здоровья продуктом. Чтобы предотвратить неприятные последствия употребления возможно испортившихся устриц, люди стали использовать натуральные антисептики: сок лимона, молотый черный перец, уксус. А потом заметили, что это еще и вкусно.</p></div></figure><p class="" id="2a333974-4d17-80f6-a484-cd2b363e079f">
