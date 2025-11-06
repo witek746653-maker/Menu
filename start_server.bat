@@ -3,7 +3,7 @@ cd /d %~dp0
 echo ================================
 echo   🚀 Запускаю локальный сервер...
 echo ================================
-start "" python -m http.server 8000
+start "" cmd /k "python server.py"
 timeout /t 2 >nul
-start "" http://localhost:8000/index.html
+start "" http://localhost:8000/menus/waiter-database.html
 pause
