@@ -759,6 +759,27 @@ blockquote.quote-large {
     color: rgba(99, 110, 146, 0.7);
   }
 
+  @media (max-width: 600px) {
+    #searchContainer .search-box {
+      padding: 18px 22px;
+      gap: 16px;
+    }
+
+    #searchContainer .search-box::before {
+      width: 24px;
+      height: 24px;
+    }
+
+    #searchInput {
+      font-size: 1.2rem;
+      min-height: 2.75rem;
+    }
+
+    #searchInput::placeholder {
+      font-size: 1.2rem;
+    }
+  }
+
 
   #searchResults {
     list-style: none;
