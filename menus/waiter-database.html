@@ -180,26 +180,76 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: clamp(16px, 3vw, 28px);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(12px, 2.5vw, 20px);
+      align-items: start;
     }
 
     .card {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 18px;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s ease, border 0.2s ease;
+      transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.18s ease;
+      cursor: pointer;
     }
 
     .card:hover {
       transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.16);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .card.card-static {
+      cursor: default;
+    }
+
+    .card.card-static:hover {
+      transform: none;
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: none;
+    }
+
+    .card.expanded {
+      border-color: var(--accent);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
+    }
+
+    .card-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px 14px 14px;
+    }
+
+    .card-summary figure {
+      margin: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .card-summary figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-summary figcaption {
+      display: none;
+    }
+
+    .card.expanded .card-summary {
+      padding-bottom: 8px;
+    }
+
+    .card.expanded .card-summary figure {
+      display: none;
     }
 
     .card .menu-tag {
@@ -209,23 +259,22 @@
       color: var(--accent);
     }
 
-    .card h3 {
-      margin: 6px 0 0;
-      font-size: 20px;
+    .card-summary h3 {
+      margin: 0;
+      font-size: 16px;
       letter-spacing: -0.01em;
     }
 
-    .card .section {
-      margin: -4px 0 0;
-      font-size: 13px;
+    .card-summary .section {
+      font-size: 12px;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
     }
 
     .card .status-badge {
       display: inline-flex;
-      margin-top: 8px;
+      margin-top: 4px;
       padding: 2px 8px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.2);
@@ -236,26 +285,41 @@
       width: fit-content;
     }
 
-    .dish-image {
-      margin: 16px 0;
+    .card-details {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      padding: 0 14px 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.14);
     }
 
-    .dish-image img {
+    .card.expanded .card-details {
+      display: flex;
+    }
+
+    .card-details .dish-image {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-details .dish-image img {
       width: 100%;
-      max-height: 220px;
+      border-radius: 12px;
       object-fit: cover;
-      border-radius: 8px;
     }
 
-    .dish-image figcaption {
+    .card-details .dish-image figcaption {
       margin-top: 6px;
       font-size: 12px;
       color: var(--muted);
     }
 
-    .card p {
+    .card-details p {
       margin: 0;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.55;
       color: rgba(255,255,255,0.9);
     }
@@ -346,8 +410,8 @@
 
     .card .edit-btn {
       position: absolute;
-      top: 12px;
-      right: 12px;
+      top: 10px;
+      right: 10px;
       border: none;
       border-radius: 50%;
       width: 34px;
@@ -367,6 +431,20 @@
 
     body.edit-mode .card .edit-btn {
       display: flex;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      pointer-events: none;
+      border: 1px solid transparent;
+      transition: border 0.2s ease;
+    }
+
+    .card.expanded::after {
+      border-color: rgba(255, 209, 102, 0.4);
     }
 
     .toolbar {

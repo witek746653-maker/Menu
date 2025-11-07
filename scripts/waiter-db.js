@@ -264,6 +264,7 @@ function renderCards(dishes) {
   dishes.forEach((dish) => {
     const card = document.createElement('article');
     card.className = 'card';
+    card.setAttribute('tabindex', '0');
 
     const editBtn = document.createElement('button');
     editBtn.type = 'button';
@@ -271,35 +272,18 @@ function renderCards(dishes) {
     const dishTitle = dish.title || 'Без названия';
     editBtn.setAttribute('aria-label', `Редактировать «${dishTitle}»`);
     editBtn.textContent = '✎';
-    editBtn.addEventListener('click', () => openEditor(dish.id));
+    editBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      openEditor(dish.id);
+    });
     card.appendChild(editBtn);
 
-    const menuTag = document.createElement('div');
-    menuTag.className = 'menu-tag';
-    menuTag.textContent = dish.menu || 'Без меню';
-    card.appendChild(menuTag);
-
-    if (dish.status) {
-      const status = document.createElement('span');
-      status.className = 'status-badge';
-      status.textContent = dish.status;
-      card.appendChild(status);
-    }
-
-    const title = document.createElement('h3');
-    title.textContent = dishTitle;
-    card.appendChild(title);
-
-    if (dish.section) {
-      const section = document.createElement('div');
-      section.className = 'section';
-      section.textContent = dish.section;
-      card.appendChild(section);
-    }
+    const summary = document.createElement('div');
+    summary.className = 'card-summary';
 
     if (dish.image?.src) {
       const figure = document.createElement('figure');
-      figure.className = 'dish-image';
+      figure.className = 'card-image';
       const img = document.createElement('img');
       img.src = dish.image.src;
       if (dish.image.alt) {
@@ -311,27 +295,72 @@ function renderCards(dishes) {
         caption.textContent = dish.image.alt;
         figure.appendChild(caption);
       }
-      card.appendChild(figure);
+      summary.appendChild(figure);
+    }
+
+    const menuTag = document.createElement('div');
+    menuTag.className = 'menu-tag';
+    menuTag.textContent = dish.menu || 'Без меню';
+    summary.appendChild(menuTag);
+
+    const title = document.createElement('h3');
+    title.textContent = dishTitle;
+    summary.appendChild(title);
+
+    if (dish.section) {
+      const section = document.createElement('div');
+      section.className = 'section';
+      section.textContent = dish.section;
+      summary.appendChild(section);
+    }
+
+    card.appendChild(summary);
+
+    const details = document.createElement('div');
+    details.className = 'card-details';
+
+    if (dish.status) {
+      const status = document.createElement('span');
+      status.className = 'status-badge';
+      status.textContent = dish.status;
+      details.appendChild(status);
+    }
+
+    if (dish.image?.src) {
+      const detailImage = document.createElement('figure');
+      detailImage.className = 'dish-image';
+      const img = document.createElement('img');
+      img.src = dish.image.src;
+      if (dish.image.alt) {
+        img.alt = dish.image.alt;
+      }
+      detailImage.appendChild(img);
+      if (dish.image.alt) {
+        const caption = document.createElement('figcaption');
+        caption.textContent = dish.image.alt;
+        detailImage.appendChild(caption);
+      }
+      details.appendChild(detailImage);
     }
 
     if (dish.description) {
       const description = document.createElement('p');
       description.textContent = dish.description;
-      card.appendChild(description);
+      details.appendChild(description);
     }
 
     if (dish.contains) {
-      card.appendChild(createRichTextBlock('Подача / состав', dish.contains));
+      details.appendChild(createRichTextBlock('Подача / состав', dish.contains));
     }
 
     const ingredients = Array.isArray(dish.ingredients) ? dish.ingredients : [];
     if (ingredients.length) {
-      card.appendChild(createListBlock('Ингредиенты', ingredients));
+      details.appendChild(createListBlock('Ингредиенты', ingredients));
     }
 
     const allergens = Array.isArray(dish.allergens) ? dish.allergens : [];
     if (allergens.length) {
-      card.appendChild(createListBlock('Аллергены', allergens));
+      details.appendChild(createListBlock('Аллергены', allergens));
     }
 
     const pairings = dish.pairings || {};
@@ -356,9 +385,9 @@ function renderCards(dishes) {
     if (pairingItems.length) {
       const block = document.createElement('div');
       block.className = 'meta-block';
-      const title = document.createElement('strong');
-      title.textContent = 'Пары и рекомендации';
-      block.appendChild(title);
+      const titleEl = document.createElement('strong');
+      titleEl.textContent = 'Пары и рекомендации';
+      block.appendChild(titleEl);
       pairingItems.forEach(({ label, items }) => {
         const labelEl = document.createElement('div');
         labelEl.style.fontSize = '13px';
@@ -374,24 +403,24 @@ function renderCards(dishes) {
         });
         block.appendChild(ul);
       });
-      card.appendChild(block);
+      details.appendChild(block);
     }
 
     if (dish.features) {
-      card.appendChild(createRichTextBlock('Особенности', dish.features));
+      details.appendChild(createRichTextBlock('Особенности', dish.features));
     }
 
     if (dish.source_file) {
       const source = document.createElement('div');
       source.className = 'source-file';
       source.textContent = `Источник: ${dish.source_file}`;
-      card.appendChild(source);
+      details.appendChild(source);
     }
 
     if (dish.i18n?.en) {
       const { title: enTitle, description: enDescription } = dish.i18n.en;
       if (enTitle || enDescription) {
-        card.appendChild(createTranslationBlock('English', enTitle, enDescription));
+        details.appendChild(createTranslationBlock('English', enTitle, enDescription));
       }
     }
 
@@ -405,7 +434,33 @@ function renderCards(dishes) {
         tagEl.textContent = tag;
         tagsWrap.appendChild(tagEl);
       });
-      card.appendChild(tagsWrap);
+      details.appendChild(tagsWrap);
+    }
+
+    const hasDetails = details.children.length > 0;
+
+    if (hasDetails) {
+      card.appendChild(details);
+
+      const toggleCard = () => {
+        card.classList.toggle('expanded');
+      };
+
+      card.addEventListener('click', (event) => {
+        if (event.target.closest('.card-details')) return;
+        if (event.target.closest('.edit-btn')) return;
+        toggleCard();
+      });
+
+      card.addEventListener('keydown', (event) => {
+        if (event.target !== card) return;
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleCard();
+        }
+      });
+    } else {
+      card.classList.add('card-static');
     }
 
     cardsContainer.appendChild(card);
