@@ -215,12 +215,42 @@
       letter-spacing: -0.01em;
     }
 
-    .card .category {
+    .card .section {
       margin: -4px 0 0;
       font-size: 13px;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
+    }
+
+    .card .status-badge {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      width: fit-content;
+    }
+
+    .dish-image {
+      margin: 16px 0;
+    }
+
+    .dish-image img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .dish-image figcaption {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted);
     }
 
     .card p {
@@ -241,6 +271,43 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--muted);
+    }
+
+    .meta-block .rich-text {
+      font-size: 15px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .meta-block .rich-text ul,
+    .meta-block .rich-text ol {
+      margin: 6px 0 0;
+      padding-left: 20px;
+    }
+
+    .meta-block .rich-text li + li {
+      margin-top: 2px;
+    }
+
+    .meta-block.translation {
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .translation-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .translation-description {
+      margin-top: 4px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.75);
+      white-space: pre-line;
     }
 
     .meta-block ul {
@@ -269,6 +336,12 @@
       color: rgba(255,255,255,0.85);
       text-transform: uppercase;
       letter-spacing: 0.08em;
+    }
+
+    .source-file {
+      margin-top: 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
     }
 
     .card .edit-btn {
@@ -482,16 +555,20 @@
         <input type="text" name="menu" required>
       </label>
       <label>
-        <span>Категория</span>
-        <input type="text" name="category" required>
+        <span>Раздел</span>
+        <input type="text" name="section" required>
       </label>
       <label>
         <span>Название</span>
-        <input type="text" name="name" required>
+        <input type="text" name="title" required>
       </label>
       <label>
         <span>Описание</span>
         <textarea name="description" placeholder="Короткое описание"></textarea>
+      </label>
+      <label>
+        <span>Подача / состав</span>
+        <textarea name="contains" placeholder="Например: с чем подаётся"></textarea>
       </label>
       <label>
         <span>Ингредиенты</span>
@@ -506,16 +583,48 @@
         <textarea name="pairDishes" placeholder="через запятую"></textarea>
       </label>
       <label>
+        <span>Пары напитков</span>
+        <textarea name="pairDrinks" placeholder="через запятую"></textarea>
+      </label>
+      <label>
         <span>Пары вин</span>
         <textarea name="pairWines" placeholder="через запятую"></textarea>
       </label>
       <label>
-        <span>Комментарий к парам</span>
-        <textarea name="pairNotes" placeholder="Например: с чем лучше предложить"></textarea>
+        <span>Комментарии к парам</span>
+        <textarea name="pairNotes" placeholder="через запятую"></textarea>
       </label>
       <label>
         <span>Теги</span>
         <textarea name="tags" placeholder="через запятую"></textarea>
+      </label>
+      <label>
+        <span>Статус</span>
+        <input type="text" name="status" placeholder="Например: draft / active">
+      </label>
+      <label>
+        <span>Файл источника</span>
+        <input type="text" name="sourceFile" placeholder="Например: osnovnoe-menu.html">
+      </label>
+      <label>
+        <span>Особенности</span>
+        <textarea name="features" placeholder="Ключевые особенности блюда"></textarea>
+      </label>
+      <label>
+        <span>Изображение — адрес</span>
+        <input type="text" name="imageSrc" placeholder="Например: ../images/dish.jpg">
+      </label>
+      <label>
+        <span>Изображение — описание</span>
+        <input type="text" name="imageAlt" placeholder="Альтернативный текст">
+      </label>
+      <label>
+        <span>EN — название</span>
+        <input type="text" name="enTitle" placeholder="Перевод названия">
+      </label>
+      <label>
+        <span>EN — описание</span>
+        <textarea name="enDescription" placeholder="Перевод описания"></textarea>
       </label>
     </form>
     <div class="editor-footer">

@@ -36,16 +36,23 @@ let isSaving = false;
 
 const fuseOptions = {
   keys: [
-    'name',
+    'title',
     'menu',
-    'category',
+    'section',
     'description',
+    'contains',
+    'features',
+    'status',
+    'source_file',
     'ingredients',
     'allergens',
     'pairings.wines',
+    'pairings.drinks',
     'pairings.dishes',
     'pairings.notes',
-    'tags'
+    'tags',
+    'i18n.en.title',
+    'i18n.en.description'
   ],
   threshold: 0.35,
   ignoreLocation: true,
@@ -261,7 +268,8 @@ function renderCards(dishes) {
     const editBtn = document.createElement('button');
     editBtn.type = 'button';
     editBtn.className = 'edit-btn';
-    editBtn.setAttribute('aria-label', `Редактировать «${dish.name}»`);
+    const dishTitle = dish.title || 'Без названия';
+    editBtn.setAttribute('aria-label', `Редактировать «${dishTitle}»`);
     editBtn.textContent = '✎';
     editBtn.addEventListener('click', () => openEditor(dish.id));
     card.appendChild(editBtn);
@@ -271,21 +279,49 @@ function renderCards(dishes) {
     menuTag.textContent = dish.menu || 'Без меню';
     card.appendChild(menuTag);
 
+    if (dish.status) {
+      const status = document.createElement('span');
+      status.className = 'status-badge';
+      status.textContent = dish.status;
+      card.appendChild(status);
+    }
+
     const title = document.createElement('h3');
-    title.textContent = dish.name || 'Без названия';
+    title.textContent = dishTitle;
     card.appendChild(title);
 
-    if (dish.category) {
-      const category = document.createElement('div');
-      category.className = 'category';
-      category.textContent = dish.category;
-      card.appendChild(category);
+    if (dish.section) {
+      const section = document.createElement('div');
+      section.className = 'section';
+      section.textContent = dish.section;
+      card.appendChild(section);
+    }
+
+    if (dish.image?.src) {
+      const figure = document.createElement('figure');
+      figure.className = 'dish-image';
+      const img = document.createElement('img');
+      img.src = dish.image.src;
+      if (dish.image.alt) {
+        img.alt = dish.image.alt;
+      }
+      figure.appendChild(img);
+      if (dish.image.alt) {
+        const caption = document.createElement('figcaption');
+        caption.textContent = dish.image.alt;
+        figure.appendChild(caption);
+      }
+      card.appendChild(figure);
     }
 
     if (dish.description) {
       const description = document.createElement('p');
       description.textContent = dish.description;
       card.appendChild(description);
+    }
+
+    if (dish.contains) {
+      card.appendChild(createRichTextBlock('Подача / состав', dish.contains));
     }
 
     const ingredients = Array.isArray(dish.ingredients) ? dish.ingredients : [];
@@ -306,8 +342,16 @@ function renderCards(dishes) {
     if (Array.isArray(pairings.dishes) && pairings.dishes.length) {
       pairingItems.push({ label: 'Блюда', items: pairings.dishes });
     }
-    if (pairings.notes) {
-      pairingItems.push({ label: 'Комментарий', items: [pairings.notes] });
+    if (Array.isArray(pairings.drinks) && pairings.drinks.length) {
+      pairingItems.push({ label: 'Напитки', items: pairings.drinks });
+    }
+    const pairingNotes = Array.isArray(pairings.notes)
+      ? pairings.notes
+      : pairings.notes
+        ? [pairings.notes]
+        : [];
+    if (pairingNotes.length) {
+      pairingItems.push({ label: 'Комментарии', items: pairingNotes });
     }
     if (pairingItems.length) {
       const block = document.createElement('div');
@@ -331,6 +375,24 @@ function renderCards(dishes) {
         block.appendChild(ul);
       });
       card.appendChild(block);
+    }
+
+    if (dish.features) {
+      card.appendChild(createRichTextBlock('Особенности', dish.features));
+    }
+
+    if (dish.source_file) {
+      const source = document.createElement('div');
+      source.className = 'source-file';
+      source.textContent = `Источник: ${dish.source_file}`;
+      card.appendChild(source);
+    }
+
+    if (dish.i18n?.en) {
+      const { title: enTitle, description: enDescription } = dish.i18n.en;
+      if (enTitle || enDescription) {
+        card.appendChild(createTranslationBlock('English', enTitle, enDescription));
+      }
     }
 
     const tags = Array.isArray(dish.tags) ? dish.tags : [];
@@ -366,6 +428,40 @@ function createListBlock(title, items) {
   return block;
 }
 
+function createRichTextBlock(title, content) {
+  const block = document.createElement('div');
+  block.className = 'meta-block';
+  const heading = document.createElement('strong');
+  heading.textContent = title;
+  block.appendChild(heading);
+  const container = document.createElement('div');
+  container.className = 'rich-text';
+  container.innerHTML = content;
+  block.appendChild(container);
+  return block;
+}
+
+function createTranslationBlock(label, title, description) {
+  const block = document.createElement('div');
+  block.className = 'meta-block translation';
+  const heading = document.createElement('strong');
+  heading.textContent = label;
+  block.appendChild(heading);
+  if (title) {
+    const titleEl = document.createElement('div');
+    titleEl.className = 'translation-title';
+    titleEl.textContent = title;
+    block.appendChild(titleEl);
+  }
+  if (description) {
+    const desc = document.createElement('div');
+    desc.className = 'translation-description';
+    desc.textContent = description;
+    block.appendChild(desc);
+  }
+  return block;
+}
+
 function openEditor(id = null) {
   if (!state.serverAvailable) {
     showToast('Редактирование недоступно без запущенного сервера.', true);
@@ -376,17 +472,32 @@ function openEditor(id = null) {
     const dish = state.dishes.find((item) => item.id === id);
     if (!dish) return;
     state.editingId = id;
-    editorTitle.textContent = `Редактирование — ${dish.name}`;
+    editorTitle.textContent = `Редактирование — ${dish.title || 'Без названия'}`;
     editorForm.menu.value = dish.menu || '';
-    editorForm.category.value = dish.category || '';
-    editorForm.name.value = dish.name || '';
+    editorForm.section.value = dish.section || '';
+    editorForm.title.value = dish.title || '';
     editorForm.description.value = dish.description || '';
+    editorForm.contains.value = dish.contains || '';
     editorForm.ingredients.value = (dish.ingredients || []).join(', ');
     editorForm.allergens.value = (dish.allergens || []).join(', ');
     editorForm.pairDishes.value = (dish.pairings?.dishes || []).join(', ');
     editorForm.pairWines.value = (dish.pairings?.wines || []).join(', ');
-    editorForm.pairNotes.value = dish.pairings?.notes || '';
+    editorForm.pairDrinks.value = (dish.pairings?.drinks || []).join(', ');
+    const rawNotes = dish.pairings?.notes;
+    const notes = Array.isArray(rawNotes)
+      ? rawNotes
+      : rawNotes
+        ? [rawNotes]
+        : [];
+    editorForm.pairNotes.value = notes.join(', ');
     editorForm.tags.value = (dish.tags || []).join(', ');
+    editorForm.status.value = dish.status || '';
+    editorForm.sourceFile.value = dish.source_file || '';
+    editorForm.features.value = dish.features || '';
+    editorForm.imageSrc.value = dish.image?.src || '';
+    editorForm.imageAlt.value = dish.image?.alt || '';
+    editorForm.enTitle.value = dish.i18n?.en?.title || '';
+    editorForm.enDescription.value = dish.i18n?.en?.description || '';
     deleteDishBtn.style.display = 'inline-flex';
   } else {
     state.editingId = null;
@@ -412,8 +523,8 @@ function parseList(value) {
     .filter((item) => item.length > 0);
 }
 
-function generateId(name, menu) {
-  const base = normalize(`${menu}-${name}`).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+function generateId(title, menu) {
+  const base = normalize(`${menu}-${title}`).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   let candidate = base || `dish-${Date.now()}`;
   let attempt = 1;
   while (state.dishes.some((dish) => dish.id === candidate)) {
@@ -460,41 +571,108 @@ async function persistChanges(successMessage) {
 async function handleSave() {
   const form = new FormData(editorForm);
   const menu = (form.get('menu') || '').trim();
-  const category = (form.get('category') || '').trim();
-  const name = (form.get('name') || '').trim();
+  const section = (form.get('section') || '').trim();
+  const title = (form.get('title') || '').trim();
 
-  if (!menu || !category || !name) {
-    showToast('Заполните меню, категорию и название.', true);
+  if (!menu || !section || !title) {
+    showToast('Заполните меню, раздел и название.', true);
     return;
   }
 
+  const description = (form.get('description') || '').trim();
+  const contains = (form.get('contains') || '').trim();
+  const ingredients = parseList(form.get('ingredients') || '');
+  const allergens = parseList(form.get('allergens') || '');
+  const pairDishes = parseList(form.get('pairDishes') || '');
+  const pairDrinks = parseList(form.get('pairDrinks') || '');
+  const pairWines = parseList(form.get('pairWines') || '');
+  const pairNotes = parseList(form.get('pairNotes') || '');
+  const tags = parseList(form.get('tags') || '');
+  const status = (form.get('status') || '').trim();
+  const sourceFile = (form.get('sourceFile') || '').trim();
+  const features = (form.get('features') || '').trim();
+  const imageSrc = (form.get('imageSrc') || '').trim();
+  const imageAlt = (form.get('imageAlt') || '').trim();
+  const enTitle = (form.get('enTitle') || '').trim();
+  const enDescription = (form.get('enDescription') || '').trim();
+
+  let index = -1;
+  let existing = null;
+  if (state.editingId) {
+    index = state.dishes.findIndex((dish) => dish.id === state.editingId);
+    if (index !== -1) {
+      existing = state.dishes[index];
+    }
+  }
+
   const payload = {
+    ...(existing || {}),
     menu,
-    category,
-    name,
-    description: (form.get('description') || '').trim(),
-    ingredients: parseList(form.get('ingredients') || ''),
-    allergens: parseList(form.get('allergens') || ''),
+    section,
+    title,
+    description,
+    contains,
+    ingredients,
+    allergens,
     pairings: {
-      dishes: parseList(form.get('pairDishes') || ''),
-      wines: parseList(form.get('pairWines') || ''),
-      notes: (form.get('pairNotes') || '').trim()
+      ...(existing?.pairings || {}),
+      dishes: pairDishes,
+      drinks: pairDrinks,
+      wines: pairWines,
+      notes: pairNotes
     },
-    tags: parseList(form.get('tags') || '')
+    tags,
+    status,
+    source_file: sourceFile,
+    features,
+    image: imageSrc || imageAlt ? { src: imageSrc, alt: imageAlt } : undefined,
+    i18n: {
+      ...(existing?.i18n || {}),
+      ru: {
+        ...(existing?.i18n?.ru || {}),
+        title,
+        description
+      },
+      en: {
+        ...(existing?.i18n?.en || {}),
+        title: enTitle,
+        description: enDescription
+      }
+    }
   };
 
-  if (!payload.pairings.notes) {
+  if (!payload.image) {
+    delete payload.image;
+  }
+  if (!payload.contains) {
+    delete payload.contains;
+  }
+  if (!payload.features) {
+    delete payload.features;
+  }
+  if (!payload.status) {
+    delete payload.status;
+  }
+  if (!payload.source_file) {
+    delete payload.source_file;
+  }
+  if (Array.isArray(payload.pairings?.notes) && payload.pairings.notes.length === 0) {
     delete payload.pairings.notes;
+  }
+  if (payload.i18n?.en && !payload.i18n.en.title && !payload.i18n.en.description) {
+    delete payload.i18n.en;
+  }
+  if (payload.i18n && !payload.i18n.en && !payload.i18n.ru?.title && !payload.i18n.ru?.description) {
+    delete payload.i18n;
   }
 
   if (state.editingId) {
     payload.id = state.editingId;
-    const index = state.dishes.findIndex((dish) => dish.id === state.editingId);
     if (index !== -1) {
       state.dishes[index] = payload;
     }
   } else {
-    payload.id = generateId(payload.name, payload.menu);
+    payload.id = generateId(payload.title, payload.menu);
     state.dishes.push(payload);
   }
 
