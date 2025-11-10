@@ -15,6 +15,9 @@ const closeEditorBtn = document.getElementById('closeEditor');
 const saveDishBtn = document.getElementById('saveDish');
 const deleteDishBtn = document.getElementById('deleteDish');
 const toast = document.getElementById('toast');
+const dishModal = document.getElementById('dishModal');
+const modalContent = document.getElementById('modalContent');
+const modalCloseBtn = document.getElementById('modalClose');
 
 const state = {
   dishes: [],
@@ -33,6 +36,7 @@ const state = {
 
 let toastTimeout = null;
 let isSaving = false;
+let lastFocusedElement = null;
 
 const fuseOptions = {
   keys: [
@@ -314,157 +318,239 @@ function renderCards(dishes) {
       summary.appendChild(section);
     }
 
-    card.appendChild(summary);
-
-    const details = document.createElement('div');
-    details.className = 'card-details';
-
     if (dish.status) {
       const status = document.createElement('span');
       status.className = 'status-badge';
       status.textContent = dish.status;
-      details.appendChild(status);
+      summary.appendChild(status);
     }
 
-    if (dish.image?.src) {
-      const detailImage = document.createElement('figure');
-      detailImage.className = 'dish-image';
-      const img = document.createElement('img');
-      img.src = dish.image.src;
-      if (dish.image.alt) {
-        img.alt = dish.image.alt;
+    card.appendChild(summary);
+
+    const openModal = () => openDishModal(dish, card);
+
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('.edit-btn')) return;
+      openModal();
+    });
+
+    card.addEventListener('keydown', (event) => {
+      if (event.target !== card) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openModal();
       }
-      detailImage.appendChild(img);
-      if (dish.image.alt) {
-        const caption = document.createElement('figcaption');
-        caption.textContent = dish.image.alt;
-        detailImage.appendChild(caption);
-      }
-      details.appendChild(detailImage);
-    }
-
-    if (dish.description) {
-      const description = document.createElement('p');
-      description.textContent = dish.description;
-      details.appendChild(description);
-    }
-
-    if (dish.contains) {
-      details.appendChild(createRichTextBlock('Подача / состав', dish.contains));
-    }
-
-    const ingredients = Array.isArray(dish.ingredients) ? dish.ingredients : [];
-    if (ingredients.length) {
-      details.appendChild(createListBlock('Ингредиенты', ingredients));
-    }
-
-    const allergens = Array.isArray(dish.allergens) ? dish.allergens : [];
-    if (allergens.length) {
-      details.appendChild(createListBlock('Аллергены', allergens));
-    }
-
-    const pairings = dish.pairings || {};
-    const pairingItems = [];
-    if (Array.isArray(pairings.wines) && pairings.wines.length) {
-      pairingItems.push({ label: 'Вина', items: pairings.wines });
-    }
-    if (Array.isArray(pairings.dishes) && pairings.dishes.length) {
-      pairingItems.push({ label: 'Блюда', items: pairings.dishes });
-    }
-    if (Array.isArray(pairings.drinks) && pairings.drinks.length) {
-      pairingItems.push({ label: 'Напитки', items: pairings.drinks });
-    }
-    const pairingNotes = Array.isArray(pairings.notes)
-      ? pairings.notes
-      : pairings.notes
-        ? [pairings.notes]
-        : [];
-    if (pairingNotes.length) {
-      pairingItems.push({ label: 'Комментарии', items: pairingNotes });
-    }
-    if (pairingItems.length) {
-      const block = document.createElement('div');
-      block.className = 'meta-block';
-      const titleEl = document.createElement('strong');
-      titleEl.textContent = 'Пары и рекомендации';
-      block.appendChild(titleEl);
-      pairingItems.forEach(({ label, items }) => {
-        const labelEl = document.createElement('div');
-        labelEl.style.fontSize = '13px';
-        labelEl.style.color = 'var(--muted)';
-        labelEl.style.marginTop = '4px';
-        labelEl.textContent = label;
-        block.appendChild(labelEl);
-        const ul = document.createElement('ul');
-        items.forEach((item) => {
-          const li = document.createElement('li');
-          li.textContent = item;
-          ul.appendChild(li);
-        });
-        block.appendChild(ul);
-      });
-      details.appendChild(block);
-    }
-
-    if (dish.features) {
-      details.appendChild(createRichTextBlock('Особенности', dish.features));
-    }
-
-    if (dish.source_file) {
-      const source = document.createElement('div');
-      source.className = 'source-file';
-      source.textContent = `Источник: ${dish.source_file}`;
-      details.appendChild(source);
-    }
-
-    if (dish.i18n?.en) {
-      const { title: enTitle, description: enDescription } = dish.i18n.en;
-      if (enTitle || enDescription) {
-        details.appendChild(createTranslationBlock('English', enTitle, enDescription));
-      }
-    }
-
-    const tags = Array.isArray(dish.tags) ? dish.tags : [];
-    if (tags.length) {
-      const tagsWrap = document.createElement('div');
-      tagsWrap.className = 'tags';
-      tags.forEach((tag) => {
-        const tagEl = document.createElement('span');
-        tagEl.className = 'tag';
-        tagEl.textContent = tag;
-        tagsWrap.appendChild(tagEl);
-      });
-      details.appendChild(tagsWrap);
-    }
-
-    const hasDetails = details.children.length > 0;
-
-    if (hasDetails) {
-      card.appendChild(details);
-
-      const toggleCard = () => {
-        card.classList.toggle('expanded');
-      };
-
-      card.addEventListener('click', (event) => {
-        if (event.target.closest('.card-details')) return;
-        if (event.target.closest('.edit-btn')) return;
-        toggleCard();
-      });
-
-      card.addEventListener('keydown', (event) => {
-        if (event.target !== card) return;
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          toggleCard();
-        }
-      });
-    } else {
-      card.classList.add('card-static');
-    }
+    });
 
     cardsContainer.appendChild(card);
   });
+}
+
+function buildModalBody(dish) {
+  const body = document.createElement('div');
+  body.className = 'modal-body';
+
+  if (dish.description) {
+    const description = document.createElement('p');
+    description.className = 'modal-description';
+    description.textContent = dish.description;
+    body.appendChild(description);
+  }
+
+  if (dish.contains) {
+    body.appendChild(createRichTextBlock('Подача / состав', dish.contains));
+  }
+
+  const ingredients = Array.isArray(dish.ingredients) ? dish.ingredients : [];
+  if (ingredients.length) {
+    body.appendChild(createListBlock('Ингредиенты', ingredients));
+  }
+
+  const allergens = Array.isArray(dish.allergens) ? dish.allergens : [];
+  if (allergens.length) {
+    body.appendChild(createListBlock('Аллергены', allergens));
+  }
+
+  const pairingBlock = createPairingsBlock(dish.pairings);
+  if (pairingBlock) {
+    body.appendChild(pairingBlock);
+  }
+
+  if (dish.features) {
+    body.appendChild(createRichTextBlock('Особенности', dish.features));
+  }
+
+  if (dish.source_file) {
+    const source = document.createElement('div');
+    source.className = 'source-file';
+    source.textContent = `Источник: ${dish.source_file}`;
+    body.appendChild(source);
+  }
+
+  if (dish.i18n?.en) {
+    const { title: enTitle, description: enDescription } = dish.i18n.en;
+    if (enTitle || enDescription) {
+      body.appendChild(createTranslationBlock('English', enTitle, enDescription));
+    }
+  }
+
+  const tags = Array.isArray(dish.tags) ? dish.tags : [];
+  if (tags.length) {
+    const tagsWrap = document.createElement('div');
+    tagsWrap.className = 'tags';
+    tags.forEach((tag) => {
+      const tagEl = document.createElement('span');
+      tagEl.className = 'tag';
+      tagEl.textContent = tag;
+      tagsWrap.appendChild(tagEl);
+    });
+    body.appendChild(tagsWrap);
+  }
+
+  return body;
+}
+
+function createPairingsBlock(pairings = {}) {
+  const pairingItems = [];
+  if (Array.isArray(pairings.wines) && pairings.wines.length) {
+    pairingItems.push({ label: 'Вина', items: pairings.wines });
+  }
+  if (Array.isArray(pairings.dishes) && pairings.dishes.length) {
+    pairingItems.push({ label: 'Блюда', items: pairings.dishes });
+  }
+  if (Array.isArray(pairings.drinks) && pairings.drinks.length) {
+    pairingItems.push({ label: 'Напитки', items: pairings.drinks });
+  }
+  const pairingNotes = Array.isArray(pairings.notes)
+    ? pairings.notes
+    : pairings?.notes
+      ? [pairings.notes]
+      : [];
+  if (pairingNotes.length) {
+    pairingItems.push({ label: 'Комментарии', items: pairingNotes });
+  }
+
+  if (!pairingItems.length) {
+    return null;
+  }
+
+  const block = document.createElement('div');
+  block.className = 'meta-block';
+  const titleEl = document.createElement('strong');
+  titleEl.textContent = 'Пары и рекомендации';
+  block.appendChild(titleEl);
+
+  pairingItems.forEach(({ label, items }) => {
+    const labelEl = document.createElement('div');
+    labelEl.style.fontSize = '13px';
+    labelEl.style.color = 'var(--muted)';
+    labelEl.style.marginTop = '4px';
+    labelEl.textContent = label;
+    block.appendChild(labelEl);
+
+    const ul = document.createElement('ul');
+    items.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      ul.appendChild(li);
+    });
+    block.appendChild(ul);
+  });
+
+  return block;
+}
+
+function openDishModal(dish, triggerElement) {
+  if (!dishModal || !modalContent) return;
+
+  modalContent.innerHTML = '';
+
+  const modalHeader = document.createElement('header');
+  modalHeader.className = 'modal-header';
+
+  if (dish.image?.src) {
+    const media = document.createElement('figure');
+    media.className = 'modal-media dish-image';
+    const img = document.createElement('img');
+    img.src = dish.image.src;
+    if (dish.image.alt) {
+      img.alt = dish.image.alt;
+    }
+    media.appendChild(img);
+    if (dish.image.alt) {
+      const caption = document.createElement('figcaption');
+      caption.textContent = dish.image.alt;
+      media.appendChild(caption);
+    }
+    modalHeader.appendChild(media);
+  }
+
+  const headerInfo = document.createElement('div');
+  headerInfo.className = 'modal-header-info';
+
+  const menuTag = document.createElement('div');
+  menuTag.className = 'menu-tag';
+  menuTag.textContent = dish.menu || 'Без меню';
+  headerInfo.appendChild(menuTag);
+
+  const title = document.createElement('h2');
+  title.id = 'modalDishTitle';
+  title.textContent = dish.title || 'Без названия';
+  headerInfo.appendChild(title);
+
+  if (dish.section) {
+    const section = document.createElement('div');
+    section.className = 'section';
+    section.textContent = dish.section;
+    headerInfo.appendChild(section);
+  }
+
+  if (dish.status) {
+    const status = document.createElement('span');
+    status.className = 'status-badge';
+    status.textContent = dish.status;
+    headerInfo.appendChild(status);
+  }
+
+  modalHeader.appendChild(headerInfo);
+
+  const body = buildModalBody(dish);
+
+  modalContent.appendChild(modalHeader);
+  modalContent.appendChild(body);
+
+  dishModal.classList.add('open');
+  dishModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+
+  lastFocusedElement = triggerElement || document.activeElement;
+
+  if (modalCloseBtn) {
+    modalCloseBtn.setAttribute('tabindex', '0');
+    modalCloseBtn.focus();
+  }
+  document.addEventListener('keydown', handleModalKeydown);
+}
+
+function closeDishModal() {
+  if (!dishModal || !dishModal.classList.contains('open')) return;
+
+  dishModal.classList.remove('open');
+  dishModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  modalContent.innerHTML = '';
+  document.removeEventListener('keydown', handleModalKeydown);
+
+  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+    lastFocusedElement.focus();
+  }
+  lastFocusedElement = null;
+}
+
+function handleModalKeydown(event) {
+  if (event.key === 'Escape') {
+    closeDishModal();
+  }
 }
 
 function createListBlock(title, items) {
@@ -803,5 +889,19 @@ window.addEventListener('keydown', (event) => {
     closeEditorPanel();
   }
 });
+
+if (modalCloseBtn) {
+  modalCloseBtn.addEventListener('click', () => {
+    closeDishModal();
+  });
+}
+
+if (dishModal) {
+  dishModal.addEventListener('click', (event) => {
+    if (event.target === dishModal) {
+      closeDishModal();
+    }
+  });
+}
 
 loadData();
