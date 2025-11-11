@@ -337,7 +337,10 @@
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--muted);
+      /* Use the accent colour for modal headings (e.g. "Аллергены",
+         "Подача/состав") so they stand out and match the site's
+         palette. The dish name in the header remains unaffected. */
+      color: var(--accent);
     }
 
     .meta-block .rich-text {
@@ -366,6 +369,7 @@
     .translation-title {
       font-weight: 600;
       font-size: 15px;
+      /* Use the default light colour for translation section headings. */
       color: rgba(255,255,255,0.9);
     }
 
@@ -376,6 +380,32 @@
       color: rgba(255,255,255,0.75);
       white-space: pre-line;
     }
+
+    /*
+     * Hide figcaptions within the modal body so that any supplementary
+     * captions associated with images are not displayed. This ensures
+     * that when viewing a dish in the modal, only the picture itself
+     * is shown without additional captions underneath.
+     */
+    .modal-body figcaption {
+      display: none;
+    }
+
+    /*
+     * Highlight bold text within the modal body using the accent colour. This
+     * applies to <strong> and <b> elements inside rich-text sections such
+     * as descriptions, features and ingredient lists. The dish title and
+     * translation titles are unaffected.
+     */
+    .modal-body .rich-text strong,
+    .modal-body .rich-text b {
+      color: var(--accent);
+    }
+
+    /*
+     * Remove the special styling for bold text within the modal body.
+     * Bolded words will now inherit the default text colour.
+     */
 
     .meta-block ul {
       margin: 4px 0 0;
@@ -410,6 +440,12 @@
       font-size: 12px;
       color: rgba(255,255,255,0.5);
     }
+
+    /*
+     * Restored default behaviour: the card summary displays its menu tag,
+     * title, section and status badge. Captions beneath images are
+     * visible again when the card is collapsed.
+     */
 
     .card .edit-btn {
       position: absolute;
@@ -484,11 +520,6 @@
       flex: 1 1 auto;
       min-height: 0;
       height: 100%;
-      /* Ensure overflowing content within the modal is scrollable rather
-         than being cut off. This allows long descriptions, feature
-         lists and translation blocks to remain accessible even when
-         the modal has a fixed maximum height. */
-      overflow-y: auto;
     }
 
     .modal-close {
@@ -514,28 +545,14 @@
       border-color: rgba(255,255,255,0.3);
     }
 
-    /*
-     * The modal header holds both the optional media (photo) and the
-     * textual information such as section and title. Previously this
-     * area had a fixed minimum height and vertically centred its
-     * contents, which caused long titles or descriptions to spill out
-     * of the header and overlap the body of the modal. To keep the
-     * header neat we allow it to grow with its content and align
-     * children to the top. The media column uses a reasonable minimum
-     * size but can shrink on very narrow screens. Removing the
-     * min-height ensures the header expands as needed instead of
-     * clipping text.
-     */
     .modal-header {
       display: grid;
-      grid-template-columns: minmax(140px, 0.32fr) minmax(0, 1fr);
+      grid-template-columns: minmax(120px, 0.32fr) minmax(0, 1fr);
       gap: clamp(12px, 2.4vw, 22px);
       padding: clamp(12px, 1.8vh, 18px) clamp(18px, 3vw, 32px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      /* top–align all items so multiple lines of text stay inside the header */
-      align-items: flex-start;
-      /* let the header height be dictated by its content */
-      min-height: unset;
+      align-items: center;
+      min-height: clamp(72px, 10%, 120px);
     }
 
     .modal-header.modal-header--no-media {
@@ -544,29 +561,20 @@
     }
 
     .modal-media {
-      /*
-       * Allow the image container to size itself based on the content.
-       * Align to the start of the header so the picture sits neatly at
-       * the top alongside the textual information. Keeping a defined
-       * max-height prevents oversized images from dominating the
-       * header on large screens while still being responsive.
-       */
-      align-self: flex-start;
+      align-self: stretch;
       border-radius: 16px;
       overflow: hidden;
-      max-height: 180px;
     }
 
     .modal-media img {
       width: 100%;
       height: 100%;
-      /* Use contain to ensure the entire image is visible without
-         cropping, maintaining aspect ratio within the container */
-      object-fit: contain;
+      object-fit: cover;
     }
 
     .modal-media figcaption {
-      font-size: 11px;
+      /* Hide captions in the modal media so only the image is displayed */
+      display: none;
     }
 
     .modal-header-info {
