@@ -37,6 +37,9 @@ const state = {
 let toastTimeout = null;
 let isSaving = false;
 let lastFocusedElement = null;
+const compactCardsQuery = typeof window !== 'undefined' && window.matchMedia
+  ? window.matchMedia('(max-width: 640px)')
+  : null;
 
 const fuseOptions = {
   keys: [
@@ -73,6 +76,27 @@ function debounce(fn, wait = 200) {
     clearTimeout(timeout);
     timeout = setTimeout(() => fn(...args), wait);
   };
+}
+
+function shouldUseCompactTitles() {
+  if (compactCardsQuery) {
+    return compactCardsQuery.matches;
+  }
+  return typeof window !== 'undefined' ? window.innerWidth <= 640 : false;
+}
+
+function formatCardTitle(title) {
+  if (!title) return '';
+  if (!shouldUseCompactTitles()) {
+    return title;
+  }
+
+  const words = title.trim().split(/\s+/).filter(Boolean);
+  if (words.length <= 4) {
+    return words.join(' ');
+  }
+
+  return `${words.slice(0, 4).join(' ')}…`;
 }
 
 function showToast(message, isError = false) {
@@ -308,7 +332,9 @@ function renderCards(dishes) {
     summary.appendChild(menuTag);
 
     const title = document.createElement('h3');
-    title.textContent = dishTitle;
+    title.textContent = formatCardTitle(dishTitle);
+    title.dataset.fullTitle = dishTitle;
+    title.title = dishTitle;
     summary.appendChild(title);
 
     if (dish.section) {
@@ -346,65 +372,92 @@ function renderCards(dishes) {
   });
 }
 
+if (compactCardsQuery) {
+  const handleCompactChange = () => {
+    if (!cardsContainer) return;
+    renderCards(state.filtered);
+  };
+
+  if (typeof compactCardsQuery.addEventListener === 'function') {
+    compactCardsQuery.addEventListener('change', handleCompactChange);
+  } else if (typeof compactCardsQuery.addListener === 'function') {
+    compactCardsQuery.addListener(handleCompactChange);
+  }
+}
+
 function buildModalBody(dish) {
   const body = document.createElement('div');
   body.className = 'modal-body';
+
+  const primaryColumn = document.createElement('div');
+  primaryColumn.className = 'modal-column modal-column--primary';
+  const secondaryColumn = document.createElement('div');
+  secondaryColumn.className = 'modal-column modal-column--secondary';
+
+  body.appendChild(primaryColumn);
+  body.appendChild(secondaryColumn);
 
   if (dish.description) {
     const description = document.createElement('p');
     description.className = 'modal-description';
     description.textContent = dish.description;
-    body.appendChild(description);
+    primaryColumn.appendChild(description);
   }
 
   if (dish.contains) {
-    body.appendChild(createRichTextBlock('Подача / состав', dish.contains));
-  }
-
-  const ingredients = Array.isArray(dish.ingredients) ? dish.ingredients : [];
-  if (ingredients.length) {
-    body.appendChild(createListBlock('Ингредиенты', ingredients));
-  }
-
-  const allergens = Array.isArray(dish.allergens) ? dish.allergens : [];
-  if (allergens.length) {
-    body.appendChild(createListBlock('Аллергены', allergens));
-  }
-
-  const pairingBlock = createPairingsBlock(dish.pairings);
-  if (pairingBlock) {
-    body.appendChild(pairingBlock);
+    primaryColumn.appendChild(createRichTextBlock('Подача / состав', dish.contains));
   }
 
   if (dish.features) {
-    body.appendChild(createRichTextBlock('Особенности', dish.features));
-  }
-
-  if (dish.source_file) {
-    const source = document.createElement('div');
-    source.className = 'source-file';
-    source.textContent = `Источник: ${dish.source_file}`;
-    body.appendChild(source);
+    primaryColumn.appendChild(createRichTextBlock('Особенности', dish.features));
   }
 
   if (dish.i18n?.en) {
     const { title: enTitle, description: enDescription } = dish.i18n.en;
     if (enTitle || enDescription) {
-      body.appendChild(createTranslationBlock('English', enTitle, enDescription));
+      primaryColumn.appendChild(createTranslationBlock('English', enTitle, enDescription));
     }
+  }
+
+  const ingredients = Array.isArray(dish.ingredients) ? dish.ingredients : [];
+  if (ingredients.length) {
+    secondaryColumn.appendChild(createListBlock('Ингредиенты', ingredients));
+  }
+
+  const allergens = Array.isArray(dish.allergens) ? dish.allergens : [];
+  if (allergens.length) {
+    secondaryColumn.appendChild(createListBlock('Аллергены', allergens));
+  }
+
+  const pairingBlock = createPairingsBlock(dish.pairings);
+  if (pairingBlock) {
+    secondaryColumn.appendChild(pairingBlock);
+  }
+
+  if (dish.source_file) {
+    const sourceBlock = document.createElement('div');
+    sourceBlock.className = 'meta-block meta-block--source';
+    const heading = document.createElement('strong');
+    heading.textContent = 'Источник';
+    sourceBlock.appendChild(heading);
+    const source = document.createElement('div');
+    source.className = 'source-file';
+    source.textContent = dish.source_file;
+    sourceBlock.appendChild(source);
+    secondaryColumn.appendChild(sourceBlock);
   }
 
   const tags = Array.isArray(dish.tags) ? dish.tags : [];
   if (tags.length) {
-    const tagsWrap = document.createElement('div');
-    tagsWrap.className = 'tags';
-    tags.forEach((tag) => {
-      const tagEl = document.createElement('span');
-      tagEl.className = 'tag';
-      tagEl.textContent = tag;
-      tagsWrap.appendChild(tagEl);
-    });
-    body.appendChild(tagsWrap);
+    secondaryColumn.appendChild(createTagsBlock(tags));
+  }
+
+  if (!primaryColumn.childElementCount) {
+    primaryColumn.remove();
+    secondaryColumn.classList.add('modal-column--full');
+  } else if (!secondaryColumn.childElementCount) {
+    secondaryColumn.remove();
+    primaryColumn.classList.add('modal-column--full');
   }
 
   return body;
@@ -600,6 +653,26 @@ function createTranslationBlock(label, title, description) {
     desc.textContent = description;
     block.appendChild(desc);
   }
+  return block;
+}
+
+function createTagsBlock(tags) {
+  const block = document.createElement('div');
+  block.className = 'meta-block tags-block';
+  const heading = document.createElement('strong');
+  heading.textContent = 'Теги';
+  block.appendChild(heading);
+
+  const tagsWrap = document.createElement('div');
+  tagsWrap.className = 'tags';
+  tags.forEach((tag) => {
+    const tagEl = document.createElement('span');
+    tagEl.className = 'tag';
+    tagEl.textContent = tag;
+    tagsWrap.appendChild(tagEl);
+  });
+  block.appendChild(tagsWrap);
+
   return block;
 }
 
