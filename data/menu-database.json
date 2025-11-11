@@ -4370,17 +4370,16 @@
     "pairings": {
       "wines": [],
       "drinks": [],
-      "dishes": [],
-      "notes": []
+      "dishes": []
     },
     "image": {
-      "src": "",
+      "src": "../images/Zaglushka.jpg",
       "alt": ""
     },
     "i18n": {
       "ru": {
         "title": "Чайный набор",
-        "description": ""
+        "description": "Ассорти конфет ручной работы, домашнего мармелада и макаронс."
       },
       "en": {
         "title": "Tea Set",
@@ -4390,7 +4389,6 @@
     "status": "draft",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<p class=\"\" id=\"28633974-4d17-804f-9d13-f9eb3349ffdc\"><strong>Ассорти конфет ручной работы, мармелада и макаронс.</strong></p><hr id=\"29433974-4d17-80c3-a9ee-d1311a79b6dc\"/><p class=\"\" id=\"28f33974-4d17-807a-865f-df6a1800544f\"><strong>Состав:</strong></p><p class=\"\" id=\"28f33974-4d17-8022-835c-fa55585cda03\"><strong>Макарони:</strong></p><ol class=\"numbered-list\" id=\"28f33974-4d17-8093-b2b8-c3f51cd73e6f\" start=\"1\" type=\"1\"><li>Лимон (1 шт.).  <strong><img alt=\"nut_icon\" src=\"../icons/nut_icon.png\" style=\"width:1em;height:1em\"/></strong><strong> </strong>орехи | <strong>🍋  </strong>цитрусы</li></ol><ol class=\"numbered-list\" id=\"28f33974-4d17-8082-817f-ec80aecc3471\" start=\"2\" type=\"1\"><li>Малина (1 шт.).  <strong><img alt=\"nut_icon\" src=\"../icons/nut_icon.png\" style=\"width:1em;height:1em\"/></strong><strong> </strong>орехи</li></ol><p class=\"\" id=\"28f33974-4d17-8054-8087-c07032cf2df5\"><strong>Мармелад:</strong></p><ol class=\"numbered-list\" id=\"28f33974-4d17-8079-8e6e-ee3aeb94e4e5\" start=\"1\" type=\"1\"><li>Грейпфрут (30 г.). <strong>🍋  </strong>цитрусы</li></ol><ol class=\"numbered-list\" id=\"28f33974-4d17-8068-93a9-ce61b081edeb\" start=\"2\" type=\"1\"><li>Яблоко (30 г.).</li></ol><ol class=\"numbered-list\" id=\"28f33974-4d17-80cd-ad38-d1e57ce73820\" start=\"3\" type=\"1\"><li>Вишня (30 г.).</li></ol><p class=\"\" id=\"28f33974-4d17-80d4-b84b-f23b45df49ba\"><strong>Конфеты:</strong></p><ol class=\"numbered-list\" id=\"28f33974-4d17-80ef-80ad-f0be5f895fff\" start=\"1\" type=\"1\"><li>Трюфель шоколад-виски (1 шт.). 🥛 лактоза | <img alt=\"whiskey_2_icon\" src=\"../icons/whiskey_icon.png\" style=\"width:1em;height:1em\"/> виски</li></ol><ol class=\"numbered-list\" id=\"28f33974-4d17-8039-a66a-dfef59500693\" start=\"2\" type=\"1\"><li>Финик-фисташка (1 шт.). 🥛 лактоза | <strong><img alt=\"nut_icon\" src=\"../icons/nut_icon.png\" style=\"width:1em;height:1em\"/></strong><strong> </strong>орехи</li></ol><ol class=\"numbered-list\" id=\"28f33974-4d17-80d4-af78-e130a0c8fd03\" start=\"3\" type=\"1\"><li>Шоколад-апельсин (1 шт.). 🥛 лактоза | <strong>🍋  </strong>цитрусы</li></ol><ol class=\"numbered-list\" id=\"28f33974-4d17-8043-b997-ea5dbe5a5bf1\" start=\"4\" type=\"1\"><li>Малина-имбирь (1 шт.). 🥛 лактоза </li></ol><hr id=\"28633974-4d17-8031-a1f7-ffe1a8c70a95\"/>",
-    "features": "",
     "ingredients": [],
     "comments": []
   },
@@ -4785,21 +4783,16 @@
     "pairings": {
       "wines": [],
       "drinks": [],
-      "dishes": [],
-      "notes": []
+      "dishes": []
     },
     "image": {
-      "src": "",
+      "src": "../images/Zaglushka.jpg",
       "alt": "Авторский домашний хлеб"
     },
     "i18n": {
       "ru": {
         "title": "Авторский домашний хлеб",
-        "description": "Хлеб:"
-      },
-      "en": {
-        "title": "",
-        "description": ""
+        "description": "Ассорти свежевыпеченного хлеба: пшеничная чиабатта с хрустящей корочкой, солодовый хлеб с зернами, ароматный хлеб с жареным луком и хлеб с вялеными томатами. Комплементом подаётся с двумя видами масла: сливочное с томатами и базиликом — яркое, с лёгкой кислинкой, и масло с грибами и трюфелем — насыщенное, с глубоким грибным вкусом."
       }
     },
     "status": "draft",
