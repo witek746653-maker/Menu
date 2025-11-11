@@ -484,11 +484,6 @@
       flex: 1 1 auto;
       min-height: 0;
       height: 100%;
-      /* Ensure overflowing content within the modal is scrollable rather
-         than being cut off. This allows long descriptions, feature
-         lists and translation blocks to remain accessible even when
-         the modal has a fixed maximum height. */
-      overflow-y: auto;
     }
 
     .modal-close {
@@ -514,28 +509,14 @@
       border-color: rgba(255,255,255,0.3);
     }
 
-    /*
-     * The modal header holds both the optional media (photo) and the
-     * textual information such as section and title. Previously this
-     * area had a fixed minimum height and vertically centred its
-     * contents, which caused long titles or descriptions to spill out
-     * of the header and overlap the body of the modal. To keep the
-     * header neat we allow it to grow with its content and align
-     * children to the top. The media column uses a reasonable minimum
-     * size but can shrink on very narrow screens. Removing the
-     * min-height ensures the header expands as needed instead of
-     * clipping text.
-     */
     .modal-header {
       display: grid;
-      grid-template-columns: minmax(140px, 0.32fr) minmax(0, 1fr);
+      grid-template-columns: minmax(120px, 0.32fr) minmax(0, 1fr);
       gap: clamp(12px, 2.4vw, 22px);
       padding: clamp(12px, 1.8vh, 18px) clamp(18px, 3vw, 32px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      /* top–align all items so multiple lines of text stay inside the header */
-      align-items: flex-start;
-      /* let the header height be dictated by its content */
-      min-height: unset;
+      align-items: center;
+      min-height: clamp(72px, 10%, 120px);
     }
 
     .modal-header.modal-header--no-media {
@@ -544,25 +525,15 @@
     }
 
     .modal-media {
-      /*
-       * Allow the image container to size itself based on the content.
-       * Align to the start of the header so the picture sits neatly at
-       * the top alongside the textual information. Keeping a defined
-       * max-height prevents oversized images from dominating the
-       * header on large screens while still being responsive.
-       */
-      align-self: flex-start;
+      align-self: stretch;
       border-radius: 16px;
       overflow: hidden;
-      max-height: 180px;
     }
 
     .modal-media img {
       width: 100%;
       height: 100%;
-      /* Use contain to ensure the entire image is visible without
-         cropping, maintaining aspect ratio within the container */
-      object-fit: contain;
+      object-fit: cover;
     }
 
     .modal-media figcaption {
