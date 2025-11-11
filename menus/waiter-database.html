@@ -515,11 +515,17 @@
     }
 
     .modal-content {
-      display: flex;
-      flex-direction: column;
+      /* Use a two-row grid so that the header occupies only the height
+         it needs and the body fills the remaining space. The body can
+         scroll independently without overlapping the header. */
+      display: grid;
+      grid-template-rows: auto 1fr;
       flex: 1 1 auto;
       min-height: 0;
       height: 100%;
+      /* Prevent scrolling on the container itself; scrolling will be
+         handled by the body section. */
+      overflow-y: hidden;
     }
 
     .modal-close {
@@ -547,12 +553,16 @@
 
     .modal-header {
       display: grid;
-      grid-template-columns: minmax(120px, 0.32fr) minmax(0, 1fr);
+      /* Size the first column to the media width and let the second column
+         take the remaining space */
+      grid-template-columns: max-content 1fr;
       gap: clamp(12px, 2.4vw, 22px);
       padding: clamp(12px, 1.8vh, 18px) clamp(18px, 3vw, 32px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      align-items: center;
-      min-height: clamp(72px, 10%, 120px);
+      /* Align content to the top of the header so multi-line titles stay inside */
+      align-items: flex-start;
+      /* Remove the fixed minimum height; the header will grow with its content */
+      min-height: unset;
     }
 
     .modal-header.modal-header--no-media {
@@ -561,7 +571,13 @@
     }
 
     .modal-media {
-      align-self: stretch;
+      /* Keep the media area a constant size across screen widths so
+         images are not squashed or stretched. The width and height
+         here define the size of the column in the header. */
+      width: 160px;
+      height: 160px;
+      flex: none;
+      align-self: flex-start;
       border-radius: 16px;
       overflow: hidden;
     }
@@ -569,7 +585,8 @@
     .modal-media img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      /* Show the entire image without cropping. */
+      object-fit: contain;
     }
 
     .modal-media figcaption {
@@ -608,6 +625,11 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: clamp(18px, 2.8vw, 32px);
       align-content: start;
+      /* Allow the body to scroll independently of the header when
+         content overflows. min-height:0 is necessary for the grid
+         child to shrink properly within the modal. */
+      overflow-y: auto;
+      min-height: 0;
     }
 
     .modal-body .modal-column {
@@ -771,8 +793,9 @@
       }
 
       .modal-header {
-        grid-template-columns: minmax(96px, 0.4fr) minmax(0, 1fr);
-        align-items: start;
+        /* Keep the image column at its intrinsic size on narrower screens */
+        grid-template-columns: max-content 1fr;
+        align-items: flex-start;
       }
 
       .modal-media {
