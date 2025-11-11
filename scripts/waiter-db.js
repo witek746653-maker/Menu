@@ -19,6 +19,8 @@ const dishModal = document.getElementById('dishModal');
 const modalContent = document.getElementById('modalContent');
 const modalCloseBtn = document.getElementById('modalClose');
 
+const EDIT_PASSWORD = '5878';
+
 const state = {
   dishes: [],
   filtered: [],
@@ -30,6 +32,7 @@ const state = {
     tags: new Set()
   },
   editMode: false,
+  hasEditAccess: false,
   editingId: null,
   serverAvailable: true
 };
@@ -112,6 +115,29 @@ function showToast(message, isError = false) {
   }, 3200);
 }
 
+function requestEditAccess() {
+  if (state.hasEditAccess) {
+    return true;
+  }
+
+  const input = typeof window !== 'undefined'
+    ? window.prompt('Введите пароль для редактирования картотеки официанта')
+    : null;
+
+  if (input === null) {
+    return false;
+  }
+
+  if (input.trim() === EDIT_PASSWORD) {
+    state.hasEditAccess = true;
+    showToast('Доступ к редактированию открыт.');
+    return true;
+  }
+
+  showToast('Неверный пароль.', true);
+  return false;
+}
+
 function setEditAvailability(available) {
   state.serverAvailable = available;
   toggleEditBtn.disabled = !available;
@@ -127,6 +153,7 @@ function setEditAvailability(available) {
   }
 
   if (!available) {
+    state.hasEditAccess = false;
     showToast('Редактирование недоступно: нет соединения с API.', true);
   }
 }
@@ -926,6 +953,9 @@ toggleEditBtn.addEventListener('click', () => {
     showToast('Редактирование недоступно без запущенного server.py.', true);
     return;
   }
+  if (!state.editMode && !requestEditAccess()) {
+    return;
+  }
   state.editMode = !state.editMode;
   document.body.classList.toggle('edit-mode', state.editMode);
   toggleEditBtn.textContent = state.editMode ? 'Выключить редактирование' : 'Включить редактирование';
@@ -940,6 +970,9 @@ addDishBtn.addEventListener('click', () => {
     return;
   }
   if (!state.editMode) {
+    if (!requestEditAccess()) {
+      return;
+    }
     state.editMode = true;
     document.body.classList.add('edit-mode');
     toggleEditBtn.textContent = 'Выключить редактирование';
