@@ -563,6 +563,8 @@ function openDishModal(dish, triggerElement) {
       media.appendChild(caption);
     }
     modalHeader.appendChild(media);
+  } else {
+    modalHeader.classList.add('modal-header--no-media');
   }
 
   const headerInfo = document.createElement('div');
@@ -578,18 +580,28 @@ function openDishModal(dish, triggerElement) {
   title.textContent = dish.title || 'Без названия';
   headerInfo.appendChild(title);
 
+  let metaRow = null;
+
   if (dish.section) {
+    metaRow = metaRow || document.createElement('div');
+    metaRow.className = 'modal-header-meta';
     const section = document.createElement('div');
     section.className = 'section';
     section.textContent = dish.section;
-    headerInfo.appendChild(section);
+    metaRow.appendChild(section);
   }
 
   if (dish.status) {
+    metaRow = metaRow || document.createElement('div');
+    metaRow.className = 'modal-header-meta';
     const status = document.createElement('span');
     status.className = 'status-badge';
     status.textContent = dish.status;
-    headerInfo.appendChild(status);
+    metaRow.appendChild(status);
+  }
+
+  if (metaRow) {
+    headerInfo.appendChild(metaRow);
   }
 
   modalHeader.appendChild(headerInfo);
