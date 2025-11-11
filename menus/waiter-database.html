@@ -180,9 +180,9 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: clamp(12px, 2.5vw, 20px);
-      align-items: stretch;
+      align-items: start;
     }
 
     .card {
@@ -195,7 +195,6 @@
       overflow: hidden;
       transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.18s ease;
       cursor: pointer;
-      min-height: 240px;
     }
 
     .card:hover {
@@ -223,8 +222,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding: 14px 16px 16px;
-      flex: 1 1 auto;
+      padding: 12px 14px 14px;
     }
 
     .card-summary figure {
@@ -233,7 +231,6 @@
       overflow: hidden;
       aspect-ratio: 4 / 3;
       background: rgba(255,255,255,0.03);
-      flex: 0 0 auto;
     }
 
     .card-summary figure img {
@@ -264,9 +261,8 @@
 
     .card-summary h3 {
       margin: 0;
-      font-size: clamp(14px, 3.6vw, 16px);
+      font-size: 16px;
       letter-spacing: -0.01em;
-      line-height: 1.3;
     }
 
     .card-summary .section {
@@ -276,9 +272,9 @@
       letter-spacing: 0.08em;
     }
 
-    .status-badge {
+    .card .status-badge {
       display: inline-flex;
-      margin-top: 6px;
+      margin-top: 4px;
       padding: 2px 8px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.2);
@@ -289,29 +285,42 @@
       width: fit-content;
     }
 
-    .dish-image {
+    .card-details {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      padding: 0 14px 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.14);
+    }
+
+    .card.expanded .card-details {
+      display: flex;
+    }
+
+    .card-details .dish-image {
       margin: 0;
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
 
-    .dish-image img {
+    .card-details .dish-image img {
       width: 100%;
       border-radius: 12px;
       object-fit: cover;
     }
 
-    .dish-image figcaption {
+    .card-details .dish-image figcaption {
       margin-top: 6px;
       font-size: 12px;
       color: var(--muted);
     }
 
-    .modal-description {
+    .card-details p {
       margin: 0;
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 14px;
+      line-height: 1.55;
       color: rgba(255,255,255,0.9);
     }
 
@@ -438,111 +447,6 @@
       border-color: rgba(255, 209, 102, 0.4);
     }
 
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(16px, 4vw, 40px);
-      z-index: 40;
-    }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal-dialog {
-      position: relative;
-      width: min(960px, 80vw);
-      max-height: 80vh;
-      background: var(--panel);
-      border: 1px solid var(--panel-border);
-      border-radius: 24px;
-      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .modal-content {
-      display: flex;
-      flex-direction: column;
-      flex: 1 1 auto;
-      min-height: 0;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.45);
-      color: var(--text);
-      font-size: 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s ease, border 0.2s ease;
-    }
-
-    .modal-close:hover {
-      background: rgba(0,0,0,0.6);
-      border-color: rgba(255,255,255,0.3);
-    }
-
-    .modal-header {
-      display: flex;
-      gap: clamp(18px, 3vw, 28px);
-      padding: clamp(18px, 2.8vw, 32px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-
-    .modal-media {
-      flex: 0 0 min(320px, 40%);
-      max-width: min(320px, 100%);
-    }
-
-    .modal-header-info {
-      flex: 1 1 240px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .modal-header-info h2 {
-      margin: 0;
-      font-size: clamp(22px, 4vw, 30px);
-      letter-spacing: -0.015em;
-    }
-
-    .modal-header-info .section {
-      font-size: 13px;
-    }
-
-    .modal-body {
-      padding: clamp(18px, 2.8vw, 32px);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      overflow-y: auto;
-    }
-
-    .modal-body .tags {
-      margin-top: 0;
-    }
-
-    body.modal-open {
-      overflow: hidden;
-    }
-
     .toolbar {
       display: flex;
       flex-wrap: wrap;
@@ -666,65 +570,6 @@
       color: rgba(255,255,255,0.5);
       font-size: 13px;
     }
-
-    @media (max-width: 960px) {
-      .modal-dialog {
-        width: min(720px, 90vw);
-        max-height: calc(100vh - 48px);
-      }
-    }
-
-    @media (max-width: 720px) {
-      .modal-header {
-        flex-direction: column;
-      }
-
-      .modal-media {
-        width: 100%;
-      }
-
-      .modal-body {
-        max-height: calc(100vh - 220px);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .card {
-        min-height: 220px;
-      }
-
-      .card-summary {
-        padding: 12px;
-        gap: 8px;
-      }
-
-      .card-summary figure {
-        aspect-ratio: 1 / 1;
-      }
-
-      .card-summary h3 {
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-dialog {
-        width: 94vw;
-        max-height: calc(100vh - 32px);
-      }
-
-      .modal-body {
-        max-height: none;
-      }
-    }
   </style>
 </head>
 <body>
@@ -775,13 +620,6 @@
       <div id="emptyState" class="empty-state" style="display:none;">По вашему запросу ничего не найдено. Попробуйте изменить фильтры.</div>
     </section>
   </main>
-
-  <div class="modal-backdrop" id="dishModal" aria-hidden="true">
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalDishTitle">
-      <button type="button" class="modal-close" id="modalClose" aria-label="Закрыть окно">×</button>
-      <div class="modal-content" id="modalContent"></div>
-    </div>
-  </div>
 
   <aside class="editor-drawer" id="editor" aria-hidden="true">
     <header>
