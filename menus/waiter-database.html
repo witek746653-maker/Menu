@@ -275,17 +275,22 @@
       letter-spacing: 0.08em;
     }
 
-    .card .status-badge {
+    .status-badge {
       display: inline-flex;
-      margin-top: 4px;
+      margin: 0;
       padding: 2px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(46, 204, 113, 0.35);
       font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
+      color: #2ecc71;
+      background: rgba(46, 204, 113, 0.12);
       width: fit-content;
+    }
+
+    .card-summary .status-badge {
+      margin-top: 4px;
     }
 
     .card-details {
@@ -611,12 +616,32 @@
 
     .modal-header-info .section {
       font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-header-info .section img,
+    .card-summary .section img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
     }
 
     .modal-header-meta {
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+
+    .modal-header-meta .id-badge {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px dashed rgba(255,255,255,0.2);
+      border-radius: 999px;
+      padding: 2px 10px;
     }
 
     .modal-body {
@@ -655,6 +680,38 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
+    }
+
+    .modal-body .meta-block pre {
+      margin: 8px 0 0;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .modal-body .meta-block details {
+      margin-top: 6px;
+    }
+
+    .modal-body .meta-block summary {
+      cursor: pointer;
+      color: var(--accent);
+    }
+
+    .card-summary .section {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .editor-drawer input[readonly] {
+      color: var(--muted);
+      cursor: not-allowed;
     }
 
     body.modal-open {
@@ -921,8 +978,24 @@
         <input type="text" name="section" required>
       </label>
       <label>
+        <span>Иконка раздела — тип</span>
+        <input type="text" name="sectionIconType" placeholder="Например: icon">
+      </label>
+      <label>
+        <span>Иконка раздела — адрес</span>
+        <input type="text" name="sectionIconSrc" placeholder="Например: ./icons/fish.png">
+      </label>
+      <label>
+        <span>Иконка раздела — описание</span>
+        <input type="text" name="sectionIconAlt" placeholder="Альтернативный текст иконки">
+      </label>
+      <label>
         <span>Название</span>
         <input type="text" name="title" required>
+      </label>
+      <label>
+        <span>ID</span>
+        <input type="text" name="dishId" placeholder="Генерируется автоматически" readonly>
       </label>
       <label>
         <span>Описание</span>
@@ -961,6 +1034,10 @@
         <textarea name="tags" placeholder="через запятую"></textarea>
       </label>
       <label>
+        <span>Комментарии</span>
+        <textarea name="comments" placeholder="Каждый комментарий с новой строки"></textarea>
+      </label>
+      <label>
         <span>Статус</span>
         <input type="text" name="status" placeholder="Например: draft / active">
       </label>
@@ -971,6 +1048,10 @@
       <label>
         <span>Особенности</span>
         <textarea name="features" placeholder="Ключевые особенности блюда"></textarea>
+      </label>
+      <label>
+        <span>Исходный HTML</span>
+        <textarea name="rawHtml" placeholder="Скопируйте оригинальную HTML-разметку блюда"></textarea>
       </label>
       <label>
         <span>Изображение — адрес</span>

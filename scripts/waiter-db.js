@@ -367,7 +367,15 @@ function renderCards(dishes) {
     if (dish.section) {
       const section = document.createElement('div');
       section.className = 'section';
-      section.textContent = dish.section;
+      if (dish.section_icon?.src) {
+        const icon = document.createElement('img');
+        icon.src = dish.section_icon.src;
+        icon.alt = dish.section_icon.alt || '';
+        section.appendChild(icon);
+      }
+      const sectionLabel = document.createElement('span');
+      sectionLabel.textContent = dish.section;
+      section.appendChild(sectionLabel);
       summary.appendChild(section);
     }
 
@@ -439,6 +447,23 @@ function buildModalBody(dish) {
     primaryColumn.appendChild(createRichTextBlock('Особенности', dish.features));
   }
 
+  if (dish.raw_html) {
+    const rawBlock = document.createElement('div');
+    rawBlock.className = 'meta-block';
+    const heading = document.createElement('strong');
+    heading.textContent = 'Исходный HTML';
+    rawBlock.appendChild(heading);
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Показать HTML';
+    details.appendChild(summary);
+    const pre = document.createElement('pre');
+    pre.textContent = dish.raw_html;
+    details.appendChild(pre);
+    rawBlock.appendChild(details);
+    primaryColumn.appendChild(rawBlock);
+  }
+
   if (dish.i18n?.en) {
     const { title: enTitle, description: enDescription } = dish.i18n.en;
     if (enTitle || enDescription) {
@@ -454,6 +479,11 @@ function buildModalBody(dish) {
   const allergens = Array.isArray(dish.allergens) ? dish.allergens : [];
   if (allergens.length) {
     secondaryColumn.appendChild(createListBlock('Аллергены', allergens));
+  }
+
+  const comments = Array.isArray(dish.comments) ? dish.comments : [];
+  if (comments.length) {
+    secondaryColumn.appendChild(createListBlock('Комментарии', comments));
   }
 
   const pairingBlock = createPairingsBlock(dish.pairings);
@@ -587,7 +617,15 @@ function openDishModal(dish, triggerElement) {
     metaRow.className = 'modal-header-meta';
     const section = document.createElement('div');
     section.className = 'section';
-    section.textContent = dish.section;
+    if (dish.section_icon?.src) {
+      const icon = document.createElement('img');
+      icon.src = dish.section_icon.src;
+      icon.alt = dish.section_icon.alt || '';
+      section.appendChild(icon);
+    }
+    const sectionLabel = document.createElement('span');
+    sectionLabel.textContent = dish.section;
+    section.appendChild(sectionLabel);
     metaRow.appendChild(section);
   }
 
@@ -598,6 +636,15 @@ function openDishModal(dish, triggerElement) {
     status.className = 'status-badge';
     status.textContent = dish.status;
     metaRow.appendChild(status);
+  }
+
+  if (dish.id) {
+    metaRow = metaRow || document.createElement('div');
+    metaRow.className = 'modal-header-meta';
+    const idBadge = document.createElement('span');
+    idBadge.className = 'id-badge';
+    idBadge.textContent = dish.id;
+    metaRow.appendChild(idBadge);
   }
 
   if (metaRow) {
@@ -728,7 +775,11 @@ function openEditor(id = null) {
     editorTitle.textContent = `Редактирование — ${dish.title || 'Без названия'}`;
     editorForm.menu.value = dish.menu || '';
     editorForm.section.value = dish.section || '';
+    editorForm.sectionIconType.value = dish.section_icon?.type || '';
+    editorForm.sectionIconSrc.value = dish.section_icon?.src || '';
+    editorForm.sectionIconAlt.value = dish.section_icon?.alt || '';
     editorForm.title.value = dish.title || '';
+    editorForm.dishId.value = dish.id || '';
     editorForm.description.value = dish.description || '';
     editorForm.contains.value = dish.contains || '';
     editorForm.ingredients.value = (dish.ingredients || []).join(', ');
@@ -744,9 +795,11 @@ function openEditor(id = null) {
         : [];
     editorForm.pairNotes.value = notes.join(', ');
     editorForm.tags.value = (dish.tags || []).join(', ');
+    editorForm.comments.value = Array.isArray(dish.comments) ? dish.comments.join('\n') : '';
     editorForm.status.value = dish.status || '';
     editorForm.sourceFile.value = dish.source_file || '';
     editorForm.features.value = dish.features || '';
+    editorForm.rawHtml.value = dish.raw_html || '';
     editorForm.imageSrc.value = dish.image?.src || '';
     editorForm.imageAlt.value = dish.image?.alt || '';
     editorForm.enTitle.value = dish.i18n?.en?.title || '';
@@ -756,6 +809,12 @@ function openEditor(id = null) {
     state.editingId = null;
     editorTitle.textContent = 'Новая позиция';
     editorForm.reset();
+    editorForm.dishId.value = '';
+    editorForm.comments.value = '';
+    editorForm.rawHtml.value = '';
+    editorForm.sectionIconType.value = '';
+    editorForm.sectionIconSrc.value = '';
+    editorForm.sectionIconAlt.value = '';
     deleteDishBtn.style.display = 'none';
   }
 
@@ -772,6 +831,13 @@ function closeEditorPanel() {
 function parseList(value) {
   return value
     .split(',')
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0);
+}
+
+function parseMultiline(value) {
+  return value
+    .split(/\r?\n/)
     .map((item) => item.trim())
     .filter((item) => item.length > 0);
 }
@@ -826,6 +892,7 @@ async function handleSave() {
   const menu = (form.get('menu') || '').trim();
   const section = (form.get('section') || '').trim();
   const title = (form.get('title') || '').trim();
+  const dishIdFromForm = (form.get('dishId') || '').trim();
 
   if (!menu || !section || !title) {
     showToast('Заполните меню, раздел и название.', true);
@@ -841,13 +908,18 @@ async function handleSave() {
   const pairWines = parseList(form.get('pairWines') || '');
   const pairNotes = parseList(form.get('pairNotes') || '');
   const tags = parseList(form.get('tags') || '');
+  const comments = parseMultiline(form.get('comments') || '');
   const status = (form.get('status') || '').trim();
   const sourceFile = (form.get('sourceFile') || '').trim();
   const features = (form.get('features') || '').trim();
+  const rawHtml = (form.get('rawHtml') || '').trim();
   const imageSrc = (form.get('imageSrc') || '').trim();
   const imageAlt = (form.get('imageAlt') || '').trim();
   const enTitle = (form.get('enTitle') || '').trim();
   const enDescription = (form.get('enDescription') || '').trim();
+  const sectionIconType = (form.get('sectionIconType') || '').trim();
+  const sectionIconSrc = (form.get('sectionIconSrc') || '').trim();
+  const sectionIconAlt = (form.get('sectionIconAlt') || '').trim();
 
   let index = -1;
   let existing = null;
@@ -875,9 +947,11 @@ async function handleSave() {
       notes: pairNotes
     },
     tags,
+    comments,
     status,
     source_file: sourceFile,
     features,
+    raw_html: rawHtml,
     image: imageSrc || imageAlt ? { src: imageSrc, alt: imageAlt } : undefined,
     i18n: {
       ...(existing?.i18n || {}),
@@ -894,6 +968,22 @@ async function handleSave() {
     }
   };
 
+  const sectionIcon = {};
+  if (sectionIconType) {
+    sectionIcon.type = sectionIconType;
+  }
+  if (sectionIconSrc) {
+    sectionIcon.src = sectionIconSrc;
+  }
+  if (sectionIconAlt) {
+    sectionIcon.alt = sectionIconAlt;
+  }
+  if (Object.keys(sectionIcon).length) {
+    payload.section_icon = sectionIcon;
+  } else {
+    delete payload.section_icon;
+  }
+
   if (!payload.image) {
     delete payload.image;
   }
@@ -903,11 +993,17 @@ async function handleSave() {
   if (!payload.features) {
     delete payload.features;
   }
+  if (!payload.raw_html) {
+    delete payload.raw_html;
+  }
   if (!payload.status) {
     delete payload.status;
   }
   if (!payload.source_file) {
     delete payload.source_file;
+  }
+  if (!payload.comments || payload.comments.length === 0) {
+    delete payload.comments;
   }
   if (Array.isArray(payload.pairings?.notes) && payload.pairings.notes.length === 0) {
     delete payload.pairings.notes;
@@ -925,7 +1021,8 @@ async function handleSave() {
       state.dishes[index] = payload;
     }
   } else {
-    payload.id = generateId(payload.title, payload.menu);
+    const desiredId = dishIdFromForm || generateId(payload.title, payload.menu);
+    payload.id = desiredId;
     state.dishes.push(payload);
   }
 
