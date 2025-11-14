@@ -1,44 +1,116 @@
-const IMG_CACHE = 'img-v3';
-const IMAGES_PREFIX = 'images/'; // без ведущего слэша
-const ICONS_PREFIX  = 'icons/';
+const PRECACHE = 'precache-v1';
+const RUNTIME_CACHE = 'runtime-v1';
+const PRECACHE_MANIFEST_URL = 'precache-files.json';
 
-self.addEventListener('install', () => self.skipWaiting());
+async function precacheAssets() {
+  const cache = await caches.open(PRECACHE);
+  let manifest = [];
 
-self.addEventListener('activate', (e) => {
-  e.waitUntil((async () => {
-    const keys = await caches.keys();
-    await Promise.all(keys.filter(k => k !== IMG_CACHE).map(k => caches.delete(k)));
+  try {
+    const response = await fetch(PRECACHE_MANIFEST_URL, { cache: 'no-store' });
+    if (response.ok) {
+      manifest = await response.json();
+    } else {
+      console.warn('[sw] Не удалось получить манифест ресурсов', response.status);
+    }
+  } catch (error) {
+    console.error('[sw] Ошибка при загрузке манифеста ресурсов', error);
+  }
+
+  const urls = new Set(['/','index.html', PRECACHE_MANIFEST_URL, ...manifest]);
+
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (response.ok || response.type === 'opaque') {
+        await cache.put(url, response.clone());
+      } else {
+        console.warn(`[sw] Пропуск кэширования ${url}: статус ${response.status}`);
+      }
+    } catch (error) {
+      console.error(`[sw] Не удалось кэшировать ${url}`, error);
+    }
+  }
+}
+
+self.addEventListener('install', (event) => {
+  event.waitUntil((async () => {
+    await precacheAssets();
+    self.skipWaiting();
+  })());
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
+    const cacheNames = await caches.keys();
+    await Promise.all(cacheNames.filter((name) => ![PRECACHE, RUNTIME_CACHE].includes(name)).map((name) => caches.delete(name)));
     await self.clients.claim();
   })());
 });
 
-self.addEventListener('fetch', (e) => {
-  const req = e.request;
-  const url = new URL(req.url);
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
 
-  // корректные пути с учётом scope
-  const imagesPath = new URL(IMAGES_PREFIX, self.registration.scope).pathname;
-  const iconsPath  = new URL(ICONS_PREFIX,  self.registration.scope).pathname;
+  if (request.method !== 'GET') {
+    return;
+  }
 
-  const isImage =
-    req.destination === 'image' ||
-    (url.origin === location.origin &&
-      (url.pathname.startsWith(imagesPath) || url.pathname.startsWith(iconsPath)));
+  const url = new URL(request.url);
 
-  if (!isImage) return;
+  if (url.origin === location.origin) {
+    if (request.mode === 'navigate') {
+      event.respondWith((async () => {
+        try {
+          const networkResponse = await fetch(request, { cache: 'no-store' });
+          const runtime = await caches.open(RUNTIME_CACHE);
+          await runtime.put(request, networkResponse.clone());
+          return networkResponse;
+        } catch (error) {
+          const cachedPage = await caches.match(request);
+          if (cachedPage) return cachedPage;
+          const fallback = await caches.match('index.html');
+          if (fallback) return fallback;
+          throw error;
+        }
+      })());
+      return;
+    }
 
-  e.respondWith((async () => {
-    const cache = await caches.open(IMG_CACHE);
-    const cached = await cache.match(req);
-    if (cached) return cached;
+    event.respondWith((async () => {
+      const cached = await caches.match(request);
+      if (cached) {
+        return cached;
+      }
 
+      try {
+        const networkResponse = await fetch(request, { cache: 'no-store' });
+        const runtime = await caches.open(RUNTIME_CACHE);
+        if (networkResponse.ok || networkResponse.type === 'opaque') {
+          await runtime.put(request, networkResponse.clone());
+        }
+        return networkResponse;
+      } catch (error) {
+        const fallback = await caches.match('index.html');
+        if (fallback && request.destination === 'document') {
+          return fallback;
+        }
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) return cachedResponse;
+        return Response.error();
+      }
+    })());
+    return;
+  }
+
+  event.respondWith((async () => {
     try {
-      const net = await fetch(req, { cache: 'no-store' });
-      if (net.ok || net.type === 'opaque') await cache.put(req, net.clone());
-      return net;
-    } catch {
-      return cached || Response.error();
+      return await fetch(request);
+    } catch (error) {
+      const cached = await caches.match(request);
+      if (cached) return cached;
+      throw error;
     }
   })());
 });
+
 
