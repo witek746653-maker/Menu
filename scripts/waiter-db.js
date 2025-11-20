@@ -168,7 +168,9 @@ async function loadData(showMessage = false) {
       throw new Error(`API error: ${response.status}`);
     }
     const data = await response.json();
-    state.dishes = Array.isArray(data) ? data : [];
+    state.dishes = Array.isArray(data)
+      ? data.filter((item) => !('_menu' in item))
+      : [];
     rebuildFuse();
     rebuildFilters();
     applyFilters();
@@ -181,7 +183,9 @@ async function loadData(showMessage = false) {
     try {
       const fallback = await fetch('../data/menu-database.json', { cache: 'no-store' });
       const data = await fallback.json();
-      state.dishes = Array.isArray(data) ? data : [];
+      state.dishes = Array.isArray(data)
+        ? data.filter((item) => !('_menu' in item))
+        : [];
       rebuildFuse();
       rebuildFilters();
       applyFilters();
