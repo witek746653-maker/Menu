@@ -7,9 +7,9 @@
     "menu": "Основное меню (Sabor de la Vida)",
     "section": "🐠 Аквариум",
     "section_icon": {
-      "type": "icon",
-      "src": "./icons/fishbowl_icon.png",
-      "alt": "akvarium_icon"
+      "type": "",
+      "src": "",
+      "alt": ""
     },
     "title": "Устрица “Императорская” (Залив Петра Великого. Владивосток.)",
     "description": "Дикая устрица с ярко выраженным морским вкусом, богатым йодистым характером и природной свежестью.",
@@ -7020,7 +7020,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Украшаем <b>луком резанец</b> и <b>кедровыми орехами</b>.",
@@ -7061,7 +7061,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "<b>Зелень</b> (кинза, мята, укроп, мини шпинат), <b>лимонный фреш</b>. Сливочный мусс с добавлением соуса песто (<b>кедровые орехи</b>).",
@@ -7102,7 +7102,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "",
@@ -7147,7 +7147,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Омлет готовят с добавлением <b>шпината</b>. Микс салата заправляют <b>кунжутным маслом</b>.",
@@ -7190,7 +7190,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Омлет с <b>луком шалот</b>, зеленью (кинза, петрушка, базилик) и <b>перцем чили</b>.",
@@ -7231,7 +7231,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Украшают <b>перцем чили</b> и <b>луком резанец</b>.",
@@ -7272,7 +7272,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Украшаем зеленью.",
@@ -7313,7 +7313,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "",
@@ -7354,7 +7354,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "В кашу добавляют <b>перец чили</b>, <b>лук шалот</b>, <b>грибы</b>. Украшают <b>луком резанец</b>. Основа сливочная.",
@@ -7395,7 +7395,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Картофельный драник содержит <b>лук шалот</b>. Домашний ростбиф готовится с добавлением <b>горчицы</b>, <b>чеснока</b>. <b>Трюфельный крем</b>, <b>лук фри</b>.",
@@ -7436,7 +7436,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Сыр креметте с добавлением <b>базилика</b>.",
@@ -7477,7 +7477,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "В составе котлеты <b>эстрагон</b>. В картофельное пюре добавляют <b>водоросли нори</b>. Томатная сальса с добавлением <b>лука шалот</b>, <b>сегментов лимона</b>, <b>кинзы</b>, <b>чеснока</b> и <b>фисташек</b>.",
@@ -7518,7 +7518,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Соус сливочный с добавлением <b>мяты</b>. Украшается <b>кинзой</b>.",
@@ -7559,7 +7559,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "<b>Лук конфит</b>, луковый крамбл (<b>лук шалот</b>, масло, грана падано, мука, <b>трюфельное масло</b>). Заправка — <b>майонез</b>.",
@@ -7600,7 +7600,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Пшеничная булка (с <b>кунжутом</b>).",
@@ -7641,7 +7641,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "В соусе песто <b>кедровые орехи</b>.",
@@ -7684,7 +7684,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "С добавлением <b>лука фри</b> и <b>бекона</b>. Украшаем <b>тархуном</b>.",
@@ -7725,7 +7725,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "В составе крема из авокадо <b>кедровые орехи</b> и <b>лимон</b>. Украшается <b>луком резанец</b>.",
@@ -7766,7 +7766,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Украшается <b>фисташками</b>.",
@@ -7807,7 +7807,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "",
@@ -7848,7 +7848,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "",
@@ -7891,7 +7891,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Кремио содержит <b>лимонную цедру</b> и зелень (кинза, петрушка, мелиса). Гель с <b>лимонным соком</b> и <b>мятой</b> подаётся отдельно, десерт поливается при госте.",
@@ -7932,7 +7932,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "",
@@ -7973,7 +7973,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "<b>Ореховые специи</b>.",
@@ -8014,7 +8014,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "",
@@ -8060,7 +8060,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "detskoe-menu.html",
     "raw_html": "",
     "features": "",
@@ -8101,7 +8101,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "detskoe-menu.html",
     "raw_html": "",
     "features": "",
@@ -8142,7 +8142,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "detskoe-menu.html",
     "raw_html": "",
     "features": "",
@@ -8183,7 +8183,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "detskoe-menu.html",
     "raw_html": "",
     "features": "",
@@ -8224,7 +8224,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "detskoe-menu.html",
     "raw_html": "",
     "features": "",
@@ -8265,7 +8265,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "detskoe-menu.html",
     "raw_html": "",
     "features": "",
@@ -8371,7 +8371,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8411,7 +8411,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8451,7 +8451,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8491,7 +8491,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8531,7 +8531,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8571,7 +8571,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8611,7 +8611,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8651,7 +8651,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8691,7 +8691,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8731,7 +8731,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8771,7 +8771,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8811,7 +8811,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8851,7 +8851,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8891,7 +8891,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8931,7 +8931,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -8971,7 +8971,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -9011,7 +9011,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -9051,7 +9051,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -9091,7 +9091,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -9131,7 +9131,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -9171,7 +9171,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -9211,7 +9211,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -9251,7 +9251,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
@@ -9291,7 +9291,7 @@
         "description": ""
       }
     },
-    "status": "",
+    "status": "актуально",
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
