@@ -7612,7 +7612,7 @@
       "говядина",
       "сытное блюдо",
       "без цитрусов",
-      "без глютена", 
+      "без глютена",
       "к вину",
       "без орехов"
     ],
@@ -9141,16 +9141,16 @@
     },
     "title": "Prosecco Casa Defra",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Италия, Вéнето.",
+    "producer": "Casa Defra.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_prosecco_casa_defra.jpg",
+      "alt": "Prosecco Casa Defra"
     },
     "i18n": {
       "ru": {
@@ -9166,7 +9166,11 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Глера (Просекко).",
+      "Вердисо.",
+      "Перера."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9181,16 +9185,16 @@
     },
     "title": "Zinfandel, Long Barn",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "США, Калифорния.",
+    "producer": "Long Barn.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_zinfandel_long_barn.jpg",
+      "alt": "Zinfandel, Long Barn"
     },
     "i18n": {
       "ru": {
@@ -9207,7 +9211,7 @@
     "raw_html": "",
     "features": "",
     "grapeVarieties": [],
-    "sweetness": "полусухое",
+    "sweetness": "",
     "comments": []
   },
   {
@@ -9221,16 +9225,16 @@
     },
     "title": "Tempranillo Edicion Limitada",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Испания, Каталония.",
+    "producer": "Barcelona Mediterranean Wine.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_tempranillo_edicion_limitada.jpg",
+      "alt": "Tempranillo Edicion Limitada"
     },
     "i18n": {
       "ru": {
@@ -9246,7 +9250,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Темпранильо 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9261,16 +9267,16 @@
     },
     "title": "Old Vineyard Pinot Noir",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Аргентина, Патагония.",
+    "producer": "Humberto Canale.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_humberto_canale_old_vineyard.jpg",
+      "alt": "Old Vineyard Pinot Noir"
     },
     "i18n": {
       "ru": {
@@ -9286,7 +9292,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Пино Нуар: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9301,16 +9309,16 @@
     },
     "title": "Castellare di Castellina, Chianti Classico",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Италия, Тоскана.",
+    "producer": "Domini Castellare di Castellina.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_castellare_di_castellina_chianti_classico.jpg",
+      "alt": "Castellare di Castellina, Chianti Classico"
     },
     "i18n": {
       "ru": {
@@ -9326,7 +9334,10 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Санджовезe: 90%.",
+      "Канайоло: 10%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9341,16 +9352,16 @@
     },
     "title": "Pinot Grigio, Bottega Vinai",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Италия, Трентино-Альто Адидже.",
+    "producer": "Cavit.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_pinot_grigio_bottega_vinai.jpg",
+      "alt": "Pinot Grigio, Bottega Vinai"
     },
     "i18n": {
       "ru": {
@@ -9366,7 +9377,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Пино Гриджио: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9381,16 +9394,16 @@
     },
     "title": "Chablis, Sainte Claire, Jean-Marc Brocard",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Франция, Бургундия, Шабли.",
+    "producer": "Jean-Marc Brocard (Domaine Sainte-Claire).",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_chablis_sainte_claire_jean_marc_brocard.jpg",
+      "alt": "Chablis, Sainte Claire, Jean-Marc Brocard"
     },
     "i18n": {
       "ru": {
@@ -9406,7 +9419,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Шардоне: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9421,16 +9436,16 @@
     },
     "title": "Dr.Loosen, \"Blue Slate\" Riesling Dry",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Германия, Мозель-Саар-Рувер",
+    "producer": "Dr.Loosen.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_dr_loosen_blue_slate_riesling_dry.jpg",
+      "alt": "Dr.Loosen, \"Blue Slate\" Riesling Dry"
     },
     "i18n": {
       "ru": {
@@ -9446,7 +9461,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Рислинг: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9461,16 +9478,16 @@
     },
     "title": "Paddle Creek Sauvignon Blanc, Lake Road",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Новая Зеландия, Мальборо.",
+    "producer": "Lake Road.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_paddle_creek_sauvignon_blanc_lake_road.jpg",
+      "alt": "Paddle Creek Sauvignon Blanc, Lake Road"
     },
     "i18n": {
       "ru": {
@@ -9486,7 +9503,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Совиньон блан: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9501,16 +9520,16 @@
     },
     "title": "Reserve de Perly Rose d'Anjou (полусладкое)",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Франция, Долина Луары.",
+    "producer": "Loire Propriétés (Луар Проприете).",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_reserve_de_perly_rose_danjou.jpg",
+      "alt": "Reserve de Perly Rose d'Anjou"
     },
     "i18n": {
       "ru": {
@@ -9526,7 +9545,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Гролло: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9581,16 +9602,16 @@
     },
     "title": "«Bourgogne Pinot Noir Terres de Famille», Domaine de la Vougeraie",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Франция, Бургундия.",
+    "producer": "Domaine de la Vougeraie.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_bourgogne_pinot_noir_terres_de_famille_domaine_de_la_vougeraie.jpg",
+      "alt": "«Bourgogne Pinot Noir Terres de Famille», Domaine de la Vougeraie"
     },
     "i18n": {
       "ru": {
@@ -9606,7 +9627,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Пино Нуар: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9621,16 +9644,16 @@
     },
     "title": "«Fumin» Les Cretes",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Италия, Валле д'Аоста.",
+    "producer": "Les Cretes.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_fumin_les_cretes.jpg",
+      "alt": "«Fumin» Les Cretes"
     },
     "i18n": {
       "ru": {
@@ -9646,7 +9669,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Фумин: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9701,16 +9726,16 @@
     },
     "title": "«Oasi Mantellina», Lugana, Allegrini",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Италия, Ломбардия (аппелласьон Lugana).",
+    "producer": "Allegrini.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_oasi_mantellina_lugana_allegrini.jpg",
+      "alt": "«Oasi Mantellina», Lugana, Allegrini"
     },
     "i18n": {
       "ru": {
@@ -9726,7 +9751,10 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Турбиана.",
+      "Кортезе."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9741,16 +9769,16 @@
     },
     "title": "Вourgogne Cardonnay, Manuel Olivier",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Франция, Бургундия.",
+    "producer": "Domaine Manuel Olivier.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_bourgogne_cardonnay_manuel_olivier.png",
+      "alt": "Вourgogne Cardonnay, Manuel Olivier"
     },
     "i18n": {
       "ru": {
@@ -9766,7 +9794,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Шардоне: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9781,16 +9811,16 @@
     },
     "title": "«Tavel», E. Guigal",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Франция, Долина Роны (апелласьон Тавель).",
+    "producer": "Гигаль (Guigal).",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_tavel_e_guigal.jpg",
+      "alt": "«Tavel», E. Guigal"
     },
     "i18n": {
       "ru": {
@@ -9806,7 +9836,12 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Гренаш - 50%.",
+      "Сенсо - 15 %.",
+      "Клерет - 10%.",
+      "Сира - 10 %."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9821,16 +9856,16 @@
     },
     "title": "Piper-Heidsieck White Brut",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Франция, Шампань.",
+    "producer": "Piper-Heidsieck (Пайпер-Хайдсик).",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_piper_heidsieck_white_brut.jpg",
+      "alt": "Piper-Heidsieck White Brut"
     },
     "i18n": {
       "ru": {
@@ -9846,7 +9881,11 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Шардоне.",
+      "Пино Нуар.",
+      "Пино Менье."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9861,16 +9900,16 @@
     },
     "title": "Speri, Valpolicella Classico",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Италия, Венето (апелласьон Вальполичелла).",
+    "producer": "Speri.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_speri_valpolicella_classico.jpg",
+      "alt": "Speri, Valpolicella Classico"
     },
     "i18n": {
       "ru": {
@@ -9886,7 +9925,11 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Корвина: 60%.",
+      "Рондинелла: 30%.",
+      "Молинара: 10%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9901,16 +9944,16 @@
     },
     "title": "Domaine Masson-Blondelet, Sancerre Rouge \"Thauvenay",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Франция, Долина Луары (апелласьон Сансер).",
+    "producer": "Domaine Masson-Blondelet.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_domaine_masson_blondelet_sancerre_rouge_thauvenay.jpg",
+      "alt": "Domaine Masson-Blondelet, Sancerre Rouge \"Thauvenay"
     },
     "i18n": {
       "ru": {
@@ -9926,7 +9969,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Пино Нуар: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9941,16 +9986,16 @@
     },
     "title": "Capannelle, \"Solare”",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Италия, Тоскана.",
+    "producer": "Capannelle.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_capannelle_solare.jpg",
+      "alt": "Capannelle, \"Solare”"
     },
     "i18n": {
       "ru": {
@@ -9966,7 +10011,10 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Санджовезе: 80%.",
+      "Мальвазия Нера: 20%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -9981,16 +10029,16 @@
     },
     "title": "\"La Reserve d'Angludet\", Margaux",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Франция, Бордо (апелласьон Марго).",
+    "producer": "Château d'Angludet (шато д’Англюде).",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_la_reserve_d_angludet_margaux.png",
+      "alt": "\"La Reserve d'Angludet\", Margaux"
     },
     "i18n": {
       "ru": {
@@ -10006,7 +10054,11 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Каберне Совиньон: 50%.",
+      "Мерло: 45%.",
+      "Пти Вердо: 5%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -10021,16 +10073,16 @@
     },
     "title": "Brolettino Lugana, Ca dei Frati (полусухое)",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Италия, Венето (апелласьон Лугана).",
+    "producer": "Ca dei Frati.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_brolettino_lugana_ca_dei_frati.jpg",
+      "alt": "Brolettino Lugana, Ca dei Frati"
     },
     "i18n": {
       "ru": {
@@ -10046,7 +10098,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Турбиана: 100%."
+    ],
     "sweetness": "",
     "comments": []
   },
@@ -10061,16 +10115,16 @@
     },
     "title": "Gavi dei Gavi",
     "description": "",
-    "origin": "",
-    "producer": "",
+    "origin": "Италия, Пьемонт (апелласьон Гави).",
+    "producer": "La Scolca.",
     "tags": [],
     "pairings": {
       "dishes": [],
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_gavi_dei_gavi.jpg",
+      "alt": "Gavi dei Gavi"
     },
     "i18n": {
       "ru": {
@@ -10086,7 +10140,9 @@
     "source_file": "vino.html",
     "raw_html": "",
     "features": "",
-    "grapeVarieties": [],
+    "grapeVarieties": [
+      "Кортезе: 100%."
+    ],
     "sweetness": "",
     "comments": []
   }
