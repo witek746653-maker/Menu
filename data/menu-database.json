@@ -1,5 +1,7 @@
 [
-  { "_menu": "════════════════════════════════════════════ ОСНОВНОЕ МЕНЮ (ID: 1-199) ════════════════════════════════════════════" },
+  {
+    "_menu": "════════════════════════════════════════════ ОСНОВНОЕ МЕНЮ (ID: 1-199) ════════════════════════════════════════════"
+  },
   {
     "id": "0001",
     "menu": "Основное меню (Sabor de la Vida)",
@@ -6981,13 +6983,1043 @@
       "яйцо куриное"
     ]
   },
-  { "_menu": "════════════════════════════════════════════ АВТОРСКИЕ ЗАВТРАКИ (ID: 201-299) ════════════════════════════════════════════" },
-
-  { "_menu": "════════════════════════════════════════════ ДЕТСКОЕ МЕНЮ (ID: 301-399) ════════════════════════════════════════════" },
-
-  { "_menu": "════════════════════════════════════════════ СЕЗОННОЕ МЕНЮ (ID: 401-499) ════════════════════════════════════════════" },
-
-  { "_menu": "════════════════════════════════════════════ СПЕЦИАЛЬНОЕ МЕНЮ (ID: 501-599) ════════════════════════════════════════════" },
+  {
+    "_menu": "════════════════════════════════════════════ АВТОРСКИЕ ЗАВТРАКИ (ID: 201-299) ════════════════════════════════════════════"
+  },
+  {
+    "id": "0201",
+    "menu": "Авторские завтраки",
+    "section": "Салаты",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Свёкла из печи со слабосолёной форелью и творожным сыром",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0202",
+    "menu": "Авторские завтраки",
+    "section": "Салаты",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Салат с форелью, зеленой гречкой, сливочным муссом и ароматной зеленью",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0203",
+    "menu": "Авторские завтраки",
+    "section": " Блюда из яиц",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Омлет / Глазунья / Скрэмбл (из 3-х фермерских яиц)",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0204",
+    "menu": "Авторские завтраки",
+    "section": " Блюда из яиц",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Воздушный рулет «Много сыра»",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0205",
+    "menu": "Авторские завтраки",
+    "section": " Блюда из яиц",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Омлет «По-деревенски» на сковороде",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0206",
+    "menu": "Авторские завтраки",
+    "section": " Блюда из яиц",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Омлет с тунцом, томатами и кремовым авокадо",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0207",
+    "menu": "Авторские завтраки",
+    "section": " Блюда из яиц",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Омлет с мясом краба",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0208",
+    "menu": "Авторские завтраки",
+    "section": " Блюда из яиц",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Скрэмбл с домашней страчателлой, глазированным угрем и запечённым бататом",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0209",
+    "menu": "Авторские завтраки",
+    "section": " 🥘 Горячие блюда",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Гречотто с нежным ростибом в ароматных специях",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0210",
+    "menu": "Авторские завтраки",
+    "section": " 🥘 Горячие блюда",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Картофельный драник с ростбифом, яйцом пашот под воздушным муссом скаморца",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0211",
+    "menu": "Авторские завтраки",
+    "section": " 🥘 Горячие блюда",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Оладьи из цукини с форелью, томатами и воздушным сырным кремом",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0212",
+    "menu": "Авторские завтраки",
+    "section": " 🥘 Горячие блюда",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Котлеты из краба с креветками и воздушным пюре нори",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0213",
+    "menu": "Авторские завтраки",
+    "section": " 🥪 Тосты / Сэндвичи / Выпечка",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Злаковый тост с мятным соусом запеченным баклажаном и артишоками",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0214",
+    "menu": "Авторские завтраки",
+    "section": " 🥪 Тосты / Сэндвичи / Выпечка",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Трюфельный сэндвич с испанским хамоном и артишоками",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0215",
+    "menu": "Авторские завтраки",
+    "section": " 🥪 Тосты / Сэндвичи / Выпечка",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Бургер с куриной котлетой, корнишонами, мягким сыром, зеленью и глазуньей.",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0216",
+    "menu": "Авторские завтраки",
+    "section": " 🥪 Тосты / Сэндвичи / Выпечка",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Мини круассаны с форелью / с испанским хамоном",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0217",
+    "menu": "Авторские завтраки",
+    "section": " 🥪 Тосты / Сэндвичи / Выпечка",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Яица бенедикт с беконом и голландским соусом",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0218",
+    "menu": "Авторские завтраки",
+    "section": " 🥪 Тосты / Сэндвичи / Выпечка",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Тост со слабосоленой форелью/ испанским хамоном, муссом из авокадо и яйцом пашот",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0219",
+    "menu": "Авторские завтраки",
+    "section": " Каши",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Королевская овсянка с вишней и ванильным кремом",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0220",
+    "menu": "Авторские завтраки",
+    "section": " Каши",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Каша на сливках из киноа со свежими ягодами",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0221",
+    "menu": "Авторские завтраки",
+    "section": " Каши",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Пшеничная каша с тыквой вываренной в сливках",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0222",
+    "menu": "Авторские завтраки",
+    "section": " Десерты",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Мусс Пряные травы",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0223",
+    "menu": "Авторские завтраки",
+    "section": " Десерты",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Домашний йогурт с ананасами, грецким орехом и лепестками миндаля",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0224",
+    "menu": "Авторские завтраки",
+    "section": " Десерты",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Воздушная запеканка с сыром рикотта и маракуйей",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0225",
+    "menu": "Авторские завтраки",
+    "section": " Десерты",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Пышные сырники",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "_menu": "════════════════════════════════════════════ ДЕТСКОЕ МЕНЮ (ID: 301-399) ════════════════════════════════════════════"
+  },
+  {
+    "_menu": "════════════════════════════════════════════ СЕЗОННОЕ МЕНЮ (ID: 401-499) ════════════════════════════════════════════"
+  },
+  {
+    "_menu": "════════════════════════════════════════════ СПЕЦИАЛЬНОЕ МЕНЮ (ID: 501-599) ════════════════════════════════════════════"
+  },
   {
     "id": "0501",
     "menu": "Специальное меню",
