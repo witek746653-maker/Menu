@@ -8015,6 +8015,252 @@
     "_menu": "════════════════════════════════════════════ ДЕТСКОЕ МЕНЮ (ID: 301-399) ════════════════════════════════════════════"
   },
   {
+    "id": "0301",
+    "menu": "Детское меню",
+    "section": "Закуски",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Куриные крылышки«Баффало» с кетчупом",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "detskoe-menu.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0302",
+    "menu": "Детское меню",
+    "section": "Закуски",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Рыбные палочки с овощами и домашней сметаной",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "detskoe-menu.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0303",
+    "menu": "Детское меню",
+    "section": "Супы",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Овощной суп с мяснымифрикадельками",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "detskoe-menu.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0304",
+    "menu": "Детское меню",
+    "section": "Супы",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Овощной крем-суп с кусочками палтуса",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "detskoe-menu.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0305",
+    "menu": "Детское меню",
+    "section": "Горячие блюда",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Детский бургер с воздушной куриной котлетой, сыром и огурчиками",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "detskoe-menu.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0306",
+    "menu": "Детское меню",
+    "section": "Горячие блюда",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Паста «Буратино» с мягким сыром",
+    "description": "",
+    "contains": "",
+    "allergens": [],
+    "tags": [],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "detskoe-menu.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
     "_menu": "════════════════════════════════════════════ СЕЗОННОЕ МЕНЮ (ID: 401-499) ════════════════════════════════════════════"
   },
   {
@@ -8077,5 +8323,968 @@
       "Салат для постоянных гостей. В меню нет, не предлагаем.",
       "Красный лук добавляют при заправке салата сметаной."
     ]
+  },
+  {
+    "_menu": "════════════════════════════════════════════ ВИНО (ID: 601-699) ════════════════════════════════════════════"
+  },
+  {
+    "id": "0601",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Игристые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Prosecco Casa Defra",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0602",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Zinfandel, Long Barn (полусухое)",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0603",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Tempranillo Edicion Limitada",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0604",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Old Vineyard Pinot Noir",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0605",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Castellare di Castellina, Chianti Classico",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0606",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Белые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Pinot Grigio, Bottega Vinai",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0607",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Белые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Chablis, Sainte Claire, Jean-Marc Brocard",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0608",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Белые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Dr.Loosen, \"Blue Slate\" Riesling Dry",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0609",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Белые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Paddle Creek Sauvignon Blanc, Lake Road",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0610",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Розовые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Reserve de Perly Rose d'Anjou (полусладкое)",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0611",
+    "menu": "Вино",
+    "section": "Coravin — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "\"La Ciaude\", Domaine Anne Gros & Jean-Paul Tollot",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0612",
+    "menu": "Вино",
+    "section": "Coravin — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "«Bourgogne Pinot Noir Terres de Famille», Domaine de la Vougeraie",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0613",
+    "menu": "Вино",
+    "section": "Coravin — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "«Fumin» Les Cretes",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0614",
+    "menu": "Вино",
+    "section": "Coravin — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "\"50 & 50\", Avignonesi & Capannelle",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0615",
+    "menu": "Вино",
+    "section": "Coravin — Белые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "«Oasi Mantellina», Lugana, Allegrini",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0616",
+    "menu": "Вино",
+    "section": "Coravin — Белые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Вourgogne Cardonnay, Manuel Olivier",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0617",
+    "menu": "Вино",
+    "section": "Coravin — Розовые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "«Tavel», E. Guigal",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0618",
+    "menu": "Вино",
+    "section": "Полубутылки (375 мл) — Шампанское",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Piper-Heidsieck White Brut",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0619",
+    "menu": "Вино",
+    "section": "Полубутылки (375 мл) — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Speri, Valpolicella Classico",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0620",
+    "menu": "Вино",
+    "section": "Полубутылки (375 мл) — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Domaine Masson-Blondelet, Sancerre Rouge \"Thauvenay",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0621",
+    "menu": "Вино",
+    "section": "Полубутылки (375 мл) — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Capannelle, \"Solare”",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0622",
+    "menu": "Вино",
+    "section": "Полубутылки (375 мл) — Красные вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "\"La Reserve d'Angludet\", Margaux",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0623",
+    "menu": "Вино",
+    "section": "Полубутылки (375 мл) — Белые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Brolettino Lugana, Ca dei Frati (полусухое)",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
+  },
+  {
+    "id": "0624",
+    "menu": "Вино",
+    "section": "Полубутылки (375 мл) — Белые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Gavi dei Gavi",
+    "description": "",
+    "origin": "",
+    "producer": "",
+    "tags": [],
+    "pairings": {
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "",
+      "alt": ""
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "status": "",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [],
+    "sweetness": "",
+    "comments": []
   }
 ]
