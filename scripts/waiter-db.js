@@ -50,6 +50,7 @@ const fuseOptions = {
     'menu',
     'section',
     'description',
+    'origin',
     'contains',
     'features',
     'status',
@@ -383,11 +384,27 @@ function renderCards(dishes) {
       summary.appendChild(section);
     }
 
+    const badges = [];
+
     if (dish.status) {
       const status = document.createElement('span');
       status.className = 'status-badge';
       status.textContent = dish.status;
-      summary.appendChild(status);
+      badges.push(status);
+    }
+
+    if (dish.origin) {
+      const origin = document.createElement('span');
+      origin.className = 'origin-badge';
+      origin.textContent = dish.origin;
+      badges.push(origin);
+    }
+
+    if (badges.length) {
+      const badgeRow = document.createElement('div');
+      badgeRow.className = 'badge-row';
+      badges.forEach((badge) => badgeRow.appendChild(badge));
+      summary.appendChild(badgeRow);
     }
 
     card.appendChild(summary);

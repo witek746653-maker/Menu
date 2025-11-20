@@ -275,6 +275,14 @@
       letter-spacing: 0.08em;
     }
 
+    .badge-row {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
     .status-badge {
       display: inline-flex;
       margin: 0;
@@ -289,8 +297,22 @@
       width: fit-content;
     }
 
+    .origin-badge {
+      display: inline-flex;
+      margin: 0;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 189, 46, 0.35);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      background: rgba(255, 189, 46, 0.14);
+      width: fit-content;
+    }
+
     .card-summary .status-badge {
-      margin-top: 4px;
+      margin-top: 0;
     }
 
     .card-details {
@@ -889,7 +911,9 @@
 
       .card-summary .menu-tag,
       .card-summary .section,
-      .card-summary .status-badge {
+      .card-summary .status-badge,
+      .card-summary .origin-badge,
+      .card-summary .badge-row {
         display: none;
       }
 

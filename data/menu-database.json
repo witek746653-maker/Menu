@@ -9146,7 +9146,7 @@
     "tags": [],
     "pairings": {
       "dishes": [],
-      "notes": []
+      "notes": ["Хорошо сочетается с легкими закусками, блюдами из рыбы и морепродуктов, идеален в качестве аперитива."]
     },
     "image": {
       "src": "../images/vino_prosecco_casa_defra.jpg",
@@ -9171,8 +9171,8 @@
       "Вердисо.",
       "Перера."
     ],
-    "sweetness": "",
-    "comments": []
+    "sweetness": "brut",
+    "comments": ["Итальянское сухое игристое вино, производится из сорта Глера методом Шарма (вторичная ферментация в резервуаре), благодаря чему более легкое и доступное, чем шампанское . Рекомендуется пить молодым (до ~2 лет), так как со временем вино теряет свежесть ."]
   },
   {
     "id": "0602",
@@ -9570,8 +9570,8 @@
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_la_ciaude_domaine_anne_gros_jean_paul_tollot.jpg",
+      "alt": "\"La Ciaude\", Domaine Anne Gros & Jean-Paul Tollot"
     },
     "i18n": {
       "ru": {
@@ -9694,8 +9694,8 @@
       "notes": []
     },
     "image": {
-      "src": "",
-      "alt": ""
+      "src": "../images/vino_50_50_avignonesi_capannelle.jpg",
+      "alt": "\"50 & 50\", Avignonesi & Capannelle"
     },
     "i18n": {
       "ru": {
