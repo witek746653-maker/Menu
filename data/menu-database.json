@@ -32,7 +32,10 @@
       "на компанию"
     ],
     "pairings": {
-      "wines": ["Piper-Heidsieck White Brut"],
+      "wines": [
+        "Piper-Heidsieck White Brut",
+        "Chablis, Sainte Claire, Jean-Marc Brocard"
+      ],
       "drinks": [],
       "dishes": [],
       "notes": []
