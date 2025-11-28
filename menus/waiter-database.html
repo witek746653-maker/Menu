@@ -725,6 +725,26 @@
       color: var(--accent);
     }
 
+    .meta-block .pairing-link {
+      appearance: none;
+      border: none;
+      background: none;
+      color: var(--accent);
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-decoration-color: rgba(255, 209, 102, 0.7);
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+
+    .meta-block .pairing-link:hover,
+    .meta-block .pairing-link:focus-visible {
+      color: var(--accent-strong);
+      text-decoration-color: var(--accent-strong);
+    }
+
     .card-summary .section {
       display: inline-flex;
       align-items: center;
@@ -738,6 +758,105 @@
 
     body.modal-open {
       overflow: hidden;
+    }
+
+    .pairing-preview {
+      position: fixed;
+      top: clamp(12px, 2vh, 40px);
+      right: clamp(12px, 2vw, 32px);
+      width: min(520px, 90vw);
+      display: none;
+      z-index: 45;
+    }
+
+    .pairing-preview.open {
+      display: block;
+    }
+
+    .pairing-dialog {
+      width: min(520px, 90vw);
+      height: min(680px, 88vh);
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .pairing-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.35);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .pairing-legend {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .pairing-close {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
+      padding: 8px 10px;
+      font-size: 16px;
+      line-height: 1;
+      transition: background 0.2s ease, border 0.2s ease;
+    }
+
+    .pairing-close:hover,
+    .pairing-close:focus-visible {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .pairing-modal-content {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .pairing-dialog .modal-header {
+      padding: 12px 16px;
+      gap: 12px;
+    }
+
+    .pairing-dialog .modal-body {
+      grid-template-columns: minmax(0, 1fr);
+      padding: 16px;
+    }
+
+    .pairing-dialog .modal-media {
+      width: 170px;
+      height: 170px;
+    }
+
+    @media (max-width: 900px) {
+      .pairing-preview {
+        position: fixed;
+        inset: auto 10px 10px 10px;
+        width: auto;
+      }
+
+      .pairing-dialog {
+        width: 100%;
+        height: min(70vh, 540px);
+      }
     }
 
     .toolbar {
@@ -1105,6 +1224,16 @@
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalDishTitle">
       <button type="button" class="modal-close" id="modalClose" aria-label="Закрыть модальное окно">×</button>
       <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="pairing-preview" id="pairingPreview" aria-hidden="true">
+    <div class="pairing-dialog" role="dialog" aria-modal="false" aria-label="Параллельный просмотр пар">
+      <div class="pairing-header-bar">
+        <span class="pairing-legend">Параллельный просмотр</span>
+        <button type="button" class="pairing-close" id="pairingClose" aria-label="Закрыть параллельную карточку">×</button>
+      </div>
+      <div class="modal-content pairing-modal-content" id="pairingContent"></div>
     </div>
   </div>
 

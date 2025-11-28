@@ -18,6 +18,9 @@ const toast = document.getElementById('toast');
 const dishModal = document.getElementById('dishModal');
 const modalContent = document.getElementById('modalContent');
 const modalCloseBtn = document.getElementById('modalClose');
+const pairingPreview = document.getElementById('pairingPreview');
+const pairingContent = document.getElementById('pairingContent');
+const pairingCloseBtn = document.getElementById('pairingClose');
 
 const EDIT_PASSWORD = '5878';
 
@@ -635,60 +638,8 @@ function buildModalBody(dish) {
   return body;
 }
 
-function createPairingsBlock(pairings = {}) {
-  const pairingItems = [];
-  if (Array.isArray(pairings.wines) && pairings.wines.length) {
-    pairingItems.push({ label: 'Вина', items: pairings.wines });
-  }
-  if (Array.isArray(pairings.dishes) && pairings.dishes.length) {
-    pairingItems.push({ label: 'Блюда', items: pairings.dishes });
-  }
-  if (Array.isArray(pairings.drinks) && pairings.drinks.length) {
-    pairingItems.push({ label: 'Напитки', items: pairings.drinks });
-  }
-  const pairingNotes = Array.isArray(pairings.notes)
-    ? pairings.notes
-    : pairings?.notes
-      ? [pairings.notes]
-      : [];
-  if (pairingNotes.length) {
-    pairingItems.push({ label: 'Комментарии', items: pairingNotes });
-  }
-
-  if (!pairingItems.length) {
-    return null;
-  }
-
-  const block = document.createElement('div');
-  block.className = 'meta-block';
-  const titleEl = document.createElement('strong');
-  titleEl.textContent = 'Пары и рекомендации';
-  block.appendChild(titleEl);
-
-  pairingItems.forEach(({ label, items }) => {
-    const labelEl = document.createElement('div');
-    labelEl.style.fontSize = '13px';
-    labelEl.style.color = 'var(--muted)';
-    labelEl.style.marginTop = '4px';
-    labelEl.textContent = label;
-    block.appendChild(labelEl);
-
-    const ul = document.createElement('ul');
-    items.forEach((item) => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      ul.appendChild(li);
-    });
-    block.appendChild(ul);
-  });
-
-  return block;
-}
-
-function openDishModal(dish, triggerElement) {
-  if (!dishModal || !modalContent) return;
-
-  modalContent.innerHTML = '';
+function buildModalHeader(dish, options = {}) {
+  const { titleId = 'modalDishTitle' } = options;
 
   const modalHeader = document.createElement('header');
   modalHeader.className = 'modal-header';
@@ -721,7 +672,7 @@ function openDishModal(dish, triggerElement) {
   headerInfo.appendChild(menuTag);
 
   const title = document.createElement('h2');
-  title.id = 'modalDishTitle';
+  title.id = titleId;
   title.textContent = dish.title || 'Без названия';
   headerInfo.appendChild(title);
 
@@ -768,6 +719,80 @@ function openDishModal(dish, triggerElement) {
 
   modalHeader.appendChild(headerInfo);
 
+  return modalHeader;
+}
+
+function createPairingsBlock(pairings = {}) {
+  const pairingItems = [];
+  if (Array.isArray(pairings.wines) && pairings.wines.length) {
+    pairingItems.push({ label: 'Вина', items: pairings.wines });
+  }
+  if (Array.isArray(pairings.dishes) && pairings.dishes.length) {
+    pairingItems.push({ label: 'Блюда', items: pairings.dishes });
+  }
+  if (Array.isArray(pairings.drinks) && pairings.drinks.length) {
+    pairingItems.push({ label: 'Напитки', items: pairings.drinks });
+  }
+  const pairingNotes = Array.isArray(pairings.notes)
+    ? pairings.notes
+    : pairings?.notes
+      ? [pairings.notes]
+      : [];
+  if (pairingNotes.length) {
+    pairingItems.push({ label: 'Комментарии', items: pairingNotes });
+  }
+
+  if (!pairingItems.length) {
+    return null;
+  }
+
+  const block = document.createElement('div');
+  block.className = 'meta-block';
+  const titleEl = document.createElement('strong');
+  titleEl.textContent = 'Пары и рекомендации';
+  block.appendChild(titleEl);
+
+  pairingItems.forEach(({ label, items }) => {
+    const labelEl = document.createElement('div');
+    labelEl.style.fontSize = '13px';
+    labelEl.style.color = 'var(--muted)';
+    labelEl.style.marginTop = '4px';
+    labelEl.textContent = label;
+    block.appendChild(labelEl);
+
+    const ul = document.createElement('ul');
+    items.forEach((item) => {
+      const li = document.createElement('li');
+
+      if (label !== 'Комментарии') {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'pairing-link';
+        button.textContent = item;
+        button.addEventListener('click', (event) => {
+          event.stopPropagation();
+          openPairingPreview(item);
+        });
+        li.appendChild(button);
+      } else {
+        li.textContent = item;
+      }
+
+      ul.appendChild(li);
+    });
+    block.appendChild(ul);
+  });
+
+  return block;
+}
+
+function openDishModal(dish, triggerElement) {
+  if (!dishModal || !modalContent) return;
+
+  modalContent.innerHTML = '';
+
+  const modalHeader = buildModalHeader(dish);
+
   const body = buildModalBody(dish);
 
   modalContent.appendChild(modalHeader);
@@ -793,6 +818,7 @@ function closeDishModal() {
   dishModal.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
   modalContent.innerHTML = '';
+  closePairingPreview();
   document.removeEventListener('keydown', handleModalKeydown);
 
   if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
@@ -803,8 +829,49 @@ function closeDishModal() {
 
 function handleModalKeydown(event) {
   if (event.key === 'Escape') {
+    if (pairingPreview?.classList.contains('open')) {
+      closePairingPreview();
+      return;
+    }
     closeDishModal();
   }
+}
+
+function findDishByTitle(title) {
+  const normalizedTitle = normalize(title);
+  if (!normalizedTitle) return null;
+  const dishes = getWorkingDishes();
+  return dishes.find((item) => normalize(item.title) === normalizedTitle) || null;
+}
+
+function openPairingPreview(title) {
+  if (!pairingPreview || !pairingContent) return;
+
+  const dish = findDishByTitle(title);
+  if (!dish) {
+    showToast('Не нашли позицию для этой пары.', true);
+    return;
+  }
+
+  pairingContent.innerHTML = '';
+  const header = buildModalHeader(dish, { titleId: 'pairingDishTitle' });
+  const body = buildModalBody(dish);
+  pairingContent.appendChild(header);
+  pairingContent.appendChild(body);
+
+  pairingPreview.classList.add('open');
+  pairingPreview.setAttribute('aria-hidden', 'false');
+
+  if (pairingCloseBtn) {
+    pairingCloseBtn.focus({ preventScroll: true });
+  }
+}
+
+function closePairingPreview() {
+  if (!pairingPreview || !pairingContent) return;
+  pairingPreview.classList.remove('open');
+  pairingPreview.setAttribute('aria-hidden', 'true');
+  pairingContent.innerHTML = '';
 }
 
 function createListBlock(title, items) {
@@ -1226,6 +1293,20 @@ if (dishModal) {
   dishModal.addEventListener('click', (event) => {
     if (event.target === dishModal) {
       closeDishModal();
+    }
+  });
+}
+
+if (pairingCloseBtn) {
+  pairingCloseBtn.addEventListener('click', () => {
+    closePairingPreview();
+  });
+}
+
+if (pairingPreview) {
+  pairingPreview.addEventListener('click', (event) => {
+    if (event.target === pairingPreview) {
+      closePairingPreview();
     }
   });
 }
