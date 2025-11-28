@@ -23,7 +23,6 @@ const EDIT_PASSWORD = '5878';
 
 const state = {
   dishes: [],
-  enriched: [],
   filtered: [],
   fuse: null,
   filters: {
@@ -69,118 +68,6 @@ const fuseOptions = {
   ignoreLocation: true,
   minMatchCharLength: 2
 };
-
-function getWorkingDishes() {
-  return state.enriched && state.enriched.length ? state.enriched : state.dishes;
-}
-
-function ensureArray(value) {
-  if (Array.isArray(value)) return value.slice();
-  if (value) return [value];
-  return [];
-}
-
-function clonePairings(pairings = {}) {
-  const wines = ensureArray(pairings.wines || []);
-  const drinks = ensureArray(pairings.drinks || []);
-  const dishes = ensureArray(pairings.dishes || []);
-  const notes = ensureArray(pairings.notes || []);
-
-  const cloned = { wines, drinks, dishes };
-  if (notes.length) {
-    cloned.notes = notes;
-  }
-  return cloned;
-}
-
-function addUniqueItem(list, value) {
-  const normalizedValue = normalize(value);
-  if (!normalizedValue) return;
-  const exists = list.some((item) => normalize(item) === normalizedValue);
-  if (!exists) {
-    list.push(value);
-  }
-}
-
-function detectItemCategory(dish) {
-  const menu = normalize(dish.menu);
-  const section = normalize(dish.section);
-  if (menu.includes('вино') || section.includes('вино')) {
-    return 'wine';
-  }
-  if (menu.includes('напит') || menu.includes('бар') || section.includes('напит') || section.includes('бар')) {
-    return 'drink';
-  }
-  return 'dish';
-}
-
-function enrichPairings(dishes) {
-  const clones = dishes.map((dish) => ({
-    ...dish,
-    pairings: clonePairings(dish.pairings)
-  }));
-
-  const titleToIndex = new Map();
-  clones.forEach((dish, index) => {
-    const key = normalize(dish.title);
-    if (!key) return;
-    if (!titleToIndex.has(key)) {
-      titleToIndex.set(key, []);
-    }
-    titleToIndex.get(key).push(index);
-  });
-
-  const categoryCache = new Map();
-  function getReverseCategory(item) {
-    if (categoryCache.has(item.id)) {
-      return categoryCache.get(item.id);
-    }
-    const category = detectItemCategory(item);
-    const reverse = category === 'wine' ? 'wines' : category === 'drink' ? 'drinks' : 'dishes';
-    categoryCache.set(item.id, reverse);
-    return reverse;
-  }
-
-  clones.forEach((dish, sourceIndex) => {
-    const sourceTitle = dish.title;
-    if (!sourceTitle) return;
-    const reverseCategory = getReverseCategory(dish);
-    const pairings = dish.pairings || {};
-
-    ensureArray(pairings.wines).forEach((wineName) => {
-      const matches = titleToIndex.get(normalize(wineName));
-      if (!matches) return;
-      matches.forEach((targetIndex) => {
-        addUniqueItem(clones[targetIndex].pairings.dishes, sourceTitle);
-      });
-    });
-
-    ensureArray(pairings.drinks).forEach((drinkName) => {
-      const matches = titleToIndex.get(normalize(drinkName));
-      if (!matches) return;
-      matches.forEach((targetIndex) => {
-        addUniqueItem(clones[targetIndex].pairings.dishes, sourceTitle);
-      });
-    });
-
-    ensureArray(pairings.dishes).forEach((pairName) => {
-      const matches = titleToIndex.get(normalize(pairName));
-      if (!matches) return;
-      matches.forEach((targetIndex) => {
-        addUniqueItem(clones[targetIndex].pairings[reverseCategory], sourceTitle);
-      });
-    });
-  });
-
-  return clones;
-}
-
-function refreshViewData() {
-  state.enriched = enrichPairings(state.dishes);
-  rebuildFuse();
-  rebuildFilters();
-  applyFilters();
-}
 
 function normalize(value) {
   return (value || '').toString().trim().toLowerCase();
@@ -284,7 +171,9 @@ async function loadData(showMessage = false) {
     state.dishes = Array.isArray(data)
       ? data.filter((item) => !('_menu' in item))
       : [];
-    refreshViewData();
+    rebuildFuse();
+    rebuildFilters();
+    applyFilters();
     setEditAvailability(true);
     if (showMessage) {
       showToast('Данные обновлены.');
@@ -297,7 +186,9 @@ async function loadData(showMessage = false) {
       state.dishes = Array.isArray(data)
         ? data.filter((item) => !('_menu' in item))
         : [];
-      refreshViewData();
+      rebuildFuse();
+      rebuildFilters();
+      applyFilters();
       setEditAvailability(false);
       showToast('Показаны данные из файла. Для сохранения изменений запустите сервер API.', true);
     } catch (fallbackError) {
@@ -315,12 +206,12 @@ async function loadData(showMessage = false) {
 }
 
 function rebuildFuse() {
-  state.fuse = new Fuse(getWorkingDishes(), fuseOptions);
+  state.fuse = new Fuse(state.dishes, fuseOptions);
 }
 
-function uniqueValues(dishes, getter) {
+function uniqueValues(getter) {
   const values = new Map();
-  dishes.forEach((dish) => {
+  state.dishes.forEach((dish) => {
     const items = getter(dish);
     items.forEach((item) => {
       const norm = normalize(item);
@@ -367,14 +258,13 @@ function buildChipGroup(container, entries, selectedSet) {
 }
 
 function rebuildFilters() {
-  const dataset = getWorkingDishes();
-  const menuEntries = uniqueValues(dataset, (dish) => dish.menu ? [dish.menu] : []);
+  const menuEntries = uniqueValues((dish) => dish.menu ? [dish.menu] : []);
   buildChipGroup(menuChips, menuEntries, state.filters.menus);
 
-  const allergenEntries = uniqueValues(dataset, (dish) => Array.isArray(dish.allergens) ? dish.allergens : []);
+  const allergenEntries = uniqueValues((dish) => Array.isArray(dish.allergens) ? dish.allergens : []);
   buildChipGroup(allergenChips, allergenEntries, state.filters.allergens);
 
-  const tagEntries = uniqueValues(dataset, (dish) => Array.isArray(dish.tags) ? dish.tags : []);
+  const tagEntries = uniqueValues((dish) => Array.isArray(dish.tags) ? dish.tags : []);
   buildChipGroup(tagChips, tagEntries, state.filters.tags);
 }
 
@@ -405,7 +295,6 @@ function matchesFilters(dish) {
 
 function applyFilters() {
   const query = state.filters.query;
-  const dataset = getWorkingDishes();
   let results;
 
   if (query) {
@@ -420,7 +309,7 @@ function applyFilters() {
       }
     });
   } else {
-    results = dataset.filter(matchesFilters);
+    results = state.dishes.filter(matchesFilters);
   }
 
   state.filtered = results;
@@ -1141,7 +1030,9 @@ async function handleSave() {
     state.dishes.push(payload);
   }
 
-  refreshViewData();
+  rebuildFuse();
+  rebuildFilters();
+  applyFilters();
   const success = await persistChanges(state.editingId ? 'Позиция обновлена.' : 'Позиция добавлена.');
   if (success) {
     closeEditorPanel();
@@ -1154,7 +1045,9 @@ async function handleDelete() {
   const index = state.dishes.findIndex((dish) => dish.id === state.editingId);
   if (index === -1) return;
   state.dishes.splice(index, 1);
-  refreshViewData();
+  rebuildFuse();
+  rebuildFilters();
+  applyFilters();
   const success = await persistChanges('Позиция удалена.');
   if (success) {
     closeEditorPanel();
