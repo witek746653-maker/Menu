@@ -568,9 +568,13 @@ function renderCards(dishes) {
     }
 
     if (dish.status) {
+      const statusText = (dish.status || '').trim();
       const status = document.createElement('span');
       status.className = 'status-badge';
-      status.textContent = dish.status;
+      status.textContent = statusText;
+      if (statusText.toLowerCase() === 'в архиве') {
+        status.classList.add('status-badge--archived');
+      }
       summary.appendChild(status);
     }
 
@@ -766,11 +770,15 @@ function buildModalHeader(dish, options = {}) {
   }
 
   if (dish.status) {
+    const statusText = (dish.status || '').trim();
     metaRow = metaRow || document.createElement('div');
     metaRow.className = 'modal-header-meta';
     const status = document.createElement('span');
     status.className = 'status-badge';
-    status.textContent = dish.status;
+    status.textContent = statusText;
+    if (statusText.toLowerCase() === 'в архиве') {
+      status.classList.add('status-badge--archived');
+    }
     metaRow.appendChild(status);
   }
 
