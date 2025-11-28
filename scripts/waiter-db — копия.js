@@ -41,48 +41,6 @@ const state = {
   serverAvailable: true
 };
 
-const ALLERGEN_PRIORITY = [
-  'орехи',
-  'арахис',
-  'лактоза',
-  'глютен',
-  'яйца',
-  'морепродукты',
-  'рыба',
-  'моллюски',
-  'цитрусы',
-  'кунжут',
-  'горчица'
-];
-
-const ALLERGEN_ICONS = {
-  орехи: '🥜',
-  арахис: '🥜',
-  лактоза: '🥛',
-  молоко: '🥛',
-  глютен: '🌾',
-  яйца: '🥚',
-  цитрусы: '🍋',
-  морепродукты: '🍤',
-  рыба: '🐟',
-  моллюски: '🐚',
-  кунжут: '⚪️',
-  горчица: '🌭',
-  чеснок: '🧄',
-  лук: '🧅',
-  'перец чили': '🌶',
-  кинза: '🌿',
-  алкоголь: '🍷',
-  грибы: '🍄',
-  мёд: '🍯',
-  трюфель: '🍄',
-  свинина: '🐖',
-  эстрагон: '🌿',
-  халапеньо: '🌶',
-  шафран: '🧡',
-  зелень: '🌿'
-};
-
 let toastTimeout = null;
 let isSaving = false;
 let lastFocusedElement = null;
@@ -237,32 +195,6 @@ function debounce(fn, wait = 200) {
     clearTimeout(timeout);
     timeout = setTimeout(() => fn(...args), wait);
   };
-}
-
-function getAllergenPriority(label) {
-  const normalized = normalize(label);
-  const index = ALLERGEN_PRIORITY.indexOf(normalized);
-  return index === -1 ? Number.POSITIVE_INFINITY : index;
-}
-
-function getAllergenIcon(label) {
-  return ALLERGEN_ICONS[normalize(label)] || '⚠️';
-}
-
-function sortAllergens(allergens) {
-  return [...allergens].sort((a, b) => {
-    const priorityDiff = getAllergenPriority(a) - getAllergenPriority(b);
-    if (priorityDiff !== 0) return priorityDiff;
-    return a.localeCompare(b, 'ru');
-  });
-}
-
-function sortAllergenEntries(entries) {
-  return [...entries].sort((a, b) => {
-    const priorityDiff = getAllergenPriority(a[1]) - getAllergenPriority(b[1]);
-    if (priorityDiff !== 0) return priorityDiff;
-    return a[1].localeCompare(b[1], 'ru');
-  });
 }
 
 function shouldUseCompactTitles() {
@@ -442,9 +374,7 @@ function rebuildFilters() {
   const menuEntries = uniqueValues(dataset, (dish) => dish.menu ? [dish.menu] : []);
   buildChipGroup(menuChips, menuEntries, state.filters.menus);
 
-  const allergenEntries = sortAllergenEntries(
-    uniqueValues(dataset, (dish) => Array.isArray(dish.allergens) ? dish.allergens : [])
-  );
+  const allergenEntries = uniqueValues(dataset, (dish) => Array.isArray(dish.allergens) ? dish.allergens : []);
   buildChipGroup(allergenChips, allergenEntries, state.filters.allergens);
 
   const tagEntries = uniqueValues(dataset, (dish) => Array.isArray(dish.tags) ? dish.tags : []);
@@ -664,9 +594,9 @@ function buildModalBody(dish) {
     secondaryColumn.appendChild(createListBlock('Ингредиенты', ingredients));
   }
 
-  const allergens = Array.isArray(dish.allergens) ? sortAllergens(dish.allergens) : [];
+  const allergens = Array.isArray(dish.allergens) ? dish.allergens : [];
   if (allergens.length) {
-    secondaryColumn.appendChild(createAllergensBlock(allergens));
+    secondaryColumn.appendChild(createListBlock('Аллергены', allergens));
   }
 
   const comments = Array.isArray(dish.comments) ? dish.comments : [];
@@ -942,44 +872,6 @@ function closePairingPreview() {
   pairingPreview.classList.remove('open');
   pairingPreview.setAttribute('aria-hidden', 'true');
   pairingContent.innerHTML = '';
-}
-
-function createAllergensBlock(allergens) {
-  const block = document.createElement('div');
-  block.className = 'meta-block allergens-block';
-  const heading = document.createElement('strong');
-  heading.textContent = 'Аллергены';
-  block.appendChild(heading);
-
-  const badges = document.createElement('div');
-  badges.className = 'allergen-badges';
-
-  allergens.forEach((item) => {
-    const priority = getAllergenPriority(item);
-    const badge = document.createElement('span');
-    badge.className = 'allergen-badge';
-
-    if (priority <= 3) {
-      badge.classList.add('allergen-badge--high');
-    } else if (priority <= 8) {
-      badge.classList.add('allergen-badge--medium');
-    }
-
-    const iconEl = document.createElement('span');
-    iconEl.className = 'allergen-badge__icon';
-    iconEl.textContent = getAllergenIcon(item);
-
-    const labelEl = document.createElement('span');
-    labelEl.className = 'allergen-badge__label';
-    labelEl.textContent = item;
-
-    badge.appendChild(iconEl);
-    badge.appendChild(labelEl);
-    badges.appendChild(badge);
-  });
-
-  block.appendChild(badges);
-  return block;
 }
 
 function createListBlock(title, items) {
