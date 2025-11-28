@@ -83,6 +83,13 @@ const ALLERGEN_ICONS = {
   зелень: '🌿'
 };
 
+const FEATURE_ICON_TAGS = {
+  острое: { icon: '🌶', label: 'Острое' },
+  вегетарианское: { icon: '🌱', label: 'Вегетарианское' },
+  веганское: { icon: '🥦', label: 'Веганское' },
+  'долгое ожидание': { icon: '⏳', label: 'Долгое ожидание' }
+};
+
 let toastTimeout = null;
 let isSaving = false;
 let lastFocusedElement = null;
@@ -229,6 +236,22 @@ function refreshViewData() {
 
 function normalize(value) {
   return (value || '').toString().trim().toLowerCase();
+}
+
+function getFeatureTagIcons(dish) {
+  const tags = Array.isArray(dish?.tags) ? dish.tags : [];
+  const icons = [];
+  const seen = new Set();
+
+  tags.forEach((tag) => {
+    const normalized = normalize(tag);
+    const featureIcon = FEATURE_ICON_TAGS[normalized];
+    if (!featureIcon || seen.has(normalized)) return;
+    icons.push({ icon: featureIcon.icon, label: featureIcon.label || tag });
+    seen.add(normalized);
+  });
+
+  return icons;
 }
 
 function debounce(fn, wait = 200) {
@@ -567,15 +590,38 @@ function renderCards(dishes) {
       summary.appendChild(section);
     }
 
-    if (dish.status) {
-      const statusText = (dish.status || '').trim();
-      const status = document.createElement('span');
-      status.className = 'status-badge';
-      status.textContent = statusText;
-      if (statusText.toLowerCase() === 'в архиве') {
-        status.classList.add('status-badge--archived');
+    const featureIcons = getFeatureTagIcons(dish);
+    if (dish.status || featureIcons.length) {
+      const statusRow = document.createElement('div');
+      statusRow.className = 'card-status-row';
+
+      if (dish.status) {
+        const statusText = (dish.status || '').trim();
+        const status = document.createElement('span');
+        status.className = 'status-badge';
+        status.textContent = statusText;
+        if (statusText.toLowerCase() === 'в архиве') {
+          status.classList.add('status-badge--archived');
+        }
+        statusRow.appendChild(status);
       }
-      summary.appendChild(status);
+
+      if (featureIcons.length) {
+        const featureWrap = document.createElement('div');
+        featureWrap.className = 'feature-icons';
+        featureIcons.forEach((iconData) => {
+          const icon = document.createElement('span');
+          icon.className = 'feature-icons__item';
+          icon.textContent = iconData.icon;
+          if (iconData.label) {
+            icon.title = iconData.label;
+          }
+          featureWrap.appendChild(icon);
+        });
+        statusRow.appendChild(featureWrap);
+      }
+
+      summary.appendChild(statusRow);
     }
 
     card.appendChild(summary);

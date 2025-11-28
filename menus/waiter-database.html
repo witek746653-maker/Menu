@@ -303,6 +303,24 @@
       background: rgba(231, 76, 60, 0.12);
     }
 
+    .card-status-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature-icons {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: auto;
+    }
+
+    .feature-icons__item {
+      font-size: 16px;
+      line-height: 1;
+    }
+
     .origin-badge {
       display: inline-flex;
       margin: 0;
@@ -1080,8 +1098,10 @@
 
       .card-summary .menu-tag,
       .card-summary .section,
+      .card-summary .card-status-row,
       .card-summary .status-badge,
       .card-summary .origin-badge,
+      .card-summary .feature-icons,
       .card-summary .badge-row {
         display: none;
       }
