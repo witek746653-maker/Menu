@@ -1,6 +1,6 @@
 const fuse = new Fuse(indexData, {
   keys: ["title", "content"],
-  threshold: 0.4,
+  threshold: 0.0,
   ignoreLocation: true,
   minMatchCharLength: 2
 });

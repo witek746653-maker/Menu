@@ -50,7 +50,6 @@ const fuseOptions = {
     'menu',
     'section',
     'description',
-    'origin',
     'contains',
     'features',
     'status',
@@ -65,7 +64,7 @@ const fuseOptions = {
     'i18n.en.title',
     'i18n.en.description'
   ],
-  threshold: 0.35,
+  threshold: 0.0,          // 👈 только точное вхождение строки
   ignoreLocation: true,
   minMatchCharLength: 2
 };
@@ -384,27 +383,11 @@ function renderCards(dishes) {
       summary.appendChild(section);
     }
 
-    const badges = [];
-
     if (dish.status) {
       const status = document.createElement('span');
       status.className = 'status-badge';
       status.textContent = dish.status;
-      badges.push(status);
-    }
-
-    if (dish.origin) {
-      const origin = document.createElement('span');
-      origin.className = 'origin-badge';
-      origin.textContent = dish.origin;
-      badges.push(origin);
-    }
-
-    if (badges.length) {
-      const badgeRow = document.createElement('div');
-      badgeRow.className = 'badge-row';
-      badges.forEach((badge) => badgeRow.appendChild(badge));
-      summary.appendChild(badgeRow);
+      summary.appendChild(status);
     }
 
     card.appendChild(summary);
