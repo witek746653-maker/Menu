@@ -126,10 +126,10 @@
     <div id="cardContainer" class="card" aria-live="polite" aria-atomic="true" style="margin-top:16px">
       <header>
         <p class="card-title" id="cardTitle">Загрузка...</p>
-        <p class="card-sub" id="cardSubtitle"></p>
+        <p class="card-sub" id="cardSubtitle" hidden></p>
       </header>
       <div class="card-body">
-        <div class="hint" id="questionText">Подготовка карточек...</div>
+        <div class="hint" id="questionText" hidden>Подготовка карточек...</div>
         <div id="imageWrapper" class="card-image" hidden>
           <img id="cardImage" src="" alt="Фото блюда" loading="lazy" />
         </div>
@@ -399,7 +399,11 @@
       if (!card) {
         ui.cardTitle.textContent = 'Карточки не найдены';
         ui.cardSubtitle.textContent = '';
+        ui.cardSubtitle.hidden = true;
         ui.questionText.textContent = 'Попробуйте изменить фильтры или сбросить прогресс.';
+        ui.questionText.hidden = false;
+        ui.imageWrapper.hidden = true;
+        ui.cardImage.removeAttribute('src');
         ui.answerTitle.textContent = '';
         ui.answerBlock.hidden = true;
         ui.ratingButtons.forEach(btn => btn.disabled = true);
@@ -409,27 +413,25 @@
 
       const previewTitle = getTitlePreview(card.title);
       ui.cardTitle.textContent = previewTitle;
-      ui.cardSubtitle.textContent = `${card.section} · ${card.menu} · ${card.id}`;
+      ui.cardSubtitle.textContent = '';
+      ui.cardSubtitle.hidden = true;
       ui.answerBlock.hidden = true;
       ui.answerTitle.textContent = card.title;
       ui.revealBtn.disabled = false;
       ui.ratingButtons.forEach(btn => btn.disabled = true);
       const isCommunicationMenu = state.filterMenu === 'communication';
-      const useGuessPreview = GUESS_MENUS.has(state.filterMenu) && GUESS_MODES.has(profile.trainingType);
 
-      if (useGuessPreview && card.image_url) {
-        ui.imageWrapper.hidden = false;
+      const shouldShowImage = Boolean(card.image_url);
+      ui.imageWrapper.hidden = !shouldShowImage;
+      if (shouldShowImage) {
         ui.cardImage.src = card.image_url;
         ui.cardImage.alt = card.title;
       } else {
-        ui.imageWrapper.hidden = true;
         ui.cardImage.removeAttribute('src');
       }
 
-      const questionText = useGuessPreview ? getTitlePreview(card.title) : card.title;
-      const isDuplicateTitle = questionText.trim() === previewTitle.trim();
-      ui.questionText.textContent = isDuplicateTitle ? '' : questionText;
-      ui.questionText.hidden = isDuplicateTitle;
+      ui.questionText.textContent = '';
+      ui.questionText.hidden = true;
 
       renderTags(card.tags || []);
 
