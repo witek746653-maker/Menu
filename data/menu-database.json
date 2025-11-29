@@ -1,6 +1,7 @@
 [
   {
-    "_menu": "════════════════════════════════════════════ ОСНОВНОЕ МЕНЮ (ID: 1-199) ════════════════════════════════════════════"
+    "_menu": "════════════════════════════════════════════ ОСНОВНОЕ МЕНЮ (ID: 1-199) ════════════════════════════════════════════",
+    "audio-en": ""
   },
   {
     "id": "0001",
@@ -56,7 +57,8 @@
         "description-en": "Фраза для быстрой презентации гостю: \n“These are Imperial oysters from Vladivostok, served raw with lemon, shallots, red wine vinegar, butter, and croutons. \nThey have a fresh, pronounced sea flavor — please note they contain onion and citrus.”",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok.mp3"
       }
     },
     "status": "актуально",
@@ -71,7 +73,8 @@
       "масло сливочное",
       "устрицы"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok.mp3"
   },
   {
     "id": "0002",
@@ -123,7 +126,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a Jolie oyster from Namibia. It has a delicate, creamy, and slightly sweet taste with a gentle sea salt note — often called the ‘Atlantic salted caramel’.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ustritsa-rozovaya-dzholi-namibiya-afrika.mp3"
       }
     },
     "status": "актуально",
@@ -138,7 +142,8 @@
       "масло сливочное",
       "устрицы"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/ustritsa-rozovaya-dzholi-namibiya-afrika.mp3"
   },
   {
     "id": "0003",
@@ -189,7 +194,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n“Classic French oysters with a delicate creamy and nutty taste, perfectly balanced between sweetness and salinity.”",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ustritsa-fine-de-claire-3-frantsiya.mp3"
       }
     },
     "status": "актуально",
@@ -207,7 +213,8 @@
     "comments": [
       "Вес одной устрицы - 66-85 гр. (”№3” в названии говорит о её размере).",
       "Fine de Claire — Франция, регион Марен-Олерон (Атлантическое побережье Франции)."
-    ]
+    ],
+    "audio-en": "../audio/en/ustritsa-fine-de-claire-3-frantsiya.mp3"
   },
   {
     "id": "0004",
@@ -263,7 +270,8 @@
         "description-en": "Фраза для презентации гостю:\n\n“This is a fresh sea urchin with ponzu sauce, delicate avocado mousse, and a quail yolk. \nPlease note it is served raw, with citrus, garlic, cilantro, and chili accents.”",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom.mp3"
       }
     },
     "status": "актуально",
@@ -292,7 +300,8 @@
       "По нашей авторской подаче, все ингредиенты (соуса, желток и имбирь) идут внутрь ежа. Можно сделать отдельно.",
       "Проросток имбиря рекомендуется съедать после ежа, чтобы обновить рецепторы.",
       "Морской Ёж - г. Мурманск."
-    ]
+    ],
+    "audio-en": "../audio/en/morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom.mp3"
   },
   {
     "id": "0005",
@@ -348,7 +357,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -359,7 +369,8 @@
       "хамон Iberico",
       "ягоды сезонные"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0006",
@@ -406,7 +417,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a crispy potato brioche with creamy burrata, fresh tomatoes, and classic basil pesto.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/brusketta-s-burratoy-tomatami-i-sousom-pesto.mp3"
       }
     },
     "status": "актуально",
@@ -425,7 +437,8 @@
     ],
     "comments": [
       "Одна брускетта делится на 2 половинки по умолчанию."
-    ]
+    ],
+    "audio-en": "../audio/en/brusketta-s-burratoy-tomatami-i-sousom-pesto.mp3"
   },
   {
     "id": "0007",
@@ -470,7 +483,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a potato brioche topped with sautéed mushrooms in cream sauce, finished with herbs.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/brusketta-s-lesnymi-gribami-v-slivochnom-souse.mp3"
       }
     },
     "status": "актуально",
@@ -486,7 +500,8 @@
     ],
     "comments": [
       "Одна брускетта делится на 2 половинки по умолчанию."
-    ]
+    ],
+    "audio-en": "../audio/en/brusketta-s-lesnymi-gribami-v-slivochnom-souse.mp3"
   },
   {
     "id": "0008",
@@ -532,7 +547,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n“This is a Spanish-style tapas — crispy ciabatta topped with creamy burrata, jamón, and basil pesto, finished with molecular olives and arugula.”",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tapas-s-hamonom-i-myagkim-syrom.mp3"
       }
     },
     "status": "актуально",
@@ -552,7 +568,8 @@
     ],
     "comments": [
       "В порции одна половинка чиабатты."
-    ]
+    ],
+    "audio-en": "../audio/en/tapas-s-hamonom-i-myagkim-syrom.mp3"
   },
   {
     "id": "0009",
@@ -600,7 +617,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n“Elegant tapas with seared scallop on toasted ciabatta, creamy sauce, and delicate citrus notes.”",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tapas-s-kremovym-grebeshkom-i-tvorozhnym-syrom.mp3"
       }
     },
     "status": "актуально",
@@ -617,7 +635,8 @@
     ],
     "comments": [
       "В порции одна половинка чиабатты."
-    ]
+    ],
+    "audio-en": "../audio/en/tapas-s-kremovym-grebeshkom-i-tvorozhnym-syrom.mp3"
   },
   {
     "id": "0010",
@@ -666,7 +685,8 @@
         "description-en": "Скрипт для официанта:\n“At your table, I will prepare the tartare. Our tartare includes: beef tenderloin, egg yolk, mustard, olive oil, ketchup, shallots, capers, cornichons, and a mix of fresh herbs. We also add Tabasco, Worcestershire sauce, salt, and pepper. \nWould you like me to mix all of these ingredients for you?\nWould you like the tartare to be medium spiced, or a bit hotter?”",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tartar-iz-premialnoy-govyazhey-vyrezki-s-zharennym-kartofelem.mp3"
       }
     },
     "status": "актуально",
@@ -694,7 +714,8 @@
     "comments": [
       "Готовим при госте, уточняем все ли ингридиенты замешивать.",
       "Основа тартара - домашний майонез: желток яйца, горчица, оливковое масло. При попытке гостя исключить один из ингридиентов основы, вежливо предупредить, что в этом случае блюдо может потерять баланс вкуса."
-    ]
+    ],
+    "audio-en": "../audio/en/tartar-iz-premialnoy-govyazhey-vyrezki-s-zharennym-kartofelem.mp3"
   },
   {
     "id": "0011",
@@ -743,7 +764,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\nThis is an assortment of Spanish-style cured meats, including Serrano ham and spicy chorizo, all made with pork.\"\nThe assortment includes:\n1. Jamón Serrano (Reserva)\n2. Spicy Chorizo\n3. Venison and Bear Sausages (оленина и медведь)\n4. Beef Sausage\n5. Cured Duck Breast (Cured = вяленый/выдержанный)\n6. Wild Boar belly (also, Fat = жир/сало).\n\nGarnished with Red Currants (красная смородина) and Bay Leaves (Bay Leaf = лавровый лист).",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/assorti-izyskannyh-myasnyh-delikatesov.mp3"
       }
     },
     "status": "актуально",
@@ -763,7 +785,8 @@
     ],
     "comments": [
       "Вся колбаса с добавлением свинины."
-    ]
+    ],
+    "audio-en": "../audio/en/assorti-izyskannyh-myasnyh-delikatesov.mp3"
   },
   {
     "id": "0012",
@@ -814,7 +837,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a dish of ripe tomatoes with fresh crab meat, complemented by herbs and a light dressing.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tomat-i-krab.mp3"
       }
     },
     "status": "актуально",
@@ -845,7 +869,8 @@
     ],
     "comments": [
       "Краб - Дальний Восток."
-    ]
+    ],
+    "audio-en": "../audio/en/tomat-i-krab.mp3"
   },
   {
     "id": "0013",
@@ -899,7 +924,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a tartare of yellowfin tuna, combined with Spanish olives, pine nuts, and fresh herbs, finished with lemon juice.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tartar-iz-tuntsa-s-ispanskimi-olivkami-kedrovymi-orehami-i-zelenyu.mp3"
       }
     },
     "status": "актуально",
@@ -923,7 +949,8 @@
     "comments": [
       "Желтоперый тунец (yellowfin tuna) - Китай.",
       "Подается с долькой лимона только по просьбе гостя."
-    ]
+    ],
+    "audio-en": "../audio/en/tartar-iz-tuntsa-s-ispanskimi-olivkami-kedrovymi-orehami-i-zelenyu.mp3"
   },
   {
     "id": "0014",
@@ -981,7 +1008,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n“Fresh tartare of salmon and oysters with creamy avocado, citrus dressing, and a touch of sea flavor.”",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tartar-iz-ustrits-i-semgi.mp3"
       }
     },
     "status": "актуально",
@@ -1003,7 +1031,8 @@
     ],
     "comments": [
       "1 порция - 2 шт. (в раковинах). Время отдачи: 15-20 мин."
-    ]
+    ],
+    "audio-en": "../audio/en/tartar-iz-ustrits-i-semgi.mp3"
   },
   {
     "id": "0015",
@@ -1053,7 +1082,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a shrimp carpaccio with eggplant cream, fresh tomatoes, and a bright mango-chia sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/karpachcho-iz-krevetki-s-kremom-iz-baklazhana-tomatami-i-sousom-mango-chia.mp3"
       }
     },
     "status": "актуально",
@@ -1078,7 +1108,8 @@
       "лайм",
       "кинза",
       "перец чили"
-    ]
+    ],
+    "audio-en": "../audio/en/karpachcho-iz-krevetki-s-kremom-iz-baklazhana-tomatami-i-sousom-mango-chia.mp3"
   },
   {
     "id": "0016",
@@ -1129,7 +1160,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a ceviche of fresh seabass, marinated with citrus, served with creamy avocado, sweet tomatoes, and chili pepper.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/seviche-iz-sibasa-s-tomatami-avokado-i-pertsem-chili.mp3"
       }
     },
     "status": "актуально",
@@ -1157,7 +1189,8 @@
       "Перец можно подать отдельно, но пикантность маринада сохраниться.",
       "При подаче заливаем маринадом и рекомендуем промариноваться блюду пару минут.",
       "Сибас - Турция."
-    ]
+    ],
+    "audio-en": "../audio/en/seviche-iz-sibasa-s-tomatami-avokado-i-pertsem-chili.mp3"
   },
   {
     "id": "0017",
@@ -1204,7 +1237,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a carpaccio of oven-baked beetroot, served with cream cheese, pine nuts, salad leaves, and a touch of smoked oil.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/karpachcho-iz-zapechennoy-svekly-so-slivochnym-syrom-kedrovymi-orehami-i-kopchenym-maslom.mp3"
       }
     },
     "status": "актуально",
@@ -1226,7 +1260,8 @@
     ],
     "comments": [
       "Время приготовления 20-25 минут."
-    ]
+    ],
+    "audio-en": "../audio/en/karpachcho-iz-zapechennoy-svekly-so-slivochnym-syrom-kedrovymi-orehami-i-kopchenym-maslom.mp3"
   },
   {
     "id": "0018",
@@ -1275,7 +1310,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n“This is cherry tomatoes gently simmered in a spicy kimchi sauce, served with creamy stracciatella, crispy potato straw, unagi sauce, and herb oil.”",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tomaty-cherri-kimchi-so-slivochnoy-strachatelloy.mp3"
       }
     },
     "status": "актуально",
@@ -1302,7 +1338,8 @@
     ],
     "comments": [
       "Менее острым и не острым сделать нельзя!"
-    ]
+    ],
+    "audio-en": "../audio/en/tomaty-cherri-kimchi-so-slivochnoy-strachatelloy.mp3"
   },
   {
     "id": "0019",
@@ -1348,7 +1385,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is an assortment of six noble cheeses, served with natural honey, pear confiture, walnuts, and red currants.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/assorti-iz-shesti-blagorodnyh-syrov.mp3"
       }
     },
     "status": "актуально",
@@ -1369,7 +1407,8 @@
     ],
     "comments": [
       "Все сыры российского производства. Готовятся по технологии оригинальных стран-производителей."
-    ]
+    ],
+    "audio-en": "../audio/en/assorti-iz-shesti-blagorodnyh-syrov.mp3"
   },
   {
     "id": "0020",
@@ -1422,7 +1461,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a delicate foie gras escalope with stewed Packham pear, flamed with rum, and finished with a berry-rum sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/eskalop-fua-gra-s-grushey-pakham-pod-yagodno-romovom-sousom.mp3"
       }
     },
     "status": "актуально",
@@ -1441,7 +1481,8 @@
       "мята",
       "ягоды сезонные"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/eskalop-fua-gra-s-grushey-pakham-pod-yagodno-romovom-sousom.mp3"
   },
   {
     "id": "0021",
@@ -1490,7 +1531,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"These are baked mussels, filled with spinach stewed in shallots, garlic, and white wine, then topped with cheese-truffle fondue.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/zapechennye-midii-so-shpinatom-pod-syrno-tryufelnym-fondyu.mp3"
       }
     },
     "status": "актуально",
@@ -1516,7 +1558,8 @@
       "Лук шалот из блюда убрать нельзя.",
       "В порции 12-13 штук.",
       "Мидии - Дальний Восток."
-    ]
+    ],
+    "audio-en": "../audio/en/zapechennye-midii-so-shpinatom-pod-syrno-tryufelnym-fondyu.mp3"
   },
   {
     "id": "0022",
@@ -1571,7 +1614,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"These are African oysters baked under a creamy Chablis sauce with nutmeg and shallots.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ustritsy-zapechennye-pod-sousom-shabli-s-muskatnym-orehom-i-lukom-shalot.mp3"
       }
     },
     "status": "актуально",
@@ -1590,7 +1634,8 @@
     ],
     "comments": [
       "Устрица Розовая Джоли - Намибия (Африка)."
-    ]
+    ],
+    "audio-en": "../audio/en/ustritsy-zapechennye-pod-sousom-shabli-s-muskatnym-orehom-i-lukom-shalot.mp3"
   },
   {
     "id": "0023",
@@ -1635,7 +1680,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"These are traditional French escargots, baked in garlic butter with fresh herbs.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ulitki-po-burgundski.mp3"
       }
     },
     "status": "актуально",
@@ -1651,7 +1697,8 @@
     ],
     "comments": [
       "В порции 6 улиток без раковин."
-    ]
+    ],
+    "audio-en": "../audio/en/ulitki-po-burgundski.mp3"
   },
   {
     "id": "0024",
@@ -1699,7 +1746,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"These are juicy prawns flambéed with cognac, served with fresh salad leaves and a spicy wasabi sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/krevetki-v-souse-vasabi.mp3"
       }
     },
     "status": "актуально",
@@ -1722,7 +1770,8 @@
       "5 креветок в порции, при необходимости можно добить по весу.",
       "Головы при подаче не отделяют.",
       "Креветки - Бангладеш."
-    ]
+    ],
+    "audio-en": "../audio/en/krevetki-v-souse-vasabi.mp3"
   },
   {
     "id": "0025",
@@ -1777,7 +1826,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is eggplant glazed with sweet chili sauce, topped with smoked unagi eel, creamy stracciatella, ripe tomatoes, and yuzu sesame.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/baklazhan-yudzu.mp3"
       }
     },
     "status": "актуально",
@@ -1805,7 +1855,8 @@
     ],
     "comments": [
       "Угорь - Китай."
-    ]
+    ],
+    "audio-en": "../audio/en/baklazhan-yudzu.mp3"
   },
   {
     "id": "0026",
@@ -1851,7 +1902,8 @@
         "description-en": "Eggplant Tartare with Tomatoes, Herbs & Vegan Pesto\n\nФраза для быстрой презентации гостю:\n\"This is a tartare of caramelized eggplants with ripe tomatoes, fresh herbs, and vegan pesto with pine nuts.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tartar-iz-baklazhan-s-tomatami-zelenyu-i-postnym-pesto.mp3"
       }
     },
     "status": "актуально",
@@ -1871,7 +1923,8 @@
     ],
     "comments": [
       "В меню не представлено, предлагаем вегетарианцам."
-    ]
+    ],
+    "audio-en": "../audio/en/tartar-iz-baklazhan-s-tomatami-zelenyu-i-postnym-pesto.mp3"
   },
   {
     "id": "0027",
@@ -1927,7 +1980,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a salad of roasted beef with fresh greens, Uzbek tomatoes, cream cheese, and honey-mustard dressing with chimichurri sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/salat-s-zapechennym-rostbifom.mp3"
       }
     },
     "status": "актуально",
@@ -1959,7 +2013,8 @@
       "розмарин",
       "рыба"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/salat-s-zapechennym-rostbifom.mp3"
   },
   {
     "id": "0028",
@@ -2016,7 +2071,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a salad with slices of sous-vide veal, roasted vegetables, shiitake mushrooms, capers, and fresh greens, dressed with honey-mustard sauce and parmesan.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/salat-s-sochnoy-telyatinoy-i-aromatnymi-gribami.mp3"
       }
     },
     "status": "актуально",
@@ -2042,7 +2098,8 @@
     ],
     "comments": [
       "Прожарка телятины -medium."
-    ]
+    ],
+    "audio-en": "../audio/en/salat-s-sochnoy-telyatinoy-i-aromatnymi-gribami.mp3"
   },
   {
     "id": "0029",
@@ -2096,7 +2153,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is our signature variation of the Caesar salad with golden roasted quail, Grana Padano cheese, cherry tomatoes, quail egg, and garlic croutons. The dressing has a rich anchovy flavor.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/salat-kardini-s-perepelkoy-tomatami-perepelinym-yaytsom-i-chesnochnymi-grenkami.mp3"
       }
     },
     "status": "актуально",
@@ -2119,7 +2177,8 @@
     ],
     "comments": [
       "Соус достаточно солоноват за счет большого количества анчоусов."
-    ]
+    ],
+    "audio-en": "../audio/en/salat-kardini-s-perepelkoy-tomatami-perepelinym-yaytsom-i-chesnochnymi-grenkami.mp3"
   },
   {
     "id": "0030",
@@ -2167,7 +2226,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a warm salad of foie gras terrine with roasted quail, served on crispy toasts with fresh salad leaves, fried onions, and caramelized apple flamed with Calvados.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/teplyy-salat-s-fua-gra-perepelkoy-i-karamelizirovannym-yablokom.mp3"
       }
     },
     "status": "актуально",
@@ -2187,7 +2247,8 @@
       "курага",
       "перепёлка",
       "фуа-гра"
-    ]
+    ],
+    "audio-en": "../audio/en/teplyy-salat-s-fua-gra-perepelkoy-i-karamelizirovannym-yablokom.mp3"
   },
   {
     "id": "0031",
@@ -2244,7 +2305,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/teplyy-salat-s-zharennym-osminogom-ovoschami-olivkami-pod-gorchichnym-sousom.mp3"
       }
     },
     "status": "актуально",
@@ -2271,7 +2333,8 @@
     ],
     "comments": [
       "Осьминог – Марокко."
-    ]
+    ],
+    "audio-en": "../audio/en/teplyy-salat-s-zharennym-osminogom-ovoschami-olivkami-pod-gorchichnym-sousom.mp3"
   },
   {
     "id": "0032",
@@ -2327,7 +2390,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a fresh salad with assorted seafood, creamy mashed avocado, tomatoes, and herbs, dressed with citrus sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/salat-s-moreproduktami-i-myatym-avokado.mp3"
       }
     },
     "status": "актуально",
@@ -2352,7 +2416,8 @@
       "халапеньо",
       "шпинат"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/salat-s-moreproduktami-i-myatym-avokado.mp3"
   },
   {
     "id": "0033",
@@ -2405,7 +2470,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ovoschnoy-salat-s-avokado-syrom-grana-padano-lukovym-kramblom-pod-medovo-gorchichnoy-zapravkoy.mp3"
       }
     },
     "status": "актуально",
@@ -2431,7 +2497,8 @@
       "крем бальзамический",
       "базилик"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/ovoschnoy-salat-s-avokado-syrom-grana-padano-lukovym-kramblom-pod-medovo-gorchichnoy-zapravkoy.mp3"
   },
   {
     "id": "0034",
@@ -2484,7 +2551,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is creamy burrata served with a tartare of sweet tomatoes, fresh olives, and olive oil.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/burrata-s-olivkami-i-tartarom-iz-sladkih-tomatov.mp3"
       }
     },
     "status": "актуально",
@@ -2501,7 +2569,8 @@
       "оливки молекулярные",
       "базилик"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/burrata-s-olivkami-i-tartarom-iz-sladkih-tomatov.mp3"
   },
   {
     "id": "0035",
@@ -2554,7 +2623,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a traditional onion soup with bacon, flavored with cumin, and topped with a Gruyère cheese crust.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/lukovyy-sup-s-bekonom-ziroy-pod-syrnoy-korochkoy-gryuyer.mp3"
       }
     },
     "status": "актуально",
@@ -2576,7 +2646,8 @@
     ],
     "comments": [
       "С добавление зиры и бекона. Убрать нельзя!"
-    ]
+    ],
+    "audio-en": "../audio/en/lukovyy-sup-s-bekonom-ziroy-pod-syrnoy-korochkoy-gryuyer.mp3"
   },
   {
     "id": "0036",
@@ -2630,7 +2701,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is our signature interpretation of Tom Yam soup with scallops, shrimps, mushrooms, carrot, and celery — rich in citrusy and herbal flavors.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ostryy-sup-tom-yam-s-grebeshkom-i-krevetkami.mp3"
       }
     },
     "status": "актуально",
@@ -2661,7 +2733,8 @@
     ],
     "comments": [
       "Менее острым и не острым сделать нельзя!"
-    ]
+    ],
+    "audio-en": "../audio/en/ostryy-sup-tom-yam-s-grebeshkom-i-krevetkami.mp3"
   },
   {
     "id": "0037",
@@ -2712,7 +2785,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/uha-s-podkopchennoy-krasnoy-ryboy-ovoschami-i-slivochnym-bulonom.mp3"
       }
     },
     "status": "актуально",
@@ -2738,7 +2812,8 @@
       "Филе красной рыбы (подкопченое) - medium.",
       "Бульон также как и рыба подкопчённый.",
       "Бульон можно сделать без сливок."
-    ]
+    ],
+    "audio-en": "../audio/en/uha-s-podkopchennoy-krasnoy-ryboy-ovoschami-i-slivochnym-bulonom.mp3"
   },
   {
     "id": "0038",
@@ -2788,7 +2863,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a silky cream soup made with chestnuts and fragrant porcini mushrooms.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/shelkovyy-krem-sup-iz-kashtanov-s-aromatnymi-belymi-gribami.mp3"
       }
     },
     "status": "актуально",
@@ -2807,7 +2883,8 @@
     ],
     "comments": [
       "Небольшая сладковатость за счет каштанов."
-    ]
+    ],
+    "audio-en": "../audio/en/shelkovyy-krem-sup-iz-kashtanov-s-aromatnymi-belymi-gribami.mp3"
   },
   {
     "id": "0039",
@@ -2857,7 +2934,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ovoschnoy-sup-minestrone-na-kurinom-bulone-s-kedrovymi-orehami-i-sousom-pesto.mp3"
       }
     },
     "status": "актуально",
@@ -2885,7 +2963,8 @@
     ],
     "comments": [
       "Можно приготовить без соуса Песто."
-    ]
+    ],
+    "audio-en": "../audio/en/ovoschnoy-sup-minestrone-na-kurinom-bulone-s-kedrovymi-orehami-i-sousom-pesto.mp3"
   },
   {
     "id": "0040",
@@ -2949,7 +3028,8 @@
     ],
     "comments": [
       "В меню не представлено, предлагаем вегетарианцам."
-    ]
+    ],
+    "audio-en": "../audio/en/postnyy-minestrone-na-ovoschnom-bulone-s-kedrovymi-orehami-chesnochnoy-chiabattoy-i-postnym-pesto.mp3"
   },
   {
     "id": "0041",
@@ -3005,7 +3085,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is homemade ravioli filled with farm chicken, seasoned with cumin, and served with a cheese and truffle fondue.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/domashnie-ravioli-s-nachinkoy-iz-fermerskoy-kuritsy-aromatnoy-ziroy-pod-syrno-tryufelnym-fondyu.mp3"
       }
     },
     "status": "актуально",
@@ -3030,7 +3111,8 @@
     ],
     "comments": [
       "Компоненты из фарша убрать нельзя, соус можно."
-    ]
+    ],
+    "audio-en": "../audio/en/domashnie-ravioli-s-nachinkoy-iz-fermerskoy-kuritsy-aromatnoy-ziroy-pod-syrno-tryufelnym-fondyu.mp3"
   },
   {
     "id": "0042",
@@ -3086,7 +3168,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Black fettuccine pasta with tender crab meat, fennel, and leek.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/chernye-fetuchini-s-myasom-kraba-fenhelem-i-lukom-porey.mp3"
       }
     },
     "status": "актуально",
@@ -3113,7 +3196,8 @@
     ],
     "comments": [
       "Паста с чернилами каракатицы собственного производства"
-    ]
+    ],
+    "audio-en": "../audio/en/chernye-fetuchini-s-myasom-kraba-fenhelem-i-lukom-porey.mp3"
   },
   {
     "id": "0043",
@@ -3167,7 +3251,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"A spicy arrabbiata pasta in tomato sauce with shrimp and scallops.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/arrabyata-s-krevetkami-i-grebeshkom.mp3"
       }
     },
     "status": "актуально",
@@ -3195,7 +3280,8 @@
     ],
     "comments": [
       "По умолчанию на кухне готовят пасту средней остроты."
-    ]
+    ],
+    "audio-en": "../audio/en/arrabyata-s-krevetkami-i-grebeshkom.mp3"
   },
   {
     "id": "0044",
@@ -3248,7 +3334,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Creamy risotto with tender rabbit, mushrooms, and pesto.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/rizotto-s-krolikom-i-gribami.mp3"
       }
     },
     "status": "актуально",
@@ -3272,7 +3359,8 @@
     ],
     "comments": [
       "В состав соус Песто и кедровые орехи. Можно убрать."
-    ]
+    ],
+    "audio-en": "../audio/en/rizotto-s-krolikom-i-gribami.mp3"
   },
   {
     "id": "0045",
@@ -3329,7 +3417,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n“A classic saffron seafood paella with shrimp, scallops, squid, and mussels, finished with sweet peppers, lime, and a touch of chili.”\nPortion: serves 2, approx. 800 g.",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/paelya.mp3"
       }
     },
     "status": "актуально",
@@ -3355,7 +3444,8 @@
     ],
     "comments": [
       "Блюдо на 2 персоны (800 гр.)."
-    ]
+    ],
+    "audio-en": "../audio/en/paelya.mp3"
   },
   {
     "id": "0046",
@@ -3406,7 +3496,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Green risotto with zucchini purée, young green peas, and sweet pepper sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/zelenoe-rizotto.mp3"
       }
     },
     "status": "актуально",
@@ -3432,7 +3523,8 @@
     ],
     "comments": [
       "В меню не представлено, предлагаем вегетарианцам."
-    ]
+    ],
+    "audio-en": "../audio/en/zelenoe-rizotto.mp3"
   },
   {
     "id": "0047",
@@ -3489,7 +3581,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Marbled beefsteak cooked medium, served with golden potatoes, mushrooms, spinach, gorgonzola mousse, and truffle cream.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/bifshteks-iz-mramornoy-govyadiny-s-zharennym-kartofelem-gribami-i-shpinatom-s-mussom-iz-gorgonzoly-i-tryufelnym-kremom.mp3"
       }
     },
     "status": "актуально",
@@ -3517,7 +3610,8 @@
     ],
     "comments": [
       "Прожарка котлеты - medium"
-    ]
+    ],
+    "audio-en": "../audio/en/bifshteks-iz-mramornoy-govyadiny-s-zharennym-kartofelem-gribami-i-shpinatom-s-mussom-iz-gorgonzoly-i-tryufelnym-kremom.mp3"
   },
   {
     "id": "0048",
@@ -3571,7 +3665,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tomlenye-govyazhi-schechki-s-ragu-iz-belyh-gribov-kartofelem-pyure-i-solodovym-sousom.mp3"
       }
     },
     "status": "актуально",
@@ -3599,7 +3694,8 @@
       "соус деми-глас",
       "масло оливковое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/tomlenye-govyazhi-schechki-s-ragu-iz-belyh-gribov-kartofelem-pyure-i-solodovym-sousom.mp3"
   },
   {
     "id": "0049",
@@ -3654,7 +3750,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/file-minon-s-fua-gra-zharennymi-belymi-gribami-i-ovoschami-na-grile.mp3"
       }
     },
     "status": "актуально",
@@ -3680,7 +3777,8 @@
     "comments": [
       "Филе Миньон 150г, фуа-гра (террин) 10г.",
       "Прожарка стейка - medium"
-    ]
+    ],
+    "audio-en": "../audio/en/file-minon-s-fua-gra-zharennymi-belymi-gribami-i-ovoschami-na-grile.mp3"
   },
   {
     "id": "0050",
@@ -3738,7 +3836,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Black burger with marbled beef patty, creamy Camembert, onion confit, and spicy jalapeño.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/chernyy-burger-s-kotletoy-iz-mramornoy-govyadiny-syrom-kamamber-lukom-konfi-i-ostrym-pertsem-halapeno.mp3"
       }
     },
     "status": "актуально",
@@ -3766,7 +3865,8 @@
       "Можно приготовить не острый.",
       "Сервируем перчатки и ошибори.",
       "Предлагаем гарнир и соус."
-    ]
+    ],
+    "audio-en": "../audio/en/chernyy-burger-s-kotletoy-iz-mramornoy-govyadiny-syrom-kamamber-lukom-konfi-i-ostrym-pertsem-halapeno.mp3"
   },
   {
     "id": "0051",
@@ -3822,7 +3922,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Braised lamb shank with roasted eggplant and a light yogurt mousse flavored with tarragon.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tomlenaya-golyashka-yagnenka-s-pechenym-baklazhanom-i-yogurtovym-mussom.mp3"
       }
     },
     "status": "актуально",
@@ -3845,7 +3946,8 @@
       "сливки",
       "эстрагон"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/tomlenaya-golyashka-yagnenka-s-pechenym-baklazhanom-i-yogurtovym-mussom.mp3"
   },
   {
     "id": "0052",
@@ -3899,7 +4001,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Farm-raised chicken grilled over open fire, marinated with homemade mayonnaise, barbecue, and Worcestershire sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/fermerskiy-tsyplenok-prigotovlennyy-na-otkrytom-ogne.mp3"
       }
     },
     "status": "актуально",
@@ -3920,7 +4023,8 @@
       "Можно приготовить без маринада.",
       "Сервируем перчатки и ошибори.",
       "Предлагаем гарнир и соус."
-    ]
+    ],
+    "audio-en": "../audio/en/fermerskiy-tsyplenok-prigotovlennyy-na-otkrytom-ogne.mp3"
   },
   {
     "id": "0053",
@@ -3974,7 +4078,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Braised duck leg with orange sauce, served on a bed of fried potatoes with bacon.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/utinaya-nozhka-pod-apelsinovym-sousom-na-podushke-iz-zharenogo-kartofelya-s-bekonom.mp3"
       }
     },
     "status": "актуально",
@@ -3997,7 +4102,8 @@
     ],
     "comments": [
       "Сладковатая (даже без соуса, так как варится в соке апельсина). "
-    ]
+    ],
+    "audio-en": "../audio/en/utinaya-nozhka-pod-apelsinovym-sousom-na-podushke-iz-zharenogo-kartofelya-s-bekonom.mp3"
   },
   {
     "id": "0054",
@@ -4048,7 +4154,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Seabass fillet with spinach, herbed mashed potatoes, and a light citrus sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/file-sibasa-so-shpinatom-kartofelnym-pyure-s-zelenyu-i-tsitrusovym-sousom.mp3"
       }
     },
     "status": "актуально",
@@ -4072,7 +4179,8 @@
       "лук красный",
       "перец черный"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/file-sibasa-so-shpinatom-kartofelnym-pyure-s-zelenyu-i-tsitrusovym-sousom.mp3"
   },
   {
     "id": "0055",
@@ -4126,7 +4234,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Salmon steak baked with honey, served with creamy mashed potatoes and fresh tomato salsa.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/steyk-iz-semgi-zapechennoy-v-mede-s-kartofelnym-pyure-i-tomatnoy-salsoy.mp3"
       }
     },
     "status": "актуально",
@@ -4156,7 +4265,8 @@
     "comments": [
       "Прожарка стейка - medium.",
       "Филе семги с кожей, без костей."
-    ]
+    ],
+    "audio-en": "../audio/en/steyk-iz-semgi-zapechennoy-v-mede-s-kartofelnym-pyure-i-tomatnoy-salsoy.mp3"
   },
   {
     "id": "0056",
@@ -4208,7 +4318,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/zapechennaya-chernaya-treska-s-marinovannym-imbirem-i-zharennymi-ovoschami-pod-medovo-apelsinovym-sousom.mp3"
       }
     },
     "status": "актуально",
@@ -4236,7 +4347,8 @@
       "имбирь",
       "лист бамбука"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/zapechennaya-chernaya-treska-s-marinovannym-imbirem-i-zharennymi-ovoschami-pod-medovo-apelsinovym-sousom.mp3"
   },
   {
     "id": "0057",
@@ -4294,7 +4406,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Grilled octopus tentacles glazed with sweet chili sauce, served with golden potatoes, sun-dried tomatoes, sunflower sprouts, and chimichurri.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/glazirovannyy-osminog-s-zharennym-kartofelem-vyalenymi-tomatami-i-rostkami-podsolnuha.mp3"
       }
     },
     "status": "актуально",
@@ -4323,7 +4436,8 @@
       "масло оливковое",
       "халапеньо"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/glazirovannyy-osminog-s-zharennym-kartofelem-vyalenymi-tomatami-i-rostkami-podsolnuha.mp3"
   },
   {
     "id": "0058",
@@ -4378,7 +4492,8 @@
         "description-en": "Patty = котлета, пирожок или лепешка в зависимости от контекста. Также можно использовать:\nFish Cutlet — более буквальный вариант.\nFish Cake — часто встречается в Британии, но это больше похоже на оладушки из рыбы с картофелем.",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/kotleta-iz-assorti-ryb-s-kartofelnym-pyure-i-tomlenym-shpinatom.mp3"
       }
     },
     "status": "актуально",
@@ -4408,7 +4523,8 @@
     ],
     "comments": [
       "Связующим звеном в котлете выступает гребешок. Хлеб не добавляем."
-    ]
+    ],
+    "audio-en": "../audio/en/kotleta-iz-assorti-ryb-s-kartofelnym-pyure-i-tomlenym-shpinatom.mp3"
   },
   {
     "id": "0059",
@@ -4462,7 +4578,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Prime beef tenderloin fillet, grilled to your preferred doneness, served with garnish and sauce of your choice.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/file-praym-govyazhya-vyrezka.mp3"
       }
     },
     "status": "актуально",
@@ -4480,7 +4597,8 @@
       "Говядина - Россия. Поставщик Прайм Биф. Кукурузный откорм, сухое вызревание.",
       "Предлагаем гарнир и соус.",
       "Рекомендуемая прожарка medium rare."
-    ]
+    ],
+    "audio-en": "../audio/en/file-praym-govyazhya-vyrezka.mp3"
   },
   {
     "id": "0060",
@@ -4534,7 +4652,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Ribeye steak, well-marbled and juicy, grilled to your preferred doneness, served with garnish and sauce of your choice.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ribay-steyk.mp3"
       }
     },
     "status": "актуально",
@@ -4552,7 +4671,8 @@
       "Говядина - Россия. Поставщик Прайм Биф. Кукурузный откорм, сухое вызревание.",
       "Предлагаем гарнир и соус.",
       "Рекомендуемая прожарка medium."
-    ]
+    ],
+    "audio-en": "../audio/en/ribay-steyk.mp3"
   },
   {
     "id": "0061",
@@ -4605,7 +4725,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Striploin steak, tender with a rich meaty flavor, grilled to your preferred doneness, served with garnish and sauce of your choice.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/striployn-steyk.mp3"
       }
     },
     "status": "актуально",
@@ -4623,7 +4744,8 @@
       "Говядина - Россия. Поставщик Прайм Биф. Кукурузный откорм, сухое вызревание.",
       "Предлагаем гарнир и соус.",
       "Рекомендуемая прожарка medium rare."
-    ]
+    ],
+    "audio-en": "../audio/en/striployn-steyk.mp3"
   },
   {
     "id": "0062",
@@ -4678,7 +4800,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Lamb rack, tender and juicy, grilled and served with garnish and sauce of your choice.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/kare-yagnenka.mp3"
       }
     },
     "status": "актуально",
@@ -4697,7 +4820,8 @@
       "Каре ягнёнка - Россия, Калмыкия.",
       "Предлагаем гарнир и соус.",
       "Рекомендуемая прожарка medium rare."
-    ]
+    ],
+    "audio-en": "../audio/en/kare-yagnenka.mp3"
   },
   {
     "id": "0063",
@@ -4749,7 +4873,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Salmon fillet, tender and juicy, prepared on the grill or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/semga.mp3"
       }
     },
     "status": "актуально",
@@ -4764,7 +4889,8 @@
       "Способ приготовления: Josper/ Пар / Сковорода.",
       "Предлагаем гарнир и соус.",
       "Уточняем степень прожарки."
-    ]
+    ],
+    "audio-en": "../audio/en/semga.mp3"
   },
   {
     "id": "0064",
@@ -4815,7 +4941,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Seabass fillet, tender and delicate, prepared on the grill or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/sibas.mp3"
       }
     },
     "status": "актуально",
@@ -4830,7 +4957,8 @@
       "Способ приготовления: Josper / Пар / Сковорода.",
       "Сибас нельзя приготовить целиком, так как рыбу сразу разделывают и режут на филе стандартного размера.",
       "Предлагаем гарнир и соус."
-    ]
+    ],
+    "audio-en": "../audio/en/sibas.mp3"
   },
   {
     "id": "0065",
@@ -4882,7 +5010,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Tuna steak, firm and meaty, prepared grilled or steamed to your preference, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tunets.mp3"
       }
     },
     "status": "актуально",
@@ -4897,7 +5026,8 @@
       "Способ приготовления: Josper/ Пар / Сковорода.",
       "Предлагаем гарнир и соус.",
       "Уточняем степень прожарки."
-    ]
+    ],
+    "audio-en": "../audio/en/tunets.mp3"
   },
   {
     "id": "0066",
@@ -4948,7 +5078,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Tender squid, prepared grilled or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/kalmar.mp3"
       }
     },
     "status": "актуально",
@@ -4962,7 +5093,8 @@
       "Вес от 100 гр.",
       "Способ приготовления: Josper/ Пар / Сковорода.",
       "Предлагаем гарнир и соус."
-    ]
+    ],
+    "audio-en": "../audio/en/kalmar.mp3"
   },
   {
     "id": "0067",
@@ -5013,7 +5145,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Tender octopus (octopus tentacles), prepared grilled or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/osminog.mp3"
       }
     },
     "status": "актуально",
@@ -5028,7 +5161,8 @@
       "Вес одного щупальца примерно 80-100 гр.",
       "Способ приготовления: Josper/ Пар / Сковорода.",
       "Предлагаем гарнир и соус."
-    ]
+    ],
+    "audio-en": "../audio/en/osminog.mp3"
   },
   {
     "id": "0068",
@@ -5079,7 +5213,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Shrimp, prepared grilled or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/korolevskie-krevetki.mp3"
       }
     },
     "status": "актуально",
@@ -5094,7 +5229,8 @@
       "Способ приготовления: Josper/ Пар / Сковорода.",
       "Головы при подаче не отделяют",
       "Предлагаем гарнир и соус."
-    ]
+    ],
+    "audio-en": "../audio/en/korolevskie-krevetki.mp3"
   },
   {
     "id": "0069",
@@ -5145,7 +5281,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Sea scallops, prepared pan-seared or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/morskie-grebeshki.mp3"
       }
     },
     "status": "актуально",
@@ -5159,7 +5296,8 @@
       "Способ приготовления: Пар / Сковорода. Приготовить на хоспере нельзя!",
       "Вес от 100 гр.",
       "Предлагаем гарнир и соус."
-    ]
+    ],
+    "audio-en": "../audio/en/morskie-grebeshki.mp3"
   },
   {
     "id": "0070",
@@ -5213,7 +5351,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Golden fried potatoes with crispy bacon.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/zharennyy-kartofel-s-bekonom.mp3"
       }
     },
     "status": "актуально",
@@ -5229,7 +5368,8 @@
       "кинза",
       "петрушка"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/zharennyy-kartofel-s-bekonom.mp3"
   },
   {
     "id": "0071",
@@ -5280,7 +5420,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Golden fried potatoes with mushrooms in a creamy cheese sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/zharennyy-kartofel-s-gribami-v-syrno-slivochnom-souse.mp3"
       }
     },
     "status": "актуально",
@@ -5299,7 +5440,8 @@
     ],
     "comments": [
       "Можно приготовить без добавления сливок."
-    ]
+    ],
+    "audio-en": "../audio/en/zharennyy-kartofel-s-gribami-v-syrno-slivochnom-souse.mp3"
   },
   {
     "id": "0072",
@@ -5347,7 +5489,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Golden fried potatoes with caramelized shallots and fresh herbs.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/zharennyy-kartofel-s-lukom-shalot-i-zelenyu.mp3"
       }
     },
     "status": "актуально",
@@ -5355,7 +5498,8 @@
     "raw_html": "<p class=\"\" id=\"23b33974-4d17-80b4-b9b0-d461d2e6a090\">Картофель, обжаривается на оливковом масле с добавлением <strong>лука шалот</strong>, посыпается <strong>кинзой и петрушкой.</strong> </p>",
     "ingredients": [
       "картофель"
-    ]
+    ],
+    "audio-en": "../audio/en/zharennyy-kartofel-s-lukom-shalot-i-zelenyu.mp3"
   },
   {
     "id": "0073",
@@ -5407,7 +5551,8 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Crispy golden French fries, served with your choice of sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/kartofel-fri.mp3"
       }
     },
     "status": "актуально",
@@ -5418,7 +5563,8 @@
       "картофель",
       "масло оливковое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/kartofel-fri.mp3"
   },
   {
     "id": "0074",
@@ -5469,7 +5615,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/kartofelnoe-pyure-s-zelenyu.mp3"
       }
     },
     "status": "актуально",
@@ -5485,7 +5632,8 @@
     ],
     "comments": [
       "Можно приготовить без зелени."
-    ]
+    ],
+    "audio-en": "../audio/en/kartofelnoe-pyure-s-zelenyu.mp3"
   },
   {
     "id": "0075",
@@ -5537,7 +5685,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/kartofel-po-domashnemu-na-hospere.mp3"
       }
     },
     "status": "актуально",
@@ -5548,7 +5697,8 @@
       "картофель",
       "масло оливковое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/kartofel-po-domashnemu-na-hospere.mp3"
   },
   {
     "id": "0076",
@@ -5597,7 +5747,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ris-otvarnoy.mp3"
       }
     },
     "status": "актуально",
@@ -5607,7 +5758,8 @@
     "ingredients": [
       "рис"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/ris-otvarnoy.mp3"
   },
   {
     "id": "0077",
@@ -5657,7 +5809,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/ovoschi-miks.mp3"
       }
     },
     "status": "актуально",
@@ -5675,7 +5828,8 @@
     ],
     "comments": [
       "Способ приготовления: Josper/ Пар / Сковорода."
-    ]
+    ],
+    "audio-en": "../audio/en/ovoschi-miks.mp3"
   },
   {
     "id": "0078",
@@ -5725,7 +5879,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/sparzha.mp3"
       }
     },
     "status": "актуально",
@@ -5738,7 +5893,8 @@
     ],
     "comments": [
       "Способ приготовления: Josper / Пар / Сковорода."
-    ]
+    ],
+    "audio-en": "../audio/en/sparzha.mp3"
   },
   {
     "id": "0079",
@@ -5788,7 +5944,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tomlenyy-shpinat-s-chesnokom-i-syrom.mp3"
       }
     },
     "status": "актуально",
@@ -5803,7 +5960,8 @@
     ],
     "comments": [
       "Способ приготовления: Пар / Сковорода."
-    ]
+    ],
+    "audio-en": "../audio/en/tomlenyy-shpinat-s-chesnokom-i-syrom.mp3"
   },
   {
     "id": "0080",
@@ -5853,7 +6011,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/perets-bolgarskiy.mp3"
       }
     },
     "status": "актуально",
@@ -5866,7 +6025,8 @@
     ],
     "comments": [
       "Способ приготовления: Josper / Пар / Сковорода."
-    ]
+    ],
+    "audio-en": "../audio/en/perets-bolgarskiy.mp3"
   },
   {
     "id": "0081",
@@ -5916,7 +6076,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tsukini.mp3"
       }
     },
     "status": "актуально",
@@ -5929,7 +6090,8 @@
     ],
     "comments": [
       "Способ приготовления: Josper / Пар / Сковорода."
-    ]
+    ],
+    "audio-en": "../audio/en/tsukini.mp3"
   },
   {
     "id": "0082",
@@ -5979,7 +6141,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tomaty-uzbekskie.mp3"
       }
     },
     "status": "актуально",
@@ -5992,7 +6155,8 @@
     ],
     "comments": [
       "Способ приготовления: Josper / Пар."
-    ]
+    ],
+    "audio-en": "../audio/en/tomaty-uzbekskie.mp3"
   },
   {
     "id": "0083",
@@ -6042,7 +6206,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tomaty-cherri.mp3"
       }
     },
     "status": "актуально",
@@ -6055,7 +6220,8 @@
     ],
     "comments": [
       "Способ приготовления: Josper / Пар."
-    ]
+    ],
+    "audio-en": "../audio/en/tomaty-cherri.mp3"
   },
   {
     "id": "0084",
@@ -6121,7 +6287,8 @@
     ],
     "comments": [
       "В составе желатин - не подходит вегетарианцам."
-    ]
+    ],
+    "audio-en": "../audio/en/muss-pryanye-travy.mp3"
   },
   {
     "id": "0085",
@@ -6176,7 +6343,8 @@
       "орехи грецкие",
       "эвкалипт",
       "золото пищевое"
-    ]
+    ],
+    "audio-en": "../audio/en/dikie-yabloki-s-dushistym-pertsem.mp3"
   },
   {
     "id": "0086",
@@ -6233,7 +6401,8 @@
       "золото пищевое",
       "малина",
       "базилик"
-    ]
+    ],
+    "audio-en": "../audio/en/anna-pavlova.mp3"
   },
   {
     "id": "0087",
@@ -6294,7 +6463,8 @@
       "анис",
       "кардамон",
       "цедра апельсина"
-    ]
+    ],
+    "audio-en": "../audio/en/cheremuhovyy-medovik-s-romashkovym-morozhenym.mp3"
   },
   {
     "id": "0088",
@@ -6345,7 +6515,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/shokoladnyy-fondan.mp3"
       }
     },
     "status": "актуально",
@@ -6364,7 +6535,8 @@
     ],
     "comments": [
       "Время приготовления до 20 минут."
-    ]
+    ],
+    "audio-en": "../audio/en/shokoladnyy-fondan.mp3"
   },
   {
     "id": "0089",
@@ -6414,7 +6586,8 @@
       "мука пшеничная",
       "мука миндальная",
       "какао"
-    ]
+    ],
+    "audio-en": "../audio/en/sigara-sabor-de-la-vida.mp3"
   },
   {
     "id": "0090",
@@ -6467,7 +6640,8 @@
     ],
     "comments": [
       "В составе желатин - не подходит вегетарианцам."
-    ]
+    ],
+    "audio-en": "../audio/en/syrnoe-sufle.mp3"
   },
   {
     "id": "0091",
@@ -6524,7 +6698,8 @@
     ],
     "comments": [
       "Банан-кокос-лайм - веганское."
-    ]
+    ],
+    "audio-en": "../audio/en/domashnee-morozhenoe.mp3"
   },
   {
     "id": "0092",
@@ -6574,7 +6749,8 @@
       "мята",
       "кампари",
       "просекко"
-    ]
+    ],
+    "audio-en": "../audio/en/fruktovyy-sorbet.mp3"
   },
   {
     "id": "0093",
@@ -6636,7 +6812,8 @@
     ],
     "comments": [
       "Мармелад готовится с добавлением пиктина - подходит для веганов."
-    ]
+    ],
+    "audio-en": "../audio/en/konfety-i-marmelad-ruchnoy-raboty.mp3"
   },
   {
     "id": "0094",
@@ -6691,7 +6868,8 @@
       "земляника",
       "фисташка"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/assorti-makarons.mp3"
   },
   {
     "id": "0095",
@@ -6742,7 +6920,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/caf-gourmet.mp3"
       }
     },
     "status": "актуально",
@@ -6780,7 +6959,8 @@
       "ягоды сезонные",
       "манго"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/caf-gourmet.mp3"
   },
   {
     "id": "0096",
@@ -6831,7 +7011,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/chaynyy-nabor.mp3"
       }
     },
     "status": "актуально",
@@ -6853,7 +7034,8 @@
       "шоколад молочный",
       "желатин"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/chaynyy-nabor.mp3"
   },
   {
     "id": "0097",
@@ -6904,7 +7086,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/perechnyy.mp3"
       }
     },
     "status": "актуально",
@@ -6921,7 +7104,8 @@
     ],
     "comments": [
       "Основа сливочная."
-    ]
+    ],
+    "audio-en": "../audio/en/perechnyy.mp3"
   },
   {
     "id": "0098",
@@ -6971,7 +7155,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/gorchichnyy.mp3"
       }
     },
     "status": "актуально",
@@ -6987,7 +7172,8 @@
     ],
     "comments": [
       "Основа горчичная."
-    ]
+    ],
+    "audio-en": "../audio/en/gorchichnyy.mp3"
   },
   {
     "id": "0099",
@@ -7039,7 +7225,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tomatno-tsitrusovyy.mp3"
       }
     },
     "status": "актуально",
@@ -7054,7 +7241,8 @@
       "лук зеленый",
       "томаты"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/tomatno-tsitrusovyy.mp3"
   },
   {
     "id": "0100",
@@ -7105,7 +7293,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/slivochno-gribnoy.mp3"
       }
     },
     "status": "актуально",
@@ -7124,7 +7313,8 @@
     ],
     "comments": [
       "Основа сливочная."
-    ]
+    ],
+    "audio-en": "../audio/en/slivochno-gribnoy.mp3"
   },
   {
     "id": "0101",
@@ -7175,7 +7365,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/kotleta-iz-utinoy-grudki-s-fua-gra-i-kartofelnym-pyure-s-zelenyu-i-sousom-barbekyu.mp3"
       }
     },
     "status": "актуально",
@@ -7197,7 +7388,8 @@
     ],
     "comments": [
       "Основа томатная."
-    ]
+    ],
+    "audio-en": "../audio/en/kotleta-iz-utinoy-grudki-s-fua-gra-i-kartofelnym-pyure-s-zelenyu-i-sousom-barbekyu.mp3"
   },
   {
     "id": "0102",
@@ -7250,7 +7442,8 @@
       "чеснок",
       "масло оливковое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/tartar-iz-baklazhan-s-tomatami-zelenyu-i-postnym-pesto.mp3"
   },
   {
     "id": "0103",
@@ -7300,7 +7493,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/klyukvennyy.mp3"
       }
     },
     "status": "актуально",
@@ -7312,7 +7506,8 @@
       "сахар",
       "вода."
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/en/klyukvennyy.mp3"
   },
   {
     "id": "0104",
@@ -7366,7 +7561,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/tomatno-bazilikovyy-sous-sous-chili.mp3"
       }
     },
     "status": "актуально",
@@ -7392,7 +7588,8 @@
     "comments": [
       "Основа томатная.",
       "В соус Чили такой же состав с добавлением двойной порции перца Чили."
-    ]
+    ],
+    "audio-en": "../audio/en/tomatno-bazilikovyy-sous-sous-chili.mp3"
   },
   {
     "id": "0105",
@@ -7444,10 +7641,12 @@
       "шампиньоны",
       "мука пшеничная",
       "яйцо куриное"
-    ]
+    ],
+    "audio-en": ""
   },
   {
-    "_menu": "════════════════════════════════════════════ АВТОРСКИЕ ЗАВТРАКИ (ID: 201-299) ════════════════════════════════════════════"
+    "_menu": "════════════════════════════════════════════ АВТОРСКИЕ ЗАВТРАКИ (ID: 201-299) ════════════════════════════════════════════",
+    "audio-en": ""
   },
   {
     "id": "0201",
@@ -7499,7 +7698,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -7515,7 +7715,8 @@
       "форель слабосолёная",
       "лук резанец"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0202",
@@ -7567,7 +7768,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -7592,7 +7794,8 @@
       "масло оливковое",
       "форель слабосолёная"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0203",
@@ -7642,7 +7845,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -7656,7 +7860,8 @@
     "comments": [
       "Уточняем у гостя как именно подать дополнительные ингредиенты – рядом или добавить внутрь блюда.",
       "Готовим: Омлет/Глазунья/Скрэмбл."
-    ]
+    ],
+    "audio-en": ""
   },
   {
     "id": "0204",
@@ -7703,7 +7908,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -7721,7 +7927,8 @@
       "кунжут",
       "масло зеленое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0205",
@@ -7775,7 +7982,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -7797,7 +8005,8 @@
       "микрозелень",
       "чиабатта"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0206",
@@ -7851,7 +8060,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -7872,7 +8082,8 @@
       "перец чили",
       "масло оливковое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0207",
@@ -7924,7 +8135,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -7942,7 +8154,8 @@
       "лук резанец",
       "масло оливковое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0208",
@@ -7995,7 +8208,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8015,7 +8229,8 @@
       "масло зеленое",
       "масло оливковое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0209",
@@ -8067,7 +8282,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8093,7 +8309,8 @@
       "тимьян",
       "розмарин"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0210",
@@ -8146,7 +8363,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8173,7 +8391,8 @@
       "сливки",
       "лук фри"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0211",
@@ -8226,7 +8445,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8245,7 +8465,8 @@
       "креметте",
       "базилик"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0212",
@@ -8298,7 +8519,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8324,7 +8546,8 @@
       "фисташка",
       "масло зеленое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0213",
@@ -8376,7 +8599,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8394,7 +8618,8 @@
       "яйцо куриное",
       "кинза"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0214",
@@ -8447,7 +8672,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8471,7 +8697,8 @@
       "артишоки",
       "руккола"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0215",
@@ -8525,7 +8752,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8547,7 +8775,8 @@
       "розмарин",
       "микрозелень"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0216",
@@ -8601,7 +8830,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8625,7 +8855,8 @@
     ],
     "comments": [
       "В порции 2 шт."
-    ]
+    ],
+    "audio-en": ""
   },
   {
     "id": "0217",
@@ -8679,7 +8910,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8701,7 +8933,8 @@
       "эстрагон",
       "масло зеленое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0218",
@@ -8755,7 +8988,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8777,7 +9011,8 @@
       "кунжут кимчи",
       "лук резанец"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0219",
@@ -8826,7 +9061,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8847,7 +9083,8 @@
       "сахар",
       "желток куриного яйца"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0220",
@@ -8896,7 +9133,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8912,7 +9150,8 @@
       "ягоды сезонные",
       "мята"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0221",
@@ -8961,7 +9200,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -8980,7 +9220,8 @@
     ],
     "comments": [
       "Тыкву убрать нельзя. Готовится только на молоке и сливках."
-    ]
+    ],
+    "audio-en": ""
   },
   {
     "id": "0222",
@@ -9031,7 +9272,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/en/muss-pryanye-travy.mp3"
       }
     },
     "status": "актуально",
@@ -9060,7 +9302,8 @@
     ],
     "comments": [
       "В составе желатин - не подходит вегетарианцам."
-    ]
+    ],
+    "audio-en": "../audio/en/muss-pryanye-travy.mp3"
   },
   {
     "id": "0223",
@@ -9109,7 +9352,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9126,7 +9370,8 @@
       "молоко",
       "сливки"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0224",
@@ -9175,7 +9420,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9196,7 +9442,8 @@
       "лаванда",
       "фундук"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0225",
@@ -9246,7 +9493,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9263,10 +9511,12 @@
     ],
     "comments": [
       "Гостям к блюду рекомендуем: сметану, мед, варенье, ягоды."
-    ]
+    ],
+    "audio-en": ""
   },
   {
-    "_menu": "════════════════════════════════════════════ ДЕТСКОЕ МЕНЮ (ID: 301-399) ════════════════════════════════════════════"
+    "_menu": "════════════════════════════════════════════ ДЕТСКОЕ МЕНЮ (ID: 301-399) ════════════════════════════════════════════",
+    "audio-en": ""
   },
   {
     "id": "0301",
@@ -9318,7 +9568,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9339,7 +9590,8 @@
     ],
     "comments": [
       "Крылья покупные. Маринуем не мы."
-    ]
+    ],
+    "audio-en": ""
   },
   {
     "id": "0302",
@@ -9387,7 +9639,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9401,7 +9654,8 @@
       "морковь",
       "сметана"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0303",
@@ -9451,7 +9705,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9472,7 +9727,8 @@
       "лук",
       "масло сливочное"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0304",
@@ -9522,7 +9778,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9539,7 +9796,8 @@
       "укроп",
       "масло базиликовое"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0305",
@@ -9592,7 +9850,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9614,7 +9873,8 @@
       "розмарин",
       "микрозелень"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0306",
@@ -9663,7 +9923,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9679,13 +9940,16 @@
       "масло базиликовое",
       "микрозелень"
     ],
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
-    "_menu": "════════════════════════════════════════════ СЕЗОННОЕ МЕНЮ (ID: 401-499) ════════════════════════════════════════════"
+    "_menu": "════════════════════════════════════════════ СЕЗОННОЕ МЕНЮ (ID: 401-499) ════════════════════════════════════════════",
+    "audio-en": ""
   },
   {
-    "_menu": "════════════════════════════════════════════ СПЕЦИАЛЬНОЕ МЕНЮ (ID: 501-599) ════════════════════════════════════════════"
+    "_menu": "════════════════════════════════════════════ СПЕЦИАЛЬНОЕ МЕНЮ (ID: 501-599) ════════════════════════════════════════════",
+    "audio-en": ""
   },
   {
     "id": "0501",
@@ -9731,7 +9995,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -9748,10 +10013,12 @@
     "comments": [
       "Салат для постоянных гостей. В меню нет, не предлагаем.",
       "Красный лук добавляют при заправке салата сметаной."
-    ]
+    ],
+    "audio-en": ""
   },
   {
-    "_menu": "════════════════════════════════════════════ ВИНО (ID: 601-699) ════════════════════════════════════════════"
+    "_menu": "════════════════════════════════════════════ ВИНО (ID: 601-699) ════════════════════════════════════════════",
+    "audio-en": ""
   },
   {
     "id": "0601",
@@ -9789,7 +10056,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Prosecco_Casa_Defra.mp3"
       }
     },
     "status": "актуально",
@@ -9804,7 +10072,8 @@
     "sweetness": "brut",
     "comments": [
       "Итальянское сухое игристое вино, производится из сорта Глера методом Шарма (вторичная ферментация в резервуаре), благодаря чему более легкое и доступное, чем шампанское . Рекомендуется пить молодым (до ~2 лет), так как со временем вино теряет свежесть ."
-    ]
+    ],
+    "audio-en": "../audio/wine/Prosecco_Casa_Defra.mp3"
   },
   {
     "id": "0602",
@@ -9840,7 +10109,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Zinfandel_Long_Barn.mp3"
       }
     },
     "status": "актуально",
@@ -9849,7 +10119,8 @@
     "features": "",
     "grapeVarieties": [],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Zinfandel_Long_Barn.mp3"
   },
   {
     "id": "0603",
@@ -9885,7 +10156,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Tempranillo_Edicion_Limitada.mp3"
       }
     },
     "status": "актуально",
@@ -9896,7 +10168,8 @@
       "Темпранильо 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Tempranillo_Edicion_Limitada.mp3"
   },
   {
     "id": "0604",
@@ -9932,7 +10205,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Old_Vineyard_Pinot_Noir.mp3"
       }
     },
     "status": "актуально",
@@ -9943,7 +10217,8 @@
       "Пино Нуар: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Old_Vineyard_Pinot_Noir.mp3"
   },
   {
     "id": "0605",
@@ -9979,7 +10254,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/vino_castellare_di_castellina_chianti_classico.mp3"
       }
     },
     "status": "актуально",
@@ -9991,7 +10267,8 @@
       "Канайоло: 10%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/vino_castellare_di_castellina_chianti_classico.mp3"
   },
   {
     "id": "0606",
@@ -10027,7 +10304,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Pinot_Grigio__Bottega_Vinai.mp3"
       }
     },
     "status": "актуально",
@@ -10038,7 +10316,8 @@
       "Пино Гриджио: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Pinot_Grigio__Bottega_Vinai.mp3"
   },
   {
     "id": "0607",
@@ -10074,7 +10353,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Chablis_Sainte_Claire_Jean-Marc_Brocard.mp3"
       }
     },
     "status": "актуально",
@@ -10085,7 +10365,8 @@
       "Шардоне: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Chablis_Sainte_Claire_Jean-Marc_Brocard.mp3"
   },
   {
     "id": "0608",
@@ -10121,7 +10402,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/vino_dr_loosen_blue_slate_riesling_dry.mp3"
       }
     },
     "status": "актуально",
@@ -10132,7 +10414,8 @@
       "Рислинг: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/vino_dr_loosen_blue_slate_riesling_dry.mp3"
   },
   {
     "id": "0609",
@@ -10168,7 +10451,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Paddle_Creek_Sauvignon_Blanc_Lake_Road.mp3"
       }
     },
     "status": "актуально",
@@ -10179,7 +10463,8 @@
       "Совиньон блан: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Paddle_Creek_Sauvignon_Blanc_Lake_Road.mp3"
   },
   {
     "id": "0610",
@@ -10215,7 +10500,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -10226,7 +10512,8 @@
       "Гролло: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0611",
@@ -10262,7 +10549,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/vino_la_ciaude_domaine_anne_gros_jean_paul_tollot.mp3"
       }
     },
     "status": "актуально",
@@ -10271,7 +10559,8 @@
     "features": "",
     "grapeVarieties": [],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/vino_la_ciaude_domaine_anne_gros_jean_paul_tollot.mp3"
   },
   {
     "id": "0612",
@@ -10307,7 +10596,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Bourgogne_Pinot_Noir_Terres_de_Famille_Domaine_de_la_Vougeraie.mp3"
       }
     },
     "status": "актуально",
@@ -10318,7 +10608,8 @@
       "Пино Нуар: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Bourgogne_Pinot_Noir_Terres_de_Famille_Domaine_de_la_Vougeraie.mp3"
   },
   {
     "id": "0613",
@@ -10354,7 +10645,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Fumin_Les_Cretes.mp3"
       }
     },
     "status": "актуально",
@@ -10365,7 +10657,8 @@
       "Фумин: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Fumin_Les_Cretes.mp3"
   },
   {
     "id": "0614",
@@ -10401,7 +10694,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/vino_50_50_avignonesi_capannelle.mp3"
       }
     },
     "status": "актуально",
@@ -10410,7 +10704,8 @@
     "features": "",
     "grapeVarieties": [],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/vino_50_50_avignonesi_capannelle.mp3"
   },
   {
     "id": "0615",
@@ -10446,7 +10741,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Oasi_Mantellina_Lugana_Allegrini.mp3"
       }
     },
     "status": "актуально",
@@ -10458,7 +10754,8 @@
       "Кортезе."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Oasi_Mantellina_Lugana_Allegrini.mp3"
   },
   {
     "id": "0616",
@@ -10494,7 +10791,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -10505,7 +10803,8 @@
       "Шардоне: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0617",
@@ -10541,7 +10840,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/vino_tavel_e_guigal.mp3"
       }
     },
     "status": "актуально",
@@ -10555,7 +10855,8 @@
       "Сира - 10 %."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/vino_tavel_e_guigal.mp3"
   },
   {
     "id": "0618",
@@ -10591,7 +10892,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/vino_piper_heidsieck_white_brut.mp3"
       }
     },
     "status": "актуально",
@@ -10604,7 +10906,8 @@
       "Пино Менье."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/vino_piper_heidsieck_white_brut.mp3"
   },
   {
     "id": "0619",
@@ -10640,7 +10943,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/vino_speri_valpolicella_classico.mp3"
       }
     },
     "status": "актуально",
@@ -10653,7 +10957,8 @@
       "Молинара: 10%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/vino_speri_valpolicella_classico.mp3"
   },
   {
     "id": "0620",
@@ -10689,7 +10994,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/vino_domaine_masson_blondelet_sancerre_rouge_thauvenay.mp3"
       }
     },
     "status": "актуально",
@@ -10700,7 +11006,8 @@
       "Пино Нуар: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/vino_domaine_masson_blondelet_sancerre_rouge_thauvenay.mp3"
   },
   {
     "id": "0621",
@@ -10736,7 +11043,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/Capannelle_Solare.mp3"
       }
     },
     "status": "актуально",
@@ -10748,7 +11056,8 @@
       "Мальвазия Нера: 20%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/Capannelle_Solare.mp3"
   },
   {
     "id": "0622",
@@ -10784,7 +11093,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/La_Reserve_dAngludet_Margaux.mp3"
       }
     },
     "status": "актуально",
@@ -10797,7 +11107,8 @@
       "Пти Вердо: 5%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/La_Reserve_dAngludet_Margaux.mp3"
   },
   {
     "id": "0623",
@@ -10833,7 +11144,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": ""
       }
     },
     "status": "актуально",
@@ -10844,7 +11156,8 @@
       "Турбиана: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": ""
   },
   {
     "id": "0624",
@@ -10880,7 +11193,8 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": ""
+        "tags-en": "",
+        "audio-en": "../audio/wine/vino_gavi_dei_gavi.mp3"
       }
     },
     "status": "актуально",
@@ -10891,6 +11205,7 @@
       "Кортезе: 100%."
     ],
     "sweetness": "",
-    "comments": []
+    "comments": [],
+    "audio-en": "../audio/wine/vino_gavi_dei_gavi.mp3"
   }
 ]

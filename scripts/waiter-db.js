@@ -134,7 +134,8 @@ function getEnglishTranslation(dish) {
     description: (enData['description-en'] || '').trim(),
     contains: (enData['contains-en'] || '').trim(),
     allergens: parseList(enData['allergens-en'] || ''),
-    tags: parseList(enData['tags-en'] || '')
+    tags: parseList(enData['tags-en'] || ''),
+    audio: (enData['audio-en'] || '').trim()
   };
 }
 
@@ -164,8 +165,10 @@ function buildEnglishDish(dish) {
     contains: translation.contains || dish.contains,
     allergens: translation.allergens?.length ? translation.allergens : dish.allergens,
     tags: translation.tags?.length ? translation.tags : dish.tags,
+    audio_en: translation.audio || dish['audio-en'] || '',
     i18n: null
   };
+  englishDish['audio-en'] = englishDish.audio_en;
   return englishDish;
 }
 
@@ -732,23 +735,6 @@ function buildModalBody(dish) {
     primaryColumn.appendChild(createRichTextBlock('Особенности', dish.features));
   }
 
-  if (dish.raw_html) {
-    const rawBlock = document.createElement('div');
-    rawBlock.className = 'meta-block';
-    const heading = document.createElement('strong');
-    heading.textContent = 'Исходный HTML';
-    rawBlock.appendChild(heading);
-    const details = document.createElement('details');
-    const summary = document.createElement('summary');
-    summary.textContent = 'Показать HTML';
-    details.appendChild(summary);
-    const pre = document.createElement('pre');
-    pre.textContent = dish.raw_html;
-    details.appendChild(pre);
-    rawBlock.appendChild(details);
-    primaryColumn.appendChild(rawBlock);
-  }
-
   const englishTranslation = getEnglishTranslation(dish);
   if (hasEnglishContent(englishTranslation)) {
     primaryColumn.appendChild(createTranslationBlock('English', englishTranslation, () => openEnglishModal(dish)));
@@ -804,7 +790,7 @@ function buildModalBody(dish) {
 }
 
 function buildModalHeader(dish, options = {}) {
-  const { titleId = 'modalDishTitle' } = options;
+  const { titleId = 'modalDishTitle', audioSource } = options;
 
   const modalHeader = document.createElement('header');
   modalHeader.className = 'modal-header';
@@ -836,10 +822,29 @@ function buildModalHeader(dish, options = {}) {
   menuTag.textContent = dish.menu || 'Без меню';
   headerInfo.appendChild(menuTag);
 
+  const titleRow = document.createElement('div');
+  titleRow.className = 'modal-title-row';
+
   const title = document.createElement('h2');
   title.id = titleId;
   title.textContent = dish.title || 'Без названия';
-  headerInfo.appendChild(title);
+  titleRow.appendChild(title);
+
+  if (audioSource) {
+    const audioBtn = document.createElement('button');
+    audioBtn.type = 'button';
+    audioBtn.className = 'modal-audio-btn';
+    audioBtn.setAttribute('aria-label', `Слушать: ${title.textContent}`);
+    audioBtn.innerText = '🔊';
+    audioBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const audio = new Audio(audioSource);
+      audio.play().catch((err) => console.error('Audio play error:', err));
+    });
+    titleRow.appendChild(audioBtn);
+  }
+
+  headerInfo.appendChild(titleRow);
 
   let metaRow = null;
 
@@ -1009,7 +1014,10 @@ function openEnglishModal(dish, triggerElement) {
 
   englishModalContent.innerHTML = '';
 
-  const modalHeader = buildModalHeader(englishDish, { titleId: 'englishModalTitle' });
+  const modalHeader = buildModalHeader(englishDish, {
+    titleId: 'englishModalTitle',
+    audioSource: englishDish.audio_en
+  });
   const body = buildModalBody(englishDish);
 
   englishModalContent.appendChild(modalHeader);

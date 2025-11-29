@@ -747,6 +747,33 @@
       letter-spacing: -0.015em;
     }
 
+    .modal-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .modal-audio-btn {
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+      color: inherit;
+      border-radius: 999px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      transition: transform 0.1s ease, background 0.2s ease;
+    }
+
+    .modal-audio-btn:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .modal-audio-btn:active {
+      transform: scale(0.95);
+    }
+
     .modal-header-info .section {
       font-size: 13px;
       display: inline-flex;
@@ -1316,10 +1343,6 @@
       <label>
         <span>Особенности</span>
         <textarea name="features" placeholder="Ключевые особенности блюда"></textarea>
-      </label>
-      <label>
-        <span>Исходный HTML</span>
-        <textarea name="rawHtml" placeholder="Скопируйте оригинальную HTML-разметку блюда"></textarea>
       </label>
       <label>
         <span>Изображение — адрес</span>
