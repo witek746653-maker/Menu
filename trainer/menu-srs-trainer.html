@@ -166,7 +166,7 @@
       { value: 'kids', label: 'Детское меню', menus: ['Детское меню'] },
       { value: 'seasonal', label: 'Сезонное меню и фестивали', menus: ['Постное меню', 'Специальное меню'] },
       { value: 'wine', label: 'Вино', menus: ['Вино'] },
-      { value: 'english', label: 'Меню на английском', menus: ['Меню на английском'] },
+      { value: 'english', label: 'English menu', menus: ['English menu'] },
       { value: 'communication', label: 'Коммуникация и сервис', menus: ['Коммуникация и сервис'] }
     ];
 
@@ -267,22 +267,33 @@
       return `${icon} ${parts.join(' · ')}`;
     }
 
-    function normalizeCards(raw, defaults = {}) {
+    function normalizeCards(raw, defaults = {}, options = {}) {
+      const { locale, idSuffix = '', tagExtra = [], menuOverride } = options;
       return raw
-        .filter(item => item && item.id && item.title)
-        .map(item => ({
-          id: item.id,
-          title: item.title.trim(),
-          description: item.description || '',
-          contains: item.contains || '',
-          allergens: item.allergens || [],
-          tags: item.tags || [],
-          section: item.section || defaults.section || 'Без раздела',
-          menu: item.menu || defaults.menu || 'Без меню',
-          type: item.type || defaults.type || 'dish',
-          image_url: item.image_url || item.image?.src || item.image?.url || item.image?.path,
-          image_alt: item.image?.alt || item.image_alt
-        }));
+        .filter(item => {
+          if (!item || !item.id || !item.title) return false;
+          return (item.status || '').toLowerCase() !== 'в архиве';
+        })
+        .map(item => {
+          const localized = locale ? item?.i18n?.[locale] : null;
+          return {
+            id: `${item.id}${idSuffix}`,
+            title: (localized?.title || item.title || '').trim(),
+            description: localized?.description || item.description || '',
+            contains: localized?.contains || item.contains || '',
+            allergens: item.allergens || [],
+            tags: [
+              ...(item.tags || []),
+              ...(localized?.tags || []),
+              ...tagExtra
+            ].filter(Boolean),
+            section: item.section || defaults.section || 'Без раздела',
+            menu: menuOverride || item.menu || defaults.menu || 'Без меню',
+            type: item.type || defaults.type || 'dish',
+            image_url: item.image_url || item.image?.src || item.image?.url || item.image?.path,
+            image_alt: item.image?.alt || item.image_alt
+          };
+        });
     }
 
     function menuMatches(card, menuValue) {
@@ -296,7 +307,7 @@
         const count = cards.filter(c => {
           if (!c.type || c.type === 'dish') return menuMatches(c, opt.value);
           if (opt.value === 'communication') return c.menu === 'Коммуникация и сервис';
-          if (opt.value === 'english') return c.menu === 'Меню на английском';
+          if (opt.value === 'english') return c.menu === 'English menu';
           return false;
         }).length;
         return { ...opt, count };
@@ -538,8 +549,14 @@
       const [menuRes, serviceRes] = await Promise.all([fetch(MENU_DATA_URL), fetch(COMMUNICATION_URL)]);
       const [menuRaw, serviceRaw] = await Promise.all([menuRes.json(), serviceRes.json()]);
       const menuCards = normalizeCards(menuRaw, { type: 'dish' });
+      const englishCards = normalizeCards(menuRaw.filter(item => item?.i18n?.en), { type: 'dish' }, {
+        locale: 'en',
+        idSuffix: '-en',
+        tagExtra: ['english'],
+        menuOverride: 'English menu'
+      });
       const communicationCards = normalizeCards(serviceRaw, { type: 'service', menu: 'Коммуникация и сервис' });
-      state.cards = [...menuCards, ...communicationCards];
+      state.cards = [...menuCards, ...englishCards, ...communicationCards];
       buildMenus(state.cards);
       buildSections(state.cards);
       updateModeVisibility();
