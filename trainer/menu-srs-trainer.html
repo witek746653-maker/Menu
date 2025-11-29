@@ -279,7 +279,9 @@
           tags: item.tags || [],
           section: item.section || defaults.section || 'Без раздела',
           menu: item.menu || defaults.menu || 'Без меню',
-          type: item.type || defaults.type || 'dish'
+          type: item.type || defaults.type || 'dish',
+          image_url: item.image_url || item.image?.src || item.image?.url || item.image?.path,
+          image_alt: item.image?.alt || item.image_alt
         }));
     }
 
