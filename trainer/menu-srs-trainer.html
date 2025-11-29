@@ -150,7 +150,7 @@
 
   <script>
     const MENU_DATA_URL = '../data/menu-database.json';
-    const COMMUNICATION_URL = './communication-cards.json';
+    const COMMUNICATION_URL = '../data/communication-cards.json';
     const STORAGE_KEY = 'menu-srs-progress-v2';
 
     const MENU_OPTIONS = [
@@ -162,6 +162,14 @@
       { value: 'wine', label: 'Вино', menus: ['Вино'] },
       { value: 'english', label: 'Меню на английском', menus: ['Меню на английском'] },
       { value: 'communication', label: 'Коммуникация и сервис', menus: ['Коммуникация и сервис'] }
+    ];
+
+    const MENU_SECTION_FILTERS = new Set(['main', 'breakfast', 'seasonal', 'kids', 'english']);
+    const COMMUNICATION_SECTIONS = [
+      'Общие вопросы',
+      'Рекомендации блюд',
+      'Стандарты сервиса и этикет',
+      'Сценарии общения на английском'
     ];
 
     const MODES = [
@@ -190,6 +198,7 @@
       menuFilter: document.getElementById('menuFilter'),
       sectionFilter: document.getElementById('sectionFilter'),
       modeSelect: document.getElementById('modeSelect'),
+      modeLabel: document.querySelector('label[for="modeSelect"]'),
       searchInput: document.getElementById('searchInput'),
       shuffleBtn: document.getElementById('shuffleBtn'),
       resetBtn: document.getElementById('resetProgress'),
@@ -257,13 +266,28 @@
     }
 
     function buildSections(cards) {
-      const scopeCards = cards.filter(card => state.filterSection === 'all-global' ? true : menuMatches(card, state.filterMenu));
-      const sections = Array.from(new Set(scopeCards.map(c => c.section))).sort();
-      const menuLabel = MENU_OPTIONS.find(m => m.value === state.filterMenu)?.label || 'выбранного меню';
+      let sections = [];
+      const isCommunication = state.filterMenu === 'communication';
+      const isWine = state.filterMenu === 'wine';
+      const isAllMenus = state.filterMenu === 'all';
+
+      if (isCommunication) {
+        sections = COMMUNICATION_SECTIONS;
+      } else {
+        const scopeCards = cards.filter((card) => {
+          if (isWine) return menuMatches(card, 'wine');
+          if (MENU_SECTION_FILTERS.has(state.filterMenu)) return menuMatches(card, state.filterMenu);
+          return isAllMenus ? true : menuMatches(card, state.filterMenu);
+        });
+        sections = Array.from(new Set(scopeCards.map((c) => c.section))).sort();
+      }
+
+      const menuLabel = MENU_OPTIONS.find((m) => m.value === state.filterMenu)?.label || 'выбранного меню';
+      const globalOption = isAllMenus ? '<option value="all-global">Все разделы всех меню</option>' : '';
       ui.sectionFilter.innerHTML = `
         <option value="all-menu">Все разделы (${menuLabel.toLowerCase()})</option>
-        <option value="all-global">Все разделы всех меню</option>
-        ${sections.map(s => `<option value="${s}">${s}</option>`).join('')}
+        ${globalOption}
+        ${sections.map((s) => `<option value="${s}">${s}</option>`).join('')}
       `;
       if (![...ui.sectionFilter.options].some(o => o.value === state.filterSection)) {
         state.filterSection = 'all-menu';
@@ -275,6 +299,7 @@
       const search = state.search.toLowerCase();
       const filtered = state.cards.filter(card => {
         const mode = profile.trainingType;
+        const isCommunicationMenu = state.filterMenu === 'communication';
         const modeTypes = {
           desc: ['dish'],
           contains: ['dish'],
@@ -286,7 +311,7 @@
           scenario_en: ['scenario']
         };
 
-        const allowedTypes = modeTypes[mode] || ['dish'];
+        const allowedTypes = isCommunicationMenu ? ['service', 'question', 'scenario'] : modeTypes[mode] || ['dish'];
         if (!allowedTypes.includes(card.type || 'dish')) return false;
 
         if (mode === 'scenario_en' && !card.tags.some(t => t.toLowerCase().includes('english'))) return false;
@@ -391,7 +416,9 @@
       ui.ratingButtons.forEach(btn => btn.disabled = true);
       renderTags(card.tags || []);
 
-      switch(profile.trainingType) {
+      const isCommunicationMenu = state.filterMenu === 'communication';
+
+      switch(isCommunicationMenu ? 'communication' : profile.trainingType) {
         case 'contains':
           ui.questionText.textContent = card.title;
           ui.answerText.innerHTML = card.contains || 'Нет состава';
@@ -405,6 +432,7 @@
         case 'situation':
         case 'recommend':
         case 'scenario_en':
+        case 'communication':
           ui.questionText.textContent = card.title;
           ui.answerText.innerHTML = card.description || 'Ответ отсутствует';
           break;
@@ -413,7 +441,7 @@
           ui.answerText.textContent = card.description || 'Описание отсутствует';
       }
 
-      if (['general', 'service', 'situation', 'recommend', 'scenario_en'].includes(profile.trainingType)) {
+      if (isCommunicationMenu || ['general', 'service', 'situation', 'recommend', 'scenario_en'].includes(profile.trainingType)) {
         ui.extra.innerHTML = `
           <div>
             <strong style="color:var(--accent-3)">Тип карточки</strong>
@@ -458,6 +486,18 @@
       ui.modeSelect.value = profile.trainingType;
     }
 
+    function updateModeVisibility() {
+      const hideMode = state.filterMenu === 'communication';
+      if (hideMode) {
+        profile.trainingType = 'desc';
+      }
+      ui.modeSelect.hidden = hideMode;
+      ui.modeLabel.hidden = hideMode;
+      if (!hideMode) {
+        ui.modeSelect.value = profile.trainingType;
+      }
+    }
+
     async function init() {
       buildModeSelect();
       const [menuRes, serviceRes] = await Promise.all([fetch(MENU_DATA_URL), fetch(COMMUNICATION_URL)]);
@@ -467,6 +507,7 @@
       state.cards = [...menuCards, ...communicationCards];
       buildMenus(state.cards);
       buildSections(state.cards);
+      updateModeVisibility();
       buildQueue();
     }
 
@@ -479,8 +520,9 @@
       buildSections(state.cards);
       buildQueue();
       showCard();
+      updateModeVisibility();
     });
-    ui.menuFilter.addEventListener('change', e => { state.filterMenu = e.target.value; state.filterSection = 'all-menu'; buildSections(state.cards); buildQueue(); });
+    ui.menuFilter.addEventListener('change', e => { state.filterMenu = e.target.value; state.filterSection = 'all-menu'; updateModeVisibility(); buildSections(state.cards); buildQueue(); });
     ui.sectionFilter.addEventListener('change', e => { state.filterSection = e.target.value; buildQueue(); });
     ui.searchInput.addEventListener('input', e => { state.search = e.target.value; buildQueue(); });
     ui.shuffleBtn.addEventListener('click', () => { state.queue.sort(() => Math.random() - 0.5); state.currentIndex = 0; showCard(); });
