@@ -70,6 +70,7 @@
   .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--panel); border: 1px solid var(--border); font-size: 13px; margin-right: 6px; margin-bottom: 6px }
   .answer-block { padding: 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); box-shadow: inset 0 1px 0 rgba(255,255,255,.4) }
   .grid-two { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: start }
+  .multiline { white-space: pre-line }
 
   .stats { display: flex; gap: 12px; flex-wrap: wrap }
   .stat { padding: 10px 12px; border-radius: 12px; background: var(--panel); border: 1px solid var(--border); box-shadow: var(--shadow-md); min-width: 140px }
@@ -253,6 +254,19 @@
         [copy[i], copy[j]] = [copy[j], copy[i]];
       }
       return copy;
+    }
+
+    function escapeHTML(value = '') {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderMultiline(text = '') {
+      return `<div class="multiline">${escapeHTML(text)}</div>`;
     }
 
     function slugify(value = '') {
@@ -498,10 +512,14 @@
 
       switch(isCommunicationMenu ? 'communication' : profile.trainingType) {
         case 'contains':
-          ui.answerText.innerHTML = card.contains || 'Нет состава';
+          ui.answerText.innerHTML = card.contains ? renderMultiline(card.contains) : 'Нет состава';
           break;
         case 'feat':
-          ui.answerText.innerHTML = `${card.features?.length ? `<ul>${card.features.map(f => `<li>${f}</li>`).join('')}</ul>` : 'Особенности не указаны'}<div style="margin-top:6px">${card.allergens?.length ? 'Аллергены: ' + card.allergens.join(', ') : 'Аллергены не указаны'}</div>`;
+          if (card.featuresRaw) {
+            ui.answerText.innerHTML = renderMultiline(card.featuresRaw.trim());
+          } else {
+            ui.answerText.innerHTML = `${card.features?.length ? `<ul>${card.features.map(f => `<li>${f}</li>`).join('')}</ul>` : 'Особенности не указаны'}<div style="margin-top:6px">${card.allergens?.length ? 'Аллергены: ' + card.allergens.join(', ') : 'Аллергены не указаны'}</div>`;
+          }
           break;
         case 'general':
         case 'service':
@@ -527,10 +545,11 @@
           </div>
         `;
       } else {
+        const containsHtml = card.contains ? renderMultiline(card.contains) : 'Нет данных';
         ui.extra.innerHTML = `
           <div>
             <strong style="color:var(--accent-3)">Состав/подача</strong>
-            <div class="hint">${card.contains || 'Нет данных'}</div>
+            <div class="hint">${containsHtml}</div>
           </div>
           <div>
             <strong style="color:var(--accent-3)">Аллергены</strong>
@@ -623,7 +642,8 @@
 
           if (!normalized) return null;
 
-          const features = (entry?.features || '')
+          const featuresRaw = entry?.features || '';
+          const features = (featuresRaw || '')
             .split(/\n+/)
             .map(line => line.trim())
             .filter(Boolean);
@@ -631,6 +651,7 @@
           return {
             ...normalized,
             features,
+            featuresRaw,
             englishCategory: getEnglishSectionLabel(baseCard.menu)
           };
         })
