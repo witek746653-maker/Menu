@@ -136,6 +136,7 @@
         <div id="tagsRow" class="badges"></div>
 
         <div id="answerBlock" class="answer-block" hidden>
+          <div id="answerTitle" class="card-title" style="font-size:18px; margin:0 0 6px 0"></div>
           <div id="answerText"></div>
           <div id="extraDetails" class="grid-two" style="margin-top:10px"></div>
         </div>
@@ -219,6 +220,7 @@
       imageWrapper: document.getElementById('imageWrapper'),
       cardImage: document.getElementById('cardImage'),
       answerBlock: document.getElementById('answerBlock'),
+      answerTitle: document.getElementById('answerTitle'),
       answerText: document.getElementById('answerText'),
       extra: document.getElementById('extraDetails'),
       tagsRow: document.getElementById('tagsRow'),
@@ -398,15 +400,18 @@
         ui.cardTitle.textContent = 'Карточки не найдены';
         ui.cardSubtitle.textContent = '';
         ui.questionText.textContent = 'Попробуйте изменить фильтры или сбросить прогресс.';
+        ui.answerTitle.textContent = '';
         ui.answerBlock.hidden = true;
         ui.ratingButtons.forEach(btn => btn.disabled = true);
         ui.revealBtn.disabled = true;
         return;
       }
 
-      ui.cardTitle.textContent = card.title;
+      const previewTitle = getTitlePreview(card.title);
+      ui.cardTitle.textContent = previewTitle;
       ui.cardSubtitle.textContent = `${card.section} · ${card.menu} · ${card.id}`;
       ui.answerBlock.hidden = true;
+      ui.answerTitle.textContent = card.title;
       ui.revealBtn.disabled = false;
       ui.ratingButtons.forEach(btn => btn.disabled = true);
       const isCommunicationMenu = state.filterMenu === 'communication';
