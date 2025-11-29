@@ -46,22 +46,28 @@ const state = {
 
 const ALLERGEN_PRIORITY = [
   'орехи',
-  'арахис',
   'лактоза',
   'глютен',
   'яйца',
   'морепродукты',
   'рыба',
-  'моллюски',
   'цитрусы',
   'кунжут',
-  'горчица'
+  'горчица',
+  'nuts',
+  'lactose',
+  'gluten',
+  'eggs',
+  'seafood',
+  'fish',
+  'citrus',
+  'sesame',
+  'mustard'
 ];
 
 const ALLERGEN_ICONS = {
   орехи: '🥜',
   лактоза: '🥛',
-  молоко: '🥛',
   глютен: '🌾',
   яйца: '🥚',
   цитрусы: '🍋',
@@ -81,7 +87,29 @@ const ALLERGEN_ICONS = {
   эстрагон: '🌿',
   халапеньо: '🌶️',
   шафран: '🧡',
-  зелень: '🌿'
+  зелень: '🌿',
+  nuts: '🥜',
+  lactose: '🥛',
+  gluten: '🌾',
+  eggs: '🥚',
+  citrus: '🍋',
+  seafood: '🍤',
+  fish: '🐟',
+  sesame: '⚪️',
+  mustard: '🌭',
+  garlic: '🧄',
+  onion: '🧅',
+  "chili pepper": '🌶️',
+  cilantro: '🌿',
+  alcohol: '🍷',
+  mushrooms: '🍄',
+  honey: '🍯',
+  truffle: '🍄',
+  pork: '🐖',
+  tarragon: '🌿',
+  jalapeño: '🌶️',
+  saffron: '🧡',
+  herbs: '🌿'
 };
 
 const FEATURE_ICON_TAGS = {
