@@ -99,14 +99,16 @@
     </header>
 
     <div class="toolbar">
-      <label for="menuFilter">Меню</label>
-      <select id="menuFilter"></select>
-
       <label for="sectionFilter">Раздел</label>
       <select id="sectionFilter"></select>
 
       <label for="modeSelect">Режим</label>
-      <select id="modeSelect"></select>
+      <select id="modeSelect">
+        <option value="title-desc">Название → описание</option>
+        <option value="desc-title">Описание → название</option>
+        <option value="title-contains">Название → состав</option>
+        <option value="title-allergens">Название → аллергены</option>
+      </select>
 
       <label for="searchInput">Поиск</label>
       <input id="searchInput" type="search" placeholder="Название или тег" />
@@ -149,45 +151,18 @@
   </div>
 
   <script>
-    const MENU_DATA_URL = '../data/menu-database.json';
-    const COMMUNICATION_URL = './communication-cards.json';
-    const STORAGE_KEY = 'menu-srs-progress-v2';
-
-    const MENU_OPTIONS = [
-      { value: 'all', label: 'Все меню', menus: null },
-      { value: 'main', label: 'Основное меню', menus: ['Основное меню (Sabor de la Vida)'] },
-      { value: 'breakfast', label: 'Авторские завтраки', menus: ['Авторские завтраки'] },
-      { value: 'kids', label: 'Детское меню', menus: ['Детское меню'] },
-      { value: 'seasonal', label: 'Сезонное меню и фестивали', menus: ['Постное меню', 'Специальное меню'] },
-      { value: 'wine', label: 'Вино', menus: ['Вино'] },
-      { value: 'english', label: 'Меню на английском', menus: ['Меню на английском'] },
-      { value: 'communication', label: 'Коммуникация и сервис', menus: ['Коммуникация и сервис'] }
-    ];
-
-    const MODES = [
-      { value: 'desc', label: 'Красочное описание', group: 'Карточки меню' },
-      { value: 'contains', label: 'Состав', group: 'Карточки меню' },
-      { value: 'feat', label: 'Особенности и аллергены', group: 'Карточки меню' },
-      { value: 'general', label: 'Общие вопросы', group: 'Коммуникация и сервис' },
-      { value: 'service', label: 'Стандарты сервиса и этикет', group: 'Коммуникация и сервис' },
-      { value: 'situation', label: 'Особые ситуации', group: 'Коммуникация и сервис' },
-      { value: 'recommend', label: 'Рекомендации блюд', group: 'Коммуникация и сервис' },
-      { value: 'scenario_en', label: 'Сценарии общения на английском', group: 'Коммуникация и сервис' }
-    ];
-
-    const profile = { trainingType: 'desc' };
-
+    const DATA_URL = '../data/menu-database.json';
+    const STORAGE_KEY = 'menu-srs-progress-v1';
     const state = {
       cards: [],
       queue: [],
       currentIndex: 0,
-      filterMenu: 'all',
-      filterSection: 'all-menu',
+      mode: 'title-desc',
+      filterSection: 'all',
       search: ''
     };
 
     const ui = {
-      menuFilter: document.getElementById('menuFilter'),
       sectionFilter: document.getElementById('sectionFilter'),
       modeSelect: document.getElementById('modeSelect'),
       searchInput: document.getElementById('searchInput'),
@@ -218,9 +193,9 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
     }
 
-    function normalizeCards(raw, defaults = {}) {
+    function normalizeCards(raw) {
       return raw
-        .filter(item => item && item.id && item.title)
+        .filter(item => item.id && item.title)
         .map(item => ({
           id: item.id,
           title: item.title.trim(),
@@ -228,76 +203,20 @@
           contains: item.contains || '',
           allergens: item.allergens || [],
           tags: item.tags || [],
-          section: item.section || defaults.section || 'Без раздела',
-          menu: item.menu || defaults.menu || 'Без меню',
-          type: item.type || defaults.type || 'dish'
+          section: item.section || 'Без раздела'
         }));
     }
 
-    function menuMatches(card, menuValue) {
-      const option = MENU_OPTIONS.find(m => m.value === menuValue);
-      if (!option || !option.menus) return true;
-      return option.menus.includes(card.menu);
-    }
-
-    function buildMenus(cards) {
-      const withCounts = MENU_OPTIONS.map(opt => {
-        const count = cards.filter(c => {
-          if (!c.type || c.type === 'dish') return menuMatches(c, opt.value);
-          if (opt.value === 'communication') return c.menu === 'Коммуникация и сервис';
-          if (opt.value === 'english') return c.menu === 'Меню на английском';
-          return false;
-        }).length;
-        return { ...opt, count };
-      });
-      ui.menuFilter.innerHTML = withCounts
-        .map(opt => `<option value="${opt.value}">${opt.label}${opt.count ? ` (${opt.count})` : ''}</option>`)
-        .join('');
-      ui.menuFilter.value = state.filterMenu;
-    }
-
     function buildSections(cards) {
-      const scopeCards = cards.filter(card => state.filterSection === 'all-global' ? true : menuMatches(card, state.filterMenu));
-      const sections = Array.from(new Set(scopeCards.map(c => c.section))).sort();
-      const menuLabel = MENU_OPTIONS.find(m => m.value === state.filterMenu)?.label || 'выбранного меню';
-      ui.sectionFilter.innerHTML = `
-        <option value="all-menu">Все разделы (${menuLabel.toLowerCase()})</option>
-        <option value="all-global">Все разделы всех меню</option>
-        ${sections.map(s => `<option value="${s}">${s}</option>`).join('')}
-      `;
-      if (![...ui.sectionFilter.options].some(o => o.value === state.filterSection)) {
-        state.filterSection = 'all-menu';
-      }
-      ui.sectionFilter.value = state.filterSection;
+      const sections = Array.from(new Set(cards.map(c => c.section))).sort();
+      ui.sectionFilter.innerHTML = '<option value="all">Все разделы</option>' +
+        sections.map(s => `<option value="${s}">${s}</option>`).join('');
     }
 
     function filterCards() {
       const search = state.search.toLowerCase();
       const filtered = state.cards.filter(card => {
-        const mode = profile.trainingType;
-        const modeTypes = {
-          desc: ['dish'],
-          contains: ['dish'],
-          feat: ['dish'],
-          general: ['service', 'question'],
-          service: ['service'],
-          situation: ['scenario'],
-          recommend: ['scenario'],
-          scenario_en: ['scenario']
-        };
-
-        const allowedTypes = modeTypes[mode] || ['dish'];
-        if (!allowedTypes.includes(card.type || 'dish')) return false;
-
-        if (mode === 'scenario_en' && !card.tags.some(t => t.toLowerCase().includes('english'))) return false;
-
-        const sectionIsAll = state.filterSection === 'all-menu';
-        const matchesSection = state.filterSection === 'all-global' || sectionIsAll || card.section === state.filterSection;
-        if (!matchesSection) return false;
-
-        const matchesMenu = state.filterSection === 'all-global' ? true : menuMatches(card, state.filterMenu);
-        if (!matchesMenu) return false;
-
+        const matchesSection = state.filterSection === 'all' || card.section === state.filterSection;
         const matchesSearch = !search || card.title.toLowerCase().includes(search) || card.tags.some(t => t.toLowerCase().includes(search));
         return matchesSection && matchesSearch;
       });
@@ -385,57 +304,40 @@
       }
 
       ui.cardTitle.textContent = card.title;
-      ui.cardSubtitle.textContent = `${card.section} · ${card.menu} · ${card.id}`;
+      ui.cardSubtitle.textContent = `${card.section} · ${card.id}`;
       ui.answerBlock.hidden = true;
       ui.revealBtn.disabled = false;
       ui.ratingButtons.forEach(btn => btn.disabled = true);
       renderTags(card.tags || []);
 
-      switch(profile.trainingType) {
-        case 'contains':
+      switch(state.mode) {
+        case 'desc-title':
+          ui.questionText.innerHTML = card.description || 'Описание отсутствует';
+          ui.answerText.textContent = card.title;
+          break;
+        case 'title-contains':
           ui.questionText.textContent = card.title;
           ui.answerText.innerHTML = card.contains || 'Нет состава';
           break;
-        case 'feat':
+        case 'title-allergens':
           ui.questionText.textContent = card.title;
-          ui.answerText.innerHTML = `${card.features?.length ? `<ul>${card.features.map(f => `<li>${f}</li>`).join('')}</ul>` : 'Особенности не указаны'}<div style="margin-top:6px">${card.allergens?.length ? 'Аллергены: ' + card.allergens.join(', ') : 'Аллергены не указаны'}</div>`;
-          break;
-        case 'general':
-        case 'service':
-        case 'situation':
-        case 'recommend':
-        case 'scenario_en':
-          ui.questionText.textContent = card.title;
-          ui.answerText.innerHTML = card.description || 'Ответ отсутствует';
+          ui.answerText.textContent = card.allergens?.length ? card.allergens.join(', ') : 'Аллергены не указаны';
           break;
         default:
           ui.questionText.textContent = card.title;
           ui.answerText.textContent = card.description || 'Описание отсутствует';
       }
 
-      if (['general', 'service', 'situation', 'recommend', 'scenario_en'].includes(profile.trainingType)) {
-        ui.extra.innerHTML = `
-          <div>
-            <strong style="color:var(--accent-3)">Тип карточки</strong>
-            <div class="hint">${card.type || 'service'}</div>
-          </div>
-          <div>
-            <strong style="color:var(--accent-3)">Теги</strong>
-            <div class="hint">${card.tags?.length ? card.tags.join(', ') : 'Не указаны'}</div>
-          </div>
-        `;
-      } else {
-        ui.extra.innerHTML = `
-          <div>
-            <strong style="color:var(--accent-3)">Состав/подача</strong>
-            <div class="hint">${card.contains || 'Нет данных'}</div>
-          </div>
-          <div>
-            <strong style="color:var(--accent-3)">Аллергены</strong>
-            <div class="hint">${card.allergens?.length ? card.allergens.join(', ') : 'Не указаны'}</div>
-          </div>
-        `;
-      }
+      ui.extra.innerHTML = `
+        <div>
+          <strong style="color:var(--accent-3)">Состав/подача</strong>
+          <div class="hint">${card.contains || 'Нет данных'}</div>
+        </div>
+        <div>
+          <strong style="color:var(--accent-3)">Аллергены</strong>
+          <div class="hint">${card.allergens?.length ? card.allergens.join(', ') : 'Не указаны'}</div>
+        </div>
+      `;
     }
 
     function nextCard() {
@@ -443,44 +345,15 @@
       showCard();
     }
 
-    function buildModeSelect() {
-      const groups = MODES.reduce((acc, mode) => {
-        acc[mode.group] = acc[mode.group] || [];
-        acc[mode.group].push(mode);
-        return acc;
-      }, {});
-
-      ui.modeSelect.innerHTML = Object.entries(groups).map(([group, options]) => `
-        <optgroup label="${group}">
-          ${options.map(opt => `<option value="${opt.value}">${opt.label}</option>`).join('')}
-        </optgroup>
-      `).join('');
-      ui.modeSelect.value = profile.trainingType;
-    }
-
     async function init() {
-      buildModeSelect();
-      const [menuRes, serviceRes] = await Promise.all([fetch(MENU_DATA_URL), fetch(COMMUNICATION_URL)]);
-      const [menuRaw, serviceRaw] = await Promise.all([menuRes.json(), serviceRes.json()]);
-      const menuCards = normalizeCards(menuRaw, { type: 'dish' });
-      const communicationCards = normalizeCards(serviceRaw, { type: 'service', menu: 'Коммуникация и сервис' });
-      state.cards = [...menuCards, ...communicationCards];
-      buildMenus(state.cards);
+      const res = await fetch(DATA_URL);
+      const raw = await res.json();
+      state.cards = normalizeCards(raw);
       buildSections(state.cards);
       buildQueue();
     }
 
-    ui.modeSelect.addEventListener('change', e => {
-      profile.trainingType = e.target.value;
-      if (['general', 'service', 'situation', 'recommend', 'scenario_en'].includes(profile.trainingType)) {
-        state.filterMenu = profile.trainingType === 'scenario_en' ? 'english' : 'communication';
-      }
-      ui.menuFilter.value = state.filterMenu;
-      buildSections(state.cards);
-      buildQueue();
-      showCard();
-    });
-    ui.menuFilter.addEventListener('change', e => { state.filterMenu = e.target.value; state.filterSection = 'all-menu'; buildSections(state.cards); buildQueue(); });
+    ui.modeSelect.addEventListener('change', e => { state.mode = e.target.value; showCard(); });
     ui.sectionFilter.addEventListener('change', e => { state.filterSection = e.target.value; buildQueue(); });
     ui.searchInput.addEventListener('input', e => { state.search = e.target.value; buildQueue(); });
     ui.shuffleBtn.addEventListener('click', () => { state.queue.sort(() => Math.random() - 0.5); state.currentIndex = 0; showCard(); });
