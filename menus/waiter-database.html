@@ -417,6 +417,49 @@
       background: rgba(255,255,255,0.02);
     }
 
+    /* Кликабельный блок перевода English с подсветкой */
+    .meta-block.translation-button {
+      position: relative;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      appearance: none;
+      color: inherit;
+      border: 1px solid rgba(255, 209, 102, 0.25);
+      background: linear-gradient(135deg, rgba(255, 209, 102, 0.12), rgba(255, 209, 102, 0.04));
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.3s ease, border 0.2s ease;
+      overflow: hidden;
+    }
+
+    .meta-block.translation-button::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(255, 209, 102, 0.3), transparent 30%),
+                  radial-gradient(circle at 80% 0%, rgba(255, 109, 109, 0.2), transparent 28%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .meta-block.translation-button:hover,
+    .meta-block.translation-button:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255, 209, 102, 0.45);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .meta-block.translation-button:hover::after,
+    .meta-block.translation-button:focus-visible::after {
+      opacity: 1;
+    }
+
+    .meta-block.translation-button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
     .translation-title {
       font-weight: 600;
       font-size: 15px;
@@ -791,6 +834,18 @@
     .modal-body .meta-block summary {
       cursor: pointer;
       color: var(--accent);
+    }
+
+    /* Отдельная модалка для английской карточки */
+    .modal-backdrop--english {
+      z-index: 50;
+      background: radial-gradient(circle at 10% 10%, rgba(255, 209, 102, 0.25), transparent 35%),
+                  rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-backdrop--english .modal-dialog {
+      border-color: rgba(255, 209, 102, 0.4);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
     }
 
     .meta-block .pairing-link {
@@ -1294,6 +1349,14 @@
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalDishTitle">
       <button type="button" class="modal-close" id="modalClose" aria-label="Закрыть модальное окно">×</button>
       <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Отдельное модальное окно для английской карточки блюда -->
+  <div class="modal-backdrop modal-backdrop--english" id="englishModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="englishModalTitle">
+      <button type="button" class="modal-close" id="englishModalClose" aria-label="Закрыть английскую карточку">×</button>
+      <div class="modal-content" id="englishModalContent"></div>
     </div>
   </div>
 

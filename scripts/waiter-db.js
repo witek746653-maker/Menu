@@ -18,6 +18,9 @@ const toast = document.getElementById('toast');
 const dishModal = document.getElementById('dishModal');
 const modalContent = document.getElementById('modalContent');
 const modalCloseBtn = document.getElementById('modalClose');
+const englishModal = document.getElementById('englishModal');
+const englishModalContent = document.getElementById('englishModalContent');
+const englishModalCloseBtn = document.getElementById('englishModalClose');
 const pairingPreview = document.getElementById('pairingPreview');
 const pairingContent = document.getElementById('pairingContent');
 const pairingCloseBtn = document.getElementById('pairingClose');
@@ -91,6 +94,7 @@ const FEATURE_ICON_TAGS = {
 let toastTimeout = null;
 let isSaving = false;
 let lastFocusedElement = null;
+let lastEnglishFocused = null;
 const compactCardsQuery = typeof window !== 'undefined' && window.matchMedia
   ? window.matchMedia('(max-width: 640px)')
   : null;
@@ -112,13 +116,58 @@ const fuseOptions = {
     'pairings.dishes',
     'pairings.notes',
     'tags',
-    'i18n.en.title',
-    'i18n.en.description'
+    'i18n.en.title-en',
+    'i18n.en.description-en'
   ],
   threshold: 0.0,          // 👈 только точное вхождение строки
   ignoreLocation: true,
   minMatchCharLength: 2
 };
+
+function getEnglishTranslation(dish) {
+  const enData = dish.i18n?.en;
+  if (!enData) return null;
+  return {
+    menu: (enData['menu-en'] || '').trim(),
+    section: (enData['section-en'] || '').trim(),
+    title: (enData['title-en'] || '').trim(),
+    description: (enData['description-en'] || '').trim(),
+    contains: (enData['contains-en'] || '').trim(),
+    allergens: parseList(enData['allergens-en'] || ''),
+    tags: parseList(enData['tags-en'] || '')
+  };
+}
+
+function hasEnglishContent(translation) {
+  if (!translation) return false;
+  const { menu, section, title, description, contains, allergens, tags } = translation;
+  return Boolean(
+    menu ||
+    section ||
+    title ||
+    description ||
+    contains ||
+    (Array.isArray(allergens) && allergens.length) ||
+    (Array.isArray(tags) && tags.length)
+  );
+}
+
+function buildEnglishDish(dish) {
+  const translation = getEnglishTranslation(dish);
+  if (!hasEnglishContent(translation)) return null;
+  const englishDish = {
+    ...dish,
+    menu: translation.menu || dish.menu,
+    section: translation.section || dish.section,
+    title: translation.title || dish.title,
+    description: translation.description || dish.description,
+    contains: translation.contains || dish.contains,
+    allergens: translation.allergens?.length ? translation.allergens : dish.allergens,
+    tags: translation.tags?.length ? translation.tags : dish.tags,
+    i18n: null
+  };
+  return englishDish;
+}
 
 function getWorkingDishes() {
   return state.enriched && state.enriched.length ? state.enriched : state.dishes;
@@ -700,11 +749,9 @@ function buildModalBody(dish) {
     primaryColumn.appendChild(rawBlock);
   }
 
-  if (dish.i18n?.en) {
-    const { title: enTitle, description: enDescription } = dish.i18n.en;
-    if (enTitle || enDescription) {
-      primaryColumn.appendChild(createTranslationBlock('English', enTitle, enDescription));
-    }
+  const englishTranslation = getEnglishTranslation(dish);
+  if (hasEnglishContent(englishTranslation)) {
+    primaryColumn.appendChild(createTranslationBlock('English', englishTranslation, () => openEnglishModal(dish)));
   }
 
   const ingredients = Array.isArray(dish.ingredients) ? dish.ingredients : [];
@@ -908,6 +955,11 @@ function createPairingsBlock(pairings = {}) {
   return block;
 }
 
+function updateBodyModalState() {
+  const hasOpenModal = (dishModal?.classList.contains('open')) || (englishModal?.classList.contains('open'));
+  document.body.classList.toggle('modal-open', Boolean(hasOpenModal));
+}
+
 function openDishModal(dish, triggerElement) {
   if (!dishModal || !modalContent) return;
 
@@ -922,7 +974,7 @@ function openDishModal(dish, triggerElement) {
 
   dishModal.classList.add('open');
   dishModal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open');
+  updateBodyModalState();
 
   lastFocusedElement = triggerElement || document.activeElement;
 
@@ -938,7 +990,7 @@ function closeDishModal() {
 
   dishModal.classList.remove('open');
   dishModal.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('modal-open');
+  updateBodyModalState();
   modalContent.innerHTML = '';
   closePairingPreview();
   document.removeEventListener('keydown', handleModalKeydown);
@@ -949,13 +1001,65 @@ function closeDishModal() {
   lastFocusedElement = null;
 }
 
+function openEnglishModal(dish, triggerElement) {
+  if (!englishModal || !englishModalContent) return;
+
+  const englishDish = buildEnglishDish(dish);
+  if (!englishDish) return;
+
+  englishModalContent.innerHTML = '';
+
+  const modalHeader = buildModalHeader(englishDish, { titleId: 'englishModalTitle' });
+  const body = buildModalBody(englishDish);
+
+  englishModalContent.appendChild(modalHeader);
+  englishModalContent.appendChild(body);
+
+  englishModal.classList.add('open');
+  englishModal.setAttribute('aria-hidden', 'false');
+  lastEnglishFocused = triggerElement || document.activeElement;
+
+  if (englishModalCloseBtn) {
+    englishModalCloseBtn.setAttribute('tabindex', '0');
+    englishModalCloseBtn.focus();
+  }
+
+  document.addEventListener('keydown', handleEnglishModalKeydown);
+  updateBodyModalState();
+}
+
+function closeEnglishModal() {
+  if (!englishModal || !englishModal.classList.contains('open')) return;
+
+  englishModal.classList.remove('open');
+  englishModal.setAttribute('aria-hidden', 'true');
+  englishModalContent.innerHTML = '';
+  document.removeEventListener('keydown', handleEnglishModalKeydown);
+  updateBodyModalState();
+
+  if (lastEnglishFocused && typeof lastEnglishFocused.focus === 'function') {
+    lastEnglishFocused.focus();
+  }
+  lastEnglishFocused = null;
+}
+
 function handleModalKeydown(event) {
   if (event.key === 'Escape') {
+    if (englishModal?.classList.contains('open')) {
+      return;
+    }
     if (pairingPreview?.classList.contains('open')) {
       closePairingPreview();
       return;
     }
     closeDishModal();
+  }
+}
+
+function handleEnglishModalKeydown(event) {
+  if (event.key === 'Escape') {
+    event.stopPropagation();
+    closeEnglishModal();
   }
 }
 
@@ -1063,24 +1167,53 @@ function createRichTextBlock(title, content) {
   return block;
 }
 
-function createTranslationBlock(label, title, description) {
-  const block = document.createElement('div');
-  block.className = 'meta-block translation';
+function createTranslationBlock(label, translation, onOpen) {
+  const block = document.createElement('button');
+  block.type = 'button';
+  block.className = 'meta-block translation translation-button';
+  block.setAttribute('aria-label', `Открыть карточку ${label}`);
+
+  block.addEventListener('click', (event) => {
+    event.stopPropagation();
+    if (typeof onOpen === 'function') {
+      onOpen();
+    }
+  });
+
+  block.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (typeof onOpen === 'function') {
+        onOpen();
+      }
+    }
+  });
+
   const heading = document.createElement('strong');
   heading.textContent = label;
   block.appendChild(heading);
-  if (title) {
+
+  if (translation?.title) {
     const titleEl = document.createElement('div');
     titleEl.className = 'translation-title';
-    titleEl.textContent = title;
+    titleEl.textContent = translation.title;
     block.appendChild(titleEl);
   }
-  if (description) {
+
+  if (translation?.description) {
     const desc = document.createElement('div');
     desc.className = 'translation-description';
-    desc.textContent = description;
+    desc.textContent = translation.description;
     block.appendChild(desc);
   }
+
+  const hint = document.createElement('div');
+  hint.className = 'translation-description';
+  hint.style.marginTop = '6px';
+  hint.style.color = 'var(--muted)';
+  hint.textContent = 'Нажмите, чтобы открыть английскую карточку.';
+  block.appendChild(hint);
+
   return block;
 }
 
@@ -1144,8 +1277,8 @@ function openEditor(id = null) {
     editorForm.rawHtml.value = dish.raw_html || '';
     editorForm.imageSrc.value = dish.image?.src || '';
     editorForm.imageAlt.value = dish.image?.alt || '';
-    editorForm.enTitle.value = dish.i18n?.en?.title || '';
-    editorForm.enDescription.value = dish.i18n?.en?.description || '';
+    editorForm.enTitle.value = dish.i18n?.en?.['title-en'] || '';
+    editorForm.enDescription.value = dish.i18n?.en?.['description-en'] || '';
     deleteDishBtn.style.display = 'inline-flex';
   } else {
     state.editingId = null;
@@ -1272,6 +1405,12 @@ async function handleSave() {
     }
   }
 
+  const englishPayload = {
+    ...(existing?.i18n?.en || {}),
+    'title-en': enTitle,
+    'description-en': enDescription
+  };
+
   const payload = {
     ...(existing || {}),
     menu,
@@ -1302,11 +1441,7 @@ async function handleSave() {
         title,
         description
       },
-      en: {
-        ...(existing?.i18n?.en || {}),
-        title: enTitle,
-        description: enDescription
-      }
+      en: englishPayload
     }
   };
 
@@ -1350,8 +1485,11 @@ async function handleSave() {
   if (Array.isArray(payload.pairings?.notes) && payload.pairings.notes.length === 0) {
     delete payload.pairings.notes;
   }
-  if (payload.i18n?.en && !payload.i18n.en.title && !payload.i18n.en.description) {
-    delete payload.i18n.en;
+  if (payload.i18n?.en) {
+    const englishTranslation = getEnglishTranslation({ i18n: { en: payload.i18n.en } });
+    if (!hasEnglishContent(englishTranslation)) {
+      delete payload.i18n.en;
+    }
   }
   if (payload.i18n && !payload.i18n.en && !payload.i18n.ru?.title && !payload.i18n.ru?.description) {
     delete payload.i18n;
@@ -1453,6 +1591,20 @@ if (dishModal) {
   dishModal.addEventListener('click', (event) => {
     if (event.target === dishModal) {
       closeDishModal();
+    }
+  });
+}
+
+if (englishModalCloseBtn) {
+  englishModalCloseBtn.addEventListener('click', () => {
+    closeEnglishModal();
+  });
+}
+
+if (englishModal) {
+  englishModal.addEventListener('click', (event) => {
+    if (event.target === englishModal) {
+      closeEnglishModal();
     }
   });
 }
