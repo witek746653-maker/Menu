@@ -157,6 +157,7 @@
   <script>
     const MENU_DATA_URL = '../data/menu-database.json';
     const COMMUNICATION_URL = '../data/communication-cards.json';
+    const EN_DICT_URL = '../i18n/en.json';
     const STORAGE_KEY = 'menu-srs-progress-v2';
 
     const MENU_OPTIONS = [
@@ -171,6 +172,12 @@
     ];
 
     const MENU_SECTION_FILTERS = new Set(['main', 'breakfast', 'seasonal', 'kids', 'english']);
+    const ENGLISH_SECTIONS = [
+      'Основное меню',
+      'Авторские завтраки',
+      'Сезонное меню и фестивали',
+      'Детское меню'
+    ];
     const GUESS_MENUS = new Set(['main', 'breakfast', 'seasonal', 'kids', 'english']);
     const GUESS_MODES = new Set(['desc', 'contains', 'feat']);
     const COMMUNICATION_SECTIONS = [
@@ -248,6 +255,27 @@
       return copy;
     }
 
+    function slugify(value = '') {
+      const map = {
+        'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'e','ж':'zh','з':'z','и':'i','й':'y','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h','ц':'ts','ч':'ch','ш':'sh','щ':'sch','ы':'y','э':'e','ю':'yu','я':'ya'
+      };
+      return String(value)
+        .toLowerCase()
+        .replace(/[ъь]/g, '')
+        .replace(/[а-яё]/g, ch => map[ch] ?? ch)
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
+
+    function getEnglishSectionLabel(menuName = '') {
+      const normalized = menuName.toLowerCase();
+      if (normalized.includes('завтрак')) return 'Авторские завтраки';
+      if (normalized.includes('детск')) return 'Детское меню';
+      if (normalized.includes('пост') || normalized.includes('специаль')) return 'Сезонное меню и фестивали';
+      return 'Основное меню';
+    }
+
     function getTitlePreview(title) {
       const words = title.trim().split(/\s+/);
       const preview = words.slice(0, 3).join(' ');
@@ -322,9 +350,12 @@
       let sections = [];
       const isCommunication = state.filterMenu === 'communication';
       const isWine = state.filterMenu === 'wine';
+      const isEnglishMenu = state.filterMenu === 'english';
 
       if (isCommunication) {
         sections = COMMUNICATION_SECTIONS;
+      } else if (isEnglishMenu) {
+        sections = ENGLISH_SECTIONS;
       } else {
         const scopeCards = cards.filter((card) => {
           if (isWine) return menuMatches(card, 'wine');
@@ -367,7 +398,11 @@
         if (mode === 'scenario_en' && !card.tags.some(t => t.toLowerCase().includes('english'))) return false;
 
         const sectionIsAll = state.filterSection === 'all-menu';
-        const matchesSection = sectionIsAll || card.section === state.filterSection;
+        const englishSection = state.filterMenu === 'english'
+          ? (card.englishCategory || getEnglishSectionLabel(card.menu))
+          : null;
+        const matchesSection = sectionIsAll
+          || (state.filterMenu === 'english' ? englishSection === state.filterSection : card.section === state.filterSection);
         if (!matchesSection) return false;
 
         const matchesMenu = menuMatches(card, state.filterMenu);
@@ -534,11 +569,14 @@
 
     function updateModeVisibility() {
       const hideMode = state.filterMenu === 'communication';
-      if (hideMode) {
+      const lockMode = state.filterMenu === 'english';
+      if (hideMode || lockMode) {
         profile.trainingType = 'desc';
       }
       ui.modeSelect.hidden = hideMode;
       ui.modeLabel.hidden = hideMode;
+      ui.modeSelect.disabled = lockMode;
+      ui.modeSelect.title = lockMode ? 'Режим недоступен для English menu' : '';
       if (!hideMode) {
         ui.modeSelect.value = profile.trainingType;
       }
@@ -546,15 +584,58 @@
 
     async function init() {
       buildModeSelect();
-      const [menuRes, serviceRes] = await Promise.all([fetch(MENU_DATA_URL), fetch(COMMUNICATION_URL)]);
-      const [menuRaw, serviceRaw] = await Promise.all([menuRes.json(), serviceRes.json()]);
+      const [menuRes, serviceRes, enDictRes] = await Promise.all([
+        fetch(MENU_DATA_URL),
+        fetch(COMMUNICATION_URL),
+        fetch(EN_DICT_URL)
+      ]);
+      const [menuRaw, serviceRaw, enDictRaw] = await Promise.all([
+        menuRes.json(),
+        serviceRes.json(),
+        enDictRes.json().catch(() => ({}))
+      ]);
+
+      const englishDictionary = enDictRaw || {};
       const menuCards = normalizeCards(menuRaw, { type: 'dish' });
-      const englishCards = normalizeCards(menuRaw.filter(item => item?.i18n?.en), { type: 'dish' }, {
-        locale: 'en',
-        idSuffix: '-en',
-        tagExtra: ['english'],
-        menuOverride: 'English menu'
+      const cardBySlug = new Map();
+      menuCards.forEach(card => {
+        const slug = slugify(card.title);
+        if (slug) cardBySlug.set(slug, card);
       });
+
+      const englishCards = Object.entries(englishDictionary)
+        .map(([slug, entry]) => {
+          const baseCard = cardBySlug.get(slug);
+          if (!baseCard) return null;
+
+          const [normalized] = normalizeCards([
+            {
+              ...baseCard,
+              title: entry?.name || baseCard.title,
+              description: entry?.description || baseCard.description,
+              contains: entry?.ingredients || baseCard.contains
+            }
+          ], { type: baseCard.type || 'dish' }, {
+            idSuffix: '-en',
+            tagExtra: ['english'],
+            menuOverride: 'English menu'
+          });
+
+          if (!normalized) return null;
+
+          const features = (entry?.features || '')
+            .split(/\n+/)
+            .map(line => line.trim())
+            .filter(Boolean);
+
+          return {
+            ...normalized,
+            features,
+            englishCategory: getEnglishSectionLabel(baseCard.menu)
+          };
+        })
+        .filter(Boolean);
+
       const communicationCards = normalizeCards(serviceRaw, { type: 'service', menu: 'Коммуникация и сервис' });
       state.cards = [...menuCards, ...englishCards, ...communicationCards];
       buildMenus(state.cards);
