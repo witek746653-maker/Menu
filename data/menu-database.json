@@ -55,8 +55,8 @@
         "title-en": "Imperial Oyster (Russia)",
         "description-en": "Фраза для быстрой презентации гостю: \n“These are Imperial oysters from Vladivostok, served raw with lemon, shallots, red wine vinegar, butter, and croutons. \nThey have a fresh, pronounced sea flavor — please note they contain onion and citrus.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "citrus, onion, lactose, gluten",
+        "tags-en": "garlic-free, light dish, seafood, raw product, low carb, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok.mp3",
         "comments-en": ""
       }
@@ -124,8 +124,8 @@
         "title-en": "Jolie Pink Oyster (Namibia, Africa)",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a Jolie oyster from Namibia. It has a delicate, creamy, and slightly sweet taste with a gentle sea salt note — often called the ‘Atlantic salted caramel’.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "citrus, onion, gluten",
+        "tags-en": "garlic-free, light dish, seafood, raw product, low carb, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/ustritsa-rozovaya-dzholi-namibiya-afrika.mp3",
         "comments-en": ""
       }
@@ -192,8 +192,8 @@
         "title-en": "Oyster “Fine de Claire No.3” (France)",
         "description-en": "Фраза для быстрой презентации гостю:\n“Classic French oysters with a delicate creamy and nutty taste, perfectly balanced between sweetness and salinity.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "citrus, onion, gluten",
+        "tags-en": "garlic-free, light dish, seafood, raw product, low carb, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/ustritsa-fine-de-claire-3-frantsiya.mp3",
         "comments-en": ""
       }
@@ -268,8 +268,8 @@
         "title-en": "Sea urchin with ponzu, avocado mousse, and quail yolk",
         "description-en": "Фраза для презентации гостю:\n\n“This is a fresh sea urchin with ponzu sauce, delicate avocado mousse, and a quail yolk. \nPlease note it is served raw, with citrus, garlic, cilantro, and chili accents.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, cilantro, garlic, citrus, herbs",
+        "tags-en": "light dish, low carb, raw product, gluten-free, lactose-free, onion-free, to share, seafood, with wine, nut-free, mushroom-free",
         "audio-en": "../audio/en/morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom.mp3",
         "comments-en": ""
       }
@@ -355,8 +355,8 @@
         "title-en": "Jamón Iberico (50 g)",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Traditional Spanish cured pork ham, Iberico, aged 18 months.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "pork",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, light dish, low carb, pork, raw product, hearty dish, with wine, with vodka, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/hamon-iberico-50-gr.mp3",
         "comments-en": ""
       }
@@ -415,8 +415,8 @@
         "title-en": "Bruschetta with burrata, tomatoes, and pesto",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a crispy potato brioche with creamy burrata, fresh tomatoes, and classic basil pesto.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, herbs, gluten, garlic",
+        "tags-en": "vegetarian, to share, onion-free, citrus-free, hearty dish, garlic-free, with wine, mushroom-free",
         "audio-en": "../audio/en/brusketta-s-burratoy-tomatami-i-sousom-pesto.mp3",
         "comments-en": ""
       }
@@ -481,8 +481,8 @@
         "title-en": "Bruschetta with wild mushrooms in a creamy sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a potato brioche topped with sautéed mushrooms in cream sauce, finished with herbs.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, mushrooms, gluten",
+        "tags-en": "hearty dish, to share, onion-free, citrus-free, garlic-free, vegetarian, with wine, with vodka",
         "audio-en": "../audio/en/brusketta-s-lesnymi-gribami-v-slivochnom-souse.mp3",
         "comments-en": ""
       }
@@ -545,8 +545,8 @@
         "title-en": "Tapas with Jamón and Soft Cheese",
         "description-en": "Фраза для быстрой презентации гостю:\n“This is a Spanish-style tapas — crispy ciabatta topped with creamy burrata, jamón, and basil pesto, finished with molecular olives and arugula.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, herbs, gluten",
+        "tags-en": "onion-free, garlic-free, hearty dish, with wine, pork, raw product, mushroom-free, with vodka",
         "audio-en": "../audio/en/tapas-s-hamonom-i-myagkim-syrom.mp3",
         "comments-en": ""
       }
@@ -615,8 +615,8 @@
         "title-en": "Tapas with Scallop and Creamy Sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n“Elegant tapas with seared scallop on toasted ciabatta, creamy sauce, and delicate citrus notes.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, herbs, tarragon, gluten",
+        "tags-en": "onion-free, citrus-free, garlic-free, hearty dish, seafood, to share, with vodka, with wine, nut-free, mushroom-free",
         "audio-en": "../audio/en/tapas-s-kremovym-grebeshkom-i-tvorozhnym-syrom.mp3",
         "comments-en": ""
       }
@@ -683,8 +683,8 @@
         "title-en": "Prime beef tenderloin tartare with fried potatoes",
         "description-en": "Скрипт для официанта:\n“At your table, I will prepare the tartare. Our tartare includes: beef tenderloin, egg yolk, mustard, olive oil, ketchup, shallots, capers, cornichons, and a mix of fresh herbs. We also add Tabasco, Worcestershire sauce, salt, and pepper. \nWould you like me to mix all of these ingredients for you?\nWould you like the tartare to be medium spiced, or a bit hotter?”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "cilantro, onion, herbs, sesame, eggs, mustard",
+        "tags-en": "raw product, beef, hearty dish, to share, with wine, with vodka, low carb, nut-free, mushroom-free",
         "audio-en": "../audio/en/tartar-iz-premialnoy-govyazhey-vyrezki-s-zharennym-kartofelem.mp3",
         "comments-en": ""
       }
@@ -762,8 +762,8 @@
         "title-en": "Selection of fine cured meats (Also, Meat Platter)",
         "description-en": "Фраза для быстрой презентации гостю:\nThis is an assortment of Spanish-style cured meats, including Serrano ham and spicy chorizo, all made with pork.\"\nThe assortment includes:\n1. Jamón Serrano (Reserva)\n2. Spicy Chorizo\n3. Venison and Bear Sausages (оленина и медведь)\n4. Beef Sausage\n5. Cured Duck Breast (Cured = вяленый/выдержанный)\n6. Wild Boar belly (also, Fat = жир/сало).\n\nGarnished with Red Currants (красная смородина) and Bay Leaves (Bay Leaf = лавровый лист).",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, pork",
+        "tags-en": "to share, hearty dish, beef, pork, duck, with wine, with vodka, low carb, nut-free, mushroom-free, lactose-free, onion-free, citrus-free",
         "audio-en": "../audio/en/assorti-izyskannyh-myasnyh-delikatesov.mp3",
         "comments-en": ""
       }
@@ -835,8 +835,8 @@
         "title-en": "Tomato & Crab",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a dish of ripe tomatoes with fresh crab meat, complemented by herbs and a light dressing.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, garlic, herbs, tarragon",
+        "tags-en": "onion-free, spicy, citrus-free, seafood, light dish, with wine, low carb, lactose-free, gluten-free, nut-free, mushroom-free, with vodka, fish",
         "audio-en": "../audio/en/tomat-i-krab.mp3",
         "comments-en": ""
       }
@@ -922,8 +922,8 @@
         "title-en": "Tuna Tartare with Spanish Olives, Pine Nuts, and Herbs",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a tartare of yellowfin tuna, combined with Spanish olives, pine nuts, and fresh herbs, finished with lemon juice.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "cilantro, citrus, nuts, herbs, gluten",
+        "tags-en": "lactose-free, garlic-free, light dish, fish, raw product, seafood, with wine, low carb, mushroom-free",
         "audio-en": "../audio/en/tartar-iz-tuntsa-s-ispanskimi-olivkami-kedrovymi-orehami-i-zelenyu.mp3",
         "comments-en": ""
       }
@@ -1006,8 +1006,8 @@
         "title-en": "Salmon and Oyster Tartare",
         "description-en": "Фраза для быстрой презентации гостю:\n“Fresh tartare of salmon and oysters with creamy avocado, citrus dressing, and a touch of sea flavor.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, cilantro, citrus, onion, herbs",
+        "tags-en": "gluten-free, light dish, seafood, spicy, fish, raw product, lactose-free, garlic-free, nut-free, mushroom-free, with wine, with vodka, long wait",
         "audio-en": "../audio/en/tartar-iz-ustrits-i-semgi.mp3",
         "comments-en": ""
       }
@@ -1080,8 +1080,8 @@
         "title-en": "Shrimp carpaccio with eggplant cream, tomatoes, and mango–chia sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a shrimp carpaccio with eggplant cream, fresh tomatoes, and a bright mango-chia sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, chili pepper, cilantro, citrus, onion, herbs, honey, sesame",
+        "tags-en": "gluten-free, light dish, seafood, raw product, garlic-free, with wine, nut-free, mushroom-free",
         "audio-en": "../audio/en/karpachcho-iz-krevetki-s-kremom-iz-baklazhana-tomatami-i-sousom-mango-chia.mp3",
         "comments-en": ""
       }
@@ -1158,8 +1158,8 @@
         "title-en": "Sea bass ceviche with tomatoes, avocado, and chili",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a ceviche of fresh seabass, marinated with citrus, served with creamy avocado, sweet tomatoes, and chili pepper.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, cilantro, citrus, garlic, onion, herbs",
+        "tags-en": "gluten-free, lactose-free, light dish, spicy, fish, raw product, seafood, with wine, low carb, nut-free, mushroom-free",
         "audio-en": "../audio/en/seviche-iz-sibasa-s-tomatami-avokado-i-pertsem-chili.mp3",
         "comments-en": ""
       }
@@ -1235,8 +1235,8 @@
         "title-en": "Roasted beet carpaccio with cream cheese, pine nuts, and smoked oil",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a carpaccio of oven-baked beetroot, served with cream cheese, pine nuts, salad leaves, and a touch of smoked oil.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, citrus, nuts, herbs",
+        "tags-en": "gluten-free, vegetarian, light dish, onion-free, garlic-free, with wine, mushroom-free, to share, long wait",
         "audio-en": "../audio/en/karpachcho-iz-zapechennoy-svekly-so-slivochnym-syrom-kedrovymi-orehami-i-kopchenym-maslom.mp3",
         "comments-en": ""
       }
@@ -1308,8 +1308,8 @@
         "title-en": "Cherry Tomato Kimchi with Creamy Stracciatella",
         "description-en": "Фраза для быстрой презентации гостю:\n“This is cherry tomatoes gently simmered in a spicy kimchi sauce, served with creamy stracciatella, crispy potato straw, unagi sauce, and herb oil.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, citrus, chili pepper, herbs, sesame, gluten",
+        "tags-en": "light dish, spicy, onion-free, garlic-free, with wine, nut-free, mushroom-free, with vodka, to share",
         "audio-en": "../audio/en/tomaty-cherri-kimchi-so-slivochnoy-strachatelloy.mp3",
         "comments-en": ""
       }
@@ -1383,8 +1383,8 @@
         "title-en": "Selection of six fine cheeses — served with natural honey, pear confiture, walnuts, and red currants (Also, Cheese Platter)",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is an assortment of six noble cheeses, served with natural honey, pear confiture, walnuts, and red currants.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, herbs, honey, truffle",
+        "tags-en": "gluten-free, onion-free, garlic-free, vegetarian, to share, hearty dish, with wine",
         "audio-en": "../audio/en/assorti-iz-shesti-blagorodnyh-syrov.mp3",
         "comments-en": ""
       }
@@ -1459,8 +1459,8 @@
         "title-en": "Foie gras escalope with Packham pear and berry–rum sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a delicate foie gras escalope with stewed Packham pear, flamed with rum, and finished with a berry-rum sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, alcohol",
+        "tags-en": "gluten-free, onion-free, citrus-free, garlic-free, contains alcohol, hearty dish, nut-free, mushroom-free, with wine, with vodka, to share",
         "audio-en": "../audio/en/eskalop-fua-gra-s-grushey-pakham-pod-yagodno-romovom-sousom.mp3",
         "comments-en": ""
       }
@@ -1529,8 +1529,8 @@
         "title-en": "Baked mussels with spinach under cheese–truffle fondue",
         "description-en": "Фраза для быстрой презентации гостю:\n\"These are baked mussels, filled with spinach stewed in shallots, garlic, and white wine, then topped with cheese-truffle fondue.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, garlic, onion, herbs, alcohol, truffle",
+        "tags-en": "seafood, hearty dish, gluten-free, citrus-free, with wine, with vodka, to share, mushroom-free, contains alcohol",
         "audio-en": "../audio/en/zapechennye-midii-so-shpinatom-pod-syrno-tryufelnym-fondyu.mp3",
         "comments-en": ""
       }
@@ -1612,8 +1612,8 @@
         "title-en": "Baked oysters with Chablis sauce, nutmeg, and shallot",
         "description-en": "Фраза для быстрой презентации гостю:\n\"These are African oysters baked under a creamy Chablis sauce with nutmeg and shallots.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, onion, alcohol",
+        "tags-en": "gluten-free, citrus-free, garlic-free, seafood, low carb, contains alcohol, hearty dish, with wine, mushroom-free, with vodka, to share",
         "audio-en": "../audio/en/ustritsy-zapechennye-pod-sousom-shabli-s-muskatnym-orehom-i-lukom-shalot.mp3",
         "comments-en": ""
       }
@@ -1678,8 +1678,8 @@
         "title-en": "Burgundy snails with garlic butter, fresh herbs and crispy ciabatta (also, Escargots)",
         "description-en": "Фраза для быстрой презентации гостю:\n\"These are traditional French escargots, baked in garlic butter with fresh herbs.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "garlic, herbs, gluten",
+        "tags-en": "hearty dish, onion-free, low carb, with wine, with vodka, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/ulitki-po-burgundski.mp3",
         "comments-en": ""
       }
@@ -1744,8 +1744,8 @@
         "title-en": "Shrimp in wasabi sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"These are juicy prawns flambéed with cognac, served with fresh salad leaves and a spicy wasabi sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "citrus, herbs, alcohol",
+        "tags-en": "seafood, spicy, hearty dish, gluten-free, lactose-free, onion-free, garlic-free, with wine, with vodka, nut-free, mushroom-free",
         "audio-en": "../audio/en/krevetki-v-souse-vasabi.mp3",
         "comments-en": ""
       }
@@ -1824,8 +1824,8 @@
         "title-en": "Eggplant, glazed with Sweet Chili Sauce and Smoked Eel, paired with Tomatoes, Stratchatella, and Yudzu Sesame",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is eggplant glazed with sweet chili sauce, topped with smoked unagi eel, creamy stracciatella, ripe tomatoes, and yuzu sesame.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, chili pepper, cilantro, citrus, herbs, sesame",
+        "tags-en": "gluten-free, onion-free, garlic-free, vegetarian, hearty dish, fish, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/baklazhan-yudzu.mp3",
         "comments-en": ""
       }
@@ -1900,8 +1900,8 @@
         "title-en": "Eggplant tartare with tomatoes, herbs, and vegan pesto",
         "description-en": "Eggplant Tartare with Tomatoes, Herbs & Vegan Pesto\n\nФраза для быстрой презентации гостю:\n\"This is a tartare of caramelized eggplants with ripe tomatoes, fresh herbs, and vegan pesto with pine nuts.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "cilantro, nuts, onion, herbs, garlic",
+        "tags-en": "gluten-free, citrus-free, vegan, light dish, lenten-friendly, lactose-free, mushroom-free",
         "audio-en": "../audio/en/tartar-iz-baklazhan-s-tomatami-zelenyu-i-postnym-pesto.mp3",
         "comments-en": ""
       }
@@ -1978,8 +1978,8 @@
         "title-en": "Roast Beef Salad with Tomatoes, Cottage Cheese Mousse, and Honey Mustard Dressing",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a salad of roasted beef with fresh greens, Uzbek tomatoes, cream cheese, and honey-mustard dressing with chimichurri sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, cilantro, citrus, garlic, onion, herbs, honey, mustard, jalapeño",
+        "tags-en": "beef, hearty dish, gluten-free, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/salat-s-zapechennym-rostbifom.mp3",
         "comments-en": ""
       }
@@ -2069,8 +2069,8 @@
         "title-en": "Veal Salad with Tomatoes and Aromatic Mushrooms, served with Honey Mustard Dressing",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a salad with slices of sous-vide veal, roasted vegetables, shiitake mushrooms, capers, and fresh greens, dressed with honey-mustard sauce and parmesan.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, cilantro, garlic, onion, herbs, honey, mushrooms, truffle, mustard",
+        "tags-en": "beef, hearty dish, medium, gluten-free, citrus-free, with wine, nut-free, to share",
         "audio-en": "../audio/en/salat-s-sochnoy-telyatinoy-i-aromatnymi-gribami.mp3",
         "comments-en": ""
       }
@@ -2151,8 +2151,8 @@
         "title-en": "Cardini salad with quail, tomatoes, quail egg, and garlic croutons",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is our signature variation of the Caesar salad with golden roasted quail, Grana Padano cheese, cherry tomatoes, quail egg, and garlic croutons. The dressing has a rich anchovy flavor.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, citrus, garlic, herbs, mustard, gluten, eggs",
+        "tags-en": "chicken, hearty dish, with wine, nut-free, mushroom-free, fish, to share",
         "audio-en": "../audio/en/salat-kardini-s-perepelkoy-tomatami-perepelinym-yaytsom-i-chesnochnymi-grenkami.mp3",
         "comments-en": ""
       }
@@ -2224,8 +2224,8 @@
         "title-en": "Warm salad with foie gras, quail, and caramelized apple",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a warm salad of foie gras terrine with roasted quail, served on crispy toasts with fresh salad leaves, fried onions, and caramelized apple flamed with Calvados.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, lactose, onion, alcohol",
+        "tags-en": "garlic-free, hearty dish, citrus-free, chicken, with wine, nut-free, mushroom-free, contains alcohol, to share, sweet sauce",
         "audio-en": "../audio/en/teplyy-salat-s-fua-gra-perepelkoy-i-karamelizirovannym-yablokom.mp3",
         "comments-en": ""
       }
@@ -2303,8 +2303,8 @@
         "title-en": "Warm salad with fried octopus, vegetables, olives and mustard dressing",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a warm salad with grilled octopus, fresh vegetables, olives, chili, and garlic oil, served with mustard sauce on the side. Chili, onion, and cilantro can be served separately upon request.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, cilantro, citrus, garlic, onion, mustard, herbs",
+        "tags-en": "spicy, gluten-free, lactose-free, seafood, hearty dish, with wine, nut-free, mushroom-free, to share, with vodka",
         "audio-en": "../audio/en/teplyy-salat-s-zharennym-osminogom-ovoschami-olivkami-pod-gorchichnym-sousom.mp3",
         "comments-en": ""
       }
@@ -2388,8 +2388,8 @@
         "title-en": "Seafood Salad with Cream Sauce, Mashed Avocado, and Balsamic Dressing",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a fresh salad with assorted seafood, creamy mashed avocado, tomatoes, and herbs, dressed with citrus sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, jalapeño, cilantro, garlic, onion, herbs, honey",
+        "tags-en": "seafood, hearty dish, gluten-free, citrus-free, with wine, low carb, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/salat-s-moreproduktami-i-myatym-avokado.mp3",
         "comments-en": ""
       }
@@ -2468,8 +2468,8 @@
         "title-en": "Vegetable salad with avocado, Grana Padano, onion crumble, honey–mustard dressing",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a vegetable salad with avocado, Grana Padano cheese, onion crumble, and honey-mustard dressing.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, garlic, onion, herbs, honey, gluten",
+        "tags-en": "vegetarian, light dish, citrus-free, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/ovoschnoy-salat-s-avokado-syrom-grana-padano-lukovym-kramblom-pod-medovo-gorchichnoy-zapravkoy.mp3",
         "comments-en": ""
       }
@@ -2549,8 +2549,8 @@
         "title-en": "Burrata with olives and sweet tomato tartare",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is creamy burrata served with a tartare of sweet tomatoes, fresh olives, and olive oil.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, cilantro, onion, herbs",
+        "tags-en": "vegetarian, light dish, gluten-free, citrus-free, garlic-free, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/burrata-s-olivkami-i-tartarom-iz-sladkih-tomatov.mp3",
         "comments-en": ""
       }
@@ -2621,8 +2621,8 @@
         "title-en": "Traditional french onion soup with tender bacon and fragrant cumin, topped with a gruyère cheese crust",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a traditional onion soup with bacon, flavored with cumin, and topped with a Gruyère cheese crust.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, garlic, onion, pork, gluten",
+        "tags-en": "hearty dish, duck, chicken, mushroom-free, nut-free, citrus-free, contains alcohol, pork",
         "audio-en": "../audio/en/lukovyy-sup-s-bekonom-ziroy-pod-syrnoy-korochkoy-gryuyer.mp3",
         "comments-en": ""
       }
@@ -2699,8 +2699,8 @@
         "title-en": "Spicy Tom Yum with scallops and shrimp",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is our signature interpretation of Tom Yam soup with scallops, shrimps, mushrooms, carrot, and celery — rich in citrusy and herbal flavors.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, cilantro, citrus, garlic, onion, herbs, mushrooms",
+        "tags-en": "seafood, spicy, lactose-free, gluten-free, nut-free, chicken, hearty dish",
         "audio-en": "../audio/en/ostryy-sup-tom-yam-s-grebeshkom-i-krevetkami.mp3",
         "comments-en": ""
       }
@@ -2783,8 +2783,8 @@
         "title-en": "Ukha - fish soup with smoked red fish, vegetables, and creamy broth",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a fisherman’s soup with lightly smoked red fish, vegetables, and a creamy broth.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, onion, herbs",
+        "tags-en": "gluten-free, hearty dish, citrus-free, garlic-free, medium, mushroom-free, nut-free, garlic-free",
         "audio-en": "../audio/en/uha-s-podkopchennoy-krasnoy-ryboy-ovoschami-i-slivochnym-bulonom.mp3",
         "comments-en": ""
       }
@@ -2861,8 +2861,8 @@
         "title-en": "Silky chestnut cream soup with porcini mushrooms",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a silky cream soup made with chestnuts and fragrant porcini mushrooms.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, onion, mushrooms",
+        "tags-en": "gluten-free, hearty dish, nut-free, citrus-free, garlic-free, chicken, gluten-free",
         "audio-en": "../audio/en/shelkovyy-krem-sup-iz-kashtanov-s-aromatnymi-belymi-gribami.mp3",
         "comments-en": ""
       }
@@ -2932,8 +2932,8 @@
         "title-en": "Traditional Italian Minestrone Soup on Chicken Broth with Pesto, Pine Nuts, and Fresh Vegetables",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a vegetable minestrone on chicken broth, with pine nuts, a touch of pesto, and served with Petit Pain crostini spread with olive paste.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, garlic, onion, herbs, gluten",
+        "tags-en": "light dish, citrus-free, mushroom-free, chicken",
         "audio-en": "../audio/en/ovoschnoy-sup-minestrone-na-kurinom-bulone-s-kedrovymi-orehami-i-sousom-pesto.mp3",
         "comments-en": ""
       }
@@ -3008,8 +3008,8 @@
         "title-en": "Vegan minestrone with pine nuts, garlic ciabatta, and vegan pesto",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a vegetarian minestrone with pine nuts, garlic ciabatta, and vegan pesto.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "nuts, garlic, onion, herbs, gluten",
+        "tags-en": "lenten-friendly, vegan, citrus-free, lactose-free, light dish, mushroom-free, vegetarian",
         "audio-en": "../audio/en/postnyy-minestrone-na-ovoschnom-bulone-s-kedrovymi-orehami-chesnochnoy-chiabattoy-i-postnym-pesto.mp3",
         "comments-en": ""
       }
@@ -3093,8 +3093,8 @@
         "title-en": "House-made ravioli with farm chicken and cumin under cheese–truffle fondue",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is homemade ravioli filled with farm chicken, seasoned with cumin, and served with a cheese and truffle fondue.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, chili pepper, cilantro, onion, herbs, truffle, eggs, gluten",
+        "tags-en": "chicken, beef, hearty dish, citrus-free, garlic-free, nut-free, contains alcohol, with wine",
         "audio-en": "../audio/en/domashnie-ravioli-s-nachinkoy-iz-fermerskoy-kuritsy-aromatnoy-ziroy-pod-syrno-tryufelnym-fondyu.mp3",
         "comments-en": ""
       }
@@ -3176,8 +3176,8 @@
         "title-en": "Black Fettuccine with Crab Meat in a Delicate Cream Sauce, paired with Fragrant Fennel, Leek, Fresh Herbs, and Grana Padano Cheese",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Black fettuccine pasta with tender crab meat, fennel, and leek.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, cilantro, onion, herbs, alcohol, gluten, eggs",
+        "tags-en": "seafood, hearty dish, citrus-free, mushroom-free, nut-free, with wine, seafood, contains alcohol, chicken",
         "audio-en": "../audio/en/chernye-fetuchini-s-myasom-kraba-fenhelem-i-lukom-porey.mp3",
         "comments-en": ""
       }
@@ -3259,8 +3259,8 @@
         "title-en": "Spicy Spaghetti Arrabbiata with Sautéed Shrimps and Scallops, served in a Sauce of Uzbek Tomatoes with Chili Pepper and Fresh Herbs",
         "description-en": "Фраза для быстрой презентации гостю:\n\"A spicy arrabbiata pasta in tomato sauce with shrimp and scallops.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, citrus, garlic, herbs, gluten, eggs",
+        "tags-en": "seafood, spicy, hearty dish, lactose-free, onion-free, mushroom-free, nut-free, with wine",
         "audio-en": "../audio/en/arrabyata-s-krevetkami-i-grebeshkom.mp3",
         "comments-en": ""
       }
@@ -3342,8 +3342,8 @@
         "title-en": "Creamy Risotto with Tender Rabbit, Fragrant Porcini Mushrooms, and Pine Nuts",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Creamy risotto with tender rabbit, mushrooms, and pesto.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, onion, mushrooms, alcohol",
+        "tags-en": "hearty dish, rabbit, gluten-free, citrus-free, chicken, citrus-free, garlic-free, with wine",
         "audio-en": "../audio/en/rizotto-s-krolikom-i-gribami.mp3",
         "comments-en": ""
       }
@@ -3425,8 +3425,8 @@
         "title-en": "Seafood Paella",
         "description-en": "Фраза для быстрой презентации гостю:\n“A classic saffron seafood paella with shrimp, scallops, squid, and mussels, finished with sweet peppers, lime, and a touch of chili.”\nPortion: serves 2, approx. 800 g.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, garlic, onion, herbs, alcohol, saffron",
+        "tags-en": "seafood, spicy, hearty dish, gluten-free, lactose-free, contains alcohol, with wine, mushroom-free, nut-free, citrus-free, to share",
         "audio-en": "../audio/en/paelya.mp3",
         "comments-en": ""
       }
@@ -3504,8 +3504,8 @@
         "title-en": "Green Risotto with Tender Zucchini Purée, Young Green Peas, and Sweet Pepper Sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Green risotto with zucchini purée, young green peas, and sweet pepper sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "garlic, onion, herbs",
+        "tags-en": "gluten-free, citrus-free, lenten-friendly, vegan, lactose-free, vegetarian, mushroom-free, nut-free",
         "audio-en": "../audio/en/zelenoe-rizotto.mp3",
         "comments-en": ""
       }
@@ -3589,8 +3589,8 @@
         "title-en": "Beefsteak of marbled beef with fried potatoes, mushrooms and spinach, Gorgonzola mousse and truffle cream",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Marbled beefsteak cooked medium, served with golden potatoes, mushrooms, spinach, gorgonzola mousse, and truffle cream.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, onion, herbs, mushrooms, truffle, eggs",
+        "tags-en": "beef, hearty dish, gluten-free, citrus-free, garlic-free, medium, chicken, citrus-free, nut-free, with wine, with vodka",
         "audio-en": "../audio/en/bifshteks-iz-mramornoy-govyadiny-s-zharennym-kartofelem-gribami-i-shpinatom-s-mussom-iz-gorgonzoly-i-tryufelnym-kremom.mp3",
         "comments-en": ""
       }
@@ -3673,8 +3673,8 @@
         "title-en": "Braised beef cheeks with porcini ragout, mashed potatoes, and malt sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Slow-braised beef cheeks with porcini ragout, creamy mashed potatoes, and malt sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, onion, herbs, alcohol, mushrooms, gluten",
+        "tags-en": "hearty dish, garlic-free, citrus-free, nut-free, with wine, beef, chicken, contains alcohol",
         "audio-en": "../audio/en/tomlenye-govyazhi-schechki-s-ragu-iz-belyh-gribov-kartofelem-pyure-i-solodovym-sousom.mp3",
         "comments-en": ""
       }
@@ -3758,8 +3758,8 @@
         "title-en": "Filet mignon with foie gras, fried porcini, and grilled vegetables",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Filet mignon with foie gras, grilled porcini mushrooms, vegetables, and truffle cream sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, mushrooms, truffle",
+        "tags-en": "beef, hearty dish, duck, gluten-free, onion-free, citrus-free, garlic-free, medium, nut-free, with wine, with vodka, chicken",
         "audio-en": "../audio/en/file-minon-s-fua-gra-zharennymi-belymi-gribami-i-ovoschami-na-grile.mp3",
         "comments-en": ""
       }
@@ -3844,8 +3844,8 @@
         "title-en": "Black burger with marbled beef patty, Camembert, onion confit, and spicy jalapeño",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Black burger with marbled beef patty, creamy Camembert, onion confit, and spicy jalapeño.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, jalapeño, onion, mushrooms, sesame, alcohol, gluten",
+        "tags-en": "beef, hearty dish, spicy, citrus-free, garlic-free, medium, with wine, with vodka, contains alcohol, fish, seafood",
         "audio-en": "../audio/en/chernyy-burger-s-kotletoy-iz-mramornoy-govyadiny-syrom-kamamber-lukom-konfi-i-ostrym-pertsem-halapeno.mp3",
         "comments-en": ""
       }
@@ -3930,8 +3930,8 @@
         "title-en": "Braised Lamb Shank with Roasted Eggplant and Yogurt Mousse flavored with Fragrant Tarragon",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Braised lamb shank with roasted eggplant and a light yogurt mousse flavored with tarragon.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, garlic, onion, tarragon, honey, mustard",
+        "tags-en": "lamb, gluten-free, citrus-free, on the bone, hearty dish, mushroom-free, nut-free, with wine, with vodka, to share",
         "audio-en": "../audio/en/tomlenaya-golyashka-yagnenka-s-pechenym-baklazhanom-i-yogurtovym-mussom.mp3",
         "comments-en": ""
       }
@@ -4009,8 +4009,8 @@
         "title-en": "Farm chicken grilled over open fire",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Farm-raised chicken grilled over open fire, marinated with homemade mayonnaise, barbecue, and Worcestershire sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "eggs",
+        "tags-en": "chicken, gluten-free, lactose-free, onion-free, citrus-free, garlic-free, hearty dish, fish, with wine, with vodka, on the bone, low carb, long wait",
         "audio-en": "../audio/en/fermerskiy-tsyplenok-prigotovlennyy-na-otkrytom-ogne.mp3",
         "comments-en": ""
       }
@@ -4086,8 +4086,8 @@
         "title-en": "Braised Duck Leg with Orange Sauce, served on a Bed of Fried Potatoes with Bacon, Onion, and Fresh Herbs",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Braised duck leg with orange sauce, served on a bed of fried potatoes with bacon.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "citrus, onion, herbs, pork",
+        "tags-en": "gluten-free, lactose-free, pork, hearty dish, duck, sweet sauce, on the bone, with wine, mushroom-free, nut-free",
         "audio-en": "../audio/en/utinaya-nozhka-pod-apelsinovym-sousom-na-podushke-iz-zharenogo-kartofelya-s-bekonom.mp3",
         "comments-en": ""
       }
@@ -4162,8 +4162,8 @@
         "title-en": "Baked Sea Bass Fillet with Spinach, served with Fluffy Herb Mashed Potatoes and Citrus Sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Seabass fillet with spinach, herbed mashed potatoes, and a light citrus sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, cilantro, citrus, onion, herbs",
+        "tags-en": "fish, hearty dish, gluten-free, garlic-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/file-sibasa-so-shpinatom-kartofelnym-pyure-s-zelenyu-i-tsitrusovym-sousom.mp3",
         "comments-en": ""
       }
@@ -4242,8 +4242,8 @@
         "title-en": "Juicy Salmon Steak baked with Honey, served with Herbed Mashed Potatoes and a Vibrant Tomato–Olive Salsa",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Salmon steak baked with honey, served with creamy mashed potatoes and fresh tomato salsa.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, citrus, nuts, onion, herbs, honey",
+        "tags-en": "fish, hearty dish, gluten-free, garlic-free, medium, mushroom-free, with wine, with vodka",
         "audio-en": "../audio/en/steyk-iz-semgi-zapechennoy-v-mede-s-kartofelnym-pyure-i-tomatnoy-salsoy.mp3",
         "comments-en": ""
       }
@@ -4326,8 +4326,8 @@
         "title-en": "Baked Black Cod Fillet with Marinated Ginger and Sautéed Vegetables, served with Honey–Orange Sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Baked black cod with pickled ginger, sautéed vegetables, and a honey-orange sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper, citrus, herbs, honey",
+        "tags-en": "fish, hearty dish, lactose-free, garlic-free, nut-free, with wine, with vodka, mushroom-free",
         "audio-en": "../audio/en/zapechennaya-chernaya-treska-s-marinovannym-imbirem-i-zharennymi-ovoschami-pod-medovo-apelsinovym-sousom.mp3",
         "comments-en": ""
       }
@@ -4414,8 +4414,8 @@
         "title-en": "Grilled Octopus Tentacles glazed with Sweet Chili Sauce, served with Golden Potatoes, Sun-Dried Tomatoes, Sunflower Sprouts, and Spicy Chimichurri",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Grilled octopus tentacles glazed with sweet chili sauce, served with golden potatoes, sun-dried tomatoes, sunflower sprouts, and chimichurri.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, jalapeño, cilantro, citrus, garlic, onion, alcohol, herbs, eggs",
+        "tags-en": "seafood, spicy, hearty dish, gluten-free, mushroom-free, nut-free, with wine, with vodka, contains alcohol",
         "audio-en": "../audio/en/glazirovannyy-osminog-s-zharennym-kartofelem-vyalenymi-tomatami-i-rostkami-podsolnuha.mp3",
         "comments-en": ""
       }
@@ -4500,8 +4500,8 @@
         "title-en": "Tender Fish Patty with Fluffy Mashed Potatoes and Braised Spinach",
         "description-en": "Patty = котлета, пирожок или лепешка в зависимости от контекста. Также можно использовать:\nFish Cutlet — более буквальный вариант.\nFish Cake — часто встречается в Британии, но это больше похоже на оладушки из рыбы с картофелем.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, citrus, onion, herbs, cilantro",
+        "tags-en": "seafood, fish, hearty dish, gluten-free, garlic-free, nut-free, mushroom-free, with wine, with vodka, fish",
         "audio-en": "../audio/en/kotleta-iz-assorti-ryb-s-kartofelnym-pyure-i-tomlenym-shpinatom.mp3",
         "comments-en": ""
       }
@@ -4587,7 +4587,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Prime beef tenderloin fillet, grilled to your preferred doneness, served with garnish and sauce of your choice.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, beef, low carb, hearty dish, mushroom-free, nut-free, medium, to share, with wine, with vodka, long wait",
         "audio-en": "../audio/en/file-praym-govyazhya-vyrezka.mp3",
         "comments-en": ""
       }
@@ -4661,7 +4661,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Ribeye steak, well-marbled and juicy, grilled to your preferred doneness, served with garnish and sauce of your choice.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, beef, low carb, hearty dish, mushroom-free, nut-free, medium, to share, with wine, with vodka, long wait",
         "audio-en": "../audio/en/ribay-steyk.mp3",
         "comments-en": ""
       }
@@ -4734,7 +4734,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Striploin steak, tender with a rich meaty flavor, grilled to your preferred doneness, served with garnish and sauce of your choice.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "beef, hearty dish, lactose-free, low carb, onion-free, garlic-free, citrus-free, mushroom-free, nut-free, medium, to share, with wine, with vodka, long wait",
         "audio-en": "../audio/en/striployn-steyk.mp3",
         "comments-en": ""
       }
@@ -4809,7 +4809,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Lamb rack, tender and juicy, grilled and served with garnish and sauce of your choice.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "lamb, gluten-free, hearty dish, lactose-free, low carb, onion-free, garlic-free, citrus-free, mushroom-free, nut-free, medium, to share, on the bone, with wine, with vodka, long wait",
         "audio-en": "../audio/en/kare-yagnenka.mp3",
         "comments-en": ""
       }
@@ -4882,7 +4882,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Salmon fillet, tender and juicy, prepared on the grill or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, low carb, fish, mushroom-free, nut-free, medium, to share, with wine, with vodka",
         "audio-en": "../audio/en/semga.mp3",
         "comments-en": ""
       }
@@ -4950,7 +4950,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Seabass fillet, tender and delicate, prepared on the grill or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, low carb, fish, mushroom-free, nut-free, to share, with wine, with vodka",
         "audio-en": "../audio/en/sibas.mp3",
         "comments-en": ""
       }
@@ -5019,7 +5019,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Tuna steak, firm and meaty, prepared grilled or steamed to your preference, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, low carb, fish, mushroom-free, nut-free, to share, with wine, with vodka, medium",
         "audio-en": "../audio/en/tunets.mp3",
         "comments-en": ""
       }
@@ -5087,7 +5087,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Tender squid, prepared grilled or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, low carb, seafood, mushroom-free, nut-free, to share, with wine, with vodka",
         "audio-en": "../audio/en/kalmar.mp3",
         "comments-en": ""
       }
@@ -5154,7 +5154,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Tender octopus (octopus tentacles), prepared grilled or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, low carb, seafood, mushroom-free, nut-free, to share, with wine, with vodka",
         "audio-en": "../audio/en/osminog.mp3",
         "comments-en": ""
       }
@@ -5222,7 +5222,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Shrimp, prepared grilled or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, low carb, seafood, mushroom-free, nut-free, to share, with wine, with vodka",
         "audio-en": "../audio/en/korolevskie-krevetki.mp3",
         "comments-en": ""
       }
@@ -5290,7 +5290,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Sea scallops, prepared pan-seared or steamed, and served with your choice of garnish and sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, seafood, low carb, mushroom-free, nut-free, to share, with wine, with vodka",
         "audio-en": "../audio/en/morskie-grebeshki.mp3",
         "comments-en": ""
       }
@@ -5359,8 +5359,8 @@
         "title-en": "Fried potatoes with bacon",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Golden fried potatoes with crispy bacon.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "cilantro, garlic, onion, herbs, pork",
+        "tags-en": "gluten-free, lactose-free, hearty dish, pork, citrus-free, mushroom-free, nut-free, to share, with vodka",
         "audio-en": "../audio/en/zharennyy-kartofel-s-bekonom.mp3",
         "comments-en": ""
       }
@@ -5428,8 +5428,8 @@
         "title-en": "Fried potatoes with mushrooms in a creamy cheese sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Golden fried potatoes with mushrooms in a creamy cheese sauce.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, garlic, onion, mushrooms",
+        "tags-en": "hearty dish, citrus-free, gluten-free, vegetarian, nut-free, to share, with vodka",
         "audio-en": "../audio/en/zharennyy-kartofel-s-gribami-v-syrno-slivochnom-souse.mp3",
         "comments-en": ""
       }
@@ -5497,8 +5497,8 @@
         "title-en": "Fried potatoes with shallots and herbs",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Golden fried potatoes with caramelized shallots and fresh herbs.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "onion, herbs, cilantro",
+        "tags-en": "gluten-free, lactose-free, garlic-free, vegan, citrus-free, mushroom-free, nut-free, to share, with vodka, vegetarian, hearty dish",
         "audio-en": "../audio/en/zharennyy-kartofel-s-lukom-shalot-i-zelenyu.mp3",
         "comments-en": ""
       }
@@ -5560,7 +5560,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Crispy golden French fries, served with your choice of sauce.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "garlic-free, citrus-free, vegan, gluten-free, lactose-free, onion-free, mushroom-free, nut-free, to share, with vodka, with beer, vegetarian, hearty dish",
         "audio-en": "../audio/en/kartofel-fri.mp3",
         "comments-en": ""
       }
@@ -5623,8 +5623,8 @@
         "title-en": "Herb mashed potatoes",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Creamy mashed potatoes with fresh herbs.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, herbs",
+        "tags-en": "garlic-free, citrus-free, gluten-free, onion-free, mushroom-free, nut-free, to share, vegetarian, hearty dish",
         "audio-en": "../audio/en/kartofelnoe-pyure-s-zelenyu.mp3",
         "comments-en": ""
       }
@@ -5694,7 +5694,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Homestyle potato wedges, baked golden in the Josper grill.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "vegan, garlic-free, citrus-free, gluten-free, lactose-free, onion-free, mushroom-free, nut-free, to share, with vodka, with beer, vegetarian, hearty dish",
         "audio-en": "../audio/en/kartofel-po-domashnemu-na-hospere.mp3",
         "comments-en": ""
       }
@@ -5756,7 +5756,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Light boiled rice, served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "garlic-free, citrus-free, vegan, gluten-free, lactose-free, onion-free, mushroom-free, nut-free, to share, vegetarian",
         "audio-en": "../audio/en/ris-otvarnoy.mp3",
         "comments-en": ""
       }
@@ -5818,7 +5818,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Seasonal vegetable mix, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "vegan, vegetarian, light dish, to share, garlic-free, citrus-free, gluten-free, lactose-free, onion-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/ovoschi-miks.mp3",
         "comments-en": ""
       }
@@ -5888,7 +5888,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Fresh asparagus, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "vegan, vegetarian, light dish, to share, garlic-free, citrus-free, gluten-free, lactose-free, onion-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/sparzha.mp3",
         "comments-en": ""
       }
@@ -5952,8 +5952,8 @@
         "title-en": "Stewed spinach with garlic and cheese",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Braised spinach with garlic and cheese, served as a side dish.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "garlic, lactose",
+        "tags-en": "vegetarian, light dish, to share, citrus-free, gluten-free, onion-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/tomlenyy-shpinat-s-chesnokom-i-syrom.mp3",
         "comments-en": ""
       }
@@ -6020,7 +6020,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Fresh bell peppers, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "vegan, vegetarian, light dish, to share, garlic-free, citrus-free, gluten-free, lactose-free, onion-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/perets-bolgarskiy.mp3",
         "comments-en": ""
       }
@@ -6085,7 +6085,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Fresh zucchini, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "vegan, vegetarian, light dish, to share, garlic-free, citrus-free, gluten-free, lactose-free, onion-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/tsukini.mp3",
         "comments-en": ""
       }
@@ -6150,7 +6150,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Fresh Uzbek tomatoes, sweet and juicy, served as a side or starter.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "vegan, vegetarian, light dish, to share, garlic-free, citrus-free, gluten-free, lactose-free, onion-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/tomaty-uzbekskie.mp3",
         "comments-en": ""
       }
@@ -6215,7 +6215,7 @@
         "description-en": "Фраза для быстрой презентации гостю:\n\"Sweet cherry tomatoes, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "vegan, vegetarian, light dish, to share, garlic-free, citrus-free, gluten-free, lactose-free, onion-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/tomaty-cherri.mp3",
         "comments-en": ""
       }
@@ -6276,8 +6276,8 @@
         "title-en": "Yogurt Mousse with Herb Cream, White Chocolate Glaze, and Lemon–Mint Gel",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Light mousse with aromatic herbs on a delicate biscuit base.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, cilantro, citrus, herbs, gluten, eggs",
+        "tags-en": "light dish, onion-free, garlic-free, garlic-free, onion-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/muss-pryanye-travy.mp3",
         "comments-en": ""
       }
@@ -6350,8 +6350,8 @@
         "title-en": "Honey-Glazed Apples with Allspice, served with Crunchy Caramelized Walnuts and Pepper Mousse",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Honey-glazed wild apples with allspice, caramelized walnuts, and pepper mousse.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, citrus, nuts, honey, eggs",
+        "tags-en": "light dish, garlic-free, gluten-free, onion-free, mushroom-free",
         "audio-en": "../audio/en/dikie-yabloki-s-dushistym-pertsem.mp3",
         "comments-en": ""
       }
@@ -6417,8 +6417,8 @@
         "title-en": "Anna Pavlova - the Legendary Russian Dessert. Crispy Meringue with a Vanilla Cream Center, served with Juicy Mango and Strawberry Pieces, and Raspberry–Basil Sauce",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Crispy meringue with vanilla cream, fresh mango and strawberries, raspberry sauce, and a hint of basil.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, herbs, gluten, eggs",
+        "tags-en": "vegetarian, light dish, garlic-free, citrus-free, onion-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/anna-pavlova.mp3",
         "comments-en": ""
       }
@@ -6484,8 +6484,8 @@
         "title-en": "Bird cherry honey cake with chamomile ice cream",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Tender bird cherry honey cake with creamy frosting, chamomile ice cream, salted pistachios, and lemon caramel.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, eggs, citrus, nuts, honey, gluten",
+        "tags-en": "vegetarian, garlic-free, onion-free, nut-free",
         "audio-en": "../audio/en/cheremuhovyy-medovik-s-romashkovym-morozhenym.mp3",
         "comments-en": ""
       }
@@ -6563,8 +6563,8 @@
         "title-en": "Chocolate fondant  — Warm Chocolate Cake with a White Chocolate and Pistachio Filling, served with Vanilla Ice Cream and Fresh Berrie",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Warm chocolate cake with a flowing center of white chocolate and pistachios, served with vanilla ice cream and fresh berries.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, gluten, nuts, eggs",
+        "tags-en": "vegetarian, garlic-free, citrus-free, onion-free, mushroom-free, hearty dish, long wait",
         "audio-en": "../audio/en/shokoladnyy-fondan.mp3",
         "comments-en": ""
       }
@@ -6626,8 +6626,8 @@
         "title-en": "Elegant “Cigar” filled with White Chocolate, Black Truffle, and Salted Caramel Cream, served on Almond and Cocoa Crumble",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Elegant chocolate 'cigar' filled with white chocolate cream, black truffle, and salted caramel, served on almond–cocoa crumble and presented under a smoke dome.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, truffle, gluten",
+        "tags-en": "vegetarian, garlic-free, citrus-free, onion-free",
         "audio-en": "../audio/en/sigara-sabor-de-la-vida.mp3",
         "comments-en": ""
       }
@@ -6687,8 +6687,8 @@
         "title-en": "Cheese Soufflé",
         "description-en": "Фраза для быстрой презентации гостю:\n“Fluffy baked cheese soufflé with a soft caramel center, pitahaya jelly, and pistachio cream.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, citrus",
+        "tags-en": "light dish, garlic-free, gluten-free, onion-free, nut-free",
         "audio-en": "../audio/en/syrnoe-sufle.mp3",
         "comments-en": ""
       }
@@ -6754,8 +6754,8 @@
         "title-en": "Homemade ice cream: vanilla, chocolate, pistachio, chamomile, banana–coconut–lime (vegan).",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Homemade ice cream in a variety of flavors: from classic vanilla and chocolate, pistachio, chamomile, and vegan banana–coconut–lime.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, citrus, eggs",
+        "tags-en": "vegan, vegetarian, light dish, garlic-free, gluten-free, onion-free, mushroom-free",
         "audio-en": "../audio/en/domashnee-morozhenoe.mp3",
         "comments-en": ""
       }
@@ -6823,8 +6823,8 @@
         "title-en": "Fruit sorbet: lime–prosecco, orange–campari, melon–mint, blood orange.",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Light and refreshing fruit sorbet — dairy-free, with pure fruit flavor such as Lime–Prosecco, Orange–Campari, Melon–Mint, and Blood Orange.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "alcohol, citrus",
+        "tags-en": "vegan, vegetarian, light dish, contains alcohol, gluten-free, lactose-free, onion-free, garlic-free, mushroom-free, nut-free",
         "audio-en": "../audio/en/fruktovyy-sorbet.mp3",
         "comments-en": ""
       }
@@ -6884,8 +6884,8 @@
         "title-en": "Assorted Candies and Fruit Jellies",
         "description-en": "Фраза для быстрой презентации гостю:\n“Handcrafted candies and fruit jellies — a delicate sweet selection served at the end of the meal.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "citrus, alcohol, lactose, nuts",
+        "tags-en": "vegetarian, light dish, contains alcohol, gluten-free, onion-free, garlic-free, mushroom-free, vegan",
         "audio-en": "../audio/en/konfety-i-marmelad-ruchnoy-raboty.mp3",
         "comments-en": ""
       }
@@ -6956,8 +6956,8 @@
         "title-en": "Macaron Assortment",
         "description-en": "A classic French dessert. An elegant combination of a crispy almond shell and the most delicate filling. Each macaron is a little explosion of flavor and color: from fresh berry notes and citrus sparkle to rich chocolate.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "eggs, nuts, lactose, citrus",
+        "tags-en": "vegetarian, light dish, to share, garlic-free, gluten-free, onion-free, mushroom-free",
         "audio-en": "../audio/en/assorti-makarons.mp3",
         "comments-en": ""
       }
@@ -7028,8 +7028,8 @@
         "title-en": "Café gourmet",
         "description-en": "Фраза для быстрой презентации гостю:\n“A classic French-style café gourmand — espresso served with an assortment of miniature desserts.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, lactose, nuts, citrus, honey, eggs",
+        "tags-en": "light dish, to share, garlic-free, onion-free, mushroom-free",
         "audio-en": "../audio/en/caf-gourmet.mp3",
         "comments-en": ""
       }
@@ -7119,8 +7119,8 @@
         "title-en": "Tea Set",
         "description-en": "Фраза для быстрой презентации гостю:\n“A refined tea set with a selection of premium loose-leaf teas, served with homemade sweets.”",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "nuts, citrus, lactose, alcohol",
+        "tags-en": "vegetarian, light dish, to share, garlic-free, gluten-free, onion-free, mushroom-free",
         "audio-en": "../audio/en/chaynyy-nabor.mp3",
         "comments-en": ""
       }
@@ -7194,8 +7194,8 @@
         "title-en": "Black Pepper Sauce",
         "description-en": "A creamy sauce with a pronounced aroma of freshly ground black pepper.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, onion, alcohol",
+        "tags-en": "vegetarian, contains alcohol, spicy, gluten-free, mushroom-free, nut-free, citrus-free, garlic-free",
         "audio-en": "../audio/en/perechnyy.mp3",
         "comments-en": ""
       }
@@ -7263,8 +7263,8 @@
         "title-en": "Mustard sauce",
         "description-en": "A tangy sauce with a bright, natural mustard flavor.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "mustard, citrus, eggs",
+        "tags-en": "vegetarian, gluten-free, mushroom-free, nut-free, garlic-free, lactose-free, onion-free",
         "audio-en": "../audio/en/gorchichnyy.mp3",
         "comments-en": ""
       }
@@ -7333,8 +7333,8 @@
         "title-en": "Tomato–citrus sauce",
         "description-en": "A light and fragrant sauce made from ripe tomatoes with pieces of vibrant citrus and fresh herbs. It has a refreshing tang and a bright flavor, making it a perfect match for fish, chicken, and vegetables.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "cilantro, citrus, herbs",
+        "tags-en": "vegan, vegetarian, light dish, gluten-free, mushroom-free, nut-free, garlic-free, lactose-free, onion-free",
         "audio-en": "../audio/en/tomatno-tsitrusovyy.mp3",
         "comments-en": ""
       }
@@ -7401,8 +7401,8 @@
         "title-en": "Creamy mushroom sauce",
         "description-en": "A delicate sauce made from sautéed mushrooms, fragrant garlic, and rich cream. It has a silky texture, a deep mushroom flavor, and pairs perfectly with poultry, meat, and pasta dishes.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "herbs, cilantro, lactose, onion, alcohol",
+        "tags-en": "vegetarian, contains alcohol, gluten-free, nut-free, garlic-free, citrus-free",
         "audio-en": "../audio/en/slivochno-gribnoy.mp3",
         "comments-en": ""
       }
@@ -7473,8 +7473,8 @@
         "title-en": "Barbecue sauce",
         "description-en": "A fragrant sweet-and-sour sauce with a hint of smokiness.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "chili pepper",
+        "tags-en": "light dish, fish, gluten-free, mushroom-free, nut-free, garlic-free, lactose-free, onion-free, chicken, beef",
         "audio-en": "../audio/en/barbekyu-sauce.mp3",
         "comments-en": ""
       }
@@ -7545,8 +7545,8 @@
         "title-en": "Pesto sauce",
         "description-en": "Pesto is a traditional Italian sauce made from fresh basil leaves, grated Parmesan, pine nuts, and high-quality olive oil.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, herbs, garlic",
+        "tags-en": "vegetarian, light dish, gluten-free, mushroom-free, onion-free, citrus-free",
         "audio-en": "../audio/en/pesto.mp3",
         "comments-en": ""
       }
@@ -7612,7 +7612,7 @@
         "description-en": "Cranberry sauce is a fragrant berry dressing with a light tartness and natural sweetness, made from fresh cranberries, sugar, and spices. It pairs perfectly with meat dishes, especially poultry, adding a bright flavor and a festive touch.",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "vegan, vegetarian, light dish, sweet sauce, gluten-free, mushroom-free, nut-free, garlic-free, lactose-free, onion-free, citrus-free",
         "audio-en": "../audio/en/klyukvennyy.mp3",
         "comments-en": ""
       }
@@ -7679,8 +7679,8 @@
         "title-en": "Tomato–basil sauce (with chili)",
         "description-en": "A spicy sauce with vibrant chili heat and the aroma of fresh basil.",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "cilantro, onion, chili pepper, garlic, herbs, alcohol",
+        "tags-en": "light dish, contains alcohol, spicy, gluten-free, mushroom-free, nut-free, lactose-free, citrus-free",
         "audio-en": "../audio/en/tomatno-bazilikovyy-sous-sous-chili.mp3",
         "comments-en": ""
       }
@@ -7751,8 +7751,8 @@
         "title-en": "Basket of House-Made Bread with Homemade Butters",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Our signature bread basket features wheat bread with a crispy crust, malt bread with grains, aromatic onion bread, and ciabatta with sun-dried tomatoes. Served with two flavored butters: tomato–basil and mushroom–truffle\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "mushrooms, herbs, truffle, onion, eggs",
+        "tags-en": "vegetarian, to share, citrus-free, garlic-free, nut-free",
         "audio-en": "../audio/en/avtorskiy-domashniy-khleb.mp3",
         "comments-en": ""
       }
@@ -7842,8 +7842,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, herbs",
+        "tags-en": "fish, light dish, garlic-free, citrus-free, gluten-free, mushroom-free, with wine, onion-free, raw product",
         "audio-en": "",
         "comments-en": ""
       }
@@ -7912,8 +7912,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts, cilantro, herbs, citrus",
+        "tags-en": "fish, light dish, gluten-free, raw product, mushroom-free, onion-free, with wine",
         "audio-en": "",
         "comments-en": ""
       }
@@ -7989,8 +7989,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "eggs",
+        "tags-en": "light dish, low carb, vegetarian, gluten-free, lactose-free, citrus-free, garlic-free, nut-free, mushroom-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8053,7 +8053,7 @@
         "description-en": "",
         "contains-en": "",
         "allergens-en": "",
-        "tags-en": "",
+        "tags-en": "vegetarian, hearty dish, gluten-free, citrus-free, garlic-free, onion-free, nut-free, mushroom-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8126,8 +8126,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, gluten, eggs, cilantro, herbs, onion, chili pepper",
+        "tags-en": "chicken, hearty dish, spicy, citrus-free, garlic-free, nut-free, mushroom-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8204,8 +8204,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, eggs, chili pepper, herbs",
+        "tags-en": "fish, spicy, gluten-free, citrus-free, garlic-free, nut-free, mushroom-free, raw product, onion-free, hearty dish",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8279,8 +8279,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, eggs, onion, herbs",
+        "tags-en": "seafood, gluten-free, citrus-free, garlic-free, nut-free, mushroom-free, onion-free, hearty dish",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8352,8 +8352,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, eggs, chili pepper, herbs",
+        "tags-en": "fish, seafood, hearty dish, citrus-free, garlic-free, nut-free, mushroom-free, onion-free, gluten-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8426,8 +8426,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, chili pepper, onion, mushrooms, herbs",
+        "tags-en": "beef, hearty dish, citrus-free, gluten-free, nut-free, garlic-free, with wine",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8507,8 +8507,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, eggs, onion, garlic, mustard, herbs, truffle",
+        "tags-en": "beef, hearty dish, citrus-free, gluten-free, with wine, nut-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8589,8 +8589,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, chili pepper, herbs",
+        "tags-en": "fish, seafood, light dish, citrus-free, garlic-free, nut-free, mushroom-free, raw product, with wine, onion-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8663,8 +8663,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, tarragon, onion, citrus, cilantro, garlic, nuts, herbs",
+        "tags-en": "seafood, hearty dish, with wine, gluten-free, mushroom-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8743,8 +8743,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, lactose, eggs, cilantro, herbs",
+        "tags-en": "vegetarian, citrus-free, garlic-free, onion-free, nut-free, mushroom-free, with wine",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8816,8 +8816,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, eggs, onion, garlic, pork, truffle, herbs, mustard",
+        "tags-en": "pork, raw product, hearty dish, citrus-free, nut-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8896,8 +8896,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, sesame, lactose, eggs, herbs, mustard",
+        "tags-en": "chicken, fish, hearty dish, citrus-free, garlic-free, nut-free, mushroom-free, onion-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -8974,8 +8974,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, eggs, lactose, nuts, pork, garlic, mustard",
+        "tags-en": "fish, pork, hearty dish, raw product, mushroom-free, onion-free, citrus-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9054,8 +9054,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, onion, pork, eggs, lactose, tarragon",
+        "tags-en": "pork, raw product, hearty dish, citrus-free, nut-free, mushroom-free, garlic-free, with wine",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9132,8 +9132,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, lactose, onion, nuts, citrus, sesame, eggs, herbs",
+        "tags-en": "fish, pork, raw product, hearty dish, mushroom-free, garlic-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9205,8 +9205,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts",
+        "tags-en": "vegetarian, hearty dish, citrus-free, onion-free, garlic-free, mushroom-free, gluten-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9277,8 +9277,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose",
+        "tags-en": "vegetarian, hearty dish, gluten-free, citrus-free, onion-free, garlic-free, nut-free, mushroom-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9344,8 +9344,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose",
+        "tags-en": "vegetarian, hearty dish, gluten-free, citrus-free, onion-free, garlic-free, nut-free, mushroom-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9416,8 +9416,8 @@
         "title-en": "Yogurt Mousse with Herb Cream, White Chocolate Glaze, and Lemon–Mint Gel",
         "description-en": "Фраза для быстрой презентации гостю:\n\"Light mousse with aromatic herbs on a delicate biscuit base.\"",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, cilantro, citrus, herbs, gluten, eggs",
+        "tags-en": "light dish, onion-free, garlic-free, nut-free, mushroom-free",
         "audio-en": "../audio/en/muss-pryanye-travy.mp3",
         "comments-en": ""
       }
@@ -9496,8 +9496,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, nuts",
+        "tags-en": "vegetarian, light dish, onion-free, garlic-free, mushroom-free, citrus-free, gluten-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9564,8 +9564,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, eggs, nuts",
+        "tags-en": "vegetarian, onion-free, garlic-free, mushroom-free, citrus-free, gluten-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9637,8 +9637,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, eggs",
+        "tags-en": "vegetarian, hearty dish, onion-free, garlic-free, citrus-free, nut-free, mushroom-free, gluten-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9728,8 +9728,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, mustard, eggs, herbs",
+        "tags-en": "on the bone, chicken, mushroom-free, lactose-free, onion-free, nut-free, citrus-free, garlic-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9799,8 +9799,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "gluten, lactose",
+        "tags-en": "fish, mushroom-free, onion-free, nut-free, citrus-free, garlic-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9865,8 +9865,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, onion, herbs, gluten, eggs",
+        "tags-en": "chicken, mushroom-free, nut-free, citrus-free, garlic-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -9938,8 +9938,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, onion, herbs",
+        "tags-en": "chicken, fish, mushroom-free, nut-free, citrus-free, garlic-free, gluten-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -10010,8 +10010,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, herbs, eggs, sesame, gluten, mustard",
+        "tags-en": "chicken, fish, mushroom-free, nut-free, citrus-free, garlic-free, onion-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -10083,8 +10083,8 @@
         "title-en": "",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "lactose, gluten, eggs",
+        "tags-en": "chicken, mushroom-free, nut-free, citrus-free, garlic-free, onion-free",
         "audio-en": "",
         "comments-en": ""
       }
@@ -10187,8 +10187,8 @@
         "title-en": "Vegetable Salad",
         "description-en": "",
         "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
+        "allergens-en": "onion, herbs, lactose",
+        "tags-en": "garlic-free, light dish, nut-free, mushroom-free, to share, citrus-free, gluten-free, vegetarian",
         "audio-en": "",
         "comments-en": ""
       }
