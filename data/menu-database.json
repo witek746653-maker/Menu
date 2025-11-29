@@ -352,12 +352,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🧊 Cold Appetizers",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Jamón Iberico (50 g)",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Traditional Spanish cured pork ham, Iberico, aged 18 months.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/hamon-iberico-50-gr.mp3",
         "comments-en": ""
       }
     },
@@ -919,7 +919,7 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🧊 Cold Appetizers",
-        "title-en": "Тартар из тунца с испанскими оливками, кедровыми орехами и зеленью",
+        "title-en": "Tuna Tartare with Spanish Olives, Pine Nuts, and Herbs",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a tartare of yellowfin tuna, combined with Spanish olives, pine nuts, and fresh herbs, finished with lemon juice.\"",
         "contains-en": "",
         "allergens-en": "",
@@ -2300,8 +2300,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🥗 Salads",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Warm salad with fried octopus, vegetables, olives and mustard dressing",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"This is a warm salad with grilled octopus, fresh vegetables, olives, chili, and garlic oil, served with mustard sauce on the side. Chili, onion, and cilantro can be served separately upon request.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -2465,8 +2465,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🥗 Salads",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Vegetable salad with avocado, Grana Padano, onion crumble, honey–mustard dressing",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"This is a vegetable salad with avocado, Grana Padano cheese, onion crumble, and honey-mustard dressing.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -2780,8 +2780,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍲 Soups",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Ukha - fish soup with smoked red fish, vegetables, and creamy broth",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"This is a fisherman’s soup with lightly smoked red fish, vegetables, and a creamy broth.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -2929,8 +2929,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍲 Soups",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Traditional Italian Minestrone Soup on Chicken Broth with Pesto, Pine Nuts, and Fresh Vegetables",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"This is a vegetable minestrone on chicken broth, with pine nuts, a touch of pesto, and served with Petit Pain crostini spread with olive paste.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -3003,14 +3003,14 @@
         "description": "Постный минестроне на овощном бульоне с кедровыми орехами в сопровождении хрустящей чиабатты и чесночного масла."
       },
       "en": {
-        "menu-en": "",
+        "menu-en": "Vegan/Lenten Menu",
         "section-en": "🍲 Soups",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Vegan minestrone with pine nuts, garlic ciabatta, and vegan pesto",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"This is a vegetarian minestrone with pine nuts, garlic ciabatta, and vegan pesto.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/postnyy-minestrone-na-ovoschnom-bulone-s-kedrovymi-orehami-chesnochnoy-chiabattoy-i-postnym-pesto.mp3",
         "comments-en": ""
       }
     },
@@ -3670,8 +3670,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍖 Main Meat Courses",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Braised beef cheeks with porcini ragout, mashed potatoes, and malt sauce",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Slow-braised beef cheeks with porcini ragout, creamy mashed potatoes, and malt sauce.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -3755,8 +3755,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍖 Main Meat Courses",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Filet mignon with foie gras, fried porcini, and grilled vegetables",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Filet mignon with foie gras, grilled porcini mushrooms, vegetables, and truffle cream sauce.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -4323,8 +4323,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🐟 Fish & Seafood Main Courses",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Baked Black Cod Fillet with Marinated Ginger and Sautéed Vegetables, served with Honey–Orange Sauce",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Baked black cod with pickled ginger, sautéed vegetables, and a honey-orange sauce.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -5620,8 +5620,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Herb mashed potatoes",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Creamy mashed potatoes with fresh herbs.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -5690,8 +5690,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Home-style potatoes on the Josper",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Homestyle potato wedges, baked golden in the Josper grill.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -5752,8 +5752,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Boiled rice",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Light boiled rice, served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -5814,8 +5814,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Mixed vegetables: zucchini, baby corn, red and green bell peppers, cherry tomatoes, carrots.",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Seasonal vegetable mix, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -5884,8 +5884,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Asparagus",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Fresh asparagus, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -5949,8 +5949,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Stewed spinach with garlic and cheese",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Braised spinach with garlic and cheese, served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -6016,8 +6016,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Bell pepper",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Fresh bell peppers, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -6081,8 +6081,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Zucchini",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Fresh zucchini, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -6146,8 +6146,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Uzbek tomatoes",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Fresh Uzbek tomatoes, sweet and juicy, served as a side or starter.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -6211,8 +6211,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍚 Side Dishes",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Cherry tomatoes",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Sweet cherry tomatoes, prepared grilled or steamed, and served as a side dish.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -6273,12 +6273,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Yogurt Mousse with Herb Cream, White Chocolate Glaze, and Lemon–Mint Gel",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Light mousse with aromatic herbs on a delicate biscuit base.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/muss-pryanye-travy.mp3",
         "comments-en": ""
       }
     },
@@ -6347,12 +6347,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Honey-Glazed Apples with Allspice, served with Crunchy Caramelized Walnuts and Pepper Mousse",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Honey-glazed wild apples with allspice, caramelized walnuts, and pepper mousse.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/dikie-yabloki-s-dushistym-pertsem.mp3",
         "comments-en": ""
       }
     },
@@ -6414,12 +6414,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Anna Pavlova - the Legendary Russian Dessert. Crispy Meringue with a Vanilla Cream Center, served with Juicy Mango and Strawberry Pieces, and Raspberry–Basil Sauce",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Crispy meringue with vanilla cream, fresh mango and strawberries, raspberry sauce, and a hint of basil.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/anna-pavlova.mp3",
         "comments-en": ""
       }
     },
@@ -6481,12 +6481,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Bird cherry honey cake with chamomile ice cream",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Tender bird cherry honey cake with creamy frosting, chamomile ice cream, salted pistachios, and lemon caramel.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/cheremuhovyy-medovik-s-romashkovym-morozhenym.mp3",
         "comments-en": ""
       }
     },
@@ -6560,8 +6560,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Chocolate fondant  — Warm Chocolate Cake with a White Chocolate and Pistachio Filling, served with Vanilla Ice Cream and Fresh Berrie",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Warm chocolate cake with a flowing center of white chocolate and pistachios, served with vanilla ice cream and fresh berries.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -6623,12 +6623,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Elegant “Cigar” filled with White Chocolate, Black Truffle, and Salted Caramel Cream, served on Almond and Cocoa Crumble",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Elegant chocolate 'cigar' filled with white chocolate cream, black truffle, and salted caramel, served on almond–cocoa crumble and presented under a smoke dome.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/sigara-sabor-de-la-vida.mp3",
         "comments-en": ""
       }
     },
@@ -6684,12 +6684,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Cheese Soufflé",
+        "description-en": "Фраза для быстрой презентации гостю:\n“Fluffy baked cheese soufflé with a soft caramel center, pitahaya jelly, and pistachio cream.”",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/syrnoe-sufle.mp3",
         "comments-en": ""
       }
     },
@@ -6751,12 +6751,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida) (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Homemade ice cream: vanilla, chocolate, pistachio, chamomile, banana–coconut–lime (vegan).",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Homemade ice cream in a variety of flavors: from classic vanilla and chocolate, pistachio, chamomile, and vegan banana–coconut–lime.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/domashnee-morozhenoe.mp3",
         "comments-en": ""
       }
     },
@@ -6820,12 +6820,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida) (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Fruit sorbet: lime–prosecco, orange–campari, melon–mint, blood orange.",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Light and refreshing fruit sorbet — dairy-free, with pure fruit flavor such as Lime–Prosecco, Orange–Campari, Melon–Mint, and Blood Orange.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/fruktovyy-sorbet.mp3",
         "comments-en": ""
       }
     },
@@ -6881,12 +6881,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida) (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Assorted Candies and Fruit Jellies",
+        "description-en": "Фраза для быстрой презентации гостю:\n“Handcrafted candies and fruit jellies — a delicate sweet selection served at the end of the meal.”",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/konfety-i-marmelad-ruchnoy-raboty.mp3",
         "comments-en": ""
       }
     },
@@ -6953,12 +6953,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida) (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Macaron Assortment",
+        "description-en": "A classic French dessert. An elegant combination of a crispy almond shell and the most delicate filling. Each macaron is a little explosion of flavor and color: from fresh berry notes and citrus sparkle to rich chocolate.",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/assorti-makarons.mp3",
         "comments-en": ""
       }
     },
@@ -7025,8 +7025,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida) (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Café gourmet",
+        "description-en": "Фраза для быстрой презентации гостю:\n“A classic French-style café gourmand — espresso served with an assortment of miniature desserts.”",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -7116,8 +7116,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida) (Sabor de la Vida)",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Tea Set",
+        "description-en": "Фраза для быстрой презентации гостю:\n“A refined tea set with a selection of premium loose-leaf teas, served with homemade sweets.”",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -7191,8 +7191,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida) (Sabor de la Vida)",
         "section-en": "🍶 Sauces & Bread",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Black Pepper Sauce",
+        "description-en": "A creamy sauce with a pronounced aroma of freshly ground black pepper.",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -7260,8 +7260,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍶 Sauces & Bread",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Mustard sauce",
+        "description-en": "A tangy sauce with a bright, natural mustard flavor.",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -7330,8 +7330,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍶 Sauces & Bread",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Tomato–citrus sauce",
+        "description-en": "A light and fragrant sauce made from ripe tomatoes with pieces of vibrant citrus and fresh herbs. It has a refreshing tang and a bright flavor, making it a perfect match for fish, chicken, and vegetables.",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -7398,8 +7398,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍶 Sauces & Bread",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Creamy mushroom sauce",
+        "description-en": "A delicate sauce made from sautéed mushrooms, fragrant garlic, and rich cream. It has a silky texture, a deep mushroom flavor, and pairs perfectly with poultry, meat, and pasta dishes.",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -7470,12 +7470,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍶 Sauces & Bread",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Barbecue sauce",
+        "description-en": "A fragrant sweet-and-sour sauce with a hint of smokiness.",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "../audio/en/kotleta-iz-utinoy-grudki-s-fua-gra-i-kartofelnym-pyure-s-zelenyu-i-sousom-barbekyu.mp3",
+        "audio-en": "../audio/en/barbekyu-sauce.mp3",
         "comments-en": ""
       }
     },
@@ -7540,14 +7540,14 @@
         "description": "С добавлением кедровых орехов, чеснока."
       },
       "en": {
-        "menu-en": "",
+        "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍶 Sauces & Bread",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Pesto sauce",
+        "description-en": "Pesto is a traditional Italian sauce made from fresh basil leaves, grated Parmesan, pine nuts, and high-quality olive oil.",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/pesto.mp3",
         "comments-en": ""
       }
     },
@@ -7608,8 +7608,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍶 Sauces & Bread",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Cranberry sauce",
+        "description-en": "Cranberry sauce is a fragrant berry dressing with a light tartness and natural sweetness, made from fresh cranberries, sugar, and spices. It pairs perfectly with meat dishes, especially poultry, adding a bright flavor and a festive touch.",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -7676,8 +7676,8 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍶 Sauces & Bread",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Tomato–basil sauce (with chili)",
+        "description-en": "A spicy sauce with vibrant chili heat and the aroma of fresh basil.",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
@@ -7748,12 +7748,12 @@
       "en": {
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🍶 Sauces & Bread",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Basket of House-Made Bread with Homemade Butters",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Our signature bread basket features wheat bread with a crispy crust, malt bread with grains, aromatic onion bread, and ciabatta with sun-dried tomatoes. Served with two flavored butters: tomato–basil and mushroom–truffle\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
-        "audio-en": "",
+        "audio-en": "../audio/en/avtorskiy-domashniy-khleb.mp3",
         "comments-en": ""
       }
     },
@@ -9413,8 +9413,8 @@
       "en": {
         "menu-en": "Signature Breakfasts",
         "section-en": "🍰 Desserts",
-        "title-en": "",
-        "description-en": "",
+        "title-en": "Yogurt Mousse with Herb Cream, White Chocolate Glaze, and Lemon–Mint Gel",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Light mousse with aromatic herbs on a delicate biscuit base.\"",
         "contains-en": "",
         "allergens-en": "",
         "tags-en": "",
