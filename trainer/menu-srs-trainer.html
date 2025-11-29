@@ -133,11 +133,11 @@
         <div id="imageWrapper" class="card-image" hidden>
           <img id="cardImage" src="" alt="Фото блюда" loading="lazy" />
         </div>
-        <div id="tagsRow" class="badges"></div>
 
         <div id="answerBlock" class="answer-block" hidden>
           <div id="answerTitle" class="card-title" style="font-size:18px; margin:0 0 6px 0"></div>
           <div id="answerText"></div>
+          <div id="tagsRow" class="badges"></div>
           <div id="extraDetails" class="grid-two" style="margin-top:10px"></div>
         </div>
 
@@ -391,7 +391,7 @@
 
     function renderTags(tags) {
       ui.tagsRow.innerHTML = tags.map(tag => `<span class="pill">${tag}</span>`).join('');
-      ui.tagsRow.hidden = tags.length === 0;
+      ui.tagsRow.hidden = true;
     }
 
     function showCard() {
@@ -427,14 +427,11 @@
       }
 
       const questionText = useGuessPreview ? getTitlePreview(card.title) : card.title;
-      ui.questionText.textContent = questionText;
+      const isDuplicateTitle = questionText.trim() === previewTitle.trim();
+      ui.questionText.textContent = isDuplicateTitle ? '' : questionText;
+      ui.questionText.hidden = isDuplicateTitle;
 
-      if (useGuessPreview) {
-        ui.tagsRow.innerHTML = '';
-        ui.tagsRow.hidden = true;
-      } else {
-        renderTags(card.tags || []);
-      }
+      renderTags(card.tags || []);
 
       switch(isCommunicationMenu ? 'communication' : profile.trainingType) {
         case 'contains':
@@ -551,6 +548,7 @@
 
     ui.revealBtn.addEventListener('click', () => {
       ui.answerBlock.hidden = false;
+      ui.tagsRow.hidden = ui.tagsRow.childElementCount === 0;
       ui.ratingButtons.forEach(btn => btn.disabled = false);
     });
 
