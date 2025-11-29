@@ -254,6 +254,19 @@
       return `${preview}…`;
     }
 
+    function getCardIcon(card) {
+      if (card.type === 'service') return '🗣️';
+      if (card.type === 'wine') return '🍷';
+      if (card.type === 'drink') return '🥂';
+      return '🍽️';
+    }
+
+    function getCardSubtitle(card) {
+      const icon = getCardIcon(card);
+      const parts = [card.section, card.menu, card.id].filter(Boolean);
+      return `${icon} ${parts.join(' · ')}`;
+    }
+
     function normalizeCards(raw, defaults = {}) {
       return raw
         .filter(item => item && item.id && item.title)
@@ -413,8 +426,8 @@
 
       const previewTitle = getTitlePreview(card.title);
       ui.cardTitle.textContent = previewTitle;
-      ui.cardSubtitle.textContent = '';
-      ui.cardSubtitle.hidden = true;
+      ui.cardSubtitle.textContent = getCardSubtitle(card);
+      ui.cardSubtitle.hidden = false;
       ui.answerBlock.hidden = true;
       ui.answerTitle.textContent = card.title;
       ui.revealBtn.disabled = false;
