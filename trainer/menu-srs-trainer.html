@@ -64,6 +64,8 @@
   .card-title { font-size: 20px; font-weight: 800; letter-spacing: .2px; color: #5a3a1e; margin: 0 }
   .card-sub { margin: 2px 0 0 0; color: var(--muted); font-size: 14px }
   .card-body { padding: 16px; display: grid; gap: 12px }
+  .card-image { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--panel); box-shadow: var(--shadow-md); max-height: 380px }
+  .card-image img { width: 100%; display: block; object-fit: cover; height: 100% }
   .hint { color: var(--muted); font-size: 14px }
   .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--panel); border: 1px solid var(--border); font-size: 13px; margin-right: 6px; margin-bottom: 6px }
   .answer-block { padding: 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); box-shadow: inset 0 1px 0 rgba(255,255,255,.4) }
@@ -128,6 +130,9 @@
       </header>
       <div class="card-body">
         <div class="hint" id="questionText">Подготовка карточек...</div>
+        <div id="imageWrapper" class="card-image" hidden>
+          <img id="cardImage" src="" alt="Фото блюда" loading="lazy" />
+        </div>
         <div id="tagsRow" class="badges"></div>
 
         <div id="answerBlock" class="answer-block" hidden>
@@ -165,6 +170,8 @@
     ];
 
     const MENU_SECTION_FILTERS = new Set(['main', 'breakfast', 'seasonal', 'kids', 'english']);
+    const GUESS_MENUS = new Set(['main', 'breakfast', 'seasonal', 'kids', 'english']);
+    const GUESS_MODES = new Set(['desc', 'contains', 'feat']);
     const COMMUNICATION_SECTIONS = [
       'Общие вопросы',
       'Рекомендации блюд',
@@ -209,6 +216,8 @@
       cardTitle: document.getElementById('cardTitle'),
       cardSubtitle: document.getElementById('cardSubtitle'),
       questionText: document.getElementById('questionText'),
+      imageWrapper: document.getElementById('imageWrapper'),
+      cardImage: document.getElementById('cardImage'),
       answerBlock: document.getElementById('answerBlock'),
       answerText: document.getElementById('answerText'),
       extra: document.getElementById('extraDetails'),
@@ -226,6 +235,21 @@
 
     function saveProgress(progress) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    }
+
+    function shuffleArray(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function getTitlePreview(title) {
+      const words = title.trim().split(/\s+/);
+      const preview = words.slice(0, 3).join(' ');
+      return `${preview}…`;
     }
 
     function normalizeCards(raw, defaults = {}) {
@@ -331,7 +355,7 @@
       const progress = loadProgress();
       const cards = filterCards();
       const activeCards = cards.filter((card) => !progress[card.id]?.mastered);
-      state.queue = [...activeCards];
+      state.queue = shuffleArray(activeCards);
       state.deckSize = activeCards.length;
       state.currentIndex = 0;
       updateStats();
@@ -385,17 +409,33 @@
       ui.answerBlock.hidden = true;
       ui.revealBtn.disabled = false;
       ui.ratingButtons.forEach(btn => btn.disabled = true);
-      renderTags(card.tags || []);
-
       const isCommunicationMenu = state.filterMenu === 'communication';
+      const useGuessPreview = GUESS_MENUS.has(state.filterMenu) && GUESS_MODES.has(profile.trainingType);
+
+      if (useGuessPreview && card.image_url) {
+        ui.imageWrapper.hidden = false;
+        ui.cardImage.src = card.image_url;
+        ui.cardImage.alt = card.title;
+      } else {
+        ui.imageWrapper.hidden = true;
+        ui.cardImage.removeAttribute('src');
+      }
+
+      const questionText = useGuessPreview ? getTitlePreview(card.title) : card.title;
+      ui.questionText.textContent = questionText;
+
+      if (useGuessPreview) {
+        ui.tagsRow.innerHTML = '';
+        ui.tagsRow.hidden = true;
+      } else {
+        renderTags(card.tags || []);
+      }
 
       switch(isCommunicationMenu ? 'communication' : profile.trainingType) {
         case 'contains':
-          ui.questionText.textContent = card.title;
           ui.answerText.innerHTML = card.contains || 'Нет состава';
           break;
         case 'feat':
-          ui.questionText.textContent = card.title;
           ui.answerText.innerHTML = `${card.features?.length ? `<ul>${card.features.map(f => `<li>${f}</li>`).join('')}</ul>` : 'Особенности не указаны'}<div style="margin-top:6px">${card.allergens?.length ? 'Аллергены: ' + card.allergens.join(', ') : 'Аллергены не указаны'}</div>`;
           break;
         case 'general':
@@ -404,11 +444,9 @@
         case 'recommend':
         case 'scenario_en':
         case 'communication':
-          ui.questionText.textContent = card.title;
           ui.answerText.innerHTML = card.description || 'Ответ отсутствует';
           break;
         default:
-          ui.questionText.textContent = card.title;
           ui.answerText.textContent = card.description || 'Описание отсутствует';
       }
 
@@ -503,7 +541,7 @@
     ui.menuFilter.addEventListener('change', e => { state.filterMenu = e.target.value; state.filterSection = 'all-menu'; updateModeVisibility(); buildSections(state.cards); buildQueue(); });
     ui.sectionFilter.addEventListener('change', e => { state.filterSection = e.target.value; buildQueue(); });
     ui.searchInput.addEventListener('input', e => { state.search = e.target.value; buildQueue(); });
-    ui.shuffleBtn.addEventListener('click', () => { state.queue.sort(() => Math.random() - 0.5); state.currentIndex = 0; showCard(); });
+    ui.shuffleBtn.addEventListener('click', () => { state.queue = shuffleArray(state.queue); state.currentIndex = 0; showCard(); });
     ui.resetBtn.addEventListener('click', () => { if (confirm('Сбросить локальный прогресс?')) { localStorage.removeItem(STORAGE_KEY); buildQueue(); } });
 
     ui.revealBtn.addEventListener('click', () => {

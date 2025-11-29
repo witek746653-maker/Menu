@@ -1014,7 +1014,10 @@ function isMissingInJSON(c){
 
 
 function computeQueue(force = false){
-  if(!force && !queueDirty) return;
+  if(!force && !queueDirty){
+    shuffleQueue(queue);
+    return;
+  }
     const t = today();
     const due = [], newer = [];
   for (const c of allCards){
@@ -1030,14 +1033,17 @@ function computeQueue(force = false){
   }
   // Всегда возвращаем просроченные и новые
   queue = [...due, ...newer];
-  // Перемешиваем очередь, чтобы карточки показывались в случайном порядке
-  for (let i = queue.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const tmp = queue[i];
-    queue[i] = queue[j];
-    queue[j] = tmp;
-  }
+  shuffleQueue(queue);
   queueDirty = false;
+}
+
+function shuffleQueue(list){
+  for (let i = list.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = list[i];
+    list[i] = list[j];
+    list[j] = tmp;
+  }
 }
 
 function randomIntInclusive(min, max){
@@ -1248,6 +1254,43 @@ function renderCard(c){
     answerDiv.innerHTML = firstNonEmpty(c.comp, extractQA(c.html).compositionHTML, '<em>Нет информации о составе</em>');
   } else {
     answerDiv.innerHTML = firstNonEmpty(c.answer, extractQA(c.html).answerHTML, '<em>Нет данных</em>');
+  }
+
+  const maskedMenus = ['основное', 'завтрак', 'сезон', 'детск', 'англ'];
+  const shouldMaskMenu = (menuName = '') => maskedMenus.some((chunk) => menuName.toLowerCase().includes(chunk));
+  const maskedModes = new Set(['desc', 'feat', 'comp', 'mode_en']);
+  const shouldMask = maskedModes.has(profile.trainingType) && shouldMaskMenu(c.menu);
+
+  if (shouldMask) {
+    const titleEl = node.querySelector('.title');
+    const sectionPill = node.querySelector('.row .pill');
+    const duePill = node.querySelector('.due');
+    const summaryEl = details.querySelector('summary');
+
+    if (sectionPill) sectionPill.style.display = 'none';
+    if (duePill) duePill.style.display = 'none';
+
+    const formatMaskedTitle = (value = '') => {
+      const words = value.trim().split(/\s+/).filter(Boolean);
+      if (words.length <= 3) return value.trim();
+      return `${words.slice(0, 3).join(' ')}…`;
+    };
+
+    if (titleEl) {
+      titleEl.textContent = formatMaskedTitle(c.title || '');
+      titleEl.title = c.title || '';
+    }
+
+    const fullTitle = document.createElement('h3');
+    fullTitle.textContent = c.title || '';
+    fullTitle.style.marginTop = '0';
+    fullTitle.style.marginBottom = '8px';
+    fullTitle.className = 'masked-full-title';
+    answerDiv.prepend(fullTitle);
+
+    if (summaryEl) {
+      summaryEl.textContent = 'Показать полную карточку';
+    }
   }
   const media = node.querySelector('.media');
   const img = media.querySelector('img');
