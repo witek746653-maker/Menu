@@ -23,7 +23,6 @@
       --accent: #ffd166;
       --accent-strong: #ffbd2e;
       --danger: #ff6b6b;
-      --english-highlight: #9ad4ff;
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", sans-serif;
     }
 
@@ -874,25 +873,6 @@
     .modal-backdrop--english .modal-dialog {
       border-color: rgba(255, 209, 102, 0.4);
       box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
-    }
-
-    /* Подсветка английских текстов в английской модалке без изменения заголовков */
-    .modal-backdrop--english .modal-body .modal-description,
-    .modal-backdrop--english .modal-body .rich-text,
-    .modal-backdrop--english .modal-body .rich-text p,
-    .modal-backdrop--english .modal-body .rich-text li,
-    .modal-backdrop--english .modal-body .meta-block ul li,
-    .modal-backdrop--english .modal-body .translation-description,
-    .modal-backdrop--english .modal-body .meta-block > p,
-    .modal-backdrop--english .modal-body .meta-block .source-file {
-      color: var(--english-highlight);
-    }
-
-    .modal-backdrop--english .modal-body .tags .tag,
-    .modal-backdrop--english .modal-body .tags .tag .tag-text {
-      color: var(--english-highlight);
-      border-color: rgba(154, 212, 255, 0.45);
-      background: rgba(154, 212, 255, 0.12);
     }
 
     .meta-block .pairing-link {
