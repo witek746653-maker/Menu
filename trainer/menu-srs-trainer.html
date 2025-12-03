@@ -112,7 +112,7 @@
     <header class="app-header">
       <div>
         <h1>Меню-тренажёр (интервальное повторение)</h1>
-        <div class="muted">Учите блюда в интерактивной форме с гибкими режимами.</div>
+        <div class="muted">Учите блюда в интерактивной форме.</div>
       </div>
       <button id="resetProgress" aria-label="Сбросить прогресс">Сбросить прогресс</button>
     </header>
@@ -123,9 +123,6 @@
 
       <label for="sectionFilter">Раздел</label>
       <select id="sectionFilter"></select>
-
-      <label for="modeSelect">Режим</label>
-      <select id="modeSelect"></select>
 
       <label for="searchInput">Поиск</label>
       <input id="searchInput" type="search" placeholder="Название или тег" />
@@ -205,17 +202,6 @@
       'Сценарии общения на английском'
     ];
 
-    const MODES = [
-      { value: 'desc', label: 'Красочное описание', group: 'Карточки меню' },
-      { value: 'contains', label: 'Состав', group: 'Карточки меню' },
-      { value: 'feat', label: 'Особенности и аллергены', group: 'Карточки меню' },
-      { value: 'general', label: 'Общие вопросы', group: 'Коммуникация и сервис' },
-      { value: 'service', label: 'Стандарты сервиса и этикет', group: 'Коммуникация и сервис' },
-      { value: 'situation', label: 'Особые ситуации', group: 'Коммуникация и сервис' },
-      { value: 'recommend', label: 'Рекомендации блюд', group: 'Коммуникация и сервис' },
-      { value: 'scenario_en', label: 'Сценарии общения на английском', group: 'Коммуникация и сервис' }
-    ];
-
     const profile = { trainingType: 'desc' };
 
     const state = {
@@ -231,8 +217,6 @@
     const ui = {
       menuFilter: document.getElementById('menuFilter'),
       sectionFilter: document.getElementById('sectionFilter'),
-      modeSelect: document.getElementById('modeSelect'),
-      modeLabel: document.querySelector('label[for="modeSelect"]'),
       searchInput: document.getElementById('searchInput'),
       shuffleBtn: document.getElementById('shuffleBtn'),
       resetBtn: document.getElementById('resetProgress'),
@@ -600,38 +584,7 @@
       showCard();
     }
 
-    function buildModeSelect() {
-      const groups = MODES.reduce((acc, mode) => {
-        acc[mode.group] = acc[mode.group] || [];
-        acc[mode.group].push(mode);
-        return acc;
-      }, {});
-
-      ui.modeSelect.innerHTML = Object.entries(groups).map(([group, options]) => `
-        <optgroup label="${group}">
-          ${options.map(opt => `<option value="${opt.value}">${opt.label}</option>`).join('')}
-        </optgroup>
-      `).join('');
-      ui.modeSelect.value = profile.trainingType;
-    }
-
-    function updateModeVisibility() {
-      const hideMode = state.filterMenu === 'communication';
-      const lockMode = state.filterMenu === 'english';
-      if (hideMode || lockMode) {
-        profile.trainingType = 'desc';
-      }
-      ui.modeSelect.hidden = hideMode;
-      ui.modeLabel.hidden = hideMode;
-      ui.modeSelect.disabled = lockMode;
-      ui.modeSelect.title = lockMode ? 'Режим недоступен для English menu' : '';
-      if (!hideMode) {
-        ui.modeSelect.value = profile.trainingType;
-      }
-    }
-
     async function init() {
-      buildModeSelect();
       applyViewMode(loadViewMode());
       const [menuRes, serviceRes, enDictRes] = await Promise.all([
         fetch(MENU_DATA_URL),
@@ -691,22 +644,9 @@
       state.cards = [...menuCards, ...englishCards, ...communicationCards];
       buildMenus(state.cards);
       buildSections(state.cards);
-      updateModeVisibility();
       buildQueue();
     }
-
-    ui.modeSelect.addEventListener('change', e => {
-      profile.trainingType = e.target.value;
-      if (['general', 'service', 'situation', 'recommend', 'scenario_en'].includes(profile.trainingType)) {
-        state.filterMenu = profile.trainingType === 'scenario_en' ? 'english' : 'communication';
-      }
-      ui.menuFilter.value = state.filterMenu;
-      buildSections(state.cards);
-      buildQueue();
-      showCard();
-      updateModeVisibility();
-    });
-    ui.menuFilter.addEventListener('change', e => { state.filterMenu = e.target.value; state.filterSection = 'all-menu'; updateModeVisibility(); buildSections(state.cards); buildQueue(); });
+    ui.menuFilter.addEventListener('change', e => { state.filterMenu = e.target.value; state.filterSection = 'all-menu'; buildSections(state.cards); buildQueue(); });
     ui.sectionFilter.addEventListener('change', e => { state.filterSection = e.target.value; buildQueue(); });
     ui.searchInput.addEventListener('input', e => { state.search = e.target.value; buildQueue(); });
     ui.shuffleBtn.addEventListener('click', () => { state.queue = shuffleArray(state.queue); state.currentIndex = 0; showCard(); });
