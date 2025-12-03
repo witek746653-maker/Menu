@@ -54,16 +54,27 @@
         "section-en": "🐠 Aquarium",
         "title-en": "Imperial Oyster (Russia)",
         "description-en": "Фраза для быстрой презентации гостю: \n“These are Imperial oysters from Vladivostok, served raw with lemon, shallots, red wine vinegar, butter, and croutons. \nThey have a fresh, pronounced sea flavor — please note they contain onion and citrus.”",
-        "contains-en": "red wine vinegar - винный уксус,",
+        "contains-en": "It’s served raw with lemon, shallots, red wine vinegar, butter, and croutons.\n",
         "allergens-en": "citrus, onion, lactose, gluten",
         "tags-en": "garlic-free, light dish, seafood, raw product, low carb, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok.mp3",
         "comments-en": [
-          "briny flavor — ключевая фраза для морского, солоноватого вкуса",
-          "rich iodine notes — передаёт «йодистый характер»",
-          "natural freshness — звучит естественно и используется повсюду"
+          "Please note it contains onion and citrus.",
+          "В британском английском чаще говорят “oyster with shallot vinaigrette”, в американском чаще — “oyster with mignonette sauce”. Это один и тот же стиль подачи, только слова разные.",
+          "The flavour is naturally stronger than most oysters - фраза говорит гостю, что у этого вида устриц: вкус ярче, более насыщенный (intense/rich flavour), но при этом натуральный, а не «агрессивный».",
+          "В Британии сырые устрицы часто называют “oysters on the half-shell”, в США любят говорить “briny” — это короткое слово для морской солёности.",
+          "В диких устрицах вкус может “скакать”, потому что он зависит от того, где и чем она питалась — можно пошутить: “It’s a bit of an ocean lottery — but always a delicious one!"
+          
         ],
-        "useful phrases & words": []
+        "useful phrases & words": [
+          "wild oyster — важно подчеркнуть, что она не фермерская, а дикая.",
+          "briny flavor — ключевая фраза для морского, солоноватого вкуса",
+          "rich iodine notes/character — передаёт «йодистый характер»",
+          "natural freshness — звучит естественно и используется повсюду",
+          "crisp freshness — естественное выражение, которое описывает хрустящую, яркую, освежающую текстуру или вкус.",
+          "Just to let you know, it’s served raw.",
+          "More intense than a farmed oyster."
+        ]
       }
     },
     "status": "актуально",
@@ -140,7 +151,8 @@
           "served raw with — стандартная фраза для описания подачи сырой устрицы.",
           "please note it contains — стандартная фраза для предупреждения о наличии аллергенов.",
           "a softer taste — мягкое, понятное объяснение вкуса.",
-          "farm-raised oyster — устрица, выращенная на ферме."
+          "farm-raised oyster — устрица, выращенная на ферме.",
+          "I recommend starting with this oyster — it’s very gentle."
 
         ]
       }
@@ -206,12 +218,21 @@
         "section-en": "🐠 Aquarium",
         "title-en": "Oyster “Fine de Claire No.3” (France)",
         "description-en": "Фраза для быстрой презентации гостю:\n“Classic French oysters with a delicate creamy and nutty taste, perfectly balanced between sweetness and salinity.”",
-        "contains-en": "",
+        "contains-en": "It’s served raw with lemon, shallots, red wine vinegar, butter, and croutons. \n",
         "allergens-en": "citrus, onion, gluten",
         "tags-en": "garlic-free, light dish, seafood, raw product, low carb, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/ustritsa-fine-de-claire-3-frantsiya.mp3",
-        "comments-en": "",
-        "useful phrases & words": []
+        "comments-en": [
+          "Держи лайфхак: если гость спрашивает про вкус, можно сказать: “If the Imperial oyster is a rock concert, Fine de Claire is a jazz club.” (гости обожают такие сравнения!)"
+        ],
+        "useful phrases & words": [
+          "delicate creamy — мягкое, часто используемое описание Fine de Claire.",
+          "slightly nutty — интерпретация «ореховых нот»; звучит естественно.",
+          "gentle hint of sea salt - деликатная солоноватость; распространённое выражение.",
+          "perfectly balanced — часто используемая фраза для описания баланса вкусов.",
+          "classic French oysters — устрицы, которые ассоциируются с Францией и её традициями.",
+          "farm-raised oysters — устрицы, выращенные на ферме."
+        ]
       }
     },
     "status": "актуально",
@@ -283,12 +304,26 @@
         "section-en": "🐠 Aquarium",
         "title-en": "Sea urchin with ponzu, avocado mousse, and quail yolk",
         "description-en": "Фраза для презентации гостю:\n\n“This is a fresh sea urchin with ponzu sauce, delicate avocado mousse, and a quail yolk. \nPlease note it is served raw, with citrus, garlic, cilantro, and chili accents.”",
-        "contains-en": "",
+        "contains-en": "The sea urchin is served with ponzu sauce, avocado mousse,a quail egg yolk and ginger sprout",
         "allergens-en": "chili pepper, cilantro, garlic, citrus, herbs",
         "tags-en": "light dish, low carb, raw product, gluten-free, lactose-free, onion-free, to share, seafood, with wine, nut-free, mushroom-free",
         "audio-en": "../audio/en/morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom.mp3",
-        "comments-en": "",
-        "useful phrases & words": []
+        "comments-en": [
+          "Just to let you know, the dish is served raw.", 
+          "In our signature presentation, all the ingredients are placed inside the sea urchin. If you prefer, we can serve everything separately.",
+          "Забавная фраза, которую можно использовать в подаче: \"It tastes like the ocean… but in a very luxurious way.\""
+        ],
+        "useful phrases & words": [
+          "fresh sea urchin” — свежий морской ёж",
+          "smooth / silky — типичные прилагательные для текстуры ежа (sea urchin).",
+          "elegant bite — мягкий, дружелюбный ресторанный оборот.",
+          "signature presentation — авторская подача, очень ресторанная фраза.",
+          "served raw with — стандартная фраза для описания подачи сырого блюда.",
+          "just to let you know — стандартная фраза для предупреждения о наличии аллергенов.",
+          "cilantro — кинза (американский вариант кинзы).",
+          "ginger sprout — проросток имбиря."
+
+        ]
       }
     },
     "status": "актуально",
