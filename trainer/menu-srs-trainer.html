@@ -68,9 +68,13 @@
   .card-title { font-size: 20px; font-weight: 800; letter-spacing: .2px; color: #5a3a1e; margin: 0 }
   .card-sub { margin: 2px 0 0 0; color: var(--muted); font-size: 14px }
   .card-body { padding: 16px; display: grid; gap: 12px }
+  .card-side { display: grid; gap: 12px }
+  .card-body[data-side="back"] .card-front { display: none }
+  .card-body[data-side="front"] .card-back { display: none }
   .card-image { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--panel); box-shadow: var(--shadow-md); max-height: 380px }
   .card-image img { width: 100%; display: block; object-fit: cover; height: 100% }
   .hint { color: var(--muted); font-size: 14px }
+  .card-actions { display: flex; justify-content: flex-end }
   .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--panel); border: 1px solid var(--border); font-size: 13px; margin-right: 6px; margin-bottom: 6px }
   .answer-block { padding: 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); box-shadow: inset 0 1px 0 rgba(255,255,255,.4); display: grid; gap: 12px }
   .grid-two { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: start }
@@ -145,26 +149,32 @@
         <p class="card-title" id="cardTitle">Загрузка...</p>
         <p class="card-sub" id="cardSubtitle" hidden></p>
       </header>
-      <div class="card-body">
-        <div class="hint" id="questionText" hidden>Подготовка карточек...</div>
-        <div id="imageWrapper" class="card-image" hidden>
-          <img id="cardImage" src="" alt="Фото блюда" loading="lazy" />
+      <div class="card-body" data-side="front">
+        <div class="card-side card-front">
+          <div class="hint" id="questionText">Подготовка карточек...</div>
+          <div id="imageWrapper" class="card-image" hidden>
+            <img id="cardImage" src="" alt="Фото блюда" loading="lazy" />
+          </div>
+          <div class="card-actions">
+            <button id="revealBtn" class="primary">Показать ответ</button>
+          </div>
         </div>
 
-        <div id="answerBlock" class="answer-block" hidden>
-          <div id="answerTitle" class="card-title" style="font-size:18px; margin:0 0 6px 0"></div>
-          <div id="answerText"></div>
-          <div id="allergensBlock" class="answer-meta" hidden></div>
-          <div id="extraDetails" class="grid-two" style="margin-top:10px"></div>
-          <div id="tagsRow" class="badges"></div>
-        </div>
+        <div class="card-side card-back" hidden>
+          <div id="answerBlock" class="answer-block" hidden>
+            <div id="answerTitle" class="card-title" style="font-size:18px; margin:0 0 6px 0"></div>
+            <div id="answerText"></div>
+            <div id="allergensBlock" class="answer-meta" hidden></div>
+            <div id="extraDetails" class="grid-two" style="margin-top:10px"></div>
+            <div id="tagsRow" class="badges"></div>
+          </div>
 
-        <div class="rating">
-          <button class="again" data-score="1">Ещё раз</button>
-          <button class="hard" data-score="3">Сложно</button>
-          <button class="good" data-score="4">Хорошо</button>
-          <button class="easy" data-score="5">Легко</button>
-          <button id="revealBtn" class="primary">Показать ответ</button>
+          <div class="rating">
+            <button class="again" data-score="1">Ещё раз</button>
+            <button class="hard" data-score="3">Сложно</button>
+            <button class="good" data-score="4">Хорошо</button>
+            <button class="easy" data-score="5">Легко</button>
+          </div>
         </div>
       </div>
     </div>
@@ -231,6 +241,9 @@
       cardTitle: document.getElementById('cardTitle'),
       cardSubtitle: document.getElementById('cardSubtitle'),
       questionText: document.getElementById('questionText'),
+      cardBody: document.querySelector('.card-body'),
+      cardFront: document.querySelector('.card-front'),
+      cardBack: document.querySelector('.card-back'),
       imageWrapper: document.getElementById('imageWrapper'),
       cardImage: document.getElementById('cardImage'),
       answerBlock: document.getElementById('answerBlock'),
@@ -487,6 +500,29 @@
       ui.tagsRow.hidden = true;
     }
 
+    function setCardSide(side) {
+      ui.cardBody.dataset.side = side;
+      ui.cardFront.hidden = side === 'back';
+      ui.cardBack.hidden = side === 'front';
+    }
+
+    function getQuestionPrompt(card, isCommunicationMenu) {
+      const mode = isCommunicationMenu ? 'communication' : profile.trainingType;
+      switch (mode) {
+        case 'contains':
+        case 'feat':
+        case 'general':
+        case 'service':
+        case 'situation':
+        case 'recommend':
+        case 'scenario_en':
+        case 'communication':
+          return card.title || 'Без названия';
+        default:
+          return card.title || 'Без названия';
+      }
+    }
+
     function showCard() {
       const card = state.queue[state.currentIndex];
       if (!card) {
@@ -501,6 +537,7 @@
         ui.answerBlock.hidden = true;
         ui.ratingButtons.forEach(btn => btn.disabled = true);
         ui.revealBtn.disabled = true;
+        setCardSide('front');
         return;
       }
 
@@ -513,6 +550,9 @@
       ui.revealBtn.disabled = false;
       ui.ratingButtons.forEach(btn => btn.disabled = true);
       const isCommunicationMenu = state.filterMenu === 'communication';
+      ui.questionText.textContent = getQuestionPrompt(card, isCommunicationMenu);
+      ui.questionText.hidden = false;
+      setCardSide('front');
 
       const shouldShowImage = Boolean(card.image_url);
       ui.imageWrapper.hidden = !shouldShowImage;
@@ -522,9 +562,6 @@
       } else {
         ui.cardImage.removeAttribute('src');
       }
-
-      ui.questionText.textContent = '';
-      ui.questionText.hidden = true;
 
       renderTags(card.tags || []);
       ui.allergensBlock.hidden = true;
@@ -663,6 +700,7 @@
     ui.viewToggle.addEventListener('click', () => { applyViewMode(!document.body.classList.contains('compact-mode')); });
 
     ui.revealBtn.addEventListener('click', () => {
+      setCardSide('back');
       ui.answerBlock.hidden = false;
       ui.tagsRow.hidden = ui.tagsRow.childElementCount === 0;
       ui.ratingButtons.forEach(btn => btn.disabled = false);
