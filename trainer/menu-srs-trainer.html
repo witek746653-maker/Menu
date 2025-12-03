@@ -72,9 +72,12 @@
   .card-image img { width: 100%; display: block; object-fit: cover; height: 100% }
   .hint { color: var(--muted); font-size: 14px }
   .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--panel); border: 1px solid var(--border); font-size: 13px; margin-right: 6px; margin-bottom: 6px }
-  .answer-block { padding: 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); box-shadow: inset 0 1px 0 rgba(255,255,255,.4) }
+  .answer-block { padding: 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); box-shadow: inset 0 1px 0 rgba(255,255,255,.4); display: grid; gap: 12px }
   .grid-two { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: start }
   .multiline { white-space: pre-line }
+
+  .answer-meta { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); box-shadow: var(--shadow-md) }
+  .answer-meta strong { color: var(--accent-3); display: block; margin-bottom: 4px }
 
   .stats { display: flex; gap: 12px; flex-wrap: wrap }
   .stat { padding: 10px 12px; border-radius: 12px; background: var(--panel); border: 1px solid var(--border); box-shadow: var(--shadow-md); min-width: 140px }
@@ -82,8 +85,8 @@
 
   .spacer { flex: 1 1 auto }
 
-  .rating { display: flex; flex-wrap: wrap; gap: 10px }
-  .rating button { min-width: 120px }
+  .rating { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; align-items: stretch }
+  .rating button { width: 100% }
   .rating .again { background: #ffe7e4; border-color: #f7c2ba; color: #7a2e1e }
   .rating .hard { background: #fff1dd; border-color: #f0d19a; color: #8c5a3c }
   .rating .good { background: linear-gradient(180deg, #d9f5d2, #8bd17d); border-color: #a4d6a0; color: #0c2f16 }
@@ -151,8 +154,9 @@
         <div id="answerBlock" class="answer-block" hidden>
           <div id="answerTitle" class="card-title" style="font-size:18px; margin:0 0 6px 0"></div>
           <div id="answerText"></div>
-          <div id="tagsRow" class="badges"></div>
+          <div id="allergensBlock" class="answer-meta" hidden></div>
           <div id="extraDetails" class="grid-two" style="margin-top:10px"></div>
+          <div id="tagsRow" class="badges"></div>
         </div>
 
         <div class="rating">
@@ -160,7 +164,7 @@
           <button class="hard" data-score="3">Сложно</button>
           <button class="good" data-score="4">Хорошо</button>
           <button class="easy" data-score="5">Легко</button>
-          <button id="revealBtn" class="primary" style="margin-left:auto">Показать ответ</button>
+          <button id="revealBtn" class="primary">Показать ответ</button>
         </div>
       </div>
     </div>
@@ -232,6 +236,7 @@
       answerBlock: document.getElementById('answerBlock'),
       answerTitle: document.getElementById('answerTitle'),
       answerText: document.getElementById('answerText'),
+      allergensBlock: document.getElementById('allergensBlock'),
       extra: document.getElementById('extraDetails'),
       tagsRow: document.getElementById('tagsRow'),
       ratingButtons: [...document.querySelectorAll('.rating button[data-score]')],
@@ -522,6 +527,8 @@
       ui.questionText.hidden = true;
 
       renderTags(card.tags || []);
+      ui.allergensBlock.hidden = true;
+      ui.allergensBlock.innerHTML = '';
 
       switch(isCommunicationMenu ? 'communication' : profile.trainingType) {
         case 'contains':
@@ -531,7 +538,7 @@
           if (card.featuresRaw) {
             ui.answerText.innerHTML = renderMultiline(card.featuresRaw.trim());
           } else {
-            ui.answerText.innerHTML = `${card.features?.length ? `<ul>${card.features.map(f => `<li>${f}</li>`).join('')}</ul>` : 'Особенности не указаны'}<div style="margin-top:6px">${card.allergens?.length ? 'Аллергены: ' + card.allergens.join(', ') : 'Аллергены не указаны'}</div>`;
+            ui.answerText.innerHTML = `${card.features?.length ? `<ul>${card.features.map(f => `<li>${f}</li>`).join('')}</ul>` : 'Особенности не указаны'}`;
           }
           break;
         case 'general':
@@ -557,6 +564,7 @@
             <div class="hint">${card.tags?.length ? card.tags.join(', ') : 'Не указаны'}</div>
           </div>
         `;
+        ui.allergensBlock.hidden = true;
       } else {
         const containsHtml = card.contains ? renderMultiline(card.contains) : 'Нет данных';
         ui.extra.innerHTML = `
@@ -564,11 +572,12 @@
             <strong style="color:var(--accent-3)">Состав/подача</strong>
             <div class="hint">${containsHtml}</div>
           </div>
-          <div>
-            <strong style="color:var(--accent-3)">Аллергены</strong>
-            <div class="hint">${card.allergens?.length ? card.allergens.join(', ') : 'Не указаны'}</div>
-          </div>
         `;
+        ui.allergensBlock.innerHTML = `
+          <strong>Аллергены</strong>
+          <div class="hint">${card.allergens?.length ? card.allergens.join(', ') : 'Не указаны'}</div>
+        `;
+        ui.allergensBlock.hidden = false;
       }
     }
 

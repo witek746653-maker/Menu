@@ -47,6 +47,10 @@
   h1 { margin: 0; font-size: 26px; letter-spacing: .2px; color: var(--accent-3) }
   .muted { color: var(--muted); font-size: 14px }
 
+  .view-toggle-row { display: flex; justify-content: flex-end; margin-bottom: 10px; gap: 8px }
+  .ghost-btn { background: transparent; border: 1px dashed var(--border); box-shadow: none; color: var(--muted); font-weight: 600; }
+  .ghost-btn:hover { background: var(--panel); color: var(--text); }
+
   .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px }
   .toolbar > * { background: var(--panel); border: 1px solid var(--border); padding: 9px 12px; border-radius: 12px; box-shadow: var(--shadow-md); color: var(--text); }
 
@@ -89,27 +93,36 @@
   .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px }
 
   .no-data { padding: 14px; border: 1px dashed var(--border); border-radius: 12px; background: var(--panel); color: var(--muted) }
+
+  body.compact-mode .app-header,
+  body.compact-mode .app-toolbar,
+  body.compact-mode .app-stats,
+  body.compact-mode .app-note { display: none !important; }
+
+  body.compact-mode .wrap { max-width: 680px; padding-top: 16px; padding-bottom: 26px; }
+  body.compact-mode #cardContainer { margin-top: 0; }
+  body.compact-mode .ghost-btn { color: var(--text); border-style: solid; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header>
+    <div class="view-toggle-row">
+      <button id="viewToggle" class="ghost-btn" aria-label="Переключить режим просмотра">Режим карточки</button>
+    </div>
+    <header class="app-header">
       <div>
         <h1>Меню-тренажёр (интервальное повторение)</h1>
-        <div class="muted">Учите блюда в интерактивной форме с гибкими режимами.</div>
+        <div class="muted">Учите блюда в интерактивной форме.</div>
       </div>
       <button id="resetProgress" aria-label="Сбросить прогресс">Сбросить прогресс</button>
     </header>
 
-    <div class="toolbar">
+    <div class="toolbar app-toolbar">
       <label for="menuFilter">Меню</label>
       <select id="menuFilter"></select>
 
       <label for="sectionFilter">Раздел</label>
       <select id="sectionFilter"></select>
-
-      <label for="modeSelect">Режим</label>
-      <select id="modeSelect"></select>
 
       <label for="searchInput">Поиск</label>
       <input id="searchInput" type="search" placeholder="Название или тег" />
@@ -118,7 +131,7 @@
       <button id="shuffleBtn" class="primary">Перемешать</button>
     </div>
 
-    <div class="stats" aria-live="polite">
+    <div class="stats app-stats" aria-live="polite">
       <div class="stat"><strong id="statDue">0</strong>Карточек к повторению</div>
       <div class="stat"><strong id="statNew">0</strong>Новых карточек</div>
       <div class="stat"><strong id="statLearned">0</strong>Закреплено</div>
@@ -152,7 +165,7 @@
       </div>
     </div>
 
-    <div class="muted" style="margin-top:10px">Прогресс сохраняется локально (localStorage). Алгоритм — упрощённый SM-2.</div>
+    <div class="muted app-note" style="margin-top:10px">Прогресс сохраняется локально (localStorage). Алгоритм — упрощённый SM-2.</div>
   </div>
 
   <script>
@@ -160,6 +173,7 @@
     const COMMUNICATION_URL = '../data/communication-cards.json';
     const EN_DICT_URL = '../i18n/en.json';
     const STORAGE_KEY = 'menu-srs-progress-v2';
+    const VIEW_MODE_KEY = 'menu-srs-view-mode';
 
     const MENU_OPTIONS = [
       { value: 'all', label: 'Все меню', menus: null },
@@ -188,17 +202,6 @@
       'Сценарии общения на английском'
     ];
 
-    const MODES = [
-      { value: 'desc', label: 'Красочное описание', group: 'Карточки меню' },
-      { value: 'contains', label: 'Состав', group: 'Карточки меню' },
-      { value: 'feat', label: 'Особенности и аллергены', group: 'Карточки меню' },
-      { value: 'general', label: 'Общие вопросы', group: 'Коммуникация и сервис' },
-      { value: 'service', label: 'Стандарты сервиса и этикет', group: 'Коммуникация и сервис' },
-      { value: 'situation', label: 'Особые ситуации', group: 'Коммуникация и сервис' },
-      { value: 'recommend', label: 'Рекомендации блюд', group: 'Коммуникация и сервис' },
-      { value: 'scenario_en', label: 'Сценарии общения на английском', group: 'Коммуникация и сервис' }
-    ];
-
     const profile = { trainingType: 'desc' };
 
     const state = {
@@ -214,11 +217,10 @@
     const ui = {
       menuFilter: document.getElementById('menuFilter'),
       sectionFilter: document.getElementById('sectionFilter'),
-      modeSelect: document.getElementById('modeSelect'),
-      modeLabel: document.querySelector('label[for="modeSelect"]'),
       searchInput: document.getElementById('searchInput'),
       shuffleBtn: document.getElementById('shuffleBtn'),
       resetBtn: document.getElementById('resetProgress'),
+      viewToggle: document.getElementById('viewToggle'),
       statDue: document.getElementById('statDue'),
       statNew: document.getElementById('statNew'),
       statLearned: document.getElementById('statLearned'),
@@ -241,6 +243,17 @@
       try {
         return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       } catch (e) { return {}; }
+    }
+
+    function loadViewMode() {
+      return localStorage.getItem(VIEW_MODE_KEY) === 'compact';
+    }
+
+    function applyViewMode(isCompact) {
+      document.body.classList.toggle('compact-mode', isCompact);
+      ui.viewToggle.textContent = isCompact ? 'Полный режим' : 'Режим карточки';
+      ui.viewToggle.setAttribute('aria-pressed', isCompact);
+      localStorage.setItem(VIEW_MODE_KEY, isCompact ? 'compact' : 'full');
     }
 
     function saveProgress(progress) {
@@ -571,38 +584,8 @@
       showCard();
     }
 
-    function buildModeSelect() {
-      const groups = MODES.reduce((acc, mode) => {
-        acc[mode.group] = acc[mode.group] || [];
-        acc[mode.group].push(mode);
-        return acc;
-      }, {});
-
-      ui.modeSelect.innerHTML = Object.entries(groups).map(([group, options]) => `
-        <optgroup label="${group}">
-          ${options.map(opt => `<option value="${opt.value}">${opt.label}</option>`).join('')}
-        </optgroup>
-      `).join('');
-      ui.modeSelect.value = profile.trainingType;
-    }
-
-    function updateModeVisibility() {
-      const hideMode = state.filterMenu === 'communication';
-      const lockMode = state.filterMenu === 'english';
-      if (hideMode || lockMode) {
-        profile.trainingType = 'desc';
-      }
-      ui.modeSelect.hidden = hideMode;
-      ui.modeLabel.hidden = hideMode;
-      ui.modeSelect.disabled = lockMode;
-      ui.modeSelect.title = lockMode ? 'Режим недоступен для English menu' : '';
-      if (!hideMode) {
-        ui.modeSelect.value = profile.trainingType;
-      }
-    }
-
     async function init() {
-      buildModeSelect();
+      applyViewMode(loadViewMode());
       const [menuRes, serviceRes, enDictRes] = await Promise.all([
         fetch(MENU_DATA_URL),
         fetch(COMMUNICATION_URL),
@@ -661,26 +644,14 @@
       state.cards = [...menuCards, ...englishCards, ...communicationCards];
       buildMenus(state.cards);
       buildSections(state.cards);
-      updateModeVisibility();
       buildQueue();
     }
-
-    ui.modeSelect.addEventListener('change', e => {
-      profile.trainingType = e.target.value;
-      if (['general', 'service', 'situation', 'recommend', 'scenario_en'].includes(profile.trainingType)) {
-        state.filterMenu = profile.trainingType === 'scenario_en' ? 'english' : 'communication';
-      }
-      ui.menuFilter.value = state.filterMenu;
-      buildSections(state.cards);
-      buildQueue();
-      showCard();
-      updateModeVisibility();
-    });
-    ui.menuFilter.addEventListener('change', e => { state.filterMenu = e.target.value; state.filterSection = 'all-menu'; updateModeVisibility(); buildSections(state.cards); buildQueue(); });
+    ui.menuFilter.addEventListener('change', e => { state.filterMenu = e.target.value; state.filterSection = 'all-menu'; buildSections(state.cards); buildQueue(); });
     ui.sectionFilter.addEventListener('change', e => { state.filterSection = e.target.value; buildQueue(); });
     ui.searchInput.addEventListener('input', e => { state.search = e.target.value; buildQueue(); });
     ui.shuffleBtn.addEventListener('click', () => { state.queue = shuffleArray(state.queue); state.currentIndex = 0; showCard(); });
     ui.resetBtn.addEventListener('click', () => { if (confirm('Сбросить локальный прогресс?')) { localStorage.removeItem(STORAGE_KEY); buildQueue(); } });
+    ui.viewToggle.addEventListener('click', () => { applyViewMode(!document.body.classList.contains('compact-mode')); });
 
     ui.revealBtn.addEventListener('click', () => {
       ui.answerBlock.hidden = false;
