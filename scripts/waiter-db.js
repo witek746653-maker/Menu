@@ -214,7 +214,7 @@ function buildEnglishDish(dish) {
     usefulPhrases: translation.usefulPhrases,
     audio_en: translation.audio,
     source_file: dish.source_file,
-    image: null,
+    image: dish.image ? { ...dish.image } : null,
     features: null,
     ingredients: [],
     pairings: null,
@@ -863,7 +863,7 @@ function buildModalHeader(dish, options = {}) {
   const modalHeader = document.createElement('header');
   modalHeader.className = 'modal-header';
 
-  if (dish.image?.src && !isEnglishCard) {
+  if (dish.image?.src) {
     const media = document.createElement('figure');
     media.className = 'modal-media dish-image';
     const img = document.createElement('img');

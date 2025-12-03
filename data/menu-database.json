@@ -128,12 +128,21 @@
         "section-en": "🐠 Aquarium",
         "title-en": "Jolie Pink Oyster (Namibia, Africa)",
         "description-en": "Фраза для быстрой презентации гостю:\n\"This is a Jolie oyster from Namibia. It has a delicate, creamy, and slightly sweet taste with a gentle sea salt note — often called the ‘Atlantic salted caramel’.\"",
-        "contains-en": "",
+        "contains-en": "It’s served raw with lemon, shallots, red wine vinegar, butter, and croutons. \n",
         "allergens-en": "citrus, onion, gluten",
         "tags-en": "garlic-free, light dish, seafood, raw product, low carb, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/ustritsa-rozovaya-dzholi-namibiya-afrika.mp3",
-        "comments-en": "",
-        "useful phrases & words": []
+        "comments-en": "Please note it contains onion and citrus.",
+        "useful phrases & words": [
+          "delicate, creamy, slightly sweet — типичные простые прилагательные, которые часто используют сомелье, шефы и официанты.",
+          "gentle sea salt note — звучит естественно и используется повсюду.",
+          "Atlantic salted caramel — оставляем как яркий маркетинговый образ, который легко запоминают гости.",
+          "served raw with — стандартная фраза для описания подачи сырой устрицы.",
+          "please note it contains — стандартная фраза для предупреждения о наличии аллергенов.",
+          "a softer taste — мягкое, понятное объяснение вкуса.",
+          "farm-raised oyster — устрица, выращенная на ферме."
+
+        ]
       }
     },
     "status": "актуально",
