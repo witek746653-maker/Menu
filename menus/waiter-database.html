@@ -577,7 +577,7 @@
     .source-file {
       margin-top: 6px;
       font-size: 12px;
-      color: rgba(255,255,255,0.5);
+      color: var(--text);
     }
 
     /*
@@ -877,22 +877,17 @@
     }
 
     /* Подсветка английских текстов в английской модалке без изменения заголовков */
-    .modal-backdrop--english .modal-body .modal-description,
-    .modal-backdrop--english .modal-body .rich-text,
-    .modal-backdrop--english .modal-body .rich-text p,
-    .modal-backdrop--english .modal-body .rich-text li,
-    .modal-backdrop--english .modal-body .meta-block ul li,
-    .modal-backdrop--english .modal-body .translation-description,
-    .modal-backdrop--english .modal-body .meta-block > p,
-    .modal-backdrop--english .modal-body .meta-block .source-file {
+    .modal-backdrop--english .modal-body [lang="en"],
+    .modal-backdrop--english .modal-header [lang="en"] {
       color: var(--english-highlight);
     }
 
     .modal-backdrop--english .modal-body .tags .tag,
-    .modal-backdrop--english .modal-body .tags .tag .tag-text {
-      color: var(--english-highlight);
-      border-color: rgba(154, 212, 255, 0.45);
-      background: rgba(154, 212, 255, 0.12);
+    .modal-backdrop--english .modal-body .tags .tag .tag-text,
+    .modal-backdrop--english .modal-body .meta-block .source-file {
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .meta-block .pairing-link {

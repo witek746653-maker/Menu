@@ -119,6 +119,27 @@ const FEATURE_ICON_TAGS = {
   'долгое ожидание': { icon: '⏳', label: 'Долгое ожидание' }
 };
 
+const CYRILLIC_REGEX = /[А-Яа-яЁё]/;
+const LATIN_REGEX = /[A-Za-z]/;
+
+function detectLanguage(text = '') {
+  const hasCyrillic = CYRILLIC_REGEX.test(text);
+  const hasLatin = LATIN_REGEX.test(text);
+  if (hasCyrillic) return 'ru';
+  if (hasLatin) return 'en';
+  return 'ru';
+}
+
+function applyLanguage(element, text) {
+  if (!element) return;
+  element.setAttribute('lang', detectLanguage(text));
+}
+
+function markNeutralLanguage(element) {
+  if (!element) return;
+  element.setAttribute('lang', 'ru');
+}
+
 let toastTimeout = null;
 let isSaving = false;
 let lastFocusedElement = null;
@@ -787,6 +808,7 @@ function buildModalBody(dish, options = {}) {
     const description = document.createElement('p');
     description.className = 'modal-description';
     description.textContent = dish.description;
+    applyLanguage(description, description.textContent);
     primaryColumn.appendChild(description);
   }
 
@@ -837,6 +859,7 @@ function buildModalBody(dish, options = {}) {
     const source = document.createElement('div');
     source.className = 'source-file';
     source.textContent = dish.source_file;
+    markNeutralLanguage(source);
     sourceBlock.appendChild(source);
     secondaryColumn.appendChild(sourceBlock);
   }
@@ -889,6 +912,8 @@ function buildModalHeader(dish, options = {}) {
     const menuTag = document.createElement('div');
     menuTag.className = 'menu-tag';
     menuTag.textContent = dish.menu || 'Без меню';
+    applyLanguage(menuTag, menuTag.textContent);
+    markNeutralLanguage(menuTag);
     headerInfo.appendChild(menuTag);
   }
 
@@ -898,6 +923,8 @@ function buildModalHeader(dish, options = {}) {
   const title = document.createElement('h2');
   title.id = titleId;
   title.textContent = dish.title || (isEnglishCard ? 'English card' : 'Без названия');
+  applyLanguage(title, title.textContent);
+  markNeutralLanguage(title);
   titleRow.appendChild(title);
 
   if (audioSource) {
@@ -931,6 +958,8 @@ function buildModalHeader(dish, options = {}) {
     }
     const sectionLabel = document.createElement('span');
     sectionLabel.textContent = dish.section;
+    applyLanguage(sectionLabel, sectionLabel.textContent);
+    markNeutralLanguage(sectionLabel);
     section.appendChild(sectionLabel);
     metaRow.appendChild(section);
   }
@@ -1207,6 +1236,8 @@ function createAllergensBlock(allergens, label = 'Аллергены') {
     const labelEl = document.createElement('span');
     labelEl.className = 'allergen-badge__label';
     labelEl.textContent = item;
+    applyLanguage(labelEl, labelEl.textContent);
+    markNeutralLanguage(labelEl);
 
     badge.appendChild(iconEl);
     badge.appendChild(labelEl);
@@ -1227,6 +1258,7 @@ function createListBlock(title, items) {
   items.forEach((item) => {
     const li = document.createElement('li');
     li.textContent = item;
+    applyLanguage(li, li.textContent);
     ul.appendChild(li);
   });
   block.appendChild(ul);
@@ -1242,6 +1274,7 @@ function createRichTextBlock(title, content) {
   const container = document.createElement('div');
   container.className = 'rich-text';
   container.innerHTML = content;
+  applyLanguage(container, container.textContent || content);
   block.appendChild(container);
   return block;
 }
@@ -1276,6 +1309,7 @@ function createTranslationBlock(label, translation, onOpen) {
     const titleEl = document.createElement('div');
     titleEl.className = 'translation-title';
     titleEl.textContent = translation.title;
+    applyLanguage(titleEl, titleEl.textContent);
     block.appendChild(titleEl);
   }
 
@@ -1283,6 +1317,7 @@ function createTranslationBlock(label, translation, onOpen) {
     const desc = document.createElement('div');
     desc.className = 'translation-description';
     desc.textContent = translation.description;
+    applyLanguage(desc, desc.textContent);
     block.appendChild(desc);
   }
 
@@ -1291,6 +1326,7 @@ function createTranslationBlock(label, translation, onOpen) {
   hint.style.marginTop = '6px';
   hint.style.color = 'var(--muted)';
   hint.textContent = 'Нажмите, чтобы открыть английскую карточку.';
+  applyLanguage(hint, hint.textContent);
   block.appendChild(hint);
 
   return block;
@@ -1309,6 +1345,8 @@ function createTagsBlock(tags, label = 'Теги') {
     const tagEl = document.createElement('span');
     tagEl.className = 'tag';
     tagEl.textContent = tag;
+    applyLanguage(tagEl, tagEl.textContent);
+    markNeutralLanguage(tagEl);
     tagsWrap.appendChild(tagEl);
   });
   block.appendChild(tagsWrap);
