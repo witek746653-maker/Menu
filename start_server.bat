@@ -5,5 +5,5 @@ echo   🚀 Запускаю локальный сервер...
 echo ================================
 start "" cmd /k "python server.py"
 timeout /t 2 >nul
-start "" http://localhost:8000/menus/waiter-database.html
+start "" http://localhost:8000/index.html
 pause
