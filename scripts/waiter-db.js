@@ -1310,7 +1310,6 @@ function openEditor(id = null) {
     editorForm.status.value = dish.status || '';
     editorForm.sourceFile.value = dish.source_file || '';
     editorForm.features.value = dish.features || '';
-    editorForm.rawHtml.value = dish.raw_html || '';
     editorForm.imageSrc.value = dish.image?.src || '';
     editorForm.imageAlt.value = dish.image?.alt || '';
     editorForm.enTitle.value = dish.i18n?.en?.['title-en'] || '';
@@ -1322,7 +1321,6 @@ function openEditor(id = null) {
     editorForm.reset();
     editorForm.dishId.value = '';
     editorForm.comments.value = '';
-    editorForm.rawHtml.value = '';
     editorForm.sectionIconType.value = '';
     editorForm.sectionIconSrc.value = '';
     editorForm.sectionIconAlt.value = '';
@@ -1423,7 +1421,6 @@ async function handleSave() {
   const status = (form.get('status') || '').trim();
   const sourceFile = (form.get('sourceFile') || '').trim();
   const features = (form.get('features') || '').trim();
-  const rawHtml = (form.get('rawHtml') || '').trim();
   const imageSrc = (form.get('imageSrc') || '').trim();
   const imageAlt = (form.get('imageAlt') || '').trim();
   const enTitle = (form.get('enTitle') || '').trim();
@@ -1468,7 +1465,6 @@ async function handleSave() {
     status,
     source_file: sourceFile,
     features,
-    raw_html: rawHtml,
     image: imageSrc || imageAlt ? { src: imageSrc, alt: imageAlt } : undefined,
     i18n: {
       ...(existing?.i18n || {}),
@@ -1505,9 +1501,6 @@ async function handleSave() {
   }
   if (!payload.features) {
     delete payload.features;
-  }
-  if (!payload.raw_html) {
-    delete payload.raw_html;
   }
   if (!payload.status) {
     delete payload.status;

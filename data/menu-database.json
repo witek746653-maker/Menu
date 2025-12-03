@@ -54,11 +54,17 @@
         "section-en": "🐠 Aquarium",
         "title-en": "Imperial Oyster (Russia)",
         "description-en": "Фраза для быстрой презентации гостю: \n“These are Imperial oysters from Vladivostok, served raw with lemon, shallots, red wine vinegar, butter, and croutons. \nThey have a fresh, pronounced sea flavor — please note they contain onion and citrus.”",
-        "contains-en": "",
+        "contains-en": 
+        "red wine vinegar - винный уксус,",
+        
         "allergens-en": "citrus, onion, lactose, gluten",
         "tags-en": "garlic-free, light dish, seafood, raw product, low carb, with wine, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/ustritsa-imperatorskaya-zaliv-petra-velikogo-vladivostok.mp3",
-        "comments-en": ""
+        "comments-en":[ 
+        "briny flavor — ключевая фраза для морского, солоноватого вкуса",
+        "rich iodine notes — передаёт «йодистый характер»",
+        "natural freshness — звучит естественно и используется повсюду"
+        ]
       }
     },
     "status": "актуально",
@@ -508,7 +514,7 @@
     "section": "🧊 Холодные закуски",
     "title": "Тапас с хамоном и мягким сыром",
     "description": "Испанский хамон в сочетании со сливочной бурратой, оливками и соусом песто на хрустящей чиабатте.",
-    "contains": "<ol class=\"numbered-list\" id=\"23233974-4d17-80af-b97f-cc9a1e5db9f2\" start=\"1\" type=\"1\"><li>На запеченную чиабатту выкладывают <strong>соус песто,</strong> сверху буррата, на нее хамон.</li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-80b6-9f0f-c9d484a59d98\" start=\"2\" type=\"1\"><li>Украшают молекулярной оливкой и рукколой.</li></ol>",
+    "contains": "<ol class=\"numbered-list\" id=\"23233974-4d17-80af-b97f-cc9a1e5db9f2\" start=\"1\" type=\"1\"><li>На запеченную чиабатту выкладывают <strong>соус песто,</strong>, оливки, сверху буррата, на нее хамон.</li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-80b6-9f0f-c9d484a59d98\" start=\"2\" type=\"1\"><li>Украшают рукколой.</li></ol>",
     "allergens": [
       "лактоза",
       "орехи",
@@ -543,7 +549,7 @@
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🧊 Cold Appetizers",
         "title-en": "Tapas with Jamón and Soft Cheese",
-        "description-en": "Фраза для быстрой презентации гостю:\n“This is a Spanish-style tapas — crispy ciabatta topped with creamy burrata, jamón, and basil pesto, finished with molecular olives and arugula.”",
+        "description-en": "Фраза для быстрой презентации гостю:\n“This is a Spanish-style tapas — crispy ciabatta topped with creamy burrata, jamón, and basil pesto, finished with olives and arugula.”",
         "contains-en": "",
         "allergens-en": "lactose, nuts, herbs, gluten",
         "tags-en": "onion-free, garlic-free, hearty dish, with wine, pork, raw product, mushroom-free, with vodka",
@@ -554,7 +560,7 @@
     "status": "актуально",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<p class=\"\" id=\"23233974-4d17-80bd-8ae5-d7b4a7e880bc\"><strong>Испанский хамон в сочетании со сливочной бурратой, оливками и соусом песто на хрустящей чиабатте.</strong></p><hr id=\"23233974-4d17-80be-9c7b-d0213c1136c9\"/><p class=\"\" id=\"23233974-4d17-800e-9624-cce3f80cb1cc\"><strong>Особенности:</strong></p><p class=\"\" id=\"23233974-4d17-8010-a64d-d74f281e9ceb\">🥛 лактоза |<img alt=\"nut_icon\" src=\"../icons/nut_icon.png\" style=\"width:1em;height:1em\"/> орехи | <img alt=\"raw_food_icon\" src=\"../icons/rawfood_icon.png\" style=\"width:1em;height:1em\"/> сырой | <img alt=\"greens_icon\" src=\"../icons/herbs_icon.png\" style=\"width:1em;height:1em\"/> зелень |  🐷  свинина </p><p class=\"\" id=\"23233974-4d17-801d-b881-cd649460edc6\">Соус песто с <strong>кедровыми орехами.</strong></p><p class=\"\" id=\"28633974-4d17-808f-9534-ef4780d4b00d\">Оливки <strong>молекулярные.</strong></p><hr id=\"23233974-4d17-8057-8e5c-e0fcf4f2af84\"/><p class=\"\" id=\"23233974-4d17-801c-8873-fb849bf02764\"><strong>Состав:</strong></p><ol class=\"numbered-list\" id=\"23233974-4d17-80af-b97f-cc9a1e5db9f2\" start=\"1\" type=\"1\"><li>На запеченную чиабатту выкладывают <strong>соус песто,</strong> сверху буррата, на нее хамон.</li></ol><ol class=\"numbered-list\" id=\"28633974-4d17-80b6-9f0f-c9d484a59d98\" start=\"2\" type=\"1\"><li>Украшают молекулярной оливкой и рукколой.</li></ol>",
-    "features": "Соус песто с <strong>кедровыми орехами.</strong>\n\nОливки <strong>молекулярные.</strong>",
+    "features": "Соус песто с <strong>кедровыми орехами.</strong>",
     "ingredients": [
       "масло оливковое",
       "базилик",
@@ -793,7 +799,7 @@
     "section": "🧊 Холодные закуски",
     "title": "Томат и краб",
     "description": "Сочный томат фаршированный нежным крабовым мясом, спелым авокадо и сливочной страчателлой в сочетании с листьями шпината и ароматным базиликовым маслом.",
-    "contains": "<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Из помидора (узбекские) вынимаем середину.</li>\n<li>Помидор в течение часа маринуем в Ким Чи маринаде.</li>\n<li>Фаршируем авокадо, страчателлой, мясом краба с добавлением <strong>эстрагона</strong> и крабового соуса.</li>\n<li>Помидор смазываем домашним кетчупом.</li>\n<li>На дно тарелки наливаем немного кетчупа, выкладываем помидор, оформляем листьями шпината.</li>\n<li>Отдельно — томатная вода с базиликовым маслом.</li>\n</ol>\n\n<strong>Маринад Ким Чи:</strong>\n<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Уксус винный, паста овощная Ким Чи, соус устричный, крахмал кукурузный.</li>\n<li>Фреш имбирный, <strong>перец чили.</strong></li>\n</ol>\n\n<strong>Крабовый соус:</strong>\n<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Молоко кокосовое, биск краб/креветка, томаты, масло подсолнечное, соус устричный.</li>\n<li><strong>Перец чили.</strong></li>\n</ol>\n\n<strong>Домашний кетчуп:</strong>\n<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Помидоры, <strong>чеснок</strong>, масло оливковое, тимьян, базилик, ворчестер.</li>\n</ol>\n\n<strong>Томатная вода:</strong>\n<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Базиликовое масло, помидоры узбекские, соль, сахар, тимьян.</li>\n</ol>",
+    "contains": "<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Из помидора (узбекские) вынимаем середину.</li>\n<li>Помидор в течение часа маринуем в Ким Чи маринаде.</li>\n<li>Фаршируем авокадо, страчателлой, мясом краба с добавлением <strong>эстрагона</strong> и крабового соуса.</li>\n<li>Помидор смазываем домашним кетчупом.</li>\n<li>На дно тарелки наливаем немного кетчупа, выкладываем помидор, оформляем листьями шпината.</li>\n<li>Отдельно — томатная вода с базиликовым маслом.</li>\n</ol>\n\n<strong>Маринад Ким Чи:</strong>\n<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Уксус винный, паста овощная Ким Чи, соус устричный, крахмал кукурузный.</li>\n<li>Фреш имбирный, <strong>перец чили.</strong></li>\n</ol>\n\n<strong>Крабовый соус:</strong>\n<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Молоко кокосовое, биск краб/креветка, томаты, масло подсолнечное, соус устричный, \n<strong>Перец чили.</strong></li>\n</ol>\n\n<strong>Домашний кетчуп:</strong>\n<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Помидоры, <strong>чеснок</strong>, масло оливковое, тимьян, базилик, ворчестер.</li>\n</ol>\n\n<strong>Томатная вода:</strong>\n<ol class=\\\"numbered-list\\\" type=\\\"1\\\">\n<li>Базиликовое масло, помидоры узбекские, соль, сахар, тимьян.</li>\n</ol>",
     "allergens": [
       "перец чили",
       "чеснок",
