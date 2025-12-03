@@ -140,6 +140,55 @@ function markNeutralLanguage(element) {
   element.setAttribute('lang', 'ru');
 }
 
+function detectScriptByWord(text = '') {
+  const hasLatin = LATIN_REGEX.test(text);
+  const hasCyrillic = CYRILLIC_REGEX.test(text);
+  if (hasLatin && !hasCyrillic) return 'latin';
+  if (hasCyrillic && !hasLatin) return 'cyrillic';
+  return null;
+}
+
+function colorizeEnglishTextNodes(root) {
+  if (!root || typeof document?.createTreeWalker !== 'function') return;
+
+  const targets = root.querySelectorAll('.modal-description, .rich-text, .meta-block ul li');
+
+  const wrapTextNode = (textNode) => {
+    const content = textNode.textContent;
+    if (!content || !content.trim()) return;
+
+    const fragment = document.createDocumentFragment();
+    const parts = content.split(/(\s+)/);
+
+    parts.forEach((part) => {
+      if (!part) return;
+      const script = detectScriptByWord(part);
+      if (script === 'latin' || script === 'cyrillic') {
+        const span = document.createElement('span');
+        span.classList.add('english-word', `english-word--${script}`);
+        span.setAttribute('lang', script === 'latin' ? 'en' : 'ru');
+        span.textContent = part;
+        fragment.appendChild(span);
+      } else {
+        fragment.appendChild(document.createTextNode(part));
+      }
+    });
+
+    textNode.replaceWith(fragment);
+  };
+
+  targets.forEach((node) => {
+    if (node.closest('.allergen-badges') || node.closest('.tags')) return;
+
+    const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, null);
+    const textNodes = [];
+    while (walker.nextNode()) {
+      textNodes.push(walker.currentNode);
+    }
+    textNodes.forEach(wrapTextNode);
+  });
+}
+
 let toastTimeout = null;
 let isSaving = false;
 let lastFocusedElement = null;
@@ -875,6 +924,10 @@ function buildModalBody(dish, options = {}) {
   } else if (!secondaryColumn.childElementCount) {
     secondaryColumn.remove();
     primaryColumn.classList.add('modal-column--full');
+  }
+
+  if (isEnglishCard) {
+    colorizeEnglishTextNodes(body);
   }
 
   return body;

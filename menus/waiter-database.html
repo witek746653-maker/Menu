@@ -877,9 +877,12 @@
     }
 
     /* Подсветка английских текстов в английской модалке без изменения заголовков */
-    .modal-backdrop--english .modal-body [lang="en"],
-    .modal-backdrop--english .modal-header [lang="en"] {
+    .modal-backdrop--english .english-word--latin {
       color: var(--english-highlight);
+    }
+
+    .modal-backdrop--english .english-word--cyrillic {
+      color: var(--text);
     }
 
     .modal-backdrop--english .modal-body .tags .tag,
