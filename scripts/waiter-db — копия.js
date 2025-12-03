@@ -155,18 +155,6 @@ const fuseOptions = {
 function getEnglishTranslation(dish) {
   const enData = dish.i18n?.en;
   if (!enData) return null;
-  const toList = (value) => {
-    if (Array.isArray(value)) {
-      return value.map((item) => (typeof item === 'string' ? item.trim() : '')).filter(Boolean);
-    }
-    if (typeof value === 'string') {
-      return value
-        .split(/[,\n]/)
-        .map((item) => item.trim())
-        .filter((item) => item.length > 0);
-    }
-    return [];
-  };
   return {
     menu: (enData['menu-en'] || '').trim(),
     section: (enData['section-en'] || '').trim(),
@@ -175,26 +163,21 @@ function getEnglishTranslation(dish) {
     contains: (enData['contains-en'] || '').trim(),
     allergens: parseList(enData['allergens-en'] || ''),
     tags: parseList(enData['tags-en'] || ''),
-    audio: (enData['audio-en'] || '').trim(),
-    comments: toList(enData['comments-en'] || []),
-    usefulPhrases: toList(enData['useful phrases & words'] || [])
+    audio: (enData['audio-en'] || '').trim()
   };
 }
 
 function hasEnglishContent(translation) {
   if (!translation) return false;
-  const { menu, section, title, description, contains, allergens, tags, comments, usefulPhrases, audio } = translation;
+  const { menu, section, title, description, contains, allergens, tags } = translation;
   return Boolean(
     menu ||
     section ||
     title ||
     description ||
     contains ||
-    audio ||
     (Array.isArray(allergens) && allergens.length) ||
-    (Array.isArray(tags) && tags.length) ||
-    (Array.isArray(comments) && comments.length) ||
-    (Array.isArray(usefulPhrases) && usefulPhrases.length)
+    (Array.isArray(tags) && tags.length)
   );
 }
 
@@ -202,22 +185,15 @@ function buildEnglishDish(dish) {
   const translation = getEnglishTranslation(dish);
   if (!hasEnglishContent(translation)) return null;
   const englishDish = {
-    id: dish.id,
-    menu: translation.menu,
-    section: translation.section,
-    title: translation.title,
-    description: translation.description,
-    contains: translation.contains,
-    allergens: translation.allergens,
-    tags: translation.tags,
-    comments: translation.comments,
-    usefulPhrases: translation.usefulPhrases,
-    audio_en: translation.audio,
-    source_file: dish.source_file,
-    image: null,
-    features: null,
-    ingredients: [],
-    pairings: null,
+    ...dish,
+    menu: translation.menu || dish.menu,
+    section: translation.section || dish.section,
+    title: translation.title || dish.title,
+    description: translation.description || dish.description,
+    contains: translation.contains || dish.contains,
+    allergens: translation.allergens?.length ? translation.allergens : dish.allergens,
+    tags: translation.tags?.length ? translation.tags : dish.tags,
+    audio_en: translation.audio || dish['audio-en'] || '',
     i18n: null
   };
   englishDish['audio-en'] = englishDish.audio_en;
@@ -760,9 +736,7 @@ if (compactCardsQuery) {
   }
 }
 
-function buildModalBody(dish, options = {}) {
-  const { isEnglishCard = false } = options;
-
+function buildModalBody(dish) {
   const body = document.createElement('div');
   body.className = 'modal-body';
 
@@ -774,15 +748,6 @@ function buildModalBody(dish, options = {}) {
   body.appendChild(primaryColumn);
   body.appendChild(secondaryColumn);
 
-  const labels = {
-    contains: isEnglishCard ? 'Serving / contents' : 'Подача / состав',
-    allergens: isEnglishCard ? 'Allergens' : 'Аллергены',
-    tags: isEnglishCard ? 'Tags' : 'Теги',
-    source: isEnglishCard ? 'Source file' : 'Источник',
-    comments: isEnglishCard ? 'Comments' : 'Комментарии',
-    useful: 'Useful phrases & words'
-  };
-
   if (dish.description) {
     const description = document.createElement('p');
     description.className = 'modal-description';
@@ -791,39 +756,34 @@ function buildModalBody(dish, options = {}) {
   }
 
   if (dish.contains) {
-    primaryColumn.appendChild(createRichTextBlock(labels.contains, dish.contains));
+    primaryColumn.appendChild(createRichTextBlock('Подача / состав', dish.contains));
   }
 
-  if (!isEnglishCard && dish.features) {
+  if (dish.features) {
     primaryColumn.appendChild(createRichTextBlock('Особенности', dish.features));
   }
 
-  const usefulPhrases = Array.isArray(dish.usefulPhrases) ? dish.usefulPhrases : [];
-  if (usefulPhrases.length && isEnglishCard) {
-    primaryColumn.appendChild(createListBlock(labels.useful, usefulPhrases));
-  }
-
   const englishTranslation = getEnglishTranslation(dish);
-  if (!isEnglishCard && hasEnglishContent(englishTranslation)) {
+  if (hasEnglishContent(englishTranslation)) {
     primaryColumn.appendChild(createTranslationBlock('English', englishTranslation, () => openEnglishModal(dish)));
   }
 
   const ingredients = Array.isArray(dish.ingredients) ? dish.ingredients : [];
-  if (ingredients.length && !isEnglishCard) {
+  if (ingredients.length) {
     secondaryColumn.appendChild(createListBlock('Ингредиенты', ingredients));
   }
 
   const allergens = Array.isArray(dish.allergens) ? sortAllergens(dish.allergens) : [];
   if (allergens.length) {
-    secondaryColumn.appendChild(createAllergensBlock(allergens, labels.allergens));
+    secondaryColumn.appendChild(createAllergensBlock(allergens));
   }
 
   const comments = Array.isArray(dish.comments) ? dish.comments : [];
   if (comments.length) {
-    secondaryColumn.appendChild(createListBlock(labels.comments, comments));
+    secondaryColumn.appendChild(createListBlock('Комментарии', comments));
   }
 
-  const pairingBlock = isEnglishCard ? null : createPairingsBlock(dish.pairings);
+  const pairingBlock = createPairingsBlock(dish.pairings);
   if (pairingBlock) {
     secondaryColumn.appendChild(pairingBlock);
   }
@@ -832,7 +792,7 @@ function buildModalBody(dish, options = {}) {
     const sourceBlock = document.createElement('div');
     sourceBlock.className = 'meta-block meta-block--source';
     const heading = document.createElement('strong');
-    heading.textContent = labels.source;
+    heading.textContent = 'Источник';
     sourceBlock.appendChild(heading);
     const source = document.createElement('div');
     source.className = 'source-file';
@@ -843,7 +803,7 @@ function buildModalBody(dish, options = {}) {
 
   const tags = Array.isArray(dish.tags) ? dish.tags : [];
   if (tags.length) {
-    secondaryColumn.appendChild(createTagsBlock(tags, labels.tags));
+    secondaryColumn.appendChild(createTagsBlock(tags));
   }
 
   if (!primaryColumn.childElementCount) {
@@ -858,12 +818,12 @@ function buildModalBody(dish, options = {}) {
 }
 
 function buildModalHeader(dish, options = {}) {
-  const { titleId = 'modalDishTitle', audioSource, isEnglishCard = false } = options;
+  const { titleId = 'modalDishTitle', audioSource } = options;
 
   const modalHeader = document.createElement('header');
   modalHeader.className = 'modal-header';
 
-  if (dish.image?.src && !isEnglishCard) {
+  if (dish.image?.src) {
     const media = document.createElement('figure');
     media.className = 'modal-media dish-image';
     const img = document.createElement('img');
@@ -885,19 +845,17 @@ function buildModalHeader(dish, options = {}) {
   const headerInfo = document.createElement('div');
   headerInfo.className = 'modal-header-info';
 
-  if (dish.menu || !isEnglishCard) {
-    const menuTag = document.createElement('div');
-    menuTag.className = 'menu-tag';
-    menuTag.textContent = dish.menu || 'Без меню';
-    headerInfo.appendChild(menuTag);
-  }
+  const menuTag = document.createElement('div');
+  menuTag.className = 'menu-tag';
+  menuTag.textContent = dish.menu || 'Без меню';
+  headerInfo.appendChild(menuTag);
 
   const titleRow = document.createElement('div');
   titleRow.className = 'modal-title-row';
 
   const title = document.createElement('h2');
   title.id = titleId;
-  title.textContent = dish.title || (isEnglishCard ? 'English card' : 'Без названия');
+  title.textContent = dish.title || 'Без названия';
   titleRow.appendChild(title);
 
   if (audioSource) {
@@ -1086,10 +1044,9 @@ function openEnglishModal(dish, triggerElement) {
 
   const modalHeader = buildModalHeader(englishDish, {
     titleId: 'englishModalTitle',
-    audioSource: englishDish.audio_en,
-    isEnglishCard: true
+    audioSource: englishDish.audio_en
   });
-  const body = buildModalBody(englishDish, { isEnglishCard: true });
+  const body = buildModalBody(englishDish);
 
   englishModalContent.appendChild(modalHeader);
   englishModalContent.appendChild(body);
@@ -1179,11 +1136,11 @@ function closePairingPreview() {
   pairingContent.innerHTML = '';
 }
 
-function createAllergensBlock(allergens, label = 'Аллергены') {
+function createAllergensBlock(allergens) {
   const block = document.createElement('div');
   block.className = 'meta-block allergens-block';
   const heading = document.createElement('strong');
-  heading.textContent = label;
+  heading.textContent = 'Аллергены';
   block.appendChild(heading);
 
   const badges = document.createElement('div');
@@ -1296,11 +1253,11 @@ function createTranslationBlock(label, translation, onOpen) {
   return block;
 }
 
-function createTagsBlock(tags, label = 'Теги') {
+function createTagsBlock(tags) {
   const block = document.createElement('div');
   block.className = 'meta-block tags-block';
   const heading = document.createElement('strong');
-  heading.textContent = label;
+  heading.textContent = 'Теги';
   block.appendChild(heading);
 
   const tagsWrap = document.createElement('div');
