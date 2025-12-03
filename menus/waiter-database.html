@@ -1151,7 +1151,7 @@
       color: rgba(255,255,255,0.5);
       font-size: 13px;
     }
- @media (max-width: 960px) {
+    @media (max-width: 960px) {
       .modal-dialog {
         width: min(760px, 92vw);
         height: auto;
@@ -1170,6 +1170,54 @@
 
       .modal-body {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .modal-dialog {
+        width: 94vw;
+        max-height: calc(100vh - 28px);
+      }
+
+      .modal-header {
+        grid-template-columns: 110px 1fr;
+        gap: 12px;
+        padding: 10px 14px;
+      }
+
+      .modal-media {
+        width: 110px;
+        height: 110px;
+        border-radius: 12px;
+      }
+
+      .modal-header-info h2 {
+        font-size: clamp(17px, 4.6vw, 21px);
+        line-height: 1.18;
+      }
+
+      .modal-header-info .section {
+        font-size: 11px;
+      }
+
+      .modal-header-meta .id-badge {
+        font-size: 10px;
+      }
+
+      .modal-audio-btn {
+        padding: 5px 8px;
+        font-size: 14px;
+      }
+
+      .modal-close {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+      }
+
+      .modal-body {
+        padding: 14px 16px 16px;
+        gap: 14px;
       }
     }
 
@@ -1217,12 +1265,46 @@
     @media (max-width: 420px) {
       .modal-dialog {
         width: 94vw;
-        max-height: calc(100vh - 32px);
+        max-height: calc(100vh - 24px);
       }
 
       .modal-body {
-        padding: clamp(16px, 4vw, 24px);
-        gap: clamp(14px, 4vw, 24px);
+        padding: 12px 14px 16px;
+        gap: 12px;
+      }
+
+      .modal-header {
+        grid-template-columns: 92px 1fr;
+        gap: 10px;
+      }
+
+      .modal-media {
+        width: 92px;
+        height: 92px;
+        border-radius: 10px;
+      }
+
+      .modal-header-info h2 {
+        font-size: 16px;
+        line-height: 1.16;
+      }
+
+      .modal-header-info .section,
+      .modal-body p,
+      .modal-body .rich-text,
+      .modal-body .meta-block strong,
+      .meta-block ul,
+      .meta-block .rich-text,
+      .modal-body .tags .tag .tag-text {
+        font-size: 13px;
+      }
+
+      .meta-block .rich-text {
+        line-height: 1.45;
+      }
+
+      .modal-body .tags .tag {
+        padding: 6px 10px;
       }
     }
   </style>
