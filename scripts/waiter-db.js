@@ -181,6 +181,54 @@ const TAG_GROUPS = [
   }
 ];
 
+const COCKTAIL_TAG_SECTIONS = [
+  {
+    title: 'База',
+    tags: [
+      'водка',
+      'джин',
+      'ром',
+      'текила',
+      'виски',
+      'бурбон',
+      'скотч',
+      'коньяк',
+      'бренди',
+      'ликёр',
+      'ликер',
+      'вермут'
+    ]
+  },
+  {
+    title: 'Вкусовой профиль',
+    tags: [
+      'кислый',
+      'сладкий',
+      'горький',
+      'пряный',
+      'фруктовый',
+      'ягодный',
+      'травяной',
+      'цитрусовый',
+      'сливочный',
+      'кремовый',
+      'сухой'
+    ]
+  },
+  {
+    title: 'Крепость',
+    tags: ['лёгкий', 'легкий', 'средний', 'крепкий']
+  },
+  {
+    title: 'Тип подачи',
+    tags: ['short drink', 'long drink', 'highball', 'on the rocks', 'без льда', 'горячий']
+  },
+  {
+    title: 'Тип',
+    tags: ['классический', 'авторский']
+  }
+];
+
 const CYRILLIC_REGEX = /[А-Яа-яЁё]/;
 const LATIN_REGEX = /[A-Za-z]/;
 
@@ -859,7 +907,7 @@ function buildTagGroups(entries) {
 
     const title = document.createElement('div');
     title.className = 'tag-group-title';
-    title.textContent = 'Прочие теги';
+    title.textContent = 'Коктейли';
     summary.appendChild(title);
 
     const indicator = document.createElement('span');
@@ -873,15 +921,57 @@ function buildTagGroups(entries) {
     const content = document.createElement('div');
     content.className = 'tag-group-content';
 
-    const wrap = document.createElement('div');
-    wrap.className = 'chip-group';
-    leftover
-      .sort((a, b) => a[1].localeCompare(b[1], 'ru'))
-      .forEach(([norm, label]) => {
-        wrap.appendChild(createChip(norm, label));
-      });
+    const leftoverMap = new Map(leftover);
 
-    content.appendChild(wrap);
+    COCKTAIL_TAG_SECTIONS.forEach((section) => {
+      const chips = section.tags
+        .map((tag) => {
+          const normalized = normalize(tag);
+          if (!leftoverMap.has(normalized)) return null;
+          const chip = createChip(normalized, leftoverMap.get(normalized));
+          leftoverMap.delete(normalized);
+          return chip;
+        })
+        .filter(Boolean);
+
+      if (!chips.length) return;
+
+      const category = document.createElement('div');
+      category.className = 'tag-subsection';
+
+      const heading = document.createElement('h3');
+      heading.textContent = section.title;
+      category.appendChild(heading);
+
+      const wrap = document.createElement('div');
+      wrap.className = 'chip-group';
+      chips.forEach((chip) => wrap.appendChild(chip));
+      category.appendChild(wrap);
+
+      content.appendChild(category);
+    });
+
+    if (leftoverMap.size) {
+      const wrap = document.createElement('div');
+      wrap.className = 'tag-subsection';
+
+      const heading = document.createElement('h3');
+      heading.textContent = 'Прочее';
+      wrap.appendChild(heading);
+
+      const chipsWrap = document.createElement('div');
+      chipsWrap.className = 'chip-group';
+
+      [...leftoverMap.entries()]
+        .sort((a, b) => a[1].localeCompare(b[1], 'ru'))
+        .forEach(([norm, label]) => {
+          chipsWrap.appendChild(createChip(norm, label));
+        });
+
+      wrap.appendChild(chipsWrap);
+      content.appendChild(wrap);
+    }
+
     groupEl.appendChild(content);
     tagChips.appendChild(groupEl);
   }
