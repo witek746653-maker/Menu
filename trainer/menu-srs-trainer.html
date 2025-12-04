@@ -78,7 +78,10 @@
   .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--panel); border: 1px solid var(--border); font-size: 13px; margin-right: 6px; margin-bottom: 6px }
   .answer-block { padding: 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); box-shadow: inset 0 1px 0 rgba(255,255,255,.4); display: grid; gap: 12px }
   .grid-two { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: start }
-  .multiline { white-space: pre-line }
+  .rich-text { line-height: 1.6; white-space: normal; }
+  .rich-text ol, .rich-text ul { margin: 0 0 0.75em 1.2em; padding-left: 1.2em; }
+  .rich-text li { margin-bottom: 0.35em; }
+  .rich-text strong { color: var(--accent-3); }
 
   .answer-meta { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); box-shadow: var(--shadow-md) }
   .answer-meta strong { color: var(--accent-3); display: block; margin-bottom: 4px }
@@ -295,8 +298,48 @@
         .replace(/'/g, '&#39;');
     }
 
-    function renderMultiline(text = '') {
-      return `<div class="multiline">${escapeHTML(text)}</div>`;
+    function sanitizeRichHTML(html = '') {
+      const template = document.createElement('template');
+      template.innerHTML = html;
+
+      const ALLOWED_TAGS = new Set(['OL', 'UL', 'LI', 'STRONG', 'EM', 'B', 'I', 'BR', 'P', 'SPAN']);
+      const ALLOWED_ATTRS = new Map([
+        ['OL', new Set(['start'])],
+        ['LI', new Set(['value'])]
+      ]);
+
+      const cleanse = node => {
+        [...node.childNodes].forEach(child => {
+          if (child.nodeType === Node.ELEMENT_NODE) {
+            if (!ALLOWED_TAGS.has(child.tagName)) {
+              const fragment = document.createDocumentFragment();
+              while (child.firstChild) fragment.appendChild(child.firstChild);
+              child.replaceWith(fragment);
+              cleanse(fragment);
+              return;
+            }
+            const allowedForTag = ALLOWED_ATTRS.get(child.tagName) || new Set();
+            [...child.attributes].forEach(attr => {
+              if (!allowedForTag.has(attr.name.toLowerCase())) {
+                child.removeAttribute(attr.name);
+              }
+            });
+            cleanse(child);
+          } else if (child.nodeType === Node.COMMENT_NODE) {
+            child.remove();
+          }
+        });
+      };
+
+      cleanse(template.content);
+      return template.innerHTML;
+    }
+
+    function renderRichText(content = '') {
+      if (!content?.trim()) return '';
+      const hasMarkup = /<\/?(ol|ul|li|p|br|strong|em|b|i|span)[\s>]/i.test(content);
+      const prepared = hasMarkup ? sanitizeRichHTML(content) : escapeHTML(content).replace(/\n/g, '<br>');
+      return `<div class="rich-text">${prepared}</div>`;
     }
 
     function slugify(value = '') {
@@ -547,13 +590,15 @@
 
       switch(isCommunicationMenu ? 'communication' : profile.trainingType) {
         case 'contains':
-          ui.answerText.innerHTML = card.contains ? renderMultiline(card.contains) : 'Нет состава';
+          ui.answerText.innerHTML = card.contains ? renderRichText(card.contains) : 'Нет состава';
           break;
         case 'feat':
           if (card.featuresRaw) {
-            ui.answerText.innerHTML = renderMultiline(card.featuresRaw.trim());
+            ui.answerText.innerHTML = renderRichText(card.featuresRaw.trim());
           } else {
-            ui.answerText.innerHTML = `${card.features?.length ? `<ul>${card.features.map(f => `<li>${f}</li>`).join('')}</ul>` : 'Особенности не указаны'}`;
+            ui.answerText.innerHTML = card.features?.length
+              ? renderRichText(`<ul>${card.features.map(f => `<li>${f}</li>`).join('')}</ul>`)
+              : 'Особенности не указаны';
           }
           break;
         case 'general':
@@ -562,10 +607,10 @@
         case 'recommend':
         case 'scenario_en':
         case 'communication':
-          ui.answerText.innerHTML = card.description || 'Ответ отсутствует';
+          ui.answerText.innerHTML = renderRichText(card.description) || 'Ответ отсутствует';
           break;
         default:
-          ui.answerText.textContent = card.description || 'Описание отсутствует';
+          ui.answerText.innerHTML = renderRichText(card.description) || 'Описание отсутствует';
       }
 
       if (isCommunicationMenu || ['general', 'service', 'situation', 'recommend', 'scenario_en'].includes(profile.trainingType)) {
@@ -581,7 +626,7 @@
         `;
         ui.allergensBlock.hidden = true;
       } else {
-        const containsHtml = card.contains ? renderMultiline(card.contains) : 'Нет данных';
+        const containsHtml = card.contains ? renderRichText(card.contains) : 'Нет данных';
         ui.extra.innerHTML = `
           <div>
             <strong style="color:var(--accent-3)">Состав/подача</strong>
