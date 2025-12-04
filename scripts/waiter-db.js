@@ -122,6 +122,19 @@ const FEATURE_ICON_TAGS = {
 const CYRILLIC_REGEX = /[А-Яа-яЁё]/;
 const LATIN_REGEX = /[A-Za-z]/;
 
+function formatDateTime(value) {
+  if (!value) return null;
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return new Intl.DateTimeFormat('ru-RU', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  }).format(date);
+}
+
 function detectLanguage(text = '') {
   const hasCyrillic = CYRILLIC_REGEX.test(text);
   const hasLatin = LATIN_REGEX.test(text);
@@ -283,6 +296,7 @@ function buildEnglishDish(dish) {
     comments: translation.comments,
     usefulPhrases: translation.usefulPhrases,
     audio_en: translation.audio,
+    updated_at: dish.updated_at,
     source_file: dish.source_file,
     image: dish.image ? { ...dish.image } : null,
     features: null,
@@ -970,6 +984,19 @@ function buildModalHeader(dish, options = {}) {
     headerInfo.appendChild(menuTag);
   }
 
+  const updatedAtLabel = document.createElement('p');
+  updatedAtLabel.className = 'modal-update-note';
+  const formattedDate = formatDateTime(dish.updated_at);
+  const updateLabel = isEnglishCard ? 'Updated' : 'Изменения';
+  const noUpdatesLabel = isEnglishCard
+    ? 'No updates recorded yet'
+    : 'Изменения пока не фиксировались';
+  updatedAtLabel.textContent = formattedDate
+    ? `${updateLabel}: ${formattedDate}`
+    : noUpdatesLabel;
+  applyLanguage(updatedAtLabel, updatedAtLabel.textContent);
+  headerInfo.appendChild(updatedAtLabel);
+
   const titleRow = document.createElement('div');
   titleRow.className = 'modal-title-row';
 
@@ -1578,6 +1605,8 @@ async function handleSave() {
     'description-en': enDescription
   };
 
+  const updatedAt = new Date().toISOString();
+
   const payload = {
     ...(existing || {}),
     menu,
@@ -1598,6 +1627,7 @@ async function handleSave() {
     comments,
     status,
     source_file: sourceFile,
+    updated_at: updatedAt,
     features,
     image: imageSrc || imageAlt ? { src: imageSrc, alt: imageAlt } : undefined,
     i18n: {
