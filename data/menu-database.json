@@ -1,8 +1,5 @@
 [
   {
-    "_menu": "════════════════════════════════════════════ ОСНОВНОЕ МЕНЮ (ID: 1-199) ════════════════════════════════════════════"
-  },
-  {
     "id": "0001",
     "menu": "Основное меню (Sabor de la Vida)",
     "section": "🐠 Аквариум",
@@ -64,7 +61,6 @@
           "The flavour is naturally stronger than most oysters - фраза говорит гостю, что у этого вида устриц: вкус ярче, более насыщенный (intense/rich flavour), но при этом натуральный, а не «агрессивный».",
           "В Британии сырые устрицы часто называют “oysters on the half-shell”, в США любят говорить “briny” — это короткое слово для морской солёности.",
           "В диких устрицах вкус может “скакать”, потому что он зависит от того, где и чем она питалась — можно пошутить: “It’s a bit of an ocean lottery — but always a delicious one!"
-          
         ],
         "useful phrases & words": [
           "wild oyster — важно подчеркнуть, что она не фермерская, а дикая.",
@@ -96,9 +92,7 @@
     "menu": "Основное меню (Sabor de la Vida)",
     "section": "🐠 Аквариум",
     "section_icon": {
-      "type": "",
-      "src": "",
-      "alt": ""
+      "alt": "текст"
     },
     "title": "Устрица “Розовая Джоли” (Намибия. Африка.)",
     "description": "Фермерская устрица, выращенная в прохладных водах Намибии. Вкус нежный, кремовый, сливочный, сладковатый, с небольшой морской солоноватостью. \"Соленая карамель Атлантики\".",
@@ -122,8 +116,7 @@
     "pairings": {
       "wines": [],
       "drinks": [],
-      "dishes": [],
-      "notes": []
+      "dishes": []
     },
     "image": {
       "src": "../images/Akvarium_Ustritsa_Rozovaya_Dzholi_Namibiya.jpg",
@@ -153,7 +146,6 @@
           "a softer taste — мягкое, понятное объяснение вкуса.",
           "farm-raised oyster — устрица, выращенная на ферме.",
           "I recommend starting with this oyster — it’s very gentle."
-
         ]
       }
     },
@@ -169,17 +161,12 @@
       "масло сливочное",
       "устрицы"
     ],
-    "comments": []
+    "updated_at": "2025-12-04T09:45:37.365Z"
   },
   {
     "id": "0003",
     "menu": "Основное меню (Sabor de la Vida)",
     "section": "🐠 Аквариум",
-    "section_icon": {
-      "type": "",
-      "src": "",
-      "alt": ""
-    },
     "title": "Устрица “Fine de Claire №3” (Франция)",
     "description": "Французская классика с мягким сливочно-ореховым вкусом и деликатной солоноватостью.",
     "contains": "Устрицы подаются с:\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-80d0-a7c7-de0e3fe81b85\" start=\"1\" type=\"1\"><li>Красным винным уксусом.</li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-80ac-8b67-c4a7b4fb635e\" start=\"2\" type=\"1\"><li><strong>Луком шалот.</strong></li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-8052-b7f1-f206bc7d389d\" start=\"3\" type=\"1\"><li><strong>Лимоном.</strong></li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-8031-a3cd-e31fa2185e46\" start=\"4\" type=\"1\"><li>Гренками.</li></ol>\n\n<ol class=\"numbered-list\" id=\"28633974-4d17-80ee-9f34-cdfbcf7b325a\" start=\"5\" type=\"1\"><li>Сливочным маслом.</li></ol>",
@@ -238,7 +225,7 @@
     "status": "актуально",
     "source_file": "osnovnoe-menu.html",
     "raw_html": "<div class=\"column-list\" id=\"28733974-4d17-80ea-9330-c5e0a621008c\"><div class=\"column\" id=\"28733974-4d17-80d2-b611-f2187dd0aff4\" style=\"width:50%\"><p class=\"\" id=\"28633974-4d17-80b8-b085-dbb2109c3c9b\"><strong>Французская классика с мягким сливочно-ореховым вкусом и деликатной солоноватостью.</strong></p><hr id=\"28633974-4d17-80cf-9de1-ceb27af39989\"/><p class=\"\" id=\"28633974-4d17-80ed-95a6-cdbd6b3d58a3\"><strong>Особенности:</strong></p><p class=\"\" id=\"28633974-4d17-80f3-bbc9-c2cc7144f54b\">🍋 цитрусы | <img alt=\"raw_food_icon\" src=\"../icons/rawfood_icon.png\" style=\"width:1em;height:1em\"/> сырой | <img alt=\"onion_icon\" src=\"../icons/onion_icon.png\" style=\"width:1em;height:1em\"/> лук </p><p class=\"\" id=\"28633974-4d17-8076-a957-e97ec33f36d2\">Вес одной устрицы - <strong>66-85 гр.</strong> (”№3” в названии говорит о её размере).  </p><p class=\"\" id=\"28633974-4d17-8095-9185-f6dedcb8870a\">Раковина Fine de Claire<strong> </strong>обычно неглубокая, овальная, тонкая, имеет зеленый или коричневый налет от “клер”. Плотная и упругая устрица, но при этом нежная и сочная. <br/>Их главный секрет — идеальный баланс солености и сладости, достигнутый благодаря особому методу выращивания. </p><p class=\"\" id=\"28633974-4d17-80de-a7cd-f15b3b44fa39\"><strong>Fine de Claire</strong> <strong>— Франция, регион Марен-Олерон (Атлантическое побережье Франции).</strong></p><hr id=\"28633974-4d17-8060-ac82-e9d7fac6e41b\"/><p class=\"\" id=\"28633974-4d17-80d9-b391-c63540d2f580\"><strong>Состав:</strong></p><p class=\"\" id=\"28633974-4d17-80cc-9f5e-d38aee415062\">Устрицы подаются с:</p><ol class=\"numbered-list\" id=\"28633974-4d17-80d0-a7c7-de0e3fe81b85\" start=\"1\" type=\"1\"><li>Красным винным уксусом.</li></ol><ol class=\"numbered-list\" id=\"28633974-4d17-80ac-8b67-c4a7b4fb635e\" start=\"2\" type=\"1\"><li><strong>Луком шалот.</strong></li></ol><ol class=\"numbered-list\" id=\"28633974-4d17-8052-b7f1-f206bc7d389d\" start=\"3\" type=\"1\"><li><strong>Лимоном.</strong></li></ol><ol class=\"numbered-list\" id=\"28633974-4d17-8031-a3cd-e31fa2185e46\" start=\"4\" type=\"1\"><li>Гренками.</li></ol><ol class=\"numbered-list\" id=\"28633974-4d17-80ee-9f34-cdfbcf7b325a\" start=\"5\" type=\"1\"><li>Сливочным маслом.</li></ol><hr id=\"28633974-4d17-8059-8197-ea6b1264f0b3\"/></div><div class=\"column\" id=\"28733974-4d17-800c-9325-d7ff7737d9b4\" style=\"width:50%\"></div></div><figure class=\"image\" id=\"28633974-4d17-80b6-8f74-e14642d3f37c\"><a href=\"image.png\"><img src=\"../images/image.png\" style=\"width:1px\"/></a></figure>",
-    "features": "Вес одной устрицы - <strong>66-85 гр.</strong> (”№3” в названии говорит о её размере).\n\nРаковина Fine de Claire<strong> </strong>обычно неглубокая, овальная, тонкая, имеет зеленый или коричневый налет от “клер”. Плотная и упругая устрица, но при этом нежная и сочная. <br/>Их главный секрет — идеальный баланс солености и сладости, достигнутый благодаря особому методу выращивания.\n\n<strong>Fine de Claire</strong> <strong>— Франция, регион Марен-Олерон (Атлантическое побережье Франции).</strong>",
+    "features": "Раковина Fine de Claire<strong> </strong>обычно неглубокая, овальная, тонкая, имеет зеленый или коричневый налет от “клер”. Плотная и упругая устрица, но при этом нежная и сочная. <br/>Их главный секрет — идеальный баланс солености и сладости, достигнутый благодаря особому методу выращивания.\n\n<strong>Fine de Claire</strong> <strong>— Франция, регион Марен-Олерон (Атлантическое побережье Франции).</strong>",
     "ingredients": [
       "уксус винный",
       "лук шалот",
@@ -250,7 +237,8 @@
     "comments": [
       "Вес одной устрицы - 66-85 гр. (”№3” в названии говорит о её размере).",
       "Fine de Claire — Франция, регион Марен-Олерон (Атлантическое побережье Франции)."
-    ]
+    ],
+    "updated_at": "2025-12-04T09:47:08.544Z"
   },
   {
     "id": "0004",
@@ -309,7 +297,7 @@
         "tags-en": "light dish, low carb, raw product, gluten-free, lactose-free, onion-free, to share, seafood, with wine, nut-free, mushroom-free",
         "audio-en": "../audio/en/morskoy-ezh-s-sousom-ponzu-mussom-iz-avokado-i-perepelinym-zheltkom.mp3",
         "comments-en": [
-          "Just to let you know, the dish is served raw.", 
+          "Just to let you know, the dish is served raw.",
           "In our signature presentation, all the ingredients are placed inside the sea urchin. If you prefer, we can serve everything separately.",
           "Забавная фраза, которую можно использовать в подаче: \"It tastes like the ocean… but in a very luxurious way.\""
         ],
@@ -322,7 +310,6 @@
           "just to let you know — стандартная фраза для предупреждения о наличии аллергенов.",
           "cilantro — кинза (американский вариант кинзы).",
           "ginger sprout — проросток имбиря."
-
         ]
       }
     },
@@ -419,7 +406,6 @@
           "acorn-fed pigs — свиньи, откормленные желудями.",
           "jamón iberico — хамон иберико (испанское название, часто используемое в английском меню).",
           "melt-in-the-mouth — тает во рту (часто используется для описания текстуры хамона)."
-
         ]
       }
     },
@@ -7936,27 +7922,6 @@
     ]
   },
   {
-    "_menu": "════════════════════════════════════════════ АВТОРСКИЕ ЗАВТРАКИ (ID: 201-299) ════════════════════════════════════════════",
-    "i18n": {
-      "ru": {
-        "title": "",
-        "description": ""
-      },
-      "en": {
-        "menu-en": "",
-        "section-en": "",
-        "title-en": "",
-        "description-en": "",
-        "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
-        "audio-en": "",
-        "comments-en": "",
-        "useful phrases & words": []
-      }
-    }
-  },
-  {
     "id": "0201",
     "menu": "Авторские завтраки",
     "section": "🥗 Салаты",
@@ -9851,27 +9816,6 @@
     ]
   },
   {
-    "_menu": "════════════════════════════════════════════ ДЕТСКОЕ МЕНЮ (ID: 301-399) ════════════════════════════════════════════",
-    "i18n": {
-      "ru": {
-        "title": "",
-        "description": ""
-      },
-      "en": {
-        "menu-en": "",
-        "section-en": "",
-        "title-en": "",
-        "description-en": "",
-        "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
-        "audio-en": "",
-        "comments-en": "",
-        "useful phrases & words": []
-      }
-    }
-  },
-  {
     "id": "0301",
     "menu": "Детское меню",
     "section": "🔥 Закуски",
@@ -10303,48 +10247,6 @@
     "comments": []
   },
   {
-    "_menu": "════════════════════════════════════════════ СЕЗОННОЕ МЕНЮ (ID: 401-499) ════════════════════════════════════════════",
-    "i18n": {
-      "ru": {
-        "title": "",
-        "description": ""
-      },
-      "en": {
-        "menu-en": "",
-        "section-en": "",
-        "title-en": "",
-        "description-en": "",
-        "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
-        "audio-en": "",
-        "comments-en": "",
-        "useful phrases & words": []
-      }
-    }
-  },
-  {
-    "_menu": "════════════════════════════════════════════ СПЕЦИАЛЬНОЕ МЕНЮ (ID: 501-599) ════════════════════════════════════════════",
-    "i18n": {
-      "ru": {
-        "title": "",
-        "description": ""
-      },
-      "en": {
-        "menu-en": "",
-        "section-en": "",
-        "title-en": "",
-        "description-en": "",
-        "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
-        "audio-en": "",
-        "comments-en": "",
-        "useful phrases & words": []
-      }
-    }
-  },
-  {
     "id": "0501",
     "menu": "Специальное меню",
     "source_file": "",
@@ -10409,27 +10311,6 @@
       "Салат для постоянных гостей. В меню нет, не предлагаем.",
       "Красный лук добавляют при заправке салата сметаной."
     ]
-  },
-  {
-    "_menu": "════════════════════════════════════════════ ВИНО (ID: 601-699) ════════════════════════════════════════════",
-    "i18n": {
-      "ru": {
-        "title": "",
-        "description": ""
-      },
-      "en": {
-        "menu-en": "",
-        "section-en": "",
-        "title-en": "",
-        "description-en": "",
-        "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
-        "audio-en": "",
-        "comments-en": "",
-        "useful phrases & words": []
-      }
-    }
   },
   {
     "id": "0601",
@@ -11642,27 +11523,6 @@
     ],
     "sweetness": "",
     "comments": []
-  },
-  {
-    "_menu": "════════════════════════════════════════════ АЛКОГОЛЬНЫЕ КОКТЕЙЛИ (ID: 701-715) ════════════════════════════════════════════",
-    "i18n": {
-      "ru": {
-        "title": "",
-        "description": ""
-      },
-      "en": {
-        "menu-en": "",
-        "section-en": "",
-        "title-en": "",
-        "description-en": "",
-        "contains-en": "",
-        "allergens-en": "",
-        "tags-en": "",
-        "audio-en": "",
-        "comments-en": "",
-        "useful phrases & words": []
-      }
-    }
   },
   {
     "id": "0701",
