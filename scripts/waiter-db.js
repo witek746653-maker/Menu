@@ -123,10 +123,10 @@ const FEATURE_ICON_TAGS = {
 
 const TAG_GROUPS = [
   {
-    title: 'Особенности блюда / продукта',
+    title: 'Особенности блюда',
     categories: [
       {
-        title: 'Диетические ограничения',
+        title: 'Ограничения',
         tags: [
           'без глютена',
           'без лактозы',
@@ -150,7 +150,7 @@ const TAG_GROUPS = [
       },
       {
         title: 'Характер блюда',
-        tags: ['лёгкое блюдо', 'легкое блюдо', 'сытное блюдо', 'на кости', 'с алкоголем', 'сырой продукт', 'medium', 'острое', 'сладкий соус']
+        tags: ['лёгкое блюдо', 'сытное блюдо', 'на кости', 'с алкоголем', 'сырой продукт', 'medium', 'острое', 'сладкий соус']
       },
       {
         title: 'Тип продукта',
@@ -167,11 +167,11 @@ const TAG_GROUPS = [
       },
       {
         title: 'Тип и стиль',
-        tags: ['белое', 'красное', 'розовое', 'игристое', 'сигристое', 'brut', 'брют', 'полусладкое', 'сухое', 'танинное', 'лёгкое', 'легкое', 'полнотое', 'полнотелое', 'мягкое', 'реднетелое']
+        tags: ['белое', 'красное', 'розовое', 'игристое', 'brut', 'полусладкое', 'сухое', 'танинное', 'лёгкое', 'полнотелое', 'мягкое', 'среднетелое']
       },
       {
         title: 'Сорта винограда',
-        tags: ['Prosecco', 'Glera']
+        tags: ['Glera', 'Cabernet Sauvignon', 'Chardonnay', 'Malbec', 'Merlot', 'Pinot Grigio', 'Pinot Noir', 'Sauvignon Blanc', 'Syrah/Shiraz', 'Tempranillo', 'Trebbiano', 'Sangiovese', 'Zinfandel', 'Grenache/Garnacha', 'Riesling', 'Pinot Meunier', 'Malvasia Nera', 'Verdiso', 'Corvina', 'Rondinella', 'Molinara', 'Perera', 'Trebbiano', 'Canaiolo Nero', 'Grolleau', 'Carignano', 'Fumin', 'Cortese', 'Cinsaut', 'Clairette', 'Petit Verdot']
       },
       {
         title: 'Категории подачи',
@@ -183,6 +183,10 @@ const TAG_GROUPS = [
 
 const COCKTAIL_TAG_SECTIONS = [
   {
+    title: 'Тип',
+    tags: ['классический', 'авторский']
+  },
+  {
     title: 'База',
     tags: [
       'водка',
@@ -191,11 +195,9 @@ const COCKTAIL_TAG_SECTIONS = [
       'текила',
       'виски',
       'бурбон',
-      'скотч',
       'коньяк',
       'бренди',
       'ликёр',
-      'ликер',
       'вермут'
     ]
   },
@@ -217,16 +219,13 @@ const COCKTAIL_TAG_SECTIONS = [
   },
   {
     title: 'Крепость',
-    tags: ['лёгкий', 'легкий', 'средний', 'крепкий']
+    tags: ['лёгкий', 'средний', 'крепкий']
   },
   {
     title: 'Тип подачи',
     tags: ['short drink', 'long drink', 'highball', 'on the rocks', 'без льда', 'горячий']
   },
-  {
-    title: 'Тип',
-    tags: ['классический', 'авторский']
-  }
+  
 ];
 
 const CYRILLIC_REGEX = /[А-Яа-яЁё]/;
