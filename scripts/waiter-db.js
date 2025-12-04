@@ -150,7 +150,7 @@ const TAG_GROUPS = [
       },
       {
         title: 'Характер блюда',
-        tags: ['лёгкое блюдо', 'легкое блюдо', 'сытное блюдо', 'на кости', 'с алкоголем', 'сырой продукт', 'medium', 'острое']
+        tags: ['лёгкое блюдо', 'легкое блюдо', 'сытное блюдо', 'на кости', 'с алкоголем', 'сырой продукт', 'medium', 'острое', 'сладкий соус']
       },
       {
         title: 'Тип продукта',
@@ -814,35 +814,64 @@ function buildTagGroups(entries) {
   };
 
   TAG_GROUPS.forEach((group) => {
-    const groupEl = document.createElement('div');
+    const groupEl = document.createElement('details');
     groupEl.className = 'tag-group';
+
+    const summary = document.createElement('summary');
+    summary.className = 'tag-group-summary';
 
     const title = document.createElement('div');
     title.className = 'tag-group-title';
     title.textContent = group.title;
-    groupEl.appendChild(title);
+    summary.appendChild(title);
+
+    const indicator = document.createElement('span');
+    indicator.className = 'tag-group-indicator';
+    indicator.setAttribute('aria-hidden', 'true');
+    indicator.textContent = '▾';
+    summary.appendChild(indicator);
+
+    groupEl.appendChild(summary);
+
+    const content = document.createElement('div');
+    content.className = 'tag-group-content';
 
     group.categories.forEach((category) => {
       const section = renderSection(category.title, category.tags);
       if (section) {
-        groupEl.appendChild(section);
+        content.appendChild(section);
       }
     });
 
-    if (groupEl.childElementCount > 1) {
+    if (content.childElementCount) {
+      groupEl.appendChild(content);
       tagChips.appendChild(groupEl);
     }
   });
 
   const leftover = entries.filter(([norm]) => !used.has(norm));
   if (leftover.length) {
-    const groupEl = document.createElement('div');
+    const groupEl = document.createElement('details');
     groupEl.className = 'tag-group';
+
+    const summary = document.createElement('summary');
+    summary.className = 'tag-group-summary';
 
     const title = document.createElement('div');
     title.className = 'tag-group-title';
     title.textContent = 'Прочие теги';
-    groupEl.appendChild(title);
+    summary.appendChild(title);
+
+    const indicator = document.createElement('span');
+    indicator.className = 'tag-group-indicator';
+    indicator.setAttribute('aria-hidden', 'true');
+    indicator.textContent = '▾';
+    summary.appendChild(indicator);
+
+    groupEl.appendChild(summary);
+
+    const content = document.createElement('div');
+    content.className = 'tag-group-content';
 
     const wrap = document.createElement('div');
     wrap.className = 'chip-group';
@@ -852,7 +881,8 @@ function buildTagGroups(entries) {
         wrap.appendChild(createChip(norm, label));
       });
 
-    groupEl.appendChild(wrap);
+    content.appendChild(wrap);
+    groupEl.appendChild(content);
     tagChips.appendChild(groupEl);
   }
 }
