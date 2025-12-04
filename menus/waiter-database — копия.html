@@ -144,46 +144,6 @@
       gap: 8px;
     }
 
-    .tag-group-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .tag-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding-top: 6px;
-      border-top: 1px solid var(--panel-border);
-    }
-
-    .tag-group:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .tag-group-title {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .tag-subsection {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .tag-subsection h3 {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
     .chip {
       padding: 6px 12px;
       border-radius: 999px;
@@ -1426,7 +1386,7 @@
 
       <div>
         <h2>Теги</h2>
-        <div class="tag-group-container" id="tagChips" aria-label="Теги"></div>
+        <div class="chip-group" id="tagChips" aria-label="Теги"></div>
       </div>
 
       <div class="toolbar">
