@@ -1085,6 +1085,12 @@ function renderCards(dishes) {
     menuTag.textContent = dish.menu || 'Без меню';
     summary.appendChild(menuTag);
 
+    const updateNote = document.createElement('p');
+    updateNote.className = 'card-update-note';
+    updateNote.textContent = getUpdateNote(dish, false);
+    applyLanguage(updateNote, updateNote.textContent);
+    summary.appendChild(updateNote);
+
     const title = document.createElement('h3');
     title.textContent = formatCardTitle(dishTitle);
     title.dataset.fullTitle = dishTitle;
