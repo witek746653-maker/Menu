@@ -405,13 +405,22 @@
         "menu-en": "Main Menu (Sabor de la Vida)",
         "section-en": "🧊 Cold Appetizers",
         "title-en": "Jamón Iberico (50 g)",
-        "description-en": "Фраза для быстрой презентации гостю:\n\"Traditional Spanish cured pork ham, Iberico, aged 18 months.\"",
-        "contains-en": "",
+        "description-en": "Фраза для быстрой презентации гостю:\n\"Traditional Spanish cured pork ham, Iberico, aged 18 months.\" Также можно добавить: \n\"This delicacy comes from acorn-fed Iberico pigs, known for their rich, melt-in-the-mouth texture and deep nutty flavour.\"",
+        "contains-en": "Jamón Ibérico (cured Spanish ham).It’s garnished with fresh seasonal berries for a light, fruity touch.",
         "allergens-en": "pork",
         "tags-en": "gluten-free, lactose-free, onion-free, citrus-free, garlic-free, light dish, low carb, pork, raw product, hearty dish, with wine, with vodka, nut-free, mushroom-free, to share",
         "audio-en": "../audio/en/hamon-iberico-50-gr.mp3",
         "comments-en": "",
-        "useful phrases & words": []
+        "useful phrases & words": [
+          "deep nutty flavour — отражает вкус Iberico (ореховая нота из-за желудей).",
+          "aged 18 months — стандартная фраза для выдержки хамона.",
+          "traditional Spanish cured ham — традиционный испанский вяленый окорок.",
+          "iberico pork — иберийская свинина.",
+          "acorn-fed pigs — свиньи, откормленные желудями.",
+          "jamón iberico — хамон иберико (испанское название, часто используемое в английском меню).",
+          "melt-in-the-mouth — тает во рту (часто используется для описания текстуры хамона)."
+
+        ]
       }
     },
     "status": "актуально",
