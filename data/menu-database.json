@@ -11633,5 +11633,371 @@
     ],
     "sweetness": "",
     "comments": []
+  },
+  {
+    "_menu": "════════════════════════════════════════════ АЛКОГОЛЬНЫЕ КОКТЕЙЛИ (ID: 701-715) ════════════════════════════════════════════",
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "menu-en": "",
+        "section-en": "",
+        "title-en": "",
+        "description-en": "",
+        "contains-en": "",
+        "allergens-en": "",
+        "tags-en": "",
+        "audio-en": "",
+        "comments-en": "",
+        "useful phrases & words": []
+      }
+    }
+  },
+  {
+    "id": "0701",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0702",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0703",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0704",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0705",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0706",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0707",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0708",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0709",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0710",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0711",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0712",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0713",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0714",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
+  },
+  {
+    "id": "0715",
+    "menu": "Алкогольные коктейли",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": "",
+    "tags": [],
+    "status": "",
+    "image": {
+      "src": "../images/....jpg",
+      "alt": ""
+    },
+    "sweetness": "",
+    "ingredients": [],
+    "comments": []
   }
 ]
