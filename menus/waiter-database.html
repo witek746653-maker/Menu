@@ -411,6 +411,49 @@
       margin-top: 2px;
     }
 
+    .wine-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .wine-detail {
+      display: grid;
+      grid-template-columns: minmax(120px, 180px) 1fr;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .wine-detail__label {
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .wine-detail__value {
+      font-size: 15px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .wine-grape-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .wine-grape-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 13px;
+    }
+
     .meta-block.translation {
       padding: 12px;
       border: 1px solid rgba(255,255,255,0.1);

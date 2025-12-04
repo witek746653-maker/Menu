@@ -939,6 +939,11 @@ function buildModalBody(dish, options = {}) {
     secondaryColumn.appendChild(createListBlock('Ингредиенты', ingredients));
   }
 
+  const wineDetails = createWineDetailsBlock(dish, { isEnglishCard });
+  if (wineDetails) {
+    secondaryColumn.appendChild(wineDetails);
+  }
+
   const allergens = Array.isArray(dish.allergens) ? sortAllergens(dish.allergens) : [];
   if (allergens.length) {
     secondaryColumn.appendChild(createAllergensBlock(allergens, labels.allergens));
@@ -1414,6 +1419,87 @@ function createListBlock(title, items) {
     ul.appendChild(li);
   });
   block.appendChild(ul);
+  return block;
+}
+
+function isWineDish(dish) {
+  const menuName = (dish?.menu || '').toLowerCase();
+  return menuName.includes('вино');
+}
+
+function createWineDetailsBlock(dish, { isEnglishCard = false } = {}) {
+  if (!isWineDish(dish)) return null;
+
+  const origin = (dish.origin || '').trim();
+  const producer = (dish.producer || '').trim();
+  const grapeVarieties = Array.isArray(dish.grapeVarieties)
+    ? dish.grapeVarieties.filter(Boolean)
+    : [];
+  const sweetness = (dish.sweetness || '').trim();
+
+  if (!origin && !producer && !grapeVarieties.length && !sweetness) {
+    return null;
+  }
+
+  const labels = {
+    heading: isEnglishCard ? 'Wine details' : 'Карта вина',
+    origin: isEnglishCard ? 'Origin' : 'Происхождение',
+    producer: isEnglishCard ? 'Producer' : 'Производитель',
+    grapeVarieties: isEnglishCard ? 'Grape varieties' : 'Сорта винограда',
+    sweetness: isEnglishCard ? 'Sweetness' : 'Содержание сахара'
+  };
+
+  const block = document.createElement('div');
+  block.className = 'meta-block wine-meta-block';
+
+  const heading = document.createElement('strong');
+  heading.textContent = labels.heading;
+  block.appendChild(heading);
+
+  const details = document.createElement('div');
+  details.className = 'wine-details';
+  block.appendChild(details);
+
+  const addDetail = (label, value, renderValue) => {
+    if (!value) return;
+    const row = document.createElement('div');
+    row.className = 'wine-detail';
+
+    const labelEl = document.createElement('div');
+    labelEl.className = 'wine-detail__label';
+    labelEl.textContent = label;
+    row.appendChild(labelEl);
+
+    const valueEl = document.createElement('div');
+    valueEl.className = 'wine-detail__value';
+
+    if (typeof renderValue === 'function') {
+      renderValue(valueEl);
+    } else {
+      valueEl.textContent = value;
+      applyLanguage(valueEl, valueEl.textContent);
+    }
+
+    row.appendChild(valueEl);
+    details.appendChild(row);
+  };
+
+  addDetail(labels.origin, origin);
+  addDetail(labels.producer, producer);
+  addDetail(labels.grapeVarieties, grapeVarieties.length, (container) => {
+    const chips = document.createElement('div');
+    chips.className = 'wine-grape-chips';
+    grapeVarieties.forEach((grape) => {
+      const chip = document.createElement('span');
+      chip.className = 'wine-grape-chip';
+      chip.textContent = grape;
+      applyLanguage(chip, chip.textContent);
+      chips.appendChild(chip);
+    });
+    container.appendChild(chips);
+  });
+  addDetail(labels.sweetness, sweetness);
+
   return block;
 }
 

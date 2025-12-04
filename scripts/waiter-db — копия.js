@@ -41,7 +41,9 @@ const state = {
   editMode: false,
   hasEditAccess: false,
   editingId: null,
-  serverAvailable: true
+  serverAvailable: true,
+  dataSource: null,
+  dataLoadedAt: null
 };
 
 const ALLERGEN_PRIORITY = [
@@ -202,6 +204,31 @@ function colorizeEnglishTextNodes(root) {
   });
 }
 
+function decorateDishWithUpdateMeta(dish, source) {
+  const clone = { ...dish };
+  const resolvedSource = dish.update_source || source;
+
+  if (resolvedSource) {
+    Object.defineProperty(clone, '_updateSource', {
+      value: resolvedSource,
+      enumerable: false
+    });
+  }
+
+  if (state.dataLoadedAt) {
+    Object.defineProperty(clone, '_loadedAt', {
+      value: state.dataLoadedAt,
+      enumerable: false
+    });
+  }
+
+  return clone;
+}
+
+function decorateDatasetWithUpdateMeta(dishes, source) {
+  return dishes.map((dish) => decorateDishWithUpdateMeta(dish, source));
+}
+
 let toastTimeout = null;
 let isSaving = false;
 let lastFocusedElement = null;
@@ -284,7 +311,7 @@ function hasEnglishContent(translation) {
 function buildEnglishDish(dish) {
   const translation = getEnglishTranslation(dish);
   if (!hasEnglishContent(translation)) return null;
-  const englishDish = {
+  const englishDish = decorateDishWithUpdateMeta({
     id: dish.id,
     menu: translation.menu,
     section: translation.section,
@@ -303,7 +330,7 @@ function buildEnglishDish(dish) {
     ingredients: [],
     pairings: null,
     i18n: null
-  };
+  }, dish._updateSource || state.dataSource);
   englishDish['audio-en'] = englishDish.audio_en;
   return englishDish;
 }
@@ -353,10 +380,14 @@ function detectItemCategory(dish) {
 }
 
 function enrichPairings(dishes) {
-  const clones = dishes.map((dish) => ({
-    ...dish,
-    pairings: clonePairings(dish.pairings)
-  }));
+  const clones = dishes.map((dish) => {
+    const clone = {
+      ...dish,
+      pairings: clonePairings(dish.pairings)
+    };
+
+    return decorateDishWithUpdateMeta(clone, dish._updateSource || state.dataSource);
+  });
 
   const titleToIndex = new Map();
   clones.forEach((dish, index) => {
@@ -561,8 +592,13 @@ async function loadData(showMessage = false) {
       throw new Error(`API error: ${response.status}`);
     }
     const data = await response.json();
+    state.dataSource = 'api';
+    state.dataLoadedAt = new Date();
     state.dishes = Array.isArray(data)
-      ? data.filter((item) => !('_menu' in item))
+      ? decorateDatasetWithUpdateMeta(
+          data.filter((item) => !('_menu' in item)),
+          state.dataSource
+        )
       : [];
     refreshViewData();
     setEditAvailability(true);
@@ -574,8 +610,13 @@ async function loadData(showMessage = false) {
     try {
       const fallback = await fetch('../data/menu-database.json', { cache: 'no-store' });
       const data = await fallback.json();
+      state.dataSource = 'menu-database.json';
+      state.dataLoadedAt = new Date();
       state.dishes = Array.isArray(data)
-        ? data.filter((item) => !('_menu' in item))
+        ? decorateDatasetWithUpdateMeta(
+            data.filter((item) => !('_menu' in item)),
+            state.dataSource
+          )
         : [];
       refreshViewData();
       setEditAvailability(false);
@@ -947,6 +988,44 @@ function buildModalBody(dish, options = {}) {
   return body;
 }
 
+function getUpdateSourceLabel(source, isEnglishCard) {
+  if (!source) return '';
+  const normalized = source.toLowerCase();
+  if (normalized === 'menu-database.json') {
+    return 'menu-database.json';
+  }
+  if (normalized === 'editor') {
+    return isEnglishCard ? 'Editor' : 'Редактор';
+  }
+  if (normalized === 'api') {
+    return isEnglishCard ? 'Server API' : 'Сервер API';
+  }
+  return source;
+}
+
+function getUpdateNote(dish, isEnglishCard) {
+  const formattedDate = formatDateTime(dish.updated_at || dish._loadedAt);
+  const updateLabel = isEnglishCard ? 'Updated' : 'Изменения';
+  const noUpdatesLabel = isEnglishCard
+    ? 'No updates recorded yet'
+    : 'Изменения пока не фиксировались';
+  const sourceLabel = getUpdateSourceLabel(dish?._updateSource, isEnglishCard);
+
+  if (formattedDate && sourceLabel) {
+    return `${updateLabel}: ${formattedDate} · ${sourceLabel}`;
+  }
+
+  if (formattedDate) {
+    return `${updateLabel}: ${formattedDate}`;
+  }
+
+  if (sourceLabel) {
+    return `${updateLabel}: ${sourceLabel}`;
+  }
+
+  return noUpdatesLabel;
+}
+
 function buildModalHeader(dish, options = {}) {
   const { titleId = 'modalDishTitle', audioSource, isEnglishCard = false } = options;
 
@@ -986,14 +1065,7 @@ function buildModalHeader(dish, options = {}) {
 
   const updatedAtLabel = document.createElement('p');
   updatedAtLabel.className = 'modal-update-note';
-  const formattedDate = formatDateTime(dish.updated_at);
-  const updateLabel = isEnglishCard ? 'Updated' : 'Изменения';
-  const noUpdatesLabel = isEnglishCard
-    ? 'No updates recorded yet'
-    : 'Изменения пока не фиксировались';
-  updatedAtLabel.textContent = formattedDate
-    ? `${updateLabel}: ${formattedDate}`
-    : noUpdatesLabel;
+  updatedAtLabel.textContent = getUpdateNote(dish, isEnglishCard);
   applyLanguage(updatedAtLabel, updatedAtLabel.textContent);
   headerInfo.appendChild(updatedAtLabel);
 
@@ -1688,15 +1760,17 @@ async function handleSave() {
     delete payload.i18n;
   }
 
+  const payloadWithMeta = decorateDishWithUpdateMeta(payload, 'editor');
+
   if (state.editingId) {
-    payload.id = state.editingId;
+    payloadWithMeta.id = state.editingId;
     if (index !== -1) {
-      state.dishes[index] = payload;
+      state.dishes[index] = payloadWithMeta;
     }
   } else {
-    const desiredId = dishIdFromForm || generateId(payload.title, payload.menu);
-    payload.id = desiredId;
-    state.dishes.push(payload);
+    const desiredId = dishIdFromForm || generateId(payloadWithMeta.title, payloadWithMeta.menu);
+    payloadWithMeta.id = desiredId;
+    state.dishes.push(payloadWithMeta);
   }
 
   refreshViewData();
