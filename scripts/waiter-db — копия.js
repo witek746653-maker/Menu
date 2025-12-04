@@ -121,6 +121,66 @@ const FEATURE_ICON_TAGS = {
   'долгое ожидание': { icon: '⏳', label: 'Долгое ожидание' }
 };
 
+const TAG_GROUPS = [
+  {
+    title: 'Особенности блюда / продукта',
+    categories: [
+      {
+        title: 'Диетические ограничения',
+        tags: [
+          'без глютена',
+          'без лактозы',
+          'без орехов',
+          'без цитрусов',
+          'без грибов',
+          'без чеснока',
+          'без лука',
+          'веганское',
+          'вегетарианское',
+          'низкоуглеводное'
+        ]
+      },
+      {
+        title: 'Фудпэринг',
+        tags: ['к вину', 'к пиву', 'к водке']
+      },
+      {
+        title: 'Формат подачи / ситуация',
+        tags: ['на компанию', 'долгое ожидание', 'постное меню']
+      },
+      {
+        title: 'Характер блюда',
+        tags: ['лёгкое блюдо', 'легкое блюдо', 'сытное блюдо', 'на кости', 'с алкоголем', 'сырой продукт', 'medium', 'острое']
+      },
+      {
+        title: 'Тип продукта',
+        tags: ['говядина', 'баранина', 'свинина', 'курица', 'утка', 'кролик', 'рыба', 'морепродукты']
+      }
+    ]
+  },
+  {
+    title: 'Вина',
+    categories: [
+      {
+        title: 'Страна',
+        tags: ['Аргентина', 'Германия', 'Испания', 'Италия', 'Новая Зеландия', 'США', 'Франция']
+      },
+      {
+        title: 'Тип и стиль',
+        tags: ['белое', 'красное', 'розовое', 'игристое', 'сигристое', 'brut', 'брют', 'полусладкое', 'сухое', 'танинное', 'лёгкое', 'легкое', 'полнотое', 'полнотелое', 'мягкое', 'реднетелое']
+      },
+      {
+        title: 'Сорта винограда',
+        tags: ['Prosecco', 'Glera']
+      },
+      {
+        title: 'Категории подачи',
+        tags: ['аперитив', 'дижестив', 'универсальное']
+      }
+    ]
+  }
+];
+
 const CYRILLIC_REGEX = /[А-Яа-яЁё]/;
 const LATIN_REGEX = /[A-Za-z]/;
 
@@ -687,6 +747,116 @@ function buildChipGroup(container, entries, selectedSet) {
   });
 }
 
+function buildTagGroups(entries) {
+  const existingSelections = new Set(state.filters.tags);
+  const normalizedAvailable = new Set(entries.map(([norm]) => norm));
+
+  state.filters.tags.clear();
+  existingSelections.forEach((value) => {
+    if (normalizedAvailable.has(value)) {
+      state.filters.tags.add(value);
+    }
+  });
+
+  const entryMap = new Map(entries);
+  const used = new Set();
+  tagChips.innerHTML = '';
+
+  const createChip = (norm, label) => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'chip';
+    chip.textContent = label;
+    chip.dataset.value = norm;
+
+    if (state.filters.tags.has(norm)) {
+      chip.classList.add('active');
+    }
+
+    chip.addEventListener('click', () => {
+      if (state.filters.tags.has(norm)) {
+        state.filters.tags.delete(norm);
+        chip.classList.remove('active');
+      } else {
+        state.filters.tags.add(norm);
+        chip.classList.add('active');
+      }
+      applyFilters();
+    });
+
+    return chip;
+  };
+
+  const renderSection = (title, tags) => {
+    const chips = tags
+      .map((tag) => {
+        const normalized = normalize(tag);
+        if (!entryMap.has(normalized)) return null;
+        used.add(normalized);
+        return createChip(normalized, entryMap.get(normalized));
+      })
+      .filter(Boolean);
+
+    if (!chips.length) return null;
+
+    const section = document.createElement('div');
+    section.className = 'tag-subsection';
+    const heading = document.createElement('h3');
+    heading.textContent = title;
+    section.appendChild(heading);
+
+    const wrap = document.createElement('div');
+    wrap.className = 'chip-group';
+    chips.forEach((chip) => wrap.appendChild(chip));
+    section.appendChild(wrap);
+
+    return section;
+  };
+
+  TAG_GROUPS.forEach((group) => {
+    const groupEl = document.createElement('div');
+    groupEl.className = 'tag-group';
+
+    const title = document.createElement('div');
+    title.className = 'tag-group-title';
+    title.textContent = group.title;
+    groupEl.appendChild(title);
+
+    group.categories.forEach((category) => {
+      const section = renderSection(category.title, category.tags);
+      if (section) {
+        groupEl.appendChild(section);
+      }
+    });
+
+    if (groupEl.childElementCount > 1) {
+      tagChips.appendChild(groupEl);
+    }
+  });
+
+  const leftover = entries.filter(([norm]) => !used.has(norm));
+  if (leftover.length) {
+    const groupEl = document.createElement('div');
+    groupEl.className = 'tag-group';
+
+    const title = document.createElement('div');
+    title.className = 'tag-group-title';
+    title.textContent = 'Прочие теги';
+    groupEl.appendChild(title);
+
+    const wrap = document.createElement('div');
+    wrap.className = 'chip-group';
+    leftover
+      .sort((a, b) => a[1].localeCompare(b[1], 'ru'))
+      .forEach(([norm, label]) => {
+        wrap.appendChild(createChip(norm, label));
+      });
+
+    groupEl.appendChild(wrap);
+    tagChips.appendChild(groupEl);
+  }
+}
+
 function rebuildFilters() {
   const dataset = getWorkingDishes();
   const menuEntries = uniqueValues(dataset, (dish) => dish.menu ? [dish.menu] : []);
@@ -698,7 +868,7 @@ function rebuildFilters() {
   buildChipGroup(allergenChips, allergenEntries, state.filters.allergens);
 
   const tagEntries = uniqueValues(dataset, (dish) => Array.isArray(dish.tags) ? dish.tags : []);
-  buildChipGroup(tagChips, tagEntries, state.filters.tags);
+  buildTagGroups(tagEntries);
 }
 
 function matchesFilters(dish) {

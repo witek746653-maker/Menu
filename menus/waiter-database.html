@@ -153,28 +153,48 @@
     .tag-group {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      padding-top: 6px;
-      border-top: 1px solid var(--panel-border);
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 209, 102, 0.35);
+      background: linear-gradient(145deg, rgba(255, 209, 102, 0.14), rgba(255, 189, 46, 0.08));
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
     }
 
-    .tag-group:first-of-type {
-      border-top: none;
-      padding-top: 0;
+    .tag-group::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.16), transparent 30%),
+                  radial-gradient(circle at 88% 70%, rgba(255, 189, 46, 0.18), transparent 32%);
+      opacity: 0.55;
+      z-index: -1;
     }
 
     .tag-group-title {
       font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: #2b210a;
+      background: rgba(255, 209, 102, 0.9);
+      padding: 8px 12px;
+      border-radius: 12px;
+      width: fit-content;
+      box-shadow: 0 8px 18px rgba(255, 209, 102, 0.28);
     }
 
     .tag-subsection {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.08);
+      border: 1px dashed rgba(255, 209, 102, 0.32);
     }
 
     .tag-subsection h3 {
@@ -191,13 +211,50 @@
       background: rgba(255,255,255,0.05);
       font-size: 13px;
       cursor: pointer;
-      transition: border 0.2s ease, background 0.2s ease, color 0.2s ease;
+      transition: border 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.22s ease;
+      position: relative;
+      overflow: hidden;
+      animation: chip-pop 0.4s ease;
     }
 
     .chip.active {
       border-color: var(--accent);
       background: rgba(255, 209, 102, 0.16);
       color: var(--accent);
+      box-shadow: 0 8px 18px rgba(255, 209, 102, 0.22);
+    }
+
+    .chip::after {
+      content: '';
+      position: absolute;
+      inset: -60% -40%;
+      background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.18), transparent 45%);
+      transform: translateX(-60%) rotate(12deg);
+      transition: transform 0.45s ease;
+      pointer-events: none;
+    }
+
+    .chip:hover {
+      transform: translateY(-2px) scale(1.02);
+      border-color: rgba(255, 209, 102, 0.75);
+      background: rgba(255, 209, 102, 0.16);
+      color: var(--accent);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 209, 102, 0.25);
+    }
+
+    .chip:hover::after {
+      transform: translateX(40%) rotate(0deg);
+    }
+
+    .chip:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    @keyframes chip-pop {
+      0% { opacity: 0; transform: translateY(6px) scale(0.97); }
+      60% { opacity: 1; transform: translateY(-2px) scale(1.02); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .results {
