@@ -311,19 +311,20 @@ function colorizeEnglishTextNodes(root) {
   });
 }
 
-function decorateDishWithUpdateMeta(dish) {
+function decorateDishWithUpdateMeta(dish, source) {
   const clone = { ...dish };
+  const resolvedSource = dish.update_source || source;
 
-  if (dish.update_source) {
+  if (resolvedSource) {
     Object.defineProperty(clone, '_updateSource', {
-      value: dish.update_source,
+      value: resolvedSource,
       enumerable: false
     });
   }
 
-  if (dish.updated_at) {
+  if (state.dataLoadedAt) {
     Object.defineProperty(clone, '_loadedAt', {
-      value: new Date(dish.updated_at),
+      value: state.dataLoadedAt,
       enumerable: false
     });
   }
@@ -331,10 +332,8 @@ function decorateDishWithUpdateMeta(dish) {
   return clone;
 }
 
-
 function decorateDatasetWithUpdateMeta(dishes, source) {
-  return dishes.map((dish) => decorateDishWithUpdateMeta(dish));
-
+  return dishes.map((dish) => decorateDishWithUpdateMeta(dish, source));
 }
 
 let toastTimeout = null;
@@ -438,7 +437,7 @@ function buildEnglishDish(dish) {
     ingredients: [],
     pairings: null,
     i18n: null
-  });
+  }, dish._updateSource || state.dataSource);
   englishDish['audio-en'] = englishDish.audio_en;
   return englishDish;
 }
@@ -494,8 +493,7 @@ function enrichPairings(dishes) {
       pairings: clonePairings(dish.pairings)
     };
 
-    return decorateDishWithUpdateMeta(clone);
-
+    return decorateDishWithUpdateMeta(clone, dish._updateSource || state.dataSource);
   });
 
   const titleToIndex = new Map();
