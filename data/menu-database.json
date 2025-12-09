@@ -10524,6 +10524,545 @@
     "_menu": "════════════════════════════════════════════ ЗИМНЕЕ МЕНЮ (ID: 401-410) ════════════════════════════════════════════"
   },
   {
+    "id": "0401",
+    "menu": "Зимнее меню",
+    "section": "🥗 Салаты",
+    "title": "Оливье с креветкой и красной икрой",
+    "description": "Домашний оливье с нежной креветкой, красной икрой, хрустящими овощами и перепелиным яйцом под шелковистым сливочным соусом. Знакомый и уютный вкус в нашем авторском исполнении.",
+    "contains": "",
+    "allergens": [
+      "лактоза",
+      "яйца",
+      "морепродукты",
+      "рыба"
+    ],
+    "tags": [
+      "к вину",
+      "к водке",
+      "морепродукты",
+      "рыба",
+      "сытное блюдо",
+      "без орехов",
+      "без грибов",
+      "без глютена",
+      "без лука",
+      "без цитрусов",
+      "без чеснока",
+      "сырой продукт",
+      "сытное блюдо"
+
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": []
+    },
+    "image": {
+      "src": "../images/zimnee-menyu_salaty_olivye_s_krevetkoy_i_krasnoy_ikroy.jpeg",
+      "alt": "Оливье с креветкой и красной икрой"
+    },
+    "i18n": {
+      "ru": {
+        "title": "Оливье с креветкой и красной икрой",
+        "description": "Домашний оливье с нежной креветкой, красной икрой, хрустящими овощами и перепелиным яйцом под шелковистым сливочным соусом. Знакомый и уютный вкус в авторском исполнении."
+      },
+      "en": {
+        "menu-en": "Winter Menu",
+        "section-en": "Salads",
+        "title-en": "Olivier with Shrimp and Red Caviar",
+        "description-en": "House-style Olivier with tender shrimp, red caviar, crunchy vegetables, and quail egg in a silky cream dressing for a nostalgic holiday flavor.",
+        "contains-en": "Classic Olivier with potatoes, carrots, pickles, peas, eggs, shrimp, and a creamy dressing, served with extra sauce on the side.",
+        "allergens-en": "lactose, eggs, seafood",
+        "tags-en": "with wine, seafood, hearty dish, to share, nut-free, mushroom-free",
+        "audio-en": "",
+        "comments-en": [
+          "Mixed and presented tableside."
+        ]
+      }
+    },
+    "status": "актуально",
+    "source_file": "zimnee-menu.html",
+    "features": "Презентуем и замешиваем при госте.",
+    "ingredients": [
+      "креветка",
+      "икра красная",
+      "батат",
+      "бобы эдамаме",
+      "яйцо перепелиное",
+      "огурцы",
+      "сельдерей",
+      "патиссон",
+      "масло зеленое", 
+      "кресс-салат",
+      "сливки",
+      "креметте",
+      "соус рыбный"
+    ],
+    "updated_at": "2025-12-04T22:09:49.065Z",
+    "update_source": "json"
+  },
+  {
+    "id": "0402",
+    "menu": "Зимнее меню",
+    "section": "🥗 Салаты",
+    "title": "Мимоза с форелью и красной икрой",
+    "description": "Нежная «Мимоза» в утончённом исполнении со слабосолёной форелью и красной икрой, в сочетании с мягким картофелем, сладкой морковью и перепелиным яйцом, дополненный ярким морковно-цитрусовым соусом.",
+    "contains": "",
+    "allergens": [
+      "лактоза",
+      "цитрусы",
+      "мёд",
+      "яйца",
+      "рыба",
+      "зелень"
+    ],
+    "tags": [
+      "к вину",
+      "к водке",
+      "рыба",
+      "без орехов",
+      "без грибов",
+      "сырой продукт", 
+      "без глютена",
+      "без лука",
+      "без чеснока",
+      "сытное блюдо"
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": []
+    },
+    "image": {
+      "src": "../images/zimnee-menyu_salaty_mimoza_s_forelyu_i_krasnoy_ikroy.jpeg",
+      "alt": "Мимоза с форелью и красной икрой"
+    },
+    "i18n": {
+      "ru": {
+        "title": "Мимоза с форелью и красной икрой",
+        "description": "Нежная «Мимоза» со слабосолёной форелью, красной икрой и перепелиным яйцом, дополненная ярким морковно-цитрусовым соусом. Лёгкое слоёное исполнение с мягким картофелем и сладкой морковью."
+      },
+      "en": {
+        "menu-en": "Winter Menu",
+        "section-en": "Salads",
+        "title-en": "Mimosa with Trout and Red Caviar",
+        "description-en": "Delicate layered Mimosa salad with lightly cured trout, red caviar, potatoes, carrots, and quail egg finished with a bright carrot–citrus sauce.",
+        "contains-en": "Layered salad dressed with mayonnaise, served with carrot–citrus sauce and red caviar on the side.",
+        "allergens-en": "lactose, citrus, honey, eggs, fish",
+        "tags-en": "with wine, fish, light dish, seafood, nut-free, mushroom-free",
+        "audio-en": "",
+        "comments-en": [
+          "Carrot–citrus sauce includes cream, honey, and lemon juice."
+        ]
+      }
+    },
+    "status": "актуально",
+    "source_file": "zimnee-menu.html",
+    "features": "Форель маринуют с лимоном и апельсином; Соус содержит сливки, мёд и лимонный фреш.",
+    "ingredients": [
+      "форель слабосоленая",
+      "цедра апельсина",
+      "укроп",
+      "фреш лимона",
+      "икра красная",
+      "картофель",
+      "морковь",
+      "яйцо перепелиное",
+      "масло зеленое",
+      "майонез",
+      "кресс-салат",
+      "сливки",
+      "мёд",
+      "корень имбиря",
+      "масло сливочное",
+      "пектин"
+    ],
+    "updated_at": "2025-12-04T22:09:49.065Z",
+    "update_source": "json"
+  },
+  {
+    "id": "0403",
+    "menu": "Зимнее меню",
+    "section": "🥗 Салаты",
+    "title": "Салат с перепелкой, пряной тыквой и трюфельным соусом",
+    "description": "Тёплый салат с перепёлкой и запечённой тыквой, в сопровождении свежих листьев салата, кусочков сочного мандарина под ароматным трюфельным соусом.",
+    "contains": "",
+    "allergens": [
+      "лактоза",
+      "цитрусы",
+      "мёд",
+      "трюфель"
+    ],
+    "tags": [
+      "к вину",
+      "легкое блюдо",
+      "без орехов",
+      "без грибов",
+      "без глютена",
+      "без лука",
+      "без чеснока"
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": []
+    },
+    "image": {
+      "src": "../images/zimnee-menyu_salaty_salat_s_perepelkoy_pryanoy_tykvoy_i_tryufelnym_sousom.jpeg",
+      "alt": "Салат с перепелкой, пряной тыквой и трюфельным соусом"
+    },
+    "i18n": {
+      "ru": {
+        "title": "Салат с перепелкой, пряной тыквой и трюфельным соусом",
+        "description": "Тёплый салат с перепёлкой, запечённой тыквой и сочными дольками мандарина под ароматным трюфельным соусом. Свежие листья салата и сыр грана падано добавляют благородную текстуру."
+      },
+      "en": {
+        "menu-en": "Winter Menu",
+        "section-en": "Salads",
+        "title-en": "Quail Salad with Spiced Pumpkin and Truffle Sauce",
+        "description-en": "Warm quail salad with roasted pumpkin, mandarin segments, fresh greens, and a fragrant truffle dressing topped with Grana Padano.",
+        "contains-en": "Served with truffle sauce and a mandarin-based dressing (mandarin, blood orange, honey, butter).",
+        "allergens-en": "lactose, citrus, honey, truffle",
+        "tags-en": "with wine, light dish, nut-free, mushroom-free",
+        "audio-en": "",
+        "comments-en": [
+          
+        ]
+      }
+    },
+    "status": "актуально",
+    "source_file": "zimnee-menu.html",
+    "features": "Соус Мандарин с мёдом и сливочным маслом; Трюфельный соус с мёдом; Украшается сыром грана падано.",
+    "ingredients": [
+      "перепёлка",
+      "тимьян",
+      "жир утиный",
+      "тыква запечённая",
+      "мандарин",
+      "латук",
+      "шпинат мини",
+      "грана падано",
+      "масло трюфельное",
+      "паста трюфельная",
+      "мёд",
+      "масло сливочное",
+      "фреш мандарина",
+      "фреш красного апельсина",
+      "корень имбиря",
+      "масло оливковое",
+      "перец черный"
+    ],
+    "updated_at": "2025-12-04T22:09:49.065Z",
+    "update_source": "json"
+  },
+  {
+    "id": "0404",
+    "menu": "Зимнее меню",
+    "section": "🥘 Горячие блюда",
+    "title": "Сливочное ризотто с морскими гребешками",
+    "description": "Нежное сливочное ризотто с обжаренным гребешком, хрустящим беконом, дополненное ароматным зелёным маслом и свежей зеленью.",
+    "contains": "",
+    "allergens": [
+      "лактоза",
+      "лук",
+      "алкоголь",
+      "свинина",
+      "зелень"
+    ],
+    "tags": [
+      "сытное блюдо",
+      "морепродукты",
+      "к вину",
+      "свинина",
+      "без орехов",
+      "без грибов",
+      "без глютена",
+      "без цитрусов",
+      "без чеснока",
+      "с алкоголем"
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": []
+    },
+    "image": {
+      "src": "../images/zimnee-menyu_goryachie_blyuda_slivochnoe_rizotto_s_morskimi_grebeshkami.jpeg",
+      "alt": "Сливочное ризотто с морскими гребешками"
+    },
+    "i18n": {
+      "ru": {
+        "title": "Сливочное ризотто с морскими гребешками",
+        "description": "Нежное сливочное ризотто с обжаренным морским гребешком и хрустящим беконом, дополненное ароматным зелёным маслом. Комфортная подача с белым вином и свежей зеленью."
+      },
+      "en": {
+        "menu-en": "Winter Menu",
+        "section-en": "Hot Dishes",
+        "title-en": "Creamy Risotto with Sea Scallops",
+        "description-en": "Creamy risotto cooked with shallots, white wine, and chicken broth, topped with seared scallops, crispy bacon, and herb oil.",
+        "contains-en": "Risotto with scallops, shallots, white wine, cream, chicken broth, and bacon.",
+        "allergens-en": "lactose, onion, wine, pork, herbs",
+        "tags-en": "hearty dish, seafood, with wine, pork, nut-free, mushroom-free",
+        "audio-en": "",
+        "comments-en": [
+          "Contains crispy bacon."
+        ]
+      }
+    },
+    "status": "актуально",
+    "source_file": "zimnee-menu.html",
+    "features": "Ризотто готовится с луком шалот, белым вином, сливками и куриным бульоном; Предупреждаем про жареный бекон.",
+    "ingredients": [
+      "рис арборио",
+      "гребешки морские",
+      "бекон",
+      "сливки",
+      "лук шалот",
+      "вино белое",
+      "масло зеленое",
+      "бульон куриный",
+      "масло оливковое",
+      "масло сливочное",
+      "грана падано",
+      "лук резанец"
+    ],
+    "updated_at": "2025-12-04T22:09:49.065Z",
+    "update_source": "json"
+  },
+  {
+    "id": "0405",
+    "menu": "Зимнее меню",
+    "section": "🥘 Горячие блюда",
+    "title": "Филе сибаса с соусом Шампань",
+    "description": "Нежное филе сибаса, обжаренное до золотистой корочки в сочетании с  ассорти из обжаренных овощей и дополненное мягким сливочно-игристым соусом «Шампань».",
+    "contains": "",
+    "allergens": [
+      "лактоза",
+      "лук",
+      "алкоголь",
+      "кинза",
+      "зелень",
+      "рыба"
+    ],
+    "tags": [
+      "рыба",
+      "к вину",
+      "легкое блюдо",
+      "без орехов",
+      "без грибов",
+      "без глютена",
+      "без цитрусов",
+      "без чеснока",
+      "сырой продукт",
+      "с алкоголем"
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": []
+    },
+    "image": {
+      "src": "../images/zimnee-menyu_goryachie_blyuda_file_sibasa_s_sousom_shampan.jpeg",
+      "alt": "Филе сибаса с соусом Шампань"
+    },
+    "i18n": {
+      "ru": {
+        "title": "Филе сибаса с соусом Шампань",
+        "description": "Нежное филе сибаса, обжаренное до золотистой корочки, с ассорти обжаренных овощей и сливочно-игристым соусом «Шампань». Лёгкий акцент свежей кинзы подчёркивает деликатный вкус рыбы."
+      },
+      "en": {
+        "menu-en": "Winter Menu",
+        "section-en": "Hot Dishes",
+        "title-en": "Sea Bass Fillet with Champagne Sauce",
+        "description-en": "Pan-seared sea bass with sautéed vegetables and a creamy sparkling wine sauce finished with fresh cilantro.",
+        "contains-en": "Served with vegetable garnish and Champagne cream sauce blended until silky.",
+        "allergens-en": "lactose, onion, wine, cilantro, herbs, fish",
+        "tags-en": "fish, with wine, light dish, nut-free, mushroom-free",
+        "audio-en": "",
+        "comments-en": [
+          "Champagne sauce includes semi-sweet sparkling wine and shallots."
+        ]
+      }
+    },
+    "status": "актуально",
+    "source_file": "zimnee-menu.html",
+    "features": "Соус на сливочной основе с игристым вином и луком шалот; Украшается кинзой.",
+    "ingredients": [
+      "филе сибаса",
+      "масло оливковое",
+      "баклажаны",
+      "цукини",
+      "томаты черри",
+      "мини-кукуруза",
+      "спаржа",
+      "сливки",
+      "вино игристое",
+      "лук шалот",
+      "кинза",
+      "икра красная",
+      "масло сливочное",
+      "масло зеленое",
+      "микро салат",
+      "грана падано",
+      "перец черный"
+    ],
+    "updated_at": "2025-12-04T22:09:49.065Z",
+    "update_source": "json"
+  },
+  {
+    "id": "0406",
+    "menu": "Зимнее меню",
+    "section": "🥘 Горячие блюда",
+    "title": "Филе Миньон с соусом Глинтвейн и пюре из сельдерея",
+    "description": "Сочный стейк Филе Миньон, томлёный в ароматном Глинтвейне и обжаренный до румяной корочки, подаётся с нежным пюре из сельдерея в сопровождении ягодного глинтвейнового соуса.",
+    "contains": "",
+    "allergens": [
+      "лактоза",
+      "цитрусы",
+      "мёд",
+      "алкоголь",
+      "зелень",
+      "глютен",
+      "яйца"
+    ],
+    "tags": [
+      "говядина",
+      "к вину",
+      "сытное блюдо",
+      "без орехов",
+      "без грибов",
+      "без лука",
+      "без чеснока",
+      "с алкоголем"
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": []
+    },
+    "image": {
+      "src": "../images/zimnee-menyu_goryachie_blyuda_file_minon_s_sousom_glintveyn_i_pyure_iz_seldereya.jpeg",
+      "alt": "Филе Миньон с соусом Глинтвейн и пюре из сельдерея"
+    },
+    "i18n": {
+      "ru": {
+        "title": "Филе Миньон с соусом Глинтвейн и пюре из сельдерея",
+        "description": "Сочный стейк Филе Миньон, томлёный в ароматном глинтвейне, с нежным пюре из сельдерея и ягодным соусом. Подача украшена цедрой апельсина, микрозеленью и луком-резанцем."
+      },
+      "en": {
+        "menu-en": "Winter Menu",
+        "section-en": "Hot Dishes",
+        "title-en": "Filet Mignon with Mulled Wine Sauce and Celery Purée",
+        "description-en": "Tender filet mignon finished in mulled wine, served with creamy celery purée and berry mulled-wine sauce, garnished with orange zest and microgreens.",
+        "contains-en": "Mulled wine sauce with red wine, citrus, and honey; celery purée with cream and Grana Padano; cocoa sponge garnish.",
+        "allergens-en": "lactose, citrus, honey, wine, herbs",
+        "tags-en": "beef, with wine, hearty dish, nut-free, mushroom-free",
+        "audio-en": "",
+        "comments-en": [
+          "Contains dairy in the purée and wine-based sauce."
+        ]
+      }
+    },
+    "status": "актуально",
+    "source_file": "zimnee-menu.html",
+    "features": "Глинтвейн на красном вине с апельсинами, лимоном и мёдом; Украшается цедрой апельсина, микрозеленью и луком-резанцем; В пюре из сельдерея сливки и сыр Грана Падано.",
+    "ingredients": [
+      "филе миньон",
+      "вино красное",
+      "апельсин",
+      "лимон",
+      "мёд",
+      "яблоко",
+      "корица",
+      "гвоздика",
+      "бадьян",
+      "сельдерей",
+      "сливки",
+      "грана падано",
+      "масло сливочное",
+      "масло оливковое",
+      "клюква",
+      "цедра апельсина",
+      "микрозелень",
+      "лук резанец",
+      "яйцо куриное",
+      "какао порошок",
+      "мука пшеничная",
+      "сахар",
+      "разрыхлитель"
+    ],
+    "updated_at": "2025-12-04T22:09:49.065Z",
+    "update_source": "json"
+  },
+  {
+    "id": "0407",
+    "menu": "Зимнее меню",
+    "section": "🎂 Десерты",
+    "title": "Рождественский брауни с соленой карамелью",
+    "description": "**Тёплый шоколадный брауни с нежной соленой карамелью и освежающим мороженым из Шампанского.",
+    "contains": "",
+    "allergens": [
+      "лактоза",
+      "алкоголь",
+      "яйца",
+      "глютен"
+    ],
+    "tags": [
+      "без орехов",
+      "без грибов",
+      "с алкоголем",
+      "без лука",
+      "без цитрусов",
+      "без чеснока"
+
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": []
+    },
+    "image": {
+      "src": "../images/zimnee-menyu_deserty_rozhdestvenskiy_brauni_s_solenoy_karamelyu.jpeg",
+      "alt": "Рождественский брауни с соленой карамелью"
+    },
+    "i18n": {
+      "ru": {
+        "title": "Рождественский брауни с соленой карамелью",
+        "description": "Тёплый шоколадный брауни с нежной солёной карамелью и освежающим мороженым из Шампанского. Яркий акцент клубники и розмарина подчёркивает праздничный вкус."
+      },
+      "en": {
+        "menu-en": "Winter Menu",
+        "section-en": "Desserts",
+        "title-en": "Christmas Brownie with Salted Caramel",
+        "description-en": "Warm chocolate brownie with soft salted caramel and Champagne ice cream, finished with strawberry and rosemary.",
+        "contains-en": "Brownie with dark chocolate, butter, sugar, eggs, and flour; salted caramel; Champagne ice cream garnish.",
+        "allergens-en": "lactose, wine, eggs, gluten, alcohol",
+        "tags-en": "sweet sauce, to share, nut-free, mushroom-free, with alcohol",
+        "audio-en": "",
+        "comments-en": [
+          "Champagne ice cream can be replaced with vanilla for kids."
+        ]
+      }
+    },
+    "status": "актуально",
+    "source_file": "zimnee-menu.html",
+    "features": "В составе сливки; Подаётся с мороженым на игристом вине, детям мороженое заменяем на ванильное.",
+    "ingredients": [
+      "шоколад темный",
+      "масло сливочное",
+      "яйцо куриное",
+      "мука пшеничная",
+      "масло сливочное",
+      "сахар",
+      "сливки",
+      "вино игристое",
+      "клубника",
+      "розмарин"
+    ],
+    "updated_at": "2025-12-04T22:09:49.065Z",
+    "update_source": "json"
+  },
+  {
     "_menu": "════════════════════════════════════════════ СПЕЦИАЛЬНОЕ МЕНЮ (ID: 501-599) ════════════════════════════════════════════"
   },
   {
