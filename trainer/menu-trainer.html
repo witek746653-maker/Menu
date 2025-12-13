@@ -197,20 +197,24 @@
       { value: 'main', label: 'Основное меню', menus: ['Основное меню (Sabor de la Vida)'] },
       { value: 'breakfast', label: 'Авторские завтраки', menus: ['Авторские завтраки'] },
       { value: 'kids', label: 'Детское меню', menus: ['Детское меню'] },
-      { value: 'seasonal', label: 'Сезонное меню и фестивали', menus: ['Постное меню', 'Специальное меню'] },
+      { value: 'winter', label: 'Зимнее меню', menus: ['Зимнее меню'] },
+      { value: 'summer', label: 'Летнее меню', menus: ['Летнее меню'] },
+      { value: 'special', label: 'Специальное меню', menus: ['Постное меню', 'Специальное меню'] },
       { value: 'wine', label: 'Вино', menus: ['Вино'] },
       { value: 'english', label: 'English menu', menus: ['English menu'] },
       { value: 'communication', label: 'Коммуникация и сервис', menus: ['Коммуникация и сервис'] }
     ];
 
-    const MENU_SECTION_FILTERS = new Set(['main', 'breakfast', 'seasonal', 'kids', 'english']);
+    const MENU_SECTION_FILTERS = new Set(['main', 'breakfast', 'winter', 'summer', 'special', 'kids', 'english']);
     const ENGLISH_SECTIONS = [
       'Основное меню',
       'Авторские завтраки',
-      'Сезонное меню и фестивали',
+      'Зимнее меню',
+      'Летнее меню',
+      'Специальное меню',
       'Детское меню'
     ];
-    const GUESS_MENUS = new Set(['main', 'breakfast', 'seasonal', 'kids', 'english']);
+    const GUESS_MENUS = new Set(['main', 'breakfast', 'winter', 'summer', 'special', 'kids', 'english']);
     const GUESS_MODES = new Set(['desc', 'contains', 'feat']);
     const COMMUNICATION_SECTIONS = [
       'Общие вопросы',
@@ -359,7 +363,9 @@
       const normalized = menuName.toLowerCase();
       if (normalized.includes('завтрак')) return 'Авторские завтраки';
       if (normalized.includes('детск')) return 'Детское меню';
-      if (normalized.includes('пост') || normalized.includes('специаль')) return 'Сезонное меню и фестивали';
+      if (normalized.includes('зимн')) return 'Зимнее меню';
+      if (normalized.includes('летн')) return 'Летнее меню';
+      if (normalized.includes('пост') || normalized.includes('специаль')) return 'Специальное меню';
       return 'Основное меню';
     }
 
