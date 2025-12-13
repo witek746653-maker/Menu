@@ -198,7 +198,10 @@ const COCKTAIL_TAG_SECTIONS = [
       'коньяк',
       'бренди',
       'ликёр',
-      'вермут'
+      'вермут',
+      'мескаль',
+      'портвейн',
+      'вино'
     ]
   },
   {
@@ -219,11 +222,11 @@ const COCKTAIL_TAG_SECTIONS = [
   },
   {
     title: 'Крепость',
-    tags: ['лёгкий', 'средний', 'крепкий']
+    tags: ['лёгкий', 'средний', 'крепкий', 'без алкоголя']
   },
   {
     title: 'Тип подачи',
-    tags: ['short drink', 'long drink', 'highball', 'on the rocks', 'без льда', 'горячий']
+    tags: ['short drink', 'long drink', 'highball', 'on the rocks', 'без льда', 'со льдом', 'горячий']
   },
   
 ];
