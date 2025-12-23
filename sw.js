@@ -1,4 +1,4 @@
-const PRECACHE = 'precache-v1';
+const PRECACHE = 'precache-v2';
 const RUNTIME_CACHE = 'runtime-v1';
 const PRECACHE_MANIFEST_URL = 'precache-files.json';
 
