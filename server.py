@@ -7,6 +7,13 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from typing import Any
 
+# Live reload support (опционально, работает если установлен livereload)
+try:
+    from livereload import Server
+    LIVERELOAD_AVAILABLE = True
+except ImportError:
+    LIVERELOAD_AVAILABLE = False
+
 ROOT_DIR = Path(__file__).resolve().parent
 DATA_PATH = ROOT_DIR / "data" / "menu-database.json"
 
@@ -21,6 +28,51 @@ class MenuRequestHandler(SimpleHTTPRequestHandler):
         # Prevent aggressive caching for API responses
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         super().end_headers()
+
+    def copyfile(self, source: Any, outputfile: Any) -> None:
+        """Переопределяем copyfile для вставки live reload скрипта в HTML"""
+        # Для HTML файлов перехватываем отправку и вставляем скрипт
+        if LIVERELOAD_AVAILABLE and (
+            self.path.endswith(".html") or self.path.endswith("/") or self.path == "/"
+        ):
+            try:
+                # Читаем содержимое файла
+                if hasattr(source, "read"):
+                    # Читаем весь файл (файловый объект уже открыт для чтения)
+                    content = source.read()
+                elif isinstance(source, (str, Path)):
+                    # Если source - это путь к файлу
+                    with open(source, "rb") as f:
+                        content = f.read()
+                else:
+                    # Неизвестный тип, используем стандартный метод
+                    super().copyfile(source, outputfile)
+                    return
+                
+                # Проверяем, что это HTML
+                if b"<html" in content.lower() or content.strip().startswith(b"<!"):
+                    content_str = content.decode("utf-8", errors="ignore")
+                    # Вставляем скрипт перед </body>
+                    if "</body>" in content_str.lower():
+                        livereload_script = (
+                            '<script src="http://localhost:35729/livereload.js?snipver=1"></script>'
+                        )
+                        content_str = content_str.replace(
+                            "</body>", f"{livereload_script}\n</body>", 1
+                        )
+                        content = content_str.encode("utf-8")
+                
+                # Отправляем модифицированное содержимое
+                outputfile.write(content)
+                return
+            except Exception as exc:
+                logging.warning("Failed to inject live reload script: %s", exc)
+                # При ошибке используем стандартный метод
+                super().copyfile(source, outputfile)
+                return
+        
+        # Для не-HTML файлов используем стандартный метод
+        super().copyfile(source, outputfile)
 
     def do_OPTIONS(self) -> None:  # noqa: N802 (method name from base class)
         if self.path == "/api/dishes":
@@ -110,6 +162,31 @@ class MenuRequestHandler(SimpleHTTPRequestHandler):
 
 
 def run_server(port: int = 8000) -> None:
+    # Запускаем live reload сервер в отдельном потоке (если доступен)
+    if LIVERELOAD_AVAILABLE:
+        import threading
+        
+        def start_livereload() -> None:
+            """Запускает live reload сервер для отслеживания изменений файлов"""
+            try:
+                lr_server = Server()
+                # Отслеживаем все основные файлы проекта
+                # Используем директории для рекурсивного отслеживания всех файлов
+                lr_server.watch(str(ROOT_DIR / "*.html"))
+                lr_server.watch(str(ROOT_DIR / "scripts"))
+                lr_server.watch(str(ROOT_DIR / "menus"))
+                lr_server.watch(str(ROOT_DIR / "data"))
+                lr_server.watch(str(ROOT_DIR / "i18n"))
+                # Запускаем на стандартном порту livereload (35729)
+                # Не открываем браузер автоматически
+                lr_server.serve(port=35729, host="127.0.0.1", open_url_delay=0)
+            except Exception as exc:
+                logging.warning("Live reload server failed to start: %s", exc)
+        
+        livereload_thread = threading.Thread(target=start_livereload, daemon=True)
+        livereload_thread.start()
+        logging.info("Live reload enabled (monitoring file changes)")
+    
     server_address = ("0.0.0.0", port)
     httpd = ThreadingHTTPServer(server_address, MenuRequestHandler)
     logging.info("Serving on http://127.0.0.1:%s (Ctrl+C to stop)", port)
