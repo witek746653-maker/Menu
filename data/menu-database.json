@@ -8180,7 +8180,7 @@
         "useful phrases & words": []
       }
     },
-    "status": "актуально",
+    "status": "в архиве",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "Украшаем <b>луком резанец</b> и <b>кедровыми орехами</b>.",
@@ -8254,7 +8254,7 @@
         "useful phrases & words": []
       }
     },
-    "status": "актуально",
+    "status": "в архиве",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "<b>Зелень</b> (кинза, мята, укроп, мини шпинат), <b>лимонный фреш</b>. Сливочный мусс с добавлением соуса песто (<b>кедровые орехи</b>).",
@@ -8789,7 +8789,7 @@
         "useful phrases & words": []
       }
     },
-    "status": "актуально",
+    "status": "в архиве",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "В кашу добавляют <b>перец чили</b>, <b>лук шалот</b>, <b>грибы</b>. Украшают <b>луком резанец</b>. Основа сливочная.",
@@ -9037,7 +9037,7 @@
         "useful phrases & words": []
       }
     },
-    "status": "актуально",
+    "status": "в архиве",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "В составе котлеты <b>эстрагон</b>. В картофельное пюре добавляют <b>водоросли нори</b>. Томатная сальса с добавлением <b>лука шалот</b>, <b>сегментов лимона</b>, <b>кинзы</b>, <b>чеснока</b> и <b>фисташек</b>.",
@@ -9437,7 +9437,7 @@
         "useful phrases & words": []
       }
     },
-    "status": "актуально",
+    "status": "в архиве",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "С добавлением <b>лука фри</b> и <b>бекона</b>. Украшаем <b>тархуном</b>.",
@@ -9668,7 +9668,7 @@
         "useful phrases & words": []
       }
     },
-    "status": "актуально",
+    "status": "в архиве",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "",
@@ -9967,7 +9967,7 @@
         "useful phrases & words": []
       }
     },
-    "status": "актуально",
+    "status": "в архиве",
     "source_file": "avtorskie-zavtraki.html",
     "raw_html": "",
     "features": "<b>Ореховые специи</b>.",
@@ -10057,6 +10057,454 @@
     ],
     "comments": [
       "Гостям к блюду рекомендуем: сметану, мед, варенье, ягоды."
+    ],
+    "updated_at": "2025-02-12T18:30:00+03:00",
+    "update_source": "json"
+  },
+  {
+    "id": "0226",
+    "menu": "Авторские завтраки",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": [
+      ""
+    ],
+    "tags": [
+      ""
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "../images/.jpg",
+      "alt": "и"
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "menu-en": "",
+        "section-en": "",
+        "title-en": "",
+        "description-en": "",
+        "contains-en": "",
+        "allergens-en": "",
+        "tags-en": "",
+        "audio-en": "",
+        "comments-en": "",
+        "useful phrases & words": []
+      }
+    },
+    "status": "актуально",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "comments": [
+      ""
+    ],
+    "updated_at": "2025-02-12T18:30:00+03:00",
+    "update_source": "json"
+  },
+  {
+    "id": "0226",
+    "menu": "Авторские завтраки",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": [
+      ""
+    ],
+    "tags": [
+      ""
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "../images/.jpg",
+      "alt": "и"
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "menu-en": "",
+        "section-en": "",
+        "title-en": "",
+        "description-en": "",
+        "contains-en": "",
+        "allergens-en": "",
+        "tags-en": "",
+        "audio-en": "",
+        "comments-en": "",
+        "useful phrases & words": []
+      }
+    },
+    "status": "актуально",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "comments": [
+      ""
+    ],
+    "updated_at": "2025-02-12T18:30:00+03:00",
+    "update_source": "json"
+  },
+  {
+    "id": "0226",
+    "menu": "Авторские завтраки",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": [
+      ""
+    ],
+    "tags": [
+      ""
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "../images/.jpg",
+      "alt": "и"
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "menu-en": "",
+        "section-en": "",
+        "title-en": "",
+        "description-en": "",
+        "contains-en": "",
+        "allergens-en": "",
+        "tags-en": "",
+        "audio-en": "",
+        "comments-en": "",
+        "useful phrases & words": []
+      }
+    },
+    "status": "актуально",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "comments": [
+      ""
+    ],
+    "updated_at": "2025-02-12T18:30:00+03:00",
+    "update_source": "json"
+  },
+  {
+    "id": "0226",
+    "menu": "Авторские завтраки",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": [
+      ""
+    ],
+    "tags": [
+      ""
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "../images/.jpg",
+      "alt": "и"
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "menu-en": "",
+        "section-en": "",
+        "title-en": "",
+        "description-en": "",
+        "contains-en": "",
+        "allergens-en": "",
+        "tags-en": "",
+        "audio-en": "",
+        "comments-en": "",
+        "useful phrases & words": []
+      }
+    },
+    "status": "актуально",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "comments": [
+      ""
+    ],
+    "updated_at": "2025-02-12T18:30:00+03:00",
+    "update_source": "json"
+  },
+  {
+    "id": "0226",
+    "menu": "Авторские завтраки",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": [
+      ""
+    ],
+    "tags": [
+      ""
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "../images/.jpg",
+      "alt": "и"
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "menu-en": "",
+        "section-en": "",
+        "title-en": "",
+        "description-en": "",
+        "contains-en": "",
+        "allergens-en": "",
+        "tags-en": "",
+        "audio-en": "",
+        "comments-en": "",
+        "useful phrases & words": []
+      }
+    },
+    "status": "актуально",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "comments": [
+      ""
+    ],
+    "updated_at": "2025-02-12T18:30:00+03:00",
+    "update_source": "json"
+  },
+  {
+    "id": "0226",
+    "menu": "Авторские завтраки",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": [
+      ""
+    ],
+    "tags": [
+      ""
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "../images/.jpg",
+      "alt": "и"
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "menu-en": "",
+        "section-en": "",
+        "title-en": "",
+        "description-en": "",
+        "contains-en": "",
+        "allergens-en": "",
+        "tags-en": "",
+        "audio-en": "",
+        "comments-en": "",
+        "useful phrases & words": []
+      }
+    },
+    "status": "актуально",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "comments": [
+      ""
+    ],
+    "updated_at": "2025-02-12T18:30:00+03:00",
+    "update_source": "json"
+  },
+  {
+    "id": "0226",
+    "menu": "Авторские завтраки",
+    "section": "",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "",
+    "description": "",
+    "contains": "",
+    "allergens": [
+      ""
+    ],
+    "tags": [
+      ""
+    ],
+    "pairings": {
+      "wines": [],
+      "drinks": [],
+      "dishes": [],
+      "notes": []
+    },
+    "image": {
+      "src": "../images/.jpg",
+      "alt": "и"
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "menu-en": "",
+        "section-en": "",
+        "title-en": "",
+        "description-en": "",
+        "contains-en": "",
+        "allergens-en": "",
+        "tags-en": "",
+        "audio-en": "",
+        "comments-en": "",
+        "useful phrases & words": []
+      }
+    },
+    "status": "актуально",
+    "source_file": "avtorskie-zavtraki.html",
+    "raw_html": "",
+    "features": "",
+    "ingredients": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "comments": [
+      ""
     ],
     "updated_at": "2025-02-12T18:30:00+03:00",
     "update_source": "json"
@@ -12807,47 +13255,6 @@
     "update_source": "json"
   },
   {
-    "id": "0701",
-    "menu": "Барное меню",
-    "section": "🍸 Алкогольные коктейли",
-    "section_icon": {
-      "type": "",
-      "src": "",
-      "alt": ""
-    },
-    "title": "Полуденный Лиссабон",
-    "description": "Это аперитив города у океана — сдержанный, тёплый и наполненный светом.",
-    "contains": "Коктейль создан на базе белого портвейна (очень дорогого), с добавлением итальянского сливового аперитива и португальского джина. Украшается чёрной виолой.",
-    "allergens": "",
-    "tags": [
-      "лёгкий",
-      "аперитив",
-      "портвейн",
-      "джин",
-      "авторский",
-      "со льдом"
-    ],
-    "status": "актуально",
-    "image": {
-      "src": "../images/cocktail-poludenny-lissabon.jpg",
-      "alt": ""
-    },
-    "sweetness": "",
-    "ingredients": [
-      "Нонино Прунелла",
-      "Грэмс №5 Вайт Порто",
-      "джин Норминдия",
-      "джин Адамус",
-      "Симпл Сироп",
-      "молочная кислота (без лактозы)"
-    ],
-    "comments": [
-      "Самый дорогой коктейль в меню."
-    ],
-    "updated_at": "2025-02-12T18:30:00+03:00",
-    "update_source": "json"
-  },
-  {
     "id": "0626",
     "menu": "Вино",
     "section": "Бокальные позиции — Игристые вина",
@@ -12856,7 +13263,7 @@
       "src": "",
       "alt": ""
     },
-    "title": "Cremant de Bourgogne Grand Reserve",
+    "title": "Louis Bouillot Cremant de Bourgogne Grand Reserve Brut",
     "description": "",
     "origin": "Франция, Бургундия.",
     "producer": "Louis Bouillot",
@@ -12881,7 +13288,7 @@
       ]
     },
     "image": {
-      "src": "../images/...jpg",
+      "src": "../images/vino-louis-bouillot-cremant-de bourgogne-grand-reserve-brut.jpg",
       "alt": "Cremant de Bourgogne Grand Reserve"
     },
     "i18n": {
@@ -12907,7 +13314,9 @@
     "raw_html": "",
     "features": "Во вкусе креман демонстрирует белые фрукты, яблоко, грушу, цитрус и лёгкие хлебные ноты от выдержки на осадке. Эти оттенки выражены мягко, без резкой дрожжевой доминанты. Кислотность свежая, но сбалансированная, что делает креман особенно комфортным для широкой аудитории.",
     "grapeVarieties": [
+      "Aligoté",
       "Chardonnay",
+      "Gamay",
       "Pinot Noir"
     ],
     "sweetness": "сухое",
@@ -12948,7 +13357,7 @@
       ]
     },
     "image": {
-      "src": "../images/...jpg",
+      "src": "../images/vino-pinot-grigio-kurtatsc.jpg",
       "alt": "«Pinot Grigio», Kurtatsch"
     },
     "i18n": {
@@ -12995,7 +13404,7 @@
     "title": "«Le Clou Chablis», Domaine Passy",
     "description": "«Le Clou Chablis» — это классическое, честное шабли без излишней округлости и сладости. Вино для тех, кто ценит точность, прохладу и элегантность, а не фруктовую пышность. Идеально подходит для ресторана как эталонный пример стиля Chablis.",
     "origin": "Франция, Бургундия, Шабли.",
-    "producer": "Domaine Passy",
+    "producer": "Famille Descombets, Domaine Passy.",
     "tags": [
       "Италия",
       "сухое",
@@ -13015,7 +13424,7 @@
       ]
     },
     "image": {
-      "src": "../images/...jpg",
+      "src": "../images/vino-chablis-domaine-passy-le-clou.jpg",
       "alt": "«Le Clou Chablis», Domaine Passy"
     },
     "i18n": {
@@ -13046,6 +13455,74 @@
     "sweetness": "сухое",
     "comments": [
       "Domaine Passy — небольшой домен в Шабли, ориентированный на традиционный подход: акцент на терруар, минимальное вмешательство и чистую передачу сорта. Вино производится исключительно из Chardonnay, выращенного на известняково-мергелевых почвах с высоким содержанием киммериджского известняка, что является визитной карточкой региона."
+    ],
+    "updated_at": "2025-02-12T18:30:00+03:00",
+    "update_source": "json"
+  },
+  {
+    "id": "0629",
+    "menu": "Вино",
+    "section": "Бокальные позиции — Розовые вина",
+    "section_icon": {
+      "type": "",
+      "src": "",
+      "alt": ""
+    },
+    "title": "Rose d'Anjou Semi-sweet, Joseph Verdier",
+    "description": "Вино ароматное, с яркими нотами клубники, малины, красной смородины, лёгкими цветочными оттенками и свежими цитрусовыми нюансами. Во вкусе — умеренная сладость, хорошо поддержанная освежающей кислотностью, лёгкое тело и чистое, ягодное послевкусие. Баланс сладости и свежести — ключевая черта этого вина.",
+    "origin": "Франция, Долина Луары, аппелласьон Rosé d’Anjou",
+    "producer": "Joseph Verdier",
+    "tags": [
+      "Франция",
+      "полусладкое",
+      "розовое",
+      "легкое",
+      "аперитив"
+    ],
+    "pairings": {
+      "dishes": [
+        "жирная рыба",
+        "легкие салаты",
+        "белое мясо и птица",
+        "мягкие сыры и легкие десерты"
+      ],
+      "notes": [
+        ""
+      ]
+    },
+    "image": {
+      "src": "../images/vino-rose-d'Anjou-joseph-verdier.jpg",
+      "alt": "«Rose d'Anjou, Joseph Verdier"
+    },
+    "i18n": {
+      "ru": {
+        "title": "",
+        "description": ""
+      },
+      "en": {
+        "menu-en": "",
+        "section-en": "Glass Selections – Rose Wines",
+        "title-en": "",
+        "description-en": "",
+        "contains-en": "",
+        "allergens-en": "",
+        "tags-en": "",
+        "audio-en": "../audio/wine/.mp3",
+        "comments-en": "",
+        "useful phrases & words": []
+      }
+    },
+    "status": "актуально",
+    "source_file": "vino.html",
+    "raw_html": "",
+    "features": "",
+    "grapeVarieties": [
+      "Cabernet Franc",
+      "Grolleau"
+    ],
+    "sweetness": "полусладкое",
+    "comments": [
+      "Rosé d’Anjou «Joseph Verdier» — это универсальное, понятное и гастрономичное розовое вино, идеально подходящее для аперитива, летних блюд и ситуаций, где важно угодить разным вкусам."
     ],
     "updated_at": "2025-02-12T18:30:00+03:00",
     "update_source": "json"
