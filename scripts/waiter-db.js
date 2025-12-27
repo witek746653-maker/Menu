@@ -1127,6 +1127,7 @@ function renderCards(dishes) {
         status.textContent = statusText;
         if (statusText.toLowerCase() === 'в архиве') {
           status.classList.add('status-badge--archived');
+          card.classList.add('card--archived');
         }
         statusRow.appendChild(status);
       }
