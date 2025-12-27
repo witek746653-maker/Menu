@@ -946,6 +946,9 @@
         margin: 0;
         font-size: clamp(18px, 3vw, 22px);
         letter-spacing: -0.015em;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        min-width: 0;
       }
 
     .modal-title-row {
@@ -1394,6 +1397,9 @@
         .modal-header-info h2 {
           font-size: clamp(16px, 4.5vw, 20px);
           line-height: 1.2;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+          min-width: 0;
         }
 
       .modal-header-info .section {
@@ -1450,7 +1456,8 @@
       .card-summary .status-badge,
       .card-summary .origin-badge,
       .card-summary .feature-icons,
-      .card-summary .badge-row {
+      .card-summary .badge-row,
+      .card-summary .card-update-note {
         display: none;
       }
 
