@@ -887,7 +887,7 @@
       display: grid;
       /* Size the first column to the media width and let the second column
          take the remaining space */
-      grid-template-columns: max-content 1fr;
+      grid-template-columns: max-content minmax(0, 1fr);
       gap: clamp(12px, 2.4vw, 22px);
       padding: clamp(12px, 1.8vh, 18px) clamp(18px, 3vw, 32px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -927,11 +927,20 @@
     }
 
     .modal-header-info {
-      flex: 1 1 240px;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       align-content: start;
       gap: 8px;
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .modal-header-info .menu-tag {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
       min-width: 0;
     }
 
@@ -940,6 +949,9 @@
       font-size: 12px;
       color: var(--muted);
       letter-spacing: 0.01em;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      min-width: 0;
     }
 
       .modal-header-info h2 {
@@ -956,6 +968,14 @@
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .modal-title-row h2 {
+      min-width: 0;
+      flex: 1 1 auto;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .modal-audio-btn {
@@ -983,6 +1003,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      min-width: 0;
+      flex-wrap: wrap;
     }
 
     .modal-header-info .section img,
@@ -996,6 +1018,10 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     .modal-header-meta .id-badge {
@@ -1363,7 +1389,7 @@
 
       .modal-header {
         /* Keep the image column at its intrinsic size on narrower screens */
-        grid-template-columns: max-content 1fr;
+        grid-template-columns: max-content minmax(0, 1fr);
         align-items: flex-start;
       }
 
@@ -1383,9 +1409,14 @@
       }
 
       .modal-header {
-        grid-template-columns: 110px 1fr;
+        grid-template-columns: 110px minmax(0, 1fr);
         gap: 12px;
         padding: 10px 14px;
+      }
+
+      .modal-header-info {
+        max-width: 100%;
+        overflow: hidden;
       }
 
       .modal-media {
@@ -1481,8 +1512,13 @@
       }
 
       .modal-header {
-        grid-template-columns: 92px 1fr;
+        grid-template-columns: 92px minmax(0, 1fr);
         gap: 10px;
+      }
+
+      .modal-header-info {
+        max-width: 100%;
+        overflow: hidden;
       }
 
       .modal-media {
@@ -1493,6 +1529,9 @@
 
         .modal-header-info h2 {
           font-size: 16px;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+          min-width: 0;
         }
 
       .modal-header-info .section,
