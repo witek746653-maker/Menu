@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Menu Section Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee6c2b",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2C221C",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-[#181311] dark:text-[#f4f2f0]">
+<div class="relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden border-x border-gray-100 dark:border-gray-800">
+<div class="sticky top-0 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50">
+<div class="flex items-center px-4 pt-4 pb-2 justify-between">
+<button class="text-[#181311] dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full active:bg-black/5 dark:active:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-[#181311] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Burgers &amp; Steaks</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="text-primary text-xs font-bold leading-normal tracking-[0.015em] shrink-0 border border-primary/30 rounded-lg px-2 py-1 hover:bg-primary hover:text-white transition-colors">
+                        EN
+                    </button>
+</div>
+</div>
+<div class="px-4 pb-2">
+<nav class="flex text-xs text-[#896f61] dark:text-gray-400 font-medium whitespace-nowrap overflow-hidden text-ellipsis items-center">
+<span class="hover:text-primary transition-colors cursor-pointer">Menu</span>
+<span class="material-symbols-outlined text-[10px] mx-1 opacity-60">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Hot Dishes</span>
+<span class="material-symbols-outlined text-[10px] mx-1 opacity-60">chevron_right</span>
+<span class="text-primary font-semibold">Burgers</span>
+</nav>
+</div>
+<div class="px-4 py-2">
+<div class="flex w-full items-stretch rounded-xl h-10 bg-white dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-700/50 group focus-within:border-primary/50 transition-colors">
+<div class="text-[#896f61] dark:text-gray-400 flex items-center justify-center pl-3 pr-2 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full flex-1 bg-transparent border-none text-[#181311] dark:text-white placeholder:text-[#896f61] dark:placeholder:text-gray-500 focus:ring-0 text-sm font-normal h-full p-0" placeholder="Search dishes..."/>
+<button class="text-[#896f61] dark:text-gray-400 flex items-center justify-center px-3 border-l border-gray-100 dark:border-gray-700/50 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</div>
+<div class="flex gap-2 px-4 py-2 overflow-x-auto no-scrollbar items-center pb-3 border-t border-gray-100/50 dark:border-gray-800/50 mt-1">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 px-3 transition-transform active:scale-95 shadow-sm">
+<p class="text-[#181311] dark:text-gray-200 text-xs font-medium">Category</p>
+<span class="material-symbols-outlined text-[16px] text-gray-500">expand_more</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 px-3 transition-transform active:scale-95 shadow-sm">
+<p class="text-[#181311] dark:text-gray-200 text-xs font-medium">Allergens</p>
+<span class="material-symbols-outlined text-[16px] text-gray-500">expand_more</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-full bg-primary text-white border border-primary px-3 shadow-sm shadow-primary/30 transition-transform active:scale-95">
+<p class="text-xs font-semibold">Tags</p>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<div class="w-px h-4 bg-gray-300 dark:bg-gray-700 mx-0.5 shrink-0"></div>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-full bg-red-50 dark:bg-red-500/10 border border-red-100 dark:border-red-500/20 px-3 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-red-500 text-[16px]">local_fire_department</span>
+<p class="text-red-700 dark:text-red-400 text-xs font-medium">Spicy</p>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-full bg-green-50 dark:bg-green-500/10 border border-green-100 dark:border-green-500/20 px-3 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-green-600 text-[16px]">eco</span>
+<p class="text-green-700 dark:text-green-400 text-xs font-medium">Vegan</p>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-3 pb-24 pt-3">
+<div class="flex justify-between items-center mb-3 px-1">
+<h3 class="font-bold text-base dark:text-white">All Dishes</h3>
+<span class="text-[10px] text-gray-500 font-medium bg-gray-100 dark:bg-white/5 px-2 py-0.5 rounded-md border border-gray-200 dark:border-gray-700">12 items</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
+<div class="relative w-full aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzEs0qaljVQ_m94k363VpNlqf_4Xkq6IEmgwz9VQ0CFYI3UF9Ph6KFSRtavncJ64M0oQcsbi_5Gz85SG6l2hO4eDG8N0WZ0QBnQY_jXXofhqUXshZApuL0iYmr6-eZFUFH778Qi2h8uok031xNimGqqHiVDlXYnHVOX9_KAXF5LjVBzpQbvN0dX8PecrGXooSzxBopAKLegyIpbbL2Vjvk-ENK-SGbZzg-6J3dIHdggsGV_ol8A8DjUmRVEDYwGKUrf4VRHlBJbmFb');"></div>
+<div class="absolute top-1.5 left-1.5 flex flex-wrap gap-1">
+<span class="bg-white/95 dark:bg-black/60 backdrop-blur-[2px] p-0.5 rounded-md text-red-500 shadow-sm ring-1 ring-black/5" title="Spicy">
+<span class="material-symbols-outlined text-[12px] block">local_fire_department</span>
+</span>
+</div>
+</div>
+<div class="p-2 flex flex-col flex-grow">
+<h3 class="font-bold text-[11px] leading-[1.2] dark:text-white line-clamp-2 mb-1 group-hover:text-primary transition-colors">Spicy Jalapeño Burger</h3>
+<p class="text-[9px] text-[#896f61] dark:text-gray-400 line-clamp-2 mb-2 leading-tight opacity-90">Double beef patty with melted cheddar.</p>
+<div class="mt-auto flex items-center justify-between pt-1.5 border-t border-dashed border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[12px]">bakery_dining</span>
+<span class="text-[8px] text-gray-400 uppercase font-semibold">Gluten</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
+<div class="relative w-full aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDS3pt-rJ7KBQJP0or4g0kXCMEczYK9t4VYc55dBmy8seFORO4AtQ4WLuUwdmyJjC9ZOrhf0CvhQLtaBS4UjK3_goX2weYDwZmk46mTzTXfOXX9NOKBIBVb-6YWafRVKPg92OA29aAYsUbRZyZiSRWQ521h9OlDR8gHV_roo_w8lFwnHaonOCnvFAr_m9FOYp_VCx7DkJayw1zNhUWVF5S37EBl7wTK3p_U6lirsop3jgAIbtQsb0Ae0wgt3Sx2vVZkMzfSXBNTaBKj');"></div>
+<div class="absolute top-1.5 left-1.5 flex flex-wrap gap-1">
+<span class="bg-primary/90 backdrop-blur-[2px] px-1.5 py-0.5 rounded-md text-[8px] font-bold text-white shadow-sm uppercase tracking-wide">New</span>
+</div>
+</div>
+<div class="p-2 flex flex-col flex-grow">
+<h3 class="font-bold text-[11px] leading-[1.2] dark:text-white line-clamp-2 mb-1 group-hover:text-primary transition-colors">Premium Ribeye Steak</h3>
+<p class="text-[9px] text-[#896f61] dark:text-gray-400 line-clamp-2 mb-2 leading-tight opacity-90">Grass-fed beef grilled to perfection.</p>
+<div class="mt-auto flex items-center justify-between pt-1.5 border-t border-dashed border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-amber-600 text-[12px]">check_circle</span>
+<span class="text-[8px] text-amber-600 uppercase font-semibold">GF</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
+<div class="relative w-full aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAX_byX0n15yjatAhExpafXxlAWU-8PE0sSMiDhM9YVPtzB_AKhQUkivQ7ETlE_vqdDVVJUJmaC9SDcJVttqAhSXdpa0YpjHSWPXiiXYaCnGP_a4eiWSrVtUtJ8xREBBwuH4aCHs14YDoXARc0pmbZnPFuOvYCPFgEBMlarsuojx78cOGd__xnitbq1LRGxRdPEfhc0tpPstVUD55ch-QHMvWHNBsFlwtyHVxhiWOk2_Wk4AAlBh2wIBcF81Z9zbbGHkB15ynNdAvQF');"></div>
+</div>
+<div class="p-2 flex flex-col flex-grow">
+<h3 class="font-bold text-[11px] leading-[1.2] dark:text-white line-clamp-2 mb-1 group-hover:text-primary transition-colors">Classic Cheese</h3>
+<p class="text-[9px] text-[#896f61] dark:text-gray-400 line-clamp-2 mb-2 leading-tight opacity-90">The original taste. Cheddar, lettuce.</p>
+<div class="mt-auto flex items-center justify-between pt-1.5 border-t border-dashed border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-blue-400 text-[12px]">water_drop</span>
+<span class="text-[8px] text-gray-400 uppercase font-semibold">Dairy</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
+<div class="relative w-full aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoJP33niuw1qeNTE2hO0gyRFQwzPmu6fWNLIs29rkh3P6tB8kBy0OymDVDTZLrNhgImMGN95LkKhSFaLpDxTqQp6YFYWFwFeHHajNhhEH6HlRw8B7JQgmZ38c0EPgcNFlRmkb5tjOYu3uSKziDaJukV2aKBgJo-Z7NH6D5KWti55HATHxi5fC6FacI-MhjmaAhDlsImAFz48CcWexulGIzn9kF5_RUy0LUQabc-FQAsbNCvSgm5KrqkFrM2zXIOSQ-hSUkfMtgALhW');"></div>
+<div class="absolute top-1.5 left-1.5 flex flex-wrap gap-1">
+<span class="bg-white/95 dark:bg-black/60 backdrop-blur-[2px] p-0.5 rounded-md text-green-600 shadow-sm ring-1 ring-black/5" title="Vegetarian">
+<span class="material-symbols-outlined text-[12px] block">eco</span>
+</span>
+</div>
+</div>
+<div class="p-2 flex flex-col flex-grow">
+<h3 class="font-bold text-[11px] leading-[1.2] dark:text-white line-clamp-2 mb-1 group-hover:text-primary transition-colors">Truffle Mushroom</h3>
+<p class="text-[9px] text-[#896f61] dark:text-gray-400 line-clamp-2 mb-2 leading-tight opacity-90">Vegetarian patty, wild mushrooms.</p>
+<div class="mt-auto flex items-center justify-between pt-1.5 border-t border-dashed border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-[12px]">egg</span>
+<span class="text-[8px] text-gray-400 uppercase font-semibold">Egg</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
+<div class="relative w-full aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBHZ97p91JdL_3e2rK7AuHfjvzBkLcmHnYzjqxosYZ2fsm3YNfgy_AwiyF1Ss6jMtEH9IqptruTtC9EF8fzJyLJg-I3EYoTTPx9XX8TKek-vHRgdys-Uxa3i5CmJhj3Pq2FdMiGsvYXw9uPlgpSPLQ7r9r3O_8K69l53Q-2Wf9waAhleQhV_udxk6uA1KMMu5mpmJLozaOdpnnj7KxfDZNcaWbcnbRRYkmTNOellgRcbla3ghzGwa_oizzuBVC-oD2nTEzRMjDnyDjp');"></div>
+</div>
+<div class="p-2 flex flex-col flex-grow">
+<h3 class="font-bold text-[11px] leading-[1.2] dark:text-white line-clamp-2 mb-1 group-hover:text-primary transition-colors">Smoky BBQ Ribs</h3>
+<p class="text-[9px] text-[#896f61] dark:text-gray-400 line-clamp-2 mb-2 leading-tight opacity-90">Slow-cooked pork ribs glazed.</p>
+<div class="mt-auto flex items-center justify-between pt-1.5 border-t border-dashed border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-orange-400 text-[12px]">check_circle</span>
+<span class="text-[8px] text-gray-400 uppercase font-semibold">Mustard</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
+<div class="relative w-full aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBuISt2PEWW-fAYRiLfJqzhanPT4GG_UfLUXi5B_K1Qi44s-pfASKfiLz2VDoXcgTUU1MGeE5l47VTUdjEXpY9ZAbc59VKgJB8ZtqNsyYsV1-_4ysRus3WYlmq7fG0LCZJuSBJBmRxd44iL3q4GDRsx59IX-fiecyJq60RcBS57M4kUvbIWQq5emRcvic89SbEgVbg8PgmedqLn_rowMqPp2W2m2blIKUzHh_DvoPr4QdDvRBu63OXsIUZgwzsxcCB-wsjtLqD-aI3f');"></div>
+<div class="absolute top-1.5 left-1.5 flex flex-wrap gap-1">
+<span class="bg-white/95 dark:bg-black/60 backdrop-blur-[2px] p-0.5 rounded-md text-green-600 shadow-sm ring-1 ring-black/5" title="Vegan">
+<span class="material-symbols-outlined text-[12px] block">eco</span>
+</span>
+<span class="bg-white/95 dark:bg-black/60 backdrop-blur-[2px] p-0.5 rounded-md text-amber-600 shadow-sm ring-1 ring-black/5" title="Nuts Free">
+<span class="material-symbols-outlined text-[12px] block">check_circle</span>
+</span>
+</div>
+</div>
+<div class="p-2 flex flex-col flex-grow">
+<h3 class="font-bold text-[11px] leading-[1.2] dark:text-white line-clamp-2 mb-1 group-hover:text-primary transition-colors">Black Bean Vegan</h3>
+<p class="text-[9px] text-[#896f61] dark:text-gray-400 line-clamp-2 mb-2 leading-tight opacity-90">Black bean patty, avocado mash.</p>
+<div class="mt-auto flex items-center justify-between pt-1.5 border-t border-dashed border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-500 text-[12px]">thumb_up</span>
+<span class="text-[8px] text-gray-400 uppercase font-semibold">Safe</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
+<div class="relative w-full aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzEs0qaljVQ_m94k363VpNlqf_4Xkq6IEmgwz9VQ0CFYI3UF9Ph6KFSRtavncJ64M0oQcsbi_5Gz85SG6l2hO4eDG8N0WZ0QBnQY_jXXofhqUXshZApuL0iYmr6-eZFUFH778Qi2h8uok031xNimGqqHiVDlXYnHVOX9_KAXF5LjVBzpQbvN0dX8PecrGXooSzxBopAKLegyIpbbL2Vjvk-ENK-SGbZzg-6J3dIHdggsGV_ol8A8DjUmRVEDYwGKUrf4VRHlBJbmFb'); filter: hue-rotate(45deg);"></div>
+</div>
+<div class="p-2 flex flex-col flex-grow">
+<h3 class="font-bold text-[11px] leading-[1.2] dark:text-white line-clamp-2 mb-1 group-hover:text-primary transition-colors">Hawaiian Delight</h3>
+<p class="text-[9px] text-[#896f61] dark:text-gray-400 line-clamp-2 mb-2 leading-tight opacity-90">Grilled pineapple, ham, cheese.</p>
+<div class="mt-auto flex items-center justify-between pt-1.5 border-t border-dashed border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[12px]">lunch_dining</span>
+<span class="text-[8px] text-gray-400 uppercase font-semibold">Pork</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
+<div class="relative w-full aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoJP33niuw1qeNTE2hO0gyRFQwzPmu6fWNLIs29rkh3P6tB8kBy0OymDVDTZLrNhgImMGN95LkKhSFaLpDxTqQp6YFYWFwFeHHajNhhEH6HlRw8B7JQgmZ38c0EPgcNFlRmkb5tjOYu3uSKziDaJukV2aKBgJo-Z7NH6D5KWti55HATHxi5fC6FacI-MhjmaAhDlsImAFz48CcWexulGIzn9kF5_RUy0LUQabc-FQAsbNCvSgm5KrqkFrM2zXIOSQ-hSUkfMtgALhW'); filter: grayscale(50%);"></div>
+</div>
+<div class="p-2 flex flex-col flex-grow">
+<h3 class="font-bold text-[11px] leading-[1.2] dark:text-white line-clamp-2 mb-1 group-hover:text-primary transition-colors">Mushroom Swiss</h3>
+<p class="text-[9px] text-[#896f61] dark:text-gray-400 line-clamp-2 mb-2 leading-tight opacity-90">Sautéed mushrooms, Swiss cheese.</p>
+<div class="mt-auto flex items-center justify-between pt-1.5 border-t border-dashed border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[12px]">forest</span>
+<span class="text-[8px] text-gray-400 uppercase font-semibold">Veggie</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group flex flex-col rounded-lg overflow-hidden bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-all">
+<div class="relative w-full aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAX_byX0n15yjatAhExpafXxlAWU-8PE0sSMiDhM9YVPtzB_AKhQUkivQ7ETlE_vqdDVVJUJmaC9SDcJVttqAhSXdpa0YpjHSWPXiiXYaCnGP_a4eiWSrVtUtJ8xREBBwuH4aCHs14YDoXARc0pmbZnPFuOvYCPFgEBMlarsuojx78cOGd__xnitbq1LRGxRdPEfhc0tpPstVUD55ch-QHMvWHNBsFlwtyHVxhiWOk2_Wk4AAlBh2wIBcF81Z9zbbGHkB15ynNdAvQF'); filter: sepia(30%);"></div>
+<div class="absolute top-1.5 left-1.5 flex flex-wrap gap-1">
+<span class="bg-white/95 dark:bg-black/60 backdrop-blur-[2px] p-0.5 rounded-md text-red-500 shadow-sm ring-1 ring-black/5" title="Spicy">
+<span class="material-symbols-outlined text-[12px] block">local_fire_department</span>
+</span>
+</div>
+</div>
+<div class="p-2 flex flex-col flex-grow">
+<h3 class="font-bold text-[11px] leading-[1.2] dark:text-white line-clamp-2 mb-1 group-hover:text-primary transition-colors">Tex-Mex Burger</h3>
+<p class="text-[9px] text-[#896f61] dark:text-gray-400 line-clamp-2 mb-2 leading-tight opacity-90">Guacamole, salsa, spicy peppers.</p>
+<div class="mt-auto flex items-center justify-between pt-1.5 border-t border-dashed border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[12px]">local_pizza</span>
+<span class="text-[8px] text-gray-400 uppercase font-semibold">Dairy</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 z-50 w-full max-w-md bg-white/95 dark:bg-surface-dark/95 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 pb-safe">
+<div class="flex justify-between px-6 items-center h-[60px]">
+<button class="flex flex-col items-center justify-center gap-1 text-primary w-14">
+<span class="material-symbols-outlined text-[24px]">restaurant_menu</span>
+<span class="text-[10px] font-bold">Menu</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-[#181311] dark:hover:text-white transition-colors w-14">
+<span class="material-symbols-outlined text-[24px]">favorite</span>
+<span class="text-[10px] font-medium">Favorites</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-[#181311] dark:hover:text-white transition-colors w-14">
+<span class="material-symbols-outlined text-[24px]">info</span>
+<span class="text-[10px] font-medium">About</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-[#181311] dark:hover:text-white transition-colors w-14">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+</div>
+</div>
+
+</body></html>
