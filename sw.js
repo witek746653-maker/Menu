@@ -1,5 +1,5 @@
-const PRECACHE = 'precache-v8';
-const RUNTIME_CACHE = 'runtime-v8';
+const PRECACHE = 'precache-v9';
+const RUNTIME_CACHE = 'runtime-v9';
 const PRECACHE_MANIFEST_URL = 'precache-files.json';
 
 async function precacheAssets() {
