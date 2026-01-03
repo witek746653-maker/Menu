@@ -1,0 +1,797 @@
+<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>Итальянские каникулы</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article class="page sans" id="2dd33974-4d17-80ac-8ab5-ebcaa728a05e"><header><img class="page-cover-image" src="../images/italian-holyday-head.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="../images/sabor-icon-small.png"/></div><h1 class="page-title" dir="auto">Итальянские каникулы</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div dir="ltr" style="display:contents"><nav class="block-color-gray table_of_contents" id="2dd33974-4d17-806e-a1bb-d3209a780dee"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2dd33974-4d17-8057-826d-f4d8d0235514">🥘 <strong>Супы</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2dd33974-4d17-8052-8e73-d9727d06d59b">Суп с морепродуктами “По-Средиземноморски”</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2dd33974-4d17-80af-a165-fcaabdaf6da6"><img alt="pasta-icon" src="../icons/pasta-icon.png" style="width:1em;height:1em"/> <strong>Горячие блюда</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2dd33974-4d17-809f-b923-fe94b89f7de1">Ризотто с морепродуктами</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2dd33974-4d17-8085-a7eb-c28597ebfd02">Трюфельная паста в сырной голове</a></div></nav></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-804b-bfed-c520128e49dd"/></div><div dir="auto" style="display:contents"><h2 class="" id="2dd33974-4d17-8057-826d-f4d8d0235514">🥘 <strong>Супы</strong></h2></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2dd33974-4d17-8052-8e73-d9727d06d59b">Суп с морепродуктами “По-Средиземноморски”</h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2dd33974-4d17-80ed-8246-f2256545ba3a"><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-8038-ab34-fae17896e56c" style="width:50%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80f2-8928-f2a338556d8e"><strong>Насыщенный и ароматный бульон с морепродуктами, спелыми томатами, пикантным перцем чили, свежей зеленью, в сопровождении ломтика хрустящей чесночной чиабатты. </strong></p></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-801e-8c84-d81066713cc0"/></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80fe-ae47-c8176672fefe"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-809e-8343-ff459ec580c4"> 🥛 лактоза |🌶️ перец | <img alt="onion-icon" src="../icons/onion-icon.png" style="width:1em;height:1em"/> лук | <img alt="garlic-icon" src="../icons/garlic-icon.png" style="width:1em;height:1em"/> чеснок | <img alt="herbs-icon" src="../icons/herbs-icon.png" style="width:1em;height:1em"/> зелень</p></div><div dir="ltr" style="display:contents"><figure class="image" id="2dd33974-4d17-80fb-b2b6-daf5063e7c53"><a href="../images/image.png"><img src="../images/image.png" style="width:1px"/></a></figure></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-8009-a4eb-ca6e345e7867"/></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-801d-bc09-d97932f11981">В суп добавляют <strong>лук шалот</strong>,<strong> лук порей</strong>, <strong>чеснок</strong> и <strong>перец чили</strong>.</p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-803a-9dd0-ffe8518b853c">Подается с <strong>чесночной</strong> чиабаттой.</p></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-8085-bf5f-e3d274fb067d"/></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8035-bee0-c5daeed90e7f">
+</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-80e1-bf4f-edec8311b79c" style="width:50%"><div dir="ltr" style="display:contents"><figure class="image" id="2dd33974-4d17-806b-ac19-fd8713aaeb81"><a href="../images/image.png"><img src="../images/image.png" style="width:1px"/></a></figure></div><div dir="ltr" style="display:contents"><figure class="image" id="2dd33974-4d17-8018-a1da-fe56641c0800"><a href="../images/zaglushka.jpg"><img src="../images/zaglushka.jpg" style="width:331.984375px"/></a><figcaption>Суп с морепродуктами “По-Средиземноморски”</figcaption></figure></div></div></div></div></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80d5-94b5-f85d9a7520c0"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><div class="column-list" id="2dd33974-4d17-801c-bec5-d9e19ada2d0d"><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-80d7-bdb9-e519ebeada91" style="width:40.625%"><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-808b-bb16-fe9951e05ee5" start="1" type="1"><li>На ароматном масле с добавлением <strong>сливочного</strong> обжариваются <strong>чеснок</strong>, <strong>лук шалот</strong>, томаты, <strong>перец чили. </strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8015-befc-cf37ecd63ea6" start="2" type="1"><li>Добавляется бульон-биск (варить 5 мин.).</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-805f-875b-c2b5032dccb3" start="3" type="1"><li>На ароматном масле слегка обжариваются морепродукты. Далее добавляется биск, рыбный бульон, листья петрушки и базилика.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80ca-b25b-e670b5d13c8c" start="4" type="1"><li>Суп подается с <strong>чесночной </strong>чиабаттой.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-8046-b8e6-fb5cc58e4cf7" style="width:15.625%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8020-95a8-ce5e6c52292e"><strong>Морепродукты: </strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80a8-b2f3-d45c5fe54267" start="1" type="1"><li>Кальмар.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-806e-be9f-d0f82982f5b4" start="2" type="1"><li>Креветка.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8087-9dc1-e34f565d6c48" start="3" type="1"><li>Филе сибаса.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-805c-b4f3-c229470a12c8" start="4" type="1"><li>Филе сёмги.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-803e-9d74-ccbee9754947" start="5" type="1"><li>Филе дорадо (с кожей).</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8054-a7fd-da2f41edf67f" start="6" type="1"><li>Мидии.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8079-b034-e0c1cb5f9efb" start="7" type="1"><li>Вонголе.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-803b-aac2-fb23386ae707" style="width:18.750000000000018%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8057-8976-ddde8e87756e"><strong>Бульон-биск:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8034-aebc-cfe51125abc7" start="1" type="1"><li>Панцыри креветок, кости белых рыб.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8097-8493-f780e9cd3d85" start="2" type="1"><li>Вода.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8042-8804-de929f078961" start="3" type="1"><li>Морковь, <strong>лук репчатый, сельдерей</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8071-bde0-c1928898ef38" start="4" type="1"><li>Масло оливковое.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8031-a002-fbc95bef5def" start="5" type="1"><li>Паста томатная.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-808d-99c9-d170f53c1f48" start="6" type="1"><li>Перец черный, соль.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-8066-a5f6-f569ad66f142" style="width:25%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-805c-aa40-cea0e271cf78"><strong>Бульон рыбный:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80ab-a9d7-dc6efab6c259" start="1" type="1"><li>Кости рыб.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8063-9306-cb3741c6eade" start="2" type="1"><li>Морковь, сельдерей, <strong>лук порей, лук репчатый</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8095-90d3-cdaba9f4eca8" start="3" type="1"><li>Вода.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8057-9736-dfff5261abd8" start="4" type="1"><li>Лавровый лист.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-807b-94b2-d0ebeb3f7fcb" start="5" type="1"><li>Перец черный.</li></ol></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8012-a2b3-dc0510a8d558">
+</p></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-8076-bf28-d60eb2c4d71a"/></div><div dir="ltr" style="display:contents"><figure class="block-color-teal_background callout" id="2dd33974-4d17-8014-b832-f1f7043ed974" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80d5-a32a-fe4da1f56ab5"><strong>Вонголе</strong> — это морские двустворчатые моллюски, традиционные для средиземноморской кухни. Название происходит от итальянского <em>vongola</em>, корни которого уходят в латинское <em>conchula</em> — «маленькая раковина». Со временем слово стало не только обозначением самого моллюска, но и символом одного из самых известных блюд прибрежной Италии.</p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-809e-972d-fb6a6649e3df">Вонголе обитают в прибрежных зонах Средиземного моря и Атлантики, зарываясь в песчаное дно на небольшой глубине. Именно такая среда придаёт им характерный чистый, слегка солоноватый вкус с выраженной «морской» минеральностью.</p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8084-ab3f-fca47879e286">Их особенность — в нежном, сладковатом мясе и большом количестве ароматного сока, который при приготовлении образует естественный соус. В отличие от мидий, вонголе меньше по размеру, имеют более тонкую раковину и значительно более деликатный вкус. Мидии плотнее по текстуре и ярче по аромату, тогда как вонголе ценятся за утончённость и баланс, позволяющий вкусу моря доминировать, не перегружая блюдо.</p></div></div></figure></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-809f-b32c-f1cf8456f8e5"/></div><div dir="auto" style="display:contents"><h2 class="" id="2dd33974-4d17-80af-a165-fcaabdaf6da6"><img alt="pasta-icon" src="../icons/pasta-icon.png" style="width:1em;height:1em"/> <strong>Горячие блюда</strong></h2></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2dd33974-4d17-809f-b923-fe94b89f7de1">Ризотто с морепродуктами</h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2dd33974-4d17-8085-a7c8-c6a486c41f53"><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-80a2-b593-fc6d3862674b" style="width:50%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8010-93bf-e603a94aa8f2"><strong>Классическое сливочное ризотто, приготовленное на концентрированном рыбном бульоне, с ассорти из морепродуктов, спелыми томатами и ароматным чесночным маслом.</strong></p></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-800d-9b2a-eced9b85e03b"/></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-808a-90e6-cf55af64a4db"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-806a-a418-eee38d87624b"> 🥛 лактоза | <img alt="onion-icon" src="../icons/onion-icon.png" style="width:1em;height:1em"/> лук | <img alt="garlic-icon" src="../icons/garlic-icon.png" style="width:1em;height:1em"/> чеснок | <img alt="herbs-icon" src="../icons/herbs-icon.png" style="width:1em;height:1em"/> зелень</p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80b8-bd38-d3ec8028e76c">Ризотто готовится с добавлением: <strong>чеснока, лука шалот, лука порей,</strong> томатов и <strong>белого вина.</strong></p></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-80dc-a733-ca9f875d37e3"/></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-80b0-b5bd-c8625e9d073d" style="width:50%"><div dir="ltr" style="display:contents"><figure class="image" id="2dd33974-4d17-8046-9b59-e4ad9e558962"><a href="../images/zaglushka.jpg"><img src="../images/zaglushka.jpg" style="width:331.9921875px"/></a><figcaption>Ризотто с морепродуктами</figcaption></figure></div><div dir="auto" style="display:contents"><div class="column-list" id="2dd33974-4d17-80c2-97e2-ead621cc35f0"><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-8000-81a2-c954da3904e4" style="width:149.99999999999997%"><div dir="ltr" style="display:contents"><figure class="image" id="2dd33974-4d17-8041-93a8-d33821e9761c"><a href="../images/image.png"><img src="../images/image.png" style="width:1px"/></a></figure></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-8086-815a-c82ad36d4a5c" style="width:6.249999999999999%"><div dir="ltr" style="display:contents"><figure class="image" id="2dd33974-4d17-807c-b889-eb7bfe4a922c"><a href="../images/image.png"><img src="../images/image.png" style="width:1px"/></a></figure></div></div></div></div></div></div></div></div></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80bf-aa30-dbdccdd52dfa"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><div class="column-list" id="2dd33974-4d17-802d-b844-d043aa8ea6be"><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-8092-850d-ff79c6ff6726" style="width:28.125%"><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8066-a888-e47fddecf754" start="1" type="1"><li>На ароматном масле с добавлением <strong>сливочного</strong> обжариваются <strong>чеснок</strong>, <strong>лук шалот</strong>, <strong>рис Арборио. </strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-805a-9fe5-d29fde88e9ae" start="2" type="1"><li>Добавляются сливки (33%), бульон-биск, рыбный бульон, а также соус аква-томат и <strong>белое вино.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-800d-a2eb-e28d3a95bdd9" start="3" type="1"><li>На ароматном масле (с добавлением <strong>чесночного масла</strong> и петрушки) обжариваются морепродукты. </li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-808b-bec7-f15235bf0b2f" start="4" type="1"><li>Готовый ризотто выкладывается в тарелку, сверху морепродукты.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-80b5-b7bf-f42ad9d164ef" style="width:25%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-806a-916e-e04c095005c6"><strong>Морепродукты: </strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80dc-b81b-df65fb5a1709" start="1" type="1"><li>Кальмар.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80c0-b399-f9c481734a4b" start="2" type="1"><li>Креветка.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-801e-bd9c-da0dba87623d" start="3" type="1"><li>Филе сибаса.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8093-9009-f0ed80c92399" start="4" type="1"><li>Филе сёмги.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8077-ac8c-e1890cdd87ad" start="5" type="1"><li>Филе дорадо (с кожей).</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80d0-8f7d-e6e4a677d5af" start="6" type="1"><li>Мидии.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80c3-a232-c6479d2c7e02" start="7" type="1"><li>Вонголе.</li></ol></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80ce-849c-ceaf6bf795a1">
+</p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-801f-b4b9-f47217b18ed1"><strong>Соус аква-томат</strong>:</p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-806f-838a-e53f12955e25" start="1" type="1"><li><strong>Лук шалот</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-800c-894c-f4aec6ab89fb" start="2" type="1"><li>Сельдерей.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8087-9d7f-fdbc62dbd22f" start="3" type="1"><li>Томаты.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8073-b9c5-f8df9f1fd00f" start="4" type="1"><li>Бульон куриный.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-800f-b0b1-c8b34c5745a8" start="5" type="1"><li>Масло растительное.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-8031-bce3-c3d574dbb3e6" style="width:21.874999999999996%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8061-ae02-d8f7555acb7b"><strong>Бульон-биск:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8072-b076-debc13a566c4" start="1" type="1"><li>Панцыри креветок, кости белых рыб.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8071-92d8-e6aac6d2a860" start="2" type="1"><li>Вода.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8007-9b89-d86c467e3574" start="3" type="1"><li>Морковь, <strong>лук репчатый, сельдерей</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80a8-9b85-c4bb027d52de" start="4" type="1"><li>Масло оливковое.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80fc-afca-c60b66031e66" start="5" type="1"><li>Паста томатная.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80d8-a0a7-e14c2aefa422" start="6" type="1"><li>Перец черный, соль.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-8013-8d73-d2e52da1f590" style="width:25%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8039-a477-c236fc5abda2"><strong>Бульон рыбный:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-802c-83d2-f196e8ff088c" start="1" type="1"><li>Кости рыб.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8029-aa49-e51b45f6b19f" start="2" type="1"><li>Морковь, сельдерей, <strong>лук порей, лук репчатый</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80e1-8cce-db0dd719a851" start="3" type="1"><li>Вода.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8051-b8aa-f37c0a157966" start="4" type="1"><li>Лавровый лист.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-80a4-b749-c9e122bab97e" start="5" type="1"><li>Перец черный.</li></ol></div></div></div></div></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8036-833b-f01866d2e27b">
+</p></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2dd33974-4d17-8085-a7eb-c28597ebfd02">Трюфельная паста в сырной голове</h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2dd33974-4d17-8011-8a5a-e16a2a2d2180"><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-80cb-a5f5-cfb48e80b0c5" style="width:50%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80f2-910c-eaf1b2831588"><strong>Трюфельная паста спагетти, приготовленная в расплавленной сердцевине цельной головки итальянского сыра прямо у вашего стола.</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80e7-b366-d6927726552d"><strong>Мы используем эффектную итальянскую технику подачи: паста замешивается в цельной головке сыра Грана Падано прямо перед Вами.</strong></p></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-8039-b581-fab9178f3c02"/></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-800e-8c1b-e70884311be8"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8056-921c-fb0b97b09a35">🥛 лактоза |<img alt="mushroom-icon" src="../icons/mushroom-icon.png" style="width:1em;height:1em"/>  грибы | <img alt="truffle-icon" src="../icons/truffle-icon.png" style="width:1em;height:1em"/> трюфель</p></div><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-8085-9957-f5bd4ddb2ae4">С момента начала работы у стола официант имеет 10 минут для коммуникации с Гостем (розжиг головки сыра, и соскрёб). По истечении указанного времени кухня отдает пасту, горячие тарелки и соус. </p></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-80b3-8107-c934d582a279"/></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-8057-b3b7-c31d164672d1" style="width:50%"><div dir="ltr" style="display:contents"><figure class="image" id="2dd33974-4d17-80cd-ad78-e9a4c0ba483c"><a href="../images/zaglushka.jpg"><img src="../images/zaglushka.jpg" style="width:331.984375px"/></a><figcaption>Паста с трюфелем</figcaption></figure></div></div></div></div></div><div dir="auto" style="display:contents"><div class="column-list" id="2dd33974-4d17-802e-a4eb-f9c9603be6fd"><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-80ba-bdd4-cb7774e84379" style="width:31.25%"><div dir="auto" style="display:contents"><p class="" id="2dd33974-4d17-80d7-976b-ca4a3eec21f8"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8017-a0e8-d044661d126e" start="1" type="1"><li>Отварные спагетти.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-8082-b554-f7119356f637" start="2" type="1"><li>Сливки (33%).</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-808c-9e5a-d6bac57ea16d" start="3" type="1"><li><strong>Соус грибной, паста трюфельная.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2dd33974-4d17-807b-a621-ed2c30f76ac7" start="4" type="1"><li>Грана Падано, пармезан.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2dd33974-4d17-80bb-a204-e3d17a0a359e" style="width:68.75%"><div dir="ltr" style="display:contents"><figure class="block-color-teal_background callout" id="2dd33974-4d17-803f-9ea0-d8a9ffcb1d08" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div dir="auto" style="display:contents"><p class="block-color-teal_background" id="2dd33974-4d17-808d-82bb-ea9677d66cdc"><strong>Замешивание пасты в головке сыра</strong> — это эффектная итальянская техника подачи, при которой горячую пасту с соусом (часто Alfredo или Cacio e Pepe) помещают внутрь выдолбленной головки твердого сыра (типа Пармезана), и тепло пасты растапливает сырные стенки, создавая сливочный, насыщенный соус прямо во время перемешивания, что превращает блюдо в настоящее гастрономическое шоу. </p></div></div></figure></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2dd33974-4d17-80b0-be9b-de6de394a6db"/></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span><button class="toc-fab" id="tocFab" type="button">↑ Оглавление</button><style>
+  .toc-fab{
+    position:fixed; right:40px; bottom:40px;
+    padding:15px; border-radius:999px;
+    font:500 12px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:rgba(0,0,0,.75); color:#fff;
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+    cursor:pointer; opacity:0; pointer-events:none; transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease;
+    z-index:2147483647;
+  }
+  .toc-fab.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .toc-fab:active{transform:translateY(1px);}
+</style><script>
+(function(){
+  const btn = document.getElementById('tocFab');
+  const TOC_SELECTORS = '.table_of_contents, #toc';
+  const HIDE_NEAR_TOP = 300;   // рядом с верхом/оглавлением кнопку не показываем
+  const HIDE_TIMEOUT_MS = 1000;
+  let hideTimer = null, muteUntil = 0;
+
+  function findTOC(){ return document.querySelector(TOC_SELECTORS); }
+  function scrollToTOC(){
+    const toc = findTOC();
+    if (!toc) { window.scrollTo({top:0, behavior:'smooth'}); return; }
+    toc.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+  function safeShow(){
+    const now = Date.now();
+    if (now < muteUntil) return;
+    if (window.scrollY < HIDE_NEAR_TOP) { btn.classList.remove('show'); return; }
+    btn.classList.add('show');
+    if (hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(()=> btn.classList.remove('show'), HIDE_TIMEOUT_MS);
+  }
+
+  ['scroll','mousemove','touchmove','keydown'].forEach(ev =>
+    window.addEventListener(ev, safeShow, { passive:true })
+  );
+
+  const tocRoot = findTOC();
+  if (tocRoot){
+    tocRoot.addEventListener('click', (e)=>{
+      if (e.target.closest('a')){
+        btn.classList.remove('show');
+        muteUntil = Date.now() + 1200; // «глушим» всплытие на время прыжка по якорю
+        setTimeout(()=>{ muteUntil = 0; }, 1300);
+      }
+    }, true); // capture
+  }
+
+  window.addEventListener('hashchange', ()=>{
+    btn.classList.remove('show');
+    muteUntil = Date.now() + 800;
+    setTimeout(()=>{ muteUntil = 0; }, 900);
+  });
+
+  btn.addEventListener('click', scrollToTOC);
+})();
+</script><script>
+(function(){
+  const btn = document.getElementById('tocFab');
+  if (!btn) return;
+  function scaleVal(){ return (window.visualViewport && window.visualViewport.scale) || 1; }
+  function apply(){
+    const s = scaleVal();
+    btn.style.transformOrigin = "bottom right";
+    btn.style.transform = "translateZ(0) scale(" + (1/s) + ")";
+    btn.style.right = (40 / s) + "px";
+    btn.style.bottom = (40 / s) + "px";
+  }
+  apply();
+  if (window.visualViewport){
+    window.visualViewport.addEventListener('resize', apply);
+    window.visualViewport.addEventListener('scroll', apply);
+  }
+  window.addEventListener('orientationchange', apply);
+})();
+</script><script defer src="../i18n/en-modal.js"></script>
+</body></html>
