@@ -117,6 +117,56 @@ def serve_image(filename):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+# ========== API ДЛЯ ВИН ==========
+
+@app.route('/api/wines', methods=['GET'])
+def get_wines():
+    """Возвращает все вина (menu='Вино')"""
+    try:
+        if not DATA_PATH.exists():
+            return jsonify([])
+        
+        with open(DATA_PATH, 'r', encoding='utf-8') as f:
+            dishes = json.load(f)
+        
+        wines = [d for d in dishes if d.get('menu') == 'Вино']
+        return jsonify(wines)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/wines/category/<category>', methods=['GET'])
+def get_wines_by_category(category):
+    """Возвращает вина по категории (by-glass/coravin/half-bottles)"""
+    try:
+        if not DATA_PATH.exists():
+            return jsonify([])
+        
+        with open(DATA_PATH, 'r', encoding='utf-8') as f:
+            dishes = json.load(f)
+        
+        wines = [d for d in dishes if d.get('menu') == 'Вино' and d.get('category') == category]
+        return jsonify(wines)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/wines/<wine_id>', methods=['GET'])
+def get_wine(wine_id):
+    """Возвращает одно вино по ID"""
+    try:
+        if not DATA_PATH.exists():
+            return jsonify({'error': 'menu-database.json not found'}), 404
+        
+        with open(DATA_PATH, 'r', encoding='utf-8') as f:
+            dishes = json.load(f)
+        
+        wine = next((d for d in dishes if d.get('id') == wine_id and d.get('menu') == 'Вино'), None)
+        if not wine:
+            return jsonify({'error': 'Wine not found'}), 404
+        
+        return jsonify(wine)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 # ========== АДМИНСКИЕ API (требуют авторизации) ==========
 
 @app.route('/api/admin/login', methods=['POST'])

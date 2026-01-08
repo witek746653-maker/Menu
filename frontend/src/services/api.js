@@ -32,6 +32,23 @@ export const getSections = async (menuName = null) => {
   return response.data;
 };
 
+// ========== API ДЛЯ ВИН ==========
+
+export const getWines = async () => {
+  const response = await api.get('/api/wines');
+  return response.data;
+};
+
+export const getWinesByCategory = async (category) => {
+  const response = await api.get(`/api/wines/category/${category}`);
+  return response.data;
+};
+
+export const getWine = async (id) => {
+  const response = await api.get(`/api/wines/${id}`);
+  return response.data;
+};
+
 // ========== АДМИНСКИЕ API ==========
 
 export const login = async (password) => {
