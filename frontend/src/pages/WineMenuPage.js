@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 function WineMenuPage() {
   const navigate = useNavigate();
+  const { isAuthenticated, currentUser } = useAuth();
 
   const categories = [
     {
@@ -106,7 +108,7 @@ function WineMenuPage() {
 
       {/* Footer */}
       <footer className="fixed bottom-0 left-0 right-0 bg-white dark:bg-[#181311] border-t border-orange-100 dark:border-gray-800 pb-safe z-40">
-        <div className="grid grid-cols-4 h-16">
+        <div className={`grid ${isAuthenticated && currentUser?.role === 'администратор' ? 'grid-cols-4' : 'grid-cols-3'} h-16`}>
           <Link
             to="/"
             className="flex flex-col items-center justify-center gap-1 text-primary"
@@ -122,13 +124,15 @@ function WineMenuPage() {
             <span className="material-symbols-outlined text-2xl">new_releases</span>
             <span className="text-[10px] font-medium">Новинки</span>
           </button>
-          <Link
-            to="/admin"
-            className="flex flex-col items-center justify-center gap-1 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors"
-          >
-            <span className="material-symbols-outlined text-2xl">person</span>
-            <span className="text-[10px] font-medium">Профиль</span>
-          </Link>
+          {isAuthenticated && currentUser?.role === 'администратор' && (
+            <Link
+              to="/admin"
+              className="flex flex-col items-center justify-center gap-1 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors"
+            >
+              <span className="material-symbols-outlined text-2xl">person</span>
+              <span className="text-[10px] font-medium">Профиль</span>
+            </Link>
+          )}
         </div>
         <div className="h-[env(safe-area-inset-bottom)] bg-white dark:bg-[#181311]" />
       </footer>

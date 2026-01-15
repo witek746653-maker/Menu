@@ -1,0 +1,802 @@
+﻿<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title> :christmas-tree_icon:Зимнее меню в Sabor de la Vida </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article class="page sans" id="2c433974-4d17-810b-8d99-cc643388eaa2"><header><img class="page-cover-image" src="../images/zimnee-menyu-head.webpjpeg style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="../icons/sabor-icon-small.png"/></div><h1 class="page-title" dir="auto"> <img alt="christmas-tree_icon" src="../icons/christmas-tree-icon.png" style="width:1em;height:1em"/>Зимнее меню в Sabor de la Vida<strong> </strong></h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div dir="ltr" style="display:contents"><nav class="block-color-gray table_of_contents" id="2c433974-4d17-8186-9ec9-d8b084bc5ed5"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2c433974-4d17-8183-be72-dc5c6b95b8a7"><img alt="salad_icon" src="../icons/salad-icon.png" style="width:1em;height:1em"/> <strong>Салаты</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2c433974-4d17-8160-b891-c73d68708e20"> Оливье с креветкой и красной икрой</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2c433974-4d17-81ea-93d1-f53213bd1376">Мимоза с форелью и красной икрой </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2c433974-4d17-8146-af3e-d8ceef75277d">Салат с перепелкой, пряной тыквой и трюфельным соусом</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2c433974-4d17-81d3-8a12-c87f5727c6e7">🥘 <strong>Горячие блюда</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2c433974-4d17-812c-9fe2-c1e04ddeaa1e">Сливочное ризотто с морскими гребешками </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2c433974-4d17-8101-9ada-e0ad0fd2932a">Филе сибаса с соусом Шампань</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2c433974-4d17-8105-bcfb-feb7216ab1e3">Филе Миньон с соусом Глинтвейн и пюре из сельдерея</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2c433974-4d17-81e5-9ace-f758cedf4803">🎂 <strong>Десерты</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2c433974-4d17-8107-b4a1-d20848c373e0">Рождественский брауни с соленой карамелью </a></div></nav></div><div dir="auto" style="display:contents"><h2 class="" id="2c433974-4d17-8183-be72-dc5c6b95b8a7"><img alt="salad_icon" src="../icons/salad-icon.png" style="width:1em;height:1em"/> <strong>Салаты</strong></h2></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2c433974-4d17-8160-b891-c73d68708e20"> Оливье с креветкой и красной икрой</h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-81a7-b8b3-e45ff6b9f4f1"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-81ba-995f-f37010772d25" style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-805e-af32-dd8fe1ee296f"><strong>Домашний оливье с нежной креветкой, красной икрой, хрустящими овощами и перепелиным яйцом под шелковистым сливочным соусом. Знакомый и уютный вкус в нашем авторском исполнении.</strong></p></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-8119-89a7-cfccebb7b2fd"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8116-80fd-d073386ab958"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81b8-9d37-e946e10bd6de">🥛 лактоза </p></div><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-81b8-811b-f7aff400981f"><a href="../images/image.webppng><img src="../images/image.webppng style="width:1px"/></a></figure></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81ee-8863-de1a59e28859">Презентуем и замешиваем при госте.</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-81ea-9341-f12c1d3deecc" style="width:100%"><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-81f1-807a-f6f6e087b718"><a href="../images/zimnee-menyu-salaty-olivye-s-krevetkoy-i-krasnoy-ikroy.webpjpeg><img src="../images/zimnee-menyu-salaty-olivye-s-krevetkoy-i-krasnoy-ikroy.webpjpeg style="width:331.9921875px"/></a><figcaption>Оливье с креветкой и красной икрой</figcaption></figure></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81a6-9e76-ec597bcb3bf6"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81f3-8dea-ef44ad27efb9"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-807b-9ca0-cdb9b55938c2"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-802e-9441-f336e5c8e7c0" style="width:50%"><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-803f-869f-dfe61200ed0f" start="1" type="1"><li>Креветка.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8008-998d-c73d6f87fc3a" start="2" type="1"><li>Икра красная лососевая.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8171-9f81-fd039f366340" start="3" type="1"><li>Батат.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-804d-b820-ffd171f84858" start="4" type="1"><li>Бобы эдамаме.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8034-aae2-d3d80d7fdd77" start="5" type="1"><li>Яйцо перепелиное.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80b7-908a-ca84cf0294c3" start="6" type="1"><li>Огурец свежий. </li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-802c-9af5-cbc5cecff30a" start="7" type="1"><li>Сельдерей.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80d7-94f8-fb47392d0e63" start="8" type="1"><li>Патиссон.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80e1-8240-e3e7af04ff76" start="9" type="1"><li>Масло зеленое.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80c3-bf0b-d8d48ea5e301" start="10" type="1"><li>Кресс-салат.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-809d-afbe-ed02e3c32096" style="width:50%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80cc-8b34-fae9f7f11884"><strong>Соус:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8018-9671-ccda78ffa97c" start="1" type="1"><li><strong>Сливки.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80e8-a961-e31a050e7cce" start="2" type="1"><li><strong>Креметта. </strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8087-9ef4-eb4a4e07eba5" start="3" type="1"><li>Соус рыбный (уксус рыбный концентрированный)</li></ol></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81ea-b7af-f34fa2b0a1dd"/></div><div dir="ltr" style="display:contents"><figure class="block-color-teal_background callout" id="2c433974-4d17-81d8-9fed-ea78ddb3ed55" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81cc-8e40-cf1a7a89f0bb"><strong>Оливье́</strong> — закусочный салат русской кухни из отварных  корнеплодов, солёных огурцов, яиц с мясом или варёной колбасой в майонезной заправке. По распространённой версии, носит имя автора рецепта — французского шеф-повара Люсьена Оливье (1838—1883), работавшего в знаменитом ресторане «Эрмитаж» и воспринимается в России как французское блюдо, в то время как за пределами ближнего зарубежья он в разных вариациях известен как «русский салат». Первоначальный вариант салата был намного богаче современного в котором присутствовали пернатая дичь, телячий язык, раковые шейки и паюсная икра. Со временем рецепт упростился и стал народным: в советскую эпоху классическими ингредиентами стали варёная колбаса или мясо, картофель, морковь, зелёный горошек, солёные огурцы и яйца, объединённые майонезом. Именно эта версия стала традиционной «новогодней классикой».</p></div></div></figure></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81e3-ad1a-c175ae695c55"/></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2c433974-4d17-81ea-93d1-f53213bd1376">Мимоза с форелью и красной икрой </h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-813c-865c-db9979223377"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8194-8c1a-f9dfb5099976" style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-810f-9f55-eb6da0a94b03"><strong>Нежная «Мимоза» в утончённом исполнении со слабосолёной форелью и красной икрой, в сочетании с мягким картофелем, сладкой морковью и перепелиным яйцом, дополненный ярким морковно-цитрусовым соусом</strong>.</p></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-8105-a26f-cac448c011b7"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81aa-9abf-c0e1c1e2ecda"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81cb-858d-cf89b4463995">🥛 лактоза | 🍋 цитрусы | <img alt="honey_icon" src="../icons/honey-icon.png" style="width:1em;height:1em"/>  мёд | <img alt="greens_icon" src="../icons/herbs-icon.png" style="width:1em;height:1em"/> зелень </p></div><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-818e-804f-da809217196a"><a href="../images/image.webppng><img src="../images/image.webppng style="width:1px"/></a></figure></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81b2-8a83-e025c7b6f64e">Форель маринуют с добавлением <strong>фреша лимона</strong>, <strong>цедры апельсина</strong> и <strong>укропа</strong>.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80c6-8ff7-e84324738e1f"><strong>Соус морковно-цитрусовый </strong>содержит <strong>сливки</strong>, <strong>мёд</strong> и <strong>лимонный фреш</strong>.</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-819c-a45b-cc9620199f13" style="width:100%"><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-8129-be2b-f49b4d795192"><a href="../images/zimnee-menyu-salaty-mimoza-s-forelyu-i-krasnoy-ikroy.webpjpeg><img src="../images/zimnee-menyu-salaty-mimoza-s-forelyu-i-krasnoy-ikroy.webpjpeg style="width:331.9921875px"/></a><figcaption>Мимоза с форелью и красной икрой</figcaption></figure></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81f4-af92-f94fb77d7602"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-813e-9619-ce277e42e655"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-809e-bf94-c368e14cc2b3"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8094-bb62-f5abbf69e18c" style="width:62.5%"><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8006-811c-cde173c337cb" start="1" type="1"><li>Форель с/с маринуется с добавлением <strong>фреша лимона</strong>, <strong>цедры апельсина</strong> и <strong>укропа</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-81ef-a500-fef92fa2ac0c" start="2" type="1"><li>Картофель.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-800e-9ec5-ce03480e7201" start="3" type="1"><li>Морковь.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8044-8413-f44e9a5cd8f7" start="4" type="1"><li>Яйцо перепелиное (натертое).</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80ad-835b-d0eaeadb6776" start="5" type="1"><li>Майонез</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80de-9597-d5602270da8b" start="6" type="1"><li>Масло зеленое.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-804f-8c07-fd0f5715c0e5" start="7" type="1"><li>Кресс-салат.</li></ol></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8096-ae9c-cfa8bdeee768">Все ингредиенты выкладываются слоями, заправляются майонезом. Отдельно на тарелку выкладывают соус <strong>морковно-цитрусовый</strong> и красную лососевую икру (10 г.).</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-80ca-a35d-f666ca869fef" style="width:37.5%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-804f-9dbb-fb628f00adca"><strong>Соус морковно-цитрусовый:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8008-8653-f011d65bada8" start="1" type="1"><li>Морковь.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-803e-977d-c48eafd43160" start="2" type="1"><li><strong>Сливки</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-805f-bea9-fb8de856eb6c" start="3" type="1"><li><strong>Фреш лимона</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-805b-988a-ff5187da009d" start="4" type="1"><li><strong>Мёд</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8010-94e2-daf367f8f6b8" start="5" type="1"><li>Корень имбиря. </li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80b2-b622-fb59e0a9e068" start="6" type="1"><li>Масло сливочное.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80dd-85d1-f8efad50da2b" start="7" type="1"><li>Пектин (загуститель).</li></ol></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-807f-993a-cb2280e44555">
+</p></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-812c-85f0-d9ce86815190"/></div><div dir="ltr" style="display:contents"><figure class="block-color-teal_background callout" id="2c433974-4d17-803c-844a-fc0adba05736" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8075-8e25-db8a2b6d25ef"><strong>«Мимо́за»</strong> — праздничный слоёный салат или салат-коктейль, появившийся в СССР в начале 1970-х годов. Получил название из-за внешнего сходства с цветками мимозы. Классический вариант салата включает рыбу консервированную (чаще сайру или горбушу), тёртое варёное яйцо, картофель, морковь, лук и майонез. Ингредиенты выкладываются слоями, создавая мягкую, нежную текстуру и гармоничное сочетание вкусов.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-800f-b6ab-ed5401b12d91">Со временем у «Мимозы» появилось множество интерпретаций: с красной рыбой, сливочными соусами, свежими травами, цитрусовыми нотами и лёгкими овощными акцентами. Благодаря своей воздушной структуре и утончённому вкусу салат остаётся неизменным фаворитом среди холодных закусок.</p></div></div></figure></div><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-8127-8f89-ceb32c4530f9"><a href="../images/image.webppng><img src="../images/image.webppng style="width:1px"/></a></figure></div><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-810a-b2e5-e202f4f34266"><a href="../images/image.webppng><img src="../images/image.webppng style="width:1px"/></a></figure></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2c433974-4d17-8146-af3e-d8ceef75277d">Салат с перепелкой, пряной тыквой и трюфельным соусом</h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-81a0-aca9-d42c35c15438"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-81dc-a3d5-db4824604a98" style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81d8-bd09-eb7ca21be68e"><strong>Тёплый салат с перепёлкой и запечённой тыквой, в сопровождении свежих листьев салата, кусочков сочного мандарина под ароматным трюфельным соусом</strong>.</p></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-813f-845f-fc16e4c44eb8"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81bb-bf6f-dc5672280981"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81ea-9676-de6f49aec8c3">🥛 лактоза |🍋 цитрусы |<img alt="honey_icon" src="../icons/honey-icon.png" style="width:1em;height:1em"/>  мёд | <img alt="trufel_icon" src="../icons/truffle-icon.png" style="width:1em;height:1em"/> трюфель</p></div><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-81cb-8df7-fc9a4ffd07d9"><a href="../images/image.webppng><img src="../images/image.webppng style="width:1px"/></a></figure></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-811d-bd63-dfabf9a7991a">Салат с добавлением свежего <strong>мандарина</strong> и <strong>соуса Мандарин</strong>: <strong>мандарин, красный апельсин, мёд</strong> и <strong>масло сливочное</strong>.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80f6-8e21-f8d8beb30130"><strong>Соус трюфельный</strong> с добавлением <strong>мёда</strong>.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80be-bc47-d51ee20d0885">Украшают <strong>сыром</strong> <strong>грана падано</strong>. </p></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81c3-b73c-cb4e1b2ccbb5"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80e7-8ea8-f38f6e5a13de">
+</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-814a-bc7f-eab1590c3618" style="width:100%"><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-81bc-9336-edfef7f7be85"><a href="../images/zimnee-menyu-salaty-salat-s-perepelkoy-pryanoy-tykvoy-i-tryufelnym-sousom.webpjpeg><img src="../images/zimnee-menyu-salaty-salat-s-perepelkoy-pryanoy-tykvoy-i-tryufelnym-sousom.webpjpeg style="width:331.9921875px"/></a><figcaption>Салат с перепелкой, пряной тыквой и трюфельным соусом</figcaption></figure></div></div></div></div></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81c8-bfb1-f8067b4140c9"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-80af-8730-ed01aed41530"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-80d1-9e66-e7c9abf85a28" style="width:45.83333333333333%"><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8163-a643-f94f7e1b12d1" start="1" type="1"><li>Перепелка маринуется с добавлением тимьяна, соли и перца, затем запекается с утиным жиром.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80e4-aded-e97e33550028" start="2" type="1"><li>Добавляем запечённую тыкву (соль, перец) и очищенный <strong>мандарин.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80eb-a173-cfc2147eb4c1" start="3" type="1"><li>Листья салата латук, мини-шпинат.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-803e-ae4b-d17f55617290" start="4" type="1"><li>Заправляем <strong>трюфельным соусом.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80d2-8d69-dd65b87e3443" start="5" type="1"><li>Сверху выкладываем <strong>соус Мандарин</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-802e-bee6-cec6684706a7" start="6" type="1"><li>Перед отдачей перепелка и тыква обжигается горелкой.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80f0-9cd2-ebde469aff19" start="7" type="1"><li>Украшают тертым <strong>сыром</strong> <strong>грана падано</strong>.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-80f8-b506-d76776db8729" style="width:33.33333333333333%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8016-b1ce-c1a8250a7c22"><strong>Соус трюфельный:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8080-9837-ec91030e4685" start="1" type="1"><li><strong>Паста трюфельная.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-808e-b371-dbf3d573bd18" start="2" type="1"><li><strong>Масло трюфельное.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80ab-83cc-cd2ffb0a10e2" start="3" type="1"><li>Масло оливковое.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8090-bb6c-d231b3decf48" start="4" type="1"><li><strong>Мёд.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8003-bb77-ed761301f04e" start="5" type="1"><li>Перец черный.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-80f3-8eec-d69891254980" style="width:20.833333333333346%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-809f-b71b-c825d621db26"><strong>Соус Мандарин:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80e0-87a5-ef7f1fd10ce0" start="1" type="1"><li><strong>Фреш мандарина </strong>(выпаривают).</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8084-a345-d041b66d6770" start="2" type="1"><li>Пюре <strong>красного апельсина.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8060-ac68-f75e030ed5a2" start="3" type="1"><li><strong>Мёд.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8062-9f0c-c37f8a037fe1" start="4" type="1"><li><strong>Масло сливочное.</strong></li></ol></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-803a-a265-e358152cd380">
+</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-806f-920e-db81fd81c497">
+</p></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-815a-94c5-f930b42b364e"/></div><div dir="auto" style="display:contents"><h2 class="" id="2c433974-4d17-81d3-8a12-c87f5727c6e7">🥘 <strong>Горячие блюда</strong></h2></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2c433974-4d17-812c-9fe2-c1e04ddeaa1e">Сливочное ризотто с морскими гребешками </h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-812f-947c-d1aad7a896f2"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-814e-9a0a-d47d56035824" style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8104-8d63-d7e12f05f4d2"><strong>Нежное сливочное ризотто с обжаренным гребешком, хрустящим беконом, дополненное ароматным зелёным маслом и свежей зеленью</strong>.</p></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-8189-bb91-d60685a0a5a3"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-818b-ac8f-f2ba826155b6"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81ea-9736-cef9dc4bddb3">🥛 лактоза | <img alt="onion_icon" src="../icons/onion-icon.png" style="width:1em;height:1em"/> лук | <img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> вино | 🐷 свинина | <img alt="greens_icon" src="../icons/herbs-icon.png" style="width:1em;height:1em"/> зелень</p></div><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-8193-bfa9-f17ec3b357ec"><a href="../images/image.webppng><img src="../images/image.webppng style="width:1px"/></a></figure></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80e0-8d83-ccbe3f51104b">Ризотто готовится с добавлением: <strong>лука шалот, белого вина, сливок </strong>и <strong>куриного бульона.</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80f5-9db7-fd82ec223db8">Предупреждаем про жаренный <strong>бекон</strong>.</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8128-b18d-f997ff4e12e4" style="width:100%"><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-81ef-8f6a-f0809d781995"><a href="../images/zimnee-menyu-goryachie-blyuda-slivochnoe-rizotto-s-morskimi-grebeshkami.webpjpeg><img src="../images/zimnee-menyu-goryachie-blyuda-slivochnoe-rizotto-s-morskimi-grebeshkami.webpjpeg style="width:331.9921875px"/></a><figcaption>Сливочное ризотто с морскими гребешками</figcaption></figure></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81c7-b655-f5d00fa1e27e"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81cf-a39b-e703a7cab4d0"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8104-b714-d65c237a37b2" start="1" type="1"><li>База ризотто: рис, <strong>лук шалот</strong>, <strong>вино белое</strong>, масло оливковое.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8028-8584-cc066a2ad41b" start="2" type="1"><li>Добавляем <strong>сливки</strong>, <strong>бульон куриный</strong>, <strong>грана падано</strong>, <strong>масло сливочное</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8043-8ec1-df581ef363a1" start="3" type="1"><li>Сверху выкладывается обжаренный на <strong>сливочном масле</strong> гребешок и жаренный <strong>бекон</strong>.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8009-ba1c-f02644637746" start="4" type="1"><li>Украшается <strong>луком резанец</strong> и зеленым маслом.</li></ol></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81a7-ad9e-cb6b3b8af6ee"/></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2c433974-4d17-8101-9ada-e0ad0fd2932a">Филе сибаса с соусом Шампань</h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-8173-ac1d-e4877e74a07c"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8156-b756-cd9d85711b08" style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-818d-83d0-c71555ddb1f9"><strong>Нежное филе сибаса, обжаренное до золотистой корочки в сочетании с  ассорти из обжаренных овощей и дополненное мягким сливочно-игристым соусом «Шампань».</strong></p></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81d7-ae02-f4a337b1c44a"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81cc-a388-e44ee172367a"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-815d-9a86-fc8bc4c6c802">🥛 лактоза | <img alt="onion_icon" src="../icons/onion-icon.png" style="width:1em;height:1em"/> лук | <img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> вино | <img alt="kinza_icon" src="../icons/parsley-icon.png" style="width:1em;height:1em"/> кинза | <img alt="greens_icon" src="../icons/herbs-icon.png" style="width:1em;height:1em"/> зелень </p></div><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-8174-ab88-d9edbefadd5b"><a href="../images/image.webppng><img src="../images/image.webppng style="width:1px"/></a></figure></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8133-98fb-d31ccbd35733"><strong>Соус Шампань</strong> на <strong>сливочной основе</strong> с добавлением <strong>полусладкого игристого вина</strong>, <strong>лука шалот</strong> и <strong>сливочного масла</strong>.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80d7-8301-c47d8aefb514">Украшается <strong>кинзой</strong>.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8181-9145-f946771f99b7">
+</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8107-a213-fd1ca084461a" style="width:100%"><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-81d4-aab0-efb2b03b5caf"><a href="../images/zimnee-menyu-goryachie-blyuda-file-sibasa-s-sousom-shampan.webpjpeg><img src="../images/zimnee-menyu-goryachie-blyuda-file-sibasa-s-sousom-shampan.webpjpeg style="width:331.9921875px"/></a><figcaption>Филе сибаса с соусом Шампань</figcaption></figure></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81bd-a7b7-f97107468875"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8194-ae1d-eab7e3ac6966"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-809c-88c8-fdc9af095c74"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-808f-937d-c1f293182398" style="width:54.166666666666664%"><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-81ce-9313-f976da8b5f9c" start="1" type="1"><li>Сибас обжаривают на оливковом масле, затем запекают в духовке.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80ff-915f-cd92bd0af50c" start="2" type="1"><li>Гарнируется обжаренными овощами.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8008-84f1-f910a3cec726" start="3" type="1"><li>Украшают красной икрой, <strong>кинзой,</strong> микро салатом, зеленым маслом.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80f8-b0c8-de798cc21777" start="4" type="1"><li><strong>Соус Шампань</strong> (подается отдельно).</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8043-9c31-eb20ac10a4ad" style="width:16.666666666666664%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-802c-a084-e1fecd52c61d"><strong>Гарнир:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80b3-b141-e4b1ff0d4e38" start="1" type="1"><li>Баклажан.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c833974-4d17-80ff-a233-ce9fe3050655" start="2" type="1"><li>Перец болгарский.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-808a-9ced-ddafb769a8d3" start="3" type="1"><li>Цукини.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80c8-8c4d-eaf94e930445" start="4" type="1"><li>Томаты черри.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8026-b509-fb7c7f0fc9c0" start="5" type="1"><li>Мини кукуруза.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8032-aaaf-f1067072fe89" start="6" type="1"><li>Спаржа.</li></ol></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8037-8083-f50e16753226">
+</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-80a7-a963-ec7485e3a0e9" style="width:29.166666666666668%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-808b-9814-ec02d02863a5"><strong>Соус Шампань:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8011-b6fa-c1e06e1502fe" start="1" type="1"><li><strong>Игристое вино (полусладкое) </strong>(выпаривают с луком шалот).</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80bc-9877-c86323b9d103" start="2" type="1"><li><strong>Лук шалот.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8023-aa11-ea2e94fc5418" start="3" type="1"><li><strong>Сливки.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8029-bc21-e03f8d68d14e" start="4" type="1"><li><strong>Грана Падано.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80d5-b9de-cdf81e9f6132" start="5" type="1"><li><strong>Масло сливочное.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-803e-9016-f11acebf6589" start="6" type="1"><li>Перец черный.</li></ol></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80d0-9e9a-c8884da672f6">Все ингредиенты пробиваются блендером.</p></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-8178-bc93-c36725bc4c7a"/></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2c433974-4d17-8105-bcfb-feb7216ab1e3">Филе Миньон с соусом Глинтвейн и пюре из сельдерея</h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-810c-a95a-d1b411821583"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-816f-8219-d18a1547d6f4" style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-816f-9bf8-efa6b93d4df1"><strong>Сочный стейк Филе Миньон, томлёный в ароматном Глинтвейне и обжаренный до румяной корочки, подаётся с нежным пюре из сельдерея в сопровождении ягодного глинтвейнового соуса.</strong></p></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-819e-8f08-d93ed86cab7d"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-810e-9739-f17a9e85bd9f"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8148-8a71-d3cf72b345fe">🥛 лактоза | 🍋 цитрусы |<img alt="honey_icon" src="../icons/honey-icon.png" style="width:1em;height:1em"/>  мёд | <img alt="greens_icon" src="../icons/herbs-icon.png" style="width:1em;height:1em"/> зелень |<img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> вино </p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-816c-a0b7-d060b15e1cea">Глинтвейн содержит <strong>красное вино</strong>, <strong>апельсины</strong>, <strong>лимоны</strong> и <strong>мёд</strong>.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8070-bb04-c3b88153a3a7">Украшается <strong>цедрой апельсина</strong>, микрозеленью и луком резанец.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80b8-a856-c9e081b117b7">В составе пюре из сельдерея <strong>сливки</strong> и сыр Грана Падано.</p></div><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-8124-ba8a-d194206c1510"><a href="../images/image.webppng><img src="../images/image.webppng style="width:1px"/></a></figure></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8183-9288-d81c86685e64" style="width:100%"><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-81ce-8418-ea6007073c35"><a href="../images/zimnee-menyu-goryachie-blyuda-file-minon-s-sousom-glintveyn-i-pyure-iz-seldereya.webpjpeg><img src="../images/zimnee-menyu-goryachie-blyuda-file-minon-s-sousom-glintveyn-i-pyure-iz-seldereya.webpjpeg style="width:331.9921875px"/></a><figcaption>Филе Миньон с соусом Глинтвейн и пюре из сельдерея</figcaption></figure></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-8186-b905-d3965dd491c9"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8130-8c42-e3350958e7cd"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-800b-9cd2-d32800a16cd5"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-80c3-b39f-e8ccb8388c98" style="width:54.166666666666664%"><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-81df-a04c-d3e39d1f080d" start="1" type="1"><li>Стейк Филе Миньон готовится в су-вид с <strong>соусом Глинтвейн</strong>, затем обжаривается на оливковом масле на сковороде.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-806d-9c16-e5f5f71f51bb" start="2" type="1"><li>Гарнируется пюре из сельдерея (корень сельдерея,<strong> сливки,</strong> <strong>Грана Падано</strong>, <strong>масло сливочное</strong>).</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80fb-92ec-d036174d2c8d" start="3" type="1"><li>Поливается <strong>соусом Глинтвейн</strong> с добавлением клюквы.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8001-854e-dc4311d3f741" start="4" type="1"><li>Украшается зеленым спонжем, <strong>цедрой апельсина</strong>, микрозеленью и луком резанец.</li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8010-922d-d6520cc775c1" style="width:20.833333333333336%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8064-bbc2-c00ee99ecf4d"><strong>Соус Глинтвейн:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80e2-96c2-f514dab9b7e5" start="1" type="1"><li><strong>Красное сухое вино.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80f2-8187-dcc427cc8c7b" start="2" type="1"><li><strong>Апельсин.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80e2-a723-fa06836e26b7" start="3" type="1"><li><strong>Лимон.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8023-ba13-e96bbde6e04f" start="4" type="1"><li>Яблоко.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-808f-a317-c21e8a36881e" start="5" type="1"><li>Корица.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80a8-b11a-effdeb896cda" start="6" type="1"><li>Гвоздика.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80e5-b60a-f9dd0bd5efff" start="7" type="1"><li>Бадьян.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80c5-8fb2-ee59bb51964e" start="8" type="1"><li><strong>Мёд.</strong></li></ol></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80d0-9f94-f5da3f3c0b8a">Выпариваем до густоты.</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8001-9cff-fc1dcb7fd8be" style="width:25.000000000000018%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-807c-89f5-febd38616366"><strong>Cпонж:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8044-8ae7-cc50cebcb49b" start="1" type="1"><li><strong>Яйцо куриное.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8091-88c9-e4d96c6538ef" start="2" type="1"><li>Мука пшеничная.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80bb-91ed-d6cc2d36768e" start="3" type="1"><li>Разрыхлитель.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8008-9bbf-d30747dfc93e" start="4" type="1"><li>Сахар.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8088-9f8e-f47ec5a93b47" start="5" type="1"><li>Масло оливковое.</li></ol></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-8158-8475-e559e7b46dea"/></div><div dir="auto" style="display:contents"><h2 class="" id="2c433974-4d17-81e5-9ace-f758cedf4803">🎂 <strong>Десерты</strong></h2></div><div dir="auto" style="display:contents"><h3 class="block-color-blue_background" id="2c433974-4d17-8107-b4a1-d20848c373e0">Рождественский брауни с соленой карамелью </h3></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-81c0-a09b-fb0ab1defd04"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-818f-b4bb-d3e94fd26a3b" style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81da-bf9e-d12eeeef4d78"><strong>Тёплый шоколадный брауни с нежной соленой карамелью и освежающим мороженым из Шампанского</strong>.</p></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-8184-86a1-df1a749e0f64"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8160-9cbd-d30fc23879ff"><strong>Особенности:</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81ee-b004-f3391923f657">🥛 лактоза | <img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> вино</p></div><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-81af-8a66-f33d0026f1ea"><a href="../images/image.webppng><img src="../images/image.webppng style="width:1px"/></a></figure></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81af-9ce9-d10d51232464">В составе присутствуют <strong>сливки.</strong></p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8131-869e-e7446529551c">Подается с мороженным с добавлением <strong>игристого вина</strong>. Для детей мороженое заменяем на ванильное.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-801a-b7f8-f5f635cf1eb8">
+</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8178-9537-e834c5e48528" style="width:100%"><div dir="ltr" style="display:contents"><figure class="image" id="2c433974-4d17-81e2-a849-d119c4c96138"><a href="../images/zimnee-menyu-deserty-rozhdestvenskiy-brauni-s-solenoy-karamelyu.webpjpeg><img src="../images/zimnee-menyu-deserty-rozhdestvenskiy-brauni-s-solenoy-karamelyu.webpjpeg style="width:331.9921875px"/></a><figcaption>Рождественский брауни с соленой карамелью</figcaption></figure></div></div></div></div></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81ec-883a-ddd39f8886fb"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8128-980e-d7820e7340ac"><strong>Состав:</strong></p></div><div dir="auto" style="display:contents"><div class="column-list" id="2c433974-4d17-816a-93a8-d2bfce947df5"><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8124-a391-f1934d16b8cb" style="width:33.33333333333333%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-811d-92f3-d359432bcdf6"><strong>Брауни:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-81d6-a4c3-f1aab45beb70" start="1" type="1"><li>Мука пшеничная. </li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-81d9-8574-cbe3f9c4db79" start="2" type="1"><li>Яйцо куриное.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8178-b13d-e483786f8990" start="3" type="1"><li>Шоколад темный. </li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8107-b23b-e579717aeb6a" start="4" type="1"><li>Масло сливочное.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-8173-9dea-ed540ff70fee" start="5" type="1"><li>Сахар. </li></ol></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-81ed-a0d3-eed6ac35394e" style="width:33.33333333333333%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-81c4-89b2-fed29c6e1b3c"><strong>Соленая карамель:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-807e-b7f4-c8aad128c577" start="1" type="1"><li><strong>Сливки.</strong></li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-814d-9f96-c3bfadb749ec" start="2" type="1"><li>Сахар. </li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-81b2-8522-e7c8f45ba2aa" start="3" type="1"><li>Масло сливочное.</li></ol></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-814d-bf04-c5f716678e2a">
+</p></div></div></div><div dir="auto" style="display:contents"><div class="column" id="2c433974-4d17-8053-84ff-ddd6e63b2d97" style="width:33.33333333333332%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8147-84f8-d7d364ad9018"><strong>Мороженое Шампань:</strong></p></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80bd-aaff-dd81a04efeaa" start="1" type="1"><li>Вино игристое.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-803a-8c28-ed9ff157e318" start="2" type="1"><li>Сливки.</li></ol></div><div dir="auto" style="display:contents"><ol class="numbered-list" id="2c433974-4d17-80eb-9de6-dbf9eff54f9b" start="3" type="1"><li>Желток куриного яйца.</li></ol></div></div></div></div></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-800e-a367-c5f661a6ef72">Украшается сахарной пудрой, свежей клубникой и веточкой розмарина.</p></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-81ea-90c5-d0e88d2739aa"/></div><div dir="ltr" style="display:contents"><figure class="block-color-teal_background callout" id="2c433974-4d17-80ed-ad17-cbd97d409493" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80a6-9a99-dc3fcfe5e9a1"><strong>Бра́уни</strong> (англ. <em>Chocolate brownie</em>) — классический американский десерт, появившийся в конце XIX века. Свое название он получил благодаря характерному тёмно-коричневому цвету («brown»). Традиционно брауни готовят из тёмного шоколада, сливочного масла, сахара, яиц и небольшого количества муки, что создаёт плотную, влажную текстуру, напоминающую что-то среднее между пирогом и мягким шоколадным фондю. </p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8093-bbba-d02b6c1f57c3">Ключевая особенность брауни — насыщенный вкус какао и фирменная «фаджи» структура: слегка хрустящая корочка снаружи и тягучая, сочная середина. Со временем появились многочисленные вариации: с орехами, карамелью, специями, ягодами, морской солью и различными кремами или мороженым.</p></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-80f7-bfab-fd477fb2ae7b">Сегодня брауни — один из самых популярных десертов мира, известный своей простотой, богатым вкусом и универсальностью в подаче: от домашних версий до ресторанных интерпретаций с соусами, муссами и сорбетами.</p></div></div></figure></div><div dir="auto" style="display:contents"><hr id="2c433974-4d17-80c4-8dc6-db82de5ecaa1"/></div><div dir="auto" style="display:contents"><p class="" id="2c433974-4d17-8097-a467-f445cb0e6d19">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span><button class="toc-fab" id="tocFab" type="button">↑ Оглавление</button><style>
+  .toc-fab{
+    position:fixed; right:40px; bottom:40px;
+    padding:15px; border-radius:999px;
+    font:500 12px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:rgba(0,0,0,.75); color:#fff;
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+    cursor:pointer; opacity:0; pointer-events:none; transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease;
+    z-index:2147483647;
+  }
+  .toc-fab.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .toc-fab:active{transform:translateY(1px);}
+</style><script>
+(function(){
+  const btn = document.getElementById('tocFab');
+  const TOC_SELECTORS = '.table_of_contents, #toc';
+  const HIDE_NEAR_TOP = 300;   // рядом с верхом/оглавлением кнопку не показываем
+  const HIDE_TIMEOUT_MS = 1000;
+  let hideTimer = null, muteUntil = 0;
+
+  function findTOC(){ return document.querySelector(TOC_SELECTORS); }
+  function scrollToTOC(){
+    const toc = findTOC();
+    if (!toc) { window.scrollTo({top:0, behavior:'smooth'}); return; }
+    toc.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+  function safeShow(){
+    const now = Date.now();
+    if (now < muteUntil) return;
+    if (window.scrollY < HIDE_NEAR_TOP) { btn.classList.remove('show'); return; }
+    btn.classList.add('show');
+    if (hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(()=> btn.classList.remove('show'), HIDE_TIMEOUT_MS);
+  }
+
+  ['scroll','mousemove','touchmove','keydown'].forEach(ev =>
+    window.addEventListener(ev, safeShow, { passive:true })
+  );
+
+  const tocRoot = findTOC();
+  if (tocRoot){
+    tocRoot.addEventListener('click', (e)=>{
+      if (e.target.closest('a')){
+        btn.classList.remove('show');
+        muteUntil = Date.now() + 1200; // «глушим» всплытие на время прыжка по якорю
+        setTimeout(()=>{ muteUntil = 0; }, 1300);
+      }
+    }, true); // capture
+  }
+
+  window.addEventListener('hashchange', ()=>{
+    btn.classList.remove('show');
+    muteUntil = Date.now() + 800;
+    setTimeout(()=>{ muteUntil = 0; }, 900);
+  });
+
+  btn.addEventListener('click', scrollToTOC);
+})();
+</script><script>
+(function(){
+  const btn = document.getElementById('tocFab');
+  if (!btn) return;
+  function scaleVal(){ return (window.visualViewport && window.visualViewport.scale) || 1; }
+  function apply(){
+    const s = scaleVal();
+    btn.style.transformOrigin = "bottom right";
+    btn.style.transform = "translateZ(0) scale(" + (1/s) + ")";
+    btn.style.right = (40 / s) + "px";
+    btn.style.bottom = (40 / s) + "px";
+  }
+  apply();
+  if (window.visualViewport){
+    window.visualViewport.addEventListener('resize', apply);
+    window.visualViewport.addEventListener('scroll', apply);
+  }
+  window.addEventListener('orientationchange', apply);
+})();
+</script><script defer src="../i18n/en-modal.js"></script>
+</body></html>

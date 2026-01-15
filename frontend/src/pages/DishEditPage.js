@@ -29,12 +29,24 @@ function DishEditPage() {
   const [selectedAllergens, setSelectedAllergens] = useState([]);
   const [language, setLanguage] = useState('RU'); // Текущий язык: 'RU' или 'EN'
   const fileInputRef = React.useRef(null); // Ссылка на скрытый input для выбора файла
-
+ 
+  // Набор аллергенов для админки: ID совпадает с ключами, которые потом
+  // показываются на карточке блюда (там берём по ним эмодзи и подпись).
+  // Здесь сразу показываем «плашки» как в базе официанта: эмодзи + текст.
   const allergenOptions = [
-    { id: 'gluten', name: 'Глютен', icon: 'local_pizza' },
-    { id: 'egg', name: 'Яйца', icon: 'egg' },
-    { id: 'fish', name: 'Рыба', icon: 'set_meal' },
-    { id: 'nuts', name: 'Орехи', icon: 'grass' },
+    { id: 'egg', name: 'Яйца', emoji: '🥚' },
+    { id: 'sesame', name: 'Кунжут', emoji: '⚪️' },
+    { id: 'mustard', name: 'Горчица', emoji: '🌭' },
+    { id: 'cilantro', name: 'Кинза', emoji: '🌿' },
+    { id: 'onion', name: 'Лук', emoji: '🧅' },
+    { id: 'herbs', name: 'Зелень', emoji: '🌿' },
+    { id: 'gluten', name: 'Глютен', emoji: '🌾' },
+    { id: 'lactose', name: 'Лактоза', emoji: '🥛' },
+    { id: 'nuts', name: 'Орехи', emoji: '🥜' },
+    { id: 'fish', name: 'Рыба', emoji: '🐟' },
+    { id: 'citrus', name: 'Цитрусы', emoji: '🍋' },
+    { id: 'garlic', name: 'Чеснок', emoji: '🧄' },
+    { id: 'chili pepper', name: 'Перец чили', emoji: '🌶️' },
   ];
 
   useEffect(() => {
@@ -284,7 +296,7 @@ function DishEditPage() {
           </p>
           <input
             type="text"
-            placeholder="Или введите URL изображения (например: ../images/filename.jpg или полный URL)"
+            placeholder="Или введите URL изображения (например: ../images/filename.webp или полный URL)"
             value={dish.image?.src || ''}
             onChange={(e) => handleInputChange('image', { src: e.target.value, alt: dish.title })}
             className="w-full rounded-xl border-slate-200 dark:border-white/10 bg-white dark:bg-[#2c2420] text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary h-12 px-4"
@@ -456,29 +468,27 @@ function DishEditPage() {
           {/* Allergens */}
           <div className="flex flex-col gap-3">
             <label className="text-slate-900 dark:text-white text-sm font-bold">Аллергены</label>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="flex flex-wrap gap-2">
               {allergenOptions.map((allergen) => {
                 const isSelected = selectedAllergens.includes(allergen.id);
                 return (
-                  <div key={allergen.id} className="flex flex-col items-center gap-1">
-                    <button
-                      onClick={() => handleToggleAllergen(allergen.id)}
-                      className={`size-14 rounded-xl flex items-center justify-center transition-all ${
-                        isSelected
-                          ? 'bg-primary text-white shadow-md'
-                          : 'bg-white dark:bg-[#2c2420] border border-slate-200 dark:border-white/10 text-slate-400 dark:text-slate-500 hover:border-primary/50'
-                      }`}
-                    >
-                      <span className="material-symbols-outlined">{allergen.icon}</span>
-                    </button>
-                    <span
-                      className={`text-xs text-center ${
-                        isSelected ? 'text-primary font-medium' : 'text-slate-500 dark:text-slate-400'
-                      }`}
-                    >
+                  <button
+                    key={allergen.id}
+                    onClick={() => handleToggleAllergen(allergen.id)}
+                    type="button"
+                    className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-semibold tracking-wide uppercase transition-all ${
+                      isSelected
+                        ? 'bg-orange-100/90 dark:bg-orange-900/40 border-orange-300 dark:border-orange-500 text-amber-900 dark:text-amber-100 shadow-sm'
+                        : 'bg-white/90 dark:bg-[#2c2420] border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-orange-200 hover:bg-orange-50/80 dark:hover:bg-orange-900/20'
+                    }`}
+                  >
+                    <span className="text-base leading-none">
+                      {allergen.emoji}
+                    </span>
+                    <span className="leading-tight">
                       {allergen.name}
                     </span>
-                  </div>
+                  </button>
                 );
               })}
             </div>
