@@ -49,22 +49,10 @@ export const getWine = async (id) => {
   return response.data;
 };
 
-// ========== API ДЛЯ БАРНОГО МЕНЮ ==========
-
-export const getBarItems = async () => {
-  const response = await api.get('/api/bar-items');
-  return response.data;
-};
-
 // ========== АДМИНСКИЕ API ==========
 
-export const login = async (username, password) => {
-  const response = await api.post('/api/admin/login', { username, password });
-  return response.data;
-};
-
-export const loginAsGuest = async () => {
-  const response = await api.post('/api/admin/login/guest');
+export const login = async (password) => {
+  const response = await api.post('/api/admin/login', { password });
   return response.data;
 };
 
@@ -95,50 +83,6 @@ export const addDish = async (dish) => {
 
 export const deleteDish = async (id) => {
   const response = await api.delete(`/api/admin/dishes/${id}`);
-  return response.data;
-};
-
-// ========== API ДЛЯ ОБРАТНОЙ СВЯЗИ ==========
-
-export const submitFeedback = async (feedbackData) => {
-  const response = await api.post('/api/feedback', feedbackData);
-  return response.data;
-};
-
-export const getFeedbackMessages = async () => {
-  const response = await api.get('/api/admin/feedback');
-  return response.data;
-};
-
-export const markFeedbackRead = async (messageId) => {
-  const response = await api.put(`/api/admin/feedback/${messageId}/read`);
-  return response.data;
-};
-
-export const deleteFeedbackMessage = async (messageId) => {
-  const response = await api.delete(`/api/admin/feedback/${messageId}`);
-  return response.data;
-};
-
-// ========== API ДЛЯ УПРАВЛЕНИЯ ПОЛЬЗОВАТЕЛЯМИ ==========
-
-export const getUsers = async () => {
-  const response = await api.get('/api/admin/users');
-  return response.data;
-};
-
-export const createUser = async (userData) => {
-  const response = await api.post('/api/admin/users', userData);
-  return response.data;
-};
-
-export const updateUser = async (userId, userData) => {
-  const response = await api.put(`/api/admin/users/${userId}`, userData);
-  return response.data;
-};
-
-export const deleteUser = async (userId) => {
-  const response = await api.delete(`/api/admin/users/${userId}`);
   return response.data;
 };
 

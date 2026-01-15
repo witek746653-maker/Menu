@@ -120,37 +120,3 @@
     height: 350px;
   }
 }
-
-/* Стили для кнопки аудио на мобильных устройствах */
-/* На мобильных устройствах кнопка находится между бутылкой и следующим элементом */
-@media (max-width: 767px) {
-  .audio-button-section {
-    /* Показываем секцию с кнопкой */
-    display: block !important;
-    /* Отрицательный margin-top поднимает секцию выше, чтобы кнопка была ближе к бутылке */
-    margin-top: -4rem !important;
-    margin-bottom: 1rem !important;
-    /* Убираем лишние отступы */
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  
-  .audio-button {
-    /* Дополнительная тень для лучшей видимости */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
-    /* Увеличенный размер для удобства нажатия */
-    width: 3.5rem !important;
-    height: 3.5rem !important;
-    min-width: 3.5rem !important;
-    min-height: 3.5rem !important;
-  }
-}
-
-/* На широких экранах показываем кнопку в отдельной секции справа */
-@media (min-width: 768px) {
-  .audio-button-section {
-    display: block !important;
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
-}

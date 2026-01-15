@@ -1,0 +1,1065 @@
+﻿<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>:wine_barrel_icon: Вино в Sabor de la Vida (бокалы / Coravin /  полубутылки)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>.inline-flag{display:inline-flex;line-height:1}.inline-flag svg{width:1em;height:1em;vertical-align:-0.15em;border-radius:2px}</style></head><body><article class="page sans" id="24a33974-4d17-806b-b143-d0943e321e36"><header><img class="page-cover-image" src="../images/vino-head.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="../icons/sabor-icon-small.png"/></div><h1 class="page-title"><img alt="wine_barrel_icon" src="../icons/wine-barrel-icon.png" style="width:1em;height:1em"/> Вино в Sabor de la Vida (<strong>бокалы / Coravin /  полубутылки</strong>)</h1><p class="page-description"></p></header><div class="page-body"><figure class="image" id="29133974-4d17-8038-82ab-dfa7891b35ac"><a href="../images/image.png"><img src="../images/image.png" style="width:1px"/></a></figure><nav class="block-color-gray table_of_contents" id="24a33974-4d17-80b3-b47b-d8174488f909"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#26a33974-4d17-8031-89f7-fb90e79bd08c"><strong>Бокальные позиции</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#24a33974-4d17-8056-a293-c4b1cef24209"><img alt="sparkling-wine_icon" src="../icons/sparkling-wine-icon.webp" style="width:1em;height:1em"/> <strong>Игристые вина</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#24a33974-4d17-80b3-b007-edbfdea7b33f"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Prosecco Casa Defra</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#25333974-4d17-8054-a367-cfb62d3f9cd9"> <img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> <strong>Красные вина</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#25333974-4d17-8001-88e4-e040a9b3412b"> <span class="inline-flag" data-iso="US" title="US"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect y="0.000" width="24" height="1.231" fill="#B22234"/><rect y="1.231" width="24" height="1.231" fill="#fff"/><rect y="2.462" width="24" height="1.231" fill="#B22234"/><rect y="3.692" width="24" height="1.231" fill="#fff"/><rect y="4.923" width="24" height="1.231" fill="#B22234"/><rect y="6.154" width="24" height="1.231" fill="#fff"/><rect y="7.385" width="24" height="1.231" fill="#B22234"/><rect y="8.615" width="24" height="1.231" fill="#fff"/><rect y="9.846" width="24" height="1.231" fill="#B22234"/><rect y="11.077" width="24" height="1.231" fill="#fff"/><rect y="12.308" width="24" height="1.231" fill="#B22234"/><rect y="13.538" width="24" height="1.231" fill="#fff"/><rect y="14.769" width="24" height="1.231" fill="#B22234"/><rect width="8.842" height="8.615" fill="#3C3B6E"/><polygon points="0.74,0.53 0.81,0.76 1.05,0.76 0.86,0.90 0.93,1.13 0.74,0.99 0.54,1.13 0.62,0.90 0.42,0.76 0.66,0.76" fill="#fff"/><polygon points="1.47,0.53 1.55,0.76 1.79,0.76 1.59,0.90 1.67,1.13 1.47,0.99 1.28,1.13 1.35,0.90 1.16,0.76 1.40,0.76" fill="#fff"/><polygon points="2.21,0.53 2.28,0.76 2.53,0.76 2.33,0.90 2.41,1.13 2.21,0.99 2.02,1.13 2.09,0.90 1.90,0.76 2.14,0.76" fill="#fff"/><polygon points="2.95,0.53 3.02,0.76 3.26,0.76 3.07,0.90 3.14,1.13 2.95,0.99 2.75,1.13 2.83,0.90 2.63,0.76 2.87,0.76" fill="#fff"/><polygon points="3.68,0.53 3.76,0.76 4.00,0.76 3.80,0.90 3.88,1.13 3.68,0.99 3.49,1.13 3.56,0.90 3.37,0.76 3.61,0.76" fill="#fff"/><polygon points="4.42,0.53 4.50,0.76 4.74,0.76 4.54,0.90 4.62,1.13 4.42,0.99 4.23,1.13 4.30,0.90 4.11,0.76 4.35,0.76" fill="#fff"/><polygon points="1.11,1.39 1.18,1.62 1.42,1.62 1.23,1.76 1.30,1.99 1.11,1.85 0.91,1.99 0.98,1.76 0.79,1.62 1.03,1.62" fill="#fff"/><polygon points="1.84,1.39 1.92,1.62 2.16,1.62 1.96,1.76 2.04,1.99 1.84,1.85 1.65,1.99 1.72,1.76 1.53,1.62 1.77,1.62" fill="#fff"/><polygon points="2.58,1.39 2.65,1.62 2.89,1.62 2.70,1.76 2.77,1.99 2.58,1.85 2.38,1.99 2.46,1.76 2.26,1.62 2.50,1.62" fill="#fff"/><polygon points="3.32,1.39 3.39,1.62 3.63,1.62 3.44,1.76 3.51,1.99 3.32,1.85 3.12,1.99 3.20,1.76 3.00,1.62 3.24,1.62" fill="#fff"/><polygon points="4.05,1.39 4.13,1.62 4.37,1.62 4.17,1.76 4.25,1.99 4.05,1.85 3.86,1.99 3.93,1.76 3.74,1.62 3.98,1.62" fill="#fff"/><polygon points="0.74,2.25 0.81,2.48 1.05,2.48 0.86,2.62 0.93,2.85 0.74,2.71 0.54,2.85 0.62,2.62 0.42,2.48 0.66,2.48" fill="#fff"/><polygon points="1.47,2.25 1.55,2.48 1.79,2.48 1.59,2.62 1.67,2.85 1.47,2.71 1.28,2.85 1.35,2.62 1.16,2.48 1.40,2.48" fill="#fff"/><polygon points="2.21,2.25 2.28,2.48 2.53,2.48 2.33,2.62 2.41,2.85 2.21,2.71 2.02,2.85 2.09,2.62 1.90,2.48 2.14,2.48" fill="#fff"/><polygon points="2.95,2.25 3.02,2.48 3.26,2.48 3.07,2.62 3.14,2.85 2.95,2.71 2.75,2.85 2.83,2.62 2.63,2.48 2.87,2.48" fill="#fff"/><polygon points="3.68,2.25 3.76,2.48 4.00,2.48 3.80,2.62 3.88,2.85 3.68,2.71 3.49,2.85 3.56,2.62 3.37,2.48 3.61,2.48" fill="#fff"/><polygon points="4.42,2.25 4.50,2.48 4.74,2.48 4.54,2.62 4.62,2.85 4.42,2.71 4.23,2.85 4.30,2.62 4.11,2.48 4.35,2.48" fill="#fff"/><polygon points="1.11,3.11 1.18,3.34 1.42,3.34 1.23,3.49 1.30,3.71 1.11,3.57 0.91,3.71 0.98,3.49 0.79,3.34 1.03,3.34" fill="#fff"/><polygon points="1.84,3.11 1.92,3.34 2.16,3.34 1.96,3.49 2.04,3.71 1.84,3.57 1.65,3.71 1.72,3.49 1.53,3.34 1.77,3.34" fill="#fff"/><polygon points="2.58,3.11 2.65,3.34 2.89,3.34 2.70,3.49 2.77,3.71 2.58,3.57 2.38,3.71 2.46,3.49 2.26,3.34 2.50,3.34" fill="#fff"/><polygon points="3.32,3.11 3.39,3.34 3.63,3.34 3.44,3.49 3.51,3.71 3.32,3.57 3.12,3.71 3.20,3.49 3.00,3.34 3.24,3.34" fill="#fff"/><polygon points="4.05,3.11 4.13,3.34 4.37,3.34 4.17,3.49 4.25,3.71 4.05,3.57 3.86,3.71 3.93,3.49 3.74,3.34 3.98,3.34" fill="#fff"/><polygon points="0.74,3.98 0.81,4.21 1.05,4.21 0.86,4.35 0.93,4.58 0.74,4.43 0.54,4.58 0.62,4.35 0.42,4.21 0.66,4.21" fill="#fff"/><polygon points="1.47,3.98 1.55,4.21 1.79,4.21 1.59,4.35 1.67,4.58 1.47,4.43 1.28,4.58 1.35,4.35 1.16,4.21 1.40,4.21" fill="#fff"/><polygon points="2.21,3.98 2.28,4.21 2.53,4.21 2.33,4.35 2.41,4.58 2.21,4.43 2.02,4.58 2.09,4.35 1.90,4.21 2.14,4.21" fill="#fff"/><polygon points="2.95,3.98 3.02,4.21 3.26,4.21 3.07,4.35 3.14,4.58 2.95,4.43 2.75,4.58 2.83,4.35 2.63,4.21 2.87,4.21" fill="#fff"/><polygon points="3.68,3.98 3.76,4.21 4.00,4.21 3.80,4.35 3.88,4.58 3.68,4.43 3.49,4.58 3.56,4.35 3.37,4.21 3.61,4.21" fill="#fff"/><polygon points="4.42,3.98 4.50,4.21 4.74,4.21 4.54,4.35 4.62,4.58 4.42,4.43 4.23,4.58 4.30,4.35 4.11,4.21 4.35,4.21" fill="#fff"/><polygon points="1.11,4.84 1.18,5.07 1.42,5.07 1.23,5.21 1.30,5.44 1.11,5.30 0.91,5.44 0.98,5.21 0.79,5.07 1.03,5.07" fill="#fff"/><polygon points="1.84,4.84 1.92,5.07 2.16,5.07 1.96,5.21 2.04,5.44 1.84,5.30 1.65,5.44 1.72,5.21 1.53,5.07 1.77,5.07" fill="#fff"/><polygon points="2.58,4.84 2.65,5.07 2.89,5.07 2.70,5.21 2.77,5.44 2.58,5.30 2.38,5.44 2.46,5.21 2.26,5.07 2.50,5.07" fill="#fff"/><polygon points="3.32,4.84 3.39,5.07 3.63,5.07 3.44,5.21 3.51,5.44 3.32,5.30 3.12,5.44 3.20,5.21 3.00,5.07 3.24,5.07" fill="#fff"/><polygon points="4.05,4.84 4.13,5.07 4.37,5.07 4.17,5.21 4.25,5.44 4.05,5.30 3.86,5.44 3.93,5.21 3.74,5.07 3.98,5.07" fill="#fff"/><polygon points="0.74,5.70 0.81,5.93 1.05,5.93 0.86,6.07 0.93,6.30 0.74,6.16 0.54,6.30 0.62,6.07 0.42,5.93 0.66,5.93" fill="#fff"/><polygon points="1.47,5.70 1.55,5.93 1.79,5.93 1.59,6.07 1.67,6.30 1.47,6.16 1.28,6.30 1.35,6.07 1.16,5.93 1.40,5.93" fill="#fff"/><polygon points="2.21,5.70 2.28,5.93 2.53,5.93 2.33,6.07 2.41,6.30 2.21,6.16 2.02,6.30 2.09,6.07 1.90,5.93 2.14,5.93" fill="#fff"/><polygon points="2.95,5.70 3.02,5.93 3.26,5.93 3.07,6.07 3.14,6.30 2.95,6.16 2.75,6.30 2.83,6.07 2.63,5.93 2.87,5.93" fill="#fff"/><polygon points="3.68,5.70 3.76,5.93 4.00,5.93 3.80,6.07 3.88,6.30 3.68,6.16 3.49,6.30 3.56,6.07 3.37,5.93 3.61,5.93" fill="#fff"/><polygon points="4.42,5.70 4.50,5.93 4.74,5.93 4.54,6.07 4.62,6.30 4.42,6.16 4.23,6.30 4.30,6.07 4.11,5.93 4.35,5.93" fill="#fff"/><polygon points="1.11,6.56 1.18,6.79 1.42,6.79 1.23,6.93 1.30,7.16 1.11,7.02 0.91,7.16 0.98,6.93 0.79,6.79 1.03,6.79" fill="#fff"/><polygon points="1.84,6.56 1.92,6.79 2.16,6.79 1.96,6.93 2.04,7.16 1.84,7.02 1.65,7.16 1.72,6.93 1.53,6.79 1.77,6.79" fill="#fff"/><polygon points="2.58,6.56 2.65,6.79 2.89,6.79 2.70,6.93 2.77,7.16 2.58,7.02 2.38,7.16 2.46,6.93 2.26,6.79 2.50,6.79" fill="#fff"/><polygon points="3.32,6.56 3.39,6.79 3.63,6.79 3.44,6.93 3.51,7.16 3.32,7.02 3.12,7.16 3.20,6.93 3.00,6.79 3.24,6.79" fill="#fff"/><polygon points="4.05,6.56 4.13,6.79 4.37,6.79 4.17,6.93 4.25,7.16 4.05,7.02 3.86,7.16 3.93,6.93 3.74,6.79 3.98,6.79" fill="#fff"/><polygon points="0.74,7.42 0.81,7.65 1.05,7.65 0.86,7.79 0.93,8.02 0.74,7.88 0.54,8.02 0.62,7.79 0.42,7.65 0.66,7.65" fill="#fff"/><polygon points="1.47,7.42 1.55,7.65 1.79,7.65 1.59,7.79 1.67,8.02 1.47,7.88 1.28,8.02 1.35,7.79 1.16,7.65 1.40,7.65" fill="#fff"/><polygon points="2.21,7.42 2.28,7.65 2.53,7.65 2.33,7.79 2.41,8.02 2.21,7.88 2.02,8.02 2.09,7.79 1.90,7.65 2.14,7.65" fill="#fff"/><polygon points="2.95,7.42 3.02,7.65 3.26,7.65 3.07,7.79 3.14,8.02 2.95,7.88 2.75,8.02 2.83,7.79 2.63,7.65 2.87,7.65" fill="#fff"/><polygon points="3.68,7.42 3.76,7.65 4.00,7.65 3.80,7.79 3.88,8.02 3.68,7.88 3.49,8.02 3.56,7.79 3.37,7.65 3.61,7.65" fill="#fff"/><polygon points="4.42,7.42 4.50,7.65 4.74,7.65 4.54,7.79 4.62,8.02 4.42,7.88 4.23,8.02 4.30,7.79 4.11,7.65 4.35,7.65" fill="#fff"/></svg></span> Zinfandel, Long Barn<strong> (полусухое) </strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#25333974-4d17-80de-aabd-ff0c36988e55"> <span class="inline-flag" data-iso="ES" title="ES"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/><rect x="3" y="5" width="4" height="6" fill="#D40000" stroke="#7A0000" stroke-width="0.25"/></svg></span> Tempranillo Edicion Limitada</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#25333974-4d17-804d-b01e-f4893373ca84"> <span class="inline-flag" data-iso="AR" title="AR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="5.33" fill="#75AADB"/><rect width="24" height="5.33" y="5.33" fill="#fff"/><rect width="24" height="5.33" y="10.66" fill="#75AADB"/><circle cx="12" cy="8" r="2.2" fill="#F6B40E" stroke="#9C6B00" stroke-width="0.6"/></svg></span> Old Vineyard Pinot Noir   <strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-80ce-b0af-cbb4723ff048"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Castellare di Castellina, Chianti Classico<strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#26a33974-4d17-8065-b69e-d1f8d771587f"><img alt="white-wine-icon" src="../icons/white-wine-icon.png" style="width:1em;height:1em"/> <strong>Белые вина</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-807f-866d-c198ffb534e7"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Pinot Grigio, Bottega Vinai   <strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-80f3-a19e-c1bb8ab8c051"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Chablis, Sainte Claire, Jean-Marc Brocard<strong> </strong> </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-806b-b964-dd1f21c12eba"> <span class="inline-flag" data-iso="DE" title="DE"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="5.33" y="0" fill="#000"/><rect width="24" height="5.33" y="5.33" fill="#DD0000"/><rect width="24" height="5.33" y="10.66" fill="#FFCE00"/></svg></span> Dr.Loosen, "Blue Slate" Riesling Dry   <strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-80bb-b4d7-cd1b49e5bde1"> <span class="inline-flag" data-iso="NZ" title="NZ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#00247D"/><rect width="12.0" height="8.0" fill="#012169"/><polygon points="0,0 0.64,0 12.0,7.36 12.0,8.0 11.36,8.0 0,0.64" fill="#fff"/><polygon points="12.0,0 12.0,0.64 0.64,8.0 0,8.0 0,7.36 11.36,0" fill="#fff"/><polygon points="0,0 0.384,0 12.0,7.616 12.0,8.0 11.616,8.0 0,0.384" fill="#C8102E"/><polygon points="12.0,0 12.0,0.384 0.384,8.0 0,8.0 0,7.616 11.616,0" fill="#C8102E"/><rect x="0" y="3.68" width="12.0" height="0.64" fill="#fff"/><rect x="5.68" y="0" width="0.64" height="8.0" fill="#fff"/><rect x="0" y="3.808" width="12.0" height="0.384" fill="#C8102E"/><rect x="5.808" y="0" width="0.384" height="8.0" fill="#C8102E"/><polygon points="18.72,3.12 19.14,4.22 20.32,4.28 19.40,5.02 19.71,6.16 18.72,5.52 17.73,6.16 18.04,5.02 17.12,4.28 18.30,4.22" fill="#fff"/><polygon points="18.72,3.20 19.14,4.22 20.24,4.31 19.40,5.02 19.66,6.09 18.72,5.52 17.78,6.09 18.04,5.02 17.20,4.31 18.30,4.22" fill="#C8102E"/><polygon points="20.64,6.33 21.14,7.63 22.54,7.70 21.45,8.58 21.81,9.93 20.64,9.18 19.47,9.93 19.83,8.58 18.74,7.70 20.14,7.63" fill="#fff"/><polygon points="20.64,6.42 21.14,7.63 22.45,7.73 21.45,8.58 21.76,9.86 20.64,9.18 19.52,9.86 19.83,8.58 18.83,7.73 20.14,7.63" fill="#C8102E"/><polygon points="17.28,9.04 17.78,10.35 19.18,10.42 18.09,11.30 18.45,12.65 17.28,11.89 16.11,12.65 16.47,11.30 15.38,10.42 16.78,10.35" fill="#fff"/><polygon points="17.28,9.14 17.78,10.35 19.09,10.45 18.09,11.30 18.40,12.58 17.28,11.89 16.16,12.58 16.47,11.30 15.47,10.45 16.78,10.35" fill="#C8102E"/><polygon points="22.08,10.11 22.48,11.13 23.58,11.19 22.72,11.89 23.01,12.95 22.08,12.36 21.15,12.95 21.44,11.89 20.58,11.19 21.68,11.13" fill="#fff"/><polygon points="22.08,10.18 22.48,11.13 23.51,11.22 22.72,11.89 22.96,12.89 22.08,12.36 21.20,12.89 21.44,11.89 20.65,11.22 21.68,11.13" fill="#C8102E"/></svg></span> Paddle Creek Sauvignon Blanc, Lake Road</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#26a33974-4d17-80b8-bb48-e4d1dc15548b"><img alt="rese-wine_icon" src="../icons/rese-wine-icon.png" style="width:1em;height:1em"/> <strong>Розовые вина</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-803c-8146-efae5b6cb77c"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Reserve de Perly Rose d'Anjou <strong>(полусладкое)  </strong> <strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#26a33974-4d17-80a2-91c7-ef7a5fae485c"><strong>Coravin</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#26a33974-4d17-8021-a070-fcf147bc54b7"><img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> <strong>Красные вина</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-8166-8b01-e85390296221"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span>"La Ciaude", Domaine Anne Gros &amp; Jean-Paul Tollot    </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-81af-bf0e-f79f9b95ef25"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> «Bourgogne Pinot Noir Terres de Famille», Domaine de la Vougeraie  </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-81cb-b386-dd64e09080f2"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> «Fumin» Les Cretes<strong> </strong> <strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-816c-a81a-fd09b9d53976"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> "50 &amp; 50", Avignonesi &amp; Capannelle  </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#26a33974-4d17-8044-819c-fdeabe9a12d9"><img alt="white-wine-icon" src="../icons/white-wine-icon.png" style="width:1em;height:1em"/> <strong>Белые вина</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-811c-8c84-fb86650dde81"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span>  «Oasi Mantellina», Lugana, Allegrini </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-8144-b1a2-fb7ab495af76"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Вourgogne Cardonnay, Manuel Olivier   <strong> </strong> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#26a33974-4d17-809d-bb51-e2c58d1da556"><img alt="rese-wine_icon" src="../icons/rese-wine-icon.png" style="width:1em;height:1em"/> <strong>Розовые вина</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-8066-b2c9-fc20808fdaf2"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> «Tavel», E. Guigal   <strong> </strong> <strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#26a33974-4d17-80cc-9b9b-c980e7989a67"><strong>Полубутылки (375 мл)</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#26a33974-4d17-8050-8230-d15b54a5b38a"><img alt="sparkling-wine_icon" src="../icons/sparkling-wine-icon.webp" style="width:1em;height:1em"/> <strong>Шампанское</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-80a3-8ec8-f773844d145d"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Piper-Heidsieck White Brut<strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#26a33974-4d17-80d9-a8db-da60e0783f0a"><img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> <strong>Красные вина</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-8130-a4a4-e3543d052a1d"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Speri, Valpolicella Classico </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-8132-8ec3-f2260425ae54"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Domaine Masson-Blondelet, Sancerre Rouge "Thauvenay   <strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-817f-8b51-cc4bdc0f36cb"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Capannelle, "Solare”</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-8148-89fc-eb8af60a56a9"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> "La Reserve d'Angludet", Margaux<strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#26a33974-4d17-8028-b70a-fa3edf31a85b"><img alt="white-wine-icon" src="../icons/white-wine-icon.png" style="width:1em;height:1em"/> <strong>Белые вина</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-81ca-9681-d32741f88f5f"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Brolettino Lugana, Ca dei Frati (полусухое) <strong> </strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#26a33974-4d17-81f8-a474-f9de6c099b80"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Gavi dei Gavi<strong> </strong> </a></div></nav><hr id="26a33974-4d17-805f-bcd3-cd448a0d5d99"/><figure class="image" id="29133974-4d17-8026-a279-d8d481d65749"><a href="../images/image%201.png"><img src="../images/image%201.png" style="width:1px"/></a></figure><figure class="block-color-teal_background callout" id="26a33974-4d17-80c8-8497-eaf113fd30c6" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-80f8-b827-eb27281a534e"><strong>Старый и Новый свет вина:</strong></p><ul class="bulleted-list" id="26a33974-4d17-809a-a95e-fff3a8513129"><li style="list-style-type:disc"><strong>Старый свет</strong> — это классические винные регионы Европы и Ближнего Востока, где виноделие зародилось тысячи лет назад. <em>Вина Старого света — это история и традиции.</em><ul class="bulleted-list" id="26a33974-4d17-80dc-a44c-fee1c1e6933a"><li style="list-style-type:circle"><strong>Страны</strong>: Франция, Италия, Испания, Португалия, Германия, Австрия, Греция, Венгрия, Грузия.</li></ul><ul class="bulleted-list" id="26a33974-4d17-80e4-ac11-ef391c80031e"><li style="list-style-type:circle"><strong>Особенности</strong>: упор на традиции,<strong> терруар</strong> и стиль региона. Этикетки часто указывают не сорт винограда, а местность (например, <em>Bordeaux</em> или <em>Chianti</em>).</li></ul></li></ul><ul class="bulleted-list" id="26a33974-4d17-80e4-b362-ea8b491e418c"><li style="list-style-type:disc"><strong>Новый свет</strong> — регионы, куда виноград попал позднее, вместе с европейскими переселенцами. Виноделие здесь активно развивается с XIX–XX века. В<em>ина Нового света —  это энергия и эксперименты.</em><ul class="bulleted-list" id="26a33974-4d17-80eb-b0a6-e97409bde3c3"><li style="list-style-type:circle"><strong>Страны</strong>: США (Калифорния, Орегон), Чили, Аргентина, Австралия, Новая Зеландия, Южная Африка.</li></ul><ul class="bulleted-list" id="26a33974-4d17-80d5-8b33-ec5775f0be1c"><li style="list-style-type:circle"><strong>Особенности</strong>: свобода эксперимента, акцент на сортах винограда (например, <em>Cabernet Sauvignon</em>, <em>Chardonnay</em>), <strong>более яркий, насыщенный и понятный стиль вина.</strong></li></ul></li></ul><p class="" id="26a33974-4d17-80ea-a6ac-e254d7ebcb9a">📌 <strong>Почему такие названия?</strong></p><p class="" id="26a33974-4d17-809c-81b3-d76094f6aeef">Термины перекочевали из географии: Европа — «Старый свет», «новооткрытые» континенты — «Новый свет». В виноделии закрепились, чтобы обозначить различие подходов: традиция против новаторства.</p></div></figure><p class="" id="26a33974-4d17-803f-b1c7-d3465d668f43">
+</p><div class="column-list" id="26a33974-4d17-8097-8ccf-c36d2c254ec3"><div class="column" id="26a33974-4d17-80b1-aa62-fe2ac6ce1b5b" style="width:62.5%"><figure class="image" id="26a33974-4d17-809b-97cd-ee7b0dca2e39"><a href="../images/france-map.jpg"><img src="../images/france-map.jpg" style="width:576px"/></a><figcaption>Винные регионы Франции</figcaption></figure><p class="" id="26b33974-4d17-80fe-91b6-c079c3a036ed">
+</p></div><div class="column" id="26a33974-4d17-8083-aae2-ff35dd08b4d4" style="width:37.49999999999999%"><p class="" id="26a33974-4d17-802c-ac42-de33743867c0">
+</p><p class="" id="26a33974-4d17-8081-8139-f3264a1d2509">
+</p><p class="" id="26a33974-4d17-805c-b440-eabcaa6fa85a">
+</p><figure class="image" id="26a33974-4d17-80e0-b193-ffb7e79d34b9"><a href="../images/itali-map.jpg"><img src="../images/itali-map.jpg" style="width:331.9921875px"/></a><figcaption>Винные регионы Италии</figcaption></figure></div></div><figure class="block-color-teal_background callout" id="26a33974-4d17-8020-8eab-ee05559f9360" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-802f-801b-c80e7324c804"><strong>Терруа́р</strong> (фр. <em>terroir</em> от <em>terre</em> — земля) — совокупность почвенно-климатических факторов и особенных характеристик местности (рельеф, роза ветров, наличие водоёмов, лесных массивов, инсоляция, окружающий животный и растительный мир), определяющая сортовые характеристики сельскохозяйственной продукции, чаще всего — вина, кофе, чая, оливкового масла, сыра. Терруарный продукт — продукт, выполненный из сырья, выращенного в определённой местности, в контролируемых условиях.</p><p class="" id="26a33974-4d17-805a-8cdd-da23babf91a7">Изначально понятие возникло в виноделии, при этом виноделы под терруаром понимают как совокупность условий одного определённого участка (для виноградников по традиции используют название <strong>«апелласьо́н»</strong> от фр. <em><strong>appellation d’origine contrôlée</strong></em> — контроль подлинности происхождения, так и в ограниченном смысле только почву виноградника или плантации. </p></div></figure><hr id="26b33974-4d17-801b-a168-d1ba2ad9b8ca"/><h1 class="" id="26a33974-4d17-8031-89f7-fb90e79bd08c"><strong>Бокальные позиции</strong></h1><h2 class="block-color-default_background" id="24a33974-4d17-8056-a293-c4b1cef24209"><img alt="sparkling-wine_icon" src="../icons/sparkling-wine-icon.webp" style="width:1em;height:1em"/> <strong>Игристые вина</strong></h2><h3 class="block-color-orange_background" id="24a33974-4d17-80b3-b007-edbfdea7b33f"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Prosecco Casa Defra</h3><div class="column-list" id="26a33974-4d17-801e-a297-e0e533439d1d"><div class="column" id="26a33974-4d17-80fd-bddf-d2607b954e9f" style="width:68.75%"><figure id="24a33974-4d17-8044-92a0-d5858e052a75"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Prosecco Casa Defra" class="wine-audio-btn wab-v3" data-audio-id="aud_0b6955d8_vino_prosecco-casa-defra">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Prosecco Casa Defra</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_0b6955d8_vino_prosecco-casa-defra" preload="none" src="../audio/wine/vino-prosecco-casa-defra.mp3"></audio>
+</div></div></figure><p class="" id="24a33974-4d17-8009-8e6a-c4f02c5ca4a2"><strong>Страна/Регион:</strong> Италия, Вéнето.</p><p class="" id="24a33974-4d17-80e0-95a0-eb59206cd706"><strong>Производитель:</strong> Casa Defra.</p><p class="" id="24a33974-4d17-80b8-9dfc-f7714cbae7b3"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="24a33974-4d17-80e9-8519-d91fc6f28cad"><li style="list-style-type:disc">Глера (Просекко).</li></ul><ul class="bulleted-list" id="24a33974-4d17-807f-a7b8-e524def65e02"><li style="list-style-type:disc">Вердисо.</li></ul><ul class="bulleted-list" id="24a33974-4d17-80b0-b00e-e005d2dee37e"><li style="list-style-type:disc">Перера.</li></ul><p class="" id="26b33974-4d17-80af-aa31-dfb7f6006691">
+</p><figure class="image" id="29133974-4d17-8048-a1f2-d40f8602a2b1"><a href="../images/image%202.png"><img src="../images/image%202.png" style="width:1px"/></a></figure><figure class="image" id="29133974-4d17-8078-8fb0-e8120444c4df"><a href="../images/image%203.png"><img src="../images/image%203.png" style="width:1px"/></a></figure><p class="" id="29133974-4d17-80fd-9c8d-dfab99c83573">
+</p></div><div class="column" id="26a33974-4d17-80ba-8815-cb588b179808" style="width:31.249999999999993%"><figure class="image" id="24a33974-4d17-807b-8dc3-f026570acaee"><a href="../images/vino-prosecco-casa-defra.jpg"><img src="../images/vino-prosecco-casa-defra.jpg" style="width:240px"/></a><figcaption>Prosecco Casa Defra<strong> </strong></figcaption></figure></div></div><figure class="block-color-teal_background callout" id="26a33974-4d17-8072-bd1d-f1e1e832a242" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-807e-839b-e7ccf4db42f1"><strong>Просекко </strong><em>(итал. </em>Prosecco) – это итальянское сухое игристое вино из регионов Венето и Фриули-Венеция-Джулия. Название происходит от одноимённого названия деревни на востоке Италии, которое, в свою очередь, происходит от слова «про́сека» славянского происхождения. </p><p class="" id="26a33974-4d17-8091-a15e-cdaae764b87f">Вино производится из винограда сорта Глера (ранее известный как Просекко) с применением <strong>метода Шарма</strong> (вторичное брожение в герметичных стальных резервуарах), что делает его более легким и доступным по цене по сравнению со своим главным конкурентом шампанским. Отличается легким фруктовым вкусом с нотами груши, зеленого яблока и персика. Существуют разные стили: сухие (Brut, Extra Dry) и сладкие, а также розовые версии, допускается добавление других сортов винограда до 15%. </p><p class="" id="26a33974-4d17-802e-93a1-f7f44617b63d">В отличие от шампанского, в бутылке с просекко процесс ферментации не идёт, и со временем оно стареет. Поэтому Просекко нужно употреблять молодым, желательно не старше двух лет.</p></div></figure><hr id="26b33974-4d17-801b-badb-ca382a70f416"/><h2 class="block-color-default_background" id="25333974-4d17-8054-a367-cfb62d3f9cd9"> <img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> <strong>Красные вина</strong></h2><div class="column-list" id="25333974-4d17-80e2-b85d-eda945434539"><div class="column" id="25333974-4d17-80d8-a1fc-cf648d14bda7" style="width:25%"><h3 class="block-color-orange_background" id="25333974-4d17-8001-88e4-e040a9b3412b"> <span class="inline-flag" data-iso="US" title="US"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect y="0.000" width="24" height="1.231" fill="#B22234"/><rect y="1.231" width="24" height="1.231" fill="#fff"/><rect y="2.462" width="24" height="1.231" fill="#B22234"/><rect y="3.692" width="24" height="1.231" fill="#fff"/><rect y="4.923" width="24" height="1.231" fill="#B22234"/><rect y="6.154" width="24" height="1.231" fill="#fff"/><rect y="7.385" width="24" height="1.231" fill="#B22234"/><rect y="8.615" width="24" height="1.231" fill="#fff"/><rect y="9.846" width="24" height="1.231" fill="#B22234"/><rect y="11.077" width="24" height="1.231" fill="#fff"/><rect y="12.308" width="24" height="1.231" fill="#B22234"/><rect y="13.538" width="24" height="1.231" fill="#fff"/><rect y="14.769" width="24" height="1.231" fill="#B22234"/><rect width="8.842" height="8.615" fill="#3C3B6E"/><polygon points="0.74,0.53 0.81,0.76 1.05,0.76 0.86,0.90 0.93,1.13 0.74,0.99 0.54,1.13 0.62,0.90 0.42,0.76 0.66,0.76" fill="#fff"/><polygon points="1.47,0.53 1.55,0.76 1.79,0.76 1.59,0.90 1.67,1.13 1.47,0.99 1.28,1.13 1.35,0.90 1.16,0.76 1.40,0.76" fill="#fff"/><polygon points="2.21,0.53 2.28,0.76 2.53,0.76 2.33,0.90 2.41,1.13 2.21,0.99 2.02,1.13 2.09,0.90 1.90,0.76 2.14,0.76" fill="#fff"/><polygon points="2.95,0.53 3.02,0.76 3.26,0.76 3.07,0.90 3.14,1.13 2.95,0.99 2.75,1.13 2.83,0.90 2.63,0.76 2.87,0.76" fill="#fff"/><polygon points="3.68,0.53 3.76,0.76 4.00,0.76 3.80,0.90 3.88,1.13 3.68,0.99 3.49,1.13 3.56,0.90 3.37,0.76 3.61,0.76" fill="#fff"/><polygon points="4.42,0.53 4.50,0.76 4.74,0.76 4.54,0.90 4.62,1.13 4.42,0.99 4.23,1.13 4.30,0.90 4.11,0.76 4.35,0.76" fill="#fff"/><polygon points="1.11,1.39 1.18,1.62 1.42,1.62 1.23,1.76 1.30,1.99 1.11,1.85 0.91,1.99 0.98,1.76 0.79,1.62 1.03,1.62" fill="#fff"/><polygon points="1.84,1.39 1.92,1.62 2.16,1.62 1.96,1.76 2.04,1.99 1.84,1.85 1.65,1.99 1.72,1.76 1.53,1.62 1.77,1.62" fill="#fff"/><polygon points="2.58,1.39 2.65,1.62 2.89,1.62 2.70,1.76 2.77,1.99 2.58,1.85 2.38,1.99 2.46,1.76 2.26,1.62 2.50,1.62" fill="#fff"/><polygon points="3.32,1.39 3.39,1.62 3.63,1.62 3.44,1.76 3.51,1.99 3.32,1.85 3.12,1.99 3.20,1.76 3.00,1.62 3.24,1.62" fill="#fff"/><polygon points="4.05,1.39 4.13,1.62 4.37,1.62 4.17,1.76 4.25,1.99 4.05,1.85 3.86,1.99 3.93,1.76 3.74,1.62 3.98,1.62" fill="#fff"/><polygon points="0.74,2.25 0.81,2.48 1.05,2.48 0.86,2.62 0.93,2.85 0.74,2.71 0.54,2.85 0.62,2.62 0.42,2.48 0.66,2.48" fill="#fff"/><polygon points="1.47,2.25 1.55,2.48 1.79,2.48 1.59,2.62 1.67,2.85 1.47,2.71 1.28,2.85 1.35,2.62 1.16,2.48 1.40,2.48" fill="#fff"/><polygon points="2.21,2.25 2.28,2.48 2.53,2.48 2.33,2.62 2.41,2.85 2.21,2.71 2.02,2.85 2.09,2.62 1.90,2.48 2.14,2.48" fill="#fff"/><polygon points="2.95,2.25 3.02,2.48 3.26,2.48 3.07,2.62 3.14,2.85 2.95,2.71 2.75,2.85 2.83,2.62 2.63,2.48 2.87,2.48" fill="#fff"/><polygon points="3.68,2.25 3.76,2.48 4.00,2.48 3.80,2.62 3.88,2.85 3.68,2.71 3.49,2.85 3.56,2.62 3.37,2.48 3.61,2.48" fill="#fff"/><polygon points="4.42,2.25 4.50,2.48 4.74,2.48 4.54,2.62 4.62,2.85 4.42,2.71 4.23,2.85 4.30,2.62 4.11,2.48 4.35,2.48" fill="#fff"/><polygon points="1.11,3.11 1.18,3.34 1.42,3.34 1.23,3.49 1.30,3.71 1.11,3.57 0.91,3.71 0.98,3.49 0.79,3.34 1.03,3.34" fill="#fff"/><polygon points="1.84,3.11 1.92,3.34 2.16,3.34 1.96,3.49 2.04,3.71 1.84,3.57 1.65,3.71 1.72,3.49 1.53,3.34 1.77,3.34" fill="#fff"/><polygon points="2.58,3.11 2.65,3.34 2.89,3.34 2.70,3.49 2.77,3.71 2.58,3.57 2.38,3.71 2.46,3.49 2.26,3.34 2.50,3.34" fill="#fff"/><polygon points="3.32,3.11 3.39,3.34 3.63,3.34 3.44,3.49 3.51,3.71 3.32,3.57 3.12,3.71 3.20,3.49 3.00,3.34 3.24,3.34" fill="#fff"/><polygon points="4.05,3.11 4.13,3.34 4.37,3.34 4.17,3.49 4.25,3.71 4.05,3.57 3.86,3.71 3.93,3.49 3.74,3.34 3.98,3.34" fill="#fff"/><polygon points="0.74,3.98 0.81,4.21 1.05,4.21 0.86,4.35 0.93,4.58 0.74,4.43 0.54,4.58 0.62,4.35 0.42,4.21 0.66,4.21" fill="#fff"/><polygon points="1.47,3.98 1.55,4.21 1.79,4.21 1.59,4.35 1.67,4.58 1.47,4.43 1.28,4.58 1.35,4.35 1.16,4.21 1.40,4.21" fill="#fff"/><polygon points="2.21,3.98 2.28,4.21 2.53,4.21 2.33,4.35 2.41,4.58 2.21,4.43 2.02,4.58 2.09,4.35 1.90,4.21 2.14,4.21" fill="#fff"/><polygon points="2.95,3.98 3.02,4.21 3.26,4.21 3.07,4.35 3.14,4.58 2.95,4.43 2.75,4.58 2.83,4.35 2.63,4.21 2.87,4.21" fill="#fff"/><polygon points="3.68,3.98 3.76,4.21 4.00,4.21 3.80,4.35 3.88,4.58 3.68,4.43 3.49,4.58 3.56,4.35 3.37,4.21 3.61,4.21" fill="#fff"/><polygon points="4.42,3.98 4.50,4.21 4.74,4.21 4.54,4.35 4.62,4.58 4.42,4.43 4.23,4.58 4.30,4.35 4.11,4.21 4.35,4.21" fill="#fff"/><polygon points="1.11,4.84 1.18,5.07 1.42,5.07 1.23,5.21 1.30,5.44 1.11,5.30 0.91,5.44 0.98,5.21 0.79,5.07 1.03,5.07" fill="#fff"/><polygon points="1.84,4.84 1.92,5.07 2.16,5.07 1.96,5.21 2.04,5.44 1.84,5.30 1.65,5.44 1.72,5.21 1.53,5.07 1.77,5.07" fill="#fff"/><polygon points="2.58,4.84 2.65,5.07 2.89,5.07 2.70,5.21 2.77,5.44 2.58,5.30 2.38,5.44 2.46,5.21 2.26,5.07 2.50,5.07" fill="#fff"/><polygon points="3.32,4.84 3.39,5.07 3.63,5.07 3.44,5.21 3.51,5.44 3.32,5.30 3.12,5.44 3.20,5.21 3.00,5.07 3.24,5.07" fill="#fff"/><polygon points="4.05,4.84 4.13,5.07 4.37,5.07 4.17,5.21 4.25,5.44 4.05,5.30 3.86,5.44 3.93,5.21 3.74,5.07 3.98,5.07" fill="#fff"/><polygon points="0.74,5.70 0.81,5.93 1.05,5.93 0.86,6.07 0.93,6.30 0.74,6.16 0.54,6.30 0.62,6.07 0.42,5.93 0.66,5.93" fill="#fff"/><polygon points="1.47,5.70 1.55,5.93 1.79,5.93 1.59,6.07 1.67,6.30 1.47,6.16 1.28,6.30 1.35,6.07 1.16,5.93 1.40,5.93" fill="#fff"/><polygon points="2.21,5.70 2.28,5.93 2.53,5.93 2.33,6.07 2.41,6.30 2.21,6.16 2.02,6.30 2.09,6.07 1.90,5.93 2.14,5.93" fill="#fff"/><polygon points="2.95,5.70 3.02,5.93 3.26,5.93 3.07,6.07 3.14,6.30 2.95,6.16 2.75,6.30 2.83,6.07 2.63,5.93 2.87,5.93" fill="#fff"/><polygon points="3.68,5.70 3.76,5.93 4.00,5.93 3.80,6.07 3.88,6.30 3.68,6.16 3.49,6.30 3.56,6.07 3.37,5.93 3.61,5.93" fill="#fff"/><polygon points="4.42,5.70 4.50,5.93 4.74,5.93 4.54,6.07 4.62,6.30 4.42,6.16 4.23,6.30 4.30,6.07 4.11,5.93 4.35,5.93" fill="#fff"/><polygon points="1.11,6.56 1.18,6.79 1.42,6.79 1.23,6.93 1.30,7.16 1.11,7.02 0.91,7.16 0.98,6.93 0.79,6.79 1.03,6.79" fill="#fff"/><polygon points="1.84,6.56 1.92,6.79 2.16,6.79 1.96,6.93 2.04,7.16 1.84,7.02 1.65,7.16 1.72,6.93 1.53,6.79 1.77,6.79" fill="#fff"/><polygon points="2.58,6.56 2.65,6.79 2.89,6.79 2.70,6.93 2.77,7.16 2.58,7.02 2.38,7.16 2.46,6.93 2.26,6.79 2.50,6.79" fill="#fff"/><polygon points="3.32,6.56 3.39,6.79 3.63,6.79 3.44,6.93 3.51,7.16 3.32,7.02 3.12,7.16 3.20,6.93 3.00,6.79 3.24,6.79" fill="#fff"/><polygon points="4.05,6.56 4.13,6.79 4.37,6.79 4.17,6.93 4.25,7.16 4.05,7.02 3.86,7.16 3.93,6.93 3.74,6.79 3.98,6.79" fill="#fff"/><polygon points="0.74,7.42 0.81,7.65 1.05,7.65 0.86,7.79 0.93,8.02 0.74,7.88 0.54,8.02 0.62,7.79 0.42,7.65 0.66,7.65" fill="#fff"/><polygon points="1.47,7.42 1.55,7.65 1.79,7.65 1.59,7.79 1.67,8.02 1.47,7.88 1.28,8.02 1.35,7.79 1.16,7.65 1.40,7.65" fill="#fff"/><polygon points="2.21,7.42 2.28,7.65 2.53,7.65 2.33,7.79 2.41,8.02 2.21,7.88 2.02,8.02 2.09,7.79 1.90,7.65 2.14,7.65" fill="#fff"/><polygon points="2.95,7.42 3.02,7.65 3.26,7.65 3.07,7.79 3.14,8.02 2.95,7.88 2.75,8.02 2.83,7.79 2.63,7.65 2.87,7.65" fill="#fff"/><polygon points="3.68,7.42 3.76,7.65 4.00,7.65 3.80,7.79 3.88,8.02 3.68,7.88 3.49,8.02 3.56,7.79 3.37,7.65 3.61,7.65" fill="#fff"/><polygon points="4.42,7.42 4.50,7.65 4.74,7.65 4.54,7.79 4.62,8.02 4.42,7.88 4.23,8.02 4.30,7.79 4.11,7.65 4.35,7.65" fill="#fff"/></svg></span> Zinfandel, Long Barn<strong> (полусухое) </strong></h3><p class="" id="26b33974-4d17-8002-a346-dc3bcb630e7a">
+</p><figure class="image" id="26a33974-4d17-8018-94d3-d9e57a694384"><a href="../images/image%204.png"><img src="../images/image%204.png" style="width:1px"/></a></figure><figure id="25333974-4d17-8000-9693-e5b9863c32a4"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Zinfandel Long Barn" class="wine-audio-btn wab-v3" data-audio-id="aud_9143da18_vino_zinfandel-long-barn">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Zinfandel Long Barn</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_9143da18_vino_zinfandel-long-barn" preload="none" src="../audio/wine/vino-zinfandel-long-barn.mp3"></audio>
+</div></div></figure><p class="" id="25333974-4d17-80f7-a4b9-fe8316bfbda9"><strong>Страна/Регион:</strong> США, Калифорния.</p><p class="" id="25333974-4d17-8087-b1d2-f3f1415888b8"><strong>Производитель:</strong> Long Barn.</p><p class="" id="25333974-4d17-80b6-9edd-f15e3eb8a4d3"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="25333974-4d17-80d0-b56c-df09ae983197"><li style="list-style-type:disc">Зинфандель: 100%.</li></ul><p class="" id="26a33974-4d17-8017-a473-e813ff6a0799">
+</p><p class="" id="26a33974-4d17-806e-8587-c8052ad23239">
+</p></div><div class="column" id="25333974-4d17-800f-87ba-ebf18285dfdb" style="width:21.875%"><h3 class="block-color-orange_background" id="25333974-4d17-80de-aabd-ff0c36988e55"> <span class="inline-flag" data-iso="ES" title="ES"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/><rect x="3" y="5" width="4" height="6" fill="#D40000" stroke="#7A0000" stroke-width="0.25"/></svg></span> Tempranillo Edicion Limitada</h3><p class="" id="26b33974-4d17-80bf-9ef5-c9af0bbbad0b">
+</p><figure id="25333974-4d17-809e-a5ea-fd7c053b691c"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Tempranillo Edicion Limitada" class="wine-audio-btn wab-v3" data-audio-id="aud_a13d6a81_vino_tempranillo-edicion-limitada">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Tempranillo Edicion Limitada</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_a13d6a81_vino_tempranillo-edicion-limitada" preload="none" src="../audio/wine/vino-tempranillo-edicion-limitada.mp3"></audio>
+</div></div></figure><p class="" id="25333974-4d17-80c8-b8a5-d7aa9e940c4e"><strong>Страна/Регион:</strong> Испания, Каталония.</p><p class="" id="25333974-4d17-8052-a5d5-f08259db2650"><strong>Производитель:</strong> Barcelona Mediterranean Wine.</p><p class="" id="25333974-4d17-8053-96bc-e76569402831"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="25333974-4d17-803e-bd6a-cad37904ad97"><li style="list-style-type:disc">Темпранильо 100%.</li></ul><p class="" id="26a33974-4d17-804b-9a9a-d26005a700f2">
+</p></div><div class="column" id="25333974-4d17-80b3-a53b-c1698b69ea71" style="width:25%"><h3 class="block-color-orange_background" id="25333974-4d17-804d-b01e-f4893373ca84"> <span class="inline-flag" data-iso="AR" title="AR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="5.33" fill="#75AADB"/><rect width="24" height="5.33" y="5.33" fill="#fff"/><rect width="24" height="5.33" y="10.66" fill="#75AADB"/><circle cx="12" cy="8" r="2.2" fill="#F6B40E" stroke="#9C6B00" stroke-width="0.6"/></svg></span> Old Vineyard Pinot Noir   <strong> </strong></h3><p class="" id="26b33974-4d17-80a2-91fe-fb05fa5b19ac">
+</p><figure id="25333974-4d17-80a6-8966-cf3b7037debc"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Humberto Canale Old Vineyard" class="wine-audio-btn wab-v3" data-audio-id="aud_fd9d3b7d_vino_humberto-canale-old-vineyard">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Humberto Canale Old Vineyard</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_fd9d3b7d_vino_humberto-canale-old-vineyard" preload="none" src="../audio/wine/vino-humberto-canale-old-vineyard.mp3"></audio>
+</div></div></figure><p class="" id="25333974-4d17-80cd-90f3-d49e46dfb3ad"><strong>Страна/Регион:</strong> Аргентина, Патагония.</p><p class="" id="25333974-4d17-80a1-9370-e53c32064426"><strong>Производитель:</strong>   Humberto Canale.</p><p class="" id="25333974-4d17-8045-9c03-e221abc23a88"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="25333974-4d17-8049-af18-c511f8f3a05d"><li style="list-style-type:disc">Пино Нуар: 100%.</li></ul><p class="" id="25333974-4d17-80dd-8ad9-c9e211e39345">
+</p></div><div class="column" id="26a33974-4d17-8011-9a31-df37a85a7e21" style="width:28.125%"><h3 class="block-color-orange_background" id="26a33974-4d17-80ce-b0af-cbb4723ff048"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Castellare di Castellina, Chianti Classico<strong> </strong></h3><p class="" id="26b33974-4d17-80c6-a7af-df86d75f874d">
+</p><figure id="26a33974-4d17-80fe-9ac0-c02b1c85d373"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Castellare Di Castellina Chianti Classico" class="wine-audio-btn wab-v3" data-audio-id="aud_97a5f3ef_vino_castellare-di-castellina-chianti-classico">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Castellare Di Castellina Chianti Classico</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_97a5f3ef_vino_castellare-di-castellina-chianti-classico" preload="none" src="../audio/wine/vino-castellare-di-castellina-chianti-classico.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-80fd-acfb-dbf560c32d39"><strong>Страна/Регион: </strong>Италия, Тоскана.</p><p class="" id="26a33974-4d17-804f-94cc-cffc726e871a"><strong>Производитель:</strong> Domini Castellare di Castellina.</p><p class="" id="26a33974-4d17-80f7-96fe-d0830b020a24"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-80e3-b201-e92bb26ae46b"><li style="list-style-type:disc">Санджовезe: 90%. </li></ul><ul class="bulleted-list" id="26a33974-4d17-8011-b3dc-f9a25f1371ba"><li style="list-style-type:disc">Канайоло: 10%.</li></ul></div></div><div class="column-list" id="26a33974-4d17-8011-a9a5-ec4cafc7d722"><div class="column" id="26a33974-4d17-8074-a21e-ead6a1de7f19" style="width:25.638727028238463%"><figure class="image" id="25333974-4d17-8038-be17-f0f254aa2cab"><a href="../images/vino-zinfandel-long-barn.jpg"><img src="../images/vino-zinfandel-long-barn.jpg" style="width:240px"/></a><figcaption>Zinfandel, Long Barn</figcaption></figure></div><div class="column" id="26a33974-4d17-803c-9c89-d4f7557c7258" style="width:26.311071268489467%"><figure class="image" id="25333974-4d17-80e3-acaf-d1eeab470ba3"><a href="../images/vino-tempranillo-edicion-limitada.jpg"><img src="../images/vino-tempranillo-edicion-limitada.jpg" style="width:192px"/></a><figcaption>Tempranillo Edicion Limitada</figcaption></figure></div><div class="column" id="26a33974-4d17-8051-86c5-d26d40b032a9" style="width:25.100851636037657%"><figure class="image" id="25333974-4d17-8039-aa10-fe0252e5ba17"><a href="../images/vino-humberto-canale-old-vineyard.jpg"><img src="../images/vino-humberto-canale-old-vineyard.jpg" style="width:144px"/></a><figcaption>Old Vineyard Pinot Noir</figcaption></figure></div><div class="column" id="26a33974-4d17-8067-8289-df474dde034a" style="width:22.94935006723443%"><figure class="image" id="26a33974-4d17-806e-9c5d-c0e80b0d4a4c"><a href="../images/vino-castellare-di-castellina-chianti-classico.jpg"><img src="../images/vino-castellare-di-castellina-chianti-classico.jpg" style="width:108px"/></a><figcaption>Castellare di Castellina, Chianti Classico</figcaption></figure></div></div><p class="" id="26b33974-4d17-8008-af04-f7d7d9a13fb0">
+</p><figure class="block-color-teal_background callout" id="26a33974-4d17-800d-89d0-eed79d916dc5" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-8048-91be-d85591e6fc6a"><strong>Тоскана</strong> – знаменитый винодельческий регион в центральной Италии, известный своими холмистыми пейзажами, агротуризмом и производством высококачественных вин. Он славится своими красными винами из сорта <strong>Санджовезе</strong>, такими как Кьянти и Брунелло ди Монтальчино, а также белым вином Верначча ди Сан-Джиминьяно. Ключевым сортом является Санджовезе, но также используются <strong>Мерло,</strong> <strong>Сира, Каберне Совиньон</strong> и <strong>Треббьяно. </strong></p><p class="" id="26a33974-4d17-80be-b482-faddd6c10e81">Один из старейших винных аппелласьонов мира, Кьянти Классико – царство санджовезе. Он должен составлять не менее 80% ассамбляжа и может быть дополнен местными сортами, такими как колорино и канайоло, или международными каберне совиньоном или мерло.</p><p class="" id="26a33974-4d17-806a-bc1a-c5c09e6b70ad">Символ консорциума Кьянти Классико – черный петух (<em>gallo nero</em>), олицетворяющий собой вечное соперничество между двумя основными тосканскими городами – Флоренцией и Сиеной. Увидев такую эмблему на колпачке бутылки, не сомневайтесь: перед вами Кьянти Классико – гастрономичное и сбалансированное вино с отличной кислотностью и уверенными танинами, которое отлично подходит как к итальянской пасте с томатным соусом, так и к разным видам мясных закусок и твердых сыров.</p></div></figure><p class="" id="26b33974-4d17-8094-b663-e216699e5b7b">
+</p><figure class="block-color-red_background callout" id="26a33974-4d17-804e-9fe3-d75c0394b1cf" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><table class="simple-table" id="26a33974-4d17-80a9-9fe4-ed6640255758"><thead class="simple-table-header"><tr id="26a33974-4d17-80b0-b494-c358d14f6111"><th class="block-color-default_background simple-table-header" id="Qfih" style="width:170.9453125px">Вино</th><th class="block-color-default_background simple-table-header" id="jEnZ" style="width:133.765625px">Стиль</th><th class="block-color-default_background simple-table-header" id="\\Uw" style="width:113.890625px">К жирному мясу</th><th class="block-color-default_background simple-table-header" id="DZnM" style="width:522px">Комментарий</th></tr></thead><tbody><tr id="26a33974-4d17-80ff-b9dd-e9a41bbbcb3d"><td class="" id="Qfih" style="width:170.9453125px"><strong>Zinfandel, Long Barn</strong></td><td class="" id="jEnZ" style="width:133.765625px">Мощное, сочное</td><td class="" id="\\Uw" style="width:113.890625px">⚠️ Условно</td><td class="" id="DZnM" style="width:522px">Калифорнийский зинфандель с нотами тёплых специй и тёмных ягод. Прекрасный выбор к рёбрам, утке в соусе или пряному мясу.</td></tr><tr id="26a33974-4d17-8060-adec-ccdeeac8e098"><td class="" id="Qfih" style="width:170.9453125px"><strong>Tempranillo Edición Limitada</strong></td><td class="" id="jEnZ" style="width:133.765625px">Выдержанное, насыщенное</td><td class="" id="\\Uw" style="width:113.890625px">✅ Да</td><td class="" id="DZnM" style="width:522px">Выдержанный темпранильо в коллекционном стиле — с благородными нотами табака, вишни и ванили. Идеален к говядине, ягнёнку или мясу на гриле.</td></tr><tr id="26a33974-4d17-80d8-9c3b-fc824f8a901b"><td class="" id="Qfih" style="width:170.9453125px"><strong>Old Vineyard Pinot Noir</strong></td><td class="" id="jEnZ" style="width:133.765625px">Лёгкое/среднее, ягодное</td><td class="" id="\\Uw" style="width:113.890625px">⚠️ Условно</td><td class="" id="DZnM" style="width:522px">Пино нуар из старых лоз — с тонкими ягодными нотами и мягкими танинами. Хорошо сочетается с птицей, телятиной или лёгкими мясными блюдами. Не выдержит стейк или BBQ.</td></tr><tr id="26a33974-4d17-8035-ad02-dd1b0083dfde"><td class="" id="Qfih" style="width:170.9453125px"><strong>Castellare di Castellina,  Chianti Classico</strong></td><td class="" id="jEnZ" style="width:133.765625px">Кислотное, средне-плотное</td><td class="" id="\\Uw" style="width:113.890625px">✅ Да</td><td class="" id="DZnM" style="width:522px">Классическое кьянти с живой кислотностью и ароматом вишни и трав. Подходит к жирной птице (утка, цыплёнок с кожей), телятине, пасте с мясом, запечённой баранине. Хороший баланс жир/кислота.</td></tr></tbody></table></div></figure><hr id="26b33974-4d17-80a5-ac3e-f758dc3cc2c5"/><h2 class="block-color-default_background" id="26a33974-4d17-8065-b69e-d1f8d771587f"><img alt="white-wine-icon" src="../icons/white-wine-icon.png" style="width:1em;height:1em"/> <strong>Белые вина</strong></h2><div class="column-list" id="26a33974-4d17-8069-bbb1-cd54341341c8"><div class="column" id="26a33974-4d17-8097-b6c3-e91706232933" style="width:25%"><h3 class="block-color-orange_background" id="26a33974-4d17-807f-866d-c198ffb534e7"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Pinot Grigio, Bottega Vinai   <strong> </strong></h3><p class="" id="26b33974-4d17-808e-abc3-e150f667acb2">
+</p><figure id="26a33974-4d17-80d6-a900-d2328e802e2d"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Pinot Grigio Bottega Vinai" class="wine-audio-btn wab-v3" data-audio-id="aud_061e42d3_vino_pinot-grigio-bottega-vinai">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Pinot Grigio Bottega Vinai</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_061e42d3_vino_pinot-grigio-bottega-vinai" preload="none" src="../audio/wine/vino-pinot-grigio-bottega-vinai.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-80d8-b65f-ed32375b6c45"><strong>Страна/Регион:</strong> Италия, Трентино-Альто Адидже.</p><p class="" id="26a33974-4d17-808f-aa0f-cdc096ce4f3f"><strong>Производитель:</strong> Cavit.</p><p class="" id="26a33974-4d17-80b0-adc1-d3c738c0c73c"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-80ac-a517-e558f02bb384"><li style="list-style-type:disc">Пино Гриджио: 100%.</li></ul></div><div class="column" id="26a33974-4d17-8047-b7ec-d4ff81a97661" style="width:28.125%"><h3 class="block-color-orange_background" id="26a33974-4d17-80f3-a19e-c1bb8ab8c051"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Chablis, Sainte Claire, Jean-Marc Brocard<strong> </strong> </h3><p class="" id="26b33974-4d17-802e-b669-cb63ec231502">
+</p><figure id="26a33974-4d17-8074-9017-eb10cb1b1c81"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Chablis Sainte Claire Jean Marc Brocard" class="wine-audio-btn wab-v3" data-audio-id="aud_d88a772d_vino_chablis-sainte-claire-jean-marc-brocard">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Chablis Sainte Claire Jean Marc Brocard</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_d88a772d_vino_chablis-sainte-claire-jean-marc-brocard" preload="none" src="../audio/wine/vino-chablis-sainte-claire-jean-marc-brocard.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-80a4-b694-e34150422b3b"><strong>Страна/Регион:</strong> Франция, Бургундия, Шабли.</p><p class="" id="26a33974-4d17-80ef-aa02-dd5612d0ec4f"><strong>Производитель:</strong> Jean-Marc Brocard (Domaine Sainte-Claire).</p><p class="" id="26a33974-4d17-80aa-b1d3-d9137fd860cc"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-80fa-92bb-d6e6873c30f9"><li style="list-style-type:disc">Шардоне: 100%.</li></ul></div><div class="column" id="26a33974-4d17-8070-803c-e3550d96a3b7" style="width:21.875%"><h3 class="block-color-orange_background" id="26a33974-4d17-806b-b964-dd1f21c12eba"> <span class="inline-flag" data-iso="DE" title="DE"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="5.33" y="0" fill="#000"/><rect width="24" height="5.33" y="5.33" fill="#DD0000"/><rect width="24" height="5.33" y="10.66" fill="#FFCE00"/></svg></span> Dr.Loosen, "Blue Slate" Riesling Dry   <strong> </strong></h3><p class="" id="26b33974-4d17-80db-9b17-f50fd2977cb7">
+</p><figure id="26a33974-4d17-8064-8624-ffb1fc624d20"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Dr Loosen Blue Slate Riesling Dry" class="wine-audio-btn wab-v3" data-audio-id="aud_17f23791_vino_dr-loosen-blue-slate-riesling-dry">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Dr Loosen Blue Slate Riesling Dry</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_17f23791_vino_dr-loosen-blue-slate-riesling-dry" preload="none" src="../audio/wine/vino-dr-loosen-blue-slate-riesling-dry.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-80a0-9388-e58df9407193"><strong>Страна/Регион:</strong> Германия,<br/>Мозель-Саар-Рувер</p><p class="" id="26a33974-4d17-808e-a9d6-ce93179fb3d7"><strong>Производитель:</strong> Dr.Loosen.</p><p class="" id="26a33974-4d17-8094-ad23-c7d724fda630"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-8029-b71c-fd7dab5b0827"><li style="list-style-type:disc">Рислинг: 100%.</li></ul><p class="" id="26a33974-4d17-80b5-8ad9-d4f77bef7900">
+</p></div><div class="column" id="26a33974-4d17-8030-9761-f7f4ec58f12e" style="width:25.00000000000001%"><h3 class="block-color-orange_background" id="26a33974-4d17-80bb-b4d7-cd1b49e5bde1"> <span class="inline-flag" data-iso="NZ" title="NZ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#00247D"/><rect width="12.0" height="8.0" fill="#012169"/><polygon points="0,0 0.64,0 12.0,7.36 12.0,8.0 11.36,8.0 0,0.64" fill="#fff"/><polygon points="12.0,0 12.0,0.64 0.64,8.0 0,8.0 0,7.36 11.36,0" fill="#fff"/><polygon points="0,0 0.384,0 12.0,7.616 12.0,8.0 11.616,8.0 0,0.384" fill="#C8102E"/><polygon points="12.0,0 12.0,0.384 0.384,8.0 0,8.0 0,7.616 11.616,0" fill="#C8102E"/><rect x="0" y="3.68" width="12.0" height="0.64" fill="#fff"/><rect x="5.68" y="0" width="0.64" height="8.0" fill="#fff"/><rect x="0" y="3.808" width="12.0" height="0.384" fill="#C8102E"/><rect x="5.808" y="0" width="0.384" height="8.0" fill="#C8102E"/><polygon points="18.72,3.12 19.14,4.22 20.32,4.28 19.40,5.02 19.71,6.16 18.72,5.52 17.73,6.16 18.04,5.02 17.12,4.28 18.30,4.22" fill="#fff"/><polygon points="18.72,3.20 19.14,4.22 20.24,4.31 19.40,5.02 19.66,6.09 18.72,5.52 17.78,6.09 18.04,5.02 17.20,4.31 18.30,4.22" fill="#C8102E"/><polygon points="20.64,6.33 21.14,7.63 22.54,7.70 21.45,8.58 21.81,9.93 20.64,9.18 19.47,9.93 19.83,8.58 18.74,7.70 20.14,7.63" fill="#fff"/><polygon points="20.64,6.42 21.14,7.63 22.45,7.73 21.45,8.58 21.76,9.86 20.64,9.18 19.52,9.86 19.83,8.58 18.83,7.73 20.14,7.63" fill="#C8102E"/><polygon points="17.28,9.04 17.78,10.35 19.18,10.42 18.09,11.30 18.45,12.65 17.28,11.89 16.11,12.65 16.47,11.30 15.38,10.42 16.78,10.35" fill="#fff"/><polygon points="17.28,9.14 17.78,10.35 19.09,10.45 18.09,11.30 18.40,12.58 17.28,11.89 16.16,12.58 16.47,11.30 15.47,10.45 16.78,10.35" fill="#C8102E"/><polygon points="22.08,10.11 22.48,11.13 23.58,11.19 22.72,11.89 23.01,12.95 22.08,12.36 21.15,12.95 21.44,11.89 20.58,11.19 21.68,11.13" fill="#fff"/><polygon points="22.08,10.18 22.48,11.13 23.51,11.22 22.72,11.89 22.96,12.89 22.08,12.36 21.20,12.89 21.44,11.89 20.65,11.22 21.68,11.13" fill="#C8102E"/></svg></span> Paddle Creek Sauvignon Blanc, Lake Road</h3><p class="" id="26b33974-4d17-8075-bc72-e418d0619522">
+</p><figure id="26a33974-4d17-8001-887e-d7bd0f651617"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Paddle Creek Sauvignon Blanc Lake Road" class="wine-audio-btn wab-v3" data-audio-id="aud_e88fa530_vino_paddle-creek-sauvignon-blanc-lake-road">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Paddle Creek Sauvignon Blanc Lake Road</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_e88fa530_vino_paddle-creek-sauvignon-blanc-lake-road" preload="none" src="../audio/wine/vino-paddle-creek-sauvignon-blanc-lake-road.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-8093-bd58-d4283d01a615"><strong>Страна/Регион:</strong> Новая Зеландия, Мальборо.</p><p class="" id="26a33974-4d17-8042-b3a7-f4fe4e33d8e9"><strong>Производитель: </strong>Lake Road.</p><p class="" id="26a33974-4d17-80f8-b19a-c5af66d76099"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-8082-8b28-f43484f14b91"><li style="list-style-type:disc">Совиньон блан: 100%.</li></ul></div></div><div class="column-list" id="26a33974-4d17-806b-8902-cf78401cd208"><div class="column" id="26a33974-4d17-8028-bbba-cb05f97e91df" style="width:25%"><figure class="image" id="26a33974-4d17-8085-af32-e4e3cd0fd67d"><a href="../images/vino-pinot-grigio-bottega-vinai.jpg"><img src="../images/vino-pinot-grigio-bottega-vinai.jpg" style="width:142.9921875px"/></a><figcaption>Pinot Grigio, Bottega Vinai<strong> </strong></figcaption></figure></div><div class="column" id="26a33974-4d17-80a6-9807-d3e920574031" style="width:25%"><figure class="image" id="26a33974-4d17-8075-93e9-deaea24d6b31"><a href="../images/vino-chablis-sainte-claire-jean-marc-brocard.jpg"><img src="../images/vino-chablis-sainte-claire-jean-marc-brocard.jpg" style="width:144px"/></a><figcaption>Chablis, Sainte Claire, Jean-Marc Brocard</figcaption></figure></div><div class="column" id="26a33974-4d17-8006-81cd-d1607ff7d17f" style="width:25%"><figure class="image" id="26a33974-4d17-809d-961a-d6a7f20745fd"><a href="../images/vino-dr-loosen-blue-slate-riesling-dry.jpg"><img src="../images/vino-dr-loosen-blue-slate-riesling-dry.jpg" style="width:142.9921875px"/></a><figcaption>Dr.Loosen, "Blue Slate" Riesling Dry</figcaption></figure></div><div class="column" id="26a33974-4d17-8083-9e03-c4dc8c4041bf" style="width:25%"><figure class="image" id="26a33974-4d17-8057-a974-f72464c2f539"><a href="../images/vino-paddle-creek-sauvignon-blanc-lake-road.jpg"><img src="../images/vino-paddle-creek-sauvignon-blanc-lake-road.jpg" style="width:142.9921875px"/></a><figcaption>Paddle Creek Sauvignon Blanc, Lake Road</figcaption></figure></div></div><figure class="block-color-teal_background callout" id="26a33974-4d17-80ec-8207-fd99b226ab11" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-809f-a2ca-db583b5d6a60"><strong>Бургундия</strong> (фр. <em>Bourgogne</em>) — винодельческий регион на востоке Франции. Для производства красных вин здесь традиционно используется сорт винограда <strong>пино-нуар</strong>, а для производства белых — сорт <strong>шардоне.</strong> В меньших объёмах возделываются иные сорта местного происхождения: алиготе, пино-блан, пино-гри и др. Большинство вин сортовые (моносепажные), а не купажные.</p><p class="" id="26a33974-4d17-8053-960e-d25a65b84a09">Особое место занимает северная часть региона — <strong>Шабли (Chablis)</strong>, названная в честь одноимённого города. Здесь практически полностью доминирует сорт шардоне, из которого делают легендарные белые вина. Прохладный климат и известковые почвы придают шабли высокую кислотность, минеральность и сдержанный фруктовый профиль. Цвет вина — бледно-жёлтый с зеленоватым оттенком, вкус — свежий, цельный и изящный.</p><p class="" id="26a33974-4d17-8012-85d8-fbecb1cf54d7">Шабли считается эталоном гастрономичности: его рекомендуют к морепродуктам (особенно устрицам), рыбе под сливочным соусом, фуа-гра, тушёному кролику и птице.</p><p class="" id="26a33974-4d17-80a3-8a3a-e4f874f011f0">В 2015 году виноградники Бургундии были признаны объектом Всемирного наследия ЮНЕСКО как уникальное сочетание природы, традиций и культуры виноделия.</p></div></figure><p class="" id="26b33974-4d17-8087-be73-faaf206bd850">
+</p><figure class="block-color-blue_background callout" id="26a33974-4d17-801e-8f89-f9f1cb436d6d" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><table class="simple-table" id="26a33974-4d17-8067-875d-f13c0c9a43a9"><thead class="simple-table-header"><tr id="26a33974-4d17-80cd-8c06-eb8c9d362fc2"><th class="block-color-blue_background simple-table-header" id="yV\A" style="width:197.1875px"><strong>Вино</strong></th><th class="block-color-blue_background simple-table-header" id="o]&lt;Y" style="width:125.6015625px"><strong>Стиль</strong></th><th class="block-color-blue_background simple-table-header" id="r]gC" style="width:99.25px"><strong>К жирной рыбе</strong></th><th class="block-color-blue_background simple-table-header" id="EM;Y" style="width:470px"><strong>Комментарий</strong></th></tr></thead><tbody><tr id="26a33974-4d17-80fa-928e-f60ca8579848"><td class="" id="yV\A" style="width:197.1875px"><strong>Pinot Grigio, Bottega Vinai</strong></td><td class="" id="o]&lt;Y" style="width:125.6015625px">Лёгкое, нейтральное</td><td class="" id="r]gC" style="width:99.25px">❌ Нет</td><td class="" id="EM;Y" style="width:470px"><strong>Скорее нет.</strong> Для жирной рыбы может быть слишком лёгким и нейтральным. Лучше для белой рыбы, морепродуктов, закусок.</td></tr><tr id="26a33974-4d17-8029-90c2-db35aefdd736"><td class="" id="yV\A" style="width:197.1875px"><strong>Chablis, Sainte Claire, Jean-Marc Brocard</strong></td><td class="" id="o]&lt;Y" style="width:125.6015625px">Минеральное, кислотное</td><td class="" id="r]gC" style="width:99.25px">✅ Да</td><td class="" id="EM;Y" style="width:470px">Жирная рыба + шардоне с кислотностью = классическое сочетание. Особенно — лосось, палтус, тунец. </td></tr><tr id="26a33974-4d17-8050-921d-c8ca8a760fd4"><td class="" id="yV\A" style="width:197.1875px"><strong>Dr. Loosen, “Blue Slate” Riesling Dry</strong></td><td class="" id="o]&lt;Y" style="width:125.6015625px">Ароматное, сухое</td><td class="" id="r]gC" style="width:99.25px">✅ Да</td><td class="" id="EM;Y" style="width:470px">Подходит к жирной рыбе — особенно, если есть азиатские специи, лайм, имбирь, соевый соус. Кислотность уравновешивает жир.</td></tr><tr id="26a33974-4d17-8009-9821-da43308cf9bf"><td class="" id="yV\A" style="width:197.1875px"><strong>Paddle Creek Sauvignon Blanc, Lake Road</strong></td><td class="" id="o]&lt;Y" style="width:125.6015625px">Яркое, цитрусовое</td><td class="" id="r]gC" style="width:99.25px">✅ Да</td><td class="" id="EM;Y" style="width:470px">Сочный новозеландский совиньон — яркий, свежий и структурный. Идеально освежит жирную рыбу с травами или лимоном.</td></tr><tr id="26a33974-4d17-804a-818b-f202e3e93989"><td class="" id="yV\A" style="width:197.1875px"><strong>Réserve de Perly Rosé d’Anjou</strong></td><td class="" id="o]&lt;Y" style="width:125.6015625px">Полусухое, фруктовое</td><td class="" id="r]gC" style="width:99.25px">⚠️ Условно</td><td class="" id="EM;Y" style="width:470px"><strong>Возможно, но не лучший выбор.</strong> Если рыба — холодная закуска или с ягодным соусом — да. Но в целом сладковатое розе будет спорить с жиром.</td></tr></tbody></table></div></figure><hr id="26b33974-4d17-80b3-84b8-e992fa09df8d"/><h2 class="block-color-default_background" id="26a33974-4d17-80b8-bb48-e4d1dc15548b"><img alt="rese-wine_icon" src="../icons/rese-wine-icon.png" style="width:1em;height:1em"/> <strong>Розовые вина</strong></h2><h3 class="block-color-orange_background" id="26a33974-4d17-803c-8146-efae5b6cb77c"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Reserve de Perly Rose d'Anjou <strong>(полусладкое)  </strong> <strong> </strong></h3><div class="column-list" id="26a33974-4d17-8077-bd15-dbc2ea600d33"><div class="column" id="26a33974-4d17-8035-aba5-fe6c56026963" style="width:81.25%"><figure id="26a33974-4d17-8023-9ae5-d5bc5d5bde3e"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Reserve De Perly Rose Danjou" class="wine-audio-btn wab-v3" data-audio-id="aud_64768bad_vino_reserve-de-perly-rose-danjou">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Reserve De Perly Rose Danjou</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_64768bad_vino_reserve-de-perly-rose-danjou" preload="none" src="../audio/wine/vino-reserve-de-perly-rose-danjou.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-809d-994a-da379d48ac11"><strong>Страна/Регион:</strong> Франция, Долина Луары.</p><p class="" id="26a33974-4d17-80d9-bc33-edf41b270af5"><strong>Производитель:</strong> Loire Propriétés (Луар Проприете).</p><p class="" id="26a33974-4d17-8007-88b9-e38da9a9ebeb"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-802c-8cc5-fb56a71295c5"><li style="list-style-type:disc">Гролло: 100%.</li></ul><p class="" id="26b33974-4d17-80cc-ac4d-d30935b70caa">
+</p><figure class="block-color-pink_background callout" id="26a33974-4d17-8032-b078-f356dbffdfdb" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><table class="simple-table" id="26a33974-4d17-800a-9609-dc7c4fbaee12"><thead class="simple-table-header"><tr id="26a33974-4d17-80ab-ab0e-d2854b3d67b1"><th class="block-color-pink_background simple-table-header" id="yV\A" style="width:119.1875px"><strong>Вино</strong></th><th class="block-color-pink_background simple-table-header" id="o]&lt;Y" style="width:89.6015625px"><strong>Стиль</strong></th><th class="block-color-pink_background simple-table-header" id="r]gC" style="width:99.25px"><strong>К жирной рыбе</strong></th><th class="block-color-pink_background simple-table-header" id="EM;Y" style="width:318px"><strong>Комментарий</strong></th></tr></thead><tbody><tr id="26a33974-4d17-804f-8a2a-d949df0ec6ac"><td class="" id="yV\A" style="width:119.1875px"><strong>Réserve de Perly Rosé d’Anjou</strong></td><td class="" id="o]&lt;Y" style="width:89.6015625px">Полусухое, фруктовое</td><td class="" id="r]gC" style="width:99.25px">⚠️ Условно</td><td class="" id="EM;Y" style="width:318px"><strong>Возможно, но не лучший выбор.</strong> Если рыба — холодная закуска или с ягодным соусом — да. Но в целом сладковатое розе будет спорить с жиром.</td></tr></tbody></table></div></figure><p class="" id="26b33974-4d17-80fc-bf6b-f8fa12a449a1">
+</p></div><div class="column" id="26a33974-4d17-8050-a297-fd35b7b10436" style="width:18.750000000000007%"><figure class="image" id="26a33974-4d17-808e-8caa-d82b77430c0f"><a href="../images/vino-reserve-de-perly-rose-danjou.jpg"><img src="../images/vino-reserve-de-perly-rose-danjou.jpg" style="width:120px"/></a><figcaption>Reserve de Perly Rose d'Anjou </figcaption></figure></div></div><hr id="26b33974-4d17-8074-b90a-f3d4865ee597"/><h1 class="" id="26a33974-4d17-80a2-91c7-ef7a5fae485c"><strong>Coravin</strong></h1><h2 class="block-color-default_background" id="26a33974-4d17-8021-a070-fcf147bc54b7"><img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> <strong>Красные вина</strong></h2><div class="column-list" id="26a33974-4d17-802a-8ee4-ff3ec5d8d984"><div class="column" id="26a33974-4d17-81dc-af00-d4302e6c4ac8" style="width:25%"><h3 class="block-color-orange_background" id="26a33974-4d17-8166-8b01-e85390296221"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span>"La Ciaude", Domaine Anne Gros &amp; Jean-Paul Tollot    </h3><p class="" id="26b33974-4d17-80c8-9adf-c40d7d96719d">
+</p><figure id="26a33974-4d17-80ab-8944-e3f1ef5f249c"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: La Ciaude Domaine Anne Gros Jean Paul Tollot" class="wine-audio-btn wab-v3" data-audio-id="aud_ba3e90b9_vino_la-ciaude-domaine-anne-gros-jean-paul-tollot">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> La Ciaude Domaine Anne Gros Jean Paul Tollot</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_ba3e90b9_vino_la-ciaude-domaine-anne-gros-jean-paul-tollot" preload="none" src="../audio/wine/vino-la-ciaude-domaine-anne-gros-jean-paul-tollot.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-81f1-95a6-f1f01b914468"><strong>Страна/Регион: </strong>Франция, Лангедок-Руссильон.</p><p class="" id="26a33974-4d17-81f4-8546-c9cc7f3a5857"><strong>Производитель:</strong> Anne Gros (Анн Гро).</p><p class="" id="26a33974-4d17-8103-9d9f-d1635d9fa764"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-81a1-89f2-c46cb74c15c4"><li style="list-style-type:disc">Сира: 40%.</li></ul><ul class="bulleted-list" id="26a33974-4d17-80ff-923d-f2f9287f0fef"><li style="list-style-type:disc">Кариньяно: 40%</li></ul><ul class="bulleted-list" id="26a33974-4d17-8083-a7ea-ce9e20bae2ed"><li style="list-style-type:disc">Гренаш: (Гарнача): 20%.</li></ul></div><div class="column" id="26b33974-4d17-8089-81bf-d5bae8928715" style="width:25%"><h3 class="block-color-orange_background" id="26a33974-4d17-81af-bf0e-f79f9b95ef25"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> «Bourgogne Pinot Noir Terres de Famille», Domaine de la Vougeraie  </h3><p class="" id="26b33974-4d17-8028-a91d-cd303af8de1d">
+</p><figure id="26a33974-4d17-808c-aae7-d3dcdd6edfe4"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Bourgogne Pinot Noir Terres De Famille Domaine De La Vougeraie.jpg" class="wine-audio-btn wab-v3" data-audio-id="aud_87b50700_vino-bourgogne-pinot-noir-terres-de-famille-domaine-de-la-vougeraie.jpg">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Bourgogne Pinot Noir Terres De Famille Domaine De La Vougeraie.jpg</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_87b50700_vino-bourgogne-pinot-noir-terres-de-famille-domaine-de-la-vougeraie.jpg" preload="none" src="../audio/wine/vino-bourgogne-pinot-noir-terres-de-famille-domaine-de-la-vougeraie.jpg.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-81f5-aec2-d4daecacc9fb"><strong>Страна/Регион: </strong>Франция, Бургундия.</p><p class="" id="26a33974-4d17-8168-8a61-d689e1880a93"><strong>Производитель:</strong> Domaine de la Vougeraie.</p><p class="" id="26a33974-4d17-81ba-a6e3-ee2fbc48b6dd"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-813f-b94e-c54991dd0623"><li style="list-style-type:disc">Пино Нуар: 100%.</li></ul><p class="" id="26b33974-4d17-80a0-b1f1-fed85e7790cb">
+</p></div><div class="column" id="26a33974-4d17-81ee-9cba-d78ec2c77aa2" style="width:50.00000000000002%"><figure class="block-color-teal_background callout" id="26b33974-4d17-8064-8605-d43f98eff269" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26b33974-4d17-808d-a3a8-c61f53342495"><strong>Coravin</strong> — американская компания, основанная в 2011 году талантливым изобретателем Грегом Ламбрехтом. <strong>Coravin</strong> — это инновационная система для подачи вина, которая позволяет наливать напиток из бутылки, <strong>не вынимая пробку. </strong></p><p class="" id="26b33974-4d17-8014-a47f-ddacde49e6a1">В пробку вводится тонкая игла, через которую в бутылку подаётся инертный газ (обычно аргон). Под давлением вино вытекает через иглу в бокал. В итоге пробка цела и снова герметично закрывает бутылку, вино сохраняется в бутылке <strong>месяцами и даже годами</strong> после первого налива. Это дает возможность попробовать редкое или дорогое вино по бокалам, не открывая всю бутылку.</p></div></figure></div></div><div class="column-list" id="26b33974-4d17-809e-a5ea-fd59d75bd84b"><div class="column" id="26b33974-4d17-80c9-82e2-edcb8b60fb49" style="width:50%"><h3 class="block-color-orange_background" id="26a33974-4d17-81cb-b386-dd64e09080f2"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> «Fumin» Les Cretes<strong> </strong> <strong> </strong></h3><p class="" id="26b33974-4d17-8073-be55-d1113548db21">
+</p><figure id="26a33974-4d17-80ab-b17b-cb72a5d66057"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Fumin Les Cretes" class="wine-audio-btn wab-v3" data-audio-id="aud_1d38820b_vino_fumin-les-cretes">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Fumin Les Cretes</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_1d38820b_vino_fumin-les-cretes" preload="none" src="../audio/wine/vino-fumin-les-cretes.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-81f2-9be1-e9d84953cee3"><strong>Страна/Регион:</strong> Италия, Валле д'Аоста.</p><p class="" id="26a33974-4d17-8133-b565-d9797cde6688"><strong>Производитель:</strong> Les Cretes.</p><p class="" id="26a33974-4d17-81d0-a2da-e3b2036c7b95"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-813d-bc35-ff369fcfd245"><li style="list-style-type:disc">Фумин: 100%.</li></ul><p class="" id="26b33974-4d17-80e3-916e-d474eabfb37b">
+</p><figure class="block-color-teal_background callout" id="26a33974-4d17-804e-9726-d0129b799b67" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-810e-b09e-d3960001986e"> <strong>Фумин</strong> или <strong>Фюман </strong>(Fumin) – тёмный сорт винограда из крошечного региона Валле д’Аоста, на северо-западе Италии. Как и всё местное виноделие, этот сорт можно отнести скорее к местному специалитету (автохтонный), поскольку вин из него, как и общий объём местного виноделия очень мал. </p><p class="" id="26a33974-4d17-8089-b46f-d594d35de3cc">Фумин практически перестал использоваться виноградарями и только в 1993 году компания Ле Крет сделала смелый шаг в сторону возрождения этого сорта и, как оказалось, не зря. Незамедлительный успех вина Фумин объясняется тем, что в нем передается особый характер местности Валле д'Аоста. Виноградники расположены на легких песчаных почвах на высоте 650 метров над уровнем моря. Большая разница дневных и ночных температур позволяет ягодам развивать отличные ароматические и вкусовые качества.</p><p class="" id="26a33974-4d17-809a-a9f4-e0bbe82f7e24">Очень часто это полнотелые, пряные вина с высокой кислотностью и танином. </p></div></figure><p class="" id="26b33974-4d17-80d6-8278-e24c94aea1f3">
+</p></div><div class="column" id="26b33974-4d17-80f4-91fe-e22aa39cf7af" style="width:50%"><h3 class="block-color-orange_background" id="26a33974-4d17-816c-a81a-fd09b9d53976"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> "50 &amp; 50", Avignonesi &amp; Capannelle  </h3><p class="" id="26b33974-4d17-8058-b05e-c1b2e8d96adc">
+</p><figure id="26a33974-4d17-80fa-b8ec-d056daed6fcf"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: 50 50 Avignonesi Capannelle" class="wine-audio-btn wab-v3" data-audio-id="aud_7a919b4c_vino_50-50-avignonesi-capannelle">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> 50 50 Avignonesi Capannelle</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_7a919b4c_vino_50-50-avignonesi-capannelle" preload="none" src="../audio/wine/vino-50-50-avignonesi-capannelle.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-81c6-aac2-f576d2a9db5f"><strong>Страна/Регион: </strong>Италия, Тоскана.</p><p class="" id="26a33974-4d17-813a-9794-f5bf5d828a50"><strong>Производитель:</strong> Capannelle.</p><p class="" id="26a33974-4d17-81c8-8357-c4711a216941"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-8155-acbb-efcc8a670f4e"><li style="list-style-type:disc">Мерло: 50%.</li></ul><ul class="bulleted-list" id="26a33974-4d17-8027-9dbe-ef7e822b17a5"><li style="list-style-type:disc">Санджовезе: 50%.</li></ul><p class="" id="26b33974-4d17-80b7-a54b-f8acde5f99a5">
+</p><figure class="block-color-teal_background callout" id="26a33974-4d17-805e-9e4b-fa03dfa97495" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-80ef-91ee-db9cbd951e3b"><strong>50&amp;50</strong> — это результат великой коллаборации двух производителей из Тосканы. </p><p class="" id="26a33974-4d17-808b-95ea-dd12788f50ab">В 1988 году владельцы двух тосканских хозяйств — <strong>Avignonesi</strong> и <strong>Capannelle</strong> встретились на дружеском ужине. За столом они спорили, чьё вино лучше, и решили попробовать необычный эксперимент: смешали 50 % Мерло (Avignonesi) и 50 % Санджовезе (Capannelle).</p><p class="" id="26a33974-4d17-8045-b1c7-dca48b00735f">Результат оказался настолько гармоничным, что его тут же разлили в бутылки — и дали простое, но символичное имя: <strong>50&amp;50</strong>. Так в результате спора двух виноделов за ужином они  случайно создали легенду.</p><p class="" id="26a33974-4d17-80dc-8b75-e8005766efed">Сегодня это культовое тосканское вино выпускается только в лучшие годы, а каждая бутылка хранит в себе не просто вкус, а историю дружбы, спонтанности и великой тосканской традиции.</p><p class="" id="26a33974-4d17-80df-9217-eddb56bfd923">
+</p></div></figure></div></div><div class="column-list" id="26a33974-4d17-80a2-b3d0-fea7febd9a6d"><div class="column" id="26a33974-4d17-8185-9509-d5e333997724" style="width:25%"><figure class="image" id="26a33974-4d17-81ed-8fb3-f6b8e66247b1"><a href="../images/vino-la-ciaude-domaine-anne-gros-jean-paul-tollot.jpg"><img src="../images/vino-la-ciaude-domaine-anne-gros-jean-paul-tollot.jpg" style="width:142.9921875px"/></a><figcaption>"La Ciaude", Domaine Anne Gros &amp; Jean-Paul Tollot  <strong> </strong></figcaption></figure><p class="" id="26b33974-4d17-80f8-8cec-d597487d8df1">
+</p></div><div class="column" id="26a33974-4d17-81a3-bf75-c3e37da29eeb" style="width:25%"><figure class="image" id="26a33974-4d17-815d-80c1-d8c953348b0f"><a href="../images/vino-bourgogne-pinot-noir-terres-de-famille-domaine-de-la-vougeraie.jpg"><img src="../images/vino-bourgogne-pinot-noir-terres-de-famille-domaine-de-la-vougeraie.jpg" style="width:142.9921875px"/></a><figcaption>«Bourgogne Pinot Noir Terres de Famille», Domaine de la Vougeraie</figcaption></figure></div><div class="column" id="26a33974-4d17-8021-8e4e-e981f6d85052" style="width:25%"><figure class="image" id="26a33974-4d17-8105-bef9-cf85ac6611c8"><a href="../images/vino-fumin-les-cretes.jpg"><img src="../images/vino-fumin-les-cretes.jpg" style="width:142.984375px"/></a><figcaption>«Fumin» Les Cretes</figcaption></figure></div><div class="column" id="26a33974-4d17-800c-8550-c7d94735de06" style="width:25%"><figure class="image" id="26a33974-4d17-81d7-828f-f9ce13ba27b5"><a href="../images/vino-50-50-avignonesi-capannelle.jpg"><img src="../images/vino-50-50-avignonesi-capannelle.jpg" style="width:108px"/></a><figcaption>"50 &amp; 50", Avignonesi &amp; Capannelle</figcaption></figure></div></div><figure class="block-color-red_background callout" id="26a33974-4d17-808e-9139-e754e016e797" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><table class="simple-table" id="26a33974-4d17-8040-90f9-c9c5eb63ae67"><thead class="simple-table-header"><tr id="26a33974-4d17-8009-9dca-f762a712ab42"><th class="block-color-red_background simple-table-header" id="cWU@" style="width:193.671875px"><strong>Вино</strong></th><th class="block-color-red_background simple-table-header" id="=|lD" style="width:111.546875px"><strong>Стиль</strong></th><th class="block-color-red_background simple-table-header" id="@:;H" style="width:98.1015625px"><strong>К жирному мясу</strong></th><th class="block-color-red_background simple-table-header" id="X|@y" style="width:537px"><strong>Комментарий</strong></th></tr></thead><tbody><tr id="26a33974-4d17-802b-b6e7-f06ea13f3b9a"><td class="" id="cWU@" style="width:193.671875px"><strong>La Ciaude</strong> <strong>(Anne Gros &amp; Tollot)</strong></td><td class="" id="=|lD" style="width:111.546875px">Плотное, пряное</td><td class="" id="@:;H" style="width:98.1015625px">✅ Да</td><td class="" id="X|@y" style="width:537px"><strong>Отлично подходит к жирному мясу</strong> — особенно к ягнёнку, утке, говядине, ребрам BBQ. Держит и жир, и соусы, и дым.</td></tr><tr id="26a33974-4d17-80da-9030-f246d909052d"><td class="" id="cWU@" style="width:193.671875px"><strong>Bourgogne Pinot Noir, Terres de Famille</strong></td><td class="" id="=|lD" style="width:111.546875px">Лёгкое, изящное</td><td class="" id="@:;H" style="width:98.1015625px">❌ Нет</td><td class="" id="X|@y" style="width:537px"><strong>Не для жирного мяса.</strong> Хорошо — к телятине, кролику, запечённой птице, грибам. Тонкое и изящное.</td></tr><tr id="26a33974-4d17-801b-a3ac-ea016459391f"><td class="" id="cWU@" style="width:193.671875px"><strong>Fumin</strong> <strong>(Les Crêtes)</strong></td><td class="" id="=|lD" style="width:111.546875px">Структурное, прохладное</td><td class="" id="@:;H" style="width:98.1015625px">⚠️ Условно</td><td class="" id="X|@y" style="width:537px"><strong>Можно — если мясо не слишком жирное.</strong> Хорошо к ягнёнку, телятине, утке без сладких соусов. Не выдержит стейк или BBQ.</td></tr><tr id="26a33974-4d17-8000-b508-f1e708cd90a1"><td class="" id="cWU@" style="width:193.671875px"><strong>50 &amp; 50</strong> <strong>(Avignonesi &amp; Capannelle)</strong></td><td class="" id="=|lD" style="width:111.546875px">Мощное, бархатное</td><td class="" id="@:;H" style="width:98.1015625px">✅ Да</td><td class="" id="X|@y" style="width:537px">Это флагман Тосканы — мощное и гармоничное вино из двух лучших виноделен. Идеально к говядине, ребрам, мясу в соусе.</td></tr></tbody></table></div></figure><hr id="26b33974-4d17-807c-908d-f8923d50d080"/><h2 class="block-color-default_background" id="26a33974-4d17-8044-819c-fdeabe9a12d9"><img alt="white-wine-icon" src="../icons/white-wine-icon.png" style="width:1em;height:1em"/> <strong>Белые вина</strong></h2><div class="column-list" id="26a33974-4d17-805e-a7f0-f355e73fa8a4"><div class="column" id="26a33974-4d17-8003-931d-d5e6801e83e4" style="width:15.625%"><figure class="image" id="26a33974-4d17-81b7-bcb5-f6bfd9a599e8"><a href="../images/vino-oasi-mantellina-lugana-allegrini.jpg"><img src="../images/vino-oasi-mantellina-lugana-allegrini.jpg" style="width:144px"/></a><figcaption>«Oasi Mantellina», Lugana, Allegrini </figcaption></figure></div><div class="column" id="26a33974-4d17-81f7-95b7-c9264ca22864" style="width:31.25%"><h3 class="block-color-orange_background" id="26a33974-4d17-811c-8c84-fb86650dde81"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span>  «Oasi Mantellina», Lugana, Allegrini </h3><p class="" id="26b33974-4d17-8095-8f21-d722e240b328">
+</p><figure id="26a33974-4d17-802e-872f-f555ac04ebcc"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Oasi Mantellina Lugana Allegrini" class="wine-audio-btn wab-v3" data-audio-id="aud_092e7cc6_vino_oasi-mantellina-lugana-allegrini">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Oasi Mantellina Lugana Allegrini</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_092e7cc6_vino_oasi-mantellina-lugana-allegrini" preload="none" src="../audio/wine/vino-oasi-mantellina-lugana-allegrini.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-81fc-a3ac-f66f502f3404"><strong>Страна/Регион:</strong> Италия, Ломбардия (аппелласьон Lugana).</p><p class="" id="26a33974-4d17-8124-991d-efb81f84b751"><strong>Производитель: </strong>Allegrini. </p><p class="" id="26a33974-4d17-819e-a429-f1cc5bab66a5"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-81f1-996b-f5d10e89ef5b"><li style="list-style-type:disc">Турбиана.</li></ul><ul class="bulleted-list" id="26a33974-4d17-80c0-bff1-ebcf9402bdfc"><li style="list-style-type:disc">Кортезе.</li></ul></div><div class="column" id="26a33974-4d17-8185-8954-fb930b72d523" style="width:28.125%"><h3 class="block-color-orange_background" id="26a33974-4d17-8144-b1a2-fb7ab495af76"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Вourgogne Cardonnay, Manuel Olivier   <strong> </strong> </h3><p class="" id="26b33974-4d17-8090-81ef-f6094a97eff5">
+</p><figure id="26a33974-4d17-8087-8d03-fed9bcf59cd5"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Bourgogne Cardonnay Manuel Olivier" class="wine-audio-btn wab-v3" data-audio-id="aud_238f14d8_vino_bourgogne-cardonnay-manuel-olivier">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Bourgogne Cardonnay Manuel Olivier</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_238f14d8_vino_bourgogne-cardonnay-manuel-olivier" preload="none" src="../audio/wine/vino-bourgogne-cardonnay-manuel-olivier.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-8159-bf08-f2839e0dc2ee"><strong>Страна/Регион:</strong> Франция, Бургундия.</p><p class="" id="26a33974-4d17-81a3-9d3c-d60143624136"><strong>Производитель:</strong> Domaine Manuel Olivier.</p><p class="" id="26a33974-4d17-81e8-a3e1-dcaf9f2a98ed"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-8116-8126-d03b88eb8984"><li style="list-style-type:disc">Шардоне: 100%.</li></ul></div><div class="column" id="26a33974-4d17-8057-abc5-cba5e05662e6" style="width:25%"><figure class="image" id="26a33974-4d17-81b3-9f56-f4e75a5ee2be"><a href="../images/vino-bourgogne-cardonnay-manuel-olivier.png"><img src="../images/vino-bourgogne-cardonnay-manuel-olivier.png" style="width:144px"/></a><figcaption>Вourgogne Cardonnay, Manuel Olivier </figcaption></figure></div></div><figure class="block-color-blue_background callout" id="26a33974-4d17-805a-a6e1-eab4d924493e" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><table class="simple-table" id="26a33974-4d17-80cd-aa14-edba3e57c803"><thead class="simple-table-header"><tr id="26a33974-4d17-80e0-aa88-d922ea1e4256"><th class="block-color-blue_background simple-table-header" id="E@if" style="width:208.640625px"><strong>Вино</strong></th><th class="block-color-blue_background simple-table-header" id="sACr" style="width:163.359375px"><strong>Стиль</strong></th><th class="block-color-blue_background simple-table-header" id="uXxq" style="width:92.4609375px"><strong>К жирной рыбе</strong></th><th class="block-color-blue_background simple-table-header" id="eitF" style="width:421px"><strong>Комментарий</strong></th></tr></thead><tbody><tr id="26a33974-4d17-8027-9c46-e89d19da6d7b"><td class="" id="E@if" style="width:208.640625px"><strong>Oasi Mantellina, Lugana, Allegrini</strong></td><td class="" id="sACr" style="width:163.359375px">Минеральное, округлое</td><td class="" id="uXxq" style="width:92.4609375px">✅ Да</td><td class="" id="eitF" style="width:421px">Турбиана отлично сочетается с жирной рыбой и морепродуктами.</td></tr><tr id="26a33974-4d17-8082-b76b-ca8f088491fd"><td class="" id="E@if" style="width:208.640625px"><strong>Bourgogne Chardonnay, Manuel Olivier</strong></td><td class="" id="sACr" style="width:163.359375px">Минеральное, элегантное</td><td class="" id="uXxq" style="width:92.4609375px">✅ Да</td><td class="" id="eitF" style="width:421px">Классика к жареной рыбе и сливочным соусам. Изящный бургундский стиль.</td></tr></tbody></table></div></figure><hr id="26b33974-4d17-8071-a2d3-f271da1c51f6"/><h2 class="block-color-default_background" id="26a33974-4d17-809d-bb51-e2c58d1da556"><img alt="rese-wine_icon" src="../icons/rese-wine-icon.png" style="width:1em;height:1em"/> <strong>Розовые вина</strong></h2><h3 class="block-color-orange_background" id="26a33974-4d17-8066-b2c9-fc20808fdaf2"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> «Tavel», E. Guigal   <strong> </strong> <strong> </strong></h3><div class="column-list" id="26a33974-4d17-80b2-a1ab-cd1382da59d7"><div class="column" id="26a33974-4d17-805a-91c0-ed6e98c7a22e" style="width:18.75%"><figure class="image" id="26a33974-4d17-8032-9ff4-ddde38e6def0"><a href="../images/vino-tavel-e-guigal.jpg"><img src="../images/vino-tavel-e-guigal.jpg" style="width:144.375px"/></a><figcaption>«Tavel», E. Guigal</figcaption></figure></div><div class="column" id="26a33974-4d17-80b8-8d78-c3b672d4c1a8" style="width:81.25%"><figure id="26a33974-4d17-8032-9f0c-e16cc3c15d2f"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Tavel E Guigal" class="wine-audio-btn wab-v3" data-audio-id="aud_fd69e2c1_vino_tavel-e-guigal">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Tavel E Guigal</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_fd69e2c1_vino_tavel-e-guigal" preload="none" src="../audio/wine/vino-tavel-e-guigal.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-80bd-ba82-eec605523ecc"><strong>Страна/Регион:</strong> Франция, Долина Роны (апелласьон Тавель).</p><p class="" id="26a33974-4d17-80b7-9d85-de2c20057ff5"><strong>Производитель:</strong> Гигаль (Guigal).</p><p class="" id="26a33974-4d17-8019-9ed1-c0818b197ec6"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-8077-9579-fefb01d78064"><li style="list-style-type:disc">:Гренаш - 50%.</li></ul><ul class="bulleted-list" id="26a33974-4d17-8061-9210-e526e9c2f7f0"><li style="list-style-type:disc">Сенсо - 15 %.</li></ul><ul class="bulleted-list" id="26a33974-4d17-80bb-b8e0-efbc89e6cbb0"><li style="list-style-type:disc">Клерет - 10%.</li></ul><ul class="bulleted-list" id="26a33974-4d17-80cc-b025-d7afc8100cfe"><li style="list-style-type:disc">Сира - 10 %.</li></ul><p class="" id="26b33974-4d17-80d9-b61b-c2efec2b671c">
+</p><figure class="block-color-pink_background callout" id="26a33974-4d17-80b3-9b70-deaf5266adb6" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><table class="simple-table" id="26a33974-4d17-80a2-8d0d-d38ca6968ac6"><thead class="simple-table-header"><tr id="26a33974-4d17-80f3-aeca-c533474cee61"><th class="block-color-pink_background simple-table-header" id="E@if" style="width:72.640625px">Вино</th><th class="block-color-pink_background simple-table-header" id="sACr" style="width:85.359375px">Стиль</th><th class="block-color-pink_background simple-table-header" id="uXxq" style="width:92.4609375px">К жирной рыбе</th><th class="block-color-pink_background simple-table-header" id="eitF" style="width:420.0390625px">Комментарий</th></tr></thead><tbody><tr id="26a33974-4d17-80d2-8fc7-ef7e4da758bd"><td class="" id="E@if" style="width:72.640625px"><strong>Tavel, E. Guigal</strong></td><td class="" id="sACr" style="width:85.359375px">Сухое, плотное, пряное</td><td class="" id="uXxq" style="width:92.4609375px">✅ Да</td><td class="" id="eitF" style="width:420.0390625px">Выдержит лосося, тунца, гриль и прованские травы. Структурное насыщенное розе.</td></tr></tbody></table></div></figure><p class="" id="26b33974-4d17-8026-b127-d65dafe56ae7">
+</p></div></div><hr id="26b33974-4d17-80b0-8d1c-ec2fe71c2156"/><h1 class="" id="26a33974-4d17-80cc-9b9b-c980e7989a67"><strong>Полубутылки (375 мл)</strong></h1><h2 class="block-color-default_background" id="26a33974-4d17-8050-8230-d15b54a5b38a"><img alt="sparkling-wine_icon" src="../icons/sparkling-wine-icon.webp" style="width:1em;height:1em"/> <strong>Шампанское</strong></h2><h3 class="block-color-orange_background" id="26a33974-4d17-80a3-8ec8-f773844d145d"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Piper-Heidsieck White Brut<strong> </strong></h3><div class="column-list" id="26a33974-4d17-80de-999e-ed274c637af1"><div class="column" id="26a33974-4d17-8024-942d-e7a8c5519e20" style="width:75%"><figure id="26b33974-4d17-807b-96b5-ea6454eebcb7"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Piper Heidsieck White Brut" class="wine-audio-btn wab-v3" data-audio-id="aud_d7acfe80_vino_piper-heidsieck-white-brut">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Piper Heidsieck White Brut</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_d7acfe80_vino_piper-heidsieck-white-brut" preload="none" src="../audio/wine/vino-piper-heidsieck-white-brut.mp3"></audio>
+</div></div></figure><p class="" id="26b33974-4d17-8014-8d56-c0c0e481e0dd">
+</p><figure id="26a33974-4d17-800a-86c8-e8d129fb0817"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Piper Heidsieck White Brut 2" class="wine-audio-btn wab-v3" data-audio-id="aud_35e88e71_vino_piper-heidsieck-white-brut-2">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Piper Heidsieck White Brut 2</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_35e88e71_vino_piper-heidsieck-white-brut-2" preload="none" src="../audio/wine/vino-piper-heidsieck-white-brut-2.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-809f-bc44-e98a27393cd2"><strong>Страна/Регион:</strong> Франция, Шампань.</p><p class="" id="26a33974-4d17-80b4-bed6-e4ad897e0ac8"><strong>Производитель:</strong> Piper-Heidsieck (Пайпер-Хайдсик).</p><p class="" id="26a33974-4d17-80e3-b1b6-c97f21f48ff2"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-803c-bf81-f01f93a2388e"><li style="list-style-type:disc">Шардоне.</li></ul><ul class="bulleted-list" id="26a33974-4d17-8085-86a9-ec94b3f86ab5"><li style="list-style-type:disc">Пино Нуар.</li></ul><ul class="bulleted-list" id="26a33974-4d17-8042-80a6-fd083a9e5f61"><li style="list-style-type:disc">Пино Менье.  </li></ul><p class="" id="26b33974-4d17-80d4-b093-c359dbd8095e">
+</p><figure class="block-color-teal_background callout" id="26a33974-4d17-80e1-ab0d-c68e95bb811e" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><table class="simple-table" id="26a33974-4d17-8075-889d-d7277ce548be"><thead class="simple-table-header"><tr id="26a33974-4d17-8016-accb-dc98820c6d7c"><th class="block-color-teal_background simple-table-header" id="gRJE" style="width:112.75px"><strong>Вино</strong></th><th class="block-color-teal_background simple-table-header" id="D|Um" style="width:103.75px"><strong>Стиль</strong></th><th class="block-color-teal_background simple-table-header" id="y^Dh" style="width:96.75px"><strong>К жирной рыбе</strong></th><th class="block-color-teal_background simple-table-header" id="aFN~" style="width:165.75px"><strong>Комментарий</strong></th></tr></thead><tbody><tr id="26a33974-4d17-80d7-8e7a-d4600993c055"><td class="" id="gRJE" style="width:112.75px"><strong>Piper-Heidsieck White Brut</strong></td><td class="" id="D|Um" style="width:103.75px">Сухое, освежающее, минеральное.</td><td class="" id="y^Dh" style="width:96.75px">✅ Да</td><td class="" id="aFN~" style="width:165.75px">Классическое шампанское: кислотность и пузыри идеально сочетаются с жирной рыбой («очищают» жир).</td></tr></tbody></table></div></figure><p class="" id="26b33974-4d17-8089-aeb5-d58f70472d76">
+</p></div><div class="column" id="27233974-4d17-8071-b4ea-d240514675c5" style="width:24.999999999999982%"><figure class="image" id="26a33974-4d17-8068-be7e-cdc78041ce26"><a href="../images/vino-piper-heidsieck-white-brut.jpg"><img src="../images/vino-piper-heidsieck-white-brut.jpg" style="width:192px"/></a><figcaption>Piper-Heidsieck White Brut</figcaption></figure></div></div><figure class="block-color-teal_background callout" id="26a33974-4d17-80af-9457-e8c5d10104a0" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-80d3-ae77-d46a40921f4f"><strong>Шампань</strong> (фр. <em>Champagne</em>) — историческая область во Франции, знаменитая винодельческими традициями. Среди главных сортов винограда, произрастающего в регионе, — <strong>шардоне</strong> (<em>фр</em>. <em>chardonnay</em>), <strong>пино нуар</strong> (<em>фр.</em> <em>pinot noir</em>) и <strong>пино мёнье</strong> (<em>фр.</em> <em>pinot meunier</em>). Эта область получила самую широкую мировую известность благодаря производству белого игристого вина — Шампанского (vin de Champagne<em>)</em>. Согласно законодательству Европейского союза, а также законодательству большинства стран, название <em>Шампанское</em> закреплено за винами, происходящими исключительно из этого <em>винодельческого региона</em>, расположившегося в 160 километрах к востоку от Парижа. </p><p class="" id="26b33974-4d17-804f-9041-ca810d2da3e5">Здесь разрешен только ручной сбор винограда. Сырьем для шампанских вин может служить виноград трех основных сортов: Шардоне, Пино Нуар и Пино Менье (хотя допускается к использованию также пино блан, пино гри, пти мелье и арбан). Главное отличие от многих (но не всех) игристых вин в методе изготовления. Эта технология называется <strong>«Шампенуа»</strong> (традиционный метод) и предполагает этап выдержки вина на дрожжевом осадке. Срок выдержки может колебаться от 12 до 36 и более месяцев. При традиционном подходе бутылки ежедневно поворачивали специальные люди — ремюёры.</p><p class="" id="26b33974-4d17-80c3-b642-dd9ceafe9861">Получившееся вино имеет во вкусе и аромате не только свежие фруктовые нотки, но и хлебные, ореховые, сливочные. Именно этим оно отличается, к примеру, от вин, произведенных по технологии Шарма.</p></div></figure><hr id="26b33974-4d17-80c7-98f3-d8335a4ad4f9"/><h2 class="block-color-default_background" id="26a33974-4d17-80d9-a8db-da60e0783f0a"><img alt="wine_icon" src="../icons/wine-icon.png" style="width:1em;height:1em"/> <strong>Красные вина</strong></h2><div class="column-list" id="26a33974-4d17-80c4-836a-fc38dc2a07f3"><div class="column" id="26a33974-4d17-8197-b1f5-edea1e77d6b1" style="width:56.25%"><h3 class="block-color-orange_background" id="26a33974-4d17-8130-a4a4-e3543d052a1d"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Speri, Valpolicella Classico </h3><p class="" id="26b33974-4d17-8009-9e9f-e9190eabf206">
+</p><figure id="26a33974-4d17-8027-8e88-ced453c03112"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Speri Valpolicella Classico" class="wine-audio-btn wab-v3" data-audio-id="aud_0d68384d_vino_speri-valpolicella-classico">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Speri Valpolicella Classico</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_0d68384d_vino_speri-valpolicella-classico" preload="none" src="../audio/wine/vino-speri-valpolicella-classico.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-8178-b4e5-e39765d52990"><strong>Страна/Регион:</strong> Италия, Венето (апелласьон Вальполичелла).</p><p class="" id="26a33974-4d17-81cf-88ef-d359eeb55b0d"><strong>Производитель:</strong> Speri.</p><p class="" id="26a33974-4d17-81a9-b0aa-c67a10b0d3a0"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-8139-ab64-d544b13e930e"><li style="list-style-type:disc">Корвина: 60%.</li></ul><ul class="bulleted-list" id="26a33974-4d17-806b-9ba0-e521484bcf89"><li style="list-style-type:disc">Рондинелла: 30%.</li></ul><ul class="bulleted-list" id="26a33974-4d17-8071-94d3-d510b037e412"><li style="list-style-type:disc">Молинара: 10%.</li></ul><p class="" id="26b33974-4d17-80c2-9b2f-c66508846d48">
+</p><figure class="block-color-teal_background callout" id="26b33974-4d17-80c9-9486-c90809f151c2" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26b33974-4d17-80fc-b661-f08bee2cd89b"><strong>Вальполиче́лла</strong> (<em>итал. </em>Valpolicella) — винодельческая зона, субрегион провинции Верона, в Италии, представляет собой ряд долин и холмов в западной части региона Венето, ограниченных холмами и рекой Адидже. Почвы здесь разнообразны — от красных глинистых до белых кальциевых. Вальполичелла занимает одно из первых мест после Кьянти по общему объёму производства итальянских вин категории <strong>Denominazione di origine controllata</strong> (DOC).</p><p class="" id="26b33974-4d17-80c7-bf47-e5960833c6d8">Здесь выращивают автохтонные красные сорта винограда <strong>Корвина, Рондинелла, Молинара</strong>, практически нигде более не встречающиеся.</p><p class="" id="26b33974-4d17-802e-9c50-e3b4f01bcde5">Большинство основных вин вальполичелла — достаточно легкие, ароматные столовые, которые производятся в стиле <strong>новелло</strong> — итальянском стиле молодого вина, похожем на французское <strong>божоле нуво</strong>, и выпускаются лишь через несколько недель после сбора урожая.</p><p class="" id="26b33974-4d17-8012-8d4b-d8629c785862">В целом можно сказать, что Вальполичелла имеет баланс красных спелых фруктов (вишня, спелая слива), обладает мягкими танинами, имеет сбалансированную кислотность. А в послевкусии можно наблюдать легкую приятную горчинку.</p></div></figure><h3 class="block-color-orange_background" id="26a33974-4d17-8132-8ec3-f2260425ae54"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> Domaine Masson-Blondelet, Sancerre Rouge "Thauvenay   <strong> </strong></h3><p class="" id="26b33974-4d17-80d6-b2e0-edcba2c89fdc">
+</p><figure id="26a33974-4d17-808a-bb7e-d360746f5f8c"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Domaine Masson Blondelet Sancerre Rouge Thauvenay" class="wine-audio-btn wab-v3" data-audio-id="aud_47fc5376_vino_domaine-masson-blondelet-sancerre-rouge-thauvenay">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Domaine Masson Blondelet Sancerre Rouge Thauvenay</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_47fc5376_vino_domaine-masson-blondelet-sancerre-rouge-thauvenay" preload="none" src="../audio/wine/vino-domaine-masson-blondelet-sancerre-rouge-thauvenay.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-8188-8522-e388c2ce30d8"><strong>Страна/Регион: </strong>Франция, Долина Луары (апелласьон Сансер).</p><p class="" id="26a33974-4d17-81de-adcb-f2a8af962d5c"><strong>Производитель:</strong> Domaine Masson-Blondelet.  </p><p class="" id="26a33974-4d17-8150-b1ae-ffaa092dec67"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-817b-a88f-cba2ba650ac3"><li style="list-style-type:disc">Пино Нуар: 100%.</li></ul><p class="" id="26b33974-4d17-8085-a9e8-da48623df1ea">
+</p><figure class="block-color-teal_background callout" id="26a33974-4d17-80c4-ac16-d1a02efadd95" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-80cc-af71-d76cec634d0d"><strong>Сансер</strong> (<em>Sancerre</em>) — один из наиболее элитных аппелласьонов  (винодельческих районов) долины Луары, расположенный в её восточной части, на территории коммуны Сансер и ещё 13 окрестных коммун. Специализируется на сухих белых винах (свыше 80 % всей продукции) из автохтонного (луарского) винограда совиньон-блан, которые считаются для этого сорта образцовыми. Реже можно встретить сансерские красные вина (от 10 до 20 % всей продукции аппелласьона) и совсем редко — розовые; оба типа вырабатываются из винограда бургундского сорта пино-нуар. </p></div></figure><p class="" id="26b33974-4d17-803a-8daf-f72439ea0455">
+</p></div><div class="column" id="26a33974-4d17-81d1-a431-d12e7d97cb4b" style="width:43.75%"><h3 class="block-color-orange_background" id="26a33974-4d17-817f-8b51-cc4bdc0f36cb"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Capannelle, "Solare”</h3><p class="" id="26b33974-4d17-80a6-b3db-d27789da794b">
+</p><figure id="26a33974-4d17-80ce-a787-cf6b1b24f735"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Capannelle Solare" class="wine-audio-btn wab-v3" data-audio-id="aud_0be1a0ce_vino_capannelle-solare">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Capannelle Solare</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_0be1a0ce_vino_capannelle-solare" preload="none" src="../audio/wine/vino-capannelle-solare.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-81db-b1ca-e84115f20880"><strong>Страна/Регион:</strong> Италия, Тоскана.</p><p class="" id="26a33974-4d17-811b-a03d-ec1f28476c77"><strong>Производитель:</strong> Capannelle.</p><p class="" id="26a33974-4d17-81cc-89c7-e32e0f8f2c44"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-81d7-abdd-fc973ea3c233"><li style="list-style-type:disc">Санджовезе: 80%.</li></ul><ul class="bulleted-list" id="26a33974-4d17-8062-9c13-ed94c480df63"><li style="list-style-type:disc">Мальвазия Нера: 20%.</li></ul><h3 class="block-color-orange_background" id="26a33974-4d17-8148-89fc-eb8af60a56a9"> <span class="inline-flag" data-iso="FR" title="FR"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect width="8" height="16" x="16" fill="#EF4135"/></svg></span> "La Reserve d'Angludet", Margaux<strong> </strong></h3><p class="" id="26b33974-4d17-80c7-8cfb-c528e2d42438">
+</p><figure id="26a33974-4d17-8018-9cb1-fea2ce60a878"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: La Reserve D Angludet Margaux" class="wine-audio-btn wab-v3" data-audio-id="aud_672f2e28_vino_la-reserve-d-angludet-margaux">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> La Reserve D Angludet Margaux</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_672f2e28_vino_la-reserve-d-angludet-margaux" preload="none" src="../audio/wine/vino-la-reserve-d-angludet-margaux.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-815a-abd0-ddc9dd46e506"><strong>Страна/Регион: </strong>    Франция, Бордо (апелласьон Марго).   </p><p class="" id="26a33974-4d17-81e7-a2f1-f2cf3bbfcdfe"><strong>Производитель: </strong>Château d'Angludet (шато д’Англюде).</p><p class="" id="26a33974-4d17-8177-ae0d-ea51b1968341"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-8150-b3e1-e217c3b6de9f"><li style="list-style-type:disc">Каберне Совиньон: 50%.</li></ul><ul class="bulleted-list" id="26a33974-4d17-800b-a6d3-f4628f224df0"><li style="list-style-type:disc">Мерло: 45%.</li></ul><ul class="bulleted-list" id="26a33974-4d17-809c-a236-df7fd7134d66"><li style="list-style-type:disc">Пти Вердо: 5%.</li></ul><p class="" id="26b33974-4d17-8034-b3d7-c3b7947fafd3">
+</p><figure class="block-color-teal_background callout" id="26a33974-4d17-8014-8625-c570d2bd50a4" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p class="" id="26a33974-4d17-80ac-a79d-dd4fdf343a52"><strong>Бордо́ </strong>(<em>фр.</em> Bordeaux) — винодельческий регион на юго-западе Франции, расположенный в долине Жиронды (эстуария реки Гаронны), в окрестностях одноимённого города. На протяжении многих столетий славится высоким качеством купажных красных вин и конкурирует в этом отношении с не менее прославленными винами Бургундии.<br/>Красные вина из Бордо темнее и несколько тяжелее бургундских. Для производства красных вин используются главным образом местные сорта винограда: <strong>каберне-совиньон, мерло </strong>и <strong>каберне-фран</strong> (ныне возделываемые и во многих иных регионах).</p><p class="" id="26a33974-4d17-80de-8ffe-d51ad813146a">Белые вина составляют, по некоторым подсчётам, не более 7 % продукции Бордо. В основном используются два сорта белого винограда  —<strong> семийон</strong> и <strong>совиньон-блан</strong>. </p><p class="" id="26a33974-4d17-80b4-a00a-ddd9f5d6358b">Каждый год частные хозяйства Бордо, по-французски именуемые «шато» (<em>фр.</em> <em>château - “дворец”, “имение”</em>), выпускают более 700 млн бутылок красных, белых, сладких и игристых вин (что во много раз превышает объём выпускаемых бургундских вин). </p><p class="" id="26a33974-4d17-8061-9ec7-f4f225c5ab78"><strong>Марго (Margaux AOC)</strong> — один из самых знаменитых апелласьонов Бордо (левый берег Жиронды, регион Медок), входит в классификацию Гран Крю 1855 года. Вина Марго славятся утончённостью и ароматной сложностью. Их часто называют «самыми женственными» среди великих вин Медока.</p></div></figure><p class="" id="26b33974-4d17-8065-a26b-d0b92fd49187">
+</p></div></div><div class="column-list" id="26a33974-4d17-80d9-839f-f66cdfd4ee79"><div class="column" id="26a33974-4d17-815f-91eb-ed8e1350e5b3" style="width:25%"><figure class="image" id="26a33974-4d17-814a-ad92-dcdfccb2019c"><a href="../images/vino-speri-valpolicella-classico.jpg"><img src="../images/vino-speri-valpolicella-classico.jpg" style="width:142.984375px"/></a><figcaption>Speri, Valpolicella Classico</figcaption></figure></div><div class="column" id="26a33974-4d17-81c7-8cd5-ddcaa0e5dc8a" style="width:25%"><figure class="image" id="26a33974-4d17-81e9-af74-fd3e23790ffb"><a href="../images/vino-capannelle-solare.jpg"><img src="../images/vino-capannelle-solare.jpg" style="width:142.9921875px"/></a><figcaption>Capannelle, "Solare”</figcaption></figure></div><div class="column" id="26a33974-4d17-8175-8d43-c7d68ebc3785" style="width:25%"><figure class="image" id="26a33974-4d17-817d-88dc-f78307e03df2"><a href="../images/vino-domaine-masson-blondelet-sancerre-rouge-thauvenay.jpg"><img src="../images/vino-domaine-masson-blondelet-sancerre-rouge-thauvenay.jpg" style="width:142.9921875px"/></a><figcaption>Domaine Masson-Blondelet, Sancerre Rouge "Thauvenay</figcaption></figure></div><div class="column" id="26a33974-4d17-8134-b5cc-fe66944a645f" style="width:25%"><figure class="image" id="26a33974-4d17-815d-ac87-ce553678a529"><a href="../images/vino-la-reserve-d-angludet-margaux.png"><img src="../images/vino-la-reserve-d-angludet-margaux.png" style="width:142.9921875px"/></a><figcaption>"La Reserve d'Angludet", Margaux </figcaption></figure></div></div><figure class="block-color-red_background callout" id="26a33974-4d17-8084-8db5-c8671e9b7783" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><table class="simple-table" id="26a33974-4d17-8073-952e-d1bb9cbbb396"><thead class="simple-table-header"><tr id="26a33974-4d17-8024-9a2c-d8f2485d49dc"><th class="block-color-red_background simple-table-header" id="m?&gt;u" style="width:136.6640625px"><strong>Вино</strong></th><th class="block-color-red_background simple-table-header" id="LyPr" style="width:116.4765625px"><strong>Стиль</strong></th><th class="block-color-red_background simple-table-header" id="}yx~" style="width:123.765625px"><strong>Подходит к жирному мясу?</strong></th><th class="block-color-red_background simple-table-header" id="HMpU" style="width:523px"><strong>Комментарий</strong></th></tr></thead><tbody><tr id="26a33974-4d17-8051-a737-e2d783e01f71"><td class="" id="m?&gt;u" style="width:136.6640625px"><strong>Speri, Valpolicella Classico</strong></td><td class="" id="LyPr" style="width:116.4765625px">Лёгкое, фруктовое</td><td class="" id="}yx~" style="width:123.765625px">❌ Нет</td><td class="" id="HMpU" style="width:523px"><strong>Скорее нет.</strong> Это вино лёгкое и может «потеряться» на фоне жирных, насыщенных блюд. Лучше подавать к пасте, птице, колбаскам, пицце, мясу средней жирности.</td></tr><tr id="26a33974-4d17-80ea-ab57-ff5b6d42d928"><td class="" id="m?&gt;u" style="width:136.6640625px"><strong>Capannelle, Solare</strong></td><td class="" id="LyPr" style="width:116.4765625px">Плотное, структурное</td><td class="" id="}yx~" style="width:123.765625px">✅ Да</td><td class="" id="HMpU" style="width:523px">Богатая структура, плотность и бархатные танины отлично сочетаются с уткой, ягнёнком, рёбрами, стейком с соусом.</td></tr><tr id="26a33974-4d17-8064-9fab-da81fe77efb2"><td class="" id="m?&gt;u" style="width:136.6640625px"><strong>Masson-Blondelet, Sancerre Rouge</strong></td><td class="" id="LyPr" style="width:116.4765625px">Лёгкое, минеральное</td><td class="" id="}yx~" style="width:123.765625px">⚠️ Условно</td><td class="" id="HMpU" style="width:523px"><strong>С осторожностью.</strong> Не к рибаю или утке, но хорошо пойдёт к телятине, ягнёнку или запечённой птице с травами. Если мясо нежное и не доминирующее — можно.</td></tr><tr id="26a33974-4d17-80a8-9191-e5be4cff616d"><td class="" id="m?&gt;u" style="width:136.6640625px"><strong>La Réserve d’Angludet, Margaux</strong></td><td class="" id="LyPr" style="width:116.4765625px">Элегантное, танинное</td><td class="" id="}yx~" style="width:123.765625px">✅ Да</td><td class="" id="HMpU" style="width:523px">Классика к жирному красному мясу, особенно к говядине, утке, стейкам medium-rare. Хорошо держит соусы, грибы, печёные овощи.</td></tr></tbody></table></div></figure><hr id="26b33974-4d17-8026-960c-cd5bb7cdffe0"/><h2 class="block-color-default_background" id="26a33974-4d17-8028-b70a-fa3edf31a85b"><img alt="white-wine-icon" src="../icons/white-wine-icon.png" style="width:1em;height:1em"/> <strong>Белые вина</strong></h2><div class="column-list" id="26a33974-4d17-80af-949d-d4e24bf9464f"><div class="column" id="26a33974-4d17-81b9-a443-ca394e033899" style="width:32.391713747645994%"><h3 class="block-color-orange_background" id="26a33974-4d17-81ca-9681-d32741f88f5f"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Brolettino Lugana, Ca dei Frati (полусухое) <strong> </strong></h3><p class="" id="26b33974-4d17-80f4-8501-deb927175082">
+</p><figure id="26a33974-4d17-80ca-89a7-d7ca3bf85fec"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Brolettino Lugana Ca Dei Frati" class="wine-audio-btn wab-v3" data-audio-id="aud_46ec120d_vino_brolettino-lugana-ca-dei-frati">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Brolettino Lugana Ca Dei Frati</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_46ec120d_vino_brolettino-lugana-ca-dei-frati" preload="none" src="../audio/wine/vino-brolettino-lugana-ca-dei-frati.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-81fa-8e20-c20939349418"><strong>Страна/Регион:</strong> Италия, Венето (апелласьон Лугана).</p><p class="" id="26a33974-4d17-8119-9973-f451044c6123"><strong>Производитель:</strong> Ca dei Frati.</p><p class="" id="26a33974-4d17-815c-b859-e034974818a2"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-813a-847f-d031dd386013"><li style="list-style-type:disc">Турбиана: 100%.</li></ul><h3 class="block-color-orange_background" id="26a33974-4d17-81f8-a474-f9de6c099b80"> <span class="inline-flag" data-iso="IT" title="IT"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect width="8" height="16" x="8" fill="#F1F2F1"/><rect width="8" height="16" x="16" fill="#CE2B37"/></svg></span> Gavi dei Gavi<strong> </strong> </h3><p class="" id="26b33974-4d17-802b-b211-ca397d1ad20a">
+</p><figure id="26a33974-4d17-80c4-8edd-e8bc37c1710d"><div class="source"><div class="wine-audio-wrap">
+<button aria-label="Слушать: Gavi Dei Gavi" class="wine-audio-btn wab-v3" data-audio-id="aud_8dea5287_vino_gavi-dei-gavi">
+<svg class="ico" viewbox="0 0 24 24"><path d="M8 5v14l11-7-11-7z"></path></svg>
+<span class="label"><span class="split">Слушать:</span> Gavi Dei Gavi</span>
+<div class="progress"></div>
+</button>
+<audio id="aud_8dea5287_vino_gavi-dei-gavi" preload="none" src="../audio/wine/vino-gavi-dei-gavi.mp3"></audio>
+</div></div></figure><p class="" id="26a33974-4d17-81c3-9078-f894d436e49b"><strong>Страна/Регион:</strong> Италия, Пьемонт (апелласьон Гави).</p><p class="" id="26a33974-4d17-8100-8441-cbbf0c6987d2"><strong>Производитель:</strong> La Scolca.</p><p class="" id="26a33974-4d17-81e2-948a-c168ca97edde"><strong>Сорт винограда: </strong></p><ul class="bulleted-list" id="26a33974-4d17-81ef-af5d-ef43bc204609"><li style="list-style-type:disc">Кортезе: 100%.</li></ul><p class="" id="26a33974-4d17-8034-bff4-efe286af575d">
+</p></div><div class="column" id="29133974-4d17-8062-a900-fa772feb505d" style="width:29.166666666666664%"><figure class="image" id="26a33974-4d17-81f0-af3f-ef37dedf84ab"><a href="../images/vino-gavi-dei-gavi.jpg"><img src="../images/vino-gavi-dei-gavi.jpg" style="width:144px"/></a><figcaption>Gavi dei Gavi </figcaption></figure></div><div class="column" id="29133974-4d17-8041-8bd1-e7b16d2f596c" style="width:38.441619585687405%"><figure class="image" id="26a33974-4d17-819c-b128-d8d9949d6dec"><a href="../images/vino-brolettino-lugana-ca-dei-frati.jpg"><img src="../images/vino-brolettino-lugana-ca-dei-frati.jpg" style="width:144px"/></a><figcaption>Brolettino Lugana, Ca dei Frati </figcaption></figure></div></div><figure class="block-color-blue_background callout" id="26a33974-4d17-8035-9f38-e3852bb8af66" style="white-space:pre-wrap;display:flex"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><table class="simple-table" id="26a33974-4d17-8088-95bb-dbc1d85af4c9"><thead class="simple-table-header"><tr id="26a33974-4d17-80c2-ad2e-df3069d42a2e"><th class="block-color-blue_background simple-table-header" id="gRJE" style="width:126.4765625px"><strong>Вино</strong></th><th class="block-color-blue_background simple-table-header" id="D|Um" style="width:133.8515625px"><strong>Стиль</strong></th><th class="block-color-blue_background simple-table-header" id="y^Dh" style="width:95.3828125px"><strong>К жирной рыбе</strong></th><th class="block-color-blue_background simple-table-header" id="aFN~" style="width:559px"><strong>Комментарий</strong></th></tr></thead><tbody><tr id="26a33974-4d17-8043-bb3f-e1e107dc2d2c"><td class="" id="gRJE" style="width:126.4765625px"><strong>Brolettino Lugana, Ca dei Frati</strong></td><td class="" id="D|Um" style="width:133.8515625px">Плотное, округлое, выдержанное.</td><td class="" id="y^Dh" style="width:95.3828125px">✅ Да</td><td class="" id="aFN~" style="width:559px">Лугана с выдержкой в бочке: хорошо для лосося, палтуса, тунца. Бархатная текстура дополняет плотную рыбу.</td></tr><tr id="26a33974-4d17-80ea-afb4-e3570c4ade54"><td class="" id="gRJE" style="width:126.4765625px"><strong>Gavi dei Gavi, La Scolca</strong> </td><td class="" id="D|Um" style="width:133.8515625px">Минеральное, хрустящее, цитрусовое.</td><td class="" id="y^Dh" style="width:95.3828125px">✅ Да</td><td class="" id="aFN~" style="width:559px">Отличный выбор к рыбе. Лучшее сочетание — сибас, дорада, тунец на гриле или рыба в лимонном соусе. Подчёркивает свежесть.</td></tr></tbody></table></div></figure><hr id="26b33974-4d17-8063-bcf4-e049f9a76576"/><p class="" id="26b33974-4d17-8074-a550-f7ea8bcaf97b">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+<style>
+.wine-audio-btn{
+  --pad-y:.45rem; --pad-x:.8rem; --radius:12px;
+  --bg:#f6f6f7; --bg-hover:#fffdf8; --shadow:0 2px 6px rgba(0,0,0,.05);
+  --fg:#202020; --muted:#6b6b6b;
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:var(--pad-y) var(--pad-x); border-radius:var(--radius);
+  border:none; background:var(--bg);
+  font:500 15px/1.1 system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif;
+  color:var(--fg); cursor:pointer; user-select:none;
+  box-shadow:var(--shadow); transition:all .22s ease;
+}
+.wine-audio-btn .ico{width:20px; height:20px; display:inline-block; fill:currentColor}
+.wine-audio-btn .split{color:var(--muted); font-weight:400}
+.wab-v3{ position:relative; overflow:hidden }
+.wab-v3 .progress{position:absolute; left:0; bottom:0; height:3px; width:0%; background:linear-gradient(90deg,#ffb168,#ff874d); transition:width .15s linear; border-bottom-left-radius:10px; border-bottom-right-radius:10px}
+.wine-audio-btn:hover{ background:var(--bg-hover); box-shadow:0 0 0 2px #ffb168 }
+.wine-audio-btn:focus-visible{ outline:none; box-shadow:0 0 0 2px #ff874d }
+.wab-v1{ padding:.45rem .6rem; border-radius:999px }
+.wab-v2 .label{ white-space:nowrap }
+.source, figure{ border:none !important; box-shadow:none !important; padding:0 !important; margin:0 !important; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.wine-audio-btn[data-audio-id]').forEach(function(btn){
+    var aid = btn.getAttribute('data-audio-id');
+    var audio = document.getElementById(aid);
+    if(!audio) return;
+    var icon = btn.querySelector('.ico');
+    var prog = btn.querySelector('.progress');
+    function setPlay(){ icon.innerHTML = '<path d="M8 5v14l11-7-11-7z"></path>'; }
+    function setPause(){ icon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"></path>'; }
+    function tick(){ if(!audio.paused && prog && audio.duration){ prog.style.width = (audio.currentTime / audio.duration * 100) + '%'; requestAnimationFrame(tick); } }
+    audio.addEventListener('play', function(){ setPause(); tick(); });
+    audio.addEventListener('pause', function(){ setPlay(); if(prog) prog.style.width='0%'; });
+    audio.addEventListener('ended', function(){ setPlay(); if(prog) prog.style.width='100%'; });
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.wine-audio-btn[data-audio-id]').forEach(function(x){
+        var id = x.getAttribute('data-audio-id');
+        if(id && id !== aid){
+          var a = document.getElementById(id);
+          if(a && !a.paused){ a.pause(); }
+        }
+      });
+      if(audio.paused) audio.play(); else audio.pause();
+    });
+  });
+});
+</script>
+<button class="toc-fab" id="tocFab" type="button">↑ Оглавление</button><style>
+  .toc-fab{
+    position:fixed; right:40px; bottom:40px;
+    padding:15px; border-radius:999px;
+    font:500 12px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:rgba(0,0,0,.75); color:#fff;
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+    cursor:pointer; opacity:0; pointer-events:none; transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease;
+    z-index:2147483647;
+  }
+  .toc-fab.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .toc-fab:active{transform:translateY(1px);}
+</style><script>
+(function(){
+  const btn = document.getElementById('tocFab');
+  const TOC_SELECTORS = '.table_of_contents, #toc';
+  const HIDE_NEAR_TOP = 300;   // рядом с верхом/оглавлением кнопку не показываем
+  const HIDE_TIMEOUT_MS = 1000;
+  let hideTimer = null, muteUntil = 0;
+
+  function findTOC(){ return document.querySelector(TOC_SELECTORS); }
+  function scrollToTOC(){
+    const toc = findTOC();
+    if (!toc) { window.scrollTo({top:0, behavior:'smooth'}); return; }
+    toc.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+  function safeShow(){
+    const now = Date.now();
+    if (now < muteUntil) return;
+    if (window.scrollY < HIDE_NEAR_TOP) { btn.classList.remove('show'); return; }
+    btn.classList.add('show');
+    if (hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(()=> btn.classList.remove('show'), HIDE_TIMEOUT_MS);
+  }
+
+  ['scroll','mousemove','touchmove','keydown'].forEach(ev =>
+    window.addEventListener(ev, safeShow, { passive:true })
+  );
+
+  const tocRoot = findTOC();
+  if (tocRoot){
+    tocRoot.addEventListener('click', (e)=>{
+      if (e.target.closest('a')){
+        btn.classList.remove('show');
+        muteUntil = Date.now() + 1200; // «глушим» всплытие на время прыжка по якорю
+        setTimeout(()=>{ muteUntil = 0; }, 1300);
+      }
+    }, true); // capture
+  }
+
+  window.addEventListener('hashchange', ()=>{
+    btn.classList.remove('show');
+    muteUntil = Date.now() + 800;
+    setTimeout(()=>{ muteUntil = 0; }, 900);
+  });
+
+  btn.addEventListener('click', scrollToTOC);
+})();
+</script><script>
+(function(){
+  const btn = document.getElementById('tocFab');
+  if (!btn) return;
+  function scaleVal(){ return (window.visualViewport && window.visualViewport.scale) || 1; }
+  function apply(){
+    const s = scaleVal();
+    btn.style.transformOrigin = "bottom right";
+    btn.style.transform = "translateZ(0) scale(" + (1/s) + ")";
+    btn.style.right = (40 / s) + "px";
+    btn.style.bottom = (40 / s) + "px";
+  }
+  apply();
+  if (window.visualViewport){
+    window.visualViewport.addEventListener('resize', apply);
+    window.visualViewport.addEventListener('scroll', apply);
+  }
+  window.addEventListener('orientationchange', apply);
+})();
+</script></body></html>

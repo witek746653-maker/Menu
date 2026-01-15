@@ -81,72 +81,24 @@ function WineItemPage() {
       audio.currentTime = 0;
       setAudioPlaying(false);
     } else {
-      // Преобразуем путь к аудио в правильный URL через API
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-      let audioUrl;
-      
-      if (audioPath.startsWith('../audio/')) {
-        // Убираем префикс ../audio/ и добавляем к API URL
-        const filename = audioPath.replace('../audio/', '');
-        audioUrl = `${API_URL}/audio/${filename}`;
-      } else if (audioPath.startsWith('/audio/')) {
-        // Убираем префикс /audio/ и добавляем к API URL
-        const filename = audioPath.replace('/audio/', '');
-        audioUrl = `${API_URL}/audio/${filename}`;
-      } else if (audioPath.startsWith('audio/')) {
-        // Убираем префикс audio/ и добавляем к API URL
-        const filename = audioPath.replace('audio/', '');
-        audioUrl = `${API_URL}/audio/${filename}`;
-      } else {
-        // Для остальных случаев используем как есть
-        audioUrl = audioPath.startsWith('http') ? audioPath : `/${audioPath}`;
-      }
-      
-      // Добавляем обработчики событий для диагностики
-      const handleError = (e) => {
-        console.error('Ошибка загрузки аудио:', {
-          error: e,
-          src: audio.src,
-          audioPath: audioPath,
-          audioUrl: audioUrl
-        });
-        setAudioPlaying(false);
-      };
-      
-      const handleCanPlay = () => {
-        console.log('Аудио готово к воспроизведению:', audioUrl);
-      };
-      
-      // Удаляем старые обработчики перед добавлением новых
-      audio.removeEventListener('error', handleError);
-      audio.removeEventListener('canplay', handleCanPlay);
-      
-      audio.addEventListener('error', handleError);
-      audio.addEventListener('canplay', handleCanPlay);
+      // Путь к аудио относительно public
+      const audioUrl = audioPath.startsWith('../') 
+        ? audioPath.replace('../', '/')
+        : `/${audioPath}`;
       
       audio.src = audioUrl;
-      audio.load(); // Явно загружаем аудио
-      
       audio.play().catch(err => {
-        console.error('Ошибка воспроизведения аудио:', {
-          error: err,
-          src: audio.src,
-          audioPath: audioPath,
-          audioUrl: audioUrl
-        });
-        setAudioPlaying(false);
+        console.error('Ошибка воспроизведения аудио:', err);
       });
-      
       setAudioPlaying(true);
     }
   };
 
   useEffect(() => {
-    const handleEnded = () => setAudioPlaying(false);
-    audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('ended', () => setAudioPlaying(false));
     return () => {
       audio.pause();
-      audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('ended', () => setAudioPlaying(false));
     };
   }, [audio]);
 
@@ -198,18 +150,18 @@ function WineItemPage() {
   const secondColumn = descriptionText.substring(spaceIndex > 0 ? spaceIndex + 1 : midPoint);
 
   // Получаем URL для изображения кольца
-  const stainImageUrl = getImageUrl('/images/wine-red-stain.webp') || `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/images/wine-red-stain.webp`;
+  const stainImageUrl = getImageUrl('/images/wine-red-stain.png') || `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/images/wine-red-stain.png`;
 
   return (
     <div className="wine-item-page bg-[#1a1a1a] w-full" style={{ minHeight: '100vh', overflowY: 'auto' }}>
       <div className="flex justify-center py-5 px-2 sm:px-4 w-full max-w-full">
         <main className="wine-card relative w-full max-w-[800px] bg-cream flex flex-col" style={{ overflow: 'visible' }}>
-        {/* Decorative Stain: Top Left - левый верхний угол */}
+        {/* Decorative Stain: Top Left */}
         <img
           alt=""
           aria-hidden="true"
           className="absolute top-0 left-0 w-64 md:w-96 pointer-events-none z-0 mix-blend-multiply opacity-60"
-          src={getImageUrl('/images/wine/e4d2fef76d58dc7b4eb6854e51ce5382.png')}
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD70wOjw4U7JCyqvsDiSXgMLwdqEqIFRt2rFlv1HnyGnHX_oPDBXF4i3FKCRNz1eBLytWd5anV5TuVUyGnQ-rWpBbP9tU-DrkBuKCQZfBQhYPVJNEa7R-2AkW3ikSplP-k2t-loraVLnA5QghlxrZ1QOuK-5rubvHd-w582D6G2d0CAJgrhRc_P4MpCGAgPKfxAJ6w3piMGNLHwGX3qZ1s6Lhu2Am3psnFK4gyOit9-_hZr1NNimMmsbF4dUzMquYa3VyZUMZILfdvw"
           style={{
             mixBlendMode: 'multiply',
             transform: 'scale(2) rotate(-25deg)',
@@ -220,7 +172,30 @@ function WineItemPage() {
 
         {/* Header */}
         <header className="relative z-10 px-4 sm:px-6 md:px-8 py-6 flex justify-between items-center border-b border-gray-300/30">
-        
+          <nav>
+            <ul className="flex space-x-6 text-xs uppercase tracking-widest text-text-dark font-medium">
+              <li>
+                <Link to="/wine-menu" className="hover:text-wine-red transition-colors border-b border-black pb-0.5">
+                  О вине
+                </Link>
+              </li>
+              <li>
+                <Link to="/" className="hover:text-wine-red transition-colors opacity-60 hover:opacity-100">
+                  Меню
+                </Link>
+              </li>
+              <li>
+                <a href="#" className="hover:text-wine-red transition-colors opacity-60 hover:opacity-100">
+                  Обучение
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-wine-red transition-colors opacity-60 hover:opacity-100">
+                  Контакты
+                </a>
+              </li>
+            </ul>
+          </nav>
           <div className="flex space-x-4 text-text-dark opacity-70">
             <button
               onClick={() => navigate(-1)}
@@ -235,7 +210,7 @@ function WineItemPage() {
         </header>
 
         {/* Hero Section */}
-        <section className="relative px-4 sm:px-6 md:px-8 pt-12 z-10 grid grid-cols-1 md:grid-cols-2 gap-8 pb-16" style={{ overflow: 'visible' }}>
+        <section className="relative px-4 sm:px-6 md:px-8 pt-12 z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center pb-16">
           {/* Left Content: Title & Description */}
           <div className="md:pr-4">
             <h1 className="text-5xl md:text-7xl text-wine-red mb-2 leading-[0.9] tracking-tight font-serif">
@@ -248,52 +223,29 @@ function WineItemPage() {
             )}
             {/* Description Text Columns */}
             {descriptionText && (
-              <div className="grid grid-cols-2 gap-6 text-lg text-text-dark leading-loose font-light mt-16">
+              <div className="grid grid-cols-2 gap-6 text-sm text-text-dark leading-relaxed font-light">
                 <p>{firstColumn}</p>
                 <p>{secondColumn}</p>
               </div>
             )}
           </div>
           {/* Right Content: Bottle Image & Audio Button */}
-          <div className="relative w-full" style={{ minHeight: '900px', maxWidth: '100%', overflow: 'visible', position: 'relative', paddingTop: '4rem', paddingBottom: '4rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            {/* Фоновое изображение около бутылки - на заднем плане */}
-            <img
-              alt=""
-              aria-hidden="true"
-              className="absolute pointer-events-none z-0 mix-blend-multiply opacity-50"
-              src={getImageUrl('/images/wine/b8ac55a15379f6b2a50cce3d5dccdcf8.png')}
-              style={{
-                position: 'absolute',
-                top: '40%',
-                left: '45%',
-                transform: 'translate(-50%, -50%) scale(1.5)',
-                zIndex: 0,
-                width: '400px',
-                maxWidth: '80%',
-                height: 'auto',
-                objectFit: 'contain',
-              }}
-            />
+          <div className="relative flex justify-center items-center min-h-[400px] md:min-h-[500px] w-full" style={{ maxWidth: '100%', overflow: 'visible', position: 'relative' }}>
             {/* Stain Ring (Behind Bottle) - кольцо на заднем плане */}
             <img
               alt=""
-              className="absolute pointer-events-none"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[250px] sm:w-[300px] md:w-[350px] max-w-[90%] opacity-80 pointer-events-none"
               src={stainImageUrl}
               style={{
                 position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
                 zIndex: 1,
-                opacity: 0.85,
-                width: '550px',
-                maxWidth: '90%',
-                height: 'auto',
-                objectFit: 'contain',
+                opacity: 0.8,
+                maskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
+                WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
               }}
               onError={(e) => {
                 if (e.target.src !== stainImageUrl) {
-                  e.target.src = '/images/wine-red-stain.webp';
+                  e.target.src = '/images/wine-red-stain.png';
                 }
               }}
             />
@@ -301,17 +253,13 @@ function WineItemPage() {
             {imageUrl ? (
               <img
                 alt={wine.image?.alt || wine.title}
-                className="relative drop-shadow-2xl"
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-full w-auto object-contain drop-shadow-2xl"
                 src={imageUrl}
                 style={{
-                  position: 'relative',
+                  position: 'absolute',
                   zIndex: 10,
-                  maxHeight: '850px',
-                  height: 'auto',
-                  maxWidth: '75%',
-                  width: 'auto',
-                  objectFit: 'contain',
-                  display: 'block',
+                  maxHeight: '500px',
+                  maxWidth: '90%',
                 }}
               />
             ) : (
@@ -319,108 +267,59 @@ function WineItemPage() {
                 <span className="material-symbols-outlined text-wine-red/30 text-8xl">wine_bar</span>
               </div>
             )}
-          </div>
-        </section>
-
-        {/* Audio Button Section - кнопка аудио между бутылкой и следующим элементом */}
-        {wine.i18n?.en?.['audio-en'] && (
-          <section className="audio-button-section relative px-4 sm:px-6 md:px-8 z-20">
-            <div className="flex justify-center md:justify-end">
+            {/* Audio Button */}
+            {wine.i18n?.en?.['audio-en'] && (
               <button
                 onClick={handleAudioPlay}
-                className="audio-button rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all hover:shadow-xl
-                  md:mr-8 lg:mr-12"
-                style={{
-                  backgroundColor: 'white',
-                  border: '2px solid #D4AF37',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                }}
+                className="absolute bottom-4 right-4 z-20 bg-custom-burgundy hover:bg-wine-red-light text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors"
                 aria-label="Воспроизвести произношение"
               >
-                <svg 
-                  className="w-7 h-7" 
-                  fill="none" 
-                  stroke="#D4AF37" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                  viewBox="0 0 24 24"
-                >
-                  {audioPlaying ? (
-                    <>
-                      <path d="M11 5L6 9H2v6h4l5 4V5z" />
-                      <path d="M15.54 8.46a5 5 0 010 7.07" />
-                      <path d="M19.07 4.93a10 10 0 010 14.14" />
-                    </>
-                  ) : (
-                    <>
-                      <path d="M11 5L6 9H2v6h4l5 4V5z" />
-                      <path d="M15.54 8.46a5 5 0 010 7.07" />
-                      <path d="M19.07 4.93a10 10 0 010 14.14" />
-                    </>
-                  )}
-                </svg>
+                <span className="material-symbols-outlined text-2xl">
+                  {audioPlaying ? 'pause' : 'volume_up'}
+                </span>
               </button>
-            </div>
-          </section>
-        )}
+            )}
+          </div>
+        </section>
 
         {/* Details Row */}
         <section className="relative px-4 sm:px-6 md:px-8 py-8 z-10">
           <div className="relative">
-            {/* Фоновое изображение с брызгами - за карточками */}
-            <img
-              alt=""
-              aria-hidden="true"
-              className="absolute pointer-events-none z-0 mix-blend-multiply opacity-60"
-              src={getImageUrl('/images/wine/e2726b30ad2835db5adbae968ee6cb2b.png')}
-              style={{
-                mixBlendMode: 'multiply',
-                maskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
-                WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
-                top: '-10%',
-                left: '50%',
-                transform: 'translate(-50%, 0) scale(2) rotate(-25deg)',
-                width: '600px',
-                height: 'auto',
-                zIndex: 0,
-              }}
-            />
             {/* The visual horizontal line connecting the cards */}
-            <div className="absolute top-[18px] left-[20px] right-[20px] h-[1px] bg-card-border z-1 hidden md:block" />
+            <div className="absolute top-[18px] left-[20px] right-[20px] h-[1px] bg-card-border z-0 hidden md:block" />
             {/* Cards Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative w-full" style={{ zIndex: 30 }}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10 w-full">
               {/* Card 1: Country */}
               {country && (
-                <article className="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border relative" style={{ backgroundColor: '#EFEDE6', zIndex: 30 }}>
-                  <div className="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2 relative" style={{ backgroundColor: '#EFEDE6', zIndex: 30 }}>
+                <article className="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border">
+                  <div className="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2">
                     <svg className="w-8 h-8 opacity-80" fill="none" stroke="#5e2129" strokeWidth="1.5" viewBox="0 0 24 24">
                       <path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h3 className="text-xs text-gray-500 mb-1 relative" style={{ zIndex: 30 }}>Страна:</h3>
-                  <p className="font-serif text-lg text-text-dark leading-tight relative" style={{ zIndex: 30 }}>{country}</p>
+                  <h3 className="text-xs text-gray-500 mb-1">Страна:</h3>
+                  <p className="font-serif text-lg text-text-dark leading-tight">{country}</p>
                 </article>
               )}
 
               {/* Card 2: Region */}
               {region && (
-                <article className="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border relative" style={{ backgroundColor: '#EFEDE6', zIndex: 30 }}>
-                  <div className="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2 relative" style={{ backgroundColor: '#EFEDE6', zIndex: 30 }}>
+                <article className="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border">
+                  <div className="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2">
                     <svg className="w-8 h-8 opacity-80" fill="none" stroke="#5e2129" strokeWidth="1.5" viewBox="0 0 24 24">
                       <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h3 className="text-xs text-gray-500 mb-1 relative" style={{ zIndex: 30 }}>Регион:</h3>
-                  <p className="font-serif text-lg text-text-dark leading-tight relative" style={{ zIndex: 30 }}>{region}</p>
+                  <h3 className="text-xs text-gray-500 mb-1">Регион:</h3>
+                  <p className="font-serif text-lg text-text-dark leading-tight">{region}</p>
                 </article>
               )}
 
               {/* Card 3: Grapes */}
               {grapeVarieties && (
-                <article className="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border relative" style={{ backgroundColor: '#EFEDE6', zIndex: 30 }}>
-                  <div className="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2 relative" style={{ backgroundColor: '#EFEDE6', zIndex: 30 }}>
+                <article className="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border">
+                  <div className="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2">
                     <svg fill="none" height="32px" viewBox="0 0 24 24" width="32px">
                       <path d="M12 5.5C12 4.67157 12.6716 4 13.5 4C14.3284 4 15 4.67157 15 5.5C15 6.32843 14.3284 7 13.5 7C12.6716 7 12 6.32843 12 5.5Z" stroke="#5e2129" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M15.5 8.5C15.5 7.67157 16.1716 7 17 7C17.8284 7 18.5 7.67157 18.5 8.5C18.5 9.32843 17.8284 10 17 10C16.1716 10 15.5 9.32843 15.5 8.5Z" stroke="#5e2129" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -433,21 +332,21 @@ function WineItemPage() {
                       <path d="M13.5 4V2" stroke="#5e2129" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h3 className="text-xs text-gray-500 mb-1 relative" style={{ zIndex: 30 }}>Сорт винограда:</h3>
-                  <p className="font-serif text-lg text-text-dark leading-tight relative" style={{ zIndex: 30 }}>{grapeVarieties}</p>
+                  <h3 className="text-xs text-gray-500 mb-1">Сорт винограда:</h3>
+                  <p className="font-serif text-lg text-text-dark leading-tight">{grapeVarieties}</p>
                 </article>
               )}
 
               {/* Card 4: Producer */}
               {producer && (
-                <article className="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border relative" style={{ backgroundColor: '#EFEDE6', zIndex: 30 }}>
-                  <div className="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2 relative" style={{ backgroundColor: '#EFEDE6', zIndex: 30 }}>
+                <article className="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border">
+                  <div className="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2">
                     <svg className="w-8 h-8 opacity-80" fill="none" stroke="#5e2129" strokeWidth="1.5" viewBox="0 0 24 24">
                       <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h3 className="text-xs text-gray-500 mb-1 relative" style={{ zIndex: 50 }}>Производитель:</h3>
-                  <p className="font-serif text-lg text-text-dark leading-tight relative" style={{ zIndex: 50 }}>{producer}</p>
+                  <h3 className="text-xs text-gray-500 mb-1">Производитель:</h3>
+                  <p className="font-serif text-lg text-text-dark leading-tight">{producer}</p>
                 </article>
               )}
             </div>
@@ -457,50 +356,35 @@ function WineItemPage() {
         {/* Quote Section */}
         {comment && (
           <section className="relative px-4 sm:px-6 md:px-8 pt-8 pb-16 z-10 flex justify-center">
-            {/* Фоновое изображение внизу посередине экрана - на заднем плане */}
+            {/* Decorative Stains for Quote Area */}
             <img
               alt=""
-              aria-hidden="true"
-              className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 pointer-events-none z-0 mix-blend-multiply opacity-50"
-              src={getImageUrl('/images/wine/071307a9465f31e91f7c15efdb518f90.png')}
+              className="absolute bottom-10 left-0 w-48 pointer-events-none z-0 mix-blend-multiply opacity-60"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD70wOjw4U7JCyqvsDiSXgMLwdqEqIFRt2rFlv1HnyGnHX_oPDBXF4i3FKCRNz1eBLytWd5anV5TuVUyGnQ-rWpBbP9tU-DrkBuKCQZfBQhYPVJNEa7R-2AkW3ikSplP-k2t-loraVLnA5QghlxrZ1QOuK-5rubvHd-w582D6G2d0CAJgrhRc_P4MpCGAgPKfxAJ6w3piMGNLHwGX3qZ1s6Lhu2Am3psnFK4gyOit9-_hZr1NNimMmsbF4dUzMquYa3VyZUMZILfdvw"
               style={{
                 mixBlendMode: 'multiply',
-                transform: 'translate(0%, 0) scale(2)',
+                transform: 'scale(2)',
                 maskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
                 WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
               }}
             />
-            {/* Decorative Stains for Quote Area - за текстовым блоком */}
             <img
               alt=""
-              className="absolute bottom-10 left-0 w-48 pointer-events-none mix-blend-multiply opacity-60"
-              src={getImageUrl('/images/wine/e2726b30ad2835db5adbae968ee6cb2b.png')}
-              style={{
-                mixBlendMode: 'multiply',
-                transform: 'scale(4)',
-                maskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
-                WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
-                zIndex: 0,
-              }}
-            />
-            <img
-              alt=""
-              className="absolute bottom-0 right-0 w-64 pointer-events-none mix-blend-multiply opacity-60"
-              src=""
+              className="absolute bottom-0 right-0 w-64 pointer-events-none z-20 mix-blend-multiply opacity-60"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD70wOjw4U7JCyqvsDiSXgMLwdqEqIFRt2rFlv1HnyGnHX_oPDBXF4i3FKCRNz1eBLytWd5anV5TuVUyGnQ-rWpBbP9tU-DrkBuKCQZfBQhYPVJNEa7R-2AkW3ikSplP-k2t-loraVLnA5QghlxrZ1QOuK-5rubvHd-w582D6G2d0CAJgrhRc_P4MpCGAgPKfxAJ6w3piMGNLHwGX3qZ1s6Lhu2Am3psnFK4gyOit9-_hZr1NNimMmsbF4dUzMquYa3VyZUMZILfdvw"
               style={{
                 mixBlendMode: 'multiply',
                 transform: 'scale(2) rotate(45deg)',
                 maskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
                 WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
-                zIndex: 0,
               }}
             />
             {/* Quote Box */}
-            <div className="relative p-8 rounded-sm max-w-lg mx-auto w-full" style={{ backgroundColor: 'rgba(239, 237, 230, 0.85)', zIndex: 30 }}>
-               <div className="text-8xl font-serif text-wine-red absolute -top-10 left-4 leading-none select-none pointer-events-none">"</div>
+            <div className="relative z-10 bg-[#EFEDE6] p-8 rounded-sm max-w-lg mx-auto w-full">
+              <div className="text-8xl font-serif text-wine-red absolute -top-10 left-4 leading-none select-none pointer-events-none">"</div>
               <div className="pt-4">
-                <h3 className="font-serif text-lg text-text-dark mb-2" style={{ textShadow: '0 1px 2px rgba(255, 255, 255, 0.8)' }}>Интересный факт:</h3>
-                <p className="text-gray-700 font-light leading-relaxed" style={{ textShadow: '0 1px 2px rgba(255, 255, 255, 0.8)' }}>{comment}</p>
+                <h3 className="font-serif text-lg text-text-dark mb-2">Интересный факт:</h3>
+                <p className="text-gray-700 font-light leading-relaxed">{comment}</p>
               </div>
             </div>
           </section>
@@ -509,24 +393,24 @@ function WineItemPage() {
         {/* Pairings Section (опционально) */}
         {wine.pairings && (wine.pairings.dishes?.length > 0 || wine.pairings.notes?.length > 0) && (
           <section className="relative px-4 sm:px-6 md:px-8 pt-4 pb-8 z-10">
-            <div className="p-6 rounded-lg relative" style={{ backgroundColor: 'rgba(239, 237, 230, 0.85)', zIndex: 30 }}>
-              <h3 className="font-serif text-xl text-text-dark mb-4" style={{ textShadow: '0 1px 2px rgba(255, 255, 255, 0.8)' }}>Пэринг:</h3>
+            <div className="bg-[#EFEDE6] p-6 rounded-lg">
+              <h3 className="font-serif text-xl text-text-dark mb-4">Пэринг:</h3>
               {wine.pairings.dishes && wine.pairings.dishes.length > 0 && (
                 <div className="mb-4">
-                  <h4 className="font-sans text-sm font-semibold text-text-dark mb-2" style={{ textShadow: '0 1px 2px rgba(239, 237, 230, 0.85)' }}>Блюда:</h4>
+                  <h4 className="font-sans text-sm font-semibold text-text-dark mb-2">Блюда:</h4>
                   <ul className="list-disc list-inside text-gray-700 font-light space-y-1">
                     {wine.pairings.dishes.map((dish, idx) => (
-                      <li key={idx} style={{ textShadow: '0 1px 2px rgba(255, 255, 255, 0.85)' }}>{dish}</li>
+                      <li key={idx}>{dish}</li>
                     ))}
                   </ul>
                 </div>
               )}
               {wine.pairings.notes && wine.pairings.notes.length > 0 && (
                 <div>
-                  <h4 className="font-sans text-sm font-semibold text-text-dark mb-2" style={{ textShadow: '0 1px 2px rgba(255, 255, 255, 0.85)' }}>Заметки:</h4>
+                  <h4 className="font-sans text-sm font-semibold text-text-dark mb-2">Заметки:</h4>
                   <ul className="list-disc list-inside text-gray-700 font-light space-y-1">
                     {wine.pairings.notes.map((note, idx) => (
-                      <li key={idx} style={{ textShadow: '0 1px 2px rgba(255, 255, 255, 0.85)' }}>{note}</li>
+                      <li key={idx}>{note}</li>
                     ))}
                   </ul>
                 </div>

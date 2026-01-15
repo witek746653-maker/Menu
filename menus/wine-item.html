@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Château Margaux - Wine Card</title>
+<!-- Load Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F7F4EB',
+            'wine-red': '#4A0404',
+            'wine-red-light': '#800000',
+            'text-dark': '#1A1A1A',
+            'footer-bg': '#2E2E2E',
+            'card-border': '#D4C5A5',
+            'custom-burgundy': '#5e2129',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Lato', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Tailwind Configuration for Custom Colors and Fonts -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F7F4EB',
+            'wine-red': '#4A0404',
+            'wine-red-light': '#800000',
+            'text-dark': '#1A1A1A',
+            'footer-bg': '#2E2E2E',
+            'card-border': '#D4C5A5',
+            'custom-burgundy': '#5e2129',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Lato', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Load Fonts: Playfair Display (Serif) and Lato (Sans-serif) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Custom CSS for specific layout needs not covered by utilities -->
+<style data-purpose="layout">
+    body {
+      background-color: #1a1a1a; /* Dark background to showcase the card design */
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      min-height: 100vh;
+    }
+    .wine-card {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+  </style>
+<style data-purpose="typography">
+    /* Ensuring serif font application for headings */
+    h1, h2, h3, .serif-font {
+      font-family: 'Playfair Display', serif;
+    }
+    body, p, span, div, a {
+      font-family: 'Lato', sans-serif;
+    }
+  </style>
+</head>
+<body class="antialiased">
+<!-- BEGIN: Main Container -->
+<!-- This represents the "card" design from the image -->
+<main class="wine-card relative w-full max-w-[800px] bg-cream overflow-hidden flex flex-col">
+<!-- Decorative Stain: Top Left -->
+<img alt="" aria-hidden="true" class="absolute top-0 left-0 w-64 md:w-96 pointer-events-none z-0 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD70wOjw4U7JCyqvsDiSXgMLwdqEqIFRt2rFlv1HnyGnHX_oPDBXF4i3FKCRNz1eBLytWd5anV5TuVUyGnQ-rWpBbP9tU-DrkBuKCQZfBQhYPVJNEa7R-2AkW3ikSplP-k2t-loraVLnA5QghlxrZ1QOuK-5rubvHd-w582D6G2d0CAJgrhRc_P4MpCGAgPKfxAJ6w3piMGNLHwGX3qZ1s6Lhu2Am3psnFK4gyOit9-_hZr1NNimMmsbF4dUzMquYa3VyZUMZILfdvw" style="mix-blend-mode: multiply; transform: scale(2) rotate(-25deg); opacity: 0.6; mask-image: radial-gradient(circle, black 50%, transparent 95%); -webkit-mask-image: radial-gradient(circle, black 50%, transparent 95%); filter: brightness(1.1) contrast(1.1);"/>
+<!-- BEGIN: Header -->
+<header class="relative z-10 px-8 py-6 flex justify-between items-center border-b border-gray-300/30">
+<!-- Navigation -->
+<nav>
+<ul class="flex space-x-6 text-xs uppercase tracking-widest text-text-dark font-medium">
+<li><a class="hover:text-wine-red transition-colors border-b border-black pb-0.5" href="#">О вине</a></li>
+<li><a class="hover:text-wine-red transition-colors opacity-60 hover:opacity-100" href="#">Меню</a></li>
+<li><a class="hover:text-wine-red transition-colors opacity-60 hover:opacity-100" href="#">Обучение</a></li>
+<li><a class="hover:text-wine-red transition-colors opacity-60 hover:opacity-100" href="#">Контакты</a></li>
+</ul>
+</nav>
+<!-- Utility Icons -->
+<div class="flex space-x-4 text-text-dark opacity-70">
+<!-- User Icon -->
+<button aria-label="User Profile">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Menu/Hamburger Icon -->
+<button aria-label="Menu">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: Hero Section -->
+<section class="relative px-8 pt-12 z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center pb-16">
+<!-- Left Content: Title & Description -->
+<div class="md:pr-4">
+<h1 class="text-6xl md:text-7xl text-wine-red mb-2 leading-[0.9] tracking-tight">
+          CHÂTEAU <br/> MARGAUX
+        </h1>
+<h2 class="text-sm uppercase tracking-[0.2em] mb-10 font-sans text-[#8E866D]">
+          Premier Grand Cru Classé
+        </h2>
+<!-- Description Text Columns -->
+<div class="grid grid-cols-2 gap-6 text-sm text-text-dark leading-relaxed font-light">
+<p>
+            This legendary wine is known for its complex aromas of blackcurrant, cigar box, and truffle, with a silky texture and remarkable aging potential.
+          </p>
+<p>
+            Perfect pairing with roasted lamb or aged cheeses. It features notes of the soil, wing, comprehensive and developing paring with intonation.
+          </p>
+</div>
+</div>
+<!-- Right Content: Bottle Image & Ring Stain -->
+<div class="relative flex justify-center items-center h-[500px]">
+<!-- Stain Ring (Behind Bottle) -->
+<img alt="" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] opacity-90 z-0 mix-blend-multiply pointer-events-none" src="/images/wine-red-stain.png" style="mix-blend-mode: multiply; opacity: 0.8; mask-image: radial-gradient(circle, black 50%, transparent 95%); -webkit-mask-image: radial-gradient(circle, black 50%, transparent 95%); filter: brightness(1.1) contrast(1.1);"/>
+<!-- Main Bottle Image -->
+<img alt="Bottle of Château Margaux wine with a filled glass" class="relative z-10 h-full object-contain drop-shadow-2xl" src="/images/vino-50-50-avignonesi-capannelle.jpg" style="mix-blend-mode: multiply; mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%); filter: brightness(1.1) contrast(1.1);"/>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Details Row -->
+<section class="relative px-8 py-8 z-10">
+<!-- Connector Line Container -->
+<div class="relative">
+<!-- The visual horizontal line connecting the cards -->
+<div class="absolute top-[18px] left-[20px] right-[20px] h-[1px] bg-[#D4C5A5] z-0 hidden md:block"></div>
+<!-- Cards Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10 w-full">
+<!-- Card 1: Country -->
+<article class="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border">
+<!-- Icon Circle -->
+<div class="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2"> <!-- Border covers line -->
+<svg class="w-8 h-8 opacity-80" fill="none" stroke="#5e2129" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<h3 class="text-xs text-gray-500 mb-1">Страна:</h3>
+<p class="font-serif text-lg text-text-dark leading-tight">Франция</p>
+</article>
+<!-- Card 2: Region -->
+<article class="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border">
+<div class="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2">
+<svg class="w-8 h-8 opacity-80" fill="none" stroke="#5e2129" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<h3 class="text-xs text-gray-500 mb-1">Регион:</h3>
+<p class="font-serif text-lg text-text-dark leading-tight">Бордо, Марго</p>
+</article>
+<!-- Card 3: Grapes -->
+<article class="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border">
+<div class="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2">
+<svg fill="none" height="32px" viewbox="0 0 24 24" width="32px" xmlns="http://www.w3.org/2000/svg"><path d="M12 5.5C12 4.67157 12.6716 4 13.5 4C14.3284 4 15 4.67157 15 5.5C15 6.32843 14.3284 7 13.5 7C12.6716 7 12 6.32843 12 5.5Z" stroke="#5e2129" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M15.5 8.5C15.5 7.67157 16.1716 7 17 7C17.8284 7 18.5 7.67157 18.5 8.5C18.5 9.32843 17.8284 10 17 10C16.1716 10 15.5 9.32843 15.5 8.5Z" stroke="#5e2129" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M15.5 14.5C15.5 13.6716 16.1716 13 17 13C17.8284 13 18.5 13.6716 18.5 14.5C18.5 15.3284 17.8284 16 17 16C16.1716 16 15.5 15.3284 15.5 14.5Z" stroke="#5e2129" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M8.5 8.5C8.5 7.67157 9.17157 7 10 7C10.8284 7 11.5 7.67157 11.5 8.5C11.5 9.32843 10.8284 10 10 10C9.17157 10 8.5 9.32843 8.5 8.5Z" stroke="#5e2129" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M12 11.5C12 10.6716 12.6716 10 13.5 10C14.3284 10 15 10.6716 15 11.5C15 12.3284 14.3284 13 13.5 13C12.6716 13 12 12.3284 12 11.5Z" stroke="#5e2129" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M12 17.5C12 16.6716 12.6716 16 13.5 16C14.3284 16 15 16.6716 15 17.5C15 18.3284 14.3284 19 13.5 19C12.6716 19 12 18.3284 12 17.5Z" stroke="#5e2129" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M8.5 14.5C8.5 13.6716 9.17157 13 10 13C10.8284 13 11.5 13.6716 11.5 14.5C11.5 15.3284 10.8284 16 10 16C9.17157 16 8.5 15.3284 8.5 14.5Z" stroke="#5e2129" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M5 11.5C5 10.6716 5.67157 10 6.5 10C7.32843 10 8 10.6716 8 11.5C8 12.3284 7.32843 13 6.5 13C5.67157 13 5 12.3284 5 11.5Z" stroke="#5e2129" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M13.5 4V2" stroke="#5e2129" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<h3 class="text-xs text-gray-500 mb-1">Сорт винограда:</h3>
+<p class="font-serif text-lg text-text-dark leading-tight">Каберне Совиньон, Мерло, Пти Вердо</p>
+</article>
+<!-- Card 4: Producer -->
+<article class="bg-cream border p-4 rounded-lg flex flex-col items-start min-h-[140px] border-card-border">
+<div class="bg-cream rounded-full p-1 mb-3 border-2 border-cream -mt-2">
+<svg class="w-8 h-8 opacity-80" fill="none" stroke="#5e2129" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<h3 class="text-xs text-gray-500 mb-1">Производитель:</h3>
+<p class="font-serif text-lg text-text-dark leading-tight">Château Margaux</p>
+</article>
+</div>
+</div>
+</section>
+<!-- END: Details Row -->
+<!-- BEGIN: Quote Section -->
+<section class="relative px-8 pt-8 pb-16 z-10 flex justify-center">
+<!-- Decorative Stains for Quote Area -->
+<img alt="" class="absolute bottom-10 left-0 w-48 pointer-events-none z-0 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD70wOjw4U7JCyqvsDiSXgMLwdqEqIFRt2rFlv1HnyGnHX_oPDBXF4i3FKCRNz1eBLytWd5anV5TuVUyGnQ-rWpBbP9tU-DrkBuKCQZfBQhYPVJNEa7R-2AkW3ikSplP-k2t-loraVLnA5QghlxrZ1QOuK-5rubvHd-w582D6G2d0CAJgrhRc_P4MpCGAgPKfxAJ6w3piMGNLHwGX3qZ1s6Lhu2Am3psnFK4gyOit9-_hZr1NNimMmsbF4dUzMquYa3VyZUMZILfdvw" style="mix-blend-mode: multiply; transform: scale(2); opacity: 0.6; mask-image: radial-gradient(circle, black 50%, transparent 95%); -webkit-mask-image: radial-gradient(circle, black 50%, transparent 95%); filter: brightness(1.1) contrast(1.1);"/>
+<img alt="" class="absolute bottom-0 right-0 w-64 pointer-events-none z-20 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD70wOjw4U7JCyqvsDiSXgMLwdqEqIFRt2rFlv1HnyGnHX_oPDBXF4i3FKCRNz1eBLytWd5anV5TuVUyGnQ-rWpBbP9tU-DrkBuKCQZfBQhYPVJNEa7R-2AkW3ikSplP-k2t-loraVLnA5QghlxrZ1QOuK-5rubvHd-w582D6G2d0CAJgrhRc_P4MpCGAgPKfxAJ6w3piMGNLHwGX3qZ1s6Lhu2Am3psnFK4gyOit9-_hZr1NNimMmsbF4dUzMquYa3VyZUMZILfdvw" style="mix-blend-mode: multiply; transform: scale(2) rotate(45deg); opacity: 0.6; mask-image: radial-gradient(circle, black 50%, transparent 95%); -webkit-mask-image: radial-gradient(circle, black 50%, transparent 95%); filter: brightness(1.1) contrast(1.1);"/>
+<!-- Quote Box -->
+<div class="relative z-10 bg-[#EFEDE6] p-8 rounded-sm max-w-lg mx-auto w-full">
+<!-- Large Quote Icon -->
+<div class="text-8xl font-serif text-wine-red absolute -top-10 left-4 leading-none select-none pointer-events-none">“</div>
+<div class="pt-4">
+<h3 class="font-serif text-lg text-text-dark mb-2">Интересный факт:</h3>
+<p class="text-gray-700 font-light leading-relaxed">
+            Château Margaux было первым вином, проданным на аукционе Christie's в 1787 году.
+          </p>
+</div>
+</div>
+</section>
+<!-- END: Quote Section -->
+<!-- BEGIN: Footer -->
+<footer class="bg-footer-bg text-gray-400 px-8 py-6 relative mt-auto z-30">
+<!-- Overlapping Circular Button -->
+<button class="absolute -top-6 left-1/2 transform -translate-x-1/2 hover:bg-wine-red-light text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg border-4 border-cream transition-colors bg-custom-burgundy">
+<svg class="w-5 h-5" fill="none" stroke="white" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs">
+<!-- Social Media Icons -->
+<div class="flex space-x-4 mb-4 md:mb-0">
+<a class="hover:text-white transition-colors" href="#">
+<!-- VK Icon Placeholder -->
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24"><path d="M15.684 0h-7.368c-4.594 0-8.316 3.722-8.316 8.316v7.368c0 4.594 3.722 8.316 8.316 8.316h7.368c4.594 0 8.316-3.722 8.316-8.316v-7.368c0-4.594-3.722-8.316-8.316-8.316zm3.626 13.911c-.111.411-.567.801-1.042 1.053-.475.253-1.002.327-1.478.209-.234-.059-.449-.186-.645-.337-.196-.151-.371-.328-.528-.521-.156-.193-.293-.401-.41-.621-.117-.221-.215-.453-.293-.692-.078-.239-.137-.487-.176-.739-.039-.253-.059-.509-.059-.766v-1.834c0-.257.02-.513.059-.766.039-.253.098-.5.176-.739.078-.239.176-.471.293-.692.117-.221.254-.429.41-.621.157-.193.332-.37.528-.521.196-.151.411-.278.645-.337.476-.118 1.003-.044 1.478.209.475.252.931.642 1.042 1.053.111.411.166.842.166 1.289v2.106c0 .447-.055.878-.166 1.289z"></path></svg>
+</a>
+<a class="hover:text-white transition-colors" href="#">
+<!-- FB Icon Placeholder -->
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.791-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+</a>
+<a class="hover:text-white transition-colors" href="#">
+<!-- Instagram Icon Placeholder -->
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a class="hover:text-white transition-colors" href="#">
+<!-- Telegram Icon Placeholder -->
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.033 16.01c-.564 0-1.001-.437-1.001-1.001 0-.027.002-.053.006-.079l.525-3.551-2.903-1.458c-.808-.406-.803-1.155.15-1.558l11.454-4.227c.808-.298 1.488.29 1.258 1.346l-2.128 10.163c-.161.768-.783.945-1.545.602l-4.288-2.164-2.072 2.015c-.229.229-.425.421-.762.421l.302-3.057z"></path></svg>
+</a>
+</div>
+<!-- Contact Info -->
+<div class="text-right flex flex-col items-center md:items-end">
+<p class="mb-1">+7 (777) 529-83-35</p>
+<p>info@yourmsiv.com</p>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</main>
+<!-- END: Main Container -->
+</body></html>
