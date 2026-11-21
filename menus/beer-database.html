@@ -68,12 +68,26 @@ function enqueueVisiblePhotos(){
  document.querySelectorAll('[data-photo-id]').forEach(el=>io.observe(el))
 }
 
+function showPhotoFallback(img){
+ const p=items.find(item=>item.name===img.alt);
+ const box=img.parentElement;if(!box)return;
+ box.innerHTML='';
+ const note=document.createElement('div');
+ note.style.cssText='font-size:13px;text-align:center;padding:12px;color:#ffd166;line-height:1.45';
+ note.textContent='Фото не загрузилось';
+ if(p?.photoSource&&/^https:\/\//.test(p.photoSource)){
+  const a=document.createElement('a');a.href=p.photoSource;a.target='_blank';a.rel='noopener noreferrer';
+  a.textContent='Посмотреть у источника';a.style.cssText='display:block;margin-top:8px;color:#ffd166;text-decoration:underline';
+  note.appendChild(a);
+ }
+ box.appendChild(note);
+}
 function render(){
  const q=$('q').value.trim().toLowerCase(),s=$('section').value,done=$('onlyDone').checked;
  const selected=items.filter(p=>(!s||p.section===s)&&(!done||p.guest)&&(!q||[p.name,p.section,p.notes,p.guest,p.difference].join(' ').toLowerCase().includes(q)));
  $('count').textContent=selected.length+' из '+items.length+' позиций • '+sections.length+' разделов';
  $('progress').textContent=items.filter(p=>p.guest).length+' карточек с подробным описанием';
- $('cards').innerHTML=selected.map(p=>'<article class="card"><div class="photo">'+((p.image||photoIndex[p.id]?.url)?'<img loading="lazy" src="'+attr(p.image||photoIndex[p.id].url)+'" alt="'+attr(p.name)+'" onerror="this.style.display=\'none\';this.parentElement.textContent=\'Фото недоступно\'">':'<span data-photo-id="'+attr(p.id)+'" style="font-size:14px;color:#d7b763">'+(photoIndex[p.id]?.unavailable?'Фото не найдено':'Поиск фото…')+'</span>')+'</div><div class="content"><span class="section">'+escapeHTML(p.section)+'</span><h3>'+escapeHTML(p.name)+'</h3><div>'+(p.abv?'<span class="pill">'+escapeHTML(p.abv)+'% ABV</span>':'<span class="pill">Крепость уточняется</span>')+'</div><p>'+escapeHTML(p.guest||'Описание будет добавлено')+'</p><div class="bottom"><button data-id="'+attr(p.id)+'">Открыть</button></div></div></article>').join('');
+ $('cards').innerHTML=selected.map(p=>'<article class="card"><div class="photo">'+((p.image||photoIndex[p.id]?.url)?'<img loading="lazy" src="'+attr(p.image||photoIndex[p.id].url)+'" alt="'+attr(p.name)+'" onerror="showPhotoFallback(this)">':'<span data-photo-id="'+attr(p.id)+'" style="font-size:14px;color:#d7b763">'+(photoIndex[p.id]?.unavailable?'Фото не найдено':'Поиск фото…')+'</span>')+'</div><div class="content"><span class="section">'+escapeHTML(p.section)+'</span><h3>'+escapeHTML(p.name)+'</h3><div>'+(p.abv?'<span class="pill">'+escapeHTML(p.abv)+'% ABV</span>':'<span class="pill">Крепость уточняется</span>')+'</div><p>'+escapeHTML(p.guest||'Описание будет добавлено')+'</p><div class="bottom"><button data-id="'+attr(p.id)+'">Открыть</button></div></div></article>').join('');
  document.querySelectorAll('.bottom button').forEach(b=>b.onclick=()=>openDetail(b.dataset.id));
  enqueueVisiblePhotos();
 }
