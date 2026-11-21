@@ -146,9 +146,10 @@ button.comp-list-item:hover{background:#332b1e}
 .atlas-update-notice{position:fixed;z-index:50;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(94vw,490px);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid #806c42;background:#25221b;color:#fff;border-radius:13px;box-shadow:0 12px 36px #000b;font-size:13px;line-height:1.4}
 .atlas-update-notice button{flex:0 0 auto;color:#211904;background:var(--gold);border-color:var(--gold);font-weight:700}
 
-.beer-flag{display:block;flex:0 0 24px;width:24px;height:18px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px #ffffff24;vertical-align:middle}
-.cards .card h3,.modal-head h2,.compare-col h3{display:flex;align-items:baseline;gap:7px}
+.beer-flag{display:block;flex:0 0 16px;width:16px;height:12px;object-fit:cover;border-radius:1.5px;box-shadow:0 0 0 1px #ffffff1c;vertical-align:middle}
+.cards .card h3,.modal-head h2,.compare-col h3{display:flex;align-items:baseline;gap:5px}
 .cards .card h3>span:last-child,.modal-head h2>span:last-child,.compare-col h3>span:last-child{min-width:0;overflow-wrap:anywhere}
+.modal-head .beer-flag{flex-basis:18px;width:18px;height:13.5px}
 </style></head><body>
 <header><h1>Пивной атлас</h1></header>
 <div class="mobile-toolbar">
@@ -211,7 +212,7 @@ function beerFlag(p){
  const svg=countryFlagSvgs[p.country];
  if(!svg)return '';
  const src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
- return '<img class="beer-flag" src="'+attr(src)+'" width="24" height="18" alt="'+attr('Флаг '+name)+'" title="'+attr('Страна производства: '+name)+'">';
+ return '<img class="beer-flag" src="'+attr(src)+'" width="16" height="12" alt="'+attr('Флаг '+name)+'" title="'+attr('Страна производства: '+name)+'">';
 }
 
 const sections=[...new Set(seed.map(p=>p.section))];
