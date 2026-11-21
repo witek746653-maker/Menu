@@ -19,29 +19,52 @@ button{background:#242424;border:1px solid #555;color:white;border-radius:10px;p
 .hidden{display:none!important}a{color:var(--gold)}footer{padding:20px 5vw;color:#aaa}
 @media(max-width:850px){main{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.modal .two,.compare-grid{grid-template-columns:1fr}}
 
-.section-tip{margin-bottom:15px}
-.quick-diff{color:#e7d6b2;font-size:12px;line-height:1.5}
-.comparison-panel{margin:15px 0;border:1px solid #6d5a35;border-radius:14px;overflow:hidden;background:#201c18}
-.comparison-panel>summary{padding:14px;cursor:pointer;color:var(--gold);font-weight:700}
-.comparison-panel>summary small{display:block;font-weight:400;color:#ccc;margin-top:4px}
-.comparison-inner{padding:0 14px 16px}
-.comp-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
-.comp-tabs button[aria-selected="true"]{background:var(--gold);color:#241e0d}
-.taste-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:10px 0}
-.taste-head{display:flex;justify-content:space-between;gap:8px;color:#ddd;font-size:12px}
-.taste-bars{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-top:5px}
-.taste-bars i{height:7px;background:#484541;border-radius:3px}
-.taste-bars i.filled{background:var(--gold)}
-.comp-row{border-top:1px solid #484039;padding:13px 0}
-.comp-row.is-current{background:#332b1e;padding:11px;border-radius:9px}
-.comp-row p{font-size:13px;line-height:1.5;margin:6px 0}
-.comp-row .taste-bars i{height:5px}
-.comp-row-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.comp-row-head button{font-size:12px;padding:5px 8px}
-.comp-note{font-size:12px;color:var(--muted);line-height:1.5;margin:10px 0}
-.comp-guest{background:#302917;border-left:3px solid var(--gold);padding:11px;margin-top:12px;border-radius:5px}
-.comp-guest p{margin:5px 0 0}
-@media(max-width:480px){.modal{padding:15px}}
+
+.section-tip{margin-bottom:12px}
+.card .photo{height:116px}
+.card .content{gap:6px;padding:12px}
+.card .content h3{font-size:16px}
+.card .card-taste{color:#ddd;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4}
+.card .quick-diff{color:#e7d6b2;font-size:12px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.comparison-panel{margin:12px 0;border:1px solid #6d5a35;border-radius:13px;overflow:hidden;background:#201c18}
+.comparison-panel>summary{padding:12px 14px;cursor:pointer;color:var(--gold);font-weight:700}
+.comparison-panel>summary small{display:block;font-weight:400;color:#bbb;margin-top:3px;line-height:1.35}
+.comparison-inner{padding:0 12px 13px}
+.comp-toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between;margin:9px 0}
+.comp-switch{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.comp-switch button{font-size:12px;padding:7px 9px;border-radius:8px;border-color:#4a4438}
+.comp-switch button[aria-pressed="true"]{background:var(--gold);color:#241e0d;border-color:var(--gold);font-weight:700}
+.comp-note{font-size:11px;color:var(--muted);line-height:1.4;margin:7px 0}
+.comp-guide{font-size:12px;color:#ddd;margin:8px 0;line-height:1.4}
+.comp-list{border:1px solid #4a4032;border-radius:10px;overflow:hidden}
+.comp-list-head{display:grid;grid-template-columns:minmax(0,1fr) 50px 42px 42px;gap:6px;padding:7px 9px;background:#2d281f;color:#d5caba;font-size:11px}
+.comp-list-item{display:block;width:100%;padding:8px 9px;margin:0;text-align:left;border:0;border-top:1px solid #403b33;border-radius:0;background:transparent;color:#f7f7f7}
+button.comp-list-item:hover{background:#332b1e}
+.comp-list-item.is-current{background:#31291b;border-left:3px solid var(--gold);padding-left:6px}
+.comp-list-line{display:grid;grid-template-columns:minmax(0,1fr) 50px 42px 42px;gap:6px;align-items:start}
+.comp-list-line strong{font-size:12px;line-height:1.35;overflow-wrap:anywhere}
+.comp-list-line span{font-size:12px;text-align:center;white-space:nowrap}
+.comp-list-line span:first-of-type{color:#e7cf9e}
+.comp-item-note{color:#bfb7a7;font-size:11px;line-height:1.35;margin-top:3px;white-space:normal;overflow-wrap:anywhere}
+.comp-list-item.is-current .comp-item-note{color:#e7d6b2}
+.comp-more{display:block;width:100%;text-align:center;padding:8px;font-size:12px;border-radius:0;border:0;border-top:1px solid #4a4032;background:#2b261e}
+.comp-peer-picker{display:flex;align-items:center;gap:10px;margin:10px 0}
+.comp-peer-picker label{margin:0;flex:0 0 auto;font-size:12px;color:#ccc}
+.comp-peer-picker select{min-width:0;margin:0;padding:8px 10px;font-size:13px}
+.comp-pair-head,.comp-pair-row{display:grid;grid-template-columns:78px minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:center}
+.comp-pair-head{padding:8px 0;font-size:12px;font-weight:700;color:var(--gold);border-bottom:1px solid #474136}
+.comp-pair-head span{overflow-wrap:anywhere;text-align:center}
+.comp-pair-row{padding:8px 0;border-bottom:1px solid #393630}
+.comp-pair-row .metric-label{font-size:12px;color:#ccc}
+.comp-pair-value{text-align:center;font-size:12px;white-space:nowrap}
+.comp-pair-bars{display:flex;gap:3px;justify-content:center;margin-top:4px}
+.comp-pair-bars i{display:block;width:15%;max-width:22px;height:6px;border-radius:3px;background:#514a3e}
+.comp-pair-bars i.filled{background:var(--gold)}
+.comp-summary{border-left:3px solid var(--gold);background:#30291d;border-radius:5px;padding:9px 11px;margin:10px 0}
+.comp-summary strong{font-size:12px}
+.comp-summary p{font-size:13px;line-height:1.45;margin:5px 0 0}
+.comp-peer-open{width:100%;font-size:12px;padding:8px;margin:2px 0}
+@media(max-width:480px){.modal{padding:15px}.comp-switch button{padding:6px 7px;font-size:11px}.comp-list-head,.comp-list-line{grid-template-columns:minmax(0,1fr) 44px 35px 35px;gap:4px}.comp-list-head{padding:7px 6px}.comp-list-item{padding:8px 6px}.comp-pair-head,.comp-pair-row{grid-template-columns:64px minmax(0,1fr) minmax(0,1fr);gap:5px}.comp-pair-row .metric-label{font-size:11px}.comp-peer-picker{flex-wrap:wrap}.comp-peer-picker label{flex-basis:100%}}
 </style></head><body>
 <header><h1>Пивная база знаний</h1><p class="muted">Стили, вкус, отличие от похожих сортов и готовые формулировки для гостя.</p><p><a href="./waiter-database.html">← Основная база знаний</a></p></header>
 <main><aside class="panel sidebar"><h2>Поиск и разделы</h2><label>Поиск по названию, вкусу и особенностям<input id="q" type="search" placeholder="Chimay, карамель, дуббель…"></label><label>Раздел<select id="section"></select></label><label><input id="onlyDone" type="checkbox" style="width:auto;margin:0"> Только с описанием</label><div class="actions"><button id="quizBtn">Вопрос гостя</button><button id="compareBtn">Сравнить два пива</button></div><hr style="border-color:#333;margin:20px 0"><h2>Мои данные</h2><div class="notice">Правки хранятся в этом браузере. Для сохранения между устройствами экспортируй JSON и добавляй его в репозиторий.</div><div class="actions" style="margin-top:12px"><button id="exportBtn">Экспорт JSON</button><button id="importBtn">Импорт JSON</button><button id="resetPhotoSearch">Повторить поиск фото</button><input id="importFile" type="file" accept=".json,application/json" class="hidden"></div><p class="muted" id="progress"></p></aside>
@@ -89,40 +112,99 @@ const sectionTips={
 "Cider":"У сидров важны фруктовая сладость, сухость и яблочная кислотность.",
 "N/A Beer and Cider":"От светлого до фруктового и пшеничного; уточняйте остаточную крепость."
 };
+
 const tasteFields=[['softness','Мягкость'],['bitterness','Горечь'],['sweetness','Сладость'],['intensity','Насыщенность']];
-function tasteMarkup(p){
- return '<div class="taste-grid">'+tasteFields.map(([key,label])=>{const value=Number(p.taste?.[key]);return '<div><div class="taste-head"><span>'+label+'</span><span>'+value+'/5</span></div><div class="taste-bars" aria-label="'+attr(label+' '+value+' из 5')+'">'+[1,2,3,4,5].map(n=>'<i'+(n<=value?' class="filled"':'')+'></i>').join('')+'</div></div>'}).join('')+'</div>'
+const sectionMetrics={
+ 'Lager':['softness','bitterness'],
+ 'Blanche / Weißbier':['softness','intensity'],
+ 'Fruit Beer':['sweetness','intensity'],
+ 'Fruit and Berry Lambic':['sweetness','intensity'],
+ 'Geuze / Oude Geuze':['sweetness','intensity'],
+ 'Flanders Red Ale / Oud Brune':['sweetness','intensity'],
+ 'Cider':['sweetness','intensity'],
+ 'Hopped Ale':['bitterness','intensity'],
+ 'Stout / Porter':['intensity','bitterness'],
+ 'Tripel':['bitterness','intensity'],
+ 'Belgian Strong Ale':['sweetness','intensity']
+};
+function comparisonMetrics(p){return sectionMetrics[p.section]||['softness','intensity']}
+function metricTitle(key){return tasteFields.find(v=>v[0]===key)?.[1]||key}
+function metricAbbr(key){return ({softness:'М',bitterness:'Г',sweetness:'С',intensity:'Н'})[key]||key}
+function numericTaste(p,key){const v=Number(p.taste?.[key]);return Number.isFinite(v)&&v>=1&&v<=5?v:null}
+function strengthLabel(p){return p.abv?p.abv+'%':'—'}
+function tasteDistance(a,b){
+ return tasteFields.reduce((v,[key])=>v+Math.abs((numericTaste(a,key)||3)-(numericTaste(b,key)||3)),0)+
+ Math.min(3,Math.abs(parseFloat(a.abv)-parseFloat(b.abv))||0)*0.3
 }
-function tasteDistance(a,b){const keys=['softness','bitterness','sweetness','intensity'];return keys.reduce((v,k)=>v+Math.abs(a.taste[k]-b.taste[k]),0)+Math.min(3,Math.abs(parseFloat(a.abv)-parseFloat(b.abv))||0)*0.3}
 function relativeTaste(a,b){
  if(a.id===b.id)return 'Выбранный сорт';
  const rules=[['softness','мягче','менее мягкое'],['bitterness','горче','менее горькое'],['sweetness','слаще','менее сладкое'],['intensity','насыщеннее','легче по вкусу']];
- const results=rules.map(([k,more,less])=>({delta:b.taste[k]-a.taste[k],more,less})).filter(v=>Math.abs(v.delta)>=1).sort((x,y)=>Math.abs(y.delta)-Math.abs(x.delta));
+ const results=rules.map(([k,more,less])=>({delta:(numericTaste(b,k)||3)-(numericTaste(a,k)||3),more,less}))
+  .filter(v=>Math.abs(v.delta)>=1).sort((x,y)=>Math.abs(y.delta)-Math.abs(x.delta));
  return results.length?results.slice(0,2).map(v=>v.delta>0?v.more:v.less).join(' · '):'Похожая выраженность вкуса'
 }
 function comparisonShell(p){
- return '<details class="comparison-panel" id="beerComparison"><summary>Сравнить с похожими<small>'+escapeHTML(p.comparison.short)+'</small></summary><div class="comparison-inner" id="comparisonInner"></div></details>'
+ return '<details class="comparison-panel" id="beerComparison"><summary>Сравнить с похожими<small>'+escapeHTML(p.comparison?.short||'Быстрое сравнение сортов')+'</small></summary><div class="comparison-inner" id="comparisonInner"></div></details>'
 }
-function renderComparison(p,tab='series',all=false){
+function miniBars(p,key){
+ const v=numericTaste(p,key);
+ return '<div class="comp-pair-value">'+(v===null?'—':v+'/5')+'<span class="comp-pair-bars" aria-label="'+attr(metricTitle(key)+' '+(v===null?'не оценена':v+' из 5'))+'">'+
+ [1,2,3,4,5].map(n=>'<i'+(v!==null&&n<=v?' class="filled"':'')+'></i>').join('')+'</span></div>'
+}
+function comparisonGroup(p,scope){
+ const line=p.seriesId?items.filter(v=>v.seriesId===p.seriesId):[];
+ const available=line.length>1;
+ const actual=available&&scope==='series'?'series':'section';
+ const group=actual==='series'?line:items.filter(v=>v.section===p.section);
+ const peers=group.filter(v=>v.id!==p.id).sort((a,b)=>tasteDistance(p,a)-tasteDistance(p,b)||a.name.localeCompare(b.name,'ru'));
+ return {available,actual,peers}
+}
+function renderComparison(p,scope='series',mode='list',showAll=false,peerId=null){
  const panel=$('comparisonInner');if(!panel)return;
- const line=p.seriesId?items.filter(v=>v.seriesId===p.seriesId):[],hasLine=line.length>1;
- if(!hasLine)tab='section';
- const group=tab==='series'?line:items.filter(v=>v.section===p.section);
- const others=group.filter(v=>v.id!==p.id).sort((a,b)=>tasteDistance(p,a)-tasteDistance(p,b)||a.name.localeCompare(b.name));
- const rows=[p,...others],shown=all?rows:rows.slice(0,5);
- panel.innerHTML='<div class="comp-tabs" role="tablist">'+(hasLine?'<button type="button" role="tab" data-comp-tab="series" aria-selected="'+(tab==='series')+'">Линейка '+escapeHTML(p.seriesId)+'</button>':'')+
- '<button type="button" role="tab" data-comp-tab="section" aria-selected="'+(tab==='section')+'">Раздел '+escapeHTML(p.section)+'</button></div>'+
- '<p class="comp-note">Выбрано: '+escapeHTML(p.name)+' · '+escapeHTML(p.abv||'—')+'%</p>'+tasteMarkup(p)+
- '<p class="comp-note">Шкалы 1–5 — ориентировочные учебные оценки по стилю и описаниям, не лабораторные значения. Важную кислотность фруктовых и кислых сортов смотри в тексте.</p>'+
- shown.map(v=>'<div class="comp-row'+(v.id===p.id?' is-current':'')+'"><div class="comp-row-head"><strong>'+escapeHTML(v.name)+'</strong><span class="pill">'+escapeHTML(v.abv||'—')+'%</span></div>'+
- '<p style="color:var(--gold)">'+escapeHTML(relativeTaste(p,v))+'</p><p>'+escapeHTML(v.comparison.description||'Описание уточняется')+'</p>'+
- tasteMarkup(v)+(v.id===p.id?'<small class="muted">Текущий сорт</small>':'<button class="open-peer" type="button" data-peer="'+attr(v.id)+'">Открыть карточку</button>')+'</div>').join('')+
- (!all&&rows.length>5?'<button type="button" id="showMoreComparisons">Показать все ('+rows.length+')</button>':all&&rows.length>5?'<button type="button" id="showLessComparisons">Свернуть до 5</button>':'')+
- '<div class="comp-guest"><strong>Как объяснить гостю</strong><p>'+escapeHTML(p.comparison.guestPhrase||p.guest)+'</p></div>';
- panel.querySelectorAll('[data-comp-tab]').forEach(b=>b.onclick=()=>renderComparison(p,b.dataset.compTab,false));
- panel.querySelectorAll('[data-peer]').forEach(b=>b.onclick=()=>openDetail(b.dataset.peer,false,{open:true,tab}));
- const more=$('showMoreComparisons');if(more)more.onclick=()=>renderComparison(p,tab,true);
- const less=$('showLessComparisons');if(less)less.onclick=()=>renderComparison(p,tab,false);
+ const {available,actual,peers}=comparisonGroup(p,scope);
+ if(mode!=='pair'||!peers.length)mode='list';
+ const [metricA,metricB]=comparisonMetrics(p);
+ const choices=[p,...peers];
+ const shown=showAll?choices:choices.slice(0,5);
+ const chosen=peers.find(v=>v.id===peerId)||peers[0];
+ const toolbar='<div class="comp-toolbar"><div class="comp-switch" aria-label="Что сравнивать">'+
+ (available?'<button type="button" data-comp-scope="series" aria-pressed="'+(actual==='series')+'">Линейка '+escapeHTML(p.seriesId)+'</button>':'')+
+ '<button type="button" data-comp-scope="section" aria-pressed="'+(actual==='section')+'">Раздел</button></div>'+
+ '<div class="comp-switch" aria-label="Режим сравнения"><button type="button" data-comp-mode="list" aria-pressed="'+(mode==='list')+'">Список</button>'+
+ (peers.length?'<button type="button" data-comp-mode="pair" aria-pressed="'+(mode==='pair')+'">Два сорта</button>':'')+'</div></div>';
+ let content='';
+ if(mode==='list'){
+  content='<p class="comp-guide">Ближайшие по вкусу варианты. Нажми на строку, чтобы сравнить два сорта.</p>'+
+  '<div class="comp-list"><div class="comp-list-head"><span>Пиво</span><span>Креп.</span><span title="'+attr(metricTitle(metricA))+'">'+metricAbbr(metricA)+'/5</span><span title="'+attr(metricTitle(metricB))+'">'+metricAbbr(metricB)+'/5</span></div>'+
+  shown.map(v=>{
+   const current=v.id===p.id;
+   const start=current?'<div class="comp-list-item is-current">':'<button type="button" class="comp-list-item" data-compare-peer="'+attr(v.id)+'">';
+   const end=current?'</div>':'</button>';
+   return start+'<div class="comp-list-line"><strong>'+escapeHTML(v.name)+(current?' · Выбранное':'')+'</strong><span>'+escapeHTML(strengthLabel(v))+'</span><span>'+escapeHTML(numericTaste(v,metricA)??'—')+'</span><span>'+escapeHTML(numericTaste(v,metricB)??'—')+'</span></div>'+
+    '<div class="comp-item-note">'+escapeHTML(v.comparison?.short||v.difference||'Особенности уточняются')+'</div>'+end
+  }).join('')+
+  (choices.length>5?'<button type="button" class="comp-more" id="toggleCompareAll">'+(showAll?'Свернуть до 5':'Показать все ('+choices.length+')')+'</button>':'')+
+  '</div><p class="comp-note">'+metricAbbr(metricA)+' — '+metricTitle(metricA).toLowerCase()+
+  ', '+metricAbbr(metricB)+' — '+metricTitle(metricB).toLowerCase()+'. Значения 1–5 ориентировочные.</p>'
+ }else{
+  const first=escapeHTML(p.name),second=escapeHTML(chosen.name);
+  content='<div class="comp-peer-picker"><label for="comparePeerSelect">Второй сорт</label><select id="comparePeerSelect">'+
+   peers.map(v=>'<option value="'+attr(v.id)+'"'+(v.id===chosen.id?' selected':'')+'>'+escapeHTML(v.name)+'</option>').join('')+'</select></div>'+
+   '<div class="comp-pair"><div class="comp-pair-head"><span>Показатель</span><span>'+first+'</span><span>'+second+'</span></div>'+
+   '<div class="comp-pair-row"><span class="metric-label">Крепость</span><span class="comp-pair-value">'+escapeHTML(strengthLabel(p))+'</span><span class="comp-pair-value">'+escapeHTML(strengthLabel(chosen))+'</span></div>'+
+   tasteFields.map(([key,label])=>'<div class="comp-pair-row"><span class="metric-label">'+label+'</span>'+miniBars(p,key)+miniBars(chosen,key)+'</div>').join('')+
+   '</div><div class="comp-summary"><strong>Главное отличие</strong><p>'+second+' по сравнению с '+first+': '+escapeHTML(relativeTaste(p,chosen))+
+   '. '+escapeHTML(chosen.comparison?.short||chosen.difference||'')+'</p></div>'+
+   '<button class="comp-peer-open" type="button" id="openSelectedPeer">Открыть карточку '+second+'</button>'+
+   '<p class="comp-note">Шкалы — приблизительная учебная оценка по стилю и описанию, не результат измерения или дегустации.</p>'
+ }
+ panel.innerHTML=toolbar+content;
+ panel.querySelectorAll('[data-comp-scope]').forEach(b=>b.onclick=()=>renderComparison(p,b.dataset.compScope,mode,false,null));
+ panel.querySelectorAll('[data-comp-mode]').forEach(b=>b.onclick=()=>renderComparison(p,actual,b.dataset.compMode,false,chosen?.id));
+ panel.querySelectorAll('[data-compare-peer]').forEach(b=>b.onclick=()=>renderComparison(p,actual,'pair',false,b.dataset.comparePeer));
+ const select=$('comparePeerSelect');if(select)select.onchange=()=>renderComparison(p,actual,'pair',false,select.value);
+ const more=$('toggleCompareAll');if(more)more.onclick=()=>renderComparison(p,actual,'list',!showAll,null);
+ const open=$('openSelectedPeer');if(open)open.onclick=()=>openDetail(chosen.id,false,{open:true,scope:actual,mode:'list'});
 }
 
 const photoCacheKey='beer-photo-index-v1';
@@ -189,7 +271,7 @@ function render(){
  $('count').textContent=selected.length+' из '+items.length+' позиций • '+sections.length+' разделов';
  $('progress').textContent=items.filter(p=>p.guest).length+' карточек с подробным описанием';
  const hint=$('sectionTip');hint.classList.toggle('hidden',!s);hint.textContent=s?'Ориентир по разделу: '+(sectionTips[s]||'Сравните вкусовые характеристики сортов.') :'';
- $('cards').innerHTML=selected.map(p=>'<article class="card"><div class="photo">'+((p.image||photoIndex[p.id]?.url)?'<img loading="lazy" src="'+attr(p.image||photoIndex[p.id].url)+'" alt="'+attr(p.name)+'" onerror="showPhotoFallback(this)">':'<span data-photo-id="'+attr(p.id)+'" style="font-size:14px;color:#d7b763">'+(photoIndex[p.id]?.unavailable?'Фото не найдено':'Поиск фото…')+'</span>')+'</div><div class="content"><span class="section">'+escapeHTML(p.section)+'</span><h3>'+escapeHTML(p.name)+'</h3><div><span class="pill">Крепость: '+escapeHTML(p.abv||'уточняется')+(p.abv?'%':'')+'</span></div><p>'+escapeHTML(p.guest||'Описание будет добавлено')+'</p><div class="quick-diff"><strong>Отличие:</strong> '+escapeHTML(p.comparison.short)+'</div><div class="bottom"><button data-id="'+attr(p.id)+'">Открыть</button></div></div></article>').join('');
+ $('cards').innerHTML=selected.map(p=>'<article class="card"><div class="photo">'+((p.image||photoIndex[p.id]?.url)?'<img loading="lazy" src="'+attr(p.image||photoIndex[p.id].url)+'" alt="'+attr(p.name)+'" onerror="showPhotoFallback(this)">':'<span data-photo-id="'+attr(p.id)+'" style="font-size:14px;color:#d7b763">'+(photoIndex[p.id]?.unavailable?'Фото не найдено':'Поиск фото…')+'</span>')+'</div><div class="content"><span class="section">'+escapeHTML(p.section)+'</span><h3>'+escapeHTML(p.name)+'</h3><div><span class="pill">Крепость: '+escapeHTML(p.abv||'уточняется')+(p.abv?'%':'')+'</span></div><p class="card-taste"><strong>Вкус:</strong> '+escapeHTML(p.notes||p.balance||'Уточняется')+'</p><div class="quick-diff"><strong>Отличие:</strong> '+escapeHTML(p.comparison.short)+'</div><div class="bottom"><button data-id="'+attr(p.id)+'">Открыть</button></div></div></article>').join('');
  document.querySelectorAll('.bottom button').forEach(b=>b.onclick=()=>openDetail(b.dataset.id));
  enqueueVisiblePhotos();
 }
@@ -200,8 +282,8 @@ function openDetail(id,editing=false,view=null){
  (editing?'<div id="editFields">'+[['abv','Крепость, %'],['color','Цвет'],['balance','Баланс'],['notes','Аромат и ноты'],['body','Тело'],['difference','Главное отличие'],['guest','Фраза гостю'],['image','Ссылка на изображение'],['source','Источник / проверка']].map(([k,l])=>'<label>'+l+(k==='notes'||k==='difference'||k==='guest'?'<textarea data-field="'+k+'">'+escapeHTML(p[k])+'</textarea>':'<input data-field="'+k+'" value="'+attr(p[k])+'">')+'</label>').join('')+'</div><div class="actions"><button class="primary" id="saveEdit">Сохранить</button><button id="cancelEdit">Отмена</button></div>':
  line('Крепость',p.abv?p.abv+'%':'')+comparisonShell(p)+line('Цвет',p.color)+line('Баланс',p.balance)+line('Аромат и ноты',p.notes)+line('Тело',p.body)+line('Чем отличается',p.difference)+line('Как сказать гостю',p.guest)+line('Источник',p.source)+(p.photoSource?'<p><a href="'+attr(p.photoSource)+'" target="_blank" rel="noopener noreferrer">Источник фотографии и лицензия</a></p>':'')+'<div class="actions" style="margin-top:18px"><button class="primary" id="editDetail">Редактировать</button></div>');
  if(!d.open)d.showModal();$('closeDetail').onclick=()=>d.close();
- const comparison=$('beerComparison');if(comparison){comparison.addEventListener('toggle',()=>{if(comparison.open)renderComparison(p,view?.tab||'series',false)});
- if(view?.open){comparison.open=true;renderComparison(p,view.tab||'series',false)}}
+ const comparison=$('beerComparison');if(comparison){comparison.addEventListener('toggle',()=>{if(comparison.open)renderComparison(p,view?.scope||view?.tab||'series',view?.mode||'list',false,view?.peerId||null)});
+ if(view?.open){comparison.open=true;renderComparison(p,view.scope||view.tab||'series',view.mode||'list',false,view.peerId||null)}}
 
  if(editing){$('cancelEdit').onclick=()=>openDetail(id,false);$('saveEdit').onclick=()=>{d.querySelectorAll('[data-field]').forEach(el=>p[el.dataset.field]=el.value.trim());save();render();openDetail(id,false)}}
  else $('editDetail').onclick=()=>openDetail(id,true)
