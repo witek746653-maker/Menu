@@ -76,7 +76,6 @@ function showPhotoFallback(img){
   return;
  }
 
- const p=items.find(item=>item.name===img.alt);
  const box=img.parentElement;if(!box)return;
  box.innerHTML='';
  const note=document.createElement('div');
