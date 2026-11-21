@@ -20,7 +20,7 @@ button{background:#242424;border:1px solid #555;color:white;border-radius:10px;p
 @media(max-width:850px){main{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.modal .two,.compare-grid{grid-template-columns:1fr}}
 </style></head><body>
 <header><h1>Пивная база знаний</h1><p class="muted">Стили, вкус, отличие от похожих сортов и готовые формулировки для гостя.</p><p><a href="./waiter-database.html">← Основная база знаний</a></p></header>
-<main><aside class="panel sidebar"><h2>Поиск и разделы</h2><label>Поиск по названию, вкусу и особенностям<input id="q" type="search" placeholder="Chimay, карамель, дуббель…"></label><label>Раздел<select id="section"></select></label><label><input id="onlyDone" type="checkbox" style="width:auto;margin:0"> Только с описанием</label><div class="actions"><button id="quizBtn">Вопрос гостя</button><button id="compareBtn">Сравнить два пива</button></div><hr style="border-color:#333;margin:20px 0"><h2>Мои данные</h2><div class="notice">Правки хранятся в этом браузере. Для сохранения между устройствами экспортируй JSON и добавляй его в репозиторий.</div><div class="actions" style="margin-top:12px"><button id="exportBtn">Экспорт JSON</button><button id="importBtn">Импорт JSON</button><input id="importFile" type="file" accept=".json,application/json" class="hidden"></div><p class="muted" id="progress"></p></aside>
+<main><aside class="panel sidebar"><h2>Поиск и разделы</h2><label>Поиск по названию, вкусу и особенностям<input id="q" type="search" placeholder="Chimay, карамель, дуббель…"></label><label>Раздел<select id="section"></select></label><label><input id="onlyDone" type="checkbox" style="width:auto;margin:0"> Только с описанием</label><div class="actions"><button id="quizBtn">Вопрос гостя</button><button id="compareBtn">Сравнить два пива</button></div><hr style="border-color:#333;margin:20px 0"><h2>Мои данные</h2><div class="notice">Правки хранятся в этом браузере. Для сохранения между устройствами экспортируй JSON и добавляй его в репозиторий.</div><div class="actions" style="margin-top:12px"><button id="exportBtn">Экспорт JSON</button><button id="importBtn">Импорт JSON</button><button id="resetPhotoSearch">Повторить поиск фото</button><input id="importFile" type="file" accept=".json,application/json" class="hidden"></div><p class="muted" id="progress"></p></aside>
 <section><div class="count" id="count"></div><div class="cards" id="cards"></div></section></main>
 <dialog class="modal" id="detail"></dialog><dialog class="modal" id="compare"></dialog><dialog class="modal" id="quiz"></dialog>
 <footer>Учебная копия базы. Характеристики сверяй с производителем и реальной дегустацией; отсутствие описания не означает отсутствие продукта.</footer>
@@ -34,13 +34,48 @@ const attr=s=>escapeHTML(s), x=s=>s||'Не заполнено';
 const sections=[...new Set(seed.map(p=>p.section))];
 $('section').innerHTML='<option value="">Все разделы</option>'+sections.map(s=>'<option>'+escapeHTML(s)+'</option>').join('');
 function save(){localStorage.setItem(key,JSON.stringify(items))}
+
+const photoCacheKey='beer-photo-index-v1';
+let photoIndex={};try{photoIndex=JSON.parse(localStorage.getItem(photoCacheKey))||{}}catch(e){}
+const genericBeerWords=new Set(['beer','bier','biere','ale','bottle','bottles','flasche','cerveza','the','and','trappist','trappistes','pivo','pils','stout','of','de','la','le']);
+function imageTokens(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').split(' ').filter(w=>w.length>1&&!genericBeerWords.has(w))}
+function looksExact(name,title){
+ const tokens=imageTokens(name),found=new Set(imageTokens(title));
+ return tokens.length>0&&tokens.every(w=>found.has(w))&&/(beer|bier|flasche|bottle|biere|ale|trappist|pivo|cerveza)/i.test(title)
+}
+async function lookupCommons(p){
+ const params=new URLSearchParams({action:'query',generator:'search',gsrsearch:p.name+' beer bottle',gsrnamespace:'6',gsrlimit:'12',prop:'imageinfo',iiprop:'url|mime',iiurlwidth:'360',format:'json',origin:'*'});
+ const res=await fetch('https://commons.wikimedia.org/w/api.php?'+params,{signal:AbortSignal.timeout(12000)});
+ if(!res.ok)return null;const response=await res.json();const pages=Object.values(response.query?.pages||{});
+ const ok=pages.find(q=>looksExact(p.name,q.title)&&q.imageinfo?.[0]&&/^image\/(?:png|jpeg|webp)$/.test(q.imageinfo[0].mime));
+ return ok?{url:ok.imageinfo[0].thumburl||ok.imageinfo[0].url,source:ok.imageinfo[0].descriptionurl||'https://commons.wikimedia.org'}:null
+}
+let imgQueue=[],searching=0;
+function requestPhoto(id){
+ const p=items.find(v=>v.id===id);if(!p||p.image||photoIndex[id]||imgQueue.includes(id))return;imgQueue.push(id);pumpImages()
+}
+async function pumpImages(){
+ if(searching>=2||!imgQueue.length)return;
+ const id=imgQueue.shift();const p=items.find(v=>v.id===id);if(!p||p.image)return pumpImages();
+ searching++;
+ try{const result=await lookupCommons(p);photoIndex[id]=result||{unavailable:true};localStorage.setItem(photoCacheKey,JSON.stringify(photoIndex));if(result)render()}
+ catch(e){photoIndex[id]={unavailable:true};localStorage.setItem(photoCacheKey,JSON.stringify(photoIndex))}
+ finally{searching--;pumpImages()}
+}
+function enqueueVisiblePhotos(){
+ if(!('IntersectionObserver' in window))return;
+ const io=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){requestPhoto(e.target.dataset.photoId);io.unobserve(e.target)}},{rootMargin:'280px'});
+ document.querySelectorAll('[data-photo-id]').forEach(el=>io.observe(el))
+}
+
 function render(){
  const q=$('q').value.trim().toLowerCase(),s=$('section').value,done=$('onlyDone').checked;
  const selected=items.filter(p=>(!s||p.section===s)&&(!done||p.guest)&&(!q||[p.name,p.section,p.notes,p.guest,p.difference].join(' ').toLowerCase().includes(q)));
  $('count').textContent=selected.length+' из '+items.length+' позиций • '+sections.length+' разделов';
  $('progress').textContent=items.filter(p=>p.guest).length+' карточек с подробным описанием';
- $('cards').innerHTML=selected.map(p=>'<article class="card"><div class="photo">'+(p.image?'<img loading="lazy" src="'+attr(p.image)+'" alt="'+attr(p.name)+'" onerror="this.style.display=\'none\';this.parentElement.textContent=\'Фото не найдено\'">':'<span>Фото пока нет</span>')+'</div><div class="content"><span class="section">'+escapeHTML(p.section)+'</span><h3>'+escapeHTML(p.name)+'</h3><div>'+(p.abv?'<span class="pill">'+escapeHTML(p.abv)+'% ABV</span>':'<span class="pill">Крепость уточняется</span>')+'</div><p>'+escapeHTML(p.guest||'Описание будет добавлено')+'</p><div class="bottom"><button data-id="'+attr(p.id)+'">Открыть</button></div></div></article>').join('');
+ $('cards').innerHTML=selected.map(p=>'<article class="card"><div class="photo">'+((p.image||photoIndex[p.id]?.url)?'<img loading="lazy" src="'+attr(p.image||photoIndex[p.id].url)+'" alt="'+attr(p.name)+'" onerror="this.style.display=\'none\';this.parentElement.textContent=\'Фото недоступно\'">':'<span data-photo-id="'+attr(p.id)+'" style="font-size:14px;color:#d7b763">'+(photoIndex[p.id]?.unavailable?'Фото не найдено':'Поиск фото…')+'</span>')+'</div><div class="content"><span class="section">'+escapeHTML(p.section)+'</span><h3>'+escapeHTML(p.name)+'</h3><div>'+(p.abv?'<span class="pill">'+escapeHTML(p.abv)+'% ABV</span>':'<span class="pill">Крепость уточняется</span>')+'</div><p>'+escapeHTML(p.guest||'Описание будет добавлено')+'</p><div class="bottom"><button data-id="'+attr(p.id)+'">Открыть</button></div></div></article>').join('');
  document.querySelectorAll('.bottom button').forEach(b=>b.onclick=()=>openDetail(b.dataset.id));
+ enqueueVisiblePhotos();
 }
 function line(label,value){return '<div class="detail-line"><strong>'+label+': </strong>'+escapeHTML(x(value))+'</div>'}
 function openDetail(id,editing=false){
@@ -60,7 +95,7 @@ function openCompare(){
  $('ca').onchange=update;$('cb').onchange=update;update()
 }
 function openQuiz(){const pool=items.filter(p=>p.guest);const p=pool[Math.floor(Math.random()*pool.length)];const d=$('quiz');d.innerHTML='<h2>Вопрос гостя</h2><p>Гость спрашивает: «Что за пиво '+escapeHTML(p.name)+'? Чем оно интересно?»</p><p>Попробуй ответить за 15 секунд.</p><button id="reveal">Показать пример ответа</button><p id="answer" class="hidden notice">'+escapeHTML(p.guest)+'</p><div class="actions" style="margin-top:14px"><button id="again">Другой вопрос</button><button id="closeQuiz">Закрыть</button></div>';d.showModal();$('reveal').onclick=()=>$('answer').classList.remove('hidden');$('again').onclick=()=>{d.close();openQuiz()};$('closeQuiz').onclick=()=>d.close()}
-$('q').oninput=render;$('section').onchange=render;$('onlyDone').onchange=render;$('compareBtn').onclick=openCompare;$('quizBtn').onclick=openQuiz;
+$('resetPhotoSearch').onclick=()=>{photoIndex={};localStorage.removeItem(photoCacheKey);render()};$('q').oninput=render;$('section').onchange=render;$('onlyDone').onchange=render;$('compareBtn').onclick=openCompare;$('quizBtn').onclick=openQuiz;
 $('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(items,null,2)],{type:'application/json'}),a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download='beer-database.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),500)};
 $('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const parsed=JSON.parse(await f.text());if(!Array.isArray(parsed)||parsed.length!==seed.length||!parsed.every(p=>p.id&&p.name&&p.section))throw Error('Неподходящий формат базы');if(!confirm('Заменить локальные карточки данными из файла?'))return;items=parsed;save();render()}catch(err){alert('Не удалось импортировать: '+err.message)}e.target.value=''};
 render();
