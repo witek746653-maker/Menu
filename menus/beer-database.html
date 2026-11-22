@@ -230,6 +230,22 @@ const sectionOptions='<option value="">Все разделы</option>'+sections.
 for(const id of ['section','mobileSection'])$(id).innerHTML=sectionOptions;
 const sortOptions=[['default','По порядку меню'],['name','Название: А–Я'],['abv-asc','Крепость: от меньшей'],['abv-desc','Крепость: от большей'],['brewery','По пивоварне']];
 for(const id of ['sort','mobileSort'])$(id).innerHTML=sortOptions.map(([value,label])=>'<option value="'+value+'">'+label+'</option>').join('');
+// Keep catalog preferences across page reloads, using one shared state for desktop and mobile.
+const viewStateKey='beer-atlas-view-v1';
+function restoreViewState(){
+ try{
+  const state=JSON.parse(localStorage.getItem(viewStateKey)||'null');
+  if(!state||typeof state!=='object')return;
+  const section=typeof state.section==='string'&&sections.includes(state.section)?state.section:'';
+  const sort=sortOptions.some(([value])=>value===state.sort)?state.sort:'default';
+  for(const id of ['section','mobileSection'])$(id).value=section;
+  for(const id of ['sort','mobileSort'])$(id).value=sort;
+ }catch(e){}
+}
+function saveViewState(){
+ try{localStorage.setItem(viewStateKey,JSON.stringify({section:$('section').value,sort:$('sort').value}))}catch(e){}
+}
+restoreViewState();
 function save(){localStorage.setItem(key,JSON.stringify(items))}
 
 
@@ -497,9 +513,23 @@ function beerNavigation(id){
  '<span class="beer-navigation-count">'+(index+1)+' из '+order.length+'</span>'+
  '<button type="button" id="nextBeer" aria-label="Следующее пиво" title="Следующее"'+(index>=order.length-1?' disabled':'')+'>›</button></nav>';
 }
+// Capture the catalog viewport only on the first opening (not while editing or switching beers).
+let detailReturnPosition=null;
+$('detail').addEventListener('close',()=>{
+ const previous=detailReturnPosition;
+ detailReturnPosition=null;
+ if(!previous)return;
+ requestAnimationFrame(()=>{
+  const card=[...$('cards').querySelectorAll('.card[data-id]')].find(el=>el.dataset.id===previous.cardId);
+  if(card)card.focus({preventScroll:true});
+  window.scrollTo(previous.x,previous.y);
+ });
+});
 function openDetail(id,editing=false,view=null){
  const p=items.find(i=>i.id===id);if(!p)return;
- const d=$('detail');d.dataset.beerId=id;d.dataset.editing=editing?'yes':'no';
+ const d=$('detail');
+ if(!d.open)detailReturnPosition={x:window.scrollX,y:window.scrollY,cardId:id};
+ d.dataset.beerId=id;d.dataset.editing=editing?'yes':'no';
  d.innerHTML='<div class="modal-head"><h2>'+beerFlag(p)+'<span>'+escapeHTML(p.name)+'</span></h2><button type="button" class="modal-close" id="closeDetail" aria-label="Закрыть карточку" title="Закрыть">×</button></div><small>'+escapeHTML(p.section)+'</small>'+(editing?'':beerNavigation(id))+
  (editing?'<div id="editFields">'+[['abv','Крепость, %'],['color','Цвет'],['balance','Баланс'],['notes','Аромат и ноты'],['body','Тело'],['difference','Главное отличие'],['guest','Фраза гостю'],['pronunciation','Произношение'],['nameMeaning','Значение названия'],['nameHistory','История названия'],['image','Ссылка на изображение'],['source','Источник / проверка']].map(([k,l])=>'<label>'+l+(k==='notes'||k==='difference'||k==='guest'||k==='nameMeaning'||k==='nameHistory'?'<textarea data-field="'+k+'">'+escapeHTML(p[k])+'</textarea>':'<input data-field="'+k+'" value="'+attr(p[k])+'">')+'</label>').join('')+'</div><div class="actions"><button class="primary" id="saveEdit">Сохранить</button><button id="cancelEdit">Отмена</button></div>':
  line('Крепость',p.abv?p.abv+'%':'')+line('Цвет',p.color)+line('Аромат и ноты',p.notes)+line('Чем отличается',p.difference)+comparisonShell(p)+'<details class="name-history-panel"><summary>Название и история <span aria-hidden="true">▾</span></summary><div class="name-history-inner">'+line('Произношение',p.pronunciation)+line('Значение названия',p.nameMeaning)+line('История названия',p.nameHistory)+'</div></details>'+'<details class="extra-panel"><summary>Дополнительные сведения <span aria-hidden="true">▾</span></summary><div class="name-history-inner">'+line('Баланс',p.balance)+line('Тело',p.body)+line('Как сказать гостю',p.guest)+line('Источник',p.source)+(p.photoSource?'<p><a href="'+attr(p.photoSource)+'" target="_blank" rel="noopener noreferrer">Источник фотографии и лицензия</a></p>':'')+'</div></details>'+'<div class="actions" style="margin-top:18px"><button class="primary" id="editDetail">Редактировать</button></div>');
@@ -522,7 +552,7 @@ $('resetPhotoSearch').onclick=()=>{photoIndex={};localStorage.removeItem(photoCa
 $('q').oninput=()=>{$('mobileQ').value=$('q').value;render()};
 $('mobileQ').oninput=()=>{$('q').value=$('mobileQ').value;render()};
 for(const [first,second] of [['section','mobileSection'],['mobileSection','section'],['sort','mobileSort'],['mobileSort','sort']]){
- $(first).onchange=()=>{$(second).value=$(first).value;render()};
+ $(first).onchange=()=>{$(second).value=$(first).value;saveViewState();render()};
 }
 $('compareBtn').onclick=openCompare;
 $('mobileCompareBtn').onclick=()=>{$('mobileFilters').open=false;openCompare()};
