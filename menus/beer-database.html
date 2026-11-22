@@ -133,6 +133,65 @@ button.comp-list-item:hover{background:#332b1e}
 .cards .card h3,.modal-head h2{display:flex;align-items:baseline;gap:5px}
 .cards .card h3>span:last-child,.modal-head h2>span:last-child{min-width:0;overflow-wrap:anywhere}
 .modal-head .beer-flag{flex-basis:18px;width:18px;height:13.5px}
+
+/* Beer detail: fixed navigation around one independently scrollable screen. */
+#detail{padding:0;width:min(820px,calc(100vw - 32px));height:min(780px,calc(100dvh - 36px));max-height:calc(100dvh - 36px);overflow:hidden;overscroll-behavior:contain}
+#detail:not([open]){display:none}
+#detail[open]{display:flex;flex-direction:column}
+.beer-sheet{display:flex;flex-direction:column;min-height:0;height:100%;width:100%}
+.beer-sheet-top{flex:0 0 auto;background:#121212;padding:16px 22px 0;border-bottom:1px solid #363636}
+.beer-sheet-top .modal-head{position:static;padding:0;margin:0 0 6px;border:0}
+.beer-sheet-heading{min-width:0;flex:1}
+.beer-sheet-heading h2{font-size:clamp(18px,2.6vw,23px);line-height:1.25;margin:0;display:flex;align-items:baseline;gap:6px}
+.beer-sheet-heading h2>span:last-child{overflow-wrap:anywhere;min-width:0}
+.beer-sheet-section{font-size:12px;color:#bcbcbc;margin-top:5px}
+.beer-sheet-top .beer-navigation{margin:10px 0 0;padding:0 0 12px;border:0}
+.beer-page-stack{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;overflow:hidden}
+.beer-page{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:22px clamp(16px,3vw,28px) 28px}
+.beer-page[hidden]{display:none}
+.beer-page h3{margin:0 0 14px;color:var(--gold);font-size:18px}
+.beer-page .detail-line{padding:13px 0;overflow-wrap:anywhere}
+.beer-page .detail-line strong{color:var(--gold)}
+.beer-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.beer-stat{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;min-width:0;min-height:92px;padding:15px;border:1px solid #41403b;background:#242424;border-radius:14px}
+.beer-stat--abv{background:#302719;border-color:#5d4c31}
+.beer-stat-label{font-size:11px;letter-spacing:.06em;color:#bdad92}
+.beer-stat strong{font-size:clamp(19px,3vw,25px);font-weight:750;line-height:1.2;overflow-wrap:anywhere}
+.beer-stat--abv strong{color:var(--gold)}
+.beer-feature{margin:0 0 21px}
+.beer-feature h3{font-size:15px;margin:0 0 7px}
+.beer-feature p{margin:0;font-size:15px;line-height:1.55}
+.beer-compare-action{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;padding:13px 15px;background:#302718;color:var(--gold);border:1px solid #78613c;font-weight:700;text-align:left}
+.beer-compare-action span{margin-left:auto;font-size:23px;line-height:1}
+.beer-page-subtitle{color:#bfb7a9;margin:0 0 15px;font-size:13px;line-height:1.5}
+.beer-comparison-wrap .comparison-inner{padding:0}
+.beer-page--compare .comp-toolbar{margin:0 0 13px}
+.beer-page--compare .comp-switch button{min-height:40px;padding:9px 12px}
+.beer-page--compare .comp-list-item{min-height:50px}
+.beer-more-actions,.beer-edit-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.beer-more-actions button,.beer-edit-actions button{min-height:44px}
+.beer-source-link{overflow-wrap:anywhere;padding-top:12px;font-size:13px}
+.beer-bottom-tabs{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:9px 14px max(12px,env(safe-area-inset-bottom));background:#171717;border-top:1px solid #383838}
+.beer-bottom-tabs button{display:flex;align-items:center;flex-direction:column;justify-content:center;gap:3px;min-height:54px;padding:7px 3px;border-radius:10px;border:1px solid transparent;background:transparent;color:#bcbcbc;font-size:12px}
+.beer-bottom-tabs button[aria-selected="true"]{color:var(--gold);background:#392e1d;border-color:#5b4b34;font-weight:700}
+.beer-bottom-tabs button:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.beer-tab-icon{display:block;font-size:23px;line-height:1.05;font-weight:400}
+@media(max-width:850px){
+ #detail{position:fixed;inset:0;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0}
+ .beer-sheet-top{padding:12px 16px 0}
+ .beer-sheet-top .modal-close{width:44px;height:44px}
+ .beer-sheet-top .beer-navigation{margin-top:7px;padding-bottom:10px}
+ .beer-page{padding:18px 16px 24px}
+ .beer-stats{margin-bottom:20px}
+ .beer-bottom-tabs{padding:8px 10px max(9px,env(safe-area-inset-bottom))}
+ .beer-bottom-tabs button{min-height:58px}
+}
+@media(max-width:390px){
+ .beer-bottom-tabs button{font-size:11px}
+ .beer-stats{gap:8px}
+ .beer-stat{padding:12px}
+ .beer-page--compare .comp-switch button{padding:8px 9px;font-size:12px}
+}
 </style></head><body>
 <header><h1>Пивной атлас</h1></header>
 <div class="mobile-toolbar">
@@ -277,7 +336,8 @@ function tasteDistance(a,b){
  Math.min(3,Math.abs(parseFloat(a.abv)-parseFloat(b.abv))||0)*0.3
 }
 function comparisonShell(p){
- return '<details class="comparison-panel" id="beerComparison"><summary>Сравнить с похожими<small>'+escapeHTML(p.comparison?.short||'Быстрое сравнение сортов')+'</small></summary><div class="comparison-inner" id="comparisonInner"></div></details>'
+ return '<p class="beer-page-subtitle">'+escapeHTML(p.comparison?.short||'Быстрое сравнение сортов')+'</p>'+
+  '<div class="beer-comparison-wrap"><div class="comparison-inner" id="comparisonInner"></div></div>'
 }
 function comparisonGroup(p,scope){
  const line=p.seriesId?items.filter(v=>v.seriesId===p.seriesId):[];
@@ -310,7 +370,7 @@ function renderComparison(p,scope='series',showAll=false){
   '</div><p class="comp-note">'+metricAbbr(metricA)+' — '+metricTitle(metricA).toLowerCase()+
   ', '+metricAbbr(metricB)+' — '+metricTitle(metricB).toLowerCase()+'. Значения 1–5 ориентировочные.</p>';
  panel.innerHTML=toolbar+content;
- panel.querySelectorAll('[data-comp-scope]').forEach(b=>b.onclick=()=>renderComparison(p,b.dataset.compScope));
+ panel.querySelectorAll('[data-comp-scope]').forEach(b=>b.onclick=()=>{detailComparisonScope=b.dataset.compScope;renderComparison(p,b.dataset.compScope)});
  panel.querySelectorAll('[data-open-beer]').forEach(b=>b.onclick=()=>{openDetail(b.dataset.openBeer,false,{open:true,scope:actual});$('detail').scrollTop=0});
  const more=$('toggleCompareAll');if(more)more.onclick=()=>renderComparison(p,actual,!showAll);
 }
@@ -455,7 +515,7 @@ function navigateBeer(delta){
  const order=detailOrder(id),index=order.indexOf(id),next=order[index+delta];
  if(!next)return;
  openDetail(next,false);
- d.scrollTop=0;
+ d.querySelector('.beer-page:not([hidden])')?.scrollTo(0,0);
 }
 function beerNavigation(id){
  const order=detailOrder(id),index=order.indexOf(id);
@@ -476,21 +536,92 @@ $('detail').addEventListener('close',()=>{
   window.scrollTo(previous.x,previous.y);
  });
 });
+// The selected information screen remains active when navigating between beers.
+let detailTab='overview',detailComparisonScope='series';
+const detailTabItems=[['overview','⌂','Обзор'],['compare','⇄','Сравнить'],['history','▤','История'],['more','⋯','Ещё']];
+function setDetailTab(tab){
+ if(!detailTabItems.some(([key])=>key===tab))return;
+ detailTab=tab;
+ const d=$('detail');
+ d.querySelectorAll('[data-beer-page]').forEach(page=>{
+  page.hidden=page.dataset.beerPage!==tab;
+ });
+ d.querySelectorAll('[data-beer-tab]').forEach(button=>{
+  const selected=button.dataset.beerTab===tab;
+  button.setAttribute('aria-selected',String(selected));
+  button.tabIndex=selected?0:-1;
+ });
+}
+function detailPage(tab,label,contents){
+ const id='beerPage'+tab.charAt(0).toUpperCase()+tab.slice(1);
+ return '<section class="beer-page beer-page--'+tab+'" data-beer-page="'+tab+'" role="tabpanel" aria-labelledby="beerTab-'+tab+'" id="'+id+'" tabindex="0" hidden>'+
+  '<h3>'+label+'</h3>'+contents+'</section>'
+}
 function openDetail(id,editing=false,view=null){
  const p=items.find(i=>i.id===id);if(!p)return;
  const d=$('detail');
- if(!d.open)detailReturnPosition={x:window.scrollX,y:window.scrollY,cardId:id};
+ if(!d.open){
+  detailReturnPosition={x:window.scrollX,y:window.scrollY,cardId:id};
+  detailTab='overview';detailComparisonScope='series';
+ }
+ if(view?.open)detailTab='compare';
+ else if(view?.tab)detailTab=view.tab;
  d.dataset.beerId=id;d.dataset.editing=editing?'yes':'no';
- d.innerHTML='<div class="modal-head"><h2>'+beerFlag(p)+'<span>'+escapeHTML(p.name)+'</span></h2><button type="button" class="modal-close" id="closeDetail" aria-label="Закрыть карточку" title="Закрыть">×</button></div><small>'+escapeHTML(p.section)+'</small>'+(editing?'':beerNavigation(id))+
- (editing?'<div id="editFields">'+[['abv','Крепость, %'],['color','Цвет'],['balance','Баланс'],['notes','Аромат и ноты'],['body','Тело'],['difference','Главное отличие'],['guest','Фраза гостю'],['pronunciation','Произношение'],['nameMeaning','Значение названия'],['nameHistory','История названия'],['image','Ссылка на изображение'],['source','Источник / проверка']].map(([k,l])=>'<label>'+l+(k==='notes'||k==='difference'||k==='guest'||k==='nameMeaning'||k==='nameHistory'?'<textarea data-field="'+k+'">'+escapeHTML(p[k])+'</textarea>':'<input data-field="'+k+'" value="'+attr(p[k])+'">')+'</label>').join('')+'</div><div class="actions"><button class="primary" id="saveEdit">Сохранить</button><button id="cancelEdit">Отмена</button></div>':
- line('Крепость',p.abv?p.abv+'%':'')+line('Цвет',p.color)+line('Аромат и ноты',p.notes)+line('Чем отличается',p.difference)+comparisonShell(p)+'<details class="name-history-panel"><summary>Название и история <span aria-hidden="true">▾</span></summary><div class="name-history-inner">'+line('Произношение',p.pronunciation)+line('Значение названия',p.nameMeaning)+line('История названия',p.nameHistory)+'</div></details>'+'<details class="extra-panel"><summary>Дополнительные сведения <span aria-hidden="true">▾</span></summary><div class="name-history-inner">'+line('Баланс',p.balance)+line('Тело',p.body)+line('Как сказать гостю',p.guest)+line('Источник',p.source)+(p.photoSource?'<p><a href="'+attr(p.photoSource)+'" target="_blank" rel="noopener noreferrer">Источник фотографии и лицензия</a></p>':'')+'</div></details>'+'<div class="actions" style="margin-top:18px"><button class="primary" id="editDetail">Редактировать</button></div>');
- if(!d.open)d.showModal();$('closeDetail').onclick=()=>d.close();
- if(!editing){$('prevBeer').onclick=()=>navigateBeer(-1);$('nextBeer').onclick=()=>navigateBeer(1)}
- const comparison=$('beerComparison');if(comparison){comparison.addEventListener('toggle',()=>{if(comparison.open)renderComparison(p,view?.scope||'series')});
- if(view?.open){comparison.open=true;renderComparison(p,view.scope||'series')}}
-
- if(editing){$('cancelEdit').onclick=()=>openDetail(id,false);$('saveEdit').onclick=()=>{d.querySelectorAll('[data-field]').forEach(el=>p[el.dataset.field]=el.value.trim());save();render();openDetail(id,false)}}
- else $('editDetail').onclick=()=>openDetail(id,true)
+ const heading='<div class="beer-sheet-top"><div class="modal-head"><div class="beer-sheet-heading"><h2>'+beerFlag(p)+'<span>'+escapeHTML(p.name)+'</span></h2><div class="beer-sheet-section">'+escapeHTML(p.section)+'</div></div>'+
+  '<button type="button" class="modal-close" id="closeDetail" aria-label="Закрыть карточку" title="Закрыть">×</button></div>'+
+  (editing?'':beerNavigation(id))+'</div>';
+ const editFields='<div id="editFields">'+[['abv','Крепость, %'],['color','Цвет'],['balance','Баланс'],['notes','Аромат и ноты'],['body','Тело'],['difference','Главное отличие'],['guest','Фраза гостю'],['pronunciation','Произношение'],['nameMeaning','Значение названия'],['nameHistory','История названия'],['image','Ссылка на изображение'],['source','Источник / проверка']].map(([k,l])=>'<label>'+l+(k==='notes'||k==='difference'||k==='guest'||k==='nameMeaning'||k==='nameHistory'?'<textarea data-field="'+k+'">'+escapeHTML(p[k])+'</textarea>':'<input data-field="'+k+'" value="'+attr(p[k])+'">')+'</label>').join('')+'</div>';
+ let pages='',tabs='';
+ if(editing){
+  pages='<section class="beer-page beer-page--edit" id="beerPageEdit"><h3>Редактирование</h3>'+editFields+
+   '<div class="beer-edit-actions"><button class="primary" id="saveEdit">Сохранить</button><button id="cancelEdit">Отмена</button></div></section>';
+ }else{
+  const overview='<div class="beer-stats">'+
+   '<div class="beer-stat beer-stat--abv"><span class="beer-stat-label">КРЕПОСТЬ</span><strong>'+escapeHTML(p.abv?p.abv+'%':'—')+'</strong></div>'+
+   '<div class="beer-stat"><span class="beer-stat-label">ЦВЕТ</span><strong>'+escapeHTML(x(p.color))+'</strong></div></div>'+
+   '<div class="beer-feature"><h3>Аромат и ноты</h3><p>'+escapeHTML(x(p.notes))+'</p></div>'+
+   '<div class="beer-feature"><h3>Чем отличается</h3><p>'+escapeHTML(x(p.difference))+'</p></div>'+
+   '<button type="button" class="beer-compare-action" id="goCompare">⇄ Сравнить с похожими <span aria-hidden="true">›</span></button>';
+  const history=line('Произношение',p.pronunciation)+line('Значение названия',p.nameMeaning)+line('История названия',p.nameHistory);
+  const more=line('Баланс',p.balance)+line('Тело',p.body)+line('Как сказать гостю',p.guest)+line('Источник',p.source)+
+   (p.photoSource?'<p class="beer-source-link"><a href="'+attr(p.photoSource)+'" target="_blank" rel="noopener noreferrer">Источник фотографии и лицензия</a></p>':'')+
+   '<div class="beer-more-actions"><button class="primary" id="editDetail">Редактировать</button></div>';
+  pages=detailPage('overview','Кратко о пиве',overview)+
+   detailPage('compare','Сравнить с похожими',comparisonShell(p))+
+   detailPage('history','Название и история',history)+
+   detailPage('more','Дополнительные сведения',more);
+  tabs='<nav class="beer-bottom-tabs" role="tablist" aria-label="Разделы карточки">'+detailTabItems.map(([tab,icon,label])=>
+   '<button type="button" role="tab" id="beerTab-'+tab+'" data-beer-tab="'+tab+'" aria-controls="beerPage'+tab.charAt(0).toUpperCase()+tab.slice(1)+'" aria-selected="false" tabindex="-1">'+
+   '<span class="beer-tab-icon" aria-hidden="true">'+icon+'</span><span>'+label+'</span></button>').join('')+'</nav>';
+ }
+ d.innerHTML='<div class="beer-sheet">'+heading+'<div class="beer-page-stack">'+pages+'</div>'+tabs+'</div>';
+ if(!d.open)d.showModal();
+ $('closeDetail').onclick=()=>d.close();
+ if(editing){
+  $('cancelEdit').onclick=()=>openDetail(id,false);
+  $('saveEdit').onclick=()=>{
+   d.querySelectorAll('[data-field]').forEach(el=>p[el.dataset.field]=el.value.trim());
+   save();render();openDetail(id,false);
+  };
+ }else{
+  $('prevBeer').onclick=()=>navigateBeer(-1);
+  $('nextBeer').onclick=()=>navigateBeer(1);
+  $('goCompare').onclick=()=>setDetailTab('compare');
+  $('editDetail').onclick=()=>openDetail(id,true);
+  const comparison=$('comparisonInner');
+  if(comparison)renderComparison(p,view?.scope||detailComparisonScope);
+  d.querySelectorAll('[data-beer-tab]').forEach((button,index)=>{
+   button.onclick=()=>setDetailTab(button.dataset.beerTab);
+   button.onkeydown=e=>{
+    if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+    e.preventDefault();
+    const buttons=[...d.querySelectorAll('[data-beer-tab]')];
+    const next=buttons[(index+(e.key==='ArrowRight'?1:buttons.length-1))%buttons.length];
+    setDetailTab(next.dataset.beerTab);next.focus();
+   };
+  });
+  setDetailTab(detailTab);
+ }
 }
 $('resetPhotoSearch').onclick=()=>{photoIndex={};localStorage.removeItem(photoCacheKey);render()};
 $('q').oninput=()=>{$('mobileQ').value=$('q').value;render()};
