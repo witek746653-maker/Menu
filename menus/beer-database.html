@@ -190,6 +190,19 @@ button.comp-list-item:hover{background:#332b1e}
  .beer-stat{padding:12px}
  .beer-page--compare .comp-switch button{padding:8px 9px;font-size:12px}
 }
+
+/* Full-screen photo preview, independent of the beer detail. */
+.cards .photo-zoom{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:100%;margin:0;padding:0;border:0;border-radius:0;background:transparent;cursor:zoom-in;overflow:hidden;touch-action:manipulation}
+.cards .photo-zoom img{display:block;width:100%;height:100%;object-fit:contain}
+.cards .photo-zoom::after{content:'⤢';position:absolute;right:5px;bottom:5px;display:grid;place-items:center;width:23px;height:23px;border:1px solid #ffffff65;border-radius:6px;background:#0d0d0dbb;color:white;font-size:17px;line-height:1}
+.cards .photo-zoom:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+#photoViewer{position:fixed;inset:0;margin:0;padding:0;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border:0;border-radius:0;background:#090909;color:#fff;overflow:hidden;overscroll-behavior:contain}
+#photoViewer::backdrop{background:#000f}
+#photoViewer[open]{display:flex;flex-direction:column}
+.photo-viewer-close{position:absolute;z-index:2;right:max(16px,env(safe-area-inset-right));top:max(16px,env(safe-area-inset-top));width:48px;height:48px;display:grid;place-items:center;border-radius:50%;border:1px solid #777;background:#292929e8;color:#fff;font-size:30px;line-height:1}
+.photo-viewer-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;padding:clamp(70px,9vh,90px) 14px 20px}
+.photo-viewer-stage img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.photo-viewer-caption{flex:0 0 auto;text-align:center;padding:8px 16px max(16px,env(safe-area-inset-bottom));font-size:15px;line-height:1.4;color:#ddd}
 </style></head><body>
 <header><h1>Пивной атлас</h1></header>
 <div class="mobile-toolbar">
@@ -201,7 +214,7 @@ button.comp-list-item:hover{background:#332b1e}
 
 </aside>
 <section class="catalog"><div id="quickFilters" class="quick-filters" role="group" aria-label="Быстрые фильтры"></div><div class="count" id="count"></div><div class="notice section-tip hidden" id="sectionTip"></div><div class="cards" id="cards"></div></section></main>
-<dialog class="modal" id="detail"></dialog><dialog class="modal settings-dialog" id="settingsDialog"><div class="modal-head"><h2>Настройки</h2><button type="button" class="modal-close" id="closeSettings" aria-label="Закрыть настройки" title="Закрыть">×</button></div><div class="notice">Правки хранятся в этом браузере. Для сохранения между устройствами экспортируй JSON и добавляй его в репозиторий.</div><div class="actions" style="margin-top:12px"><button id="exportBtn">Экспорт JSON</button><button id="importBtn">Импорт JSON</button><button id="resetPhotoSearch">Повторить поиск фото</button><input id="importFile" type="file" accept=".json,application/json" class="hidden"></div><p class="muted" id="progress"></p><div class="atlas-version-settings"><h3>Обновление атласа</h3><p class="muted">Новая версия проверяется автоматически при открытии. Ваши правки в этом браузере сохраняются.</p><div class="actions"><button type="button" id="atlasCheckUpdate">Проверить обновления</button><button type="button" id="atlasForceUpdate">Обновить без кэша</button></div><p class="muted" id="atlasUpdateStatus" role="status" aria-live="polite">Автоматическая проверка включена.</p></div></dialog>
+<dialog class="modal" id="detail"></dialog><dialog id="photoViewer" aria-label="Просмотр фотографии пива"><button type="button" class="photo-viewer-close" id="closePhotoViewer" aria-label="Закрыть фотографию">×</button><div class="photo-viewer-stage" id="photoViewerStage"><img id="photoViewerImage" alt=""></div><div class="photo-viewer-caption" id="photoViewerCaption"></div></dialog><dialog class="modal settings-dialog" id="settingsDialog"><div class="modal-head"><h2>Настройки</h2><button type="button" class="modal-close" id="closeSettings" aria-label="Закрыть настройки" title="Закрыть">×</button></div><div class="notice">Правки хранятся в этом браузере. Для сохранения между устройствами экспортируй JSON и добавляй его в репозиторий.</div><div class="actions" style="margin-top:12px"><button id="exportBtn">Экспорт JSON</button><button id="importBtn">Импорт JSON</button><button id="resetPhotoSearch">Повторить поиск фото</button><input id="importFile" type="file" accept=".json,application/json" class="hidden"></div><p class="muted" id="progress"></p><div class="atlas-version-settings"><h3>Обновление атласа</h3><p class="muted">Новая версия проверяется автоматически при открытии. Ваши правки в этом браузере сохраняются.</p><div class="actions"><button type="button" id="atlasCheckUpdate">Проверить обновления</button><button type="button" id="atlasForceUpdate">Обновить без кэша</button></div><p class="muted" id="atlasUpdateStatus" role="status" aria-live="polite">Автоматическая проверка включена.</p></div></dialog>
 
 <div class="atlas-update-notice hidden" id="atlasUpdateNotice" role="status" aria-live="polite"><span>Доступна новая версия Пивного атласа.</span><button type="button" id="atlasApplyUpdate">Обновить</button></div>
 <script>
@@ -430,7 +443,8 @@ function showPhotoFallback(img){
   a.textContent='Посмотреть у источника';a.style.cssText='display:block;margin-top:8px;color:#ffd166;text-decoration:underline';
   note.appendChild(a);
  }
- box.appendChild(note);
+ if(box.matches('button.photo-zoom'))box.replaceWith(note);
+ else box.appendChild(note);
 }
 function sortItems(list,mode){
  if(mode==='default')return list;
@@ -494,6 +508,28 @@ function matchesQuickFilter(p,filter){
  default:return true;
  }
 }
+// Open the image itself (including backup pictures), not a second beer card.
+function openPhotoViewer(button){
+ const img=button.querySelector('img');
+ if(!img)return;
+ const dialog=$('photoViewer'),display=$('photoViewerImage');
+ display.onload=()=>{display.hidden=false;$('photoViewerCaption').textContent=img.alt};
+ display.onerror=()=>{display.hidden=true;$('photoViewerCaption').textContent='Не удалось открыть фотографию'};
+ display.hidden=false;
+ display.alt=img.alt;
+ display.src=img.currentSrc||img.src;
+ $('photoViewerCaption').textContent=img.alt;
+ if(!dialog.open)dialog.showModal();
+}
+$('closePhotoViewer').onclick=()=>$('photoViewer').close();
+$('photoViewerStage').addEventListener('click',e=>{if(e.target.id==='photoViewerStage')$('photoViewer').close()});
+$('photoViewer').addEventListener('click',e=>{if(e.target.id==='photoViewer')e.target.close()});
+$('photoViewer').addEventListener('close',()=>{
+ const display=$('photoViewerImage');
+ display.onload=null;display.onerror=null;
+ display.removeAttribute('src');
+});
+
 function render(){
  const q=$('q').value.trim(),s=$('section').value,mode=$('sort').value;
  const selected=sortItems(items.filter(p=>(!s||p.section===s)&&matchesQuickFilter(p,quickFilter)&&beerMatchesSearch(p,q)),mode);
@@ -502,8 +538,9 @@ function render(){
  $('count').textContent=selected.length+' из '+items.length+' позиций • '+sections.length+' разделов';
  $('progress').textContent=items.length+' карточек в базе';
  const hint=$('sectionTip');hint.classList.toggle('hidden',!s);hint.textContent=s?'Ориентир по разделу: '+(sectionTips[s]||'Сравните вкусовые характеристики сортов.') :'';
- $('cards').innerHTML=selected.map(p=>'<article class="card" role="button" tabindex="0" data-id="'+attr(p.id)+'" aria-label="Подробнее о '+attr(p.name)+'"><div class="photo">'+((p.image||photoIndex[p.id]?.url)?'<img loading="lazy" src="'+attr(p.image||photoIndex[p.id].url)+'" alt="'+attr(p.name)+'" onerror="showPhotoFallback(this)">':'<span data-photo-id="'+attr(p.id)+'" style="font-size:12px;color:#d7b763">'+(photoIndex[p.id]?.unavailable?'Фото не найдено':'Поиск фото…')+'</span>')+'</div><div class="content"><span class="section">'+escapeHTML(p.section)+'</span><h3>'+beerFlag(p)+'<span>'+escapeHTML(p.name)+'</span></h3><p class="card-meta"><span class="pill">'+escapeHTML(p.abv||'—')+(p.abv?'%':'')+'</span><span class="card-balance">'+escapeHTML(p.balance||'')+'</span></p><p class="card-taste"><strong>Ноты:</strong> '+escapeHTML(p.notes||'Уточняется')+'</p><p class="quick-diff"><strong>Отличие:</strong> '+escapeHTML(p.comparison?.short||p.difference||'—')+'</p></div></article>').join('');
+ $('cards').innerHTML=selected.map(p=>'<article class="card" role="button" tabindex="0" data-id="'+attr(p.id)+'" aria-label="Подробнее о '+attr(p.name)+'"><div class="photo">'+((p.image||photoIndex[p.id]?.url)?'<button class="photo-zoom" type="button" aria-label="Открыть фотографию '+attr(p.name)+' на весь экран"><img loading="lazy" src="'+attr(p.image||photoIndex[p.id].url)+'" alt="'+attr(p.name)+'" onerror="showPhotoFallback(this)"></button>':'<span data-photo-id="'+attr(p.id)+'" style="font-size:12px;color:#d7b763">'+(photoIndex[p.id]?.unavailable?'Фото не найдено':'Поиск фото…')+'</span>')+'</div><div class="content"><span class="section">'+escapeHTML(p.section)+'</span><h3>'+beerFlag(p)+'<span>'+escapeHTML(p.name)+'</span></h3><p class="card-meta"><span class="pill">'+escapeHTML(p.abv||'—')+(p.abv?'%':'')+'</span><span class="card-balance">'+escapeHTML(p.balance||'')+'</span></p><p class="card-taste"><strong>Ноты:</strong> '+escapeHTML(p.notes||'Уточняется')+'</p><p class="quick-diff"><strong>Отличие:</strong> '+escapeHTML(p.comparison?.short||p.difference||'—')+'</p></div></article>').join('');
  document.querySelectorAll('.cards .card').forEach(card=>{card.onclick=e=>{if(!e.target.closest('a,button'))openDetail(card.dataset.id)};card.onkeydown=e=>{if(e.target!==card)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();openDetail(card.dataset.id)}}});
+ document.querySelectorAll('.cards .photo-zoom').forEach(button=>{button.onclick=()=>openPhotoViewer(button)});
  enqueueVisiblePhotos();
 }
 function line(label,value){return '<div class="detail-line"><strong>'+label+': </strong>'+escapeHTML(x(value))+'</div>'}
