@@ -568,7 +568,7 @@ function openDetail(id,editing=false,view=null){
  const heading='<div class="beer-sheet-top"><div class="modal-head"><div class="beer-sheet-heading"><h2>'+beerFlag(p)+'<span>'+escapeHTML(p.name)+'</span></h2><div class="beer-sheet-section">'+escapeHTML(p.section)+'</div></div>'+
   '<button type="button" class="modal-close" id="closeDetail" aria-label="Закрыть карточку" title="Закрыть">×</button></div>'+
   (editing?'':beerNavigation(id))+'</div>';
- const editFields='<div id="editFields">'+[['abv','Крепость, %'],['color','Цвет'],['balance','Баланс'],['notes','Аромат и ноты'],['body','Тело'],['difference','Главное отличие'],['guest','Фраза гостю'],['pronunciation','Произношение'],['nameMeaning','Значение названия'],['nameHistory','История названия'],['image','Ссылка на изображение'],['source','Источник / проверка']].map(([k,l])=>'<label>'+l+(k==='notes'||k==='difference'||k==='guest'||k==='nameMeaning'||k==='nameHistory'?'<textarea data-field="'+k+'">'+escapeHTML(p[k])+'</textarea>':'<input data-field="'+k+'" value="'+attr(p[k])+'">')+'</label>').join('')+'</div>';
+ const editFields='<div id="editFields">'+[['abv','Крепость, %'],['color','Цвет'],['balance','Баланс'],['notes','Характеристики'],['body','Тело'],['difference','Главное отличие'],['guest','Презентация'],['pronunciation','Произношение'],['nameMeaning','Значение названия'],['nameHistory','История названия'],['image','Ссылка на изображение'],['source','Источник / проверка']].map(([k,l])=>'<label>'+l+(k==='notes'||k==='difference'||k==='guest'||k==='nameMeaning'||k==='nameHistory'?'<textarea data-field="'+k+'">'+escapeHTML(p[k])+'</textarea>':'<input data-field="'+k+'" value="'+attr(p[k])+'">')+'</label>').join('')+'</div>';
  let pages='',tabs='';
  if(editing){
   pages='<section class="beer-page beer-page--edit" id="beerPageEdit"><h3>Редактирование</h3>'+editFields+
@@ -577,10 +577,12 @@ function openDetail(id,editing=false,view=null){
   const overview='<div class="beer-stats">'+
    '<div class="beer-stat beer-stat--abv"><span class="beer-stat-label">КРЕПОСТЬ</span><strong>'+escapeHTML(p.abv?p.abv+'%':'—')+'</strong></div>'+
    '<div class="beer-stat"><span class="beer-stat-label">ЦВЕТ</span><strong>'+escapeHTML(x(p.color))+'</strong></div></div>'+
-   '<div class="beer-feature"><h3>Аромат и ноты</h3><p>'+escapeHTML(x(p.notes))+'</p></div>'+
-   '<div class="beer-feature"><h3>Чем отличается</h3><p>'+escapeHTML(x(p.difference))+'</p></div>';
+   '<div class="beer-feature"><h3>Характеристики</h3><p>'+escapeHTML(x(p.notes))+'</p></div>'+
+   '<div class="beer-feature"><h3>Баланс</h3><p>'+escapeHTML(x(p.balance))+'</p></div>'+
+   '<div class="beer-feature"><h3>Тело</h3><p>'+escapeHTML(x(p.body))+'</p></div>'+
+   '<div class="beer-feature"><h3>Презентация</h3><p>'+escapeHTML(x(p.guest))+'</p></div>';
   const history=line('Произношение',p.pronunciation)+line('Значение названия',p.nameMeaning)+line('История названия',p.nameHistory);
-  const more=line('Баланс',p.balance)+line('Тело',p.body)+line('Как сказать гостю',p.guest)+line('Источник',p.source)+
+  const more=line('Источник',p.source)+
    (p.photoSource?'<p class="beer-source-link"><a href="'+attr(p.photoSource)+'" target="_blank" rel="noopener noreferrer">Источник фотографии и лицензия</a></p>':'')+
    '<div class="beer-more-actions"><button class="primary" id="editDetail">Редактировать</button></div>';
   pages=detailPage('overview','Кратко о пиве',overview)+
