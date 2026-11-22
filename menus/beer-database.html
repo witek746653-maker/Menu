@@ -161,8 +161,6 @@ button.comp-list-item:hover{background:#332b1e}
 .beer-feature{margin:0 0 21px}
 .beer-feature h3{font-size:15px;margin:0 0 7px}
 .beer-feature p{margin:0;font-size:15px;line-height:1.55}
-.beer-compare-action{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;padding:13px 15px;background:#302718;color:var(--gold);border:1px solid #78613c;font-weight:700;text-align:left}
-.beer-compare-action span{margin-left:auto;font-size:23px;line-height:1}
 .beer-page-subtitle{color:#bfb7a9;margin:0 0 15px;font-size:13px;line-height:1.5}
 .beer-comparison-wrap .comparison-inner{padding:0}
 .beer-page--compare .comp-toolbar{margin:0 0 13px}
@@ -580,8 +578,7 @@ function openDetail(id,editing=false,view=null){
    '<div class="beer-stat beer-stat--abv"><span class="beer-stat-label">КРЕПОСТЬ</span><strong>'+escapeHTML(p.abv?p.abv+'%':'—')+'</strong></div>'+
    '<div class="beer-stat"><span class="beer-stat-label">ЦВЕТ</span><strong>'+escapeHTML(x(p.color))+'</strong></div></div>'+
    '<div class="beer-feature"><h3>Аромат и ноты</h3><p>'+escapeHTML(x(p.notes))+'</p></div>'+
-   '<div class="beer-feature"><h3>Чем отличается</h3><p>'+escapeHTML(x(p.difference))+'</p></div>'+
-   '<button type="button" class="beer-compare-action" id="goCompare">⇄ Сравнить с похожими <span aria-hidden="true">›</span></button>';
+   '<div class="beer-feature"><h3>Чем отличается</h3><p>'+escapeHTML(x(p.difference))+'</p></div>';
   const history=line('Произношение',p.pronunciation)+line('Значение названия',p.nameMeaning)+line('История названия',p.nameHistory);
   const more=line('Баланс',p.balance)+line('Тело',p.body)+line('Как сказать гостю',p.guest)+line('Источник',p.source)+
    (p.photoSource?'<p class="beer-source-link"><a href="'+attr(p.photoSource)+'" target="_blank" rel="noopener noreferrer">Источник фотографии и лицензия</a></p>':'')+
@@ -606,7 +603,6 @@ function openDetail(id,editing=false,view=null){
  }else{
   $('prevBeer').onclick=()=>navigateBeer(-1);
   $('nextBeer').onclick=()=>navigateBeer(1);
-  $('goCompare').onclick=()=>setDetailTab('compare');
   $('editDetail').onclick=()=>openDetail(id,true);
   const comparison=$('comparisonInner');
   if(comparison)renderComparison(p,view?.scope||detailComparisonScope);
