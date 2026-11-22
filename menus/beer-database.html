@@ -14,10 +14,9 @@ button{background:#242424;border:1px solid #555;color:white;border-radius:10px;p
 .photo{height:142px;background:linear-gradient(140deg,#46391e,#191919);display:flex;align-items:center;justify-content:center;color:#d7b763;font-size:42px}
 .photo img{width:100%;height:100%;object-fit:contain}.content{padding:14px;display:grid;gap:8px;flex:1}.section{color:var(--gold);font-size:12px;letter-spacing:.06em}.content h3{font-size:17px;margin:0}.pill{border:1px solid #675b39;background:#302917;border-radius:30px;padding:3px 9px;font-size:12px;display:inline-block}
 .content p{font-size:14px;margin:0}.bottom{display:flex;gap:7px;align-self:end}.modal{border:1px solid #555;background:#111;color:white;border-radius:20px;padding:24px;width:min(700px,94vw);max-height:90vh;overflow:auto}.modal::backdrop{background:#000c}.modal header{padding:0}.modal .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.detail-line{padding:10px 0;border-bottom:1px solid #333}.detail-line strong{color:var(--gold)}
-.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.compare-col{padding:14px;background:#222;border-radius:15px}
 .notice{border-left:3px solid var(--gold);padding:9px 12px;background:#29251d;color:#ddd;font-size:13px}
 .hidden{display:none!important}a{color:var(--gold)}footer{padding:20px 5vw;color:#aaa}
-@media(max-width:850px){main{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.modal .two,.compare-grid{grid-template-columns:1fr}}
+@media(max-width:850px){main{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.modal .two{grid-template-columns:1fr}}
 
 
 .section-tip{margin-bottom:12px}
@@ -48,23 +47,7 @@ button.comp-list-item:hover{background:#332b1e}
 .comp-item-note{color:#bfb7a7;font-size:11px;line-height:1.35;margin-top:3px;white-space:normal;overflow-wrap:anywhere}
 .comp-list-item.is-current .comp-item-note{color:#e7d6b2}
 .comp-more{display:block;width:100%;text-align:center;padding:8px;font-size:12px;border-radius:0;border:0;border-top:1px solid #4a4032;background:#2b261e}
-.comp-peer-picker{display:flex;align-items:center;gap:10px;margin:10px 0}
-.comp-peer-picker label{margin:0;flex:0 0 auto;font-size:12px;color:#ccc}
-.comp-peer-picker select{min-width:0;margin:0;padding:8px 10px;font-size:13px}
-.comp-pair-head,.comp-pair-row{display:grid;grid-template-columns:78px minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:center}
-.comp-pair-head{padding:8px 0;font-size:12px;font-weight:700;color:var(--gold);border-bottom:1px solid #474136}
-.comp-pair-head span{overflow-wrap:anywhere;text-align:center}
-.comp-pair-row{padding:8px 0;border-bottom:1px solid #393630}
-.comp-pair-row .metric-label{font-size:12px;color:#ccc}
-.comp-pair-value{text-align:center;font-size:12px;white-space:nowrap}
-.comp-pair-bars{display:flex;gap:3px;justify-content:center;margin-top:4px}
-.comp-pair-bars i{display:block;width:15%;max-width:22px;height:6px;border-radius:3px;background:#514a3e}
-.comp-pair-bars i.filled{background:var(--gold)}
-.comp-summary{border-left:3px solid var(--gold);background:#30291d;border-radius:5px;padding:9px 11px;margin:10px 0}
-.comp-summary strong{font-size:12px}
-.comp-summary p{font-size:13px;line-height:1.45;margin:5px 0 0}
-.comp-peer-open{width:100%;font-size:12px;padding:8px;margin:2px 0}
-@media(max-width:480px){.modal{padding:15px}.comp-switch button{padding:6px 7px;font-size:11px}.comp-list-head,.comp-list-line{grid-template-columns:minmax(0,1fr) 44px 35px 35px;gap:4px}.comp-list-head{padding:7px 6px}.comp-list-item{padding:8px 6px}.comp-pair-head,.comp-pair-row{grid-template-columns:64px minmax(0,1fr) minmax(0,1fr);gap:5px}.comp-pair-row .metric-label{font-size:11px}.comp-peer-picker{flex-wrap:wrap}.comp-peer-picker label{flex-basis:100%}}
+@media(max-width:480px){.modal{padding:15px}.comp-switch button{padding:6px 7px;font-size:11px}.comp-list-head,.comp-list-line{grid-template-columns:minmax(0,1fr) 44px 35px 35px;gap:4px}.comp-list-head{padding:7px 6px}.comp-list-item{padding:8px 6px}}
 .name-history-panel{margin:16px 0;border:1px solid #6d5a35;border-radius:13px;overflow:hidden;background:#201c18}
 .name-history-panel>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;cursor:pointer;color:var(--gold);font-weight:700;list-style:none}
 .name-history-panel>summary::-webkit-details-marker{display:none}
@@ -147,21 +130,21 @@ button.comp-list-item:hover{background:#332b1e}
 .atlas-update-notice button{flex:0 0 auto;color:#211904;background:var(--gold);border-color:var(--gold);font-weight:700}
 
 .beer-flag{display:block;flex:0 0 16px;width:16px;height:12px;object-fit:cover;border-radius:1.5px;box-shadow:0 0 0 1px #ffffff1c;vertical-align:middle}
-.cards .card h3,.modal-head h2,.compare-col h3{display:flex;align-items:baseline;gap:5px}
-.cards .card h3>span:last-child,.modal-head h2>span:last-child,.compare-col h3>span:last-child{min-width:0;overflow-wrap:anywhere}
+.cards .card h3,.modal-head h2{display:flex;align-items:baseline;gap:5px}
+.cards .card h3>span:last-child,.modal-head h2>span:last-child{min-width:0;overflow-wrap:anywhere}
 .modal-head .beer-flag{flex-basis:18px;width:18px;height:13.5px}
 </style></head><body>
 <header><h1>Пивной атлас</h1></header>
 <div class="mobile-toolbar">
 <div class="mobile-search-row"><input id="mobileQ" type="search" aria-label="Поиск по пиву" placeholder="Найти пиво, вкус, историю…"><button type="button" id="mobileSettingsBtn" class="icon-button" aria-label="Настройки" title="Настройки">⚙</button>
-<details id="mobileFilters" class="mobile-filter-details"><summary>Фильтры</summary><div class="mobile-filter-content"><label>Раздел<select id="mobileSection"></select></label><label>Сортировка<select id="mobileSort"></select></label><button type="button" id="mobileCompareBtn">Сравнить два пива</button></div></details></div>
+<details id="mobileFilters" class="mobile-filter-details"><summary>Фильтры</summary><div class="mobile-filter-content"><label>Раздел<select id="mobileSection"></select></label><label>Сортировка<select id="mobileSort"></select></label></div></details></div>
 </div>
 <main><aside class="panel sidebar">
-<div class="desktop-filters"><h2>Поиск и фильтры</h2><label>Поиск по названию, вкусу и особенностям<input id="q" type="search" placeholder="Chimay, карамель, дуббель…"></label><label>Раздел<select id="section"></select></label><label>Сортировка<select id="sort"></select></label><div class="actions"><button type="button" id="compareBtn">Сравнить два пива</button><button type="button" id="desktopSettingsBtn">⚙ Настройки</button></div></div>
+<div class="desktop-filters"><h2>Поиск и фильтры</h2><label>Поиск по названию, вкусу и особенностям<input id="q" type="search" placeholder="Chimay, карамель, дуббель…"></label><label>Раздел<select id="section"></select></label><label>Сортировка<select id="sort"></select></label><div class="actions"><button type="button" id="desktopSettingsBtn">⚙ Настройки</button></div></div>
 
 </aside>
 <section class="catalog"><div id="quickFilters" class="quick-filters" role="group" aria-label="Быстрые фильтры"></div><div class="count" id="count"></div><div class="notice section-tip hidden" id="sectionTip"></div><div class="cards" id="cards"></div></section></main>
-<dialog class="modal" id="detail"></dialog><dialog class="modal" id="compare"></dialog><dialog class="modal settings-dialog" id="settingsDialog"><div class="modal-head"><h2>Настройки</h2><button type="button" class="modal-close" id="closeSettings" aria-label="Закрыть настройки" title="Закрыть">×</button></div><div class="notice">Правки хранятся в этом браузере. Для сохранения между устройствами экспортируй JSON и добавляй его в репозиторий.</div><div class="actions" style="margin-top:12px"><button id="exportBtn">Экспорт JSON</button><button id="importBtn">Импорт JSON</button><button id="resetPhotoSearch">Повторить поиск фото</button><input id="importFile" type="file" accept=".json,application/json" class="hidden"></div><p class="muted" id="progress"></p><div class="atlas-version-settings"><h3>Обновление атласа</h3><p class="muted">Новая версия проверяется автоматически при открытии. Ваши правки в этом браузере сохраняются.</p><div class="actions"><button type="button" id="atlasCheckUpdate">Проверить обновления</button><button type="button" id="atlasForceUpdate">Обновить без кэша</button></div><p class="muted" id="atlasUpdateStatus" role="status" aria-live="polite">Автоматическая проверка включена.</p></div></dialog>
+<dialog class="modal" id="detail"></dialog><dialog class="modal settings-dialog" id="settingsDialog"><div class="modal-head"><h2>Настройки</h2><button type="button" class="modal-close" id="closeSettings" aria-label="Закрыть настройки" title="Закрыть">×</button></div><div class="notice">Правки хранятся в этом браузере. Для сохранения между устройствами экспортируй JSON и добавляй его в репозиторий.</div><div class="actions" style="margin-top:12px"><button id="exportBtn">Экспорт JSON</button><button id="importBtn">Импорт JSON</button><button id="resetPhotoSearch">Повторить поиск фото</button><input id="importFile" type="file" accept=".json,application/json" class="hidden"></div><p class="muted" id="progress"></p><div class="atlas-version-settings"><h3>Обновление атласа</h3><p class="muted">Новая версия проверяется автоматически при открытии. Ваши правки в этом браузере сохраняются.</p><div class="actions"><button type="button" id="atlasCheckUpdate">Проверить обновления</button><button type="button" id="atlasForceUpdate">Обновить без кэша</button></div><p class="muted" id="atlasUpdateStatus" role="status" aria-live="polite">Автоматическая проверка включена.</p></div></dialog>
 
 <div class="atlas-update-notice hidden" id="atlasUpdateNotice" role="status" aria-live="polite"><span>Доступна новая версия Пивного атласа.</span><button type="button" id="atlasApplyUpdate">Обновить</button></div>
 <script>
@@ -293,20 +276,8 @@ function tasteDistance(a,b){
  return tasteFields.reduce((v,[key])=>v+Math.abs((numericTaste(a,key)||3)-(numericTaste(b,key)||3)),0)+
  Math.min(3,Math.abs(parseFloat(a.abv)-parseFloat(b.abv))||0)*0.3
 }
-function relativeTaste(a,b){
- if(a.id===b.id)return 'Выбранный сорт';
- const rules=[['softness','мягче','менее мягкое'],['bitterness','горче','менее горькое'],['sweetness','слаще','менее сладкое'],['intensity','насыщеннее','легче по вкусу']];
- const results=rules.map(([k,more,less])=>({delta:(numericTaste(b,k)||3)-(numericTaste(a,k)||3),more,less}))
-  .filter(v=>Math.abs(v.delta)>=1).sort((x,y)=>Math.abs(y.delta)-Math.abs(x.delta));
- return results.length?results.slice(0,2).map(v=>v.delta>0?v.more:v.less).join(' · '):'Похожая выраженность вкуса'
-}
 function comparisonShell(p){
  return '<details class="comparison-panel" id="beerComparison"><summary>Сравнить с похожими<small>'+escapeHTML(p.comparison?.short||'Быстрое сравнение сортов')+'</small></summary><div class="comparison-inner" id="comparisonInner"></div></details>'
-}
-function miniBars(p,key){
- const v=numericTaste(p,key);
- return '<div class="comp-pair-value">'+(v===null?'—':v+'/5')+'<span class="comp-pair-bars" aria-label="'+attr(metricTitle(key)+' '+(v===null?'не оценена':v+' из 5'))+'">'+
- [1,2,3,4,5].map(n=>'<i'+(v!==null&&n<=v?' class="filled"':'')+'></i>').join('')+'</span></div>'
 }
 function comparisonGroup(p,scope){
  const line=p.seriesId?items.filter(v=>v.seriesId===p.seriesId):[];
@@ -316,52 +287,32 @@ function comparisonGroup(p,scope){
  const peers=group.filter(v=>v.id!==p.id).sort((a,b)=>tasteDistance(p,a)-tasteDistance(p,b)||a.name.localeCompare(b.name,'ru'));
  return {available,actual,peers}
 }
-function renderComparison(p,scope='series',mode='list',showAll=false,peerId=null){
+// Similar beers list: no two-beer comparison mode.
+function renderComparison(p,scope='series',showAll=false){
  const panel=$('comparisonInner');if(!panel)return;
  const {available,actual,peers}=comparisonGroup(p,scope);
- if(mode!=='pair'||!peers.length)mode='list';
  const [metricA,metricB]=comparisonMetrics(p);
  const choices=[p,...peers];
  const shown=showAll?choices:choices.slice(0,5);
- const chosen=peers.find(v=>v.id===peerId)||peers[0];
  const toolbar='<div class="comp-toolbar"><div class="comp-switch" aria-label="Что сравнивать">'+
- (available?'<button type="button" data-comp-scope="series" aria-pressed="'+(actual==='series')+'">Линейка '+escapeHTML(p.seriesId)+'</button>':'')+
- '<button type="button" data-comp-scope="section" aria-pressed="'+(actual==='section')+'">Раздел</button></div>'+
- '<div class="comp-switch" aria-label="Режим сравнения"><button type="button" data-comp-mode="list" aria-pressed="'+(mode==='list')+'">Список</button>'+
- (peers.length?'<button type="button" data-comp-mode="pair" aria-pressed="'+(mode==='pair')+'">Два сорта</button>':'')+'</div></div>';
- let content='';
- if(mode==='list'){
-  content='<p class="comp-guide">Ближайшие по вкусу варианты. Нажми на строку, чтобы сравнить два сорта.</p>'+
+  (available?'<button type="button" data-comp-scope="series" aria-pressed="'+(actual==='series')+'">Линейка '+escapeHTML(p.seriesId)+'</button>':'')+
+  '<button type="button" data-comp-scope="section" aria-pressed="'+(actual==='section')+'">Раздел</button></div></div>';
+ const content='<p class="comp-guide">Ближайшие по вкусу варианты. Нажми на сорт, чтобы открыть его карточку.</p>'+
   '<div class="comp-list"><div class="comp-list-head"><span>Пиво</span><span>Креп.</span><span title="'+attr(metricTitle(metricA))+'">'+metricAbbr(metricA)+'/5</span><span title="'+attr(metricTitle(metricB))+'">'+metricAbbr(metricB)+'/5</span></div>'+
   shown.map(v=>{
    const current=v.id===p.id;
-   const start=current?'<div class="comp-list-item is-current">':'<button type="button" class="comp-list-item" data-compare-peer="'+attr(v.id)+'">';
+   const start=current?'<div class="comp-list-item is-current">':'<button type="button" class="comp-list-item" data-open-beer="'+attr(v.id)+'">';
    const end=current?'</div>':'</button>';
    return start+'<div class="comp-list-line"><strong>'+escapeHTML(v.name)+(current?' · Выбранное':'')+'</strong><span>'+escapeHTML(strengthLabel(v))+'</span><span>'+escapeHTML(numericTaste(v,metricA)??'—')+'</span><span>'+escapeHTML(numericTaste(v,metricB)??'—')+'</span></div>'+
-    '<div class="comp-item-note">'+escapeHTML(v.comparison?.short||v.difference||'Особенности уточняются')+'</div>'+end
+    '<div class="comp-item-note">'+escapeHTML(v.comparison?.short||v.difference||'Особенности уточняются')+'</div>'+end;
   }).join('')+
   (choices.length>5?'<button type="button" class="comp-more" id="toggleCompareAll">'+(showAll?'Свернуть до 5':'Показать все ('+choices.length+')')+'</button>':'')+
   '</div><p class="comp-note">'+metricAbbr(metricA)+' — '+metricTitle(metricA).toLowerCase()+
-  ', '+metricAbbr(metricB)+' — '+metricTitle(metricB).toLowerCase()+'. Значения 1–5 ориентировочные.</p>'
- }else{
-  const first=escapeHTML(p.name),second=escapeHTML(chosen.name);
-  content='<div class="comp-peer-picker"><label for="comparePeerSelect">Второй сорт</label><select id="comparePeerSelect">'+
-   peers.map(v=>'<option value="'+attr(v.id)+'"'+(v.id===chosen.id?' selected':'')+'>'+escapeHTML(v.name)+'</option>').join('')+'</select></div>'+
-   '<div class="comp-pair"><div class="comp-pair-head"><span>Показатель</span><span>'+first+'</span><span>'+second+'</span></div>'+
-   '<div class="comp-pair-row"><span class="metric-label">Крепость</span><span class="comp-pair-value">'+escapeHTML(strengthLabel(p))+'</span><span class="comp-pair-value">'+escapeHTML(strengthLabel(chosen))+'</span></div>'+
-   tasteFields.map(([key,label])=>'<div class="comp-pair-row"><span class="metric-label">'+label+'</span>'+miniBars(p,key)+miniBars(chosen,key)+'</div>').join('')+
-   '</div><div class="comp-summary"><strong>Главное отличие</strong><p>'+second+' по сравнению с '+first+': '+escapeHTML(relativeTaste(p,chosen))+
-   '. '+escapeHTML(chosen.comparison?.short||chosen.difference||'')+'</p></div>'+
-   '<button class="comp-peer-open" type="button" id="openSelectedPeer">Открыть карточку '+second+'</button>'+
-   '<p class="comp-note">Шкалы — приблизительная учебная оценка по стилю и описанию, не результат измерения или дегустации.</p>'
- }
+  ', '+metricAbbr(metricB)+' — '+metricTitle(metricB).toLowerCase()+'. Значения 1–5 ориентировочные.</p>';
  panel.innerHTML=toolbar+content;
- panel.querySelectorAll('[data-comp-scope]').forEach(b=>b.onclick=()=>renderComparison(p,b.dataset.compScope,mode,false,null));
- panel.querySelectorAll('[data-comp-mode]').forEach(b=>b.onclick=()=>renderComparison(p,actual,b.dataset.compMode,false,chosen?.id));
- panel.querySelectorAll('[data-compare-peer]').forEach(b=>b.onclick=()=>renderComparison(p,actual,'pair',false,b.dataset.comparePeer));
- const select=$('comparePeerSelect');if(select)select.onchange=()=>renderComparison(p,actual,'pair',false,select.value);
- const more=$('toggleCompareAll');if(more)more.onclick=()=>renderComparison(p,actual,'list',!showAll,null);
- const open=$('openSelectedPeer');if(open)open.onclick=()=>openDetail(chosen.id,false,{open:true,scope:actual,mode:'list'});
+ panel.querySelectorAll('[data-comp-scope]').forEach(b=>b.onclick=()=>renderComparison(p,b.dataset.compScope));
+ panel.querySelectorAll('[data-open-beer]').forEach(b=>b.onclick=()=>{openDetail(b.dataset.openBeer,false,{open:true,scope:actual});$('detail').scrollTop=0});
+ const more=$('toggleCompareAll');if(more)more.onclick=()=>renderComparison(p,actual,!showAll);
 }
 
 const photoCacheKey='beer-photo-index-v1';
@@ -535,18 +486,11 @@ function openDetail(id,editing=false,view=null){
  line('Крепость',p.abv?p.abv+'%':'')+line('Цвет',p.color)+line('Аромат и ноты',p.notes)+line('Чем отличается',p.difference)+comparisonShell(p)+'<details class="name-history-panel"><summary>Название и история <span aria-hidden="true">▾</span></summary><div class="name-history-inner">'+line('Произношение',p.pronunciation)+line('Значение названия',p.nameMeaning)+line('История названия',p.nameHistory)+'</div></details>'+'<details class="extra-panel"><summary>Дополнительные сведения <span aria-hidden="true">▾</span></summary><div class="name-history-inner">'+line('Баланс',p.balance)+line('Тело',p.body)+line('Как сказать гостю',p.guest)+line('Источник',p.source)+(p.photoSource?'<p><a href="'+attr(p.photoSource)+'" target="_blank" rel="noopener noreferrer">Источник фотографии и лицензия</a></p>':'')+'</div></details>'+'<div class="actions" style="margin-top:18px"><button class="primary" id="editDetail">Редактировать</button></div>');
  if(!d.open)d.showModal();$('closeDetail').onclick=()=>d.close();
  if(!editing){$('prevBeer').onclick=()=>navigateBeer(-1);$('nextBeer').onclick=()=>navigateBeer(1)}
- const comparison=$('beerComparison');if(comparison){comparison.addEventListener('toggle',()=>{if(comparison.open)renderComparison(p,view?.scope||view?.tab||'series',view?.mode||'list',false,view?.peerId||null)});
- if(view?.open){comparison.open=true;renderComparison(p,view.scope||view.tab||'series',view.mode||'list',false,view.peerId||null)}}
+ const comparison=$('beerComparison');if(comparison){comparison.addEventListener('toggle',()=>{if(comparison.open)renderComparison(p,view?.scope||'series')});
+ if(view?.open){comparison.open=true;renderComparison(p,view.scope||'series')}}
 
  if(editing){$('cancelEdit').onclick=()=>openDetail(id,false);$('saveEdit').onclick=()=>{d.querySelectorAll('[data-field]').forEach(el=>p[el.dataset.field]=el.value.trim());save();render();openDetail(id,false)}}
  else $('editDetail').onclick=()=>openDetail(id,true)
-}
-function compareOptions(selectId){return '<select id="'+selectId+'">'+items.map((p,i)=>'<option value="'+i+'">'+escapeHTML(p.name)+'</option>').join('')+'</select>'}
-function openCompare(){
- const d=$('compare');d.innerHTML='<div class="modal-head"><h2>Сравнить два сорта</h2><button type="button" class="modal-close" id="closeCompare" aria-label="Закрыть сравнение" title="Закрыть">×</button></div><div class="compare-grid"><div>'+compareOptions('ca')+'</div><div>'+compareOptions('cb')+'</div></div><div id="compareResult"></div>';
- d.showModal();$('closeCompare').onclick=()=>d.close();$('ca').value='0';$('cb').value='1';
- const update=()=>{$('compareResult').innerHTML='<div class="compare-grid">'+[$('ca'),$('cb')].map(s=>{const p=items[Number(s.value)];return '<div class="compare-col"><h3>'+beerFlag(p)+'<span>'+escapeHTML(p.name)+'</span></h3>'+line('Крепость',p.abv?p.abv+'%':'')+line('Вкус',p.balance)+line('Ноты',p.notes)+line('Тело',p.body)+line('Главное отличие',p.difference)+line('Фраза гостю',p.guest)+'</div>'}).join('')+'</div>'};
- $('ca').onchange=update;$('cb').onchange=update;update()
 }
 $('resetPhotoSearch').onclick=()=>{photoIndex={};localStorage.removeItem(photoCacheKey);render()};
 $('q').oninput=()=>{$('mobileQ').value=$('q').value;render()};
@@ -554,8 +498,6 @@ $('mobileQ').oninput=()=>{$('q').value=$('mobileQ').value;render()};
 for(const [first,second] of [['section','mobileSection'],['mobileSection','section'],['sort','mobileSort'],['mobileSort','sort']]){
  $(first).onchange=()=>{$(second).value=$(first).value;saveViewState();render()};
 }
-$('compareBtn').onclick=openCompare;
-$('mobileCompareBtn').onclick=()=>{$('mobileFilters').open=false;openCompare()};
 $('quickFilters').addEventListener('click',event=>{
  const button=event.target.closest('button[data-quick-filter]');
  if(!button)return;
@@ -583,7 +525,7 @@ $('detail').addEventListener('touchend',event=>{
 },{passive:true});
 $('detail').addEventListener('touchcancel',()=>{swipeStart=null});
 document.addEventListener('click',e=>{if(!e.target.closest('#mobileFilters'))$('mobileFilters').open=false});
-for(const id of ['detail','compare','settingsDialog']){
+for(const id of ['detail','settingsDialog']){
  const dialog=$(id);
  dialog.addEventListener('click',e=>{
   if(e.target!==dialog)return;
